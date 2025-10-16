@@ -1,0 +1,232 @@
+---
+description: "Task list for Link-Aware Diagnostics"
+---
+
+# Tasks: Link-Aware Diagnostics
+
+**Input**: Design documents from `/specs/001-link-aware-diagnostics/`
+**Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/
+
+**Tests**: Integration tests are included per user story to guarantee independent validation of each slice.
+
+**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+
+## Format: `[ID] [P?] [Story] Description`
+- **[P]**: Can run in parallel (different files, no dependencies)
+- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
+- Include exact file paths in descriptions
+
+## Path Conventions
+- VS Code extension client: `packages/extension/`
+- Language server: `packages/server/`
+- Shared utilities & domain: `packages/shared/`
+- SQLite migrations: `data/migrations/`
+- Tests: `tests/unit/`, `tests/integration/`
+
+---
+
+## Phase 1: Setup (Shared Infrastructure)
+
+**Input**: Design documents from `/specs/001-link-aware-diagnostics/`
+**Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/
+
+**Tests**: Integration tests are included per user story to guarantee independent validation of each slice.
+
+**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+
+## Format: `[ID] [P?] [Story] Description`
+- **[P]**: Can run in parallel (different files, no dependencies)
+- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
+- Include exact file paths in descriptions
+
+## Path Conventions
+- VS Code extension client: `packages/extension/`
+- Language server: `packages/server/`
+- Shared utilities & domain: `packages/shared/`
+- SQLite migrations: `data/migrations/`
+- Tests: `tests/unit/`, `tests/integration/`
+
+---
+
+## Phase 1: Setup (Shared Infrastructure)
+
+**Purpose**: Establish workspace configuration, tooling, and launch assets
+
+- [ ] T001 Create npm workspace definition in `package.json` with packages `packages/extension`, `packages/server`, `packages/shared`
+- [ ] T002 Author root TypeScript configuration at `tsconfig.base.json` with project references for all packages
+- [ ] T003 [P] Configure linting and formatting via `.eslintrc.cjs` and `.prettierrc` at repository root
+- [ ] T004 [P] Add VS Code launch and tasks configuration in `.vscode/launch.json` and `.vscode/tasks.json` for extension + tests
+
+---
+
+- **Purpose**: Core structure, configuration, consent gating, and shared services that every user story relies on
+
+- [ ] T005 Scaffold shared package metadata in `packages/shared/package.json` with build and type definitions
+- [ ] T006 [P] Create shared TypeScript config in `packages/shared/tsconfig.json` and enable path aliases
+- [ ] T007 Define domain models for artifacts, links, and diagnostics in `packages/shared/src/domain/artifacts.ts`
+- [ ] T008 [P] Implement SQLite graph store wrapper using `better-sqlite3` in `packages/shared/src/db/graphStore.ts`
+- [ ] T009 Create initial migration schema for nodes and edges in `data/migrations/001_init.sql`
+- [ ] T010 Scaffold language server entrypoint with LSP bootstrap in `packages/server/src/main.ts`
+- [ ] T011 [P] Configure server package manifest and scripts in `packages/server/package.json`
+- [ ] T012 Implement VS Code extension activation that launches the language server in `packages/extension/src/extension.ts`
+- [ ] T013 [P] Configure extension manifest contributions in `packages/extension/package.json` (commands, activation events)
+- [ ] T014 Establish Vitest test runner config in `vitest.config.ts` targeting `packages/shared`
+- [ ] T015 [P] Add VS Code integration harness using `@vscode/test-electron` in `tests/integration/vscode/runTests.ts`
+- [ ] T016 Add configuration schema under `contributes.configuration` in `packages/extension/package.json` for noise suppression, LLM provider mode, and diagnostics storage path
+- [ ] T017 [P] Implement settings watcher in `packages/extension/src/settings/configService.ts` that forwards configuration to the language server
+- [ ] T018 Implement first-run provider onboarding UI and consent gate in `packages/extension/src/onboarding/providerGate.ts`
+- [ ] T019 Implement provider selection handshake and diagnostics gate in `packages/server/src/features/settings/providerGuard.ts`
+- [ ] T020 [P] Add file maintenance watcher for deletes/moves in `packages/extension/src/watchers/fileMaintenance.ts`
+- [ ] T021 Implement graph cleanup and rebind prompts in `packages/server/src/features/maintenance/removeOrphans.ts`
+- [ ] T022 Implement change queue with debounce in `packages/server/src/features/changeEvents/changeQueue.ts`
+- [ ] T023 Expose debounce tuning and noise thresholds to server via `packages/server/src/features/settings/settingsBridge.ts`
+- [ ] T024 [P] Evaluate GitLab Knowledge Graph (GKG) integration paths and document findings in `specs/001-link-aware-diagnostics/research.md`
+- [ ] T025 Prototype external knowledge graph ingestion bridge in `packages/shared/src/knowledge/knowledgeGraphBridge.ts`
+- [ ] T054 Implement heuristic/LLM fallback inference pipeline in `packages/shared/src/inference/fallbackInference.ts` that operates without existing language-server data
+ - [ ] T055 [P] Document external knowledge-graph schema contract in `specs/001-link-aware-diagnostics/contracts/knowledge-schema.md`
+ - [ ] T056 Enforce schema validation for external feeds in `packages/server/src/features/knowledge/schemaValidator.ts`
+
+**Checkpoint**: Foundation ready — user story implementation can now begin in parallel
+
+---
+
+## Phase 3: User Story 1 - Writers get drift alerts (Priority: P1) 🎯 MVP
+
+**Goal**: Raise diagnostics when linked documentation changes so writers immediately see affected implementation files
+
+**Independent Test**: Saving a mapped markdown file triggers diagnostics on all linked artifacts without requiring other stories
+
+- [ ] T026 [P] [US1] Add integration test `tests/integration/us1/markdownDrift.test.ts` covering markdown edits, debounce behaviour, and diagnostic publication
+
+### Implementation for User Story 1
+
+- [ ] T027 [US1] Implement link override command in `packages/extension/src/commands/overrideLink.ts`
+- [ ] T028 [P] [US1] Build link inference orchestrator in `packages/shared/src/inference/linkInference.ts` that consumes symbol/reference providers and knowledge-graph feeds
+- [ ] T029 [US1] Implement markdown save watcher in `packages/server/src/features/watchers/markdownWatcher.ts`
+- [ ] T030 [US1] Persist documentation change events in `packages/server/src/features/changeEvents/saveDocumentChange.ts`
+- [ ] T031 [US1] Publish diagnostics to linked implementation artifacts in `packages/server/src/features/diagnostics/publishDocDiagnostics.ts`
+- [ ] T032 [P] [US1] Provide Problems panel metadata and open-linked-file quick action in `packages/extension/src/diagnostics/docDiagnosticProvider.ts`
+- [ ] T033 [US1] Implement hysteresis controller in `packages/server/src/features/diagnostics/hysteresisController.ts` to suppress reciprocal diagnostics until acknowledgement
+
+**Checkpoint**: User Story 1 fully functional and independently testable
+
+---
+
+## Phase 4: User Story 2 - Developers see linked impacts (Priority: P2)
+
+**Goal**: Warn developers about affected docs and dependent modules when code changes occur
+
+**Independent Test**: Editing a mapped code file raises diagnostics on linked docs and dependent modules without US3 features
+
+- [ ] T034 [P] [US2] Add integration test `tests/integration/us2/codeImpact.test.ts` verifying code-change diagnostics, debounce behaviour, and dependency surfacing
+
+### Implementation for User Story 2
+
+- [ ] T035 [US2] Implement VS Code symbol ingestion adapter in `packages/extension/src/services/symbolBridge.ts`
+- [ ] T036 [P] [US2] Build dependency graph extraction logic in `packages/server/src/features/dependencies/buildCodeGraph.ts`
+- [ ] T037 [US2] Persist code change events and graph updates in `packages/server/src/features/changeEvents/saveCodeChange.ts`
+- [ ] T038 [US2] Publish diagnostics to dependent code modules in `packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`
+- [ ] T039 [P] [US2] Add dependency inspection quick pick UI in `packages/extension/src/diagnostics/dependencyQuickPick.ts`
+- [ ] T040 Build knowledge graph ingestion pipeline in `packages/server/src/features/knowledge/knowledgeGraphBridge.ts` to support arbitrary artifact links
+- [ ] T041 Implement LLM-assisted ripple analysis for cross-artifact watchers in `packages/server/src/features/knowledge/rippleAnalyzer.ts`
+
+**Checkpoint**: User Stories 1 and 2 operate independently and in combination
+
+---
+
+## Phase 5: User Story 3 - Leads resolve alerts efficiently (Priority: P3)
+
+**Goal**: Provide acknowledgement workflows and consolidated views so leads can manage drift signals
+
+**Independent Test**: Acknowledging diagnostics clears them until new changes and exports summaries without relying on prior stories
+
+- [ ] T042 [P] [US3] Add integration test `tests/integration/us3/acknowledgeDiagnostics.test.ts` covering acknowledgement flow, hysteresis release, and settings overrides
+
+### Implementation for User Story 3
+
+- [ ] T043 [US3] Implement acknowledgement service with SQLite persistence and settings awareness in `packages/server/src/features/diagnostics/acknowledgementService.ts`
+- [ ] T044 [P] [US3] Create diagnostics tree view provider in `packages/extension/src/views/diagnosticsTree.ts`
+- [ ] T045 [US3] Implement export diagnostics command in `packages/extension/src/commands/exportDiagnostics.ts`
+- [ ] T046 [US3] Add configurable noise suppression filters in `packages/server/src/features/diagnostics/noiseFilter.ts`
+- [ ] T047 [P] [US3] Wire optional AI analysis command using `vscode.lm` in `packages/extension/src/commands/analyzeWithAI.ts`
+
+**Checkpoint**: All user stories independently functional with full workflow coverage
+
+---
+
+## Phase 6: Polish & Cross-Cutting Concerns
+
+**Purpose**: Hardening, documentation, instrumentation, and release readiness
+
+- [ ] T048 Update walkthrough with delete/rebind workflow and settings table in `specs/001-link-aware-diagnostics/quickstart.md`
+- [ ] T049 [P] Add CI script `ci-check` to root `package.json` invoking headless validation
+- [ ] T050 [P] Document constitution alignment, consent controls, and configuration guidance in `README.md`
+- [ ] T051 Execute full regression suite via `tests/integration/` runner and record results in `docs/test-report.md`
+- [ ] T052 Instrument diagnostic latency telemetry in `packages/server/src/telemetry/latencyTracker.ts`
+- [ ] T053 [P] Add performance validation test `tests/integration/perf/diagnosticLatency.test.ts`
+- [ ] T057 Establish benchmark workspace automation in `tests/integration/benchmarks/rebuildStability.test.ts` measuring link graph reproducibility
+- [ ] T058 [P] Capture inference accuracy metrics and reporting pipeline in `packages/server/src/telemetry/inferenceAccuracy.ts`
+
+---
+
+## Dependencies & Execution Order
+
+### Phase Dependencies
+- **Phase 1 → Phase 2**: Setup must complete before foundational work
+- **Phase 2 → Phases 3-5**: Foundational tasks (including configuration, watcher plumbing, hysteresis scaffolding) block all user stories
+- **Phase 3 → Phase 4 → Phase 5**: Stories prioritized P1 → P2 → P3; later stories can start once foundational is done but should respect priority unless staffing allows parallel execution
+- **Phase 6**: Runs after desired user stories are complete
+
+### User Story Dependencies
+- **US1**: Depends only on Phase 2 completion
+- **US2**: Depends on Phase 2; enriches but does not strictly depend on US1 implementations
+- **US3**: Depends on Phase 2; consumes diagnostics produced by earlier stories but can be developed independently using seeded data
+
+### Task Dependencies (Highlights)
+- T031 depends on T027–T030
+- T033 depends on T043 (acknowledgement state definitions) and T017 (settings propagation)
+- T038 depends on T035–T037
+- T041 depends on T017–T019 and T025
+- T056 depends on T055 and T025
+- T052 depends on T022 and T038
+- T057 depends on T054, T028, and T058
+
+---
+
+## Parallel Opportunities
+- Marked `[P]` tasks across phases (e.g., T003, T004, T006, T008, T011, T013, T015, T017, T020, T024, T028, T032, T034, T036, T039, T044, T047, T049, T050, T053, T055, T058) can proceed concurrently once prerequisites finish
+- Different user stories can be staffed in parallel after Phase 2, with coordination to avoid file conflicts
+- Within each story, tests (T022, T030, T036) can be drafted while implementation scaffolding proceeds
+
+---
+
+## Implementation Strategy
+
+### MVP First (User Story 1)
+1. Complete Phases 1 and 2
+2. Deliver Phase 3 (US1) and validate via T022
+3. Ship MVP to pilot teams for early feedback
+
+### Incremental Delivery
+1. Extend MVP with Phase 4 (US2) diagnostics for developers
+2. Add Phase 5 (US3) management workflows when teams are ready for operational tracking
+3. Finish with Phase 6 polish before broader rollout, including telemetry and performance validation
+
+### Parallel Team Strategy
+- Engineer A: Leads Phase 2 data store, configuration plumbing, and server backbone (T005–T021)
+- Engineer B: Drives US1 implementation (T022–T029)
+- Engineer C: Builds US2 dependency intelligence (T030–T035)
+- Engineer D: Owns US3 acknowledgement tooling and AI opt-in (T036–T041)
+- Shared effort: Polish tasks and instrumentation (T042–T047)
+
+---
+
+## Summary
+- **Total Tasks**: 57
+- **User Story Task Counts**:
+  - US1: 8 tasks (including T026 test)
+  - US2: 8 tasks (including T034 test)
+  - US3: 6 tasks (including T042 test)
+- **Parallel Opportunities**: 22 tasks marked `[P]`
+- **Independent Tests**: T026 (US1), T034 (US2), T042 (US3)
+- **Suggested MVP Scope**: Phases 1–3 (through User Story 1)
