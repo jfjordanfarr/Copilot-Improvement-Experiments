@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+  "moduleResolution": "Node",
+  "baseUrl": ".",
+    "lib": ["ES2022"],
+  "types": ["node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "composite": true,
+    "outDir": "dist",
+    "paths": {
+      "@copilot-improvement/shared": ["packages/shared/src/index"],
+      "@copilot-improvement/shared/*": ["packages/shared/src/*"]
+    }
+  },
+  "references": [
+    { "path": "packages/shared" },
+    { "path": "packages/server" },
+    { "path": "packages/extension" }
+  ]
+}

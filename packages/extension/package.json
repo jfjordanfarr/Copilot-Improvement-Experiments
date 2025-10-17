@@ -1,0 +1,69 @@
+{
+  "name": "link-aware-diagnostics",
+  "displayName": "Link-Aware Diagnostics",
+  "publisher": "copilot-improvement",
+  "version": "0.0.0",
+  "engines": {
+    "vscode": "^1.91.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "linkDiagnostics.overrideLink",
+        "title": "Link Diagnostics: Override Link"
+      },
+      {
+        "command": "linkDiagnostics.analyzeWithAI",
+        "title": "Link Diagnostics: Analyze Impact with AI"
+      }
+    ],
+    "configuration": {
+      "title": "Link-Aware Diagnostics",
+      "properties": {
+        "linkAwareDiagnostics.llmProviderMode": {
+          "type": "string",
+          "enum": ["prompt", "local-only", "disabled"],
+          "default": "prompt",
+          "description": "Control how LLM providers are selected before diagnostics are enabled."
+        },
+        "linkAwareDiagnostics.noiseSuppression.level": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "default": "medium",
+          "description": "Adjust debounce and batching thresholds for drift diagnostics."
+        },
+        "linkAwareDiagnostics.storagePath": {
+          "type": "string",
+          "default": "",
+          "description": "Optional override for the on-disk cache storing knowledge-graph projections."
+        },
+        "linkAwareDiagnostics.enableDiagnostics": {
+          "type": "boolean",
+          "default": false,
+          "description": "Gate all diagnostics until the user consents to a provider mode."
+        },
+        "linkAwareDiagnostics.debounce.ms": {
+          "type": "number",
+          "default": 1000,
+          "description": "Debounce window (in milliseconds) before change events trigger diagnostics."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch"
+  },
+  "dependencies": {
+    "@copilot-improvement/shared": "file:../shared",
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.91.0"
+  }
+}

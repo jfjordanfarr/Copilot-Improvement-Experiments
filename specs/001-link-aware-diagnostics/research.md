@@ -35,10 +35,26 @@
 - **Rationale**: SQLite is lightweight, cross-platform, and proven for property-graph workloads at our target scale. Works offline and simplifies distribution.
 - **Alternatives Considered**: KùzuDB (kept in reserve if queries require richer pattern matching); in-memory store only (rejected: no history/audit, loses data on restart).
 
-## Knowledge-Graph Schema Contract
-- **Decision**: Require external feeds to provide artifact identifiers, edge types, directionality, timestamps, and optional confidence scores in a normalized schema that maps directly onto our SQLite tables.
-- **Rationale**: Allows deterministic ingestion regardless of provider (GitLab GKG, LSIF/SCIP exports, custom GraphRAG output) and makes validation straightforward before data mutates the graph store.
+-## Knowledge-Graph Schema Contract
+- **Decision**: Require external feeds to provide artifact identifiers, edge types, directionality, timestamps, and optional confidence scores in a normalized schema that maps directly onto our SQLite tables. Support two ingestion modes—on-demand KnowledgeSnapshot imports and streaming feeds—that share the same contract so payloads can be validated consistently before mutation.
+- **Rationale**: Allows deterministic ingestion regardless of provider (GitLab GKG, LSIF/SCIP exports, custom GraphRAG output) and makes validation straightforward before data mutates the graph store. Shared contracts ensure snapshot payloads can be replayed for reproducibility while streaming feeds can resume after outages by checkpointing the last accepted event.
 - **Alternatives Considered**: Accept provider-specific payloads with on-the-fly mapping (rejected: hard to validate, increases maintenance); mandate a proprietary format (rejected: reduces interoperability).
+
+## Feed Resilience Strategy
+- **Decision**: Treat remote knowledge-graph feeds as optional accelerants—when a source goes stale or unreachable, surface a warning diagnostic, temporarily fence the feed, and revert to local inference until healthy data arrives. Maintain checkpoints so streaming feeds can replay missed messages, while snapshots retain their last approved version.
+- **Rationale**: Keeps diagnostics trustworthy without blocking the core experience on external availability. Mirrors VS Code’s approach of tolerating index rebuilds when caches disappear.
+- **Alternatives Considered**: Hard-fail diagnostics when feeds drop (rejected: harms usability); silently ignore failure (rejected: hides data quality issues).
+
+## GitLab Knowledge Graph (GKG) Integration
+- **Evaluation**: GKG exposes REST endpoints (`/projects/:id/knowledge_graph/nodes`, `/edges`) and webhook-delivered deltas that include stable identifiers, timestamps, edge kinds, and confidence values. Snapshots can be fetched with `include=metadata` to enrich drift analysis, while webhook payloads carry `sequence_id` for replay guarantees.
+- **Approach**: Use authenticated REST pulls for initial snapshot ingestion, mapping GitLab node types to our artifact layers (e.g., `doc_requirement` → `requirements`, `code_module` → `code`). Subscribe to the `knowledge_graph_events` webhook to receive streaming updates; store the last `sequence_id` so the server can request missed events via backfill endpoint on reconnect. Apply provider-specific metadata (project path, labels) under the artifact metadata bag for downstream overrides.
+- **Risks**: Webhooks arrive in project-scoped batches, so multi-project workspaces require deduplication. REST snapshot pagination can be heavy for large repos; recommend chunked ingestion with progress telemetry. Authorization depends on PAT scopes (`read_api`, `read_repository`) and must respect enterprise policies.
+- **Fallback Plan**: When GKG is unavailable, revert to LSIF/SCIP exports produced via GitLab CI pipelines; the ingestion bridge shares the same schema so swapping sources is configuration-only.
+
+## AST Benchmark Strategy
+- **Decision**: Maintain a curated benchmark suite with canonical ASTs (starting with small C programs and expanding to other languages where ground truth is accessible) to validate inferred knowledge graphs during development, while continuing to run multi-pass self-similarity benchmarks for repositories that lack authoritative AST exports.
+- **Rationale**: AST-backed comparisons provide a higher-fidelity accuracy signal whenever compiler-grade metadata is available, yet the fallback ensures every workspace still benefits from automated validation. Keeping both paths preserves reproducibility goals without over-relying on a single data source.
+- **Alternatives Considered**: Depend exclusively on self-similarity metrics (rejected: weaker guarantee when ground truth exists); require AST availability for every benchmark (rejected: excludes important languages and bloats setup).
 
 ## LLM Augmentation
 - **Decision**: Integrate optional reasoning through the `vscode.lm` API, respecting user-selected providers and exposing a “local-only” mode.

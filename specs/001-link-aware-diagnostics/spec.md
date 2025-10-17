@@ -74,12 +74,36 @@ Engineering or documentation leads review outstanding drift diagnostics, assign 
 - Documentation layers are incomplete (e.g., missing Layer 3) but edits still occur.
 - If artifact A triggers a diagnostic on B, reciprocal diagnostics from B to A are suppressed until the first alert is acknowledged or a fresh change occurs after acknowledgement.
 - Deleted artifacts or renamed paths automatically prune or prompt re-binding of their link relationships to avoid dangling references.
+- External knowledge-graph feeds may become unreachable or provide stale/partial payloads; the system MUST surface a warning diagnostic, pause ingestion for the impacted feed, and fall back to local inference without mutating cached relationships until a valid payload is received.
+- Streaming feeds MUST resume gracefully after transient failures by replaying missed deltas, while on-demand snapshot imports MUST preserve the previously ingested snapshot until replacement data passes validation.
+- Benchmark workspaces without canonical ASTs MUST fall back to self-similarity accuracy checks and record that limitation alongside the results so pipelines remain informative without blocking on missing ground truth.
+
+### Inference Inputs by Artifact Type
+
+| Artifact Type | Baseline Signals | Enhanced Signals | External Feeds |
+|---------------|------------------|------------------|----------------|
+| Markdown documentation (vision, requirements, architecture) | Heuristic/LLM semantic analysis of section headers, headings, and inline link targets | Workspace symbol cross-references (e.g., `executeDocumentSymbolProvider`, `executeReferenceProvider`) that point from prose anchors to code symbols | Knowledge graph edges that map documentation nodes to implementation assets |
+| Implementation markdown (implementation guides, runbooks) | Heuristic/LLM extraction of code blocks, configuration snippets, and referenced module names | Diagnostics emitted by existing language servers when linked code changes | Knowledge graph projections describing implementation-to-code relationships |
+| Code artifacts | Heuristic/LLM parsing of import statements, comments, and file naming conventions (Tree-sitter fallbacks) | Language-server definition/reference graphs, symbol hierarchies, and document highlights | External dependency graphs (LSIF/SCIP exports, GitLab Knowledge Graph edges) |
+
+“Workspace index data” refers specifically to VS Code’s `execute*Provider` command family (symbols, references, definitions, implementations), `workspace.findFiles`, and live diagnostics streamed from active language servers. These APIs are treated as accelerators layered on top of the heuristic/LLM baseline so that inference remains functional when an index is missing.
+
+### Graph Rebuild Lifecycle
+
+1. **Initial startup**: On extension activation, the server checks for an existing graph cache; if absent, it rebuilds from scratch using the inference inputs above, then persists the snapshot to SQLite.
+2. **Cache deletion**: When users delete the cache directory or invoke a “Rebuild Diagnostics Graph” command, the server discards residual data, replays the inference pipeline, and rehydrates the database before diagnostics resume.
+3. **Staleness detection**: Background jobs monitor timestamp drift between artifacts and cached relationships; when mismatches exceed configured thresholds, the server schedules incremental refreshes that reconcile edges without blocking diagnostics.
+4. **External feed refresh**: Streaming feeds checkpoint their last successful event so they can resume after outages; snapshot imports run through schema validation before replacing existing data, and failures trigger alerts while preserving the prior snapshot.
+
+### Cache Retention & Privacy
+
+Graph projections, override manifests, and drift history live under the workspace storage directory declared in configuration (default: VS Code global storage). Users can redirect the location via `linkAwareDiagnostics.storagePath`. Retention policies follow a rolling window (default 90 days) to keep storage lightweight, and administrators can purge caches without data loss because the graph remains rebuildable. Sensitive metadata inherits VS Code workspace trust rules, and diagnostics stay suppressed until consented provider settings are applied.
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: System MUST infer and maintain links between markdown layers (Vision, Requirements, Architecture, Implementation) and their corresponding code artifacts using a layered pipeline that defaults to heuristic/LLM-driven analysis and augments with workspace index data (symbol providers, reference graphs, diagnostics) when available, while providing optional overrides through lightweight manifests or commands when inference requires correction.
+- **FR-001**: System MUST infer and maintain links between markdown layers (Vision, Requirements, Architecture, Implementation) and their corresponding code artifacts using a layered pipeline that defaults to heuristic/LLM-driven analysis and augments with workspace index data (symbol providers, reference graphs, diagnostics) when available, while providing optional overrides through lightweight manifests or commands when inference requires correction. Manual overrides MUST take precedence over fresh inference results until explicitly revoked and MUST leave an auditable trail so operators can understand why a relationship persists.
 - **FR-002**: System MUST detect when any linked markdown or code artifact is saved within the workspace and record the change event.
 - **FR-003**: System MUST raise diagnostics in every artifact linked to a changed file, clearly naming the source file and required follow-up action.
 - **FR-004**: System MUST let users acknowledge or dismiss a diagnostic once review is complete, persisting that state until a subsequent change occurs.
@@ -92,8 +116,9 @@ Engineering or documentation leads review outstanding drift diagnostics, assign 
 - **FR-011**: System MUST implement hysteresis so reciprocal diagnostics between linked artifacts remain paused until the originating alert is acknowledged or superseded by new changes.
 - **FR-012**: System MUST support configurable debounce/batching for rapid change events to avoid redundant diagnostics during batched edits.
 - **FR-013**: System MUST offer workflows to repair or remove links when underlying artifacts are deleted or renamed.
-- **FR-014**: System MUST support knowledge-graph-backed monitoring between arbitrary artifacts (beyond markdown↔code pairs) using external graph feeds and LLM-assisted ripple analysis to surface multi-hop change impacts.
+- **FR-014**: System MUST support knowledge-graph-backed monitoring between arbitrary artifacts (beyond markdown↔code pairs) using external graph feeds and LLM-assisted ripple analysis to surface multi-hop change impacts, handling both on-demand KnowledgeSnapshot imports and long-lived streaming feeds with consistent validation and storage semantics.
 - **FR-015**: System MUST define and enforce a minimal schema for ingesting external knowledge-graph data, including artifact identifiers, edge types, timestamps, and confidence metadata, and MUST validate incoming feeds against this contract before integrating them.
+- **FR-016**: Development-time verification MUST compare the inferred link graph against canonical abstract syntax trees for curated benchmark workspaces when ground-truth ASTs are available, and MUST fall back to multi-run self-similarity benchmarks for workspaces lacking authoritative ASTs so accuracy remains measurable in both contexts.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -110,7 +135,7 @@ Engineering or documentation leads review outstanding drift diagnostics, assign 
 - Dependency analysis for code files can reuse existing project build metadata or simple static analysis without requiring full compilation.
 - Users operate within VS Code workspaces where both documentation and implementation artifacts are accessible.
 - Users accept a short debounce window (default 1s) before diagnostics fire during rapid edit sessions to balance responsiveness with signal quality.
-- External knowledge graphs (e.g., GitLab Knowledge Graph) can be queried locally or cached for enriching cross-artifact change analysis.
+- External knowledge graphs (e.g., GitLab Knowledge Graph) expose read APIs secured by workspace-managed tokens, refresh at least every 15 minutes, and can be mirrored locally so ingestion remains resilient when remote services degrade.
 
 ## Success Criteria *(mandatory)*
 
@@ -122,6 +147,7 @@ Engineering or documentation leads review outstanding drift diagnostics, assign 
 - **SC-004**: 80% of surveyed users report that the diagnostics help them locate related context faster than manual search during retrospective interviews.
 - **SC-005**: In automated latency validation, diagnostics remain suppressed during acknowledgement windows with zero ricochet regressions recorded.
 - **SC-006**: On a canonical benchmark workspace, repeated graph rebuilds produce ≥95% identical link edges and flag deviations, ensuring inference reproducibility.
+- **SC-007**: On curated AST-backed benchmark workspaces, ≥90% of inferred edges match canonical AST relationships, and variance between runs stays within ±5% when ground-truth ASTs are unavailable, ensuring both validation modes surface actionable accuracy signals.
 
 
 ## Clarifications

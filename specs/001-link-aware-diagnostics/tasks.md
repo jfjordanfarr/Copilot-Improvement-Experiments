@@ -52,36 +52,36 @@ description: "Task list for Link-Aware Diagnostics"
 
 **Purpose**: Establish workspace configuration, tooling, and launch assets
 
-- [ ] T001 Create npm workspace definition in `package.json` with packages `packages/extension`, `packages/server`, `packages/shared`
-- [ ] T002 Author root TypeScript configuration at `tsconfig.base.json` with project references for all packages
-- [ ] T003 [P] Configure linting and formatting via `.eslintrc.cjs` and `.prettierrc` at repository root
-- [ ] T004 [P] Add VS Code launch and tasks configuration in `.vscode/launch.json` and `.vscode/tasks.json` for extension + tests
+- [x] T001 Create npm workspace definition in `package.json` with packages `packages/extension`, `packages/server`, `packages/shared`
+- [x] T002 Author root TypeScript configuration at `tsconfig.base.json` with project references for all packages
+- [x] T003 [P] Configure linting and formatting via `.eslintrc.cjs` and `.prettierrc` at repository root
+- [x] T004 [P] Add VS Code launch and tasks configuration in `.vscode/launch.json` and `.vscode/tasks.json` for extension + tests
 
 ---
 
 - **Purpose**: Core structure, configuration, consent gating, and shared services that every user story relies on
 
-- [ ] T005 Scaffold shared package metadata in `packages/shared/package.json` with build and type definitions
-- [ ] T006 [P] Create shared TypeScript config in `packages/shared/tsconfig.json` and enable path aliases
-- [ ] T007 Define domain models for artifacts, links, and diagnostics in `packages/shared/src/domain/artifacts.ts`
-- [ ] T008 [P] Implement SQLite graph store wrapper using `better-sqlite3` in `packages/shared/src/db/graphStore.ts`
-- [ ] T009 Create initial migration schema for nodes and edges in `data/migrations/001_init.sql`
-- [ ] T010 Scaffold language server entrypoint with LSP bootstrap in `packages/server/src/main.ts`
-- [ ] T011 [P] Configure server package manifest and scripts in `packages/server/package.json`
-- [ ] T012 Implement VS Code extension activation that launches the language server in `packages/extension/src/extension.ts`
-- [ ] T013 [P] Configure extension manifest contributions in `packages/extension/package.json` (commands, activation events)
-- [ ] T014 Establish Vitest test runner config in `vitest.config.ts` targeting `packages/shared`
-- [ ] T015 [P] Add VS Code integration harness using `@vscode/test-electron` in `tests/integration/vscode/runTests.ts`
-- [ ] T016 Add configuration schema under `contributes.configuration` in `packages/extension/package.json` for noise suppression, LLM provider mode, and diagnostics storage path
-- [ ] T017 [P] Implement settings watcher in `packages/extension/src/settings/configService.ts` that forwards configuration to the language server
-- [ ] T018 Implement first-run provider onboarding UI and consent gate in `packages/extension/src/onboarding/providerGate.ts`
-- [ ] T019 Implement provider selection handshake and diagnostics gate in `packages/server/src/features/settings/providerGuard.ts`
-- [ ] T020 [P] Add file maintenance watcher for deletes/moves in `packages/extension/src/watchers/fileMaintenance.ts`
-- [ ] T021 Implement graph cleanup and rebind prompts in `packages/server/src/features/maintenance/removeOrphans.ts`
-- [ ] T022 Implement change queue with debounce in `packages/server/src/features/changeEvents/changeQueue.ts`
-- [ ] T023 Expose debounce tuning and noise thresholds to server via `packages/server/src/features/settings/settingsBridge.ts`
-- [ ] T024 [P] Evaluate GitLab Knowledge Graph (GKG) integration paths and document findings in `specs/001-link-aware-diagnostics/research.md`
-- [ ] T025 Prototype external knowledge graph ingestion bridge in `packages/shared/src/knowledge/knowledgeGraphBridge.ts`
+- [x] T005 Scaffold shared package metadata in `packages/shared/package.json` with build and type definitions
+- [x] T006 [P] Create shared TypeScript config in `packages/shared/tsconfig.json` and enable path aliases
+- [x] T007 Define domain models for artifacts, links, and diagnostics in `packages/shared/src/domain/artifacts.ts`
+- [x] T008 [P] Implement SQLite graph store wrapper using `better-sqlite3` in `packages/shared/src/db/graphStore.ts`
+- [x] T009 Create initial migration schema for nodes and edges in `data/migrations/001_init.sql`
+- [x] T010 Scaffold language server entrypoint with LSP bootstrap in `packages/server/src/main.ts`
+- [x] T011 [P] Configure server package manifest and scripts in `packages/server/package.json`
+- [x] T012 Implement VS Code extension activation that launches the language server in `packages/extension/src/extension.ts`
+- [x] T013 [P] Configure extension manifest contributions in `packages/extension/package.json` (commands, activation events)
+- [x] T014 Establish Vitest test runner config in `vitest.config.ts` targeting `packages/shared`
+- [x] T015 [P] Add VS Code integration harness using `@vscode/test-electron` in `tests/integration/vscode/runTests.ts`
+- [x] T016 Add configuration schema under `contributes.configuration` in `packages/extension/package.json` for noise suppression, LLM provider mode, and diagnostics storage path
+- [x] T017 [P] Implement settings watcher in `packages/extension/src/settings/configService.ts` that forwards configuration to the language server
+- [x] T018 Implement first-run provider onboarding UI and consent gate in `packages/extension/src/onboarding/providerGate.ts`
+- [x] T019 Implement provider selection handshake and diagnostics gate in `packages/server/src/features/settings/providerGuard.ts`
+- [x] T020 [P] Add file maintenance watcher for deletes/moves in `packages/extension/src/watchers/fileMaintenance.ts`
+- [x] T021 Implement graph cleanup and rebind prompts in `packages/server/src/features/maintenance/removeOrphans.ts`
+- [x] T022 Implement change queue with debounce in `packages/server/src/features/changeEvents/changeQueue.ts`
+- [x] T023 Expose debounce tuning and noise thresholds to server via `packages/server/src/features/settings/settingsBridge.ts`
+- [x] T024 [P] Evaluate GitLab Knowledge Graph (GKG) integration paths and document findings in `specs/001-link-aware-diagnostics/research.md`
+- [x] T025 Prototype external knowledge graph ingestion bridge in `packages/shared/src/knowledge/knowledgeGraphBridge.ts`
 - [ ] T054 Implement heuristic/LLM fallback inference pipeline in `packages/shared/src/inference/fallbackInference.ts` that operates without existing language-server data
  - [ ] T055 [P] Document external knowledge-graph schema contract in `specs/001-link-aware-diagnostics/contracts/knowledge-schema.md`
  - [ ] T056 Enforce schema validation for external feeds in `packages/server/src/features/knowledge/schemaValidator.ts`
@@ -100,7 +100,7 @@ description: "Task list for Link-Aware Diagnostics"
 
 ### Implementation for User Story 1
 
-- [ ] T027 [US1] Implement link override command in `packages/extension/src/commands/overrideLink.ts`
+- [x] T027 [US1] Implement link override command in `packages/extension/src/commands/overrideLink.ts`
 - [ ] T028 [P] [US1] Build link inference orchestrator in `packages/shared/src/inference/linkInference.ts` that consumes symbol/reference providers and knowledge-graph feeds
 - [ ] T029 [US1] Implement markdown save watcher in `packages/server/src/features/watchers/markdownWatcher.ts`
 - [ ] T030 [US1] Persist documentation change events in `packages/server/src/features/changeEvents/saveDocumentChange.ts`
@@ -149,6 +149,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [ ] T045 [US3] Implement export diagnostics command in `packages/extension/src/commands/exportDiagnostics.ts`
 - [ ] T046 [US3] Add configurable noise suppression filters in `packages/server/src/features/diagnostics/noiseFilter.ts`
 - [ ] T047 [P] [US3] Wire optional AI analysis command using `vscode.lm` in `packages/extension/src/commands/analyzeWithAI.ts`
+- [ ] T059 [US3] Persist drift history log entries in `packages/server/src/telemetry/driftHistoryStore.ts` and expose summary reporting demanded by FR-009
 
 **Checkpoint**: All user stories independently functional with full workflow coverage
 
@@ -166,6 +167,9 @@ description: "Task list for Link-Aware Diagnostics"
 - [ ] T053 [P] Add performance validation test `tests/integration/perf/diagnosticLatency.test.ts`
 - [ ] T057 Establish benchmark workspace automation in `tests/integration/benchmarks/rebuildStability.test.ts` measuring link graph reproducibility
 - [ ] T058 [P] Capture inference accuracy metrics and reporting pipeline in `packages/server/src/telemetry/inferenceAccuracy.ts`
+- [ ] T060 Curate AST-backed benchmark repos (starting with C and at least one additional language) under `tests/integration/benchmarks/ast-fixtures/`
+- [ ] T061 Implement AST comparison harness in `tests/integration/benchmarks/astAccuracy.test.ts` that reconciles inferred graphs with canonical ASTs
+- [ ] T062 Integrate dual-mode benchmark selection (AST vs self-similarity) into CI via root `package.json` scripts and `npm run ci-check`
 
 ---
 
@@ -222,11 +226,11 @@ description: "Task list for Link-Aware Diagnostics"
 ---
 
 ## Summary
-- **Total Tasks**: 57
+- **Total Tasks**: 61
 - **User Story Task Counts**:
   - US1: 8 tasks (including T026 test)
   - US2: 8 tasks (including T034 test)
-  - US3: 6 tasks (including T042 test)
+  - US3: 7 tasks (including T042 test)
 - **Parallel Opportunities**: 22 tasks marked `[P]`
 - **Independent Tests**: T026 (US1), T034 (US2), T042 (US3)
 - **Suggested MVP Scope**: Phases 1–3 (through User Story 1)

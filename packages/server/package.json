@@ -1,0 +1,21 @@
+{
+  "name": "@copilot-improvement/server",
+  "version": "0.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json --watch",
+    "test:contracts": "echo \"No contract tests yet\""
+  },
+  "dependencies": {
+    "@copilot-improvement/shared": "file:../shared",
+    "better-sqlite3": "^9.5.0",
+    "uuid": "^9.0.1",
+    "vscode-languageserver": "^9.0.1",
+    "vscode-uri": "^3.0.8"
+  }
+}

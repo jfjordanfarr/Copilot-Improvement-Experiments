@@ -1,0 +1,26 @@
+# Node/TypeScript workspace artifacts
+node_modules/
+dist/
+build/
+out/
+coverage/
+*.log
+*.tsbuildinfo
+
+# Environment and secrets
+.env
+.env.*
+*.local
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# SQLite caches
+*.sqlite
+*.sqlite-journal
+
+# Test outputs
+*.tap

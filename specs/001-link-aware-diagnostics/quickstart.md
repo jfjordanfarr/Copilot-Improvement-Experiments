@@ -22,7 +22,9 @@
 
 ## Configuration
 - On first launch, the extension opens the “Select LLM Provider” onboarding. Diagnostics remain disabled until you choose a provider or explicitly select the “local-only”/“disabled” option.
-- Link inference runs automatically using heuristic/LLM analysis and augments with active language-server signals (definitions, references, diagnostics) plus any configured knowledge-graph feeds. Override or pin relationships only when needed using the “Link Diagnostics: Override Link” command; overrides persist in the workspace cache and can be regenerated at any time.
+- Link inference runs automatically using heuristic/LLM analysis and augments with active language-server signals (definitions, references, diagnostics) plus any configured knowledge-graph feeds. Override or pin relationships only when needed using the “Link Diagnostics: Override Link” command; overrides persist in the workspace cache, take precedence over future inference passes until you remove them, and contribute provenance for audit trails.
+- Configure knowledge-graph feeds per workspace: import static KnowledgeSnapshots on-demand when you want a frozen baseline, or register streaming feeds (e.g., GitLab Knowledge Graph webhooks) for continuous updates. Streaming feeds automatically resume after transient outages by replaying missed deltas, while snapshots remain active until a newer payload passes validation.
+- When external feeds fail validation or become unreachable, the extension surfaces a warning diagnostic, pauses ingestion for that source, and continues operating on locally inferred data so diagnostics remain trustworthy.
 - In workspaces without language-server coverage, expect the first inference pass to take longer while the fallback pipeline builds context; results remain rebuildable and will speed up once indexed data is available.
 - Key settings:
    - `linkAwareDiagnostics.llmProviderMode`: `prompt` (default – requires explicit choice), `local-only`, or `disabled`.
