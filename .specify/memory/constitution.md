@@ -1,15 +1,11 @@
 <!--
 Sync Impact Report
-Version: 0.0.0 → 1.0.0
-Modified Principles: (template placeholders) → Documentation-Implementation Unity, Tooling Leverage, Responsible Intelligence, Fast Feedback, Simplicity & Stewardship
-Added Sections: Additional Constraints, Development Workflow (filled)
-Removed Sections: None
+Version: 1.0.0 → 1.0.1
+Modified Principles: None (structure cleanup)
+Added Sections: None
+Removed Sections: Residual template placeholder block
 Templates Requiring Updates:
-	✅ .specify/templates/spec-template.md (remains aligned with documentation unity and testing focus)
-	✅ .specify/templates/plan-template.md (Constitution Check already referenced; no changes needed)
-	✅ .specify/templates/tasks-template.md (still compatible with principles)
-	✅ .specify/templates/commands/speckit.constitution.prompt.md (current)
-	✅ .specify/templates/commands/plan.md (references gate; matches principles)
+	✅ Existing SpecKit templates already aligned (no changes required)
 Follow-up TODOs: None
 -->
 
@@ -53,54 +49,4 @@ Implementations MUST default to lightweight, local-first components (e.g., embed
 - Ratified constitutions MUST be referenced in planning artifacts; discrepancies require immediate rectification.
 - Compliance reviews occur at least once per feature cycle; unresolved violations block release until documented mitigations are in place.
 
-**Version**: 1.0.0 | **Ratified**: 2025-10-16 | **Last Amended**: 2025-10-16
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
-
-## Core Principles
-
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
-
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
-
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
-
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
-
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
-
-## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
-
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.1 | **Ratified**: 2025-10-16 | **Last Amended**: 2025-10-17

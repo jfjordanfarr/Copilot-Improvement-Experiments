@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+
 import { RebindRequiredPayload } from "@copilot-improvement/shared";
 
 const REBIND_COMMAND = "linkDiagnostics.overrideLink";

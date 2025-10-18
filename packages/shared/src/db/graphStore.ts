@@ -85,6 +85,16 @@ export class GraphStore {
     return this.mapArtifactRow(row as ArtifactRow);
   }
 
+  listArtifacts(): KnowledgeArtifact[] {
+    const rows = this.db
+      .prepare(
+        `SELECT id, uri, layer, language, owner, last_synchronized_at, hash, metadata FROM artifacts`
+      )
+      .all() as ArtifactRow[];
+
+    return rows.map(row => this.mapArtifactRow(row));
+  }
+
   listLinkedArtifacts(artifactId: string): LinkedArtifactSummary[] {
     const rows = this.db
       .prepare(
@@ -355,7 +365,7 @@ export class GraphStore {
 
     try {
       return JSON.parse(value) as Record<string, unknown>;
-    } catch (error) {
+    } catch {
       return undefined;
     }
   }

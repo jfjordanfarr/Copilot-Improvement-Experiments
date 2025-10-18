@@ -82,9 +82,9 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T023 Expose debounce tuning and noise thresholds to server via `packages/server/src/features/settings/settingsBridge.ts`
 - [x] T024 [P] Evaluate GitLab Knowledge Graph (GKG) integration paths and document findings in `specs/001-link-aware-diagnostics/research.md`
 - [x] T025 Prototype external knowledge graph ingestion bridge in `packages/shared/src/knowledge/knowledgeGraphBridge.ts`
-- [ ] T054 Implement heuristic/LLM fallback inference pipeline in `packages/shared/src/inference/fallbackInference.ts` that operates without existing language-server data
- - [ ] T055 [P] Document external knowledge-graph schema contract in `specs/001-link-aware-diagnostics/contracts/knowledge-schema.md`
- - [ ] T056 Enforce schema validation for external feeds in `packages/server/src/features/knowledge/schemaValidator.ts`
+- [x] T054 Implement heuristic/LLM fallback inference pipeline in `packages/shared/src/inference/fallbackInference.ts` that operates without existing language-server data
+- [x] T055 [P] Document external knowledge-graph schema contract in `specs/001-link-aware-diagnostics/contracts/knowledge-schema.md`
+- [x] T056 Enforce schema validation for external feeds in `packages/server/src/features/knowledge/schemaValidator.ts`
 
 **Checkpoint**: Foundation ready — user story implementation can now begin in parallel
 
@@ -96,15 +96,15 @@ description: "Task list for Link-Aware Diagnostics"
 
 **Independent Test**: Saving a mapped markdown file triggers diagnostics on all linked artifacts without requiring other stories
 
-- [ ] T026 [P] [US1] Add integration test `tests/integration/us1/markdownDrift.test.ts` covering markdown edits, debounce behaviour, and diagnostic publication
+- [x] T026 [P] [US1] Add integration test `tests/integration/us1/markdownDrift.test.ts` covering markdown edits, debounce behaviour, and diagnostic publication
 
 ### Implementation for User Story 1
 
 - [x] T027 [US1] Implement link override command in `packages/extension/src/commands/overrideLink.ts`
-- [ ] T028 [P] [US1] Build link inference orchestrator in `packages/shared/src/inference/linkInference.ts` that consumes symbol/reference providers and knowledge-graph feeds
-- [ ] T029 [US1] Implement markdown save watcher in `packages/server/src/features/watchers/markdownWatcher.ts`
-- [ ] T030 [US1] Persist documentation change events in `packages/server/src/features/changeEvents/saveDocumentChange.ts`
-- [ ] T031 [US1] Publish diagnostics to linked implementation artifacts in `packages/server/src/features/diagnostics/publishDocDiagnostics.ts`
+- [x] T028 [P] [US1] Build link inference orchestrator in `packages/shared/src/inference/linkInference.ts` that consumes symbol/reference providers and knowledge-graph feeds
+- [x] T029 [US1] Implement markdown save watcher in `packages/server/src/features/watchers/markdownWatcher.ts`
+- [x] T030 [US1] Persist documentation change events in `packages/server/src/features/changeEvents/saveDocumentChange.ts`
+- [x] T031 [US1] Publish diagnostics to linked implementation artifacts in `packages/server/src/features/diagnostics/publishDocDiagnostics.ts`
 - [ ] T032 [P] [US1] Provide Problems panel metadata and open-linked-file quick action in `packages/extension/src/diagnostics/docDiagnosticProvider.ts`
 - [ ] T033 [US1] Implement hysteresis controller in `packages/server/src/features/diagnostics/hysteresisController.ts` to suppress reciprocal diagnostics until acknowledgement
 

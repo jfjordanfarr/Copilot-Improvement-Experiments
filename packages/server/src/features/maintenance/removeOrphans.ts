@@ -1,4 +1,5 @@
 import { Connection } from "vscode-languageserver/node";
+
 import {
   GraphStore,
   LinkedArtifactSummary,
@@ -56,7 +57,7 @@ function handleRemoval(
     impacted
   };
 
-  connection.sendNotification(REBIND_NOTIFICATION, payload);
+  void connection.sendNotification(REBIND_NOTIFICATION, payload);
 }
 
 function toImpactedArtifact(summary: LinkedArtifactSummary): RebindImpactedArtifact {

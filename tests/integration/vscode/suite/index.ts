@@ -1,6 +1,5 @@
-import * as path from "path";
-
 import * as vscodeTest from "@vscode/test-electron";
+import * as path from "path";
 
 export async function run(): Promise<void> {
   const testWorkspace = path.resolve(__dirname, "../../fixtures/simple-workspace");

@@ -1,6 +1,5 @@
 import * as path from "path";
 import process from "process";
-
 import * as vscode from "vscode";
 import {
   LanguageClient,
@@ -8,12 +7,14 @@ import {
   ServerOptions,
   TransportKind
 } from "vscode-languageclient/node";
+
+import { RebindRequiredPayload } from "@copilot-improvement/shared";
+
+import { registerOverrideLinkCommand } from "./commands/overrideLink";
 import { ensureProviderSelection } from "./onboarding/providerGate";
+import { showRebindPrompt } from "./prompts/rebindPrompt";
 import { ConfigService } from "./settings/configService";
 import { registerFileMaintenanceWatcher } from "./watchers/fileMaintenance";
-import { showRebindPrompt } from "./prompts/rebindPrompt";
-import { RebindRequiredPayload } from "@copilot-improvement/shared";
-import { registerOverrideLinkCommand } from "./commands/overrideLink";
 
 const SETTINGS_NOTIFICATION = "linkDiagnostics/settings/update";
 const REBIND_NOTIFICATION = "linkDiagnostics/maintenance/rebindRequired";
@@ -63,24 +64,30 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     clientOptions
   );
 
-  context.subscriptions.push(client.start());
+  await client.start();
 
-  client.onReady().then(() => {
-    context.subscriptions.push(
-      configService!.onDidChange(settings => {
-        void client?.sendNotification(SETTINGS_NOTIFICATION, settings);
-      })
-    );
+  const activeClient = client;
+  const activeConfigService = configService;
+  if (!activeClient || !activeConfigService) {
+    return;
+  }
 
-    void client.sendNotification(SETTINGS_NOTIFICATION, configService!.settings);
+  context.subscriptions.push(
+    activeConfigService.onDidChange(settings => {
+      void activeClient.sendNotification(SETTINGS_NOTIFICATION, settings);
+    })
+  );
 
-    client.onNotification(REBIND_NOTIFICATION, (payload: RebindRequiredPayload) => {
+  await activeClient.sendNotification(SETTINGS_NOTIFICATION, activeConfigService.settings);
+
+  context.subscriptions.push(
+    activeClient.onNotification(REBIND_NOTIFICATION, (payload: RebindRequiredPayload) => {
       void showRebindPrompt(payload);
-    });
+    })
+  );
 
-    context.subscriptions.push(registerFileMaintenanceWatcher(client!));
-    context.subscriptions.push(registerOverrideLinkCommand(client!));
-  });
+  context.subscriptions.push(registerFileMaintenanceWatcher(activeClient));
+  context.subscriptions.push(registerOverrideLinkCommand(activeClient));
 
   context.subscriptions.push(
     vscode.commands.registerCommand("linkDiagnostics.analyzeWithAI", async () => {

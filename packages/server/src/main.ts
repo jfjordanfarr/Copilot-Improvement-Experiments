@@ -1,11 +1,8 @@
 import * as fs from "fs";
 import * as os from "os";
 import * as path from "path";
-
 import {
   Connection,
-  Diagnostic,
-  DiagnosticSeverity,
   DidChangeConfigurationNotification,
   DidChangeConfigurationParams,
   InitializeParams,
@@ -14,45 +11,134 @@ import {
   TextDocumentChangeEvent,
   TextDocumentSyncKind,
   TextDocuments,
+  TextDocumentsConfiguration,
   createConnection
 } from "vscode-languageserver/node";
 import { TextDocument } from "vscode-languageserver-textdocument";
+
 import {
   GraphStore,
+  LinkInferenceOrchestrator,
   OVERRIDE_LINK_REQUEST,
   OverrideLinkRequest,
   OverrideLinkResponse
 } from "@copilot-improvement/shared";
-import { v4 as uuid } from "uuid";
-import { ExtensionSettings, ProviderGuard } from "./features/settings/providerGuard";
+
+import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
+import {
+  persistInferenceResult,
+  saveDocumentChange
+} from "./features/changeEvents/saveDocumentChange";
+import {
+  publishDocDiagnostics,
+  type DocumentChangeContext
+} from "./features/diagnostics/publishDocDiagnostics";
 import {
   handleArtifactDeleted,
   handleArtifactRenamed
 } from "./features/maintenance/removeOrphans";
-import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
+import { applyOverrideLink } from "./features/overrides/overrideLink";
+import { ExtensionSettings, ProviderGuard } from "./features/settings/providerGuard";
 import {
   DEFAULT_RUNTIME_SETTINGS,
   RuntimeSettings,
   deriveRuntimeSettings
 } from "./features/settings/settingsBridge";
-import { applyOverrideLink } from "./features/overrides/overrideLink";
+import { MarkdownWatcher } from "./features/watchers/markdownWatcher";
 
 const SETTINGS_NOTIFICATION = "linkDiagnostics/settings/update";
 const FILE_DELETED_NOTIFICATION = "linkDiagnostics/files/deleted";
 const FILE_RENAMED_NOTIFICATION = "linkDiagnostics/files/renamed";
 
 const connection: Connection = createConnection(ProposedFeatures.all);
-const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+
+const textDocumentConfig: TextDocumentsConfiguration<TextDocument> = {
+  create: (uri, languageId, version, content): TextDocument =>
+    TextDocument.create(uri, languageId, version, content),
+  update: (document, changes, version): TextDocument =>
+    TextDocument.update(document, changes, version)
+};
+
+const documents: TextDocuments<TextDocument> = new TextDocuments(textDocumentConfig);
+
+const linkInferenceOrchestrator = new LinkInferenceOrchestrator();
 
 let graphStore: GraphStore | null = null;
 const providerGuard = new ProviderGuard(connection);
 let changeQueue: ChangeQueue | null = null;
 let runtimeSettings: RuntimeSettings = DEFAULT_RUNTIME_SETTINGS;
+let markdownWatcher: MarkdownWatcher | null = null;
+
+function extractExtensionSettings(source: unknown): ExtensionSettings | undefined {
+  if (!isRecord(source)) {
+    return undefined;
+  }
+
+  const sourceRecord = source;
+
+  const base =
+    "settings" in sourceRecord && isRecord(sourceRecord.settings)
+      ? sourceRecord.settings
+      : sourceRecord;
+
+  if (!isRecord(base)) {
+    return undefined;
+  }
+
+  const container =
+    "linkAwareDiagnostics" in base && isRecord(base.linkAwareDiagnostics)
+      ? base.linkAwareDiagnostics
+      : base;
+
+  if (!isRecord(container)) {
+    return undefined;
+  }
+
+  const record = container;
+  const settings: ExtensionSettings = {};
+
+  if (typeof record.storagePath === "string") {
+    settings.storagePath = record.storagePath;
+  }
+
+  if (typeof record.enableDiagnostics === "boolean") {
+    settings.enableDiagnostics = record.enableDiagnostics;
+  }
+
+  if (typeof record.debounceMs === "number") {
+    settings.debounceMs = record.debounceMs;
+  }
+
+  if (isLlmProviderMode(record.llmProviderMode)) {
+    settings.llmProviderMode = record.llmProviderMode;
+  }
+
+  if (isRecord(record.noiseSuppression) && isNoiseSuppressionLevel(record.noiseSuppression.level)) {
+    settings.noiseSuppression = { level: record.noiseSuppression.level };
+  }
+
+  return settings;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function isLlmProviderMode(
+  value: unknown
+): value is NonNullable<ExtensionSettings["llmProviderMode"]> {
+  return value === "prompt" || value === "local-only" || value === "disabled";
+}
+
+function isNoiseSuppressionLevel(value: unknown): value is "low" | "medium" | "high" {
+  return value === "low" || value === "medium" || value === "high";
+}
 
 connection.onInitialize((params: InitializeParams): InitializeResult => {
   connection.console.info("link-aware-diagnostics server starting up");
 
-  providerGuard.apply(params.initializationOptions?.settings as ExtensionSettings | undefined);
+  const initialSettings = extractExtensionSettings(params.initializationOptions);
+  providerGuard.apply(initialSettings);
 
   const storageFile = resolveDatabasePath(params, providerGuard.getSettings());
   ensureDirectory(path.dirname(storageFile));
@@ -64,6 +150,14 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
   changeQueue = new ChangeQueue({
     debounceMs: runtimeSettings.debounceMs,
     onFlush: processChangeBatch
+  });
+
+  markdownWatcher = new MarkdownWatcher({
+    documents,
+    graphStore,
+    orchestrator: linkInferenceOrchestrator,
+    logger: connection.console,
+    now: () => new Date()
   });
 
   connection.console.info(
@@ -83,18 +177,18 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
 connection.onInitialized(() => {
   connection.console.info("link-aware-diagnostics server initialised");
-  connection.client.register(DidChangeConfigurationNotification.type, undefined);
+  void connection.client.register(DidChangeConfigurationNotification.type, undefined);
 });
 
 connection.onShutdown(() => {
   graphStore?.close();
   changeQueue?.dispose();
   changeQueue = null;
+  markdownWatcher = null;
 });
 
 connection.onDidChangeConfiguration((change: DidChangeConfigurationParams) => {
-  const settingsCandidate =
-    (change.settings?.linkAwareDiagnostics ?? change.settings) as ExtensionSettings | undefined;
+  const settingsCandidate = extractExtensionSettings(change.settings);
   providerGuard.apply(settingsCandidate);
   syncRuntimeSettings();
   connection.console.info("settings updated");
@@ -158,12 +252,12 @@ documents.onDidSave((event: TextDocumentChangeEvent<TextDocument>) => {
   if (changeQueue) {
     changeQueue.enqueue(payload);
   } else {
-    processChangeBatch([payload]);
+    void processChangeBatch([payload]);
   }
 });
 
 documents.listen(connection);
-connection.listen();
+void connection.listen();
 
 function resolveDatabasePath(params: InitializeParams, settings: ExtensionSettings): string {
   if (settings.storagePath) {
@@ -185,56 +279,97 @@ function ensureDirectory(dir: string): void {
   }
 }
 
-function processChangeBatch(changes: QueuedChange[]): void {
+async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
   if (!graphStore) {
     return;
   }
 
-  const timestamp = new Date().toISOString();
-  let diagnosticsBudget = runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch;
-  let suppressedCount = 0;
-
-  for (const change of changes) {
-    graphStore.recordChangeEvent({
-      id: uuid(),
-      artifactId: change.uri,
-      detectedAt: timestamp,
-      summary: "Document saved",
-      changeType: "content",
-      ranges: [],
-      provenance: "save"
-    });
-
-    if (!providerGuard.areDiagnosticsEnabled()) {
-      continue;
-    }
-
-    if (diagnosticsBudget <= 0) {
-      suppressedCount += 1;
-      continue;
-    }
-
-    diagnosticsBudget -= 1;
-
-    const diagnostic: Diagnostic = {
-      severity: DiagnosticSeverity.Warning,
-      range: {
-        start: { line: 0, character: 0 },
-        end: { line: 0, character: 1 }
-      },
-      message: "Changes queued. Inference pipeline will reconcile linked artifacts once implemented.",
-      source: "link-aware-diagnostics",
-      code: "prototype-change"
-    };
-
-    connection.sendDiagnostics({ uri: change.uri, diagnostics: [diagnostic] });
+  if (!markdownWatcher) {
+    connection.console.warn("markdown watcher not initialised; skipping change batch");
+    return;
   }
 
-  if (suppressedCount > 0) {
+  let watcherResult: Awaited<ReturnType<MarkdownWatcher["processChanges"]>> | null = null;
+
+  try {
+    watcherResult = await markdownWatcher.processChanges(changes);
+    if (watcherResult.orchestratorError) {
+      connection.console.error(
+        `markdown watcher reported inference failure: ${describeError(watcherResult.orchestratorError)}`
+      );
+    }
+  } catch (error) {
+    connection.console.error(`markdown watcher processing threw: ${describeError(error)}`);
+    return;
+  }
+
+  if (!watcherResult || watcherResult.processed.length === 0) {
+    if (watcherResult?.skipped.length) {
+      connection.console.info(
+        `markdown watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
+      );
+    }
+    return;
+  }
+
+  if (watcherResult.inference) {
+    try {
+      persistInferenceResult(graphStore, watcherResult.inference);
+    } catch (error) {
+      connection.console.error(`failed to persist inference results: ${describeError(error)}`);
+    }
+  }
+
+  const nowFactory = () => new Date();
+  const contexts: DocumentChangeContext[] = [];
+
+  for (const processed of watcherResult.processed) {
+    try {
+      const persisted = saveDocumentChange({ graphStore, change: processed, now: nowFactory });
+      contexts.push({ change: processed, artifact: persisted.artifact });
+    } catch (error) {
+      connection.console.error(
+        `failed to persist document change for ${processed.uri}: ${describeError(error)}`
+      );
+    }
+  }
+
+  if (!providerGuard.areDiagnosticsEnabled()) {
+    connection.console.info("diagnostics disabled via provider guard; skipping publication");
+    return;
+  }
+
+  if (contexts.length === 0) {
+    connection.console.info("no document contexts available for diagnostics publication");
+    return;
+  }
+
+  const diagnosticsResult = publishDocDiagnostics({
+    sender: {
+      sendDiagnostics: params => {
+        void connection.sendDiagnostics(params);
+      }
+    },
+    graphStore,
+    contexts,
+    runtimeSettings
+  });
+
+  if (watcherResult.skipped.length > 0) {
     connection.console.info(
-      `noise suppression level '${runtimeSettings.noiseSuppression.level}' muted ${suppressedCount} diagnostics in this batch`
+      `markdown watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
     );
   }
+
+  if (diagnosticsResult.suppressed > 0) {
+    connection.console.info(
+      `noise suppression level '${runtimeSettings.noiseSuppression.level}' muted ${diagnosticsResult.suppressed} diagnostics in this batch`
+    );
+  }
+
+  connection.console.info(
+    `published ${diagnosticsResult.emitted} diagnostic(s) for ${contexts.length} document change(s)`
+  );
 }
 
 function syncRuntimeSettings(): void {
@@ -243,4 +378,12 @@ function syncRuntimeSettings(): void {
   connection.console.info(
     `runtime settings updated (debounce=${runtimeSettings.debounceMs}ms, noise=${runtimeSettings.noiseSuppression.level})`
   );
+}
+
+function describeError(error: unknown): string {
+  if (error instanceof Error) {
+    return `${error.name}: ${error.message}`;
+  }
+
+  return String(error);
 }

@@ -17,7 +17,7 @@ export interface QueuedChange {
 
 interface ChangeQueueOptions {
   debounceMs: number;
-  onFlush: (changes: QueuedChange[]) => void;
+  onFlush: (changes: QueuedChange[]) => void | Promise<void>;
 }
 
 export class ChangeQueue {
@@ -75,6 +75,6 @@ export class ChangeQueue {
     this.pending.clear();
     this.timer = null;
 
-    this.options.onFlush(changes);
+    void this.options.onFlush(changes);
   }
 }

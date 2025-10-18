@@ -1,4 +1,4 @@
-import { createHash } from "crypto";
+import { createHash, randomUUID } from "crypto";
 
 import {
   GraphStore,
@@ -9,7 +9,6 @@ import {
   OverrideLinkRequest,
   OverrideLinkResponse
 } from "@copilot-improvement/shared";
-import { v4 as uuid } from "uuid";
 
 interface EnsureArtifactParams {
   store: GraphStore;
@@ -73,7 +72,7 @@ function ensureArtifact(params: EnsureArtifactParams): KnowledgeArtifact {
   }
 
   const artifact: KnowledgeArtifact = {
-    id: uuid(),
+    id: randomUUID(),
     uri: params.descriptor.uri,
     layer: params.descriptor.layer,
     language: params.descriptor.languageId,

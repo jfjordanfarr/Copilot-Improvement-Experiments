@@ -1,10 +1,9 @@
 import * as path from "path";
-
 import * as vscode from "vscode";
 import { LanguageClient } from "vscode-languageclient/node";
+
 import {
   ArtifactLayer,
-  LinkOverrideReason,
   LinkRelationshipKind,
   OVERRIDE_LINK_REQUEST,
   OverrideLinkRequest,

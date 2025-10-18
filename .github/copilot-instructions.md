@@ -1,24 +1,19 @@
 ﻿# Copilot-Improvement-Experiments Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2025-10-16
+Auto-generated from feature plans. Last updated: 2025-10-17
 
-## Active Technologies
-- TypeScript 5.x targeting Node.js 20 for extension + LSP, SQL schema for SQLite 3 + VS Code Extension API, `vscode-languageclient`/`vscode-languageserver`, `better-sqlite3`, Tree-sitter parsers where gaps remain, optional LLM access via `vscode.lm` (001-link-aware-diagnostics)
+## Workspace Shape
+- npm workspaces: `packages/extension`, `packages/server`, `packages/shared`
+- Supporting roots: `specs/`, `data/`, `tests/`, `.specify/`
+- TypeScript 5.x targeting Node.js 20 (see `.nvmrc`)
 
-## Project Structure
-```
-src/
-tests/
-```
+## Primary Tooling
+- VS Code Extension API with `vscode-languageclient` / `vscode-languageserver`
+- SQLite via `better-sqlite3`
+- Optional LLM access through `vscode.lm`
 
 ## Commands
-npm test; npm run lint
-
-## Code Style
-TypeScript 5.x targeting Node.js 20 for extension + LSP, SQL schema for SQLite 3: Follow standard conventions
-
-## Recent Changes
-- 001-link-aware-diagnostics: Added TypeScript 5.x targeting Node.js 20 for extension + LSP, SQL schema for SQLite 3 + VS Code Extension API, `vscode-languageclient`/`vscode-languageserver`, `better-sqlite3`, Tree-sitter parsers where gaps remain, optional LLM access via `vscode.lm`
-
-<!-- MANUAL ADDITIONS START -->
-<!-- MANUAL ADDITIONS END -->
+- `npm run lint`
+- `npm run build`
+- `npm run test:unit`
+- `npm run test:integration`
