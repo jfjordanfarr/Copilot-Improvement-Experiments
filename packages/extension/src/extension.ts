@@ -11,6 +11,7 @@ import {
 import { RebindRequiredPayload } from "@copilot-improvement/shared";
 
 import { registerOverrideLinkCommand } from "./commands/overrideLink";
+import { registerDocDiagnosticProvider } from "./diagnostics/docDiagnosticProvider";
 import { ensureProviderSelection } from "./onboarding/providerGate";
 import { showRebindPrompt } from "./prompts/rebindPrompt";
 import { ConfigService } from "./settings/configService";
@@ -49,12 +50,15 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       { scheme: "file", language: "markdown" },
       { scheme: "file", language: "plaintext" },
       { scheme: "file", language: "typescript" },
-      { scheme: "file", language: "javascript" }
+      { scheme: "file", language: "javascript" },
+      { scheme: "file", language: "tsx" },
+      { scheme: "file", language: "jsx" }
     ],
     synchronize: {
       fileEvents: vscode.workspace.createFileSystemWatcher("**/*.{md,markdown,ts,js,tsx,jsx}")
     },
-    initializationOptions
+    initializationOptions,
+    diagnosticCollectionName: "Link Diagnostics"
   };
 
   client = new LanguageClient(
@@ -88,6 +92,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
   context.subscriptions.push(registerFileMaintenanceWatcher(activeClient));
   context.subscriptions.push(registerOverrideLinkCommand(activeClient));
+  context.subscriptions.push(registerDocDiagnosticProvider());
 
   context.subscriptions.push(
     vscode.commands.registerCommand("linkDiagnostics.analyzeWithAI", async () => {

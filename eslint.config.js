@@ -7,7 +7,9 @@ module.exports = tseslint.config(
   {
     ignores: [
       "dist/**",
+      "**/dist/**",
       "out/**",
+      "**/out/**",
       "node_modules/**",
       "**/*.d.ts",
       "eslint.config.js"
