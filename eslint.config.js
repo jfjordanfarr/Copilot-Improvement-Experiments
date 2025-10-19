@@ -10,6 +10,8 @@ module.exports = tseslint.config(
       "**/dist/**",
       "out/**",
       "**/out/**",
+      ".vscode-test/**",
+      "tests/integration/dist/**",
       "node_modules/**",
       "**/*.d.ts",
       "eslint.config.js"

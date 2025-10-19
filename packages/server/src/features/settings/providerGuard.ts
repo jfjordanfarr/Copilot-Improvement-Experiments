@@ -16,7 +16,11 @@ export class ProviderGuard {
   constructor(private readonly connection: Connection) {}
 
   apply(settings: ExtensionSettings | undefined): void {
-    this.settings = { ...settings };
+    if (!settings) {
+      return;
+    }
+
+    this.settings = { ...this.settings, ...settings };
 
     if (!this.settings.enableDiagnostics) {
       this.connection.console.info(

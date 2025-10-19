@@ -22,6 +22,11 @@ const REBIND_NOTIFICATION = "linkDiagnostics/maintenance/rebindRequired";
 
 let client: LanguageClient | undefined;
 let configService: ConfigService | undefined;
+let clientReady = false;
+
+function hasClearFunction(value: unknown): value is { clear: () => void } {
+  return typeof value === "object" && value !== null && typeof (value as { clear?: unknown }).clear === "function";
+}
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
   const serverModule = context.asAbsolutePath(path.join("..", "server", "dist", "main.js"));
@@ -30,6 +35,9 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   context.subscriptions.push(configService);
 
   await ensureProviderSelection(context, configService);
+  console.log("linkAwareDiagnostics configuration after onboarding", configService.settings);
+
+  const isTestMode = context.extensionMode === vscode.ExtensionMode.Test;
 
   const serverOptions: ServerOptions = {
     run: { module: serverModule, transport: TransportKind.ipc, options: { env: process.env } },
@@ -42,7 +50,13 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
   const initializationOptions = {
     storagePath: context.globalStorageUri.fsPath,
-    settings: configService.settings
+    settings: configService.settings,
+    testModeOverrides: isTestMode
+      ? {
+          enableDiagnostics: true,
+          llmProviderMode: "local-only"
+        }
+      : undefined
   };
 
   const clientOptions: LanguageClientOptions = {
@@ -68,7 +82,30 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     clientOptions
   );
 
+  context.subscriptions.push(
+    vscode.commands.registerCommand("linkAwareDiagnostics.isServerReady", () => {
+      console.log("isServerReady invoked", clientReady);
+      return clientReady;
+    })
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("linkAwareDiagnostics.clearAllDiagnostics", () => {
+      const diagnostics = client?.diagnostics;
+      if (hasClearFunction(diagnostics)) {
+        diagnostics.clear();
+      }
+      return true;
+    })
+  );
+
+  clientReady = false;
   await client.start();
+  const readyClient = client as unknown as { onReady?: () => Promise<void> };
+  if (typeof readyClient.onReady === "function") {
+    await readyClient.onReady();
+  }
+  clientReady = true;
 
   const activeClient = client;
   const activeConfigService = configService;
@@ -95,6 +132,31 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   context.subscriptions.push(registerDocDiagnosticProvider());
 
   context.subscriptions.push(
+    vscode.languages.onDidChangeDiagnostics(event => {
+      for (const uri of event.uris) {
+        const diagnostics = vscode.languages.getDiagnostics(uri);
+        if (!diagnostics.some(diagnostic => diagnostic.code === "doc-drift")) {
+          continue;
+        }
+
+        const uriString = uri.toString();
+        if (vscode.workspace.textDocuments.some(document => document.uri.toString() === uriString)) {
+          continue;
+        }
+
+        void vscode.workspace.openTextDocument(uri).then(
+          undefined,
+          (error: unknown) => {
+            console.warn(
+              `Failed to preload document for diagnostics: ${error instanceof Error ? error.message : String(error)}`
+            );
+          }
+        );
+      }
+    })
+  );
+
+  context.subscriptions.push(
     vscode.commands.registerCommand("linkDiagnostics.analyzeWithAI", async () => {
       await vscode.window.showInformationMessage(
         "AI analysis is gated until provider consent is implemented."
@@ -110,4 +172,5 @@ export async function deactivate(): Promise<void> {
 
   await client.stop();
   client = undefined;
+  clientReady = false;
 }

@@ -24,6 +24,14 @@
       {
         "command": "linkDiagnostics.openLinkedArtifact",
         "title": "Link Diagnostics: Open Linked Artifact"
+      },
+      {
+        "command": "linkAwareDiagnostics.isServerReady",
+        "title": "Link-Aware Diagnostics: Server Ready"
+      },
+      {
+        "command": "linkAwareDiagnostics.clearAllDiagnostics",
+        "title": "Link-Aware Diagnostics: Clear Diagnostics"
       }
     ],
     "configuration": {

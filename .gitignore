@@ -24,3 +24,7 @@ Thumbs.db
 
 # Test outputs
 *.tap
+.vscode-test/
+
+# DB files
+*.db

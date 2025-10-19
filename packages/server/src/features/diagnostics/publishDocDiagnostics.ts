@@ -11,6 +11,7 @@ import {
   LinkedArtifactSummary
 } from "@copilot-improvement/shared";
 
+import type { HysteresisController } from "./hysteresisController";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { MarkdownDocumentChange } from "../watchers/markdownWatcher";
 
@@ -21,6 +22,7 @@ export interface DiagnosticSender {
 export interface DocumentChangeContext {
   change: MarkdownDocumentChange;
   artifact: KnowledgeArtifact;
+  changeEventId: string;
 }
 
 export interface PublishDocDiagnosticsOptions {
@@ -28,37 +30,49 @@ export interface PublishDocDiagnosticsOptions {
   graphStore: GraphStore;
   contexts: DocumentChangeContext[];
   runtimeSettings: RuntimeSettings;
+  hysteresis?: HysteresisController;
 }
 
 export interface PublishDocDiagnosticsResult {
   emitted: number;
-  suppressed: number;
+  suppressedByBudget: number;
+  suppressedByHysteresis: number;
 }
 
 export function publishDocDiagnostics(
   options: PublishDocDiagnosticsOptions
 ): PublishDocDiagnosticsResult {
   if (options.contexts.length === 0) {
-    return { emitted: 0, suppressed: 0 };
+    return { emitted: 0, suppressedByBudget: 0, suppressedByHysteresis: 0 };
   }
 
   const diagnosticsByUri = new Map<string, Diagnostic[]>();
   let emitted = 0;
-  let suppressed = 0;
+  let suppressedByBudget = 0;
+  let suppressedByHysteresis = 0;
   let remaining = options.runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch;
-
+  const hysteresisWindow = options.runtimeSettings.noiseSuppression.hysteresisMs;
   for (const context of options.contexts) {
-    const linked = options.graphStore
-      .listLinkedArtifacts(context.artifact.id)
-      .filter(link => link.direction === "outgoing");
+    const linked = options.graphStore.listLinkedArtifacts(context.artifact.id);
 
     for (const link of linked) {
       if (!link.artifact.uri) {
         continue;
       }
 
+      if (
+        options.hysteresis?.shouldSuppress(
+          context.artifact.uri,
+          link.artifact.uri,
+          hysteresisWindow
+        )
+      ) {
+        suppressedByHysteresis += 1;
+        continue;
+      }
+
       if (remaining <= 0) {
-        suppressed += 1;
+        suppressedByBudget += 1;
         continue;
       }
 
@@ -68,6 +82,12 @@ export function publishDocDiagnostics(
       diagnosticsByUri.set(link.artifact.uri, existing);
       emitted += 1;
       remaining -= 1;
+
+      options.hysteresis?.recordEmission(
+        context.artifact.uri,
+        link.artifact.uri,
+        context.changeEventId
+      );
     }
   }
 
@@ -75,7 +95,7 @@ export function publishDocDiagnostics(
     options.sender.sendDiagnostics({ uri, diagnostics });
   }
 
-  return { emitted, suppressed };
+  return { emitted, suppressedByBudget, suppressedByHysteresis };
 }
 
 function createDiagnostic(
@@ -85,12 +105,12 @@ function createDiagnostic(
   const docPath = normaliseDisplayPath(sourceArtifact.uri);
 
   return {
-    severity: DiagnosticSeverity.Warning,
+    severity: DiagnosticSeverity.Information,
     range: {
       start: { line: 0, character: 0 },
       end: { line: 0, character: 1 }
     },
-    message: `Documentation change detected in ${docPath}. Review linked guidance for alignment.`,
+    message: `linked documentation changed in ${docPath}. Review linked guidance for alignment.`,
     source: "link-aware-diagnostics",
     code: "doc-drift",
     data: {

@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@copilot-improvement/shared": "file:../shared",
-    "better-sqlite3": "^9.5.0",
+    "better-sqlite3": "^12.4.1",
     "vscode-languageserver": "^9.0.1",
     "vscode-languageserver-textdocument": "^1.0.12",
     "vscode-uri": "^3.0.8"

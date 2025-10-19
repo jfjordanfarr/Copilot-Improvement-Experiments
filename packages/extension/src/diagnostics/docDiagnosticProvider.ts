@@ -131,11 +131,11 @@ function buildActionTitle(data: DocDriftDiagnosticData): string {
     case "documents":
       return "Open linked documentation";
     case "implements":
-      return "Open implementing artifact";
+      return "Open linked documentation";
     case "depends_on":
-      return "Open depended-on artifact";
+      return "Open linked dependency";
     case "references":
-      return "Open referenced artifact";
+      return "Open linked reference";
     default:
       return DEFAULT_ACTION_TITLE;
   }

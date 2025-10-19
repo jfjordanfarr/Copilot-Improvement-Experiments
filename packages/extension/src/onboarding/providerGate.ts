@@ -18,6 +18,36 @@ export async function ensureProviderSelection(
     return;
   }
 
+  const applySelection = async (
+    mode: ProviderChoice["mode"],
+    enableDiagnostics: boolean
+  ): Promise<void> => {
+    const config = vscode.workspace.getConfiguration("linkAwareDiagnostics");
+    await Promise.all([
+      config.update("llmProviderMode", mode, vscode.ConfigurationTarget.Workspace),
+      config.update("enableDiagnostics", enableDiagnostics, vscode.ConfigurationTarget.Workspace)
+    ]);
+    await context.globalState.update(ONBOARDED_KEY, true);
+    configService.refresh();
+  };
+
+  const forcedMode = process.env.LINK_AWARE_PROVIDER_MODE as
+    | "prompt"
+    | "local-only"
+    | "disabled"
+    | undefined;
+
+  if (context.extensionMode === vscode.ExtensionMode.Test) {
+    const mode = forcedMode ?? "local-only";
+    await applySelection(mode, mode !== "disabled");
+    return;
+  }
+
+  if (forcedMode) {
+    await applySelection(forcedMode, forcedMode !== "disabled");
+    return;
+  }
+
   const quickPickItems: ProviderChoice[] = [
     {
       label: "Enable diagnostics with local provider",
@@ -48,23 +78,11 @@ export async function ensureProviderSelection(
     return;
   }
 
-  const config = vscode.workspace.getConfiguration("linkAwareDiagnostics");
-  await Promise.all([
-    config.update("llmProviderMode", selection.mode, vscode.ConfigurationTarget.Workspace),
-    config.update(
-      "enableDiagnostics",
-      selection.enableDiagnostics,
-      vscode.ConfigurationTarget.Workspace
-    )
-  ]);
+  await applySelection(selection.mode, selection.enableDiagnostics);
 
   if (selection.mode === "disabled") {
     await vscode.window.showInformationMessage(
       "You can enable diagnostics later from the Link-Aware Diagnostics settings."
     );
   }
-
-  await context.globalState.update(ONBOARDED_KEY, true);
-
-  configService.refresh();
 }

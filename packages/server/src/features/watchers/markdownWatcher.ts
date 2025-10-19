@@ -135,6 +135,9 @@ export class MarkdownWatcher {
 
     const seeds = this.prepareSeeds(processed);
     const hints = processed.flatMap(item => item.hints);
+    this.logger?.info(
+      `markdown watcher prepared ${seeds.length} seed(s) and ${hints.length} hint(s) before provider contributions`
+    );
 
     let inference: LinkInferenceRunResult | undefined;
     let orchestratorError: unknown;
@@ -151,6 +154,12 @@ export class MarkdownWatcher {
         now: this.nowFactory
       });
 
+      this.logger?.info(
+        `markdown watcher inference produced ${inference.links.length} link(s) from ${inference.providerSummaries.reduce(
+          (sum, summary) => sum + summary.seedCount,
+          0
+        )} provider seed(s) and ${inference.traces.length} trace(s)`
+      );
       this.applyInferenceArtifacts(processed, inference);
       this.logger?.info(
         `markdown watcher reconciled ${processed.length} document(s); ` +

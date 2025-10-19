@@ -36,7 +36,16 @@ suite("US1: Writers get drift alerts", () => {
     // Ensure extension is activated
     const extension = vscode.extensions.getExtension("copilot-improvement.link-aware-diagnostics");
     assert.ok(extension, "Extension must be installed");
+
+    if (!process.env.LINK_AWARE_PROVIDER_MODE) {
+      process.env.LINK_AWARE_PROVIDER_MODE = "local-only";
+    }
+
     await extension.activate();
+
+    const config = vscode.workspace.getConfiguration("linkAwareDiagnostics");
+    await config.update("enableDiagnostics", true, vscode.ConfigurationTarget.Workspace);
+    await config.update("llmProviderMode", "local-only", vscode.ConfigurationTarget.Workspace);
 
     // Wait for language server ready signal
     await waitForLanguageServerReady();
@@ -165,10 +174,18 @@ async function waitForLanguageServerReady(): Promise<void> {
 
   while (elapsed < maxWait) {
     // Check if extension has signaled server readiness
-    const ready = await vscode.commands.executeCommand<boolean>("linkAwareDiagnostics.isServerReady");
+    let ready = false;
+    try {
+      ready = Boolean(
+        await vscode.commands.executeCommand<boolean>("linkAwareDiagnostics.isServerReady")
+      );
+    } catch (error) {
+      console.warn("isServerReady command failed", error);
+    }
     if (ready) {
       return;
     }
+    console.log(`Language server not ready yet after ${elapsed}ms`);
     await sleep(pollInterval);
     elapsed += pollInterval;
   }

@@ -106,7 +106,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T030 [US1] Persist documentation change events in `packages/server/src/features/changeEvents/saveDocumentChange.ts`
 - [x] T031 [US1] Publish diagnostics to linked implementation artifacts in `packages/server/src/features/diagnostics/publishDocDiagnostics.ts`
 - [x] T032 [P] [US1] Provide Problems panel metadata and open-linked-file quick action in `packages/extension/src/diagnostics/docDiagnosticProvider.ts`
-- [ ] T033 [US1] Implement hysteresis controller in `packages/server/src/features/diagnostics/hysteresisController.ts` to suppress reciprocal diagnostics until acknowledgement
+- [x] T033 [US1] Implement hysteresis controller in `packages/server/src/features/diagnostics/hysteresisController.ts` to suppress reciprocal diagnostics until acknowledgement
 
 **Checkpoint**: User Story 1 fully functional and independently testable
 

@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { fileURLToPath } from "node:url";
 import * as os from "os";
 import * as path from "path";
 import {
@@ -29,10 +30,12 @@ import {
   persistInferenceResult,
   saveDocumentChange
 } from "./features/changeEvents/saveDocumentChange";
+import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import {
   publishDocDiagnostics,
   type DocumentChangeContext
 } from "./features/diagnostics/publishDocDiagnostics";
+import { createWorkspaceIndexProvider } from "./features/knowledge/workspaceIndexProvider";
 import {
   handleArtifactDeleted,
   handleArtifactRenamed
@@ -68,6 +71,8 @@ const providerGuard = new ProviderGuard(connection);
 let changeQueue: ChangeQueue | null = null;
 let runtimeSettings: RuntimeSettings = DEFAULT_RUNTIME_SETTINGS;
 let markdownWatcher: MarkdownWatcher | null = null;
+const hysteresisController = new HysteresisController();
+let workspaceRootPath: string | undefined;
 
 function extractExtensionSettings(source: unknown): ExtensionSettings | undefined {
   if (!isRecord(source)) {
@@ -120,6 +125,36 @@ function extractExtensionSettings(source: unknown): ExtensionSettings | undefine
   return settings;
 }
 
+function extractTestModeOverrides(source: unknown): ExtensionSettings | undefined {
+  if (!isRecord(source)) {
+    return undefined;
+  }
+
+  const candidate = "testModeOverrides" in source ? source.testModeOverrides : undefined;
+  if (!isRecord(candidate)) {
+    return undefined;
+  }
+
+  const overrides: ExtensionSettings = {};
+
+  if (typeof candidate.enableDiagnostics === "boolean") {
+    overrides.enableDiagnostics = candidate.enableDiagnostics;
+  }
+
+  if (isLlmProviderMode(candidate.llmProviderMode)) {
+    overrides.llmProviderMode = candidate.llmProviderMode;
+  }
+
+  return overrides;
+}
+
+function mergeExtensionSettings(
+  base: ExtensionSettings | undefined,
+  overrides: ExtensionSettings | undefined
+): ExtensionSettings {
+  return { ...(base ?? {}), ...(overrides ?? {}) };
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
@@ -138,7 +173,12 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
   connection.console.info("link-aware-diagnostics server starting up");
 
   const initialSettings = extractExtensionSettings(params.initializationOptions);
-  providerGuard.apply(initialSettings);
+  const forcedSettings = mergeExtensionSettings(
+    initialSettings,
+    extractTestModeOverrides(params.initializationOptions)
+  );
+  providerGuard.apply(forcedSettings);
+  workspaceRootPath = resolveWorkspaceRoot(params);
 
   const storageFile = resolveDatabasePath(params, providerGuard.getSettings());
   ensureDirectory(path.dirname(storageFile));
@@ -160,6 +200,16 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
     now: () => new Date()
   });
 
+  if (workspaceRootPath) {
+    markdownWatcher.setWorkspaceProviders([
+      createWorkspaceIndexProvider({
+        rootPath: workspaceRootPath,
+        implementationGlobs: ["src"],
+        logger: connection.console
+      })
+    ]);
+  }
+
   connection.console.info(
     `runtime settings initialised (debounce=${runtimeSettings.debounceMs}ms, noise=${runtimeSettings.noiseSuppression.level})`
   );
@@ -169,7 +219,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
       textDocumentSync: TextDocumentSyncKind.Incremental,
       diagnosticProvider: {
         interFileDependencies: true,
-        workspaceDiagnostics: true
+        workspaceDiagnostics: false
       }
     }
   };
@@ -266,11 +316,39 @@ function resolveDatabasePath(params: InitializeParams, settings: ExtensionSettin
 
   const workspaceFolder = params.workspaceFolders?.[0]?.uri;
   if (workspaceFolder) {
-    const folderPath = workspaceFolder.replace("file://", "");
+    const folderPath = fileUriToPath(workspaceFolder);
     return path.join(folderPath, ".link-aware-diagnostics", "link-aware-diagnostics.db");
   }
 
   return path.join(os.tmpdir(), "link-aware-diagnostics", "link-aware-diagnostics.db");
+}
+
+function resolveWorkspaceRoot(params: InitializeParams): string | undefined {
+  if (params.workspaceFolders?.length) {
+    return fileUriToPath(params.workspaceFolders[0].uri);
+  }
+
+  if (typeof params.rootUri === "string") {
+    return fileUriToPath(params.rootUri);
+  }
+
+  if (typeof params.rootPath === "string") {
+    return path.resolve(params.rootPath);
+  }
+
+  return undefined;
+}
+
+function fileUriToPath(candidate: string): string {
+  try {
+    if (candidate.startsWith("file://")) {
+      return fileURLToPath(candidate);
+    }
+  } catch {
+    // fall through to path resolution
+  }
+
+  return path.resolve(candidate);
 }
 
 function ensureDirectory(dir: string): void {
@@ -314,6 +392,10 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
 
   if (watcherResult.inference) {
     try {
+      const linkSummary = watcherResult.inference.links.map(link => `${link.sourceId}->${link.targetId} [${link.kind}]`);
+      connection.console.info(
+        `inference produced ${watcherResult.inference.links.length} persisted link(s): ${linkSummary.join(",")}`
+      );
       persistInferenceResult(graphStore, watcherResult.inference);
     } catch (error) {
       connection.console.error(`failed to persist inference results: ${describeError(error)}`);
@@ -326,7 +408,11 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
   for (const processed of watcherResult.processed) {
     try {
       const persisted = saveDocumentChange({ graphStore, change: processed, now: nowFactory });
-      contexts.push({ change: processed, artifact: persisted.artifact });
+      contexts.push({
+        change: processed,
+        artifact: persisted.artifact,
+        changeEventId: persisted.changeEventId
+      });
     } catch (error) {
       connection.console.error(
         `failed to persist document change for ${processed.uri}: ${describeError(error)}`
@@ -344,6 +430,15 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
     return;
   }
 
+  for (const context of contexts) {
+    const linked = graphStore.listLinkedArtifacts(context.artifact.id);
+    if (linked.length === 0) {
+      connection.console.info(
+        `no links found for ${context.artifact.uri} (${context.artifact.id}); diagnostics will not emit`
+      );
+    }
+  }
+
   const diagnosticsResult = publishDocDiagnostics({
     sender: {
       sendDiagnostics: params => {
@@ -352,7 +447,8 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
     },
     graphStore,
     contexts,
-    runtimeSettings
+    runtimeSettings,
+    hysteresis: hysteresisController
   });
 
   if (watcherResult.skipped.length > 0) {
@@ -361,9 +457,15 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
     );
   }
 
-  if (diagnosticsResult.suppressed > 0) {
+  if (diagnosticsResult.suppressedByBudget > 0) {
     connection.console.info(
-      `noise suppression level '${runtimeSettings.noiseSuppression.level}' muted ${diagnosticsResult.suppressed} diagnostics in this batch`
+      `noise suppression level '${runtimeSettings.noiseSuppression.level}' muted ${diagnosticsResult.suppressedByBudget} diagnostics in this batch`
+    );
+  }
+
+  if (diagnosticsResult.suppressedByHysteresis > 0) {
+    connection.console.info(
+      `hysteresis controller suppressed ${diagnosticsResult.suppressedByHysteresis} diagnostic(s) to prevent ricochet`
     );
   }
 
