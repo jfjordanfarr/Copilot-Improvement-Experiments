@@ -20,33 +20,34 @@
   - Demonstrated to users independently
 -->
 
-### User Story 1 - Writers get drift alerts (Priority: P1)
+### User Story 1 - Developers see the full impact of a code change (Priority: P1)
 
-Technical writers update a requirements or architecture markdown document and immediately see a lint-like alert pointing to the linked implementation artifact that now needs review.
+Developers commit a change to any source file and immediately see the complete set of files that may be impacted, including direct dependents and inferred transitive ripples.
 
-**Why this priority**: Preventing documentation drift at the planning layers is the core promise of the feature and delivers value even without deeper automation.
+**Why this priority**: Delivering the definitive change-impact answer for code edits is the core promise of the extension and lays the groundwork for richer artifact coverage.
 
-**Independent Test**: Can be fully tested by editing a mapped markdown file and verifying that diagnostics appear in the linked implementation file and documentation layer.
+**Independent Test**: Can be fully tested by editing a code file inside a benchmark workspace, rebuilding the dependency graph, and verifying diagnostics appear on every affected code artifact without involving documentation layers.
 
 **Acceptance Scenarios**:
 
-1. **Given** a requirements document linked to an implementation file, **When** the writer saves changes to the document, **Then** the linked implementation file surfaces a diagnostic referencing the updated doc.
-2. **Given** a four-layer documentation chain, **When** a writer updates a higher-layer document, **Then** each downstream layer receives a diagnostic until acknowledged.
+1. **Given** a module with direct imports depending on it, **When** the developer saves the module, **Then** diagnostics appear on each dependent module explaining the required review.
+2. **Given** a workspace with deeper transitive dependencies, **When** an upstream module changes, **Then** the ripple analysis surfaces all downstream dependents within the configured hop limit.
+3. **Given** a workspace where AST metadata is available, **When** the graph is rebuilt, **Then** the inferred edges match the canonical AST relationships within the configured tolerance.
 
 ---
 
-### User Story 2 - Developers see linked impacts (Priority: P2)
+### User Story 2 - Writers get drift alerts (Priority: P2)
 
-Developers modifying an implementation file are warned about related documentation and dependent code modules so they can coordinate updates before merging.
+Technical writers update requirements or architecture markdown and need a guaranteed signal identifying the code paths and lower-layer docs that require follow-up.
 
-**Why this priority**: Reduces rework and production issues by ensuring code changes stay aligned with both documentation and dependent components.
+**Why this priority**: Once the code-centric dependency map is trustworthy, extending it to documentation keeps planning artifacts aligned without diluting early focus.
 
-**Independent Test**: Can be fully tested by editing a mapped code file and confirming diagnostics appear in associated markdown layers and dependent code files.
+**Independent Test**: Can be fully tested by editing a mapped markdown file inside a prepared workspace and verifying that diagnostics appear on the linked implementation files using the same graph infrastructure that powers code-to-code impact.
 
 **Acceptance Scenarios**:
 
-1. **Given** a code file with registered documentation links, **When** the developer changes and saves the file, **Then** the linked documentation files display diagnostics describing the potential divergence.
-2. **Given** a module imported by other modules, **When** the module changes, **Then** the dependent modules receive diagnostics instructing the developer to confirm compatibility.
+1. **Given** a requirements document linked to an implementation file through the graph, **When** the writer saves changes, **Then** the implementation file surfaces a diagnostic referencing the updated document.
+2. **Given** a documentation stack spanning multiple layers, **When** a higher-layer doc changes, **Then** diagnostics appear on each downstream layer until acknowledged.
 
 ---
 
@@ -67,13 +68,13 @@ Engineering or documentation leads review outstanding drift diagnostics, assign 
 
 ### Edge Cases
 
-- A newly created document or code file has no inferred relationships when first saved.
-- A file within the link network is renamed or moved outside the workspace.
+- A newly created file has no inferred relationships on first save; the graph must reconcile once sufficient signals exist.
+- A file within the graph is renamed or moved outside the workspace.
 - Two artifacts reference each other and change in quick succession (potential alert loops).
 - Bulk refactors modify dozens of files within seconds.
 - Documentation layers are incomplete (e.g., missing Layer 3) but edits still occur.
 - If artifact A triggers a diagnostic on B, reciprocal diagnostics from B to A are suppressed until the first alert is acknowledged or a fresh change occurs after acknowledgement.
-- Deleted artifacts or renamed paths automatically prune or prompt re-binding of their link relationships to avoid dangling references.
+- Deleted artifacts or renamed paths automatically prune or prompt re-binding of their relationships to avoid dangling edges.
 - External knowledge-graph feeds may become unreachable or provide stale/partial payloads; the system MUST surface a warning diagnostic, pause ingestion for the impacted feed, and fall back to local inference without mutating cached relationships until a valid payload is received.
 - Streaming feeds MUST resume gracefully after transient failures by replaying missed deltas, while on-demand snapshot imports MUST preserve the previously ingested snapshot until replacement data passes validation.
 - Benchmark workspaces without canonical ASTs MUST fall back to self-similarity accuracy checks and record that limitation alongside the results so pipelines remain informative without blocking on missing ground truth.
@@ -82,9 +83,9 @@ Engineering or documentation leads review outstanding drift diagnostics, assign 
 
 | Artifact Type | Baseline Signals | Enhanced Signals | External Feeds |
 |---------------|------------------|------------------|----------------|
-| Markdown documentation (vision, requirements, architecture) | Heuristic/LLM semantic analysis of section headers, headings, and inline link targets | Workspace symbol cross-references (e.g., `executeDocumentSymbolProvider`, `executeReferenceProvider`) that point from prose anchors to code symbols | Knowledge graph edges that map documentation nodes to implementation assets |
-| Implementation markdown (implementation guides, runbooks) | Heuristic/LLM extraction of code blocks, configuration snippets, and referenced module names | Diagnostics emitted by existing language servers when linked code changes | Knowledge graph projections describing implementation-to-code relationships |
-| Code artifacts | Heuristic/LLM parsing of import statements, comments, and file naming conventions (Tree-sitter fallbacks) | Language-server definition/reference graphs, symbol hierarchies, and document highlights | External dependency graphs (LSIF/SCIP exports, GitLab Knowledge Graph edges) |
+| Code artifacts | Heuristic/LLM parsing of imports/exports, call graphs, and file naming conventions (Tree-sitter fallbacks) | Language-server definition/reference graphs, symbol hierarchies, document highlights, and local AST metadata | External dependency graphs (LSIF/SCIP exports, GitLab Knowledge Graph edges) |
+| Markdown documentation (vision, requirements, architecture) | Heuristic/LLM semantic analysis of section headers, headings, inline references | Workspace symbol cross-references (e.g., `executeDocumentSymbolProvider`, `executeReferenceProvider`) that map prose anchors to code symbols | Knowledge graph edges that map documentation nodes to implementation assets |
+| Implementation markdown (implementation guides, runbooks) | Heuristic/LLM extraction of code blocks, configuration snippets, referenced module names | Diagnostics emitted by existing language servers when linked code changes | Knowledge graph projections describing implementation-to-code relationships |
 
 “Workspace index data” refers specifically to VS Code’s `execute*Provider` command family (symbols, references, definitions, implementations), `workspace.findFiles`, and live diagnostics streamed from active language servers. These APIs are treated as accelerators layered on top of the heuristic/LLM baseline so that inference remains functional when an index is missing.
 
@@ -103,22 +104,23 @@ Graph projections, override manifests, and drift history live under the workspac
 
 ### Functional Requirements
 
-- **FR-001**: System MUST infer and maintain links between markdown layers (Vision, Requirements, Architecture, Implementation) and their corresponding code artifacts using a layered pipeline that defaults to heuristic/LLM-driven analysis and augments with workspace index data (symbol providers, reference graphs, diagnostics) when available, while providing optional overrides through lightweight manifests or commands when inference requires correction. Manual overrides MUST take precedence over fresh inference results until explicitly revoked and MUST leave an auditable trail so operators can understand why a relationship persists.
-- **FR-002**: System MUST detect when any linked markdown or code artifact is saved within the workspace and record the change event.
-- **FR-003**: System MUST raise diagnostics in every artifact linked to a changed file, clearly naming the source file and required follow-up action.
+- **FR-001**: System MUST infer and maintain a workspace-wide dependency graph between code artifacts using a layered pipeline that defaults to heuristic/LLM-driven analysis and augments with workspace index data (symbol providers, reference graphs, diagnostics, AST metadata) when available. Manual overrides MUST take precedence over fresh inference until revoked and MUST leave an auditable trail.
+- **FR-002**: System MUST detect when any tracked artifact is saved within the workspace and record the change event with enough provenance to query ripples.
+- **FR-003**: System MUST answer the question “What files will be impacted by this change?” by raising diagnostics on every artifact reachable through the dependency graph within the configured scope, clearly naming the triggering file and required follow-up action.
 - **FR-004**: System MUST let users acknowledge or dismiss a diagnostic once review is complete, persisting that state until a subsequent change occurs.
-- **FR-005**: System MUST provide a consolidated view of outstanding diagnostics grouped by documentation layer and code module.
-- **FR-006**: System MUST highlight dependent code files (based on imports or explicit references) when their upstream file changes, prompting compatibility checks.
-- **FR-007**: System MUST offer quick actions from a diagnostic to open the linked artifact or documentation layer in a separate editor tab.
-- **FR-008**: System MUST support configurable noise controls (e.g., ignore changes below a threshold, batch related changes) to prevent alert fatigue.
-- **FR-009**: System MUST log historical drift events for reporting on how often documentation or dependent modules fall out of sync.
-- **FR-010**: System MUST expose workspace and user settings for drift analysis, including noise suppression level, preferred LLM provider mode, and diagnostics storage location, and MUST block diagnostics until the user selects an LLM provider.
+- **FR-005**: System MUST provide a consolidated view of outstanding diagnostics grouped by dependency cluster and documentation layer when applicable.
+- **FR-006**: System MUST highlight dependent code files (based on imports, call graphs, exports, or explicit references) when their upstream file changes, prompting compatibility checks.
+- **FR-007**: System MUST offer quick actions from a diagnostic to open any linked artifact in a separate editor tab.
+- **FR-008**: System MUST support configurable noise controls (e.g., ignore changes below a threshold, limit hop depth, batch related changes) to prevent alert fatigue.
+- **FR-009**: System MUST log historical change-impact events for reporting on how often ripple reviews are required.
+- **FR-010**: System MUST expose workspace and user settings for analysis, including noise suppression level, preferred LLM provider mode, diagnostics storage location, and hop depth, and MUST block diagnostics until the user selects an LLM provider or opts into an offline-only mode.
 - **FR-011**: System MUST implement hysteresis so reciprocal diagnostics between linked artifacts remain paused until the originating alert is acknowledged or superseded by new changes.
 - **FR-012**: System MUST support configurable debounce/batching for rapid change events to avoid redundant diagnostics during batched edits.
 - **FR-013**: System MUST offer workflows to repair or remove links when underlying artifacts are deleted or renamed.
-- **FR-014**: System MUST support knowledge-graph-backed monitoring between arbitrary artifacts (beyond markdown↔code pairs) using external graph feeds and LLM-assisted ripple analysis to surface multi-hop change impacts, handling both on-demand KnowledgeSnapshot imports and long-lived streaming feeds with consistent validation and storage semantics.
-- **FR-015**: System MUST define and enforce a minimal schema for ingesting external knowledge-graph data, including artifact identifiers, edge types, timestamps, and confidence metadata, and MUST validate incoming feeds against this contract before integrating them.
-- **FR-016**: Development-time verification MUST compare the inferred link graph against canonical abstract syntax trees for curated benchmark workspaces when ground-truth ASTs are available, and MUST fall back to multi-run self-similarity benchmarks for workspaces lacking authoritative ASTs so accuracy remains measurable in both contexts.
+- **FR-014**: System MUST extend the dependency graph to documentation artifacts once code-to-code accuracy milestones are met, using the same inference pipeline and override mechanics.
+- **FR-015**: System MUST support knowledge-graph-backed monitoring between arbitrary artifacts (beyond code↔code pairs) using external feeds and LLM-assisted ripple analysis, handling both on-demand KnowledgeSnapshot imports and long-lived streaming feeds with consistent validation and storage semantics.
+- **FR-016**: System MUST define and enforce a minimal schema for ingesting external knowledge-graph data, including artifact identifiers, edge types, timestamps, and confidence metadata, and MUST validate incoming feeds against this contract before integrating them.
+- **FR-017**: Development-time verification MUST compare the inferred code dependency graph against canonical abstract syntax trees for curated benchmark workspaces when ground-truth ASTs are available, and MUST fall back to multi-run self-similarity benchmarks for workspaces lacking authoritative ASTs so accuracy remains measurable in both contexts.
 
 ### Key Entities *(include if feature involves data)*
 

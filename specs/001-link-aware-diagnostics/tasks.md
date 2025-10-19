@@ -90,47 +90,47 @@ description: "Task list for Link-Aware Diagnostics"
 
 ---
 
-## Phase 3: User Story 1 - Writers get drift alerts (Priority: P1) 🎯 MVP
+## Phase 3: User Story 1 - Developers see code-change impact (Priority: P1) 🎯 MVP
 
-**Goal**: Raise diagnostics when linked documentation changes so writers immediately see affected implementation files
+**Goal**: Raise diagnostics on every code artifact impacted by a change so engineers know the full ripple before merging
 
-**Independent Test**: Saving a mapped markdown file triggers diagnostics on all linked artifacts without requiring other stories
+**Independent Test**: Editing a code file in a benchmark workspace triggers diagnostics on all dependent modules without relying on documentation features
 
-- [x] T026 [P] [US1] Add integration test `tests/integration/us1/markdownDrift.test.ts` covering markdown edits, debounce behaviour, and diagnostic publication
+- [ ] T034 [P] [US1] Add integration test `tests/integration/us1/codeImpact.test.ts` covering code-change diagnostics, debounce behaviour, and dependency surfacing (with and without AST fixtures)
 
 ### Implementation for User Story 1
 
-- [x] T027 [US1] Implement link override command in `packages/extension/src/commands/overrideLink.ts`
-- [x] T028 [P] [US1] Build link inference orchestrator in `packages/shared/src/inference/linkInference.ts` that consumes symbol/reference providers and knowledge-graph feeds
-- [x] T029 [US1] Implement markdown save watcher in `packages/server/src/features/watchers/markdownWatcher.ts`
-- [x] T030 [US1] Persist documentation change events in `packages/server/src/features/changeEvents/saveDocumentChange.ts`
-- [x] T031 [US1] Publish diagnostics to linked implementation artifacts in `packages/server/src/features/diagnostics/publishDocDiagnostics.ts`
-- [x] T032 [P] [US1] Provide Problems panel metadata and open-linked-file quick action in `packages/extension/src/diagnostics/docDiagnosticProvider.ts`
-- [x] T033 [US1] Implement hysteresis controller in `packages/server/src/features/diagnostics/hysteresisController.ts` to suppress reciprocal diagnostics until acknowledgement
+- [ ] T035 [US1] Implement VS Code symbol ingestion adapter in `packages/extension/src/services/symbolBridge.ts`
+- [ ] T036 [P] [US1] Build dependency graph extraction logic in `packages/server/src/features/dependencies/buildCodeGraph.ts`
+- [ ] T037 [US1] Persist code change events and graph updates in `packages/server/src/features/changeEvents/saveCodeChange.ts`
+- [ ] T038 [US1] Publish diagnostics to dependent code modules in `packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`
+- [ ] T039 [P] [US1] Add dependency inspection quick pick UI in `packages/extension/src/diagnostics/dependencyQuickPick.ts`
+- [ ] T040 [US1] Build knowledge graph ingestion pipeline in `packages/server/src/features/knowledge/knowledgeGraphBridge.ts` to support arbitrary artifact links beyond direct code imports
+- [ ] T041 [US1] Implement LLM-assisted ripple analysis for cross-artifact watchers in `packages/server/src/features/knowledge/rippleAnalyzer.ts`
 
-**Checkpoint**: User Story 1 fully functional and independently testable
+**Checkpoint**: Code-change impact is fully functional and independently testable
 
 ---
 
-## Phase 4: User Story 2 - Developers see linked impacts (Priority: P2)
+## Phase 4: User Story 2 - Writers get drift alerts (Priority: P2)
 
-**Goal**: Warn developers about affected docs and dependent modules when code changes occur
+**Goal**: Warn writers when documentation changes require code or downstream document review, powered by the shared dependency graph
 
-**Independent Test**: Editing a mapped code file raises diagnostics on linked docs and dependent modules without US3 features
+**Independent Test**: Saving a mapped markdown file raises diagnostics on linked implementation files without US3 features
 
-- [ ] T034 [P] [US2] Add integration test `tests/integration/us2/codeImpact.test.ts` verifying code-change diagnostics, debounce behaviour, and dependency surfacing
+- [x] T026 [P] [US2] Add integration test `tests/integration/us2/markdownDrift.test.ts` covering markdown edits, debounce behaviour, and diagnostic publication
 
 ### Implementation for User Story 2
 
-- [ ] T035 [US2] Implement VS Code symbol ingestion adapter in `packages/extension/src/services/symbolBridge.ts`
-- [ ] T036 [P] [US2] Build dependency graph extraction logic in `packages/server/src/features/dependencies/buildCodeGraph.ts`
-- [ ] T037 [US2] Persist code change events and graph updates in `packages/server/src/features/changeEvents/saveCodeChange.ts`
-- [ ] T038 [US2] Publish diagnostics to dependent code modules in `packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`
-- [ ] T039 [P] [US2] Add dependency inspection quick pick UI in `packages/extension/src/diagnostics/dependencyQuickPick.ts`
-- [ ] T040 Build knowledge graph ingestion pipeline in `packages/server/src/features/knowledge/knowledgeGraphBridge.ts` to support arbitrary artifact links
-- [ ] T041 Implement LLM-assisted ripple analysis for cross-artifact watchers in `packages/server/src/features/knowledge/rippleAnalyzer.ts`
+- [x] T027 [US2] Implement link override command in `packages/extension/src/commands/overrideLink.ts`
+- [x] T028 [P] [US2] Build link inference orchestrator in `packages/shared/src/inference/linkInference.ts` that consumes symbol/reference providers and knowledge-graph feeds
+- [x] T029 [US2] Implement markdown save watcher in `packages/server/src/features/watchers/markdownWatcher.ts`
+- [x] T030 [US2] Persist documentation change events in `packages/server/src/features/changeEvents/saveDocumentChange.ts`
+- [x] T031 [US2] Publish diagnostics to linked implementation artifacts in `packages/server/src/features/diagnostics/publishDocDiagnostics.ts`
+- [x] T032 [P] [US2] Provide Problems panel metadata and open-linked-file quick action in `packages/extension/src/diagnostics/docDiagnosticProvider.ts`
+- [x] T033 [US2] Implement hysteresis controller in `packages/server/src/features/diagnostics/hysteresisController.ts` to suppress reciprocal diagnostics until acknowledgement
 
-**Checkpoint**: User Stories 1 and 2 operate independently and in combination
+**Checkpoint**: Documentation drift diagnostics operate on top of the unified graph
 
 ---
 
@@ -228,9 +228,9 @@ description: "Task list for Link-Aware Diagnostics"
 ## Summary
 - **Total Tasks**: 61
 - **User Story Task Counts**:
-  - US1: 8 tasks (including T026 test)
-  - US2: 8 tasks (including T034 test)
+  - US1: 8 tasks (including T034 test)
+  - US2: 8 tasks (including T026 test)
   - US3: 7 tasks (including T042 test)
 - **Parallel Opportunities**: 22 tasks marked `[P]`
-- **Independent Tests**: T026 (US1), T034 (US2), T042 (US3)
-- **Suggested MVP Scope**: Phases 1–3 (through User Story 1)
+- **Independent Tests**: T034 (US1), T026 (US2), T042 (US3)
+- **Suggested MVP Scope**: Phases 1–3 (deliver code-change impact first)
