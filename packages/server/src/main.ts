@@ -47,7 +47,11 @@ import {
   RuntimeSettings,
   deriveRuntimeSettings
 } from "./features/settings/settingsBridge";
-import { MarkdownWatcher } from "./features/watchers/markdownWatcher";
+import {
+  ArtifactWatcher,
+  type DocumentTrackedArtifactChange,
+  type CodeTrackedArtifactChange
+} from "./features/watchers/artifactWatcher";
 
 const SETTINGS_NOTIFICATION = "linkDiagnostics/settings/update";
 const FILE_DELETED_NOTIFICATION = "linkDiagnostics/files/deleted";
@@ -70,7 +74,7 @@ let graphStore: GraphStore | null = null;
 const providerGuard = new ProviderGuard(connection);
 let changeQueue: ChangeQueue | null = null;
 let runtimeSettings: RuntimeSettings = DEFAULT_RUNTIME_SETTINGS;
-let markdownWatcher: MarkdownWatcher | null = null;
+let artifactWatcher: ArtifactWatcher | null = null;
 const hysteresisController = new HysteresisController();
 let workspaceRootPath: string | undefined;
 
@@ -192,7 +196,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
     onFlush: processChangeBatch
   });
 
-  markdownWatcher = new MarkdownWatcher({
+  artifactWatcher = new ArtifactWatcher({
     documents,
     graphStore,
     orchestrator: linkInferenceOrchestrator,
@@ -201,7 +205,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
   });
 
   if (workspaceRootPath) {
-    markdownWatcher.setWorkspaceProviders([
+    artifactWatcher.setWorkspaceProviders([
       createWorkspaceIndexProvider({
         rootPath: workspaceRootPath,
         implementationGlobs: ["src"],
@@ -234,7 +238,7 @@ connection.onShutdown(() => {
   graphStore?.close();
   changeQueue?.dispose();
   changeQueue = null;
-  markdownWatcher = null;
+  artifactWatcher = null;
 });
 
 connection.onDidChangeConfiguration((change: DidChangeConfigurationParams) => {
@@ -362,29 +366,29 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
     return;
   }
 
-  if (!markdownWatcher) {
-    connection.console.warn("markdown watcher not initialised; skipping change batch");
+  if (!artifactWatcher) {
+    connection.console.warn("artifact watcher not initialised; skipping change batch");
     return;
   }
 
-  let watcherResult: Awaited<ReturnType<MarkdownWatcher["processChanges"]>> | null = null;
+  let watcherResult: Awaited<ReturnType<ArtifactWatcher["processChanges"]>> | null = null;
 
   try {
-    watcherResult = await markdownWatcher.processChanges(changes);
+    watcherResult = await artifactWatcher.processChanges(changes);
     if (watcherResult.orchestratorError) {
       connection.console.error(
-        `markdown watcher reported inference failure: ${describeError(watcherResult.orchestratorError)}`
+        `artifact watcher reported inference failure: ${describeError(watcherResult.orchestratorError)}`
       );
     }
   } catch (error) {
-    connection.console.error(`markdown watcher processing threw: ${describeError(error)}`);
+    connection.console.error(`artifact watcher processing threw: ${describeError(error)}`);
     return;
   }
 
   if (!watcherResult || watcherResult.processed.length === 0) {
     if (watcherResult?.skipped.length) {
       connection.console.info(
-        `markdown watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
+        `artifact watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
       );
     }
     return;
@@ -403,12 +407,18 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
   }
 
   const nowFactory = () => new Date();
-  const contexts: DocumentChangeContext[] = [];
+  const documentContexts: DocumentChangeContext[] = [];
+  const processedDocuments = watcherResult.processed.filter(
+    (change): change is DocumentTrackedArtifactChange => change.category === "document"
+  );
+  const processedCode = watcherResult.processed.filter(
+    (change): change is CodeTrackedArtifactChange => change.category === "code"
+  );
 
-  for (const processed of watcherResult.processed) {
+  for (const processed of processedDocuments) {
     try {
       const persisted = saveDocumentChange({ graphStore, change: processed, now: nowFactory });
-      contexts.push({
+      documentContexts.push({
         change: processed,
         artifact: persisted.artifact,
         changeEventId: persisted.changeEventId
@@ -425,12 +435,16 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
     return;
   }
 
-  if (contexts.length === 0) {
-    connection.console.info("no document contexts available for diagnostics publication");
+  if (documentContexts.length === 0 && processedCode.length === 0) {
+    connection.console.info("no relevant contexts available for diagnostics publication");
     return;
   }
 
-  for (const context of contexts) {
+  if (documentContexts.length === 0) {
+    connection.console.info("no document contexts available for diagnostics publication");
+  }
+
+  for (const context of documentContexts) {
     const linked = graphStore.listLinkedArtifacts(context.artifact.id);
     if (linked.length === 0) {
       connection.console.info(
@@ -446,14 +460,14 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
       }
     },
     graphStore,
-    contexts,
+    contexts: documentContexts,
     runtimeSettings,
     hysteresis: hysteresisController
   });
 
   if (watcherResult.skipped.length > 0) {
     connection.console.info(
-      `markdown watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
+      `artifact watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
     );
   }
 
@@ -469,9 +483,11 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
     );
   }
 
-  connection.console.info(
-    `published ${diagnosticsResult.emitted} diagnostic(s) for ${contexts.length} document change(s)`
-  );
+  if (documentContexts.length > 0) {
+    connection.console.info(
+      `published ${diagnosticsResult.emitted} diagnostic(s) for ${documentContexts.length} document change(s)`
+    );
+  }
 }
 
 function syncRuntimeSettings(): void {

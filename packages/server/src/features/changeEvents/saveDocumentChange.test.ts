@@ -4,7 +4,7 @@ import type { ChangeEvent, GraphStore, KnowledgeArtifact } from "@copilot-improv
 
 import type { QueuedChange } from "./changeQueue";
 import { saveDocumentChange } from "./saveDocumentChange";
-import type { MarkdownDocumentChange } from "../watchers/markdownWatcher";
+import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
 
 const BASE_CHANGE: QueuedChange = {
   uri: "file:///docs/spec.md",
@@ -12,10 +12,13 @@ const BASE_CHANGE: QueuedChange = {
   version: 1
 };
 
-function buildDocumentChange(overrides: Partial<MarkdownDocumentChange> = {}): MarkdownDocumentChange {
-  const change: MarkdownDocumentChange = {
+function buildDocumentChange(
+  overrides: Partial<Omit<DocumentTrackedArtifactChange, "category">> = {}
+): DocumentTrackedArtifactChange {
+  const change: DocumentTrackedArtifactChange = {
     uri: BASE_CHANGE.uri,
     layer: "requirements",
+    category: "document",
     change: BASE_CHANGE,
     previousArtifact: undefined,
     nextArtifact: undefined,

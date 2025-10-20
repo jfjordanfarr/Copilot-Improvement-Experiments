@@ -1,4 +1,5 @@
 import { promises as fs } from "node:fs";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { TextDocument } from "vscode-languageserver-textdocument";
 
@@ -18,21 +19,23 @@ import {
 
 import type { QueuedChange } from "../changeEvents/changeQueue";
 
+export type ArtifactCategory = "document" | "code";
+
 export interface DocumentStore {
   get(uri: string): TextDocument | undefined;
 }
 
-export interface MarkdownWatcherLogger {
+export interface ArtifactWatcherLogger {
   info(message: string): void;
   warn(message: string): void;
   error(message: string): void;
 }
 
-export interface MarkdownWatcherOptions {
+export interface ArtifactWatcherOptions {
   documents: DocumentStore;
   graphStore: GraphStore;
   orchestrator: LinkInferenceOrchestrator;
-  logger?: MarkdownWatcherLogger;
+  logger?: ArtifactWatcherLogger;
   workspaceProviders?: WorkspaceLinkProvider[];
   knowledgeFeeds?: KnowledgeFeed[];
   llmBridgeProvider?: () => FallbackLLMBridge | undefined;
@@ -40,9 +43,10 @@ export interface MarkdownWatcherOptions {
   now?: () => Date;
 }
 
-export interface MarkdownDocumentChange {
+export interface TrackedArtifactChange {
   uri: string;
   layer: ArtifactLayer;
+  category: ArtifactCategory;
   change: QueuedChange;
   previousArtifact?: KnowledgeArtifact;
   nextArtifact?: KnowledgeArtifact;
@@ -51,33 +55,47 @@ export interface MarkdownDocumentChange {
   contentLength: number;
 }
 
-export interface MarkdownSkippedChange {
+export type DocumentTrackedArtifactChange = TrackedArtifactChange & { category: "document" };
+export type CodeTrackedArtifactChange = TrackedArtifactChange & { category: "code" };
+
+export interface SkippedArtifactChange {
   change: QueuedChange;
   reason: string;
 }
 
-export interface MarkdownWatcherResult {
-  processed: MarkdownDocumentChange[];
-  skipped: MarkdownSkippedChange[];
+export interface ArtifactWatcherResult {
+  processed: TrackedArtifactChange[];
+  skipped: SkippedArtifactChange[];
   inference?: LinkInferenceRunResult;
   orchestratorError?: unknown;
 }
 
-const DEFAULT_LAYER: ArtifactLayer = "requirements";
+const DEFAULT_DOCUMENT_LAYER: ArtifactLayer = "requirements";
+const DOCUMENT_LANGUAGES = new Set(["markdown", "mdx"]);
+const CODE_LANGUAGES = new Set([
+  "typescript",
+  "javascript",
+  "typescriptreact",
+  "javascriptreact",
+  "ts",
+  "js"
+]);
+const DOCUMENT_EXTENSIONS = new Set([".md", ".mdx", ".markdown"]);
+const CODE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cts", ".mts"]);
 const EXISTING_LINK_CONFIDENCE = 0.9;
 
-export class MarkdownWatcher {
+export class ArtifactWatcher {
   private workspaceProviders: WorkspaceLinkProvider[];
   private knowledgeFeeds: KnowledgeFeed[];
   private readonly orchestrator: LinkInferenceOrchestrator;
   private readonly graphStore: GraphStore;
   private readonly documents: DocumentStore;
-  private readonly logger?: MarkdownWatcherLogger;
+  private readonly logger?: ArtifactWatcherLogger;
   private llmBridgeProvider?: () => FallbackLLMBridge | undefined;
   private minContentLengthForLLM?: number;
   private nowFactory?: () => Date;
 
-  constructor(options: MarkdownWatcherOptions) {
+  constructor(options: ArtifactWatcherOptions) {
     this.documents = options.documents;
     this.graphStore = options.graphStore;
     this.orchestrator = options.orchestrator;
@@ -109,20 +127,20 @@ export class MarkdownWatcher {
     this.nowFactory = factory;
   }
 
-  async processChanges(changes: QueuedChange[]): Promise<MarkdownWatcherResult> {
-    const markdownChanges = changes.filter(change => this.isMarkdownChange(change));
+  async processChanges(changes: QueuedChange[]): Promise<ArtifactWatcherResult> {
+    const tracked = this.extractTrackedChanges(changes);
 
-    if (markdownChanges.length === 0) {
+    if (tracked.length === 0) {
       return { processed: [], skipped: [], inference: undefined };
     }
 
-    const processed: MarkdownDocumentChange[] = [];
-    const skipped: MarkdownSkippedChange[] = [];
+    const processed: TrackedArtifactChange[] = [];
+    const skipped: SkippedArtifactChange[] = [];
 
-    for (const change of markdownChanges) {
-      const prepared = await this.prepareChange(change);
+    for (const entry of tracked) {
+      const prepared = await this.prepareChange(entry.change, entry.category);
       if (!prepared) {
-        skipped.push({ change, reason: "content-unavailable" });
+        skipped.push({ change: entry.change, reason: "content-unavailable" });
         continue;
       }
 
@@ -136,7 +154,7 @@ export class MarkdownWatcher {
     const seeds = this.prepareSeeds(processed);
     const hints = processed.flatMap(item => item.hints);
     this.logger?.info(
-      `markdown watcher prepared ${seeds.length} seed(s) and ${hints.length} hint(s) before provider contributions`
+      `artifact watcher prepared ${seeds.length} seed(s) and ${hints.length} hint(s) before provider contributions`
     );
 
     let inference: LinkInferenceRunResult | undefined;
@@ -155,33 +173,53 @@ export class MarkdownWatcher {
       });
 
       this.logger?.info(
-        `markdown watcher inference produced ${inference.links.length} link(s) from ${inference.providerSummaries.reduce(
+        `artifact watcher inference produced ${inference.links.length} link(s) from ${inference.providerSummaries.reduce(
           (sum, summary) => sum + summary.seedCount,
           0
         )} provider seed(s) and ${inference.traces.length} trace(s)`
       );
       this.applyInferenceArtifacts(processed, inference);
       this.logger?.info(
-        `markdown watcher reconciled ${processed.length} document(s); ` +
-          `${inference.links.length} link(s), ${inference.errors.length} error(s)`
+        `artifact watcher reconciled ${processed.length} artifact(s); ${inference.links.length} link(s), ${inference.errors.length} error(s)`
       );
     } catch (error) {
       orchestratorError = error;
-      this.logger?.error(`markdown watcher failed to run inference: ${describeError(error)}`);
+      this.logger?.error(`artifact watcher failed to run inference: ${describeError(error)}`);
     }
 
     return { processed, skipped, inference, orchestratorError };
   }
 
-  private async prepareChange(change: QueuedChange): Promise<MarkdownDocumentChange | null> {
+  private extractTrackedChanges(
+    changes: QueuedChange[]
+  ): Array<{ change: QueuedChange; category: ArtifactCategory }> {
+    const tracked: Array<{ change: QueuedChange; category: ArtifactCategory }> = [];
+
+    for (const change of changes) {
+      const category = classifyChange(change);
+      if (!category) {
+        continue;
+      }
+
+      tracked.push({ change, category });
+    }
+
+    return tracked;
+  }
+
+  private async prepareChange(
+    change: QueuedChange,
+    category: ArtifactCategory
+  ): Promise<TrackedArtifactChange | null> {
     const existing = this.graphStore.getArtifactByUri(change.uri);
-    const layer = deriveLayer(change.uri, existing?.layer);
+    const layer = deriveLayer(change.uri, category, existing?.layer);
     const content = await this.loadContent(change.uri);
     const hints = existing ? this.buildHints(change.uri, existing) : [];
 
     return {
       uri: change.uri,
       change,
+      category,
       layer,
       previousArtifact: existing,
       hints,
@@ -190,7 +228,7 @@ export class MarkdownWatcher {
     };
   }
 
-  private prepareSeeds(changes: MarkdownDocumentChange[]): ArtifactSeed[] {
+  private prepareSeeds(changes: TrackedArtifactChange[]): ArtifactSeed[] {
     const seedsByUri = new Map<string, ArtifactSeed>();
 
     for (const artifact of this.graphStore.listArtifacts()) {
@@ -236,15 +274,14 @@ export class MarkdownWatcher {
 
     try {
       const filePath = fileURLToPath(uri);
-      const buffer = await fs.readFile(filePath, "utf8");
-      return buffer;
+      return await fs.readFile(filePath, "utf8");
     } catch {
       return undefined;
     }
   }
 
   private applyInferenceArtifacts(
-    processed: MarkdownDocumentChange[],
+    processed: TrackedArtifactChange[],
     inference: LinkInferenceRunResult
   ): void {
     const byUri = new Map<string, KnowledgeArtifact>();
@@ -256,16 +293,28 @@ export class MarkdownWatcher {
       change.nextArtifact = byUri.get(normalizeUri(change.uri));
     }
   }
+}
 
-  private isMarkdownChange(change: QueuedChange): boolean {
-    const language = change.languageId?.toLowerCase();
-    if (language && (language === "markdown" || language === "mdx")) {
-      return true;
-    }
-
-    const uri = change.uri.toLowerCase();
-    return uri.endsWith(".md") || uri.endsWith(".mdx") || uri.endsWith(".markdown");
+function classifyChange(change: QueuedChange): ArtifactCategory | undefined {
+  const language = change.languageId?.toLowerCase();
+  if (language && DOCUMENT_LANGUAGES.has(language)) {
+    return "document";
   }
+
+  if (language && CODE_LANGUAGES.has(language)) {
+    return "code";
+  }
+
+  const lowerUri = change.uri.toLowerCase();
+  if (DOCUMENT_EXTENSIONS.has(path.extname(lowerUri))) {
+    return "document";
+  }
+
+  if (CODE_EXTENSIONS.has(path.extname(lowerUri))) {
+    return "code";
+  }
+
+  return undefined;
 }
 
 function toSeed(artifact: KnowledgeArtifact): ArtifactSeed {
@@ -309,9 +358,17 @@ function toRelationshipHint(uri: string, link: LinkedArtifactSummary): Relations
   };
 }
 
-function deriveLayer(uri: string, existing?: ArtifactLayer): ArtifactLayer {
+function deriveLayer(
+  uri: string,
+  category: ArtifactCategory,
+  existing?: ArtifactLayer
+): ArtifactLayer {
   if (existing) {
     return existing;
+  }
+
+  if (category === "code") {
+    return "code";
   }
 
   const normalised = uri.toLowerCase();
@@ -327,7 +384,7 @@ function deriveLayer(uri: string, existing?: ArtifactLayer): ArtifactLayer {
     return "implementation";
   }
 
-  return DEFAULT_LAYER;
+  return DEFAULT_DOCUMENT_LAYER;
 }
 
 function normalizeUri(uri: string): string {

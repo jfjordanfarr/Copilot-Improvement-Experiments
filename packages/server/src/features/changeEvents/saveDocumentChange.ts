@@ -6,7 +6,7 @@ import {
   LinkInferenceRunResult
 } from "@copilot-improvement/shared";
 
-import type { MarkdownDocumentChange } from "../watchers/markdownWatcher";
+import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
 
 export interface PersistedDocumentChange {
   artifact: KnowledgeArtifact;
@@ -15,7 +15,7 @@ export interface PersistedDocumentChange {
 
 export interface SaveDocumentChangeOptions {
   graphStore: GraphStore;
-  change: MarkdownDocumentChange;
+  change: DocumentTrackedArtifactChange;
   now?: () => Date;
 }
 
@@ -39,6 +39,10 @@ export function persistInferenceResult(
 }
 
 export function saveDocumentChange(options: SaveDocumentChangeOptions): PersistedDocumentChange {
+  if (options.change.category !== "document") {
+    throw new Error(`unsupported change category: ${options.change.category}`);
+  }
+
   const nowFactory = options.now ?? (() => new Date());
   const artifact = resolveArtifact(options);
 

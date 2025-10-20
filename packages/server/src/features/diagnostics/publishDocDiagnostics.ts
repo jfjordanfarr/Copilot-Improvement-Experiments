@@ -13,14 +13,14 @@ import {
 
 import type { HysteresisController } from "./hysteresisController";
 import type { RuntimeSettings } from "../settings/settingsBridge";
-import type { MarkdownDocumentChange } from "../watchers/markdownWatcher";
+import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
 
 export interface DiagnosticSender {
   sendDiagnostics(params: { uri: string; diagnostics: Diagnostic[] }): void;
 }
 
 export interface DocumentChangeContext {
-  change: MarkdownDocumentChange;
+  change: DocumentTrackedArtifactChange;
   artifact: KnowledgeArtifact;
   changeEventId: string;
 }

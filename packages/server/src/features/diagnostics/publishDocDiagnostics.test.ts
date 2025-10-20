@@ -10,7 +10,7 @@ import { HysteresisController } from "./hysteresisController";
 import { publishDocDiagnostics } from "./publishDocDiagnostics";
 import type { DocumentChangeContext } from "./publishDocDiagnostics";
 import type { RuntimeSettings } from "../settings/settingsBridge";
-import type { MarkdownDocumentChange } from "../watchers/markdownWatcher";
+import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
 
 const RUNTIME_SETTINGS: RuntimeSettings = {
   debounceMs: 500,
@@ -21,9 +21,10 @@ const RUNTIME_SETTINGS: RuntimeSettings = {
   }
 };
 
-const BASE_CHANGE: MarkdownDocumentChange = {
+const BASE_CHANGE: DocumentTrackedArtifactChange = {
   uri: "file:///docs/spec.md",
   layer: "requirements",
+  category: "document",
   change: {
     uri: "file:///docs/spec.md",
     languageId: "markdown",
@@ -239,6 +240,7 @@ describe("publishDocDiagnostics", () => {
           languageId: "typescript",
           version: 2
         },
+        category: "document",
         previousArtifact: undefined,
         nextArtifact: undefined,
         hints: [],
