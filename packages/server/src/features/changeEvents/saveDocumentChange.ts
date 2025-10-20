@@ -6,6 +6,7 @@ import {
   LinkInferenceRunResult
 } from "@copilot-improvement/shared";
 
+import { normalizeFileUri } from "../utils/uri";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
 
 export interface PersistedDocumentChange {
@@ -39,10 +40,6 @@ export function persistInferenceResult(
 }
 
 export function saveDocumentChange(options: SaveDocumentChangeOptions): PersistedDocumentChange {
-  if (options.change.category !== "document") {
-    throw new Error(`unsupported change category: ${options.change.category}`);
-  }
-
   const nowFactory = options.now ?? (() => new Date());
   const artifact = resolveArtifact(options);
 
@@ -67,15 +64,16 @@ export function saveDocumentChange(options: SaveDocumentChangeOptions): Persiste
 }
 
 function resolveArtifact(options: SaveDocumentChangeOptions): KnowledgeArtifact {
+  const canonicalUri = normalizeFileUri(options.change.uri);
   const candidate = options.change.nextArtifact ?? options.change.previousArtifact;
   if (candidate) {
-    return { ...candidate };
+    return { ...candidate, uri: normalizeFileUri(candidate.uri ?? canonicalUri) };
   }
 
   const language = options.change.change.languageId;
   return {
     id: randomUUID(),
-    uri: options.change.uri,
+    uri: canonicalUri,
     layer: options.change.layer,
     language,
     owner: undefined,

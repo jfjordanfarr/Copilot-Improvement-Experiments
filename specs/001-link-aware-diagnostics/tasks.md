@@ -96,14 +96,14 @@ description: "Task list for Link-Aware Diagnostics"
 
 **Independent Test**: Editing a code file in a benchmark workspace triggers diagnostics on all dependent modules without relying on documentation features
 
-- [ ] T034 [P] [US1] Add integration test `tests/integration/us1/codeImpact.test.ts` covering code-change diagnostics, debounce behaviour, and dependency surfacing (with and without AST fixtures)
+- [x] T034 [P] [US1] Add integration test `tests/integration/us1/codeImpact.test.ts` covering code-change diagnostics, debounce behaviour, and dependency surfacing (with and without AST fixtures)
 
 ### Implementation for User Story 1
 
 - [ ] T035 [US1] Implement VS Code symbol ingestion adapter in `packages/extension/src/services/symbolBridge.ts`
-- [ ] T036 [P] [US1] Build dependency graph extraction logic in `packages/server/src/features/dependencies/buildCodeGraph.ts`
-- [ ] T037 [US1] Persist code change events and graph updates in `packages/server/src/features/changeEvents/saveCodeChange.ts`
-- [ ] T038 [US1] Publish diagnostics to dependent code modules in `packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`
+- [x] T036 [P] [US1] Build dependency graph extraction logic in `packages/server/src/features/dependencies/buildCodeGraph.ts`
+- [x] T037 [US1] Persist code change events and graph updates in `packages/server/src/features/changeEvents/saveCodeChange.ts`
+- [x] T038 [US1] Publish diagnostics to dependent code modules in `packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`
 - [ ] T039 [P] [US1] Add dependency inspection quick pick UI in `packages/extension/src/diagnostics/dependencyQuickPick.ts`
 - [ ] T040 [US1] Build knowledge graph ingestion pipeline in `packages/server/src/features/knowledge/knowledgeGraphBridge.ts` to support arbitrary artifact links beyond direct code imports
 - [ ] T041 [US1] Implement LLM-assisted ripple analysis for cross-artifact watchers in `packages/server/src/features/knowledge/rippleAnalyzer.ts`

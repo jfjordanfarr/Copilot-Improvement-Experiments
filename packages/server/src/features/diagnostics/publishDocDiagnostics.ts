@@ -1,5 +1,3 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import {
   Diagnostic,
   DiagnosticSeverity
@@ -11,13 +9,10 @@ import {
   LinkedArtifactSummary
 } from "@copilot-improvement/shared";
 
+import { normaliseDisplayPath, type DiagnosticSender } from "./diagnosticUtils";
 import type { HysteresisController } from "./hysteresisController";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
-
-export interface DiagnosticSender {
-  sendDiagnostics(params: { uri: string; diagnostics: Diagnostic[] }): void;
-}
 
 export interface DocumentChangeContext {
   change: DocumentTrackedArtifactChange;
@@ -121,14 +116,3 @@ function createDiagnostic(
   };
 }
 
-function normaliseDisplayPath(uri: string): string {
-  if (!uri.startsWith("file://")) {
-    return uri;
-  }
-
-  try {
-    return path.normalize(fileURLToPath(uri));
-  } catch {
-    return uri;
-  }
-}

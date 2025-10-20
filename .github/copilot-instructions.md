@@ -2,6 +2,15 @@
 
 Last updated: 2025-10-19
 
+## What We Are Building
+
+We are building a VS Code extension to improve cross-file observability for Github Copilot and human developers. The function for our extension is this:
+"""
+For any given change in any given file, this extension provides the definitive answer to the question: "What other files will be impacted by this change?"
+"""
+
+We might think of what we are building as "projectwide pseudocode AST". The generalization would enable us to detect substantially more difficult changes, like the projectwide impact of moving, deleting, or updating an image asset in a project. 
+
 ## Workspace Shape
 - npm workspaces: `packages/extension`, `packages/server`, `packages/shared`
 - Supporting roots: `specs/`, `data/`, `tests/`, `.specify/`
@@ -46,3 +55,8 @@ Unlike the `.specs/` docs created by spec-kit-driven-development, the MDMD docs 
 Our project utilizes Spec-Kit to plan, document, and implement specific feature-branch-sized stories (or greenfield new projects, like this one's first spec: `001-link-aware-diagnostics`). As the spec-kit ecosystem evolves, files in the `.specify/` folder may update from time to time. Visit here to see the kinds of prompts which power the `/speckit.{command}` slashcommands for reproducible agentic development. 
 
 Documentation artifacts created as part of a `.specs/` folder do not necessarily need to be migrated to the `.mdmd/` permanent documentation structure, but the changes which result from a development story demarcated by a single `specs\[###-feature-name]\` folder should be migrated to the permanent documentation structure.
+
+During development, the following general guidances should be observed to prevent common pitfalls in LLM-assisted development:
+- Try to consolidate magic strings into constants that can be referenced; this prevents common string value hallucinations.
+- Related to the above point, try to avoid the pattern of direct log string matching when writing tests.
+- Optimize for readability and maintainability over brevity; prefer clear code over clever code.

@@ -18,6 +18,7 @@ import {
 } from "@copilot-improvement/shared";
 
 import type { QueuedChange } from "../changeEvents/changeQueue";
+import { normalizeFileUri } from "../utils/uri";
 
 export type ArtifactCategory = "document" | "code";
 
@@ -211,17 +212,19 @@ export class ArtifactWatcher {
     change: QueuedChange,
     category: ArtifactCategory
   ): Promise<TrackedArtifactChange | null> {
-    const existing = this.graphStore.getArtifactByUri(change.uri);
-    const layer = deriveLayer(change.uri, category, existing?.layer);
+    const canonicalUri = normalizeFileUri(change.uri);
+    const existing =
+      this.graphStore.getArtifactByUri(canonicalUri) ?? this.graphStore.getArtifactByUri(change.uri);
+    const layer = deriveLayer(canonicalUri, category, existing?.layer);
     const content = await this.loadContent(change.uri);
-    const hints = existing ? this.buildHints(change.uri, existing) : [];
+    const hints = existing ? this.buildHints(canonicalUri, existing) : [];
 
     return {
-      uri: change.uri,
+      uri: canonicalUri,
       change,
       category,
       layer,
-      previousArtifact: existing,
+      previousArtifact: existing ? { ...existing, uri: normalizeFileUri(existing.uri) } : undefined,
       hints,
       content,
       contentLength: content?.length ?? 0
@@ -232,16 +235,18 @@ export class ArtifactWatcher {
     const seedsByUri = new Map<string, ArtifactSeed>();
 
     for (const artifact of this.graphStore.listArtifacts()) {
-      seedsByUri.set(artifact.uri, toSeed(artifact));
+      const canonicalUri = normalizeFileUri(artifact.uri);
+      seedsByUri.set(canonicalUri, toSeed({ ...artifact, uri: canonicalUri }));
     }
 
     for (const change of changes) {
       const existingMetadata = change.previousArtifact;
       const document = this.documents.get(change.uri);
       const content = document?.getText() ?? change.content;
+      const canonicalUri = normalizeFileUri(change.uri);
       const seed: ArtifactSeed = {
         id: existingMetadata?.id,
-        uri: change.uri,
+        uri: canonicalUri,
         layer: change.layer,
         language: change.change.languageId ?? document?.languageId ?? existingMetadata?.language,
         owner: existingMetadata?.owner,
@@ -251,7 +256,7 @@ export class ArtifactWatcher {
         content
       };
 
-      seedsByUri.set(change.uri, seed);
+      seedsByUri.set(canonicalUri, seed);
     }
 
     return Array.from(seedsByUri.values());
@@ -259,7 +264,13 @@ export class ArtifactWatcher {
 
   private buildHints(uri: string, artifact: KnowledgeArtifact): RelationshipHint[] {
     const related = this.graphStore.listLinkedArtifacts(artifact.id);
-    return related.map(link => toRelationshipHint(uri, link));
+    const canonicalUri = normalizeFileUri(uri);
+    return related.map(link =>
+      toRelationshipHint(canonicalUri, {
+        ...link,
+        artifact: { ...link.artifact, uri: normalizeFileUri(link.artifact.uri) }
+      })
+    );
   }
 
   private async loadContent(uri: string): Promise<string | undefined> {
@@ -286,11 +297,12 @@ export class ArtifactWatcher {
   ): void {
     const byUri = new Map<string, KnowledgeArtifact>();
     for (const artifact of inference.artifacts) {
-      byUri.set(normalizeUri(artifact.uri), artifact);
+      const canonical = { ...artifact, uri: normalizeFileUri(artifact.uri) };
+      byUri.set(canonical.uri, canonical);
     }
 
     for (const change of processed) {
-      change.nextArtifact = byUri.get(normalizeUri(change.uri));
+      change.nextArtifact = byUri.get(normalizeFileUri(change.uri));
     }
   }
 }
@@ -385,10 +397,6 @@ function deriveLayer(
   }
 
   return DEFAULT_DOCUMENT_LAYER;
-}
-
-function normalizeUri(uri: string): string {
-  return uri.trim();
 }
 
 function describeError(error: unknown): string {

@@ -47,7 +47,7 @@ export function createWorkspaceIndexProvider(options: WorkspaceIndexProviderOpti
             const uri = pathToFileURL(filePath).toString();
             seeds.push({
               uri,
-              layer: "implementation",
+              layer: "code",
               language: inferLanguage(filePath),
               content
             });

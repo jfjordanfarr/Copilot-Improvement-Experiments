@@ -26,11 +26,16 @@ import {
 } from "@copilot-improvement/shared";
 
 import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
+import { saveCodeChange } from "./features/changeEvents/saveCodeChange";
 import {
   persistInferenceResult,
   saveDocumentChange
 } from "./features/changeEvents/saveDocumentChange";
 import { HysteresisController } from "./features/diagnostics/hysteresisController";
+import {
+  publishCodeDiagnostics,
+  type CodeChangeContext
+} from "./features/diagnostics/publishCodeDiagnostics";
 import {
   publishDocDiagnostics,
   type DocumentChangeContext
@@ -408,6 +413,7 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
 
   const nowFactory = () => new Date();
   const documentContexts: DocumentChangeContext[] = [];
+  const codeContexts: CodeChangeContext[] = [];
   const processedDocuments = watcherResult.processed.filter(
     (change): change is DocumentTrackedArtifactChange => change.category === "document"
   );
@@ -430,18 +436,36 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
     }
   }
 
+  for (const processed of processedCode) {
+    try {
+      const persisted = saveCodeChange({ graphStore, change: processed, now: nowFactory });
+      codeContexts.push({
+        change: processed,
+        artifact: persisted.artifact,
+        changeEventId: persisted.changeEventId
+      });
+      const linked = graphStore.listLinkedArtifacts(persisted.artifact.id);
+      connection.console.info(
+        `code change persisted for ${persisted.artifact.uri} (${persisted.artifact.id}); dependents: ${linked
+          .filter(link => link.direction === "incoming")
+          .map(link => `${link.artifact.uri}[${link.kind}]`)
+          .join(",")}`
+      );
+    } catch (error) {
+      connection.console.error(
+        `failed to persist code change for ${processed.uri}: ${describeError(error)}`
+      );
+    }
+  }
+
   if (!providerGuard.areDiagnosticsEnabled()) {
     connection.console.info("diagnostics disabled via provider guard; skipping publication");
     return;
   }
 
-  if (documentContexts.length === 0 && processedCode.length === 0) {
+  if (documentContexts.length === 0 && codeContexts.length === 0) {
     connection.console.info("no relevant contexts available for diagnostics publication");
     return;
-  }
-
-  if (documentContexts.length === 0) {
-    connection.console.info("no document contexts available for diagnostics publication");
   }
 
   for (const context of documentContexts) {
@@ -453,39 +477,98 @@ async function processChangeBatch(changes: QueuedChange[]): Promise<void> {
     }
   }
 
-  const diagnosticsResult = publishDocDiagnostics({
-    sender: {
-      sendDiagnostics: params => {
-        void connection.sendDiagnostics(params);
-      }
-    },
-    graphStore,
-    contexts: documentContexts,
-    runtimeSettings,
-    hysteresis: hysteresisController
-  });
+  if (documentContexts.length === 0) {
+    connection.console.info("no document contexts available for diagnostics publication");
+  }
 
-  if (watcherResult.skipped.length > 0) {
+  const docDiagnosticsResult =
+    documentContexts.length > 0
+      ? publishDocDiagnostics({
+          sender: {
+            sendDiagnostics: params => {
+              void connection.sendDiagnostics(params);
+            }
+          },
+          graphStore,
+          contexts: documentContexts,
+          runtimeSettings,
+          hysteresis: hysteresisController
+        })
+      : null;
+
+  if (docDiagnosticsResult?.suppressedByBudget) {
     connection.console.info(
-      `artifact watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
+      `noise suppression level '${runtimeSettings.noiseSuppression.level}' muted ${docDiagnosticsResult.suppressedByBudget} documentation diagnostic(s) in this batch`
     );
   }
 
-  if (diagnosticsResult.suppressedByBudget > 0) {
+  if (docDiagnosticsResult?.suppressedByHysteresis) {
     connection.console.info(
-      `noise suppression level '${runtimeSettings.noiseSuppression.level}' muted ${diagnosticsResult.suppressedByBudget} diagnostics in this batch`
-    );
-  }
-
-  if (diagnosticsResult.suppressedByHysteresis > 0) {
-    connection.console.info(
-      `hysteresis controller suppressed ${diagnosticsResult.suppressedByHysteresis} diagnostic(s) to prevent ricochet`
+      `hysteresis controller suppressed ${docDiagnosticsResult.suppressedByHysteresis} documentation diagnostic(s) to prevent ricochet`
     );
   }
 
   if (documentContexts.length > 0) {
     connection.console.info(
-      `published ${diagnosticsResult.emitted} diagnostic(s) for ${documentContexts.length} document change(s)`
+      `published ${docDiagnosticsResult?.emitted ?? 0} documentation diagnostic(s) for ${documentContexts.length} document change(s)`
+    );
+  }
+
+  const remainingBudget = Math.max(
+    0,
+    runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch - (docDiagnosticsResult?.emitted ?? 0)
+  );
+  const codeRuntimeSettings: RuntimeSettings = {
+    ...runtimeSettings,
+    noiseSuppression: {
+      ...runtimeSettings.noiseSuppression,
+      maxDiagnosticsPerBatch: remainingBudget
+    }
+  };
+
+  const codeDiagnosticsResult =
+    codeContexts.length > 0
+      ? publishCodeDiagnostics({
+          sender: {
+            sendDiagnostics: params => {
+              void connection.sendDiagnostics(params);
+            }
+          },
+          graphStore,
+          contexts: codeContexts,
+          runtimeSettings: codeRuntimeSettings,
+          hysteresis: hysteresisController,
+          linkKinds: ["depends_on"]
+        })
+      : null;
+
+  if (codeDiagnosticsResult?.suppressedByBudget) {
+    connection.console.info(
+      `noise suppression level '${runtimeSettings.noiseSuppression.level}' muted ${codeDiagnosticsResult.suppressedByBudget} code diagnostic(s) in this batch`
+    );
+  }
+
+  if (codeDiagnosticsResult?.suppressedByHysteresis) {
+    connection.console.info(
+      `hysteresis controller suppressed ${codeDiagnosticsResult.suppressedByHysteresis} code diagnostic(s) to prevent ricochet`
+    );
+  }
+
+  if (codeDiagnosticsResult?.withoutDependents) {
+    connection.console.info(
+      `${codeDiagnosticsResult.withoutDependents} code change(s) had no dependents in graph`
+    );
+  }
+
+  if (codeContexts.length > 0) {
+    connection.console.info(
+      `published ${codeDiagnosticsResult?.emitted ?? 0} code diagnostic(s) for ${codeContexts.length} code change(s)`
+    );
+  }
+
+  if (watcherResult.skipped.length > 0) {
+    connection.console.info(
+      `artifact watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
     );
   }
 }
