@@ -11,6 +11,7 @@ import {
 import { RebindRequiredPayload } from "@copilot-improvement/shared";
 
 import { registerOverrideLinkCommand } from "./commands/overrideLink";
+import { registerDependencyQuickPick } from "./diagnostics/dependencyQuickPick";
 import { registerDocDiagnosticProvider } from "./diagnostics/docDiagnosticProvider";
 import { ensureProviderSelection } from "./onboarding/providerGate";
 import { showRebindPrompt } from "./prompts/rebindPrompt";
@@ -131,6 +132,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   context.subscriptions.push(registerFileMaintenanceWatcher(activeClient));
   context.subscriptions.push(registerOverrideLinkCommand(activeClient));
   context.subscriptions.push(registerDocDiagnosticProvider());
+  context.subscriptions.push(registerDependencyQuickPick(activeClient));
   context.subscriptions.push(registerSymbolBridge(activeClient));
 
   context.subscriptions.push(

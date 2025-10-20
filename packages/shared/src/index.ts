@@ -3,6 +3,7 @@ export * from "./db/graphStore";
 export * from "./contracts/maintenance";
 export * from "./contracts/overrides";
 export * from "./contracts/symbols";
+export * from "./contracts/dependencies";
 export * from "./knowledge/knowledgeGraphBridge";
 export * from "./inference/fallbackInference";
 export * from "./inference/linkInference";

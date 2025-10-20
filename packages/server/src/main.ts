@@ -19,10 +19,13 @@ import { TextDocument } from "vscode-languageserver-textdocument";
 
 import {
   GraphStore,
+  INSPECT_DEPENDENCIES_REQUEST,
   LinkInferenceOrchestrator,
   OVERRIDE_LINK_REQUEST,
   OverrideLinkRequest,
-  OverrideLinkResponse
+  OverrideLinkResponse,
+  type InspectDependenciesParams,
+  type InspectDependenciesResult
 } from "@copilot-improvement/shared";
 
 import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
@@ -31,6 +34,7 @@ import {
   persistInferenceResult,
   saveDocumentChange
 } from "./features/changeEvents/saveDocumentChange";
+import { inspectDependencies } from "./features/dependencies/inspectDependencies";
 import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import {
   publishCodeDiagnostics,
@@ -314,6 +318,28 @@ connection.onRequest(
       connection.console.error(`failed to apply link override: ${message}`);
       throw error;
     }
+  }
+);
+
+connection.onRequest(
+  INSPECT_DEPENDENCIES_REQUEST,
+  (payload: InspectDependenciesParams): InspectDependenciesResult => {
+    if (!graphStore) {
+      throw new Error("Graph store is not initialised");
+    }
+
+    const result = inspectDependencies({
+      graphStore,
+      uri: payload.uri,
+      maxDepth: payload.maxDepth,
+      linkKinds: payload.linkKinds
+    });
+
+    connection.console.info(
+      `inspected dependencies for ${payload.uri} -> ${result.summary.totalDependents} dependents (max depth ${result.summary.maxDepthReached})`
+    );
+
+    return result;
   }
 );
 
