@@ -19,7 +19,7 @@ import type {
 
 type Uri = string;
 
-type WorkspaceProviderKind = "workspace-index";
+type WorkspaceProviderKind = "workspace-index" | "workspace-symbols" | `workspace:${string}`;
 
 type KnowledgeFeedKind = "knowledge-feed";
 
@@ -502,19 +502,19 @@ export class LinkInferenceOrchestrator {
           continue;
         }
 
+        const origin = mapWorkspaceProviderOrigin(record.provider.id);
         accumulator.addLink(
           sourceArtifact,
           targetArtifact,
           inferLinkKind(sourceArtifact, targetArtifact, evidence.kind),
           evidence.confidence ?? 0.7,
           evidence.createdBy ?? record.provider.id,
-          "workspace-index",
+          origin,
           evidence.rationale ?? `Workspace provider ${record.provider.id} evidence`
         );
       }
     }
   }
-
   private async ingestKnowledgeFeeds(
     feeds: KnowledgeFeed[] | undefined,
     accumulator: LinkAccumulator,
@@ -636,6 +636,14 @@ export class LinkInferenceOrchestrator {
 
     return records;
   }
+}
+
+function mapWorkspaceProviderOrigin(providerId: string): WorkspaceProviderKind {
+  if (providerId === "workspace-index" || providerId === "workspace-symbols") {
+    return providerId;
+  }
+
+  return `workspace:${providerId}`;
 }
 
 function summariseProvider(

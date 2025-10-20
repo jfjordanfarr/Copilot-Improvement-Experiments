@@ -130,7 +130,7 @@ describe("LinkInferenceOrchestrator", () => {
 
     const traceOrigins = result.traces.map(trace => trace.origin);
     expect(traceOrigins).toContain("heuristic");
-    expect(traceOrigins).toContain("workspace-index");
+    expect(traceOrigins).toContain("workspace-symbols");
     expect(traceOrigins).toContain("knowledge-feed");
   });
 });

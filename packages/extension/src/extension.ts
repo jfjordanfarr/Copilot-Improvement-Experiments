@@ -14,6 +14,7 @@ import { registerOverrideLinkCommand } from "./commands/overrideLink";
 import { registerDocDiagnosticProvider } from "./diagnostics/docDiagnosticProvider";
 import { ensureProviderSelection } from "./onboarding/providerGate";
 import { showRebindPrompt } from "./prompts/rebindPrompt";
+import { registerSymbolBridge } from "./services/symbolBridge";
 import { ConfigService } from "./settings/configService";
 import { registerFileMaintenanceWatcher } from "./watchers/fileMaintenance";
 
@@ -130,6 +131,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   context.subscriptions.push(registerFileMaintenanceWatcher(activeClient));
   context.subscriptions.push(registerOverrideLinkCommand(activeClient));
   context.subscriptions.push(registerDocDiagnosticProvider());
+  context.subscriptions.push(registerSymbolBridge(activeClient));
 
   context.subscriptions.push(
     vscode.languages.onDidChangeDiagnostics(event => {

@@ -40,6 +40,7 @@ import {
   publishDocDiagnostics,
   type DocumentChangeContext
 } from "./features/diagnostics/publishDocDiagnostics";
+import { createSymbolBridgeProvider } from "./features/knowledge/symbolBridgeProvider";
 import { createWorkspaceIndexProvider } from "./features/knowledge/workspaceIndexProvider";
 import {
   handleArtifactDeleted,
@@ -209,15 +210,30 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
     now: () => new Date()
   });
 
+  const workspaceProviders = [];
+
   if (workspaceRootPath) {
-    artifactWatcher.setWorkspaceProviders([
+    workspaceProviders.push(
       createWorkspaceIndexProvider({
         rootPath: workspaceRootPath,
         implementationGlobs: ["src"],
         logger: connection.console
       })
-    ]);
+    );
   }
+
+  workspaceProviders.push(
+    createSymbolBridgeProvider({
+      connection,
+      logger: {
+        info: message => connection.console.info(message),
+        warn: message => connection.console.warn(message)
+      },
+      maxSeeds: 50
+    })
+  );
+
+  artifactWatcher.setWorkspaceProviders(workspaceProviders);
 
   connection.console.info(
     `runtime settings initialised (debounce=${runtimeSettings.debounceMs}ms, noise=${runtimeSettings.noiseSuppression.level})`
