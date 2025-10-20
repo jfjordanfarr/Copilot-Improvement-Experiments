@@ -77,7 +77,7 @@ export function registerSymbolBridge(client: LanguageClient): vscode.Disposable 
   });
 }
 
-class SymbolBridgeAnalyzer {
+export class SymbolBridgeAnalyzer {
   async collect(
     params: SymbolBridgeParams,
     token?: vscode.CancellationToken

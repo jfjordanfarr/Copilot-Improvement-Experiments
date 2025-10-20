@@ -100,7 +100,7 @@ description: "Task list for Link-Aware Diagnostics"
 
 ### Implementation for User Story 1
 
-- [ ] T035 [US1] Implement VS Code symbol ingestion adapter in `packages/extension/src/services/symbolBridge.ts`
+- [x] T035 [US1] Implement VS Code symbol ingestion adapter in `packages/extension/src/services/symbolBridge.ts`
 - [x] T036 [P] [US1] Build dependency graph extraction logic in `packages/server/src/features/dependencies/buildCodeGraph.ts`
 - [x] T037 [US1] Persist code change events and graph updates in `packages/server/src/features/changeEvents/saveCodeChange.ts`
 - [x] T038 [US1] Publish diagnostics to dependent code modules in `packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`

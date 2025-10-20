@@ -15,7 +15,8 @@ export default defineConfig({
     environment: "node",
     include: [
       "packages/shared/src/**/*.test.ts",
-      "packages/server/src/**/*.test.ts"
+      "packages/server/src/**/*.test.ts",
+      "packages/extension/src/**/*.test.ts"
     ],
     coverage: {
       enabled: true,
