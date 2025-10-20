@@ -1,5 +1,6 @@
 import * as fs from "fs";
-import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import * as os from "os";
 import * as path from "path";
 import {
@@ -20,12 +21,18 @@ import { TextDocument } from "vscode-languageserver-textdocument";
 import {
   GraphStore,
   INSPECT_DEPENDENCIES_REQUEST,
+  KnowledgeGraphBridge,
   LinkInferenceOrchestrator,
   OVERRIDE_LINK_REQUEST,
   OverrideLinkRequest,
   OverrideLinkResponse,
+  type ArtifactLayer,
+  type ExternalArtifact,
+  type ExternalLink,
+  type ExternalSnapshot,
   type InspectDependenciesParams,
-  type InspectDependenciesResult
+  type InspectDependenciesResult,
+  type LinkRelationshipKind
 } from "@copilot-improvement/shared";
 
 import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
@@ -44,6 +51,14 @@ import {
   publishDocDiagnostics,
   type DocumentChangeContext
 } from "./features/diagnostics/publishDocDiagnostics";
+import { FileFeedCheckpointStore } from "./features/knowledge/feedCheckpointStore";
+import { FeedDiagnosticsGateway } from "./features/knowledge/feedDiagnosticsGateway";
+import {
+  KnowledgeFeedManager,
+  type Disposable as KnowledgeFeedDisposable,
+  type FeedConfiguration
+} from "./features/knowledge/knowledgeFeedManager";
+import { KnowledgeGraphIngestor } from "./features/knowledge/knowledgeGraphIngestor";
 import { createSymbolBridgeProvider } from "./features/knowledge/symbolBridgeProvider";
 import { createWorkspaceIndexProvider } from "./features/knowledge/workspaceIndexProvider";
 import {
@@ -87,6 +102,10 @@ let runtimeSettings: RuntimeSettings = DEFAULT_RUNTIME_SETTINGS;
 let artifactWatcher: ArtifactWatcher | null = null;
 const hysteresisController = new HysteresisController();
 let workspaceRootPath: string | undefined;
+let storageDirectory: string | null = null;
+let knowledgeFeedManager: KnowledgeFeedManager | null = null;
+let knowledgeFeedStatusDisposable: KnowledgeFeedDisposable | null = null;
+let knowledgeGraphIngestor: KnowledgeGraphIngestor | null = null;
 
 function extractExtensionSettings(source: unknown): ExtensionSettings | undefined {
   if (!isRecord(source)) {
@@ -196,6 +215,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
   const storageFile = resolveDatabasePath(params, providerGuard.getSettings());
   ensureDirectory(path.dirname(storageFile));
+  storageDirectory = path.dirname(storageFile);
   graphStore = new GraphStore({ dbPath: storageFile });
 
   runtimeSettings = deriveRuntimeSettings(providerGuard.getSettings());
@@ -239,6 +259,8 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
   artifactWatcher.setWorkspaceProviders(workspaceProviders);
 
+  void initializeKnowledgeFeeds();
+
   connection.console.info(
     `runtime settings initialised (debounce=${runtimeSettings.debounceMs}ms, noise=${runtimeSettings.noiseSuppression.level})`
   );
@@ -264,6 +286,7 @@ connection.onShutdown(() => {
   changeQueue?.dispose();
   changeQueue = null;
   artifactWatcher = null;
+  void disposeKnowledgeFeeds();
 });
 
 connection.onDidChangeConfiguration((change: DidChangeConfigurationParams) => {
@@ -621,6 +644,426 @@ function syncRuntimeSettings(): void {
   connection.console.info(
     `runtime settings updated (debounce=${runtimeSettings.debounceMs}ms, noise=${runtimeSettings.noiseSuppression.level})`
   );
+}
+
+async function initializeKnowledgeFeeds(): Promise<void> {
+  if (!graphStore || !artifactWatcher) {
+    connection.console.warn("knowledge feeds skipped: graph or watcher not initialised");
+    return;
+  }
+
+  await disposeKnowledgeFeeds();
+
+  if (!storageDirectory) {
+    connection.console.warn("knowledge feeds skipped: storage directory unavailable");
+    return;
+  }
+
+  try {
+    const diagnostics = new FeedDiagnosticsGateway({
+      logger: {
+        info: message => connection.console.info(message),
+        warn: message => connection.console.warn(message),
+        error: message => connection.console.error(message)
+      }
+    });
+
+    const checkpointDir = path.join(storageDirectory, "knowledge-feeds");
+    ensureDirectory(checkpointDir);
+
+    knowledgeGraphIngestor = new KnowledgeGraphIngestor({
+      graphStore,
+      bridge: new KnowledgeGraphBridge(graphStore),
+      checkpoints: new FileFeedCheckpointStore(checkpointDir),
+      diagnostics,
+      logger: {
+        info: message => connection.console.info(`[knowledge-ingestor] ${message}`),
+        warn: message => connection.console.warn(`[knowledge-ingestor] ${message}`),
+        error: message => connection.console.error(`[knowledge-ingestor] ${message}`)
+      }
+    });
+
+    const feedConfigs = await loadKnowledgeFeedConfigurations();
+
+    if (feedConfigs.length === 0) {
+      connection.console.info("no knowledge feeds discovered; continuing with workspace providers only");
+      artifactWatcher.setKnowledgeFeeds([]);
+      return;
+    }
+
+    knowledgeFeedManager = new KnowledgeFeedManager({
+      feeds: feedConfigs,
+      ingestor: knowledgeGraphIngestor,
+      diagnostics,
+      logger: {
+        info: message => connection.console.info(`[knowledge-feed] ${message}`),
+        warn: message => connection.console.warn(`[knowledge-feed] ${message}`),
+        error: message => connection.console.error(`[knowledge-feed] ${message}`)
+      },
+      backoff: {
+        initialMs: 1_000,
+        multiplier: 4,
+        maxMs: 120_000
+      }
+    });
+
+    knowledgeFeedStatusDisposable = knowledgeFeedManager.onStatusChanged(summary => {
+      if (artifactWatcher && knowledgeFeedManager) {
+        artifactWatcher.setKnowledgeFeeds(knowledgeFeedManager.getHealthyFeeds());
+      }
+
+      if (summary) {
+        const detail = summary.message ? ` (${summary.message})` : "";
+        connection.console.info(
+          `[knowledge-feed] status changed: ${summary.feedId} -> ${summary.status}${detail}`
+        );
+      }
+    });
+
+    await knowledgeFeedManager.start();
+    artifactWatcher.setKnowledgeFeeds(knowledgeFeedManager.getHealthyFeeds());
+    connection.console.info(`initialised ${feedConfigs.length} knowledge feed(s)`);
+  } catch (error) {
+    connection.console.error(`knowledge feed initialisation failed: ${describeError(error)}`);
+    await disposeKnowledgeFeeds();
+  }
+}
+
+async function disposeKnowledgeFeeds(): Promise<void> {
+  knowledgeFeedStatusDisposable?.dispose();
+  knowledgeFeedStatusDisposable = null;
+
+  if (knowledgeFeedManager) {
+    try {
+      await knowledgeFeedManager.stop();
+    } catch (error) {
+      connection.console.error(`failed to stop knowledge feed manager: ${describeError(error)}`);
+    }
+  }
+
+  knowledgeFeedManager = null;
+  knowledgeGraphIngestor = null;
+
+  if (artifactWatcher) {
+    artifactWatcher.setKnowledgeFeeds([]);
+  }
+}
+
+async function loadKnowledgeFeedConfigurations(): Promise<FeedConfiguration[]> {
+  const rootPath = workspaceRootPath;
+
+  if (!rootPath) {
+    connection.console.warn("knowledge feed discovery skipped: workspace root unavailable");
+    return [];
+  }
+
+  const descriptors = await discoverStaticFeedDescriptors(rootPath);
+  return descriptors.map(descriptor => createStaticFeedConfiguration(descriptor, rootPath));
+}
+
+interface StaticFeedDescriptor {
+  id: string;
+  label: string;
+  filePath: string;
+  metadata?: Record<string, unknown>;
+}
+
+interface StaticFeedArtifactConfig {
+  id?: string;
+  path?: string;
+  uri?: string;
+  layer?: ArtifactLayer;
+  language?: string;
+  owner?: string;
+  metadata?: Record<string, unknown>;
+}
+
+interface StaticFeedLinkConfig {
+  id?: string;
+  sourceId?: string;
+  sourcePath?: string;
+  sourceUri?: string;
+  targetId?: string;
+  targetPath?: string;
+  targetUri?: string;
+  kind?: LinkRelationshipKind;
+  confidence?: number;
+  createdAt?: string;
+  createdBy?: string;
+  metadata?: Record<string, unknown>;
+}
+
+function isStaticFeedArtifactConfig(candidate: unknown): candidate is StaticFeedArtifactConfig {
+  return isPlainObject(candidate);
+}
+
+function isStaticFeedLinkConfig(candidate: unknown): candidate is StaticFeedLinkConfig {
+  return isPlainObject(candidate);
+}
+
+const ARTIFACT_LAYER_VALUES = new Set(["vision", "requirements", "architecture", "implementation", "code"]);
+const LINK_KIND_VALUES = new Set(["documents", "implements", "depends_on", "references"]);
+
+function isArtifactLayerValue(value: unknown): value is ArtifactLayer {
+  return typeof value === "string" && ARTIFACT_LAYER_VALUES.has(value);
+}
+
+function isLinkRelationshipKindValue(value: unknown): value is LinkRelationshipKind {
+  return typeof value === "string" && LINK_KIND_VALUES.has(value);
+}
+
+async function discoverStaticFeedDescriptors(workspaceRoot: string): Promise<StaticFeedDescriptor[]> {
+  const staticFeedDir = path.join(workspaceRoot, "data", "knowledge-feeds");
+
+  try {
+    const stats = await fs.promises.stat(staticFeedDir);
+    if (!stats.isDirectory()) {
+      return [];
+    }
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+      connection.console.error(
+        `failed to inspect knowledge feed directory ${staticFeedDir}: ${describeError(error)}`
+      );
+    }
+    return [];
+  }
+
+  const entries = await fs.promises.readdir(staticFeedDir, { withFileTypes: true });
+  const descriptors: StaticFeedDescriptor[] = [];
+
+  for (const entry of entries) {
+    if (!entry.isFile() || !entry.name.endsWith(".json")) {
+      continue;
+    }
+
+    const filePath = path.join(staticFeedDir, entry.name);
+
+    try {
+      const raw = await readStaticFeedFile(filePath);
+      const id = typeof raw.id === "string" && raw.id.length > 0 ? raw.id : deriveFeedId(entry.name);
+      const label = typeof raw.label === "string" && raw.label.length > 0 ? raw.label : id;
+      const metadata = isPlainObject(raw.metadata) ? raw.metadata : undefined;
+
+      descriptors.push({ id, label, filePath, metadata });
+    } catch (error) {
+      connection.console.error(`failed to parse knowledge feed ${entry.name}: ${describeError(error)}`);
+    }
+  }
+
+  return descriptors;
+}
+
+function createStaticFeedConfiguration(
+  descriptor: StaticFeedDescriptor,
+  workspaceRoot: string
+): FeedConfiguration {
+  const relativeFile = path.relative(workspaceRoot, descriptor.filePath);
+  const metadata = {
+    ...(descriptor.metadata ?? {}),
+    source: "static-json",
+    file: relativeFile
+  } satisfies Record<string, unknown>;
+
+  return {
+    id: descriptor.id,
+    metadata,
+    snapshot: {
+      label: descriptor.label,
+      load: async () => readStaticFeedSnapshot(descriptor, workspaceRoot)
+    }
+  } satisfies FeedConfiguration;
+}
+
+async function readStaticFeedSnapshot(
+  descriptor: StaticFeedDescriptor,
+  workspaceRoot: string
+): Promise<ExternalSnapshot | null> {
+  const raw = await readStaticFeedFile(descriptor.filePath);
+
+  const artifactsConfig = Array.isArray(raw.artifacts)
+    ? raw.artifacts.filter(isStaticFeedArtifactConfig)
+    : [];
+  const linksConfig = Array.isArray(raw.links) ? raw.links.filter(isStaticFeedLinkConfig) : [];
+
+  const artifacts: ExternalArtifact[] = [];
+  const artifactAliasMap = new Map<string, { uri: string; id?: string }>();
+
+  for (const artifactConfig of artifactsConfig) {
+    if (!artifactConfig) {
+      continue;
+    }
+
+    if (!isArtifactLayerValue(artifactConfig.layer)) {
+      throw new Error("artifact layer must be specified for knowledge feed snapshot");
+    }
+    const layer = artifactConfig.layer;
+    const uri = resolveArtifactUri(workspaceRoot, artifactConfig);
+
+    const artifactId = deriveStaticArtifactId(descriptor.id, artifactConfig.id, uri);
+
+    const artifact: ExternalArtifact = {
+      id: artifactId,
+      uri,
+      layer,
+      language: typeof artifactConfig.language === "string" ? artifactConfig.language : undefined,
+      owner: typeof artifactConfig.owner === "string" ? artifactConfig.owner : undefined,
+      metadata: isPlainObject(artifactConfig.metadata) ? artifactConfig.metadata : undefined
+    };
+
+    artifacts.push(artifact);
+
+    artifactAliasMap.set(uri, { uri, id: artifactId });
+    artifactAliasMap.set(artifactId, { uri, id: artifactId });
+
+    if (typeof artifactConfig.id === "string" && artifactConfig.id.length > 0) {
+      artifactAliasMap.set(artifactConfig.id, { uri, id: artifactId });
+    }
+
+    if (typeof artifactConfig.path === "string" && artifactConfig.path.length > 0) {
+      artifactAliasMap.set(normalisePathKey(artifactConfig.path), { uri, id: artifactId });
+    }
+  }
+
+  const links: ExternalLink[] = [];
+
+  for (const linkConfig of linksConfig) {
+    if (!linkConfig) {
+      continue;
+    }
+
+    if (!isLinkRelationshipKindValue(linkConfig.kind)) {
+      throw new Error("link kind must be specified for knowledge feed snapshot");
+    }
+    const kind = linkConfig.kind;
+
+    const sourceId = resolveLinkEndpoint(linkConfig.sourceId, linkConfig.sourcePath, linkConfig.sourceUri, artifactAliasMap, workspaceRoot);
+    const targetId = resolveLinkEndpoint(linkConfig.targetId, linkConfig.targetPath, linkConfig.targetUri, artifactAliasMap, workspaceRoot);
+
+    const link: ExternalLink = {
+      id: typeof linkConfig.id === "string" ? linkConfig.id : undefined,
+      sourceId,
+      targetId,
+      kind,
+      confidence: typeof linkConfig.confidence === "number" ? linkConfig.confidence : undefined,
+      createdAt: typeof linkConfig.createdAt === "string" ? linkConfig.createdAt : undefined,
+      createdBy: typeof linkConfig.createdBy === "string" ? linkConfig.createdBy : undefined,
+      metadata: isPlainObject(linkConfig.metadata) ? linkConfig.metadata : undefined
+    };
+
+    links.push(link);
+  }
+
+  const snapshotId = typeof raw.id === "string" && raw.id.length > 0 ? raw.id : descriptor.id;
+  const createdAt = typeof raw.createdAt === "string" ? raw.createdAt : new Date().toISOString();
+
+  const metadata = isPlainObject(raw.metadata) ? raw.metadata : undefined;
+
+  return {
+    id: snapshotId,
+    label: descriptor.label,
+    createdAt,
+    artifacts,
+    links,
+    metadata
+  } satisfies ExternalSnapshot;
+}
+
+async function readStaticFeedFile(filePath: string): Promise<Record<string, unknown>> {
+  const contents = await fs.promises.readFile(filePath, "utf8");
+  const parsed: unknown = JSON.parse(contents);
+  if (!isPlainObject(parsed)) {
+    throw new Error("knowledge feed configuration must be a JSON object");
+  }
+  return parsed;
+}
+
+function deriveFeedId(fileName: string): string {
+  return fileName.replace(/\.json$/i, "");
+}
+
+function deriveStaticArtifactId(feedId: string, configuredId: string | undefined, uri: string): string {
+  if (configuredId && configuredId.length > 0) {
+    return configuredId;
+  }
+
+  const hash = createHash("sha1").update(`${feedId}:${uri}`).digest("hex").slice(0, 12);
+  return `static-${feedId}-${hash}`;
+}
+
+function resolveArtifactUri(
+  workspaceRoot: string,
+  artifactConfig: StaticFeedArtifactConfig
+): string {
+  if (typeof artifactConfig.uri === "string" && artifactConfig.uri.length > 0) {
+    return artifactConfig.uri;
+  }
+
+  if (typeof artifactConfig.path !== "string" || artifactConfig.path.length === 0) {
+    throw new Error("artifact configuration must include either 'uri' or 'path'");
+  }
+
+  const candidatePath = path.isAbsolute(artifactConfig.path)
+    ? artifactConfig.path
+    : path.join(workspaceRoot, artifactConfig.path);
+
+  if (!fs.existsSync(candidatePath)) {
+    connection.console.warn(`knowledge feed artifact path missing: ${candidatePath}`);
+  }
+
+  return pathToFileURL(candidatePath).toString();
+}
+
+function resolveLinkEndpoint(
+  id: string | undefined,
+  pathCandidate: string | undefined,
+  uriCandidate: string | undefined,
+  aliasMap: Map<string, { uri: string; id?: string }>,
+  workspaceRoot: string
+): string {
+  const aliases = [id, uriCandidate, pathCandidate].filter(
+    (candidate): candidate is string => typeof candidate === "string" && candidate.length > 0
+  );
+
+  for (const alias of aliases) {
+    const normalised = normalisePathKey(alias);
+    const entry = aliasMap.get(normalised) ?? aliasMap.get(alias);
+    if (entry) {
+      return entry.id ?? entry.uri;
+    }
+
+    if (alias.startsWith("file://")) {
+      return alias;
+    }
+  }
+
+  if (pathCandidate) {
+    const absolutePath = path.isAbsolute(pathCandidate)
+      ? pathCandidate
+      : path.join(workspaceRoot, pathCandidate);
+    return pathToFileURL(absolutePath).toString();
+  }
+
+  if (uriCandidate) {
+    return uriCandidate;
+  }
+
+  if (id) {
+    return id;
+  }
+
+  throw new Error("link endpoint must specify an artifact reference");
+}
+
+function normalisePathKey(candidate: string): string {
+  if (candidate.startsWith("file://")) {
+    return candidate;
+  }
+  return path.normalize(candidate).replace(/\\/g, "/");
+}
+
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
 function describeError(error: unknown): string {
