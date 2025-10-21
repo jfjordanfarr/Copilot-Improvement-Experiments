@@ -72,6 +72,13 @@ suite("US1: Writers get drift alerts", () => {
 
     // Verify diagnostic presence
     const diagnostics = vscode.languages.getDiagnostics(implementationUri);
+    if (diagnostics.length === 0) {
+      console.log("US1 diagnostics (implementation)", diagnostics);
+      console.log(
+        "US1 all diagnostics",
+        vscode.languages.getDiagnostics().map(([uri, diags]) => ({ uri: uri.toString(), count: diags.length }))
+      );
+    }
     assert.ok(diagnostics.length > 0, "Implementation file should receive drift diagnostic");
 
     const driftDiagnostic = diagnostics.find((d) => d.message.includes("linked documentation changed"));
@@ -120,6 +127,13 @@ suite("US1: Writers get drift alerts", () => {
     await waitForDiagnostics(implementationUri, 10000);
 
     const diagnostics = vscode.languages.getDiagnostics(implementationUri);
+    if (diagnostics.length === 0) {
+      console.log("US1 diagnostics before quick action", diagnostics);
+      console.log(
+        "US1 all diagnostics (quick action)",
+        vscode.languages.getDiagnostics().map(([uri, diags]) => ({ uri: uri.toString(), count: diags.length }))
+      );
+    }
     const driftDiagnostic = diagnostics.find((d) => d.message.includes("linked documentation changed"));
     assert.ok(driftDiagnostic, "Drift diagnostic should be present");
 

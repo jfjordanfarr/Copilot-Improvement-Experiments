@@ -35,7 +35,7 @@ export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
     maxDepth: 3,
     maxResults: 50,
     allowedKinds: ["depends_on", "implements", "documents", "references"],
-    documentKinds: ["documents"],
+    documentKinds: ["depends_on", "implements", "documents", "references"],
     codeKinds: ["depends_on", "implements", "references"]
   }
 };

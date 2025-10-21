@@ -107,7 +107,7 @@ function createDiagnostic(sourceArtifact: KnowledgeArtifact, impact: RippleImpac
       start: { line: 0, character: 0 },
       end: { line: 0, character: 1 }
     },
-    message: `linked documentation ${targetPath}${relationshipLabel} may drift because ${docPath} changed${depthLabel}.${rationale}`.trim(),
+    message: `linked documentation changed${relationshipLabel}: ${docPath} -> ${targetPath}${depthLabel}.${rationale}`.trim(),
     source: "link-aware-diagnostics",
     code: "doc-drift",
     data: {

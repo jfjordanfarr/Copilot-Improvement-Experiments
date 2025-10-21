@@ -61,7 +61,29 @@ suite("US1: Developers see code-change impact", () => {
     const dependencyDiagnostic = diagnostics.find((d) =>
       d.message.includes("linked dependency changed") && d.code === "code-ripple"
     );
+    if (!dependencyDiagnostic) {
+      console.log(
+        "US1 code diagnostics",
+        diagnostics.map((d) => {
+          const enriched = d as vscode.Diagnostic & { data?: unknown };
+          return { message: d.message, code: d.code, data: enriched.data };
+        })
+      );
+    }
     assert.ok(dependencyDiagnostic, "Diagnostic should reference dependency drift");
+
+    const rippleDiagnostic = dependencyDiagnostic!;
+
+    const codeActions = await vscode.commands.executeCommand<vscode.CodeAction[]>(
+      "vscode.executeCodeActionProvider",
+      entryUri,
+      rippleDiagnostic.range
+    );
+
+    assert.ok(
+      codeActions?.some((action) => action.title === "View ripple details"),
+      "Ripple diagnostics should surface detail quick action"
+    );
   });
 
   test("Transitive dependents receive diagnostics for upstream changes", async function (this: Mocha.Context) {

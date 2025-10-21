@@ -103,14 +103,24 @@ function createDiagnostic(context: CodeChangeContext, impact: RippleImpact): Dia
   const triggerPath = normaliseDisplayPath(context.artifact.uri);
   const dependentPath = normaliseDisplayPath(impact.target.uri ?? impact.hint.targetUri ?? "");
   const depth = impact.hint.depth ?? 1;
-  const depthLabel = depth > 1 ? ` (depth ${depth}${describeIntermediatePath(impact.hint.path, dependentPath)})` : "";
   const relationshipLabel = impact.hint.kind ? ` (${impact.hint.kind})` : "";
+  const confidenceLabel = formatConfidence(impact.hint.confidence);
+  const pathLabel = describeIntermediatePath(impact.hint.path, dependentPath);
   const rationale = impact.hint.rationale ? ` ${impact.hint.rationale}` : "";
+
+  const metadataParts = [
+    impact.hint.kind ? `relationship ${impact.hint.kind}` : undefined,
+    confidenceLabel ? `confidence ${confidenceLabel}` : undefined,
+    depth ? `depth ${depth}` : undefined,
+    pathLabel ? `path ${pathLabel}` : undefined
+  ].filter((part): part is string => Boolean(part));
+
+  const metadata = metadataParts.length > 0 ? ` [${metadataParts.join("; ")}]` : "";
 
   return {
     severity: DiagnosticSeverity.Warning,
     range: ZERO_RANGE,
-    message: `linked dependency${relationshipLabel} changed in ${triggerPath}. Review ${dependentPath} for compatibility.${depthLabel}${rationale}`.trim(),
+    message: `linked dependency changed${relationshipLabel} in ${triggerPath}. Review ${dependentPath} for compatibility.${metadata}${rationale}`.trim(),
     source: "link-aware-diagnostics",
     code: DIAGNOSTIC_CODE,
     data: {
@@ -139,5 +149,13 @@ function describeIntermediatePath(path: string[] | undefined, dependentPath: str
     return "";
   }
 
-  return ` via ${segments.join(" -> ")}`;
+  return segments.join(" -> ");
+}
+
+function formatConfidence(confidence: number | undefined): string | undefined {
+  if (typeof confidence !== "number" || Number.isNaN(confidence)) {
+    return undefined;
+  }
+
+  return `${Math.round(confidence * 100)}%`;
 }

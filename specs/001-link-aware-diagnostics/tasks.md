@@ -105,8 +105,8 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T037 [US1] Persist code change events and graph updates in `packages/server/src/features/changeEvents/saveCodeChange.ts`
 - [x] T038 [US1] Publish diagnostics to dependent code modules in `packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`
 - [x] T039 [P] [US1] Add dependency inspection quick pick UI in `packages/extension/src/diagnostics/dependencyQuickPick.ts`
-- [ ] T040 [US1] Build knowledge graph ingestion pipeline in `packages/server/src/features/knowledge/knowledgeGraphBridge.ts` to support arbitrary artifact links beyond direct code imports
-- [ ] T041 [US1] Implement LLM-assisted ripple analysis for cross-artifact watchers in `packages/server/src/features/knowledge/rippleAnalyzer.ts`
+- [x] T040 [US1] Build knowledge graph ingestion pipeline in `packages/server/src/features/knowledge/knowledgeGraphBridge.ts` to support arbitrary artifact links beyond direct code imports
+- [x] T041 [US1] Implement LLM-assisted ripple analysis for cross-artifact watchers in `packages/server/src/features/knowledge/rippleAnalyzer.ts`
 
 **Checkpoint**: Code-change impact is fully functional and independently testable
 
