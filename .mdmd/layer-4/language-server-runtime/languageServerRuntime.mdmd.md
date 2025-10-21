@@ -7,7 +7,7 @@
   - [`packages/server/src/runtime/environment.ts`](../../../packages/server/src/runtime/environment.ts)
   - [`packages/server/src/runtime/knowledgeFeeds.ts`](../../../packages/server/src/runtime/knowledgeFeeds.ts)
   - [`packages/server/src/runtime/settings.ts`](../../../packages/server/src/runtime/settings.ts)
-- Parent design: _Language Server Architecture (Layer 3 – pending formal doc)_
+- Parent design: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-002](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-003](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-008](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-012](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
 
 ## Responsibility

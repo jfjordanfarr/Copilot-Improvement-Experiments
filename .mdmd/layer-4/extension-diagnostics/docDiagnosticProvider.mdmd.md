@@ -2,7 +2,7 @@
 
 ## Source Mapping
 - Implementation: [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts)
-- Parent design: [Link-Aware Diagnostics – Extension Surfaces](../../layer-3/knowledge-graph-ingestion.mdmd.md)
+- Parent design: [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
 - Spec references: [US1](../../../specs/001-link-aware-diagnostics/spec.md#user-story-1-developers-see-code-change-impact), [US2](../../../specs/001-link-aware-diagnostics/spec.md#user-story-2-writers-get-drift-alerts), [FR-011](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
 
 ## Responsibility
