@@ -1,4 +1,4 @@
-import { Connection } from "vscode-languageserver/node";
+import { Connection, Diagnostic, DiagnosticSeverity } from "vscode-languageserver/node";
 
 import {
   GraphStore,
@@ -7,6 +7,9 @@ import {
   RebindImpactedArtifact,
   RebindReason
 } from "@copilot-improvement/shared";
+
+import { normaliseDisplayPath } from "../diagnostics/diagnosticUtils";
+import { normalizeFileUri } from "../utils/uri";
 
 const REBIND_NOTIFICATION = "linkDiagnostics/maintenance/rebindRequired";
 
@@ -34,9 +37,12 @@ function handleRemoval(
   reason: RebindReason,
   newUri?: string
 ): void {
-  const artifact = store.getArtifactByUri(uri);
+  const canonicalUri = normalizeFileUri(uri);
+  const canonicalNewUri = newUri ? normalizeFileUri(newUri) : undefined;
+
+  const artifact = store.getArtifactByUri(canonicalUri);
   if (!artifact) {
-    connection.console.info(`no artifact registered for ${uri}; skipping orphan cleanup`);
+    connection.console.info(`no artifact registered for ${canonicalUri}; skipping orphan cleanup`);
     return;
   }
 
@@ -48,12 +54,14 @@ function handleRemoval(
     return;
   }
 
+  publishRemovalDiagnostics(connection, artifact.uri, linked, reason, canonicalNewUri);
+
   const impacted: RebindImpactedArtifact[] = linked.map(toImpactedArtifact);
 
   const payload: RebindRequiredPayload = {
     removed: { uri: artifact.uri, layer: artifact.layer },
     reason,
-    newUri,
+    newUri: canonicalNewUri,
     impacted
   };
 
@@ -67,4 +75,47 @@ function toImpactedArtifact(summary: LinkedArtifactSummary): RebindImpactedArtif
     relationship: summary.kind,
     direction: summary.direction
   };
+}
+
+function publishRemovalDiagnostics(
+  connection: Connection,
+  removedUri: string,
+  linked: LinkedArtifactSummary[],
+  reason: RebindReason,
+  newUri?: string
+): void {
+  const diagnosticsByUri = new Map<string, Diagnostic[]>();
+  const removedPath = normaliseDisplayPath(removedUri);
+  const renameSuffix = reason === "rename" && newUri ? ` → ${normaliseDisplayPath(newUri)}` : "";
+
+  for (const summary of linked) {
+    const targetUri = summary.artifact.uri;
+    const diagnostics = diagnosticsByUri.get(targetUri) ?? [];
+
+    const message = `linked documentation changed: ${removedPath}${renameSuffix} is unavailable.`;
+    diagnostics.push({
+      severity: DiagnosticSeverity.Information,
+      range: {
+        start: { line: 0, character: 0 },
+        end: { line: 0, character: 1 }
+      },
+      message,
+      source: "link-aware-diagnostics",
+      code: "doc-drift",
+      data: {
+        triggerUri: removedUri,
+        targetUri,
+        relationshipKind: summary.kind,
+        depth: 1,
+        path: [removedUri, targetUri],
+        linkKind: summary.kind
+      }
+    });
+
+    diagnosticsByUri.set(targetUri, diagnostics);
+  }
+
+  for (const [uri, diagnostics] of diagnosticsByUri.entries()) {
+    void connection.sendDiagnostics({ uri, diagnostics });
+  }
 }

@@ -17,6 +17,7 @@
     "rebuild:better-sqlite3:node": "npm rebuild better-sqlite3",
     "test:unit": "npm run rebuild:better-sqlite3:node --if-present && vitest run",
     "test:integration": "tsc -p tests/integration/tsconfig.json && node ./tests/integration/dist/vscode/runTests.js",
+    "verify": "npm run lint && npm run test:unit && npm run test:integration",
     "test:contracts": "npm run test:contracts -w packages/server",
     "ci-check": "npm run lint && npm run test:unit"
   },

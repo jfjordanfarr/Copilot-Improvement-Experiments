@@ -255,3 +255,103 @@ Rapid edit 2
 ## Updated Section
 
 ## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test
+
+## Breaking Change
+This API is now deprecated.
+Rapid edit 0
+Rapid edit 1
+Rapid edit 2
+
+## Updated Section
+
+## Hysteresis Test

@@ -68,10 +68,11 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
       { scheme: "file", language: "typescript" },
       { scheme: "file", language: "javascript" },
       { scheme: "file", language: "tsx" },
-      { scheme: "file", language: "jsx" }
+      { scheme: "file", language: "jsx" },
+      { scheme: "file", language: "yaml" }
     ],
     synchronize: {
-      fileEvents: vscode.workspace.createFileSystemWatcher("**/*.{md,markdown,ts,js,tsx,jsx}")
+      fileEvents: vscode.workspace.createFileSystemWatcher("**/*.{md,markdown,ts,js,tsx,jsx,yaml,yml}")
     },
     initializationOptions,
     diagnosticCollectionName: "Link Diagnostics"

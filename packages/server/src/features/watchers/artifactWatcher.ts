@@ -73,7 +73,7 @@ export interface ArtifactWatcherResult {
 }
 
 const DEFAULT_DOCUMENT_LAYER: ArtifactLayer = "requirements";
-const DOCUMENT_LANGUAGES = new Set(["markdown", "mdx"]);
+const DOCUMENT_LANGUAGES = new Set(["markdown", "mdx", "yaml", "yml"]);
 const CODE_LANGUAGES = new Set([
   "typescript",
   "javascript",
@@ -82,7 +82,7 @@ const CODE_LANGUAGES = new Set([
   "ts",
   "js"
 ]);
-const DOCUMENT_EXTENSIONS = new Set([".md", ".mdx", ".markdown"]);
+const DOCUMENT_EXTENSIONS = new Set([".md", ".mdx", ".markdown", ".yaml", ".yml"]);
 const CODE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cts", ".mts"]);
 const EXISTING_LINK_CONFIDENCE = 0.9;
 

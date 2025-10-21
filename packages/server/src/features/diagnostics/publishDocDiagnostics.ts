@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   Diagnostic,
   DiagnosticSeverity
@@ -45,6 +48,14 @@ export function publishDocDiagnostics(
   let remaining = options.runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch;
   const hysteresisWindow = options.runtimeSettings.noiseSuppression.hysteresisMs;
   for (const context of options.contexts) {
+    const brokenLinkDiagnostics = collectBrokenLinkDiagnostics(context);
+    if (brokenLinkDiagnostics.length > 0) {
+      const bucket = diagnosticsByUri.get(context.artifact.uri) ?? [];
+      bucket.push(...brokenLinkDiagnostics);
+      diagnosticsByUri.set(context.artifact.uri, bucket);
+      emitted += brokenLinkDiagnostics.length;
+    }
+
     if (context.rippleImpacts.length === 0) {
       continue;
     }
@@ -119,5 +130,107 @@ function createDiagnostic(sourceArtifact: KnowledgeArtifact, impact: RippleImpac
       path: impact.hint.path
     }
   };
+}
+
+const MARKDOWN_LINK_REGEX = /!?\[[^\]]*\]\((?<path>[^)]+)\)/g;
+const URL_SCHEME_PATTERN = /^[a-z]+:\/\//i;
+
+function collectBrokenLinkDiagnostics(context: DocumentChangeContext): Diagnostic[] {
+  const content = context.change.content;
+  if (!content) {
+    return [];
+  }
+
+  const basePath = resolveFilePath(context.artifact.uri ?? context.change.uri);
+  if (!basePath) {
+    return [];
+  }
+
+  const baseDir = path.dirname(basePath);
+  const missingTargets = new Set<string>();
+
+  for (const linkPath of extractMarkdownLinks(content)) {
+    const absolutePath = path.resolve(baseDir, linkPath);
+    if (!fs.existsSync(absolutePath)) {
+      missingTargets.add(absolutePath);
+    }
+  }
+
+  if (missingTargets.size === 0) {
+    return [];
+  }
+
+  const diagnostics: Diagnostic[] = [];
+  const sourcePath = normaliseDisplayPath(context.artifact.uri);
+
+  for (const targetPath of missingTargets) {
+    const targetUri = pathToFileURL(targetPath).toString();
+    diagnostics.push({
+      severity: DiagnosticSeverity.Warning,
+      range: {
+        start: { line: 0, character: 0 },
+        end: { line: 0, character: 1 }
+      },
+      message: `linked documentation missing: ${normaliseDisplayPath(targetUri)} (referenced by ${sourcePath}).`,
+      source: "link-aware-diagnostics",
+      code: "doc-drift",
+      data: {
+        triggerUri: targetUri,
+        targetUri: context.artifact.uri,
+        relationshipKind: "references",
+        depth: 1,
+        path: [targetUri, context.artifact.uri]
+      }
+    });
+  }
+
+  return diagnostics;
+}
+
+function extractMarkdownLinks(content: string): string[] {
+  const results: string[] = [];
+  const pattern = new RegExp(MARKDOWN_LINK_REGEX.source, MARKDOWN_LINK_REGEX.flags);
+  let match: RegExpExecArray | null;
+  while ((match = pattern.exec(content)) !== null) {
+    const candidate = match.groups?.path ?? match[1];
+    const sanitised = sanitiseLink(candidate);
+    if (sanitised) {
+      results.push(sanitised);
+    }
+  }
+  return results;
+}
+
+function sanitiseLink(raw: string | undefined): string | null {
+  if (!raw) {
+    return null;
+  }
+  const trimmed = raw.trim();
+  if (!trimmed || URL_SCHEME_PATTERN.test(trimmed) || trimmed.startsWith("#")) {
+    return null;
+  }
+
+  const withoutFragment = trimmed.replace(/[#?].*$/, "");
+  if (!withoutFragment) {
+    return null;
+  }
+
+  return withoutFragment.replace(/\\/g, "/");
+}
+
+function resolveFilePath(uri: string | undefined): string | null {
+  if (!uri) {
+    return null;
+  }
+
+  try {
+    if (uri.startsWith("file://")) {
+      return fileURLToPath(uri);
+    }
+  } catch {
+    return null;
+  }
+
+  return path.resolve(uri);
 }
 
