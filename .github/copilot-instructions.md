@@ -60,3 +60,5 @@ During development, the following general guidances should be observed to preven
 - Try to consolidate magic strings into constants that can be referenced; this prevents common string value hallucinations.
 - Related to the above point, try to avoid the pattern of direct log string matching when writing tests.
 - Optimize for readability and maintainability over brevity; prefer clear code over clever code.
+- To the best of your ability, Don't Repeat Yourself (DRY); the simplest solution is often the truest.
+- **Refactor files which exceed ~500 lines of code**; File edit LLM tools routinely make mistakes above this size threshold.
