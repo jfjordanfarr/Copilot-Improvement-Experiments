@@ -1,6 +1,6 @@
 import type { Connection } from "vscode-languageserver/node";
 
-import type { GraphStore } from "@copilot-improvement/shared";
+import type { GraphStore, KnowledgeArtifact } from "@copilot-improvement/shared";
 
 import { describeError } from "./environment";
 import type { QueuedChange } from "../features/changeEvents/changeQueue";
@@ -9,8 +9,11 @@ import { persistInferenceResult, saveDocumentChange } from "../features/changeEv
 import type { HysteresisController } from "../features/diagnostics/hysteresisController";
 import { publishCodeDiagnostics, type CodeChangeContext } from "../features/diagnostics/publishCodeDiagnostics";
 import { publishDocDiagnostics, type DocumentChangeContext } from "../features/diagnostics/publishDocDiagnostics";
+import type { RippleImpact } from "../features/diagnostics/rippleTypes";
+import { RippleAnalyzer } from "../features/knowledge/rippleAnalyzer";
 import type { ProviderGuard } from "../features/settings/providerGuard";
 import type { RuntimeSettings } from "../features/settings/settingsBridge";
+import { normalizeFileUri } from "../features/utils/uri";
 import {
   ArtifactWatcher,
   type CodeTrackedArtifactChange,
@@ -48,7 +51,9 @@ export function createChangeProcessor({
   }
 
   async function process(changes: QueuedChange[]): Promise<void> {
-    const { graphStore, artifactWatcher, runtimeSettings } = context;
+    const { graphStore, artifactWatcher } = context;
+    const runtimeSettings: RuntimeSettings = context.runtimeSettings;
+    const rippleSettings: RuntimeSettings["ripple"] = runtimeSettings.ripple;
 
     if (!graphStore) {
       return;
@@ -99,6 +104,7 @@ export function createChangeProcessor({
     const nowFactory = () => new Date();
     const documentContexts: DocumentChangeContext[] = [];
     const codeContexts: CodeChangeContext[] = [];
+
     const processedDocuments = watcherResult.processed.filter(
       (change): change is DocumentTrackedArtifactChange => change.category === "document"
     );
@@ -106,14 +112,91 @@ export function createChangeProcessor({
       (change): change is CodeTrackedArtifactChange => change.category === "code"
     );
 
+    type RippleKind = RuntimeSettings["ripple"]["allowedKinds"][number];
+
+    const rippleAnalyzer = new RippleAnalyzer({
+      graphStore,
+      maxDepth: rippleSettings.maxDepth,
+      maxResults: rippleSettings.maxResults,
+      allowedKinds: rippleSettings.allowedKinds,
+      logger: {
+        info: message => connection.console.info(message),
+        warn: message => connection.console.warn(message),
+        error: message => connection.console.error(message)
+      }
+    });
+
+    const resolveArtifactByUri = (uri: string): KnowledgeArtifact | null => {
+      const canonical = normalizeFileUri(uri);
+      return (
+        graphStore.getArtifactByUri(canonical) ??
+        graphStore.getArtifactByUri(uri) ??
+        null
+      );
+    };
+
+    const buildRippleImpacts = (
+      source: KnowledgeArtifact,
+      allowedKinds: ReadonlyArray<RippleKind>,
+      predicate?: (target: KnowledgeArtifact) => boolean
+    ): RippleImpact[] => {
+      const hints = rippleAnalyzer.generateHintsForArtifact(source, {
+        maxDepth: rippleSettings.maxDepth,
+        maxResults: rippleSettings.maxResults,
+        allowedKinds: Array.from(allowedKinds)
+      });
+
+      const seen = new Set<string>();
+      const impacts: RippleImpact[] = [];
+
+      for (const hint of hints) {
+        const targetUri = hint.targetUri;
+        if (!targetUri) {
+          continue;
+        }
+
+        const target = resolveArtifactByUri(targetUri);
+        if (!target) {
+          continue;
+        }
+
+        const canonicalTarget: KnowledgeArtifact = {
+          ...target,
+          uri: normalizeFileUri(target.uri)
+        };
+
+        if (predicate && !predicate(canonicalTarget)) {
+          continue;
+        }
+
+        const identifier = canonicalTarget.id ?? canonicalTarget.uri;
+        if (seen.has(identifier)) {
+          continue;
+        }
+
+        seen.add(identifier);
+        impacts.push({ target: canonicalTarget, hint });
+      }
+
+      return impacts;
+    };
+
     for (const processed of processedDocuments) {
       try {
         const persisted = saveDocumentChange({ graphStore, change: processed, now: nowFactory });
+        const rippleImpacts = buildRippleImpacts(
+          persisted.artifact,
+          rippleSettings.documentKinds
+        );
         documentContexts.push({
           change: processed,
           artifact: persisted.artifact,
-          changeEventId: persisted.changeEventId
+          changeEventId: persisted.changeEventId,
+          rippleImpacts
         });
+        connection.console.info(
+          `document change persisted for ${persisted.artifact.uri}; ripple impacts=${rippleImpacts.length}`
+        );
       } catch (error) {
         connection.console.error(
           `failed to persist document change for ${processed.uri}: ${describeError(error)}`
@@ -124,17 +207,19 @@ export function createChangeProcessor({
     for (const processed of processedCode) {
       try {
         const persisted = saveCodeChange({ graphStore, change: processed, now: nowFactory });
+        const rippleImpacts = buildRippleImpacts(
+          persisted.artifact,
+          rippleSettings.codeKinds,
+          target => target.layer === "code"
+        );
         codeContexts.push({
           change: processed,
           artifact: persisted.artifact,
-          changeEventId: persisted.changeEventId
+          changeEventId: persisted.changeEventId,
+          rippleImpacts
         });
-        const linked = graphStore.listLinkedArtifacts(persisted.artifact.id);
         connection.console.info(
-          `code change persisted for ${persisted.artifact.uri} (${persisted.artifact.id}); dependents: ${linked
-            .filter(link => link.direction === "incoming")
-            .map(link => `${link.artifact.uri}[${link.kind}]`)
-            .join(",")}`
+          `code change persisted for ${persisted.artifact.uri}; ripple impacts=${rippleImpacts.length}`
         );
       } catch (error) {
         connection.console.error(
@@ -153,19 +238,6 @@ export function createChangeProcessor({
       return;
     }
 
-    for (const contextItem of documentContexts) {
-      const linked = graphStore.listLinkedArtifacts(contextItem.artifact.id);
-      if (linked.length === 0) {
-        connection.console.info(
-          `no links found for ${contextItem.artifact.uri} (${contextItem.artifact.id}); diagnostics will not emit`
-        );
-      }
-    }
-
-    if (documentContexts.length === 0) {
-      connection.console.info("no document contexts available for diagnostics publication");
-    }
-
     const docDiagnosticsResult =
       documentContexts.length > 0
         ? publishDocDiagnostics({
@@ -174,7 +246,6 @@ export function createChangeProcessor({
                 void connection.sendDiagnostics(params);
               }
             },
-            graphStore,
             contexts: documentContexts,
             runtimeSettings,
             hysteresis: hysteresisController
@@ -219,11 +290,9 @@ export function createChangeProcessor({
                 void connection.sendDiagnostics(params);
               }
             },
-            graphStore,
             contexts: codeContexts,
             runtimeSettings: codeRuntimeSettings,
-            hysteresis: hysteresisController,
-            linkKinds: ["depends_on"]
+            hysteresis: hysteresisController
           })
         : null;
 

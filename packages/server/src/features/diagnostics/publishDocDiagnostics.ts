@@ -3,14 +3,11 @@ import {
   DiagnosticSeverity
 } from "vscode-languageserver/node";
 
-import {
-  GraphStore,
-  KnowledgeArtifact,
-  LinkedArtifactSummary
-} from "@copilot-improvement/shared";
+import type { KnowledgeArtifact } from "@copilot-improvement/shared";
 
 import { normaliseDisplayPath, type DiagnosticSender } from "./diagnosticUtils";
 import type { HysteresisController } from "./hysteresisController";
+import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
 
@@ -18,11 +15,11 @@ export interface DocumentChangeContext {
   change: DocumentTrackedArtifactChange;
   artifact: KnowledgeArtifact;
   changeEventId: string;
+  rippleImpacts: RippleImpact[];
 }
 
 export interface PublishDocDiagnosticsOptions {
   sender: DiagnosticSender;
-  graphStore: GraphStore;
   contexts: DocumentChangeContext[];
   runtimeSettings: RuntimeSettings;
   hysteresis?: HysteresisController;
@@ -48,17 +45,20 @@ export function publishDocDiagnostics(
   let remaining = options.runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch;
   const hysteresisWindow = options.runtimeSettings.noiseSuppression.hysteresisMs;
   for (const context of options.contexts) {
-    const linked = options.graphStore.listLinkedArtifacts(context.artifact.id);
+    if (context.rippleImpacts.length === 0) {
+      continue;
+    }
 
-    for (const link of linked) {
-      if (!link.artifact.uri) {
+    for (const impact of context.rippleImpacts) {
+      const targetUri = impact.target.uri ?? impact.hint.targetUri;
+      if (!targetUri) {
         continue;
       }
 
       if (
         options.hysteresis?.shouldSuppress(
           context.artifact.uri,
-          link.artifact.uri,
+          targetUri,
           hysteresisWindow
         )
       ) {
@@ -71,16 +71,16 @@ export function publishDocDiagnostics(
         continue;
       }
 
-      const diagnostic = createDiagnostic(context.artifact, link);
-      const existing = diagnosticsByUri.get(link.artifact.uri) ?? [];
+      const diagnostic = createDiagnostic(context.artifact, impact);
+      const existing = diagnosticsByUri.get(targetUri) ?? [];
       existing.push(diagnostic);
-      diagnosticsByUri.set(link.artifact.uri, existing);
+      diagnosticsByUri.set(targetUri, existing);
       emitted += 1;
       remaining -= 1;
 
       options.hysteresis?.recordEmission(
         context.artifact.uri,
-        link.artifact.uri,
+        targetUri,
         context.changeEventId
       );
     }
@@ -93,11 +93,13 @@ export function publishDocDiagnostics(
   return { emitted, suppressedByBudget, suppressedByHysteresis };
 }
 
-function createDiagnostic(
-  sourceArtifact: KnowledgeArtifact,
-  link: LinkedArtifactSummary
-): Diagnostic {
+function createDiagnostic(sourceArtifact: KnowledgeArtifact, impact: RippleImpact): Diagnostic {
   const docPath = normaliseDisplayPath(sourceArtifact.uri);
+  const targetPath = normaliseDisplayPath(impact.target.uri ?? impact.hint.targetUri ?? "");
+  const relationshipLabel = impact.hint.kind ? ` (${impact.hint.kind})` : "";
+  const depth = impact.hint.depth ?? 1;
+  const depthLabel = depth > 1 ? ` (depth ${depth})` : "";
+  const rationale = impact.hint.rationale ? ` ${impact.hint.rationale}` : "";
 
   return {
     severity: DiagnosticSeverity.Information,
@@ -105,13 +107,16 @@ function createDiagnostic(
       start: { line: 0, character: 0 },
       end: { line: 0, character: 1 }
     },
-    message: `linked documentation changed in ${docPath}. Review linked guidance for alignment.`,
+    message: `linked documentation ${targetPath}${relationshipLabel} may drift because ${docPath} changed${depthLabel}.${rationale}`.trim(),
     source: "link-aware-diagnostics",
     code: "doc-drift",
     data: {
       triggerUri: sourceArtifact.uri,
-      linkId: link.linkId,
-      linkKind: link.kind
+      targetUri: impact.target.uri ?? impact.hint.targetUri,
+      relationshipKind: impact.hint.kind,
+      confidence: impact.hint.confidence,
+      depth,
+      path: impact.hint.path
     }
   };
 }

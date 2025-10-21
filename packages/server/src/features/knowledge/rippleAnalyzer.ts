@@ -31,6 +31,11 @@ export interface RippleAnalysisRequest {
   excludeArtifactIds?: Iterable<string>;
 }
 
+export type RippleHint = RelationshipHint & {
+  depth: number;
+  path: string[];
+};
+
 interface QueueItem {
   artifact: KnowledgeArtifact;
   depth: number;
@@ -80,7 +85,7 @@ export class RippleAnalyzer {
   generateHintsForArtifact(
     artifact: KnowledgeArtifact,
     request: RippleAnalysisRequest = {}
-  ): RelationshipHint[] {
+  ): RippleHint[] {
     const sourceUri = normalizeFileUri(request.sourceUri ?? artifact.uri);
     const maxDepth = Math.max(1, request.maxDepth ?? this.defaultMaxDepth);
     const maxResults = Math.max(1, request.maxResults ?? this.defaultMaxResults);
@@ -121,7 +126,7 @@ export class RippleAnalyzer {
     maxResults: number;
     allowedKinds: Set<LinkRelationshipKind>;
     excluded: Set<string>;
-  }): RelationshipHint[] {
+  }): RippleHint[] {
     const queue: QueueItem[] = [
       {
         artifact: config.root,
@@ -133,8 +138,8 @@ export class RippleAnalyzer {
     const visitedArtifacts = new Set<string>(config.excluded);
     visitedArtifacts.add(config.root.id);
 
-    const hintMap = new Map<string, RelationshipHint>();
-    const hints: RelationshipHint[] = [];
+    const hintMap = new Map<string, RippleHint>();
+    const hints: RippleHint[] = [];
 
     while (queue.length > 0) {
       const current = queue.shift()!;
@@ -168,16 +173,22 @@ export class RippleAnalyzer {
           continue;
         }
 
-        const path = [...current.path, { artifact: normalizedTarget, kind: neighbor.kind, direction: neighbor.direction }];
+        const path = [
+          ...current.path,
+          { artifact: normalizedTarget, kind: neighbor.kind, direction: neighbor.direction }
+        ];
+        const hopPath = path.map(segment => segment.artifact.uri);
 
         const hintKey = composeHintKey(config.root.uri, normalizedTarget.uri, neighbor.kind);
         if (!hintMap.has(hintKey)) {
-          const hint: RelationshipHint = {
+          const hint: RippleHint = {
             sourceUri: config.root.uri,
             targetUri: normalizedTarget.uri,
             kind: neighbor.kind,
             confidence: this.computeConfidence(neighbor.kind, depth),
-            rationale: this.describePath(depth, path)
+            rationale: this.describePath(depth, path),
+            depth,
+            path: hopPath
           };
 
           hintMap.set(hintKey, hint);

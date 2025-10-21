@@ -17,6 +17,7 @@ import {
   type WorkspaceLinkProvider
 } from "@copilot-improvement/shared";
 
+import { buildFileReferenceHints } from "./pathReferenceDetector";
 import type { QueuedChange } from "../changeEvents/changeQueue";
 import { normalizeFileUri } from "../utils/uri";
 
@@ -218,6 +219,16 @@ export class ArtifactWatcher {
     const layer = deriveLayer(canonicalUri, category, existing?.layer);
     const content = await this.loadContent(change.uri);
     const hints = existing ? this.buildHints(canonicalUri, existing) : [];
+    if (content) {
+      const referenceHints = buildFileReferenceHints({
+        sourceUri: canonicalUri,
+        content,
+        category
+      });
+      if (referenceHints.length > 0) {
+        hints.push(...referenceHints);
+      }
+    }
 
     return {
       uri: canonicalUri,

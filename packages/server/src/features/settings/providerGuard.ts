@@ -1,5 +1,15 @@
 import { Connection } from "vscode-languageserver";
 
+import type { LinkRelationshipKind } from "@copilot-improvement/shared";
+
+export interface RippleExtensionSettings {
+  maxDepth?: number;
+  maxResults?: number;
+  allowedKinds?: LinkRelationshipKind[];
+  documentKinds?: LinkRelationshipKind[];
+  codeKinds?: LinkRelationshipKind[];
+}
+
 export interface ExtensionSettings {
   storagePath?: string;
   enableDiagnostics?: boolean;
@@ -8,6 +18,7 @@ export interface ExtensionSettings {
   noiseSuppression?: {
     level?: "low" | "medium" | "high";
   };
+  ripple?: RippleExtensionSettings;
 }
 
 export class ProviderGuard {

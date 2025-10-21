@@ -1,3 +1,5 @@
+import type { LinkRelationshipKind } from "@copilot-improvement/shared";
+
 import { ExtensionSettings } from "../features/settings/providerGuard";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -12,6 +14,10 @@ function isLlmProviderMode(
 
 function isNoiseSuppressionLevel(value: unknown): value is "low" | "medium" | "high" {
   return value === "low" || value === "medium" || value === "high";
+}
+
+function isLinkRelationshipKind(value: unknown): value is LinkRelationshipKind {
+  return value === "depends_on" || value === "implements" || value === "documents" || value === "references";
 }
 
 export function extractExtensionSettings(source: unknown): ExtensionSettings | undefined {
@@ -62,6 +68,41 @@ export function extractExtensionSettings(source: unknown): ExtensionSettings | u
     settings.noiseSuppression = { level: record.noiseSuppression.level };
   }
 
+  if (isRecord(record.ripple)) {
+    const rippleRecord = record.ripple;
+    const ripple: NonNullable<ExtensionSettings["ripple"]> = {};
+
+    if ("maxDepth" in rippleRecord && typeof rippleRecord.maxDepth === "number") {
+      ripple.maxDepth = rippleRecord.maxDepth;
+    }
+
+    if ("maxResults" in rippleRecord && typeof rippleRecord.maxResults === "number") {
+      ripple.maxResults = rippleRecord.maxResults;
+    }
+
+    if ("allowedKinds" in rippleRecord && Array.isArray(rippleRecord.allowedKinds)) {
+      ripple.allowedKinds = rippleRecord.allowedKinds.filter(isLinkRelationshipKind);
+    }
+
+    if ("documentKinds" in rippleRecord && Array.isArray(rippleRecord.documentKinds)) {
+      ripple.documentKinds = rippleRecord.documentKinds.filter(isLinkRelationshipKind);
+    }
+
+    if ("codeKinds" in rippleRecord && Array.isArray(rippleRecord.codeKinds)) {
+      ripple.codeKinds = rippleRecord.codeKinds.filter(isLinkRelationshipKind);
+    }
+
+    if (
+      ripple.maxDepth !== undefined ||
+      ripple.maxResults !== undefined ||
+      ripple.allowedKinds?.length ||
+      ripple.documentKinds?.length ||
+      ripple.codeKinds?.length
+    ) {
+      settings.ripple = ripple;
+    }
+  }
+
   return settings;
 }
 
@@ -83,6 +124,41 @@ export function extractTestModeOverrides(source: unknown): ExtensionSettings | u
 
   if (isLlmProviderMode(candidate.llmProviderMode)) {
     overrides.llmProviderMode = candidate.llmProviderMode;
+  }
+
+  if (isRecord(candidate.ripple)) {
+    const rippleRecord = candidate.ripple;
+    const ripple: NonNullable<ExtensionSettings["ripple"]> = {};
+
+    if ("maxDepth" in rippleRecord && typeof rippleRecord.maxDepth === "number") {
+      ripple.maxDepth = rippleRecord.maxDepth;
+    }
+
+    if ("maxResults" in rippleRecord && typeof rippleRecord.maxResults === "number") {
+      ripple.maxResults = rippleRecord.maxResults;
+    }
+
+    if ("allowedKinds" in rippleRecord && Array.isArray(rippleRecord.allowedKinds)) {
+      ripple.allowedKinds = rippleRecord.allowedKinds.filter(isLinkRelationshipKind);
+    }
+
+    if ("documentKinds" in rippleRecord && Array.isArray(rippleRecord.documentKinds)) {
+      ripple.documentKinds = rippleRecord.documentKinds.filter(isLinkRelationshipKind);
+    }
+
+    if ("codeKinds" in rippleRecord && Array.isArray(rippleRecord.codeKinds)) {
+      ripple.codeKinds = rippleRecord.codeKinds.filter(isLinkRelationshipKind);
+    }
+
+    if (
+      ripple.maxDepth !== undefined ||
+      ripple.maxResults !== undefined ||
+      ripple.allowedKinds?.length ||
+      ripple.documentKinds?.length ||
+      ripple.codeKinds?.length
+    ) {
+      overrides.ripple = ripple;
+    }
   }
 
   return overrides;

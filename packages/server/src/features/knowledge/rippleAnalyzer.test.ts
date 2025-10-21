@@ -65,6 +65,8 @@ describe("RippleAnalyzer", () => {
     expect(dependentHint?.kind).toBe("depends_on");
     expect(dependentHint?.confidence).toBeCloseTo(0.9, 5);
     expect(dependentHint?.rationale).toContain("depth=1");
+    expect(dependentHint?.depth).toBe(1);
+    expect(dependentHint?.path).toEqual([dependentUri]);
   });
 
   it("produces multi-hop hints with reduced confidence", () => {
@@ -107,10 +109,14 @@ describe("RippleAnalyzer", () => {
 
     expect(midHint).toBeDefined();
     expect(midHint?.confidence).toBeCloseTo(0.9, 5);
+    expect(midHint?.depth).toBe(1);
+    expect(midHint?.path).toEqual([midUri]);
 
     expect(leafHint).toBeDefined();
     expect(leafHint?.rationale).toContain("depth=2");
     expect(leafHint!.confidence ?? 0).toBeLessThan(midHint!.confidence ?? 1);
+    expect(leafHint?.depth).toBe(2);
+    expect(leafHint?.path).toEqual([midUri, leafUri]);
   });
 
   it("honours allowed kind filters", () => {
@@ -141,6 +147,8 @@ describe("RippleAnalyzer", () => {
     expect(hints).toHaveLength(1);
     expect(hints[0]?.targetUri).toBe(codeUri);
     expect(hints[0]?.kind).toBe("documents");
+    expect(hints[0]?.depth).toBe(1);
+    expect(hints[0]?.path).toEqual([codeUri]);
   });
 });
 
