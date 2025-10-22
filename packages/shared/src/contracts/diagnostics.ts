@@ -24,3 +24,39 @@ export interface DiagnosticAcknowledgedPayload {
   targetUri?: string;
   triggerUri?: string;
 }
+
+export const LIST_OUTSTANDING_DIAGNOSTICS_REQUEST = "linkDiagnostics/diagnostics/list";
+
+export interface DiagnosticArtifactSummary {
+  id: string;
+  uri?: string;
+  layer?: string;
+  language?: string;
+}
+
+export interface OutstandingDiagnosticSummary {
+  recordId: string;
+  message: string;
+  severity: "warning" | "info" | "hint";
+  changeEventId: string;
+  createdAt: string;
+  acknowledgedAt?: string;
+  acknowledgedBy?: string;
+  linkIds: string[];
+  target?: DiagnosticArtifactSummary;
+  trigger?: DiagnosticArtifactSummary;
+}
+
+export interface ListOutstandingDiagnosticsResult {
+  generatedAt: string;
+  diagnostics: OutstandingDiagnosticSummary[];
+}
+
+export const EXPORT_DIAGNOSTICS_REQUEST = "linkDiagnostics/diagnostics/export";
+
+export interface ExportDiagnosticsResult {
+  generatedAt: string;
+  format: "markdown" | "json";
+  content: string;
+  total: number;
+}

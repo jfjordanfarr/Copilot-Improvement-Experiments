@@ -169,6 +169,10 @@ export class AcknowledgementService {
     return { kind: "acknowledged", record: updatedRecord };
   }
 
+  listActiveDiagnostics(): DiagnosticRecord[] {
+    return this.options.graphStore.listDiagnosticsByStatus("active");
+  }
+
   private releaseHysteresis(diagnostic: DiagnosticRecord): void {
     const trigger = this.options.graphStore.getArtifactById(diagnostic.triggerArtifactId);
     const target = this.options.graphStore.getArtifactById(diagnostic.artifactId);

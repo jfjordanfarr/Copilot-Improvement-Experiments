@@ -14,7 +14,7 @@ We might think of what we are building as "projectwide pseudocode AST". The gene
 ## Workspace Shape
 - npm workspaces: `packages/extension`, `packages/server`, `packages/shared`
 - Supporting roots: `specs/`, `data/`, `tests/`, `.specify/`
-- TypeScript 5.x targeting Node.js 20 (see `.nvmrc`)
+- TypeScript 5.x targeting Node.js 22 (see `.nvmrc`)
 - Projectwide documentation: `.mdmd/` (see note about 'MDMD' below)
 - Specific feature/story documentation: `specs\[###-feature-name]\` (see note about 'Spec-Kit' below)
 - **Copilot's (your) own scratch space/workspace during development:** `./AI-Agent-Workspace/`

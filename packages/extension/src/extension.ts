@@ -19,6 +19,7 @@ import { showRebindPrompt } from "./prompts/rebindPrompt";
 import { registerSymbolBridge } from "./services/symbolBridge";
 import { ConfigService } from "./settings/configService";
 import { registerFileMaintenanceWatcher } from "./watchers/fileMaintenance";
+import { registerDiagnosticsTreeView } from "./views/diagnosticsTree";
 
 const SETTINGS_NOTIFICATION = "linkDiagnostics/settings/update";
 const REBIND_NOTIFICATION = "linkDiagnostics/maintenance/rebindRequired";
@@ -133,7 +134,15 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
 
   context.subscriptions.push(registerFileMaintenanceWatcher(activeClient));
   context.subscriptions.push(registerOverrideLinkCommand(activeClient));
-  context.subscriptions.push(registerAcknowledgementWorkflow(activeClient));
+  const diagnosticsTree = registerDiagnosticsTreeView(activeClient);
+  context.subscriptions.push(diagnosticsTree);
+  context.subscriptions.push(
+    registerAcknowledgementWorkflow(activeClient, {
+      onAcknowledged: () => {
+        void diagnosticsTree.provider.refresh();
+      }
+    })
+  );
   context.subscriptions.push(registerDocDiagnosticProvider());
   context.subscriptions.push(registerDependencyQuickPick(activeClient));
   context.subscriptions.push(registerSymbolBridge(activeClient));

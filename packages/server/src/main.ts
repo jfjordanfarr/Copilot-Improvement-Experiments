@@ -26,6 +26,8 @@ import {
   type AcknowledgeDiagnosticResult,
   DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION,
   type DiagnosticAcknowledgedPayload,
+  LIST_OUTSTANDING_DIAGNOSTICS_REQUEST,
+  type ListOutstandingDiagnosticsResult,
   type InspectDependenciesParams,
   type InspectDependenciesResult
 } from "@copilot-improvement/shared";
@@ -34,6 +36,7 @@ import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
 import { inspectDependencies } from "./features/dependencies/inspectDependencies";
 import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import { AcknowledgementService } from "./features/diagnostics/acknowledgementService";
+import { buildOutstandingDiagnosticsResult } from "./features/diagnostics/listOutstandingDiagnostics";
 import { createSymbolBridgeProvider } from "./features/knowledge/symbolBridgeProvider";
 import { createWorkspaceIndexProvider } from "./features/knowledge/workspaceIndexProvider";
 import {
@@ -332,6 +335,18 @@ connection.onRequest(
       targetUri: targetArtifact?.uri,
       triggerUri: triggerArtifact?.uri
     } satisfies AcknowledgeDiagnosticResult;
+  }
+);
+
+connection.onRequest(
+  LIST_OUTSTANDING_DIAGNOSTICS_REQUEST,
+  (): ListOutstandingDiagnosticsResult => {
+    if (!acknowledgementService || !graphStore) {
+      throw new Error("Acknowledgement service is not available");
+    }
+
+    const diagnostics = acknowledgementService.listActiveDiagnostics();
+    return buildOutstandingDiagnosticsResult(diagnostics, graphStore);
   }
 );
 

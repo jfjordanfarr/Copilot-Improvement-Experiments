@@ -2,7 +2,7 @@
 
 This project exercises `better-sqlite3` under two different runtimes:
 
-- **Node 20** for unit tests (`npm run test:unit`).
+- **Node 22** for unit tests (`npm run test:unit`).
 - **Electron 37.6.0** for VS Code integration tests (`npm run test:integration`, via `@vscode/test-electron`).
 
 `better-sqlite3` ships prebuilt binaries that are specific to a single runtime/ABI. Whenever we run the integration suite, `@vscode/test-electron` rebuilds the dependency for Electron. That binary cannot be loaded by plain Node, which means subsequent unit tests will crash with `ERR_DLOPEN_FAILED` unless we rebuild back to the Node ABI.

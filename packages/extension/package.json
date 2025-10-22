@@ -26,6 +26,14 @@
         "title": "Link Diagnostics: Analyze Impact with AI"
       },
       {
+        "command": "linkDiagnostics.refreshDiagnosticsTree",
+        "title": "Link Diagnostics: Refresh Diagnostics Tree"
+      },
+      {
+        "command": "linkDiagnostics.acknowledgeDiagnosticFromTree",
+        "title": "Link Diagnostics: Acknowledge Diagnostic"
+      },
+      {
         "command": "linkDiagnostics.openLinkedArtifact",
         "title": "Link Diagnostics: Open Linked Artifact"
       },
@@ -38,6 +46,30 @@
         "title": "Link-Aware Diagnostics: Clear Diagnostics"
       }
     ],
+    "views": {
+      "explorer": [
+        {
+          "id": "linkDiagnostics.diagnosticsTree",
+          "name": "Link Diagnostics"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "linkDiagnostics.refreshDiagnosticsTree",
+          "when": "view == linkDiagnostics.diagnosticsTree",
+          "group": "navigation@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "linkDiagnostics.acknowledgeDiagnosticFromTree",
+          "when": "view == linkDiagnostics.diagnosticsTree && viewItem == linkDiagnostics.diagnostic",
+          "group": "inline"
+        }
+      ]
+    },
     "configuration": {
       "title": "Link-Aware Diagnostics",
       "properties": {

@@ -30,7 +30,7 @@ Implementations MUST default to lightweight, local-first components (e.g., embed
 
 ## Additional Constraints
 
-- Primary runtime targets TypeScript 5.x on Node.js 20 for extension and language server workloads.
+- Primary runtime targets TypeScript 5.x on Node.js 22 for extension and language server workloads.
 - Artifact graphs MUST persist in SQLite within workspace or user storage, encrypted or access-controlled when sensitive data is involved.
 - Packaging MUST support Windows, macOS, and Linux without requiring external daemons beyond optional local LLM endpoints.
 - Configuration MUST expose toggles for noise suppression, LLM usage, and storage location, with safe defaults for new users.

@@ -17,7 +17,7 @@ Deliver a VS Code-based experience that answers, for any saved file, “What els
   the iteration process.
 -->
 
-**Language/Version**: TypeScript 5.x targeting Node.js 20 for extension + LSP, SQL schema for SQLite 3  
+**Language/Version**: TypeScript 5.x targeting Node.js 22 for extension + LSP, SQL schema for SQLite 3  
 **Primary Dependencies**: VS Code Extension API, `vscode-languageclient`/`vscode-languageserver`, `better-sqlite3`, Tree-sitter parsers where gaps remain, optional LLM access via `vscode.lm`  
 **Storage**: Embedded SQLite property-graph tables persisted under workspace storage for diagnostics history  
 **Testing**: `@vscode/test-electron` for extension integration, `vitest` for shared modules, contract smoke tests for custom LSP requests  

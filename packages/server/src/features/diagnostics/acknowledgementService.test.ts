@@ -155,6 +155,10 @@ describe("AcknowledgementService", () => {
       severity: "warning"
     });
 
+    const activeDiagnostics = service.listActiveDiagnostics();
+    expect(activeDiagnostics).toHaveLength(1);
+    expect(activeDiagnostics[0].changeEventId).toBe(changeEventId);
+
     const record = graphStore.findDiagnosticByChangeEvent({
       changeEventId,
       triggerArtifactId: triggerArtifact.id,

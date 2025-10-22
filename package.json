@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "engines": {
-    "node": ">=20.x"
+    "node": ">=22.0.0"
   },
   "workspaces": [
     "packages/extension",
@@ -14,7 +14,7 @@
     "build": "npm run build -w packages/shared && npm run build -w packages/server && npm run compile -w packages/extension",
     "lint": "eslint .",
     "format": "prettier --check .",
-    "rebuild:better-sqlite3:node": "npm rebuild better-sqlite3",
+    "rebuild:better-sqlite3:node": "node ./scripts/rebuild-better-sqlite3.mjs",
     "test:unit": "npm run rebuild:better-sqlite3:node --if-present && vitest run",
     "test:integration": "tsc -p tests/integration/tsconfig.json && node ./tests/integration/dist/vscode/runTests.js",
     "verify": "npm run lint && npm run test:unit && npm run test:integration",

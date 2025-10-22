@@ -263,6 +263,31 @@ export class GraphStore {
     });
   }
 
+  listDiagnosticsByStatus(status: DiagnosticStatus): DiagnosticRecord[] {
+    const rows = this.db
+      .prepare(`
+        SELECT
+          id,
+          artifact_id,
+          trigger_artifact_id,
+          change_event_id,
+          message,
+          severity,
+          status,
+          created_at,
+          acknowledged_at,
+          acknowledged_by,
+          link_ids,
+          llm_assessment
+        FROM diagnostics
+        WHERE status = @status
+        ORDER BY datetime(created_at) DESC
+      `)
+      .all({ status }) as DiagnosticRow[];
+
+    return rows.map(row => this.mapDiagnosticRow(row));
+  }
+
   getDiagnosticById(id: string): DiagnosticRecord | undefined {
     const row = this.db
       .prepare(`

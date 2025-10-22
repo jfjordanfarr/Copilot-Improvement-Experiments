@@ -2,7 +2,7 @@
 
 ## Prerequisites
 - VS Code 1.91 or later with access to chat features.
-- Node.js 20.x and npm.
+- Node.js 22.x and npm.
 - SQLite 3 (bundled with Node via `better-sqlite3`; no external server needed).
 - Optional: Local LLM runtime (Ollama on `http://localhost:11434`) for on-device reasoning.
 
