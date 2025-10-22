@@ -28,3 +28,7 @@ Thumbs.db
 
 # DB files
 *.db
+
+# Prevent accidental compiled JS artifacts in TypeScript source folders
+packages/**/src/**/*.js
+packages/**/src/**/*.js.map
