@@ -1,5 +1,7 @@
 import * as vscode from "vscode";
 
+import { ACKNOWLEDGE_DIAGNOSTIC_COMMAND } from "../commands/acknowledgeDiagnostic";
+
 const DOC_DRIFT_CODE = "doc-drift";
 const CODE_RIPPLE_CODE = "code-ripple";
 const DEFAULT_ACTION_TITLE = "Open linked artifact";
@@ -17,6 +19,9 @@ interface LinkDiagnosticData {
   changeEventId?: string;
   linkKind?: string;
   linkId?: string;
+  recordId?: string;
+  targetArtifactId?: string;
+  triggerArtifactId?: string;
 }
 
 interface RippleDetailQuickPickItem extends vscode.QuickPickItem {
@@ -133,6 +138,26 @@ class LinkDiagnosticCodeActionProvider implements vscode.CodeActionProvider {
       };
       actions.push(openAction);
 
+      if (data.recordId) {
+        const acknowledgeAction = new vscode.CodeAction(
+          "Acknowledge diagnostic",
+          vscode.CodeActionKind.QuickFix
+        );
+        acknowledgeAction.diagnostics = [diagnostic];
+        acknowledgeAction.command = {
+          title: "Acknowledge diagnostic",
+          command: ACKNOWLEDGE_DIAGNOSTIC_COMMAND,
+          arguments: [
+            {
+              diagnostic,
+              data,
+              uri: _document.uri
+            }
+          ]
+        };
+        actions.push(acknowledgeAction);
+      }
+
       if (isCodeRippleDiagnostic(diagnostic)) {
         const detailAction = new vscode.CodeAction("View ripple details", vscode.CodeActionKind.QuickFix);
         detailAction.diagnostics = [diagnostic];
@@ -204,6 +229,9 @@ function getLinkDiagnosticData(diagnostic: vscode.Diagnostic): LinkDiagnosticDat
     : undefined;
   const linkId = typeof data.linkId === "string" ? data.linkId : undefined;
   const linkKind = typeof data.linkKind === "string" ? data.linkKind : undefined;
+  const recordId = typeof data.recordId === "string" ? data.recordId : undefined;
+  const targetArtifactId = typeof data.targetArtifactId === "string" ? data.targetArtifactId : undefined;
+  const triggerArtifactId = typeof data.triggerArtifactId === "string" ? data.triggerArtifactId : undefined;
 
   if (!triggerUri) {
     return undefined;
@@ -218,7 +246,10 @@ function getLinkDiagnosticData(diagnostic: vscode.Diagnostic): LinkDiagnosticDat
     path,
     changeEventId,
     linkKind,
-    linkId
+    linkId,
+    recordId,
+    targetArtifactId,
+    triggerArtifactId
   };
 }
 

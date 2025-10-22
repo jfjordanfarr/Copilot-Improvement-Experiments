@@ -35,7 +35,7 @@
 ## Typical Workflow
 1. **Let inference run**: Open the workspace; the language server rebuilds the link graph from indexed symbols and diagnostics. Inspect inferred relationships via the Problems panel or the upcoming diagnostics view.
 2. **Edit content**: When you save a linked file, the language server records a `ChangeEvent`, updates the graph, and publishes diagnostics to related artifacts.
-3. **Review alerts**: Diagnostics appear in the Problems panel and each affected document. Quick actions let you jump to linked files or open the consolidated panel.
+3. **Review alerts**: Diagnostics appear in the Problems panel and each affected document. Quick actions let you jump to linked files or open the consolidated panel. Broken-link `doc-drift` diagnostics intentionally invert `triggerUri`/`targetUri` so the missing resource is treated as the trigger and the referencing document receives the warning—keep that in mind when navigating.
 4. **Acknowledge**: Resolve or acknowledge items directly from the diagnostic code action or from the “Link Diagnostics” view. The system records an `AcknowledgementAction` and clears the alert until a new change occurs.
 5. **Optional LLM assist**: Trigger “Link Diagnostics: Analyze Impact with AI” to request a deeper reasoning pass using the configured model. This action is available only after a provider is selected and will respect the `llmProviderMode` guard. Results attach to the diagnostic’s `llmAssessment` field and display in the side panel.
 

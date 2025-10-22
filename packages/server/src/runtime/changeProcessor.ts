@@ -10,6 +10,7 @@ import type { HysteresisController } from "../features/diagnostics/hysteresisCon
 import { publishCodeDiagnostics, type CodeChangeContext } from "../features/diagnostics/publishCodeDiagnostics";
 import { publishDocDiagnostics, type DocumentChangeContext } from "../features/diagnostics/publishDocDiagnostics";
 import type { RippleImpact } from "../features/diagnostics/rippleTypes";
+import type { AcknowledgementService } from "../features/diagnostics/acknowledgementService";
 import { RippleAnalyzer } from "../features/knowledge/rippleAnalyzer";
 import type { ProviderGuard } from "../features/settings/providerGuard";
 import type { RuntimeSettings } from "../features/settings/settingsBridge";
@@ -24,6 +25,7 @@ export interface ChangeProcessorContext {
   graphStore: GraphStore | null;
   artifactWatcher: ArtifactWatcher | null;
   runtimeSettings: RuntimeSettings;
+  acknowledgements: AcknowledgementService | null;
 }
 
 export interface ChangeProcessor {
@@ -51,7 +53,7 @@ export function createChangeProcessor({
   }
 
   async function process(changes: QueuedChange[]): Promise<void> {
-    const { graphStore, artifactWatcher } = context;
+    const { graphStore, artifactWatcher, acknowledgements } = context;
     const runtimeSettings: RuntimeSettings = context.runtimeSettings;
     const rippleSettings: RuntimeSettings["ripple"] = runtimeSettings.ripple;
 
@@ -248,7 +250,8 @@ export function createChangeProcessor({
             },
             contexts: documentContexts,
             runtimeSettings,
-            hysteresis: hysteresisController
+            hysteresis: hysteresisController,
+            acknowledgements: acknowledgements ?? undefined
           })
         : null;
 
@@ -261,6 +264,12 @@ export function createChangeProcessor({
     if (docDiagnosticsResult?.suppressedByHysteresis) {
       connection.console.info(
         `hysteresis controller suppressed ${docDiagnosticsResult.suppressedByHysteresis} documentation diagnostic(s) to prevent ricochet`
+      );
+    }
+
+    if (docDiagnosticsResult?.suppressedByAcknowledgement) {
+      connection.console.info(
+        `acknowledgement service suppressed ${docDiagnosticsResult.suppressedByAcknowledgement} documentation diagnostic(s)`
       );
     }
 
@@ -292,7 +301,8 @@ export function createChangeProcessor({
             },
             contexts: codeContexts,
             runtimeSettings: codeRuntimeSettings,
-            hysteresis: hysteresisController
+            hysteresis: hysteresisController,
+            acknowledgements: acknowledgements ?? undefined
           })
         : null;
 
@@ -305,6 +315,12 @@ export function createChangeProcessor({
     if (codeDiagnosticsResult?.suppressedByHysteresis) {
       connection.console.info(
         `hysteresis controller suppressed ${codeDiagnosticsResult.suppressedByHysteresis} code diagnostic(s) to prevent ricochet`
+      );
+    }
+
+    if (codeDiagnosticsResult?.suppressedByAcknowledgement) {
+      connection.console.info(
+        `acknowledgement service suppressed ${codeDiagnosticsResult.suppressedByAcknowledgement} code diagnostic(s)`
       );
     }
 

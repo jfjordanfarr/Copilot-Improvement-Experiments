@@ -1,6 +1,7 @@
 import { downloadAndUnzipVSCode, runTests } from "@vscode/test-electron";
 import { spawnSync } from "child_process";
 import * as fs from "fs";
+import * as os from "os";
 import * as path from "path";
 
 function findRepoRoot(startDir: string): string {
@@ -30,6 +31,7 @@ async function main(): Promise<void> {
       "fixtures",
       "simple-workspace"
     );
+    const { workspacePath, cleanup } = await prepareIntegrationWorkspace(integrationWorkspace);
 
     if (process.env.SKIP_EXTENSION_BUILD !== "1") {
       buildWorkspace(repoRoot);
@@ -46,12 +48,16 @@ async function main(): Promise<void> {
       process.env.LINK_AWARE_PROVIDER_MODE = "local-only";
     }
 
-    await runTests({
-      vscodeExecutablePath,
-      extensionDevelopmentPath,
-      extensionTestsPath,
-      launchArgs: [integrationWorkspace, "--disable-extensions"]
-    });
+    try {
+      await runTests({
+        vscodeExecutablePath,
+        extensionDevelopmentPath,
+        extensionTestsPath,
+        launchArgs: [workspacePath, "--disable-extensions"]
+      });
+    } finally {
+      await cleanup();
+    }
   } catch (error) {
     console.error("Failed to run extension tests", error);
     process.exit(1);
@@ -132,4 +138,19 @@ function getNpmCliPath(): string {
     "bin",
     "npm-cli.js"
   );
+}
+
+async function prepareIntegrationWorkspace(
+  sourceWorkspace: string
+): Promise<{ workspacePath: string; cleanup: () => Promise<void> }> {
+  const tempRoot = await fs.promises.mkdtemp(path.join(os.tmpdir(), "link-aware-tests-"));
+  const workspacePath = path.join(tempRoot, path.basename(sourceWorkspace));
+  await fs.promises.cp(sourceWorkspace, workspacePath, { recursive: true });
+
+  return {
+    workspacePath,
+    cleanup: async () => {
+      await fs.promises.rm(tempRoot, { recursive: true, force: true });
+    }
+  };
 }

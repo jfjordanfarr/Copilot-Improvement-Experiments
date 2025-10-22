@@ -1,9 +1,11 @@
 import { describe, expect, it, vi } from "vitest";
+import type { Diagnostic } from "vscode-languageserver/node";
 
-import type { KnowledgeArtifact } from "@copilot-improvement/shared";
+import type { DiagnosticRecord, KnowledgeArtifact } from "@copilot-improvement/shared";
 
 import { HysteresisController } from "./hysteresisController";
 import { publishDocDiagnostics, type DocumentChangeContext } from "./publishDocDiagnostics";
+import type { AcknowledgementService } from "./acknowledgementService";
 import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
@@ -93,6 +95,36 @@ function makeImpact(overrides: Partial<RippleImpact> = {}): RippleImpact {
   };
 }
 
+function createAckServiceStub(overrides: { shouldEmit?: boolean } = {}): AcknowledgementService {
+  const shouldEmit = overrides.shouldEmit ?? true;
+  const shouldEmitFn = vi.fn(() => shouldEmit);
+  const registerEmission = vi.fn((payload: {
+    changeEventId: string;
+    targetArtifactId: string;
+    triggerArtifactId: string;
+    message: string;
+    severity: "info" | "warning" | "hint";
+    linkIds?: string[];
+  }): DiagnosticRecord => ({
+    id: `record-${payload.changeEventId}`,
+    artifactId: payload.targetArtifactId,
+    triggerArtifactId: payload.triggerArtifactId,
+    changeEventId: payload.changeEventId,
+    message: payload.message,
+    severity: payload.severity,
+    status: "active",
+    createdAt: "2025-01-01T00:00:00.000Z",
+    linkIds: payload.linkIds ?? []
+  }));
+
+  return {
+    shouldEmitDiagnostic: shouldEmitFn,
+    registerEmission,
+    acknowledgeDiagnostic: vi.fn(),
+    updateRuntimeSettings: vi.fn()
+  } as unknown as AcknowledgementService;
+}
+
 describe("publishDocDiagnostics", () => {
   it("emits diagnostics for outgoing linked artifacts", () => {
     const sendDiagnostics = vi.fn();
@@ -110,7 +142,12 @@ describe("publishDocDiagnostics", () => {
       hysteresis
     });
 
-    expect(result).toEqual({ emitted: 1, suppressedByBudget: 0, suppressedByHysteresis: 0 });
+    expect(result).toEqual({
+      emitted: 1,
+      suppressedByBudget: 0,
+      suppressedByHysteresis: 0,
+      suppressedByAcknowledgement: 0
+    });
     expect(sendDiagnostics).toHaveBeenCalledTimes(1);
     const [[diagnosticParams]] = sendDiagnostics.mock.calls as Array<[
       { uri: string; diagnostics: unknown[] }
@@ -128,6 +165,33 @@ describe("publishDocDiagnostics", () => {
       targetUri: "file:///src/code.ts",
       relationshipKind: "references"
     });
+  });
+
+  it("adds acknowledgement metadata when emissions are persisted", () => {
+    const sendDiagnostics = vi.fn();
+    const contexts = [
+      buildContext({
+        rippleImpacts: [makeImpact()]
+      })
+    ];
+    const acknowledgements = createAckServiceStub();
+
+    publishDocDiagnostics({
+      sender: { sendDiagnostics: params => { sendDiagnostics(params); } },
+      contexts,
+      runtimeSettings: RUNTIME_SETTINGS,
+      hysteresis: new HysteresisController({ now: () => new Date(0) }),
+      acknowledgements
+    });
+
+    expect(acknowledgements.registerEmission).toHaveBeenCalledTimes(1);
+    const [[diagnosticParams]] = sendDiagnostics.mock.calls as Array<[
+      { uri: string; diagnostics: unknown[] }
+    ]>;
+    const diagnostic = (diagnosticParams.diagnostics as Diagnostic[])[0];
+    const data = diagnostic.data as Record<string, unknown>;
+    expect(typeof data.recordId).toBe("string");
+    expect(data.changeEventId).toBe("change-event-doc");
   });
 
   it("applies the batch suppression budget", () => {
@@ -154,7 +218,12 @@ describe("publishDocDiagnostics", () => {
       hysteresis
     });
 
-    expect(result).toEqual({ emitted: 0, suppressedByBudget: 1, suppressedByHysteresis: 0 });
+    expect(result).toEqual({
+      emitted: 0,
+      suppressedByBudget: 1,
+      suppressedByHysteresis: 0,
+      suppressedByAcknowledgement: 0
+    });
     expect(sendDiagnostics).not.toHaveBeenCalled();
   });
 
@@ -169,7 +238,12 @@ describe("publishDocDiagnostics", () => {
       hysteresis
     });
 
-    expect(result).toEqual({ emitted: 0, suppressedByBudget: 0, suppressedByHysteresis: 0 });
+    expect(result).toEqual({
+      emitted: 0,
+      suppressedByBudget: 0,
+      suppressedByHysteresis: 0,
+      suppressedByAcknowledgement: 0
+    });
     expect(sendDiagnostics).not.toHaveBeenCalled();
   });
 
@@ -186,7 +260,12 @@ describe("publishDocDiagnostics", () => {
       hysteresis
     });
 
-    expect(firstResult).toEqual({ emitted: 1, suppressedByBudget: 0, suppressedByHysteresis: 0 });
+    expect(firstResult).toEqual({
+      emitted: 1,
+      suppressedByBudget: 0,
+      suppressedByHysteresis: 0,
+      suppressedByAcknowledgement: 0
+    });
 
     const codeArtifact: KnowledgeArtifact = {
       id: "code-artifact",
@@ -241,6 +320,39 @@ describe("publishDocDiagnostics", () => {
       hysteresis
     });
 
-    expect(secondResult).toEqual({ emitted: 0, suppressedByBudget: 0, suppressedByHysteresis: 1 });
+    expect(secondResult).toEqual({
+      emitted: 0,
+      suppressedByBudget: 0,
+      suppressedByHysteresis: 1,
+      suppressedByAcknowledgement: 0
+    });
+  });
+
+  it("suppresses diagnostics acknowledged by the acknowledgement service", () => {
+    const sendDiagnostics = vi.fn();
+    const contexts = [
+      buildContext({
+        rippleImpacts: [makeImpact()]
+      })
+    ];
+
+    const acknowledgements = createAckServiceStub({ shouldEmit: false });
+
+    const result = publishDocDiagnostics({
+      sender: { sendDiagnostics: params => { sendDiagnostics(params); } },
+      contexts,
+      runtimeSettings: RUNTIME_SETTINGS,
+      hysteresis: new HysteresisController({ now: () => new Date(0) }),
+      acknowledgements
+    });
+
+    expect(result).toEqual({
+      emitted: 0,
+      suppressedByBudget: 0,
+      suppressedByHysteresis: 0,
+      suppressedByAcknowledgement: 1
+    });
+    expect(acknowledgements.shouldEmitDiagnostic).toHaveBeenCalledTimes(1);
+    expect(acknowledgements.registerEmission).not.toHaveBeenCalled();
   });
 });

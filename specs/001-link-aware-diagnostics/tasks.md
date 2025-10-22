@@ -140,11 +140,11 @@ description: "Task list for Link-Aware Diagnostics"
 
 **Independent Test**: Acknowledging diagnostics clears them until new changes and exports summaries without relying on prior stories
 
-- [ ] T042 [P] [US3] Add integration test `tests/integration/us3/acknowledgeDiagnostics.test.ts` covering acknowledgement flow, hysteresis release, and settings overrides
+- [x] T042 [P] [US3] Add integration test `tests/integration/us3/acknowledgeDiagnostics.test.ts` covering acknowledgement flow, hysteresis release, and settings overrides
 
 ### Implementation for User Story 3
 
-- [ ] T043 [US3] Implement acknowledgement service with SQLite persistence and settings awareness in `packages/server/src/features/diagnostics/acknowledgementService.ts`
+- [x] T043 [US3] Implement acknowledgement service with SQLite persistence and settings awareness in `packages/server/src/features/diagnostics/acknowledgementService.ts`
 - [ ] T044 [P] [US3] Create diagnostics tree view provider in `packages/extension/src/views/diagnosticsTree.ts`
 - [ ] T045 [US3] Implement export diagnostics command in `packages/extension/src/commands/exportDiagnostics.ts`
 - [ ] T046 [US3] Add configurable noise suppression filters in `packages/server/src/features/diagnostics/noiseFilter.ts`

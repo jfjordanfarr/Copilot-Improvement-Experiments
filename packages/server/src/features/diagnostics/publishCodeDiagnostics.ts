@@ -7,6 +7,7 @@ import type { KnowledgeArtifact } from "@copilot-improvement/shared";
 
 import { normaliseDisplayPath, type DiagnosticSender } from "./diagnosticUtils";
 import type { HysteresisController } from "./hysteresisController";
+import type { AcknowledgementService } from "./acknowledgementService";
 import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { CodeTrackedArtifactChange } from "../watchers/artifactWatcher";
@@ -23,6 +24,7 @@ export interface PublishCodeDiagnosticsOptions {
   contexts: CodeChangeContext[];
   runtimeSettings: RuntimeSettings;
   hysteresis?: HysteresisController;
+  acknowledgements?: AcknowledgementService;
 }
 
 export interface PublishCodeDiagnosticsResult {
@@ -30,6 +32,7 @@ export interface PublishCodeDiagnosticsResult {
   suppressedByBudget: number;
   suppressedByHysteresis: number;
   withoutDependents: number;
+  suppressedByAcknowledgement: number;
 }
 
 const DIAGNOSTIC_CODE = "code-ripple";
@@ -42,7 +45,13 @@ export function publishCodeDiagnostics(
   options: PublishCodeDiagnosticsOptions
 ): PublishCodeDiagnosticsResult {
   if (options.contexts.length === 0) {
-    return { emitted: 0, suppressedByBudget: 0, suppressedByHysteresis: 0, withoutDependents: 0 };
+    return {
+      emitted: 0,
+      suppressedByBudget: 0,
+      suppressedByHysteresis: 0,
+      withoutDependents: 0,
+      suppressedByAcknowledgement: 0
+    };
   }
 
   const diagnosticsByUri = new Map<string, Diagnostic[]>();
@@ -52,6 +61,8 @@ export function publishCodeDiagnostics(
   let suppressedByBudget = 0;
   let suppressedByHysteresis = 0;
   let withoutDependents = 0;
+  let suppressedByAcknowledgement = 0;
+  const acknowledgementService = options.acknowledgements;
 
   for (const context of options.contexts) {
     if (context.rippleImpacts.length === 0) {
@@ -62,6 +73,20 @@ export function publishCodeDiagnostics(
     for (const impact of context.rippleImpacts) {
       const dependentUri = impact.target.uri ?? impact.hint.targetUri;
       if (!dependentUri) {
+        continue;
+      }
+
+      if (
+        acknowledgementService &&
+        impact.target.id &&
+        context.artifact.id &&
+        !acknowledgementService.shouldEmitDiagnostic({
+          changeEventId: context.changeEventId,
+          triggerArtifactId: context.artifact.id,
+          targetArtifactId: impact.target.id
+        })
+      ) {
+        suppressedByAcknowledgement += 1;
         continue;
       }
 
@@ -89,6 +114,25 @@ export function publishCodeDiagnostics(
       remaining -= 1;
 
       options.hysteresis?.recordEmission(context.artifact.uri, dependentUri, context.changeEventId);
+
+      if (acknowledgementService && impact.target.id && context.artifact.id) {
+        const record = acknowledgementService.registerEmission({
+          changeEventId: context.changeEventId,
+          triggerArtifactId: context.artifact.id,
+          targetArtifactId: impact.target.id,
+          message: diagnostic.message,
+          severity: "warning",
+          linkIds: []
+        });
+
+        (diagnostic as Diagnostic & { data: Record<string, unknown> }).data = {
+          ...(diagnostic.data as Record<string, unknown>),
+          recordId: record.id,
+          changeEventId: context.changeEventId,
+          triggerArtifactId: context.artifact.id,
+          targetArtifactId: impact.target.id
+        };
+      }
     }
   }
 
@@ -96,7 +140,13 @@ export function publishCodeDiagnostics(
     options.sender.sendDiagnostics({ uri, diagnostics });
   }
 
-  return { emitted, suppressedByBudget, suppressedByHysteresis, withoutDependents };
+  return {
+    emitted,
+    suppressedByBudget,
+    suppressedByHysteresis,
+    withoutDependents,
+    suppressedByAcknowledgement
+  };
 }
 
 function createDiagnostic(context: CodeChangeContext, impact: RippleImpact): Diagnostic {

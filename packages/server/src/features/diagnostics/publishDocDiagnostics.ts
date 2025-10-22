@@ -10,6 +10,7 @@ import type { KnowledgeArtifact } from "@copilot-improvement/shared";
 
 import { normaliseDisplayPath, type DiagnosticSender } from "./diagnosticUtils";
 import type { HysteresisController } from "./hysteresisController";
+import type { AcknowledgementService } from "./acknowledgementService";
 import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
@@ -26,27 +27,31 @@ export interface PublishDocDiagnosticsOptions {
   contexts: DocumentChangeContext[];
   runtimeSettings: RuntimeSettings;
   hysteresis?: HysteresisController;
+  acknowledgements?: AcknowledgementService;
 }
 
 export interface PublishDocDiagnosticsResult {
   emitted: number;
   suppressedByBudget: number;
   suppressedByHysteresis: number;
+  suppressedByAcknowledgement: number;
 }
 
 export function publishDocDiagnostics(
   options: PublishDocDiagnosticsOptions
 ): PublishDocDiagnosticsResult {
   if (options.contexts.length === 0) {
-    return { emitted: 0, suppressedByBudget: 0, suppressedByHysteresis: 0 };
+    return { emitted: 0, suppressedByBudget: 0, suppressedByHysteresis: 0, suppressedByAcknowledgement: 0 };
   }
 
   const diagnosticsByUri = new Map<string, Diagnostic[]>();
   let emitted = 0;
   let suppressedByBudget = 0;
   let suppressedByHysteresis = 0;
+  let suppressedByAcknowledgement = 0;
   let remaining = options.runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch;
   const hysteresisWindow = options.runtimeSettings.noiseSuppression.hysteresisMs;
+  const acknowledgementService = options.acknowledgements;
   for (const context of options.contexts) {
     const brokenLinkDiagnostics = collectBrokenLinkDiagnostics(context);
     if (brokenLinkDiagnostics.length > 0) {
@@ -77,12 +82,26 @@ export function publishDocDiagnostics(
         continue;
       }
 
+      if (
+        acknowledgementService &&
+        impact.target.id &&
+        context.artifact.id &&
+        !acknowledgementService.shouldEmitDiagnostic({
+          changeEventId: context.changeEventId,
+          triggerArtifactId: context.artifact.id,
+          targetArtifactId: impact.target.id
+        })
+      ) {
+        suppressedByAcknowledgement += 1;
+        continue;
+      }
+
       if (remaining <= 0) {
         suppressedByBudget += 1;
         continue;
       }
 
-      const diagnostic = createDiagnostic(context.artifact, impact);
+      const diagnostic = createDiagnostic(context.artifact, impact, context.changeEventId);
       const existing = diagnosticsByUri.get(targetUri) ?? [];
       existing.push(diagnostic);
       diagnosticsByUri.set(targetUri, existing);
@@ -94,6 +113,25 @@ export function publishDocDiagnostics(
         targetUri,
         context.changeEventId
       );
+
+      if (acknowledgementService && impact.target.id && context.artifact.id) {
+        const record = acknowledgementService.registerEmission({
+          changeEventId: context.changeEventId,
+          triggerArtifactId: context.artifact.id,
+          targetArtifactId: impact.target.id,
+          message: diagnostic.message,
+          severity: "info",
+          linkIds: []
+        });
+
+        (diagnostic as Diagnostic & { data: Record<string, unknown> }).data = {
+          ...(diagnostic.data as Record<string, unknown>),
+          recordId: record.id,
+          changeEventId: context.changeEventId,
+          triggerArtifactId: context.artifact.id,
+          targetArtifactId: impact.target.id
+        };
+      }
     }
   }
 
@@ -101,10 +139,14 @@ export function publishDocDiagnostics(
     options.sender.sendDiagnostics({ uri, diagnostics });
   }
 
-  return { emitted, suppressedByBudget, suppressedByHysteresis };
+  return { emitted, suppressedByBudget, suppressedByHysteresis, suppressedByAcknowledgement };
 }
 
-function createDiagnostic(sourceArtifact: KnowledgeArtifact, impact: RippleImpact): Diagnostic {
+function createDiagnostic(
+  sourceArtifact: KnowledgeArtifact,
+  impact: RippleImpact,
+  changeEventId: string
+): Diagnostic {
   const docPath = normaliseDisplayPath(sourceArtifact.uri);
   const targetPath = normaliseDisplayPath(impact.target.uri ?? impact.hint.targetUri ?? "");
   const relationshipLabel = impact.hint.kind ? ` (${impact.hint.kind})` : "";
@@ -127,7 +169,8 @@ function createDiagnostic(sourceArtifact: KnowledgeArtifact, impact: RippleImpac
       relationshipKind: impact.hint.kind,
       confidence: impact.hint.confidence,
       depth,
-      path: impact.hint.path
+      path: impact.hint.path,
+      changeEventId
     }
   };
 }
@@ -179,7 +222,8 @@ function collectBrokenLinkDiagnostics(context: DocumentChangeContext): Diagnosti
         targetUri: context.artifact.uri,
         relationshipKind: "references",
         depth: 1,
-        path: [targetUri, context.artifact.uri]
+        path: [targetUri, context.artifact.uri],
+        changeEventId: context.changeEventId
       }
     });
   }

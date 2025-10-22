@@ -21,6 +21,11 @@ import {
   OVERRIDE_LINK_REQUEST,
   OverrideLinkRequest,
   OverrideLinkResponse,
+  ACKNOWLEDGE_DIAGNOSTIC_REQUEST,
+  type AcknowledgeDiagnosticParams,
+  type AcknowledgeDiagnosticResult,
+  DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION,
+  type DiagnosticAcknowledgedPayload,
   type InspectDependenciesParams,
   type InspectDependenciesResult
 } from "@copilot-improvement/shared";
@@ -28,6 +33,7 @@ import {
 import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
 import { inspectDependencies } from "./features/dependencies/inspectDependencies";
 import { HysteresisController } from "./features/diagnostics/hysteresisController";
+import { AcknowledgementService } from "./features/diagnostics/acknowledgementService";
 import { createSymbolBridgeProvider } from "./features/knowledge/symbolBridgeProvider";
 import { createWorkspaceIndexProvider } from "./features/knowledge/workspaceIndexProvider";
 import {
@@ -75,6 +81,7 @@ const knowledgeFeedController = new KnowledgeFeedController({
   now: () => new Date()
 });
 const hysteresisController = new HysteresisController();
+let acknowledgementService: AcknowledgementService | null = null;
 
 let changeQueue: ChangeQueue | null = null;
 let runtimeSettings: RuntimeSettings = DEFAULT_RUNTIME_SETTINGS;
@@ -89,7 +96,8 @@ const changeProcessor = createChangeProcessor({
   initialContext: {
     graphStore: null,
     artifactWatcher: null,
-    runtimeSettings
+    runtimeSettings,
+    acknowledgements: null
   }
 });
 changeProcessor.updateContext({ runtimeSettings });
@@ -112,6 +120,15 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
   runtimeSettings = deriveRuntimeSettings(providerGuard.getSettings());
   changeProcessor.updateContext({ runtimeSettings });
+
+  acknowledgementService = new AcknowledgementService({
+    graphStore,
+    hysteresis: hysteresisController,
+    runtimeSettings,
+    logger: connection.console,
+    now: () => new Date()
+  });
+  changeProcessor.updateContext({ acknowledgements: acknowledgementService });
 
   changeQueue?.dispose();
   changeQueue = new ChangeQueue({
@@ -197,8 +214,11 @@ connection.onShutdown(() => {
 
   changeProcessor.updateContext({
     graphStore: null,
-    artifactWatcher: null
+    artifactWatcher: null,
+    acknowledgements: null
   });
+
+  acknowledgementService = null;
 
   connection.console.info("link-aware-diagnostics server shutdown complete");
 });
@@ -280,6 +300,41 @@ connection.onRequest(
   }
 );
 
+connection.onRequest(
+  ACKNOWLEDGE_DIAGNOSTIC_REQUEST,
+  (payload: AcknowledgeDiagnosticParams): AcknowledgeDiagnosticResult => {
+    if (!acknowledgementService || !graphStore) {
+      throw new Error("Acknowledgement service is not available");
+    }
+
+    const outcome = acknowledgementService.acknowledgeDiagnostic(payload);
+    if (outcome.kind === "not_found") {
+      return { status: "not_found" };
+    }
+
+    const record = outcome.record;
+    const targetArtifact = graphStore.getArtifactById(record.artifactId ?? "");
+    const triggerArtifact = graphStore.getArtifactById(record.triggerArtifactId ?? "");
+
+    const notification: DiagnosticAcknowledgedPayload = {
+      recordId: record.id,
+      targetUri: targetArtifact?.uri,
+      triggerUri: triggerArtifact?.uri
+    };
+
+    connection.sendNotification(DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION, notification);
+
+    return {
+      status: outcome.kind === "acknowledged" ? "acknowledged" : "already_acknowledged",
+      acknowledgedAt: record.acknowledgedAt ?? record.createdAt,
+      acknowledgedBy: record.acknowledgedBy,
+      recordId: record.id,
+      targetUri: targetArtifact?.uri,
+      triggerUri: triggerArtifact?.uri
+    } satisfies AcknowledgeDiagnosticResult;
+  }
+);
+
 documents.onDidSave((event: TextDocumentChangeEvent<TextDocument>) => {
   const payload: QueuedChange = {
     uri: event.document.uri,
@@ -301,6 +356,7 @@ function syncRuntimeSettings(): void {
   runtimeSettings = deriveRuntimeSettings(providerGuard.getSettings());
   changeQueue?.updateDebounceWindow(runtimeSettings.debounceMs);
   changeProcessor.updateContext({ runtimeSettings });
+  acknowledgementService?.updateRuntimeSettings(runtimeSettings);
 
   void knowledgeFeedController.initialize({
     graphStore,

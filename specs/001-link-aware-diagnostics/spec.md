@@ -2,7 +2,7 @@
 
 **Feature Branch**: `001-link-aware-diagnostics`  
 **Created**: 2025-10-16  
-**Status**: Draft  
+**Status**: In Progress  
 **Input**: User description: "Create a system (extension or language server) that raises IntelliSense problems when linked markdown layers and implementation files drift, extending to code files via dependency awareness so Copilot agents notice related context."
 
 ## User Scenarios & Testing *(mandatory)*
@@ -73,6 +73,7 @@ Engineering or documentation leads review outstanding drift diagnostics, assign 
 - Two artifacts reference each other and change in quick succession (potential alert loops).
 - Bulk refactors modify dozens of files within seconds.
 - Documentation layers are incomplete (e.g., missing Layer 3) but edits still occur.
+- Broken-link documentation diagnostics invert the `triggerUri` (missing target) and `targetUri` (referencing document) so quick fixes open the file that needs attention.
 - If artifact A triggers a diagnostic on B, reciprocal diagnostics from B to A are suppressed until the first alert is acknowledged or a fresh change occurs after acknowledgement.
 - Deleted artifacts or renamed paths automatically prune or prompt re-binding of their relationships to avoid dangling edges.
 - External knowledge-graph feeds may become unreachable or provide stale/partial payloads; the system MUST surface a warning diagnostic, pause ingestion for the impacted feed, and fall back to local inference without mutating cached relationships until a valid payload is received.

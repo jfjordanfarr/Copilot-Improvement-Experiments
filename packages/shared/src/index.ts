@@ -4,6 +4,7 @@ export * from "./contracts/maintenance";
 export * from "./contracts/overrides";
 export * from "./contracts/symbols";
 export * from "./contracts/dependencies";
+export * from "./contracts/diagnostics";
 export * from "./knowledge/knowledgeGraphBridge";
 export * from "./inference/fallbackInference";
 export * from "./inference/linkInference";

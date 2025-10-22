@@ -4,6 +4,7 @@ import {
   AcknowledgementAction,
   ChangeEvent,
   DiagnosticRecord,
+  DiagnosticStatus,
   KnowledgeArtifact,
   KnowledgeSnapshot,
   LinkRelationship,
@@ -69,6 +70,20 @@ export class GraphStore {
 
   removeArtifactByUri(uri: string): void {
     this.db.prepare("DELETE FROM artifacts WHERE uri = ?").run(uri);
+  }
+
+  getArtifactById(id: string): KnowledgeArtifact | undefined {
+    const row = this.db
+      .prepare(
+        `SELECT id, uri, layer, language, owner, last_synchronized_at, hash, metadata FROM artifacts WHERE id = ?`
+      )
+      .get(id);
+
+    if (!row) {
+      return undefined;
+    }
+
+    return this.mapArtifactRow(row as ArtifactRow);
   }
 
   getArtifactByUri(uri: string): KnowledgeArtifact | undefined {
@@ -190,6 +205,7 @@ export class GraphStore {
         id,
         artifact_id,
         trigger_artifact_id,
+        change_event_id,
         message,
         severity,
         status,
@@ -202,6 +218,7 @@ export class GraphStore {
         @id,
         @artifactId,
         @triggerArtifactId,
+        @changeEventId,
         @message,
         @severity,
         @status,
@@ -214,6 +231,7 @@ export class GraphStore {
       ON CONFLICT(id) DO UPDATE SET
         artifact_id = excluded.artifact_id,
         trigger_artifact_id = excluded.trigger_artifact_id,
+        change_event_id = excluded.change_event_id,
         message = excluded.message,
         severity = excluded.severity,
         status = excluded.status,
@@ -243,6 +261,81 @@ export class GraphStore {
       ...action,
       notes: action.notes ?? null
     });
+  }
+
+  getDiagnosticById(id: string): DiagnosticRecord | undefined {
+    const row = this.db
+      .prepare(`
+        SELECT
+          id,
+          artifact_id,
+          trigger_artifact_id,
+          message,
+          severity,
+          status,
+          created_at,
+          acknowledged_at,
+          acknowledged_by,
+          link_ids,
+          llm_assessment
+        FROM diagnostics
+        WHERE id = ?
+      `)
+      .get(id) as DiagnosticRow | undefined;
+
+    if (!row) {
+      return undefined;
+    }
+
+    return this.mapDiagnosticRow(row);
+  }
+
+  updateDiagnosticStatus(options: UpdateDiagnosticStatusOptions): void {
+    this.db
+      .prepare(`
+        UPDATE diagnostics
+        SET
+          status = @status,
+          acknowledged_at = @acknowledgedAt,
+          acknowledged_by = @acknowledgedBy
+        WHERE id = @id
+      `)
+      .run({
+        id: options.id,
+        status: options.status,
+        acknowledgedAt: options.acknowledgedAt ?? null,
+        acknowledgedBy: options.acknowledgedBy ?? null
+      });
+  }
+
+  findDiagnosticByChangeEvent(options: FindDiagnosticByChangeEventOptions): DiagnosticRecord | undefined {
+    const row = this.db
+      .prepare(`
+        SELECT
+          id,
+          artifact_id,
+          trigger_artifact_id,
+          change_event_id,
+          message,
+          severity,
+          status,
+          created_at,
+          acknowledged_at,
+          acknowledged_by,
+          link_ids,
+          llm_assessment
+        FROM diagnostics
+        WHERE change_event_id = @changeEventId
+          AND artifact_id = @artifactId
+          AND trigger_artifact_id = @triggerArtifactId
+      `)
+      .get(options) as DiagnosticRow | undefined;
+
+    if (!row) {
+      return undefined;
+    }
+
+    return this.mapDiagnosticRow(row);
   }
 
   storeSnapshot(snapshot: KnowledgeSnapshot): void {
@@ -311,6 +404,7 @@ export class GraphStore {
         id TEXT PRIMARY KEY,
         artifact_id TEXT NOT NULL,
         trigger_artifact_id TEXT NOT NULL,
+        change_event_id TEXT NOT NULL,
         message TEXT NOT NULL,
         severity TEXT NOT NULL,
         status TEXT NOT NULL,
@@ -343,6 +437,16 @@ export class GraphStore {
         metadata TEXT
       );
     `);
+
+    try {
+      this.db.prepare(`ALTER TABLE diagnostics ADD COLUMN change_event_id TEXT`).run();
+    } catch (error) {
+      // Ignore if column already exists.
+      const message = error instanceof Error ? error.message : String(error);
+      if (!/duplicate column name/i.test(message)) {
+        throw error;
+      }
+    }
   }
 
   private mapArtifactRow(row: ArtifactRow): KnowledgeArtifact {
@@ -367,6 +471,36 @@ export class GraphStore {
       return JSON.parse(value) as Record<string, unknown>;
     } catch {
       return undefined;
+    }
+  }
+
+  private mapDiagnosticRow(row: DiagnosticRow): DiagnosticRecord {
+    return {
+      id: row.id,
+      artifactId: row.artifact_id,
+      triggerArtifactId: row.trigger_artifact_id,
+      changeEventId: row.change_event_id ?? "",
+      message: row.message,
+      severity: row.severity as DiagnosticRecord["severity"],
+      status: row.status as DiagnosticStatus,
+      createdAt: row.created_at,
+      acknowledgedAt: row.acknowledged_at ?? undefined,
+      acknowledgedBy: row.acknowledged_by ?? undefined,
+      linkIds: this.parseLinkIds(row.link_ids),
+      llmAssessment: this.parseMetadata(row.llm_assessment)
+    };
+  }
+
+  private parseLinkIds(value: string | null): string[] {
+    if (!value) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(value) as unknown;
+      return Array.isArray(parsed) ? (parsed.filter(id => typeof id === "string") as string[]) : [];
+    } catch {
+      return [];
     }
   }
 }
@@ -395,4 +529,32 @@ interface LinkedArtifactRow {
   artifact_last_synchronized_at: string | null;
   artifact_hash: string | null;
   artifact_metadata: string | null;
+}
+
+interface DiagnosticRow {
+  id: string;
+  artifact_id: string;
+  trigger_artifact_id: string;
+  change_event_id: string | null;
+  message: string;
+  severity: string;
+  status: string;
+  created_at: string;
+  acknowledged_at: string | null;
+  acknowledged_by: string | null;
+  link_ids: string | null;
+  llm_assessment: string | null;
+}
+
+interface UpdateDiagnosticStatusOptions {
+  id: string;
+  status: DiagnosticStatus;
+  acknowledgedAt?: string;
+  acknowledgedBy?: string;
+}
+
+interface FindDiagnosticByChangeEventOptions {
+  changeEventId: string;
+  artifactId: string;
+  triggerArtifactId: string;
 }

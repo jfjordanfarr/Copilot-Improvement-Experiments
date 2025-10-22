@@ -59,6 +59,7 @@ export interface DiagnosticRecord {
   id: string;
   artifactId: string;
   triggerArtifactId: string;
+  changeEventId: string;
   message: string;
   severity: DiagnosticSeverity;
   status: DiagnosticStatus;
