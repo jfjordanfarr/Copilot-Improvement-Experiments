@@ -523,7 +523,7 @@ export class GraphStore {
 
     try {
       const parsed = JSON.parse(value) as unknown;
-      return Array.isArray(parsed) ? (parsed.filter(id => typeof id === "string") as string[]) : [];
+      return Array.isArray(parsed) ? parsed.filter(id => typeof id === "string") : [];
     } catch {
       return [];
     }

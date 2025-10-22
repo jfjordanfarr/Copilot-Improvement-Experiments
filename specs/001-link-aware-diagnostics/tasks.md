@@ -145,8 +145,8 @@ description: "Task list for Link-Aware Diagnostics"
 ### Implementation for User Story 3
 
 - [x] T043 [US3] Implement acknowledgement service with SQLite persistence and settings awareness in `packages/server/src/features/diagnostics/acknowledgementService.ts`
-- [ ] T044 [P] [US3] Create diagnostics tree view provider in `packages/extension/src/views/diagnosticsTree.ts`
-- [ ] T045 [US3] Implement export diagnostics command in `packages/extension/src/commands/exportDiagnostics.ts`
+- [x] T044 [P] [US3] Create diagnostics tree view provider in `packages/extension/src/views/diagnosticsTree.ts`
+- [x] T045 [US3] Implement export diagnostics command in `packages/extension/src/commands/exportDiagnostics.ts`
 - [ ] T046 [US3] Add configurable noise suppression filters in `packages/server/src/features/diagnostics/noiseFilter.ts`
 - [ ] T047 [P] [US3] Wire optional AI analysis command using `vscode.lm` in `packages/extension/src/commands/analyzeWithAI.ts`
 - [ ] T059 [US3] Persist drift history log entries in `packages/server/src/telemetry/driftHistoryStore.ts` and expose summary reporting demanded by FR-009

@@ -8,9 +8,9 @@ import {
 
 import type { KnowledgeArtifact } from "@copilot-improvement/shared";
 
+import type { AcknowledgementService } from "./acknowledgementService";
 import { normaliseDisplayPath, type DiagnosticSender } from "./diagnosticUtils";
 import type { HysteresisController } from "./hysteresisController";
-import type { AcknowledgementService } from "./acknowledgementService";
 import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";

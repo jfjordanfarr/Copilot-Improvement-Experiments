@@ -10,16 +10,17 @@ import {
 
 import { RebindRequiredPayload } from "@copilot-improvement/shared";
 
-import { registerOverrideLinkCommand } from "./commands/overrideLink";
 import { registerAcknowledgementWorkflow } from "./commands/acknowledgeDiagnostic";
+import { registerExportDiagnosticsCommand } from "./commands/exportDiagnostics";
+import { registerOverrideLinkCommand } from "./commands/overrideLink";
 import { registerDependencyQuickPick } from "./diagnostics/dependencyQuickPick";
 import { registerDocDiagnosticProvider } from "./diagnostics/docDiagnosticProvider";
 import { ensureProviderSelection } from "./onboarding/providerGate";
 import { showRebindPrompt } from "./prompts/rebindPrompt";
 import { registerSymbolBridge } from "./services/symbolBridge";
 import { ConfigService } from "./settings/configService";
-import { registerFileMaintenanceWatcher } from "./watchers/fileMaintenance";
 import { registerDiagnosticsTreeView } from "./views/diagnosticsTree";
+import { registerFileMaintenanceWatcher } from "./watchers/fileMaintenance";
 
 const SETTINGS_NOTIFICATION = "linkDiagnostics/settings/update";
 const REBIND_NOTIFICATION = "linkDiagnostics/maintenance/rebindRequired";
@@ -146,6 +147,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   context.subscriptions.push(registerDocDiagnosticProvider());
   context.subscriptions.push(registerDependencyQuickPick(activeClient));
   context.subscriptions.push(registerSymbolBridge(activeClient));
+  context.subscriptions.push(registerExportDiagnosticsCommand(activeClient));
 
   context.subscriptions.push(
     vscode.languages.onDidChangeDiagnostics(event => {

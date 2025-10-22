@@ -109,12 +109,8 @@ export class DiagnosticsTreeDataProvider
     return item;
   }
 
-  getParent(element: TreeNode): vscode.ProviderResult<TreeNode> {
-    if (element.kind === "diagnostic") {
-      return element.parent;
-    }
-
-    return undefined;
+  getParent(element: TreeNode): TreeNode | undefined {
+    return element.kind === "diagnostic" ? element.parent : undefined;
   }
 
   private async ensureSnapshot(force = false): Promise<void> {
@@ -162,7 +158,7 @@ export class DiagnosticsTreeDataProvider
 
     const nodes: TargetNode[] = [];
 
-    for (const [key, diagnostics] of groups.entries()) {
+    for (const [_key, diagnostics] of groups.entries()) {
       const targetUri = diagnostics[0]?.target?.uri;
       const uri = targetUri ? vscode.Uri.parse(targetUri) : undefined;
       const label = uri
@@ -229,7 +225,7 @@ function formatLocalTimestamp(value: string): string {
   }).format(date);
 }
 
-export function isDiagnosticNode(node: TreeNode | unknown): node is DiagnosticNode {
+export function isDiagnosticNode(node: TreeNode): node is DiagnosticNode {
   return Boolean(node && typeof node === "object" && (node as DiagnosticNode).kind === "diagnostic");
 }
 
@@ -268,7 +264,7 @@ export function registerDiagnosticsTreeView(client: LanguageClient): Diagnostics
   const acknowledgeCommand = vscode.commands.registerCommand(
     "linkDiagnostics.acknowledgeDiagnosticFromTree",
     async (node: TreeNode | undefined) => {
-      if (!isDiagnosticNode(node)) {
+      if (!node || !isDiagnosticNode(node)) {
         void vscode.window.showWarningMessage("Select a diagnostic entry to acknowledge.");
         return;
       }
@@ -284,6 +280,8 @@ export function registerDiagnosticsTreeView(client: LanguageClient): Diagnostics
 
   return {
     provider,
-    dispose: () => composite.dispose()
+    dispose(): void {
+      composite.dispose();
+    }
   };
 }

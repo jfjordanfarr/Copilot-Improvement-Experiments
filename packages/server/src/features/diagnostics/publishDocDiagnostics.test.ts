@@ -3,9 +3,9 @@ import type { Diagnostic } from "vscode-languageserver/node";
 
 import type { DiagnosticRecord, KnowledgeArtifact } from "@copilot-improvement/shared";
 
+import type { AcknowledgementService } from "./acknowledgementService";
 import { HysteresisController } from "./hysteresisController";
 import { publishDocDiagnostics, type DocumentChangeContext } from "./publishDocDiagnostics";
-import type { AcknowledgementService } from "./acknowledgementService";
 import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
@@ -184,6 +184,7 @@ describe("publishDocDiagnostics", () => {
       acknowledgements
     });
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(acknowledgements.registerEmission).toHaveBeenCalledTimes(1);
     const [[diagnosticParams]] = sendDiagnostics.mock.calls as Array<[
       { uri: string; diagnostics: unknown[] }
@@ -352,7 +353,9 @@ describe("publishDocDiagnostics", () => {
       suppressedByHysteresis: 0,
       suppressedByAcknowledgement: 1
     });
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(acknowledgements.shouldEmitDiagnostic).toHaveBeenCalledTimes(1);
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(acknowledgements.registerEmission).not.toHaveBeenCalled();
   });
 });

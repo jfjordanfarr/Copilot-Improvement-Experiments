@@ -34,8 +34,8 @@ import {
 
 import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
 import { inspectDependencies } from "./features/dependencies/inspectDependencies";
-import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import { AcknowledgementService } from "./features/diagnostics/acknowledgementService";
+import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import { buildOutstandingDiagnosticsResult } from "./features/diagnostics/listOutstandingDiagnostics";
 import { createSymbolBridgeProvider } from "./features/knowledge/symbolBridgeProvider";
 import { createWorkspaceIndexProvider } from "./features/knowledge/workspaceIndexProvider";
@@ -325,7 +325,7 @@ connection.onRequest(
       triggerUri: triggerArtifact?.uri
     };
 
-    connection.sendNotification(DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION, notification);
+    void connection.sendNotification(DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION, notification);
 
     return {
       status: outcome.kind === "acknowledged" ? "acknowledged" : "already_acknowledged",

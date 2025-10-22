@@ -34,6 +34,10 @@
         "title": "Link Diagnostics: Acknowledge Diagnostic"
       },
       {
+        "command": "linkDiagnostics.exportDiagnostics",
+        "title": "Link Diagnostics: Export Diagnostics"
+      },
+      {
         "command": "linkDiagnostics.openLinkedArtifact",
         "title": "Link Diagnostics: Open Linked Artifact"
       },
@@ -60,6 +64,11 @@
           "command": "linkDiagnostics.refreshDiagnosticsTree",
           "when": "view == linkDiagnostics.diagnosticsTree",
           "group": "navigation@1"
+        },
+        {
+          "command": "linkDiagnostics.exportDiagnostics",
+          "when": "view == linkDiagnostics.diagnosticsTree",
+          "group": "navigation@2"
         }
       ],
       "view/item/context": [
