@@ -5,6 +5,8 @@ export * from "./contracts/overrides";
 export * from "./contracts/symbols";
 export * from "./contracts/dependencies";
 export * from "./contracts/diagnostics";
+export * from "./contracts/lsif";
+export * from "./contracts/scip";
 export * from "./knowledge/knowledgeGraphBridge";
 export * from "./inference/fallbackInference";
 export * from "./inference/linkInference";

@@ -21,6 +21,7 @@ import {
   type FeedDiagnosticsGatewayOptions,
   type FeedStatusSummary
 } from "./feedDiagnosticsGateway";
+import { parseFeedFile } from "./feedFormatDetector";
 import {
   KnowledgeFeedManager,
   type BackoffOptions,
@@ -334,6 +335,18 @@ async function readStaticFeedSnapshot(
   workspaceRoot: string,
   logger?: KnowledgeGraphBridgeLogger
 ): Promise<ExternalSnapshot | null> {
+  // Try format-aware parsing first (LSIF, SCIP, or native ExternalSnapshot)
+  const formatAwareSnapshot = await parseFeedFile({
+    filePath: descriptor.filePath,
+    projectRoot: workspaceRoot,
+    feedId: descriptor.id
+  });
+
+  if (formatAwareSnapshot) {
+    return formatAwareSnapshot;
+  }
+
+  // Fallback to legacy static JSON format
   const raw = await readStaticFeedFile(descriptor.filePath);
 
   const artifactsConfig = Array.isArray(raw.artifacts)

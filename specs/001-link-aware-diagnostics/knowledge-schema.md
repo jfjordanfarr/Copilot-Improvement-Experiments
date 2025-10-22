@@ -49,6 +49,22 @@ External providers can ship a complete snapshot using the following envelope:
 }
 ```
 
+### Supported Feed Formats
+
+The knowledge graph ingestion pipeline supports multiple input formats through automatic format detection:
+
+1. **Native ExternalSnapshot** (JSON): The canonical format described above
+2. **LSIF** (Language Server Index Format): Newline-delimited JSON dumps from LSP-based indexers
+   - Auto-detected via `type`/`label`/`id` fields in first line
+   - Documents become `code`-layer artifacts
+   - Definition/reference edges become `references`-kind links
+3. **SCIP** (SCIP Code Intelligence Protocol): JSON indexes from Sourcegraph tooling
+   - Auto-detected via `metadata.version` + `documents` array
+   - Symbol occurrences with definition role become artifact anchors
+   - Cross-document references become `references`-kind links (write access → `depends_on`)
+
+Place feeds as `.json` files in `data/knowledge-feeds/` and the system will auto-detect and parse them during startup. See `packages/server/src/features/knowledge/feedFormatDetector.ts` for detection logic.
+
 Snapshots should be self-consistent: every link references artifacts that exist in the same payload. Providers may omit `id` and `createdAt`; the bridge will inject defaults.
 
 ## Stream events

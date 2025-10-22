@@ -85,6 +85,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T054 Implement heuristic/LLM fallback inference pipeline in `packages/shared/src/inference/fallbackInference.ts` that operates without existing language-server data
 - [x] T055 [P] Document external knowledge-graph schema contract in `specs/001-link-aware-diagnostics/contracts/knowledge-schema.md`
 - [x] T056 Enforce schema validation for external feeds in `packages/server/src/features/knowledge/schemaValidator.ts`
+- [x] T060 [P] Expand knowledge graph ingestion to support LSIF/SCIP formats via auto-detection in `packages/server/src/features/knowledge/feedFormatDetector.ts`, `lsifParser.ts`, and `scipParser.ts`
 
 **Checkpoint**: Foundation ready — user story implementation can now begin in parallel
 
