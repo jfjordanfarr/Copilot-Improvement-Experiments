@@ -37,8 +37,9 @@ Describe how the language server orchestrates change ingestion, inference, diagn
 - Feed diagnostics surface degraded states back to extension.
 - Hysteresis prevents diagnostic ping-pong; budgets guard against noise bursts.
 - Provider guard logs when diagnostics remain disabled to aid onboarding debugging.
+- Drift history ledger (`DriftHistoryStore`) appends `emitted`/`acknowledged` records for every diagnostic so FR-009 reporting has durable data even across restarts.
 
 ## Open Items
-- Persist hysteresis + acknowledgement state to disk for resilience across restarts (tracked under T042).
 - Expand telemetry once privacy approvals allow metrics on diagnostic suppression and ripple sizes.
 - Integrate LLM inference providers when `llmProviderMode` toggles beyond local-only.
+- Expose drift history summaries to clients (CLI / UI) once reporting requirements are finalised.

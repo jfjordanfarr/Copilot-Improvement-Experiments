@@ -1,4 +1,8 @@
 import * as assert from "node:assert";
+import * as path from "node:path";
+import * as os from "node:os";
+import { promises as fs } from "node:fs";
+import Database from "better-sqlite3";
 import * as vscode from "vscode";
 
 /**
@@ -13,6 +17,7 @@ suite("US3: Diagnostics acknowledgement workflow", () => {
   let workspaceUri: vscode.Uri;
   let _sourceDocUri: vscode.Uri;
   let _targetCodeUri: vscode.Uri;
+  let storageDir: string;
 
   suiteSetup(async function (this: Mocha.Context) {
     this.timeout(60000);
@@ -23,6 +28,13 @@ suite("US3: Diagnostics acknowledgement workflow", () => {
 
     _sourceDocUri = vscode.Uri.joinPath(workspaceUri, "docs", "link-source.md");
     _targetCodeUri = vscode.Uri.joinPath(workspaceUri, "src", "core.ts");
+    storageDir = path.join(workspaceUri.fsPath, ".link-aware-diagnostics-test");
+    await fs.mkdir(storageDir, { recursive: true });
+
+    const config = vscode.workspace.getConfiguration("linkAwareDiagnostics");
+    await config.update("enableDiagnostics", true, vscode.ConfigurationTarget.Workspace);
+    await config.update("llmProviderMode", "local-only", vscode.ConfigurationTarget.Workspace);
+    await config.update("storagePath", storageDir, vscode.ConfigurationTarget.Workspace);
 
     const extension = vscode.extensions.getExtension("copilot-improvement.link-aware-diagnostics");
     assert.ok(extension, "Extension must be installed");
@@ -32,10 +44,6 @@ suite("US3: Diagnostics acknowledgement workflow", () => {
     }
 
     await extension.activate();
-
-    const config = vscode.workspace.getConfiguration("linkAwareDiagnostics");
-    await config.update("enableDiagnostics", true, vscode.ConfigurationTarget.Workspace);
-    await config.update("llmProviderMode", "local-only", vscode.ConfigurationTarget.Workspace);
 
     await waitForLanguageServerReady();
   });
@@ -66,6 +74,38 @@ suite("US3: Diagnostics acknowledgement workflow", () => {
     });
 
     await waitForDiagnosticAbsence(_targetCodeUri, initial.recordId, 10000);
+
+    const changeEventId = extractChangeEventId(initial.diagnostic);
+    if (!changeEventId) {
+      throw new Error("Diagnostic should include change event identifier");
+    }
+
+  const dbPath = await locateDatabasePath(storageDir, workspaceUri.fsPath, 10000);
+  const driftDb = new Database(dbPath, { readonly: true });
+    try {
+      const rows = driftDb
+        .prepare(
+          `SELECT status, actor
+           FROM drift_history
+           WHERE diagnostic_id = ?`
+        )
+        .all(initial.recordId) as Array<{ status: string; actor: string | null }>;
+
+      assert.ok(rows.some(row => row.status === "acknowledged"), "Drift history should capture acknowledgement entries");
+
+      const summaryRows = driftDb
+        .prepare(
+          `SELECT status, COUNT(*) AS count
+           FROM drift_history
+           WHERE change_event_id = ?
+           GROUP BY status`
+        )
+        .all(changeEventId) as Array<{ status: string; count: number }>;
+      const summaryMap = new Map(summaryRows.map(row => [row.status, row.count]));
+      assert.ok((summaryMap.get("acknowledged") ?? 0) >= 1, "Change event summary should reflect acknowledged entries");
+    } finally {
+      driftDb.close();
+    }
 
     // Introduce a new change event to ensure acknowledgements only suppress existing records.
     await appendText(sourceDoc, "\n\n## Follow-up Change\nSubsequent edit to re-trigger diagnostics.");
@@ -130,6 +170,16 @@ interface DiagnosticWithRecordId extends vscode.Diagnostic {
   data?: Record<string, unknown> & { recordId?: string };
 }
 
+function extractChangeEventId(diagnostic: vscode.Diagnostic): string | undefined {
+  const candidate = (diagnostic as DiagnosticWithRecordId).data;
+  if (!candidate || typeof candidate !== "object") {
+    return undefined;
+  }
+
+  const value = (candidate as Record<string, unknown>).changeEventId;
+  return typeof value === "string" ? value : undefined;
+}
+
 async function waitForDiagnosticWithRecord(
   uri: vscode.Uri,
   timeout: number
@@ -167,4 +217,33 @@ async function waitForDiagnosticAbsence(uri: vscode.Uri, recordId: string, timeo
   }
 
   throw new Error(`Diagnostic ${recordId} still present for ${uri.fsPath} after ${timeout}ms`);
+}
+
+async function locateDatabasePath(storageDir: string, workspacePath: string, timeout: number): Promise<string> {
+  const pollInterval = 200;
+  let elapsed = 0;
+  const primary = path.join(storageDir, "link-aware-diagnostics.db");
+  const fallbackWorkspace = path.join(workspacePath, ".link-aware-diagnostics", "link-aware-diagnostics.db");
+  const fallbackTemp = path.join(os.tmpdir(), "link-aware-diagnostics", "link-aware-diagnostics.db");
+  const candidates = [primary, fallbackWorkspace, fallbackTemp];
+
+  while (elapsed < timeout) {
+    for (const candidate of candidates) {
+      try {
+        await fs.stat(candidate);
+        return candidate;
+      } catch (error) {
+        if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+          throw error;
+        }
+      }
+    }
+
+    await sleep(pollInterval);
+    elapsed += pollInterval;
+  }
+
+  throw new Error(
+    `Drift history database not found within ${timeout}ms (checked: ${candidates.join(", ")})`
+  );
 }

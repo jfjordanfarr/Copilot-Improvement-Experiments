@@ -5,6 +5,8 @@ import {
   ChangeEvent,
   DiagnosticRecord,
   DiagnosticStatus,
+  DriftHistoryEntry,
+  DriftHistoryStatus,
   KnowledgeArtifact,
   KnowledgeSnapshot,
   LinkRelationship,
@@ -263,6 +265,141 @@ export class GraphStore {
     });
   }
 
+  recordDriftHistory(entry: DriftHistoryEntry): void {
+    this.db.prepare(`
+      INSERT INTO drift_history (
+        id,
+        diagnostic_id,
+        change_event_id,
+        trigger_artifact_id,
+        target_artifact_id,
+        status,
+        severity,
+        recorded_at,
+        actor,
+        notes,
+        metadata
+      ) VALUES (
+        @id,
+        @diagnosticId,
+        @changeEventId,
+        @triggerArtifactId,
+        @targetArtifactId,
+        @status,
+        @severity,
+        @recordedAt,
+        @actor,
+        @notes,
+        @metadata
+      )
+    `).run({
+      ...entry,
+      actor: entry.actor ?? null,
+      notes: entry.notes ?? null,
+      metadata: entry.metadata ? JSON.stringify(entry.metadata, null, JSON_SPACES) : null
+    });
+  }
+
+  listDriftHistory(options: ListDriftHistoryOptions = {}): DriftHistoryEntry[] {
+    const where: string[] = [];
+    const parameters: Record<string, unknown> = {};
+
+    if (options.changeEventId) {
+      where.push("change_event_id = @changeEventId");
+      parameters.changeEventId = options.changeEventId;
+    }
+
+    if (options.targetArtifactId) {
+      where.push("target_artifact_id = @targetArtifactId");
+      parameters.targetArtifactId = options.targetArtifactId;
+    }
+
+    if (options.diagnosticId) {
+      where.push("diagnostic_id = @diagnosticId");
+      parameters.diagnosticId = options.diagnosticId;
+    }
+
+    if (options.status) {
+      where.push("status = @status");
+      parameters.status = options.status;
+    }
+
+    const clause = where.length > 0 ? `WHERE ${where.join(" AND ")}` : "";
+    const limitClause = typeof options.limit === "number" ? "LIMIT @limit" : "";
+    if (limitClause) {
+      parameters.limit = options.limit;
+    }
+
+    const rows = this.db
+      .prepare(
+        `
+        SELECT
+          id,
+          diagnostic_id,
+          change_event_id,
+          trigger_artifact_id,
+          target_artifact_id,
+          status,
+          severity,
+          recorded_at,
+          actor,
+          notes,
+          metadata
+        FROM drift_history
+        ${clause}
+        ORDER BY datetime(recorded_at) DESC
+        ${limitClause}
+      `
+      )
+      .all(parameters) as DriftHistoryRow[];
+
+    return rows.map(row => this.mapDriftHistoryRow(row));
+  }
+
+  summarizeDriftHistory(changeEventId: string): DriftHistorySummary {
+    const totals = this.db
+      .prepare(
+        `
+        SELECT status, COUNT(*) as count
+        FROM drift_history
+        WHERE change_event_id = @changeEventId
+        GROUP BY status
+      `
+      )
+      .all({ changeEventId }) as DriftHistoryCountRow[];
+
+    const statusCounts: Record<DriftHistoryStatus, number> = {
+      emitted: 0,
+      acknowledged: 0
+    };
+
+    for (const row of totals) {
+      const status = row.status as DriftHistoryStatus;
+      if (statusCounts[status] !== undefined) {
+        statusCounts[status] = row.count;
+      }
+    }
+
+    const lastAck = this.db
+      .prepare(
+        `
+        SELECT recorded_at, actor
+        FROM drift_history
+        WHERE change_event_id = @changeEventId AND status = 'acknowledged'
+        ORDER BY datetime(recorded_at) DESC
+        LIMIT 1
+      `
+      )
+      .get({ changeEventId }) as DriftHistoryAckRow | undefined;
+
+    return {
+      changeEventId,
+      totals: statusCounts,
+      lastAcknowledgedAt: lastAck?.recorded_at ?? null,
+      lastAcknowledgedBy: lastAck?.actor ?? null
+    };
+  }
+
   listDiagnosticsByStatus(status: DiagnosticStatus): DiagnosticRecord[] {
     const rows = this.db
       .prepare(`
@@ -295,6 +432,7 @@ export class GraphStore {
           id,
           artifact_id,
           trigger_artifact_id,
+          change_event_id,
           message,
           severity,
           status,
@@ -461,6 +599,27 @@ export class GraphStore {
         payload_hash TEXT NOT NULL,
         metadata TEXT
       );
+
+      CREATE TABLE IF NOT EXISTS drift_history (
+        id TEXT PRIMARY KEY,
+        diagnostic_id TEXT NOT NULL,
+        change_event_id TEXT NOT NULL,
+        trigger_artifact_id TEXT NOT NULL,
+        target_artifact_id TEXT NOT NULL,
+        status TEXT NOT NULL,
+        severity TEXT NOT NULL,
+        recorded_at TEXT NOT NULL,
+        actor TEXT,
+        notes TEXT,
+        metadata TEXT,
+        FOREIGN KEY (diagnostic_id) REFERENCES diagnostics (id) ON DELETE CASCADE,
+        FOREIGN KEY (change_event_id) REFERENCES change_events (id) ON DELETE CASCADE,
+        FOREIGN KEY (trigger_artifact_id) REFERENCES artifacts (id) ON DELETE CASCADE,
+        FOREIGN KEY (target_artifact_id) REFERENCES artifacts (id) ON DELETE CASCADE
+      );
+
+      CREATE INDEX IF NOT EXISTS idx_drift_history_change_target ON drift_history (change_event_id, target_artifact_id);
+      CREATE INDEX IF NOT EXISTS idx_drift_history_diagnostic ON drift_history (diagnostic_id, recorded_at DESC);
     `);
 
     try {
@@ -513,6 +672,22 @@ export class GraphStore {
       acknowledgedBy: row.acknowledged_by ?? undefined,
       linkIds: this.parseLinkIds(row.link_ids),
       llmAssessment: this.parseMetadata(row.llm_assessment)
+    };
+  }
+
+  private mapDriftHistoryRow(row: DriftHistoryRow): DriftHistoryEntry {
+    return {
+      id: row.id,
+      diagnosticId: row.diagnostic_id,
+      changeEventId: row.change_event_id,
+      triggerArtifactId: row.trigger_artifact_id,
+      targetArtifactId: row.target_artifact_id,
+      status: row.status as DriftHistoryStatus,
+      severity: row.severity as DriftHistoryEntry["severity"],
+      recordedAt: row.recorded_at,
+      actor: row.actor ?? undefined,
+      notes: row.notes ?? undefined,
+      metadata: this.parseMetadata(row.metadata)
     };
   }
 
@@ -571,6 +746,37 @@ interface DiagnosticRow {
   llm_assessment: string | null;
 }
 
+interface DriftHistoryRow {
+  id: string;
+  diagnostic_id: string;
+  change_event_id: string;
+  trigger_artifact_id: string;
+  target_artifact_id: string;
+  status: string;
+  severity: string;
+  recorded_at: string;
+  actor: string | null;
+  notes: string | null;
+  metadata: string | null;
+}
+
+interface DriftHistoryCountRow {
+  status: string;
+  count: number;
+}
+
+interface DriftHistoryAckRow {
+  recorded_at: string;
+  actor: string | null;
+}
+
+export interface DriftHistorySummary {
+  changeEventId: string;
+  totals: Record<DriftHistoryStatus, number>;
+  lastAcknowledgedAt: string | null;
+  lastAcknowledgedBy: string | null;
+}
+
 interface UpdateDiagnosticStatusOptions {
   id: string;
   status: DiagnosticStatus;
@@ -582,4 +788,12 @@ interface FindDiagnosticByChangeEventOptions {
   changeEventId: string;
   artifactId: string;
   triggerArtifactId: string;
+}
+
+export interface ListDriftHistoryOptions {
+  changeEventId?: string;
+  targetArtifactId?: string;
+  diagnosticId?: string;
+  status?: DriftHistoryStatus;
+  limit?: number;
 }

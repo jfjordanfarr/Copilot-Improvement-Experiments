@@ -81,3 +81,20 @@
   - `timestamp` (datetime).
 - **Relationships**: Many-to-one with diagnostics.
 - **Validation Rules**: Enforce chronological order, ensure `action=reopen` only valid when diagnostic previously acknowledged/suppressed.
+
+## DriftHistoryEntry
+- **Description**: Append-only log correlating diagnostic lifecycle events with change provenance for reporting and restart resilience.
+- **Fields**:
+  - `id` (UUID).
+  - `diagnosticId` (UUID) – FK to `DiagnosticRecord`.
+  - `changeEventId` (UUID) – FK to `ChangeEvent`.
+  - `triggerArtifactId` (UUID) – FK to `KnowledgeArtifact` (source of the ripple).
+  - `targetArtifactId` (UUID) – FK to `KnowledgeArtifact` (recipient of the diagnostic).
+  - `status` (enum: `emitted`, `acknowledged`).
+  - `severity` (enum matching `DiagnosticSeverity`).
+  - `recordedAt` (datetime).
+  - `actor` (string, optional) – populated for acknowledgement entries.
+  - `notes` (string, optional) – acknowledgement notes snapshot.
+  - `metadata` (JSON, optional) – snapshot of link IDs or additional context.
+- **Relationships**: Many-to-one with diagnostics and change events; aggregated for reporting by artifact or change series.
+- **Validation Rules**: Append-only (no updates after insert); ensure acknowledgement entries reference an existing `emitted` entry; `metadata` size bounded to 8 KB.

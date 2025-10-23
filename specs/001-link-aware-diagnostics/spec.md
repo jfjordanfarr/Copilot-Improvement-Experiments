@@ -36,6 +36,22 @@ Developers commit a change to any source file and immediately see the complete s
 
 ---
 
+### User Story 4 - Maintainers explore symbol neighborhoods (Priority: P4)
+
+Maintainers and Copilot agents dogfood the graph by selecting any symbol and querying its nearest neighbors across layers to understand dependency context before making changes.
+
+**Why this priority**: Exposing the graph for exploratory queries lets us validate data quality, accelerates internal debugging, and lays the groundwork for AI-assisted explanation workflows.
+
+**Independent Test**: Can be validated by invoking a dedicated command or CLI that resolves a symbol identifier, returns hop-limited neighbors grouped by relationship kind, and surfaces human-readable context without emitting diagnostics.
+
+**Acceptance Scenarios**:
+
+1. **Given** a command palette action to “Inspect symbol neighbors,” **When** a maintainer selects a symbol, **Then** the tool returns first-degree neighbors with relationship labels and canonical file locations.
+2. **Given** a hop limit of 2, **When** the maintainer expands the result, **Then** the tool includes second-degree connections while clearly identifying the traversal path.
+3. **Given** multiple documentation layers referencing the symbol, **When** the query runs, **Then** the response groups documentation versus implementation neighbors so follow-up is triaged quickly.
+
+---
+
 ### User Story 2 - Writers get drift alerts (Priority: P2)
 
 Technical writers update requirements or architecture markdown and need a guaranteed signal identifying the code paths and lower-layer docs that require follow-up.
@@ -122,6 +138,7 @@ Graph projections, override manifests, and drift history live under the workspac
 - **FR-015**: System MUST support knowledge-graph-backed monitoring between arbitrary artifacts (beyond code↔code pairs) using external feeds and LLM-assisted ripple analysis, handling both on-demand KnowledgeSnapshot imports and long-lived streaming feeds with consistent validation and storage semantics.
 - **FR-016**: System MUST define and enforce a minimal schema for ingesting external knowledge-graph data, including artifact identifiers, edge types, timestamps, and confidence metadata, and MUST validate incoming feeds against this contract before integrating them.
 - **FR-017**: Development-time verification MUST compare the inferred code dependency graph against canonical abstract syntax trees for curated benchmark workspaces when ground-truth ASTs are available, and MUST fall back to multi-run self-similarity benchmarks for workspaces lacking authoritative ASTs so accuracy remains measurable in both contexts.
+- **FR-018**: System MUST expose a developer-facing symbol neighborhood query (initially dogfooding-only) that, given a symbol or artifact identifier, returns hop-limited neighbors with relationship metadata and is pluggable into future LLM-assisted explanation tools.
 
 ### Key Entities *(include if feature involves data)*
 

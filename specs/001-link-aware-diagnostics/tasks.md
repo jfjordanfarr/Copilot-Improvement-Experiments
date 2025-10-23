@@ -148,15 +148,30 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T043 [US3] Implement acknowledgement service with SQLite persistence and settings awareness in `packages/server/src/features/diagnostics/acknowledgementService.ts`
 - [x] T044 [P] [US3] Create diagnostics tree view provider in `packages/extension/src/views/diagnosticsTree.ts`
 - [x] T045 [US3] Implement export diagnostics command in `packages/extension/src/commands/exportDiagnostics.ts`
-- [ ] T046 [US3] Add configurable noise suppression filters in `packages/server/src/features/diagnostics/noiseFilter.ts`
+- [x] T046 [US3] Add configurable noise suppression filters in `packages/server/src/features/diagnostics/noiseFilter.ts`
 - [ ] T047 [P] [US3] Wire optional AI analysis command using `vscode.lm` in `packages/extension/src/commands/analyzeWithAI.ts`
-- [ ] T059 [US3] Persist drift history log entries in `packages/server/src/telemetry/driftHistoryStore.ts` and expose summary reporting demanded by FR-009
+- [x] T059 [US3] Persist drift history log entries in `packages/server/src/telemetry/driftHistoryStore.ts` and expose summary reporting demanded by FR-009
 
 **Checkpoint**: All user stories independently functional with full workflow coverage
 
+
+## Phase 6: User Story 4 - Maintainers explore symbol neighborhoods (Priority: P4)
+
+**Goal**: Provide dogfooding tooling so maintainers and Copilot agents can inspect graph neighborhoods for any symbol or artifact prior to relying on LLM explainability.
+
+**Independent Test**: Invoking the “Inspect Symbol Neighbors” command (or CLI) returns hop-limited neighbors grouped by relationship kind without mutating diagnostics.
+
+- [ ] T063 [P] [US4] Add server-side traversal unit tests in `packages/server/src/features/dependencies/symbolNeighbors.test.ts` covering hop limits, relationship grouping, and confidence ordering
+- [ ] T064 [US4] Implement neighbor traversal service in `packages/server/src/features/dependencies/symbolNeighbors.ts` that queries the graph store and enforces hop/depth limits
+- [ ] T065 [P] [US4] Expose an LSP request/response contract in `packages/server/src/main.ts` & `packages/shared/src/contracts/diagnostics.ts` (or new contract) with telemetry hooks for future LLM usage
+- [ ] T066 [US4] Implement VS Code command palette + quick pick UI in `packages/extension/src/commands/inspectSymbolNeighbors.ts` consuming the LSP request and rendering grouped results
+- [ ] T067 [P] [US4] Add a developer-focused CLI entry (e.g., `scripts/graph-tools/inspect-symbol.ts`) and document workflow in `.mdmd/layer-4/extension-services` or quickstart appendix for internal dogfooding
+
+**Checkpoint**: Symbol neighborhood explorer available for dogfooding, returning actionable graph insights without relying on diagnostics.
+
 ---
 
-## Phase 6: Polish & Cross-Cutting Concerns
+## Phase 7: Polish & Cross-Cutting Concerns
 
 **Purpose**: Hardening, documentation, instrumentation, and release readiness
 
@@ -227,11 +242,12 @@ description: "Task list for Link-Aware Diagnostics"
 ---
 
 ## Summary
-- **Total Tasks**: 61
+- **Total Tasks**: 67
 - **User Story Task Counts**:
   - US1: 8 tasks (including T034 test)
   - US2: 8 tasks (including T026 test)
   - US3: 7 tasks (including T042 test)
-- **Parallel Opportunities**: 22 tasks marked `[P]`
-- **Independent Tests**: T034 (US1), T026 (US2), T042 (US3)
+- US4: 5 tasks (including T063 test)
+- **Parallel Opportunities**: 24 tasks marked `[P]`
+- **Independent Tests**: T034 (US1), T026 (US2), T042 (US3), T063 (US4)
 - **Suggested MVP Scope**: Phases 1–3 (deliver code-change impact first)

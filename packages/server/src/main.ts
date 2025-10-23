@@ -62,6 +62,7 @@ import {
   extractTestModeOverrides,
   mergeExtensionSettings
 } from "./runtime/settings";
+import { DriftHistoryStore } from "./telemetry/driftHistoryStore";
 
 const SETTINGS_NOTIFICATION = "linkDiagnostics/settings/update";
 const FILE_DELETED_NOTIFICATION = "linkDiagnostics/files/deleted";
@@ -88,6 +89,7 @@ const knowledgeFeedController = new KnowledgeFeedController({
 });
 const hysteresisController = new HysteresisController();
 let acknowledgementService: AcknowledgementService | null = null;
+let driftHistoryStore: DriftHistoryStore | null = null;
 
 let changeQueue: ChangeQueue | null = null;
 let runtimeSettings: RuntimeSettings = DEFAULT_RUNTIME_SETTINGS;
@@ -123,6 +125,10 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
   storageDirectory = path.dirname(storageFile);
   ensureDirectory(storageDirectory);
   graphStore = new GraphStore({ dbPath: storageFile });
+  driftHistoryStore = new DriftHistoryStore({
+    graphStore,
+    now: () => new Date()
+  });
 
   runtimeSettings = deriveRuntimeSettings(providerGuard.getSettings());
   changeProcessor.updateContext({ runtimeSettings });
@@ -131,6 +137,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
     graphStore,
     hysteresis: hysteresisController,
     runtimeSettings,
+    driftHistory: driftHistoryStore,
     logger: connection.console,
     now: () => new Date()
   });
@@ -233,6 +240,7 @@ connection.onShutdown(() => {
   });
 
   acknowledgementService = null;
+  driftHistoryStore = null;
 
   connection.console.info("link-aware-diagnostics server shutdown complete");
 });

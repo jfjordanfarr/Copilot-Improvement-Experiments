@@ -16,10 +16,32 @@ interface Logger {
   error(message: string): void;
 }
 
+interface DriftHistoryAdapter {
+  recordEmission(params: {
+    diagnosticId: string;
+    changeEventId: string;
+    triggerArtifactId: string;
+    targetArtifactId: string;
+    severity: DiagnosticSeverity;
+    linkIds?: string[];
+  }): void;
+  recordAcknowledgement(params: {
+    diagnosticId: string;
+    changeEventId: string;
+    triggerArtifactId: string;
+    targetArtifactId: string;
+    severity: DiagnosticSeverity;
+    actor: string;
+    notes?: string;
+    linkIds?: string[];
+  }): void;
+}
+
 export interface AcknowledgementServiceOptions {
   graphStore: GraphStore;
   hysteresis: HysteresisController;
   runtimeSettings: RuntimeSettings;
+  driftHistory: DriftHistoryAdapter;
   logger?: Logger;
   now?: () => Date;
 }
@@ -51,6 +73,7 @@ export class AcknowledgementService {
   private runtimeSettings: RuntimeSettings;
   private readonly nowFactory: () => Date;
   private readonly logger: Logger;
+  private readonly driftHistory: DriftHistoryAdapter;
 
   constructor(private readonly options: AcknowledgementServiceOptions) {
     this.runtimeSettings = options.runtimeSettings;
@@ -61,6 +84,7 @@ export class AcknowledgementService {
         warn: () => {},
         error: () => {}
       } satisfies Logger);
+    this.driftHistory = options.driftHistory;
   }
 
   updateRuntimeSettings(settings: RuntimeSettings): void {
@@ -90,6 +114,7 @@ export class AcknowledgementService {
     if (existing) {
       const updated: DiagnosticRecord = {
         ...existing,
+        changeEventId: payload.changeEventId,
         message: payload.message,
         severity: payload.severity,
         status: "active",
@@ -99,6 +124,7 @@ export class AcknowledgementService {
       };
 
       this.options.graphStore.storeDiagnostic(updated);
+      this.recordEmissionHistory(updated, payload.linkIds);
       return updated;
     }
 
@@ -115,6 +141,7 @@ export class AcknowledgementService {
     };
 
     this.options.graphStore.storeDiagnostic(record);
+    this.recordEmissionHistory(record, payload.linkIds);
     return record;
   }
 
@@ -155,6 +182,17 @@ export class AcknowledgementService {
 
     this.releaseHysteresis(diagnostic);
 
+    this.driftHistory.recordAcknowledgement({
+      diagnosticId: payload.diagnosticId,
+      changeEventId: diagnostic.changeEventId,
+      triggerArtifactId: diagnostic.triggerArtifactId,
+      targetArtifactId: diagnostic.artifactId,
+      severity: diagnostic.severity,
+      actor: payload.actor,
+      notes: payload.notes,
+      linkIds: diagnostic.linkIds
+    });
+
     const updatedRecord =
       this.options.graphStore.getDiagnosticById(payload.diagnosticId) ?? {
         ...diagnostic,
@@ -185,5 +223,16 @@ export class AcknowledgementService {
     }
 
     this.options.hysteresis.acknowledge(trigger.uri, target.uri);
+  }
+
+  private recordEmissionHistory(record: DiagnosticRecord, linkIds?: string[]): void {
+    this.driftHistory.recordEmission({
+      diagnosticId: record.id,
+      changeEventId: record.changeEventId,
+      triggerArtifactId: record.triggerArtifactId,
+      targetArtifactId: record.artifactId,
+      severity: record.severity,
+      linkIds: linkIds ?? record.linkIds
+    });
   }
 }

@@ -90,3 +90,19 @@ export interface AcknowledgementAction {
   notes?: string;
   timestamp: string;
 }
+
+export type DriftHistoryStatus = "emitted" | "acknowledged";
+
+export interface DriftHistoryEntry {
+  id: string;
+  diagnosticId: string;
+  changeEventId: string;
+  triggerArtifactId: string;
+  targetArtifactId: string;
+  status: DriftHistoryStatus;
+  severity: DiagnosticSeverity;
+  recordedAt: string;
+  actor?: string;
+  notes?: string;
+  metadata?: Record<string, unknown>;
+}

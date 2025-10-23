@@ -46,6 +46,7 @@
 3. **Review alerts**: Diagnostics appear in the Problems panel and each affected document. Quick actions let you jump to linked files or open the consolidated panel. Broken-link `doc-drift` diagnostics intentionally invert `triggerUri`/`targetUri` so the missing resource is treated as the trigger and the referencing document receives the warning—keep that in mind when navigating.
 4. **Acknowledge**: Resolve or acknowledge items directly from the diagnostic code action or from the “Link Diagnostics” view. The system records an `AcknowledgementAction` and clears the alert until a new change occurs.
 5. **Optional LLM assist**: Trigger “Link Diagnostics: Analyze Impact with AI” to request a deeper reasoning pass using the configured model. This action is available only after a provider is selected and will respect the `llmProviderMode` guard. Results attach to the diagnostic’s `llmAssessment` field and display in the side panel.
+6. **Dogfood the graph**: Use “Link Diagnostics: Inspect Symbol Neighbors” (or the companion CLI) to explore first- and second-degree relationships before changing a file. The quick pick groups results by relationship kind and acts as a proving ground for future LLM-powered explainers.
 
 ## Testing
 - Run unit tests (shared modules): `npm run test:unit`
