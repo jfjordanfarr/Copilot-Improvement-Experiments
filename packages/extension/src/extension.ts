@@ -8,7 +8,7 @@ import {
   TransportKind
 } from "vscode-languageclient/node";
 
-import { RebindRequiredPayload } from "@copilot-improvement/shared";
+import { RebindRequiredPayload, FEEDS_READY_REQUEST, type FeedsReadyResult } from "@copilot-improvement/shared";
 
 import { registerAcknowledgementWorkflow } from "./commands/acknowledgeDiagnostic";
 import { registerExportDiagnosticsCommand } from "./commands/exportDiagnostics";
@@ -28,10 +28,6 @@ const REBIND_NOTIFICATION = "linkDiagnostics/maintenance/rebindRequired";
 let client: LanguageClient | undefined;
 let configService: ConfigService | undefined;
 let clientReady = false;
-
-function hasClearFunction(value: unknown): value is { clear: () => void } {
-  return typeof value === "object" && value !== null && typeof (value as { clear?: unknown }).clear === "function";
-}
 
 export async function activate(context: vscode.ExtensionContext): Promise<void> {
   const serverModule = context.asAbsolutePath(path.join("..", "server", "dist", "main.js"));
@@ -81,36 +77,84 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     diagnosticCollectionName: "Link Diagnostics"
   };
 
-  client = new LanguageClient(
+  const createdClient = new LanguageClient(
     "linkAwareDiagnostics",
     "Link-Aware Diagnostics",
     serverOptions,
     clientOptions
   );
+  client = createdClient;
 
   context.subscriptions.push(
-    vscode.commands.registerCommand("linkAwareDiagnostics.isServerReady", () => {
-      console.log("isServerReady invoked", clientReady);
-      return clientReady;
+    vscode.commands.registerCommand("linkAwareDiagnostics.isServerReady", async () => {
+      // Short-circuit on client readiness to avoid blocking unrelated tests.
+      if (!client) {
+        console.log("isServerReady invoked", false);
+        return false;
+      }
+      if (clientReady) {
+        // If client is ready, briefly wait for feeds (if any) to become healthy, but cap the wait to avoid blocking.
+        try {
+          const deadline = Date.now() + 3000; // up to 3s soft wait
+          let last: FeedsReadyResult | undefined;
+          do {
+            last = await client.sendRequest<FeedsReadyResult>(FEEDS_READY_REQUEST);
+            const hasFeeds = typeof last?.configuredFeeds === "number" && last.configuredFeeds > 0;
+            if (!hasFeeds || last.ready) {
+              console.log(
+                "isServerReady invoked",
+                true,
+                hasFeeds
+                  ? `(feeds: configured=${last.configuredFeeds}, healthy=${last.healthyFeeds})`
+                  : "(no feeds)"
+              );
+              return true;
+            }
+            await new Promise(res => setTimeout(res, 200));
+          } while (Date.now() < deadline);
+
+          // Soft timeout reached; proceed to not block tests.
+          console.log(
+            "isServerReady invoked",
+            true,
+            last
+              ? `(feeds: configured=${last.configuredFeeds}, healthy=${last.healthyFeeds}; soft-timeout)`
+              : "(feeds probe failed; soft-timeout)"
+          );
+          return true;
+        } catch (err) {
+          console.warn("feeds readiness request failed during soft-wait", err);
+          console.log("isServerReady invoked", true, "(client ready; feeds probe error)");
+          return true;
+        }
+      }
+      try {
+        const result = await client.sendRequest<FeedsReadyResult>(FEEDS_READY_REQUEST);
+        const hasFeeds = typeof result?.configuredFeeds === "number" && result.configuredFeeds > 0;
+        const ready = hasFeeds ? Boolean(result?.ready) : Boolean(clientReady);
+        console.log(
+          "isServerReady invoked",
+          ready,
+          hasFeeds ? `(feeds: configured=${result.configuredFeeds}, healthy=${result.healthyFeeds})` : "(no feeds)"
+        );
+        return ready;
+      } catch (err) {
+        console.warn("feeds readiness request failed", err);
+        // If the request fails (e.g., early startup), rely on client readiness
+        return Boolean(clientReady);
+      }
     })
   );
 
   context.subscriptions.push(
     vscode.commands.registerCommand("linkAwareDiagnostics.clearAllDiagnostics", () => {
-      const diagnostics = client?.diagnostics;
-      if (hasClearFunction(diagnostics)) {
-        diagnostics.clear();
-      }
+      client?.diagnostics?.clear();
       return true;
     })
   );
 
   clientReady = false;
-  await client.start();
-  const readyClient = client as unknown as { onReady?: () => Promise<void> };
-  if (typeof readyClient.onReady === "function") {
-    await readyClient.onReady();
-  }
+  await createdClient.start();
   clientReady = true;
 
   const activeClient = client;

@@ -9,6 +9,14 @@ const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..");
 const moduleDir = path.join(repoRoot, "node_modules", "better-sqlite3");
 
+const argv = process.argv.slice(2);
+const FORCE = argv.includes("--force") || process.env.BETTER_SQLITE3_REBUILD_FORCE === "1";
+
+if (!FORCE && process.env.SKIP_BETTER_SQLITE3_REBUILD === "1") {
+  console.log("[better-sqlite3] SKIP_BETTER_SQLITE3_REBUILD=1 set; skipping native binary preparation");
+  process.exit(0);
+}
+
 if (!fs.existsSync(moduleDir)) {
   console.error("better-sqlite3 is not installed. Run 'npm install' before rebuilding.");
   process.exit(1);

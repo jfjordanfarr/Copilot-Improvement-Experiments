@@ -21,16 +21,24 @@
 4. When prompted, complete the “Select LLM Provider” onboarding to enable diagnostics (choose a local provider or opt to keep AI features disabled for now).
 
 ## Configuration
-- On first launch, the extension opens the “Select LLM Provider” onboarding. Diagnostics remain disabled until you choose a provider or explicitly select the “local-only”/“disabled” option.
-- Link inference runs automatically using heuristic/LLM analysis and augments with active language-server signals (definitions, references, diagnostics) plus any configured knowledge-graph feeds. Override or pin relationships only when needed using the “Link Diagnostics: Override Link” command; overrides persist in the workspace cache, take precedence over future inference passes until you remove them, and contribute provenance for audit trails.
-- Configure knowledge-graph feeds per workspace: import static KnowledgeSnapshots on-demand when you want a frozen baseline, or register streaming feeds (e.g., GitLab Knowledge Graph webhooks) for continuous updates. Streaming feeds automatically resume after transient outages by replaying missed deltas, while snapshots remain active until a newer payload passes validation.
-- When external feeds fail validation or become unreachable, the extension surfaces a warning diagnostic, pauses ingestion for that source, and continues operating on locally inferred data so diagnostics remain trustworthy.
-- In workspaces without language-server coverage, expect the first inference pass to take longer while the fallback pipeline builds context; results remain rebuildable and will speed up once indexed data is available.
-- Key settings:
-   - `linkAwareDiagnostics.llmProviderMode`: `prompt` (default – requires explicit choice), `local-only`, or `disabled`.
-   - `linkAwareDiagnostics.noiseSuppression.level`: `low`, `medium`, `high`.
-   - `linkAwareDiagnostics.storagePath`: override default location for the SQLite cache if you need to relocate it.
-   - `linkAwareDiagnostics.debounce.ms`: adjust the change batching window (default 1000).
+- On first launch, complete the “Select LLM Provider” onboarding. Diagnostics remain disabled until you explicitly choose a provider or opt into `local-only`/`disabled` modes. While waiting, the client soft-waits for feed health but still falls back to workspace-derived evidence so tests stay deterministic.
+- Link inference blends heuristic analysis, language-server signals, and knowledge-feed content. Use “Link Diagnostics: Override Link” sparingly to pin relationships; overrides persist in SQLite and inform traceability metadata until revoked.
+- Configure knowledge feeds per workspace. Static snapshots provide frozen baselines; streaming feeds resume automatically after outages by replaying missed deltas. Validation failures emit info diagnostics, mark feeds unhealthy, and keep inference on local data until the stream recovers.
+- In language-server–absent workspaces, expect the first inference pass to rebuild slowly while fallback inference seeds context. Subsequent runs reuse cached evidence so diagnostics rehydrate quickly.
+### Settings reference
+| Setting key | Default | Description |
+| --- | --- | --- |
+| `linkAwareDiagnostics.llmProviderMode` | `prompt` | Consent gate for AI features. Choose `local-only` for deterministic tests or `disabled` to operate strictly on heuristics. |
+| `linkAwareDiagnostics.enableDiagnostics` | `false` until onboarding completes | Master toggle that becomes `true` after provider consent. Can be flipped off for read-only audit sessions. |
+| `linkAwareDiagnostics.noiseSuppression.level` | `medium` | Tunes diagnostic filtering: `low` emits every ripple, `medium` balances churn, `high` suppresses lower-confidence hops. |
+| `linkAwareDiagnostics.debounce.ms` | `1000` | Batching window for change events. Increase when editing large files to reduce churn; decrease for eager feedback. |
+| `linkAwareDiagnostics.storagePath` | per-workspace global storage | Disk location for the SQLite knowledge store and acknowledgement ledger. Point to a repo-local path if you need portable caches. |
+| `linkAwareDiagnostics.experimental.feeds` | `[]` | Optional quick-start list of static or streaming feed descriptors. Useful for CI fixtures and air-gapped environments. |
+
+### Maintenance and rebind workflow
+- Delete or move events detected by the client’s file-maintenance watcher trigger a `linkDiagnostics/maintenance/rebindRequired` notification. The extension displays a consent-aware rebind prompt so leads can reconcile renamed artifacts without losing acknowledgements.
+- Accepting the rebind clears stale nodes, replays persisted knowledge feeds, and re-applies overrides. Declining leaves diagnostics in place so you can manually resolve them; the prompt can be re-opened later via the command palette.
+- For catastrophic cache drift, run `Link Diagnostics: Clear All Diagnostics` to flush the current Problems entries, then use the rebind prompt to rebuild the graph. When both LSP feeds and the workspace provider are healthy, readiness logs report `configured` vs `healthy` feed counts to confirm the rebuild completed.
 
 ## Typical Workflow
 1. **Let inference run**: Open the workspace; the language server rebuilds the link graph from indexed symbols and diagnostics. Inspect inferred relationships via the Problems panel or the upcoming diagnostics view.
@@ -45,4 +53,4 @@
 - Contract smoke tests for custom LSP messages: `npm run test:contracts`
 
 ## CI Hooks
-- Headless validation executes the language server in `ci-check` mode, loading the project, rebuilding the graph, and failing the build on unresolved diagnostics. Configure via `npm run ci-check`.
+- Headless validation executes the full verification pipeline (`npm run verify`), which lint-checks the repo, rebuilds SQLite binaries for Node and Electron, runs unit tests with coverage, and passes through the VS Code integration harness. Use the convenience alias `npm run ci-check` when wiring CI jobs.

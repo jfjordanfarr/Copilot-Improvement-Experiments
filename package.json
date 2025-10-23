@@ -15,12 +15,13 @@
     "lint": "eslint .",
     "format": "prettier --check .",
     "rebuild:better-sqlite3:node": "node ./scripts/rebuild-better-sqlite3.mjs",
+    "rebuild:better-sqlite3:force": "node ./scripts/rebuild-better-sqlite3.mjs --force",
     "test:unit": "npm run rebuild:better-sqlite3:node --if-present && vitest run",
-    "test:integration": "tsc -p tests/integration/tsconfig.json && node ./tests/integration/dist/vscode/runTests.js",
-    "verify": "npm run lint && npm run test:unit && npm run test:integration",
+    "test:integration": "node ./tests/integration/clean-dist.mjs && tsc -p tests/integration/tsconfig.json && node ./tests/integration/dist/vscode/runTests.js",
+    "verify": "npm run lint && npm run rebuild:better-sqlite3:force && npm run test:unit && npm run test:integration",
     "safe:commit": "node ./scripts/safe-to-commit.mjs",
     "test:contracts": "npm run test:contracts -w packages/server",
-    "ci-check": "npm run lint && npm run test:unit"
+    "ci-check": "npm run verify"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.10",

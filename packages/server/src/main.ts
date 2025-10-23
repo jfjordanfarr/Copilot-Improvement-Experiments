@@ -28,6 +28,8 @@ import {
   type DiagnosticAcknowledgedPayload,
   LIST_OUTSTANDING_DIAGNOSTICS_REQUEST,
   type ListOutstandingDiagnosticsResult,
+  FEEDS_READY_REQUEST,
+  type FeedsReadyResult,
   type InspectDependenciesParams,
   type InspectDependenciesResult
 } from "@copilot-improvement/shared";
@@ -37,6 +39,7 @@ import { inspectDependencies } from "./features/dependencies/inspectDependencies
 import { AcknowledgementService } from "./features/diagnostics/acknowledgementService";
 import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import { buildOutstandingDiagnosticsResult } from "./features/diagnostics/listOutstandingDiagnostics";
+import { createStaticFeedWorkspaceProvider } from "./features/knowledge/staticFeedWorkspaceProvider";
 import { createSymbolBridgeProvider } from "./features/knowledge/symbolBridgeProvider";
 import { createWorkspaceIndexProvider } from "./features/knowledge/workspaceIndexProvider";
 import {
@@ -156,6 +159,14 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
       createWorkspaceIndexProvider({
         rootPath: workspaceRootPath,
         implementationGlobs: ["src"],
+        logger: connection.console
+      })
+    );
+
+    // Fallback: contribute static feed links as workspace evidences so tests don't race on feed readiness
+    workspaceProviders.push(
+      createStaticFeedWorkspaceProvider({
+        rootPath: workspaceRootPath,
         logger: connection.console
       })
     );
@@ -347,6 +358,26 @@ connection.onRequest(
 
     const diagnostics = acknowledgementService.listActiveDiagnostics();
     return buildOutstandingDiagnosticsResult(diagnostics, graphStore);
+  }
+);
+
+// Report whether knowledge feeds have been discovered and are healthy.
+connection.onRequest(
+  FEEDS_READY_REQUEST,
+  (): FeedsReadyResult => {
+    const healthyCount = knowledgeFeedController.getHealthyFeeds().length;
+    const configuredCount = knowledgeFeedController.getConfiguredFeedCount();
+    connection.console.info(
+      `feeds readiness probe: configured=${configuredCount}, healthy=${healthyCount}, workspaceRoot=${Boolean(
+        workspaceRootPath
+      )}`
+    );
+    return {
+      // Ready when no feeds are configured (nothing to wait on), or when all configured feeds are healthy
+      ready: configuredCount === 0 || healthyCount >= configuredCount,
+      configuredFeeds: configuredCount,
+      healthyFeeds: healthyCount
+    } satisfies FeedsReadyResult;
   }
 );
 

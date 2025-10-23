@@ -32,3 +32,7 @@ Thumbs.db
 # Prevent accidental compiled JS artifacts in TypeScript source folders
 packages/**/src/**/*.js
 packages/**/src/**/*.js.map
+
+# Local lint outputs (ensure clean repo)
+eslint-report.json
+lint-output.txt

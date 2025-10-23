@@ -13,12 +13,15 @@ import {
 interface WorkspaceIndexProviderOptions {
   rootPath: string;
   implementationGlobs?: string[];
+  documentationGlobs?: string[];
+  scriptGlobs?: string[];
   logger?: {
     info(message: string): void;
   };
 }
 
-const DEFAULT_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cts", ".mts"]);
+export const DEFAULT_CODE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cts", ".mts"]);
+export const DEFAULT_DOC_EXTENSIONS = new Set([".md", ".mdx", ".markdown", ".txt", ".yaml", ".yml"]);
 
 /**
  * Lightweight workspace indexer that seeds implementation artifacts so markdown linkage heuristics
@@ -33,16 +36,20 @@ export function createWorkspaceIndexProvider(options: WorkspaceIndexProviderOpti
     async collect(): Promise<WorkspaceLinkContribution> {
       const seeds: ArtifactSeed[] = [];
       const hints: RelationshipHint[] = [];
-      const targets = options.implementationGlobs ?? ["src"];
+      const implTargets = options.implementationGlobs ?? ["src"];
+      const docTargets = options.documentationGlobs ?? ["docs", "specs", "templates", "config", ".mdmd", "README.md"];
+      const scriptTargets = options.scriptGlobs ?? ["scripts"];
 
-      for (const target of targets) {
+      // Implementation/code
+      for (const target of implTargets) {
         const absolute = path.resolve(normalizedRoot, target);
-        await scanDirectory(absolute, async filePath => {
-          if (!DEFAULT_EXTENSIONS.has(path.extname(filePath))) {
-            return;
-          }
+        await scanDirectory(absolute, async (filePath) => {
+          if (shouldSkipPath(filePath)) return;
+          const ext = path.extname(filePath).toLowerCase();
+          if (!DEFAULT_CODE_EXTENSIONS.has(ext)) return;
 
           try {
+            if (await isLikelyBinaryFile(filePath)) return;
             const content = await fs.readFile(filePath, "utf8");
             const uri = pathToFileURL(filePath).toString();
             seeds.push({
@@ -59,14 +66,87 @@ export function createWorkspaceIndexProvider(options: WorkspaceIndexProviderOpti
               workspaceRoot: normalizedRoot
             });
             hints.push(...directiveHints);
+
+            const pathHints = await extractPathReferenceHints({
+              content,
+              sourceFile: filePath,
+              sourceUri: uri,
+              workspaceRoot: normalizedRoot
+            });
+            hints.push(...pathHints);
           } catch {
-            // Ignore unreadable files; diagnostic logging handled by caller if desired.
+            // ignore
           }
         });
       }
 
+      // Documentation/templates (as requirements layer)
+      for (const target of docTargets) {
+        const absolute = path.resolve(normalizedRoot, target);
+        await scanDirectory(absolute, async (filePath) => {
+          if (shouldSkipPath(filePath)) return;
+          const ext = path.extname(filePath).toLowerCase();
+          if (!DEFAULT_DOC_EXTENSIONS.has(ext) && !looksLikeDocsPath(filePath)) return;
+
+          try {
+            if (await isLikelyBinaryFile(filePath)) return;
+            const content = await fs.readFile(filePath, "utf8");
+            const uri = pathToFileURL(filePath).toString();
+            seeds.push({
+              uri,
+              layer: "requirements",
+              language: inferDocLanguage(filePath),
+              content
+            });
+
+            const directiveHints = await extractLinkHints({
+              content,
+              sourceFile: filePath,
+              sourceUri: uri,
+              workspaceRoot: normalizedRoot
+            });
+            hints.push(...directiveHints);
+          } catch {
+            // ignore
+          }
+        });
+      }
+
+      // Scripts (outside src) as code
+      for (const target of scriptTargets) {
+        const absolute = path.resolve(normalizedRoot, target);
+        await scanDirectory(absolute, async (filePath) => {
+          if (shouldSkipPath(filePath)) return;
+          const ext = path.extname(filePath).toLowerCase();
+          if (!DEFAULT_CODE_EXTENSIONS.has(ext)) return;
+
+          try {
+            if (await isLikelyBinaryFile(filePath)) return;
+            const content = await fs.readFile(filePath, "utf8");
+            const uri = pathToFileURL(filePath).toString();
+            seeds.push({
+              uri,
+              layer: "code",
+              language: inferLanguage(filePath),
+              content
+            });
+
+            const pathHints = await extractPathReferenceHints({
+              content,
+              sourceFile: filePath,
+              sourceUri: uri,
+              workspaceRoot: normalizedRoot
+            });
+            hints.push(...pathHints);
+          } catch {
+            // ignore
+          }
+        });
+      }
+
+      const allTargets = [...implTargets, ...docTargets, ...scriptTargets];
       options.logger?.info(
-        `[workspace-index] collected ${seeds.length} seed(s) and ${hints.length} hint(s) from ${targets.join(",")}`
+        `[workspace-index] collected ${seeds.length} seed(s) and ${hints.length} hint(s) from ${allTargets.join(",")}`
       );
       return { seeds, hints };
     }
@@ -85,6 +165,7 @@ async function scanDirectory(root: string, onFile: (filePath: string) => Promise
     entries.map(async entry => {
       const resolved = path.join(root, entry.name);
       if (entry.isDirectory()) {
+        if (shouldSkipDir(entry.name)) return;
         await scanDirectory(resolved, onFile);
         return;
       }
@@ -93,6 +174,32 @@ async function scanDirectory(root: string, onFile: (filePath: string) => Promise
         await onFile(resolved);
       }
     })
+  );
+}
+
+function shouldSkipDir(name: string): boolean {
+  const lower = name.toLowerCase();
+  return (
+    lower === ".git" ||
+    lower === "node_modules" ||
+    lower === "dist" ||
+    lower === "out" ||
+    lower === "build" ||
+    lower === "coverage" ||
+    lower === ".vscode" ||
+    lower === ".idea" ||
+    lower === ".history" ||
+    lower === ".vscode-test"
+  );
+}
+
+function shouldSkipPath(filePath: string): boolean {
+  const normalized = filePath.replace(/\\/g, "/").toLowerCase();
+  return (
+    /\/\.git\//.test(normalized) ||
+    /\/node_modules\//.test(normalized) ||
+    /\/(dist|out|build|coverage)\//.test(normalized) ||
+    /\/\.vscode(?:-test)?\//.test(normalized)
   );
 }
 
@@ -108,6 +215,23 @@ function inferLanguage(filePath: string): string | undefined {
     case ".jsx":
     case ".mjs":
       return "javascript";
+    default:
+      return undefined;
+  }
+}
+
+function inferDocLanguage(filePath: string): string | undefined {
+  const extension = path.extname(filePath).toLowerCase();
+  switch (extension) {
+    case ".md":
+    case ".mdx":
+    case ".markdown":
+      return "markdown";
+    case ".yml":
+    case ".yaml":
+      return "yaml";
+    case ".txt":
+      return "text";
     default:
       return undefined;
   }
@@ -151,6 +275,51 @@ async function extractLinkHints(context: LinkHintContext): Promise<RelationshipH
   return matches;
 }
 
+async function extractPathReferenceHints(context: LinkHintContext): Promise<RelationshipHint[]> {
+  // Heuristic: string-literal paths like './templates/x', '../docs/y', '/absolute/z', or containing
+  // key folders (docs, templates) or known extensions (.md, .hbs, .json).
+  const PATH_LIKE = /["'`]([^"'`\n]*\/(?:[^"'`\n]+))["'`]/g;
+  const candidates: RelationshipHint[] = [];
+  let match: RegExpExecArray | null;
+
+  while ((match = PATH_LIKE.exec(context.content)) !== null) {
+    const ref = (match[1] ?? "").trim();
+    if (!ref || isExternalReference(ref)) continue;
+    // Throttle obvious non-paths: require slash and filter out common URL-like prefixes handled elsewhere
+    if (!ref.includes("/")) continue;
+
+    // Light relevance filter to cut false positives
+    const lowered = ref.toLowerCase();
+    const looksRelevant =
+      lowered.startsWith("./") ||
+      lowered.startsWith("../") ||
+      lowered.startsWith("/") ||
+      lowered.includes("docs/") ||
+      lowered.includes("templates/") ||
+      /\.(md|mdx|markdown|hbs|ejs|njk|liquid|json|yaml|yml|txt)$/i.test(lowered);
+    if (!looksRelevant) continue;
+
+    const targetPath = await resolveReferencePath(ref, context);
+    if (!targetPath) continue;
+
+    const targetUri = pathToFileURL(targetPath).toString();
+    candidates.push({
+      sourceUri: targetUri,
+      targetUri: context.sourceUri,
+      kind: "documents",
+      confidence: 0.75,
+      rationale: `string path reference ${ref}`
+    });
+  }
+
+  PATH_LIKE.lastIndex = 0;
+
+  const resolveHints = await extractPathFunctionHints(context);
+  candidates.push(...resolveHints);
+
+  return candidates;
+}
+
 function isExternalReference(reference: string): boolean {
   return /^(https?:)?\/\//i.test(reference);
 }
@@ -185,4 +354,106 @@ async function fileExists(candidate: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+async function isLikelyBinaryFile(filePath: string): Promise<boolean> {
+  try {
+    const fh = await fs.open(filePath, "r");
+    const { size } = await fh.stat();
+    const sampleSize = Math.min(size, 2048);
+    const buf = Buffer.alloc(sampleSize);
+    await fh.read(buf, 0, sampleSize, 0);
+    await fh.close();
+
+    // Contains NUL byte → binary
+    if (buf.includes(0)) return true;
+
+    // If too many non-printable characters, treat as binary
+    let nonPrintable = 0;
+    for (let i = 0; i < sampleSize; i++) {
+      const c = buf[i];
+      // allow tab(9), lf(10), cr(13), common whitespace, and printable ASCII 32-126
+      const printable = c === 9 || c === 10 || c === 13 || (c >= 32 && c <= 126);
+      if (!printable) nonPrintable++;
+    }
+    return nonPrintable / sampleSize > 0.2;
+  } catch {
+    return false;
+  }
+}
+
+function looksLikeDocsPath(filePath: string): boolean {
+  const normalized = filePath.replace(/\\/g, "/").toLowerCase();
+  return (
+    normalized.includes("/docs/") ||
+    normalized.includes("/specs/") ||
+    normalized.includes("/templates/") ||
+    normalized.includes("/config/") ||
+    normalized.includes("/.mdmd/") ||
+    normalized.endsWith("readme.md")
+  );
+}
+
+async function extractPathFunctionHints(context: LinkHintContext): Promise<RelationshipHint[]> {
+  const hints: RelationshipHint[] = [];
+  const FUNCTION_PATTERN = /\b(?:path\.)?(resolve|join)\s*\(/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = FUNCTION_PATTERN.exec(context.content)) !== null) {
+    const openParenIndex = match.index + match[0].lastIndexOf("(");
+    const closeParenIndex = findMatchingParen(context.content, openParenIndex);
+    if (closeParenIndex === -1) {
+      continue;
+    }
+
+    const argsSegment = context.content.slice(openParenIndex + 1, closeParenIndex);
+    const literalMatches = Array.from(argsSegment.matchAll(/["'`]([^"'`]+)["'`]/g)).map(value => value[1].trim());
+    if (!literalMatches.length) {
+      continue;
+    }
+
+    const joined = literalMatches.join("/");
+    const candidateRefs = new Set<string>();
+    if (joined) {
+      candidateRefs.add(joined);
+    }
+
+    if (literalMatches.length > 1) {
+      candidateRefs.add(`${literalMatches[0]}/${literalMatches.slice(1).join("/")}`);
+    }
+
+    for (const ref of candidateRefs) {
+      const targetPath = await resolveReferencePath(ref, context);
+      if (!targetPath) {
+        continue;
+      }
+
+      const targetUri = pathToFileURL(targetPath).toString();
+      hints.push({
+        sourceUri: targetUri,
+        targetUri: context.sourceUri,
+        kind: "documents",
+        confidence: 0.7,
+        rationale: `${match[1]} string reference ${ref}`
+      });
+    }
+  }
+
+  return hints;
+}
+
+function findMatchingParen(source: string, openIndex: number): number {
+  let depth = 0;
+  for (let i = openIndex; i < source.length; i++) {
+    const char = source[i];
+    if (char === "(") {
+      depth++;
+    } else if (char === ")") {
+      depth--;
+      if (depth === 0) {
+        return i;
+      }
+    }
+  }
+  return -1;
 }

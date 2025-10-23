@@ -1,6 +1,6 @@
 import type { Connection } from "vscode-languageserver/node";
 
-import type { GraphStore } from "@copilot-improvement/shared";
+import type { GraphStore, KnowledgeFeed } from "@copilot-improvement/shared";
 
 import { describeError } from "./environment";
 import {
@@ -25,6 +25,7 @@ export class KnowledgeFeedController {
   private service: KnowledgeGraphBridgeService | null = null;
   private statusDisposable: KnowledgeGraphBridgeDisposable | null = null;
   private artifactWatcher: ArtifactWatcher | null = null;
+  private configuredFeedsCount = 0;
 
   constructor(private readonly options: KnowledgeFeedControllerOptions) {}
 
@@ -89,9 +90,14 @@ export class KnowledgeFeedController {
 
     try {
       const result = await this.service.start();
+      this.configuredFeedsCount = result.configuredFeeds;
 
       if (this.service && this.artifactWatcher) {
-        this.artifactWatcher.setKnowledgeFeeds(this.service.getHealthyFeeds());
+        const healthy = this.service.getHealthyFeeds();
+        this.artifactWatcher.setKnowledgeFeeds(healthy);
+        connection.console.info(
+          `[knowledge-feed] initialised: configured=${this.configuredFeedsCount}, healthy=${healthy.length}`
+        );
       }
 
       if (result.configuredFeeds === 0) {
@@ -126,5 +132,15 @@ export class KnowledgeFeedController {
     if (this.artifactWatcher) {
       this.artifactWatcher.setKnowledgeFeeds([]);
     }
+
+    this.configuredFeedsCount = 0;
+  }
+
+  getHealthyFeeds(): KnowledgeFeed[] {
+    return this.service?.getHealthyFeeds() ?? [];
+  }
+
+  getConfiguredFeedCount(): number {
+    return this.configuredFeedsCount;
   }
 }

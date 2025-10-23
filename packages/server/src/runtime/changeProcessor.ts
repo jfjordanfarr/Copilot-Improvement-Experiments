@@ -190,6 +190,20 @@ export function createChangeProcessor({
           persisted.artifact,
           rippleSettings.documentKinds
         );
+        // Instrumentation: log ripple targets for document-driven ripples to help debug multi-hop chains
+        if (rippleImpacts.length > 0) {
+          const details = rippleImpacts
+            .slice(0, 10)
+            .map(imp => `${normalizeFileUri(imp.target.uri)}[${imp.hint.kind} d=${imp.hint.depth}]`)
+            .join(", ");
+          connection.console.info(
+            `ripple(debug) document ${normalizeFileUri(persisted.artifact.uri)} -> ${rippleImpacts.length} target(s): ${details}`
+          );
+        } else {
+          connection.console.info(
+            `ripple(debug) document ${normalizeFileUri(persisted.artifact.uri)} produced no ripple targets`
+          );
+        }
         documentContexts.push({
           change: processed,
           artifact: persisted.artifact,

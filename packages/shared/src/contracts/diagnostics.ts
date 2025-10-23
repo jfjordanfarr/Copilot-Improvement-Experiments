@@ -60,3 +60,11 @@ export interface ExportDiagnosticsResult {
   content: string;
   total: number;
 }
+
+// Health/ready signals
+export const FEEDS_READY_REQUEST = "linkDiagnostics/feeds/ready";
+export interface FeedsReadyResult {
+  ready: boolean;
+  configuredFeeds: number;
+  healthyFeeds: number;
+}
