@@ -5,6 +5,7 @@
 - Collaborators:
   - `ArtifactWatcher` change contexts (document category)
   - `RippleAnalyzer` hints (`RippleImpact` payloads)
+  - Noise filter presets derived from runtime settings
   - Hysteresis controller + runtime noise suppression settings
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-003](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-006](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-008](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-011](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)

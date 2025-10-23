@@ -15,7 +15,7 @@ Owns the language server bootstrap loop: wiring LSP lifecycle events, projecting
 
 ## Key Concepts
 - **Provider Guard** – merges extension initialization data with test overrides, blocks diagnostics when providers are misconfigured, and exposes the authoritative `ExtensionSettings` snapshot.
-- **Runtime Settings Derivation** – converts provider guard output into debounce + noise-suppression knobs shared between change queue, diagnostics publishers, and knowledge feeds.
+- **Runtime Settings Derivation** – converts provider guard output into debounce + noise-suppression knobs (including noise filter thresholds) shared between change queue, diagnostics publishers, and knowledge feeds.
 - **Change Queue** – debounced dispatcher that batches `TextDocument` saves into the asynchronous `ChangeProcessor` pipeline.
 - **Change Processor Context** – shared state for inference, persistence, and diagnostic publication; updated whenever graph store, watcher, or runtime settings change.
 - **Knowledge Feed Controller** – lifecycle manager for `KnowledgeGraphBridgeService`, ensuring healthy feeds are reflected into the `ArtifactWatcher` while respecting storage/backoff constraints.
@@ -44,7 +44,8 @@ graph TD
   I --> J[documents.onDidSave]
   J --> K[ChangeQueue flush]
   K --> L[ChangeProcessor.process]
-  L --> M[Persist Changes & Publish Diagnostics]
+  L --> M[Noise Filter]
+  M --> N[Persist Changes & Publish Diagnostics]
 ```
 
 ## Error Handling

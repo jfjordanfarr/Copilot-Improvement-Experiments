@@ -4,10 +4,18 @@ import { ExtensionSettings } from "./providerGuard";
 
 export type NoiseSuppressionLevel = "low" | "medium" | "high";
 
+export interface NoiseFilterRuntimeConfig {
+  minConfidence: number;
+  maxDepth?: number;
+  maxPerChange?: number;
+  maxPerArtifact?: number;
+}
+
 export interface NoiseSuppressionRuntime {
   level: NoiseSuppressionLevel;
   maxDiagnosticsPerBatch: number;
   hysteresisMs: number;
+  filter: NoiseFilterRuntimeConfig;
 }
 
 export interface RippleRuntimeSettings {
@@ -29,7 +37,13 @@ export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
   noiseSuppression: {
     level: "medium",
     maxDiagnosticsPerBatch: 20,
-    hysteresisMs: 1500
+    hysteresisMs: 1500,
+    filter: {
+      minConfidence: 0.35,
+      maxDepth: 3,
+      maxPerChange: 10,
+      maxPerArtifact: 4
+    }
   },
   ripple: {
     maxDepth: 3,
@@ -40,18 +54,41 @@ export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
   }
 };
 
-const NOISE_PRESETS: Record<NoiseSuppressionLevel, Omit<NoiseSuppressionRuntime, "level">> = {
+interface NoiseSuppressionPreset {
+  maxDiagnosticsPerBatch: number;
+  hysteresisMs: number;
+  filter: NoiseFilterRuntimeConfig;
+}
+
+const NOISE_PRESETS: Record<NoiseSuppressionLevel, NoiseSuppressionPreset> = {
   low: {
     maxDiagnosticsPerBatch: 50,
-    hysteresisMs: 750
+    hysteresisMs: 750,
+    filter: {
+      minConfidence: 0.1,
+      maxPerChange: 20,
+      maxPerArtifact: 8
+    }
   },
   medium: {
     maxDiagnosticsPerBatch: 20,
-    hysteresisMs: 1500
+    hysteresisMs: 1500,
+    filter: {
+      minConfidence: 0.35,
+      maxDepth: 3,
+      maxPerChange: 10,
+      maxPerArtifact: 4
+    }
   },
   high: {
     maxDiagnosticsPerBatch: 10,
-    hysteresisMs: 2500
+    hysteresisMs: 2500,
+    filter: {
+      minConfidence: 0.6,
+      maxDepth: 3,
+      maxPerChange: 6,
+      maxPerArtifact: 2
+    }
   }
 };
 
@@ -61,6 +98,38 @@ const LINK_KIND_VALUES = new Set<LinkRelationshipKind>([
   "documents",
   "references"
 ]);
+
+function clampConfidence(value: number): number {
+  if (Number.isNaN(value)) {
+    return 0;
+  }
+  if (value < 0) {
+    return 0;
+  }
+  if (value > 1) {
+    return 1;
+  }
+  return value;
+}
+
+function coerceConfidence(value: unknown): number | undefined {
+  if (typeof value !== "number") {
+    return undefined;
+  }
+  const clamped = clampConfidence(value);
+  return clamped;
+}
+
+function coercePositiveInteger(value: unknown): number | undefined {
+  if (typeof value !== "number" || Number.isNaN(value)) {
+    return undefined;
+  }
+  const integer = Math.floor(value);
+  if (integer <= 0) {
+    return undefined;
+  }
+  return integer;
+}
 
 function normaliseLinkKinds(
   input: LinkRelationshipKind[] | undefined,
@@ -125,12 +194,28 @@ export function deriveRuntimeSettings(settings?: ExtensionSettings): RuntimeSett
       ? codeKindsCandidate
       : filterByAllowed(DEFAULT_RUNTIME_SETTINGS.ripple.codeKinds);
 
-  return {
+  const noiseOverrides = settings?.noiseSuppression;
+  const minConfidenceOverride = coerceConfidence(noiseOverrides?.minConfidence);
+  let maxDepthOverride = coercePositiveInteger(noiseOverrides?.maxDepth);
+  const maxPerChangeOverride = coercePositiveInteger(noiseOverrides?.maxPerChange);
+  const maxPerArtifactOverride = coercePositiveInteger(noiseOverrides?.maxPerArtifact);
+
+  if (maxDepthOverride !== undefined && maxDepthOverride > maxDepth) {
+    maxDepthOverride = maxDepth;
+  }
+
+  const runtime: RuntimeSettings = {
     debounceMs: debounceOverride,
     noiseSuppression: {
       level,
       maxDiagnosticsPerBatch: preset.maxDiagnosticsPerBatch,
-      hysteresisMs: preset.hysteresisMs
+      hysteresisMs: preset.hysteresisMs,
+      filter: {
+        minConfidence: minConfidenceOverride ?? preset.filter.minConfidence,
+        maxDepth: maxDepthOverride ?? preset.filter.maxDepth,
+        maxPerChange: maxPerChangeOverride ?? preset.filter.maxPerChange,
+        maxPerArtifact: maxPerArtifactOverride ?? preset.filter.maxPerArtifact
+      }
     },
     ripple: {
       maxDepth,
@@ -140,4 +225,11 @@ export function deriveRuntimeSettings(settings?: ExtensionSettings): RuntimeSett
       codeKinds
     }
   };
+
+  const filterMaxDepth = runtime.noiseSuppression.filter.maxDepth;
+  if (typeof filterMaxDepth === "number" && filterMaxDepth > runtime.ripple.maxDepth) {
+    runtime.noiseSuppression.filter.maxDepth = runtime.ripple.maxDepth;
+  }
+
+  return runtime;
 }

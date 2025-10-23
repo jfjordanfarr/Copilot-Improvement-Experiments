@@ -20,6 +20,45 @@ function isLinkRelationshipKind(value: unknown): value is LinkRelationshipKind {
   return value === "depends_on" || value === "implements" || value === "documents" || value === "references";
 }
 
+function extractNoiseSuppressionSettings(
+  value: unknown
+): NonNullable<ExtensionSettings["noiseSuppression"]> | undefined {
+  if (!isRecord(value)) {
+    return undefined;
+  }
+
+  const record = value;
+  const noise: NonNullable<ExtensionSettings["noiseSuppression"]> = {};
+  let hasSettings = false;
+
+  if (isNoiseSuppressionLevel(record.level)) {
+    noise.level = record.level;
+    hasSettings = true;
+  }
+
+  if (typeof record.minConfidence === "number") {
+    noise.minConfidence = record.minConfidence;
+    hasSettings = true;
+  }
+
+  if (typeof record.maxDepth === "number") {
+    noise.maxDepth = record.maxDepth;
+    hasSettings = true;
+  }
+
+  if (typeof record.maxPerChange === "number") {
+    noise.maxPerChange = record.maxPerChange;
+    hasSettings = true;
+  }
+
+  if (typeof record.maxPerArtifact === "number") {
+    noise.maxPerArtifact = record.maxPerArtifact;
+    hasSettings = true;
+  }
+
+  return hasSettings ? noise : undefined;
+}
+
 export function extractExtensionSettings(source: unknown): ExtensionSettings | undefined {
   if (!isRecord(source)) {
     return undefined;
@@ -64,8 +103,9 @@ export function extractExtensionSettings(source: unknown): ExtensionSettings | u
     settings.llmProviderMode = record.llmProviderMode;
   }
 
-  if (isRecord(record.noiseSuppression) && isNoiseSuppressionLevel(record.noiseSuppression.level)) {
-    settings.noiseSuppression = { level: record.noiseSuppression.level };
+  const noiseSuppression = extractNoiseSuppressionSettings(record.noiseSuppression);
+  if (noiseSuppression) {
+    settings.noiseSuppression = noiseSuppression;
   }
 
   if (isRecord(record.ripple)) {
@@ -124,6 +164,11 @@ export function extractTestModeOverrides(source: unknown): ExtensionSettings | u
 
   if (isLlmProviderMode(candidate.llmProviderMode)) {
     overrides.llmProviderMode = candidate.llmProviderMode;
+  }
+
+  const noiseSuppression = extractNoiseSuppressionSettings(candidate.noiseSuppression);
+  if (noiseSuppression) {
+    overrides.noiseSuppression = noiseSuppression;
   }
 
   if (isRecord(candidate.ripple)) {

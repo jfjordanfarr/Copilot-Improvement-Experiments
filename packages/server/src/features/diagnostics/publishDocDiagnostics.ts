@@ -11,6 +11,7 @@ import type { KnowledgeArtifact } from "@copilot-improvement/shared";
 import type { AcknowledgementService } from "./acknowledgementService";
 import { normaliseDisplayPath, type DiagnosticSender } from "./diagnosticUtils";
 import type { HysteresisController } from "./hysteresisController";
+import { applyNoiseFilter, type NoiseFilterTotals, ZERO_NOISE_FILTER_TOTALS } from "./noiseFilter";
 import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";
@@ -35,15 +36,24 @@ export interface PublishDocDiagnosticsResult {
   suppressedByBudget: number;
   suppressedByHysteresis: number;
   suppressedByAcknowledgement: number;
+  noiseFilter: NoiseFilterTotals;
 }
 
 export function publishDocDiagnostics(
   options: PublishDocDiagnosticsOptions
 ): PublishDocDiagnosticsResult {
   if (options.contexts.length === 0) {
-    return { emitted: 0, suppressedByBudget: 0, suppressedByHysteresis: 0, suppressedByAcknowledgement: 0 };
+    return {
+      emitted: 0,
+      suppressedByBudget: 0,
+      suppressedByHysteresis: 0,
+      suppressedByAcknowledgement: 0,
+      noiseFilter: { ...ZERO_NOISE_FILTER_TOTALS }
+    };
   }
 
+  const filterOutcome = applyNoiseFilter(options.contexts, options.runtimeSettings.noiseSuppression.filter);
+  const contexts = filterOutcome.contexts;
   const diagnosticsByUri = new Map<string, Diagnostic[]>();
   let emitted = 0;
   let suppressedByBudget = 0;
@@ -52,7 +62,7 @@ export function publishDocDiagnostics(
   let remaining = options.runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch;
   const hysteresisWindow = options.runtimeSettings.noiseSuppression.hysteresisMs;
   const acknowledgementService = options.acknowledgements;
-  for (const context of options.contexts) {
+  for (const context of contexts) {
     const brokenLinkDiagnostics = collectBrokenLinkDiagnostics(context);
     if (brokenLinkDiagnostics.length > 0) {
       const bucket = diagnosticsByUri.get(context.artifact.uri) ?? [];
@@ -139,7 +149,13 @@ export function publishDocDiagnostics(
     options.sender.sendDiagnostics({ uri, diagnostics });
   }
 
-  return { emitted, suppressedByBudget, suppressedByHysteresis, suppressedByAcknowledgement };
+  return {
+    emitted,
+    suppressedByBudget,
+    suppressedByHysteresis,
+    suppressedByAcknowledgement,
+    noiseFilter: filterOutcome.totals
+  };
 }
 
 function createDiagnostic(

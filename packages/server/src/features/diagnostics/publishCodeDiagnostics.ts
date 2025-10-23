@@ -8,6 +8,7 @@ import type { KnowledgeArtifact } from "@copilot-improvement/shared";
 import type { AcknowledgementService } from "./acknowledgementService";
 import { normaliseDisplayPath, type DiagnosticSender } from "./diagnosticUtils";
 import type { HysteresisController } from "./hysteresisController";
+import { applyNoiseFilter, type NoiseFilterTotals, ZERO_NOISE_FILTER_TOTALS } from "./noiseFilter";
 import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
 import type { CodeTrackedArtifactChange } from "../watchers/artifactWatcher";
@@ -33,6 +34,7 @@ export interface PublishCodeDiagnosticsResult {
   suppressedByHysteresis: number;
   withoutDependents: number;
   suppressedByAcknowledgement: number;
+  noiseFilter: NoiseFilterTotals;
 }
 
 const DIAGNOSTIC_CODE = "code-ripple";
@@ -50,10 +52,13 @@ export function publishCodeDiagnostics(
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
       withoutDependents: 0,
-      suppressedByAcknowledgement: 0
+      suppressedByAcknowledgement: 0,
+      noiseFilter: { ...ZERO_NOISE_FILTER_TOTALS }
     };
   }
 
+  const filterOutcome = applyNoiseFilter(options.contexts, options.runtimeSettings.noiseSuppression.filter);
+  const filteredContexts = filterOutcome.contexts;
   const diagnosticsByUri = new Map<string, Diagnostic[]>();
   const budget = options.runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch;
   let remaining = budget;
@@ -64,9 +69,12 @@ export function publishCodeDiagnostics(
   let suppressedByAcknowledgement = 0;
   const acknowledgementService = options.acknowledgements;
 
-  for (const context of options.contexts) {
+  for (let index = 0; index < filteredContexts.length; index += 1) {
+    const context = filteredContexts[index];
     if (context.rippleImpacts.length === 0) {
-      withoutDependents += 1;
+      if (options.contexts[index]?.rippleImpacts.length === 0) {
+        withoutDependents += 1;
+      }
       continue;
     }
 
@@ -145,7 +153,8 @@ export function publishCodeDiagnostics(
     suppressedByBudget,
     suppressedByHysteresis,
     withoutDependents,
-    suppressedByAcknowledgement
+    suppressedByAcknowledgement,
+    noiseFilter: filterOutcome.totals
   };
 }
 

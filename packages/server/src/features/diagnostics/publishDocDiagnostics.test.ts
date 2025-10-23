@@ -5,6 +5,7 @@ import type { DiagnosticRecord, KnowledgeArtifact } from "@copilot-improvement/s
 
 import type { AcknowledgementService } from "./acknowledgementService";
 import { HysteresisController } from "./hysteresisController";
+import { ZERO_NOISE_FILTER_TOTALS } from "./noiseFilter";
 import { publishDocDiagnostics, type DocumentChangeContext } from "./publishDocDiagnostics";
 import type { RippleImpact } from "./rippleTypes";
 import type { RuntimeSettings } from "../settings/settingsBridge";
@@ -15,7 +16,13 @@ const RUNTIME_SETTINGS: RuntimeSettings = {
   noiseSuppression: {
     level: "medium",
     maxDiagnosticsPerBatch: 5,
-    hysteresisMs: 1000
+    hysteresisMs: 1000,
+    filter: {
+      minConfidence: 0.25,
+      maxDepth: 5,
+      maxPerChange: 5,
+      maxPerArtifact: 3
+    }
   },
   ripple: {
     maxDepth: 3,
@@ -63,7 +70,7 @@ function buildContext(overrides: Partial<DocumentChangeContext> = {}): DocumentC
   };
 }
 
-function makeImpact(overrides: Partial<RippleImpact> = {}): RippleImpact {
+function makeImpact(overrides: { target?: KnowledgeArtifact; hint?: Partial<RippleImpact["hint"]> } = {}): RippleImpact {
   const target: KnowledgeArtifact =
     overrides.target ?? {
       id: "code-artifact",
@@ -142,12 +149,13 @@ describe("publishDocDiagnostics", () => {
       hysteresis
     });
 
-    expect(result).toEqual({
+    expect(result).toMatchObject({
       emitted: 1,
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
       suppressedByAcknowledgement: 0
     });
+    expect(result.noiseFilter).toEqual(ZERO_NOISE_FILTER_TOTALS);
     expect(sendDiagnostics).toHaveBeenCalledTimes(1);
     const [[diagnosticParams]] = sendDiagnostics.mock.calls as Array<[
       { uri: string; diagnostics: unknown[] }
@@ -223,9 +231,58 @@ describe("publishDocDiagnostics", () => {
       emitted: 0,
       suppressedByBudget: 1,
       suppressedByHysteresis: 0,
-      suppressedByAcknowledgement: 0
+      suppressedByAcknowledgement: 0,
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS
     });
     expect(sendDiagnostics).not.toHaveBeenCalled();
+  });
+
+  it("applies noise filter thresholds to ripple impacts", () => {
+    const sendDiagnostics = vi.fn();
+    const contexts = [
+      buildContext({
+        rippleImpacts: [
+          makeImpact({ hint: { confidence: 0.2, targetUri: "file:///src/low.ts" } }),
+          makeImpact({
+            target: {
+              id: "code-artifact-2",
+              uri: "file:///src/high.ts",
+              layer: "implementation",
+              language: "typescript"
+            },
+            hint: {
+              confidence: 0.85,
+              targetUri: "file:///src/high.ts"
+            }
+          })
+        ]
+      })
+    ];
+
+    const stricter: RuntimeSettings = {
+      ...RUNTIME_SETTINGS,
+      noiseSuppression: {
+        ...RUNTIME_SETTINGS.noiseSuppression,
+        filter: {
+          ...RUNTIME_SETTINGS.noiseSuppression.filter,
+          minConfidence: 0.6
+        }
+      }
+    };
+
+    const result = publishDocDiagnostics({
+      sender: { sendDiagnostics: params => { sendDiagnostics(params); } },
+      contexts,
+      runtimeSettings: stricter,
+      hysteresis: new HysteresisController({ now: () => new Date(0) })
+    });
+
+    expect(result.emitted).toBe(1);
+    expect(result.noiseFilter).toEqual({
+      ...ZERO_NOISE_FILTER_TOTALS,
+      byConfidence: 1
+    });
+    expect(sendDiagnostics).toHaveBeenCalledTimes(1);
   });
 
   it("short-circuits when no contexts are provided", () => {
@@ -243,7 +300,8 @@ describe("publishDocDiagnostics", () => {
       emitted: 0,
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
-      suppressedByAcknowledgement: 0
+      suppressedByAcknowledgement: 0,
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS
     });
     expect(sendDiagnostics).not.toHaveBeenCalled();
   });
@@ -265,7 +323,8 @@ describe("publishDocDiagnostics", () => {
       emitted: 1,
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
-      suppressedByAcknowledgement: 0
+      suppressedByAcknowledgement: 0,
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS
     });
 
     const codeArtifact: KnowledgeArtifact = {
@@ -325,7 +384,8 @@ describe("publishDocDiagnostics", () => {
       emitted: 0,
       suppressedByBudget: 0,
       suppressedByHysteresis: 1,
-      suppressedByAcknowledgement: 0
+      suppressedByAcknowledgement: 0,
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS
     });
   });
 
@@ -351,7 +411,8 @@ describe("publishDocDiagnostics", () => {
       emitted: 0,
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
-      suppressedByAcknowledgement: 1
+      suppressedByAcknowledgement: 1,
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS
     });
     // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(acknowledgements.shouldEmitDiagnostic).toHaveBeenCalledTimes(1);

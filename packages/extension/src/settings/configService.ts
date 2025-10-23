@@ -4,6 +4,10 @@ export interface LinkDiagnosticsSettings {
   llmProviderMode: "prompt" | "local-only" | "disabled";
   noiseSuppression: {
     level: "low" | "medium" | "high";
+    minConfidence?: number;
+    maxDepth?: number;
+    maxPerChange?: number;
+    maxPerArtifact?: number;
   };
   storagePath?: string;
   enableDiagnostics: boolean;
@@ -50,7 +54,11 @@ export class ConfigService implements vscode.Disposable {
     return {
       llmProviderMode: config.get("llmProviderMode", "prompt"),
       noiseSuppression: {
-        level: config.get("noiseSuppression.level", "medium")
+        level: config.get("noiseSuppression.level", "medium"),
+        minConfidence: config.get("noiseSuppression.minConfidence"),
+        maxDepth: config.get("noiseSuppression.maxDepth"),
+        maxPerChange: config.get("noiseSuppression.maxPerChange"),
+        maxPerArtifact: config.get("noiseSuppression.maxPerArtifact")
       },
       storagePath: config.get("storagePath", "") || undefined,
       enableDiagnostics: config.get("enableDiagnostics", false),

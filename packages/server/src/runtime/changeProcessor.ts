@@ -275,6 +275,16 @@ export function createChangeProcessor({
       );
     }
 
+    if (docDiagnosticsResult) {
+      const { byConfidence, byDepth, byTargetLimit, byChangeLimit } = docDiagnosticsResult.noiseFilter;
+      const suppressedByFilter = byConfidence + byDepth + byTargetLimit + byChangeLimit;
+      if (suppressedByFilter > 0) {
+        connection.console.info(
+          `noise filter trimmed ${suppressedByFilter} documentation ripple(s) (confidence=${byConfidence}, depth=${byDepth}, perTarget=${byTargetLimit}, perChange=${byChangeLimit})`
+        );
+      }
+    }
+
     if (docDiagnosticsResult?.suppressedByHysteresis) {
       connection.console.info(
         `hysteresis controller suppressed ${docDiagnosticsResult.suppressedByHysteresis} documentation diagnostic(s) to prevent ricochet`
@@ -324,6 +334,16 @@ export function createChangeProcessor({
       connection.console.info(
         `noise suppression level '${runtimeSettings.noiseSuppression.level}' muted ${codeDiagnosticsResult.suppressedByBudget} code diagnostic(s) in this batch`
       );
+    }
+
+    if (codeDiagnosticsResult) {
+      const { byConfidence, byDepth, byTargetLimit, byChangeLimit } = codeDiagnosticsResult.noiseFilter;
+      const suppressedByFilter = byConfidence + byDepth + byTargetLimit + byChangeLimit;
+      if (suppressedByFilter > 0) {
+        connection.console.info(
+          `noise filter trimmed ${suppressedByFilter} code ripple(s) (confidence=${byConfidence}, depth=${byDepth}, perTarget=${byTargetLimit}, perChange=${byChangeLimit})`
+        );
+      }
     }
 
     if (codeDiagnosticsResult?.suppressedByHysteresis) {

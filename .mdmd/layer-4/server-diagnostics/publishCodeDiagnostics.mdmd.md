@@ -12,7 +12,7 @@ Transforms captured ripple impacts from code saves into LSP diagnostics, respect
 ## Behaviour
 - Accepts `CodeChangeContext` entries (artifact metadata, change event id, ripple impacts) produced by the change processor.
 - Buckets diagnostics by dependent URI, ensuring each target file receives a single batched `sendDiagnostics` call.
-- Applies three suppression layers: skips contexts without impacts, honours the `maxDiagnosticsPerBatch` budget, and defers emissions when hysteresis indicates a reciprocal alert is still cooling down.
+- Applies three suppression layers: noise filter trims low-confidence/deep/duplicate ripple impacts, the `maxDiagnosticsPerBatch` budget enforces per-batch quotas, and hysteresis defers reciprocal alerts still cooling down.
 - Emits diagnostics carrying rich metadata (`relationshipKind`, `confidence`, `depth`, `path`, `changeEventId`) consumed by the extension for hover text and quick fixes.
 
 ## Implementation Notes
@@ -22,7 +22,7 @@ Transforms captured ripple impacts from code saves into LSP diagnostics, respect
 
 ## Failure & Edge Handling
 - If ripple impacts omit URIs, the loop skips them to avoid partial diagnostics.
-- Budget exhaustion increments `suppressedByBudget` for observability; callers log this to tune noise suppression levels.
+- Budget exhaustion increments `suppressedByBudget`; noise filter metrics expose why ripple impacts were trimmed so operators can tune presets.
 - Pairings without dependents increment `withoutDependents`, signalling upstream gaps (e.g., missing inference edges).
 
 ## Testing

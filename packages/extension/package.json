@@ -94,6 +94,27 @@
           "default": "medium",
           "description": "Adjust debounce and batching thresholds for drift diagnostics."
         },
+        "linkAwareDiagnostics.noiseSuppression.minConfidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Override the minimum ripple confidence (0-1) required before diagnostics emit."
+        },
+        "linkAwareDiagnostics.noiseSuppression.maxDepth": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Limit ripple diagnostics to the specified maximum hop depth."
+        },
+        "linkAwareDiagnostics.noiseSuppression.maxPerChange": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Cap how many ripple diagnostics a single change event may emit."
+        },
+        "linkAwareDiagnostics.noiseSuppression.maxPerArtifact": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Restrict how many diagnostics can target the same dependent artifact per change."
+        },
         "linkAwareDiagnostics.storagePath": {
           "type": "string",
           "default": "",

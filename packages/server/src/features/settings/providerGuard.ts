@@ -17,6 +17,10 @@ export interface ExtensionSettings {
   debounceMs?: number;
   noiseSuppression?: {
     level?: "low" | "medium" | "high";
+    minConfidence?: number;
+    maxDepth?: number;
+    maxPerChange?: number;
+    maxPerArtifact?: number;
   };
   ripple?: RippleExtensionSettings;
 }

@@ -24,13 +24,16 @@ Synchronises on-disk artifact changes with the knowledge graph to emit actionabl
 4. **Ripple Analysis**
    - `RippleAnalyzer` generates hints limited by runtime settings (depth, max results, allowed kinds).
    - Splits document/code contexts; attaches cascade metadata (path, confidence, relationship).
-5. **Diagnostics Emission**
+5. **Noise Filtering**
+   - `noiseFilter` trims low-confidence or redundant ripple impacts based on the active noise suppression preset before publication.
+   - Suppression metrics feed runtime logging so operators can tune thresholds.
+6. **Diagnostics Emission**
    - `publishDocDiagnostics` emits `doc-drift` records for:
      - Broken markdown paths (new static scan).
      - Ripple impacts referencing linked artifacts.
    - `publishCodeDiagnostics` emits `code-ripple` records for dependent code artifacts.
    - Diagnostics guarded by hysteresis + budget from runtime settings.
-6. **Client Presentation**
+7. **Client Presentation**
    - `docDiagnosticProvider` registers quick actions (`Open linked artifact`, ripple explorer).
    - `fileMaintenance.ts` signals rename/delete back to server, triggering `removeOrphans` diagnostics + rebind prompts.
 
