@@ -31,11 +31,15 @@ import {
   FEEDS_READY_REQUEST,
   type FeedsReadyResult,
   type InspectDependenciesParams,
-  type InspectDependenciesResult
+  type InspectDependenciesResult,
+  INSPECT_SYMBOL_NEIGHBORS_REQUEST,
+  type InspectSymbolNeighborsParams,
+  type InspectSymbolNeighborsResult
 } from "@copilot-improvement/shared";
 
 import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
 import { inspectDependencies } from "./features/dependencies/inspectDependencies";
+import { inspectSymbolNeighbors } from "./features/dependencies/symbolNeighbors";
 import { AcknowledgementService } from "./features/diagnostics/acknowledgementService";
 import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import { buildOutstandingDiagnosticsResult } from "./features/diagnostics/listOutstandingDiagnostics";
@@ -316,6 +320,31 @@ connection.onRequest(
 
     connection.console.info(
       `inspected dependencies for ${payload.uri} -> ${result.summary.totalDependents} dependents (max depth ${result.summary.maxDepthReached})`
+    );
+
+    return result;
+  }
+);
+
+connection.onRequest(
+  INSPECT_SYMBOL_NEIGHBORS_REQUEST,
+  (payload: InspectSymbolNeighborsParams): InspectSymbolNeighborsResult => {
+    if (!graphStore) {
+      throw new Error("Graph store is not initialised");
+    }
+
+    const result = inspectSymbolNeighbors({
+      graphStore,
+      artifactId: payload.artifactId,
+      artifactUri: payload.uri,
+      maxDepth: payload.maxDepth,
+      maxResults: payload.maxResults,
+      linkKinds: payload.linkKinds
+    });
+
+    const targetLabel = payload.artifactId ?? payload.uri ?? "<unknown>";
+    connection.console.info(
+      `inspected symbol neighbors for ${targetLabel} -> ${result.summary.totalNeighbors} neighbors (max depth ${result.summary.maxDepthReached})`
     );
 
     return result;

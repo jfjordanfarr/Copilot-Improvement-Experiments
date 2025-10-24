@@ -7,6 +7,8 @@ import {
   type InspectDependenciesParams
 } from "@copilot-improvement/shared";
 
+import { KnowledgeArtifactSchema, LinkRelationshipKindSchema } from "../shared/artifactSchemas";
+
 interface DependencyQuickPickItem extends vscode.QuickPickItem {
   target: vscode.Uri;
 }
@@ -134,31 +136,10 @@ function describeError(error: unknown): string {
   return String(error);
 }
 
-const ArtifactLayerSchema = z.enum([
-  "vision",
-  "requirements",
-  "architecture",
-  "implementation",
-  "code"
-]);
-
-const KnowledgeArtifactSchema = z.object({
-  id: z.string(),
-  uri: z.string().min(1),
-  layer: ArtifactLayerSchema,
-  language: z.string().optional(),
-  owner: z.string().optional(),
-  lastSynchronizedAt: z.string().optional(),
-  hash: z.string().optional(),
-  metadata: z.record(z.unknown()).optional()
-});
-
-const LinkKindSchema = z.enum(["documents", "implements", "depends_on", "references"]);
-
 const DependencyGraphEdgeSchema = z.object({
   dependent: KnowledgeArtifactSchema,
   viaLinkId: z.string(),
-  viaKind: LinkKindSchema,
+  viaKind: LinkRelationshipKindSchema,
   depth: z.number().int().min(0),
   path: z.array(KnowledgeArtifactSchema)
 });

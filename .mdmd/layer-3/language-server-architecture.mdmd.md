@@ -7,7 +7,7 @@ Describe how the language server orchestrates change ingestion, inference, diagn
 1. **Initialization (`main.ts`)**
    - Resolve workspace root, storage paths, and apply provider guard settings.
    - Instantiate shared services: `GraphStore`, `ChangeQueue`, `ArtifactWatcher`, `ChangeProcessor`, knowledge feed controller.
-   - Register LSP handlers for configuration changes, override requests, dependency inspection, and file maintenance notifications.
+   - Register LSP handlers for configuration changes, override requests, dependency inspection, symbol neighbor inspection, and file maintenance notifications.
 2. **Change Intake**
    - `documents.onDidSave` enqueues artifacts into `ChangeQueue`, debounced via runtime settings.
    - `ArtifactWatcher` enriches changes with content, category (doc/code), and relationship hints (symbol bridge, path detector).
@@ -23,12 +23,14 @@ Describe how the language server orchestrates change ingestion, inference, diagn
 - **Settings**: `providerGuard.ts` gates diagnostics pending consent; `settingsBridge.ts` derives runtime knobs (debounce, noise levels, ripple limits).
 - **Change Events**: `changeQueue.ts`, `saveDocumentChange.ts`, `saveCodeChange.ts` persist change metadata for acknowledgement workflows.
 - **Diagnostics**: `publishCodeDiagnostics.ts`, `publishDocDiagnostics.ts`, `hysteresisController.ts`, shared `diagnosticUtils.ts`.
+- **Dependencies**: `buildCodeGraph.ts`, `inspectDependencies.ts`, `symbolNeighbors.ts` expose LSP-ready graph traversals for quick picks and diagnostics.
 - **Knowledge Feeds**: `knowledgeGraphBridge.ts`, `knowledgeFeedManager.ts`, `knowledgeGraphIngestor.ts` keep external edges synchronized.
 - **Watchers**: `artifactWatcher.ts`, `pathReferenceDetector.ts`, maintenance handlers for orphaned files.
 
 ## Data Contracts
 - **RuntimeSettings** – derived from extension config; shared across queue, diagnostics, ripple analysis.
 - **RippleHint / RippleImpact** – computed from knowledge graph to annotate diagnostics.
+- **InspectSymbolNeighborsParams / Result** – shared contract powering the symbol neighbor traversal served by the dependencies feature.
 - **ChangeEvent** – persisted record linking artifacts to change timestamps, used for acknowledgement and diagnostics metadata.
 - **KnowledgeFeed descriptors** – feed IDs, snapshot loaders, stream cursors consumed by inference orchestrator.
 

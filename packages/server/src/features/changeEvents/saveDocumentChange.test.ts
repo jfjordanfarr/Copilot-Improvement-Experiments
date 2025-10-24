@@ -44,7 +44,15 @@ describe("saveDocumentChange", () => {
       metadata: undefined
     };
 
-    const upsertArtifact = vi.fn();
+    const canonicalArtifact: KnowledgeArtifact = {
+      ...nextArtifact,
+      id: "canonical-doc-artifact"
+    };
+
+    const upsertArtifact = vi.fn().mockImplementation((artifact: KnowledgeArtifact) => {
+      expect(artifact).toEqual(nextArtifact);
+      return canonicalArtifact;
+    });
     const recordChangeEvent = vi.fn();
 
     const graphStore = {
@@ -72,10 +80,10 @@ describe("saveDocumentChange", () => {
     expect(recordChangeEvent).toHaveBeenCalledTimes(1);
     const [[changeEvent]] = recordChangeEvent.mock.calls as Array<[ChangeEvent]>;
     expect(changeEvent).toMatchObject({
-      artifactId: nextArtifact.id,
+      artifactId: canonicalArtifact.id,
       summary: "Documentation updated"
     });
-    expect(persisted.artifact).toEqual(nextArtifact);
+    expect(persisted.artifact).toEqual(canonicalArtifact);
   });
 
   it("falls back to the previous artifact when inference is unavailable", () => {
@@ -90,7 +98,15 @@ describe("saveDocumentChange", () => {
       metadata: undefined
     };
 
-    const upsertArtifact = vi.fn();
+    const canonicalArtifact: KnowledgeArtifact = {
+      ...previousArtifact,
+      id: "canonical-previous-artifact"
+    };
+
+    const upsertArtifact = vi.fn().mockImplementation((artifact: KnowledgeArtifact) => {
+      expect(artifact).toEqual(previousArtifact);
+      return canonicalArtifact;
+    });
     const recordChangeEvent = vi.fn();
 
     const graphStore = {
@@ -104,12 +120,15 @@ describe("saveDocumentChange", () => {
 
     expect(upsertArtifact).toHaveBeenCalledWith(previousArtifact);
     const [[changeEvent]] = recordChangeEvent.mock.calls as Array<[ChangeEvent]>;
-    expect(changeEvent.artifactId).toBe(previousArtifact.id);
-    expect(persisted.artifact).toEqual(previousArtifact);
+    expect(changeEvent.artifactId).toBe(canonicalArtifact.id);
+    expect(persisted.artifact).toEqual(canonicalArtifact);
   });
 
   it("creates a placeholder artifact when none exist", () => {
-    const upsertArtifact = vi.fn();
+    const upsertArtifact = vi.fn().mockImplementation((artifact: KnowledgeArtifact) => ({
+      ...artifact,
+      id: "canonical-placeholder"
+    } satisfies KnowledgeArtifact));
     const recordChangeEvent = vi.fn();
 
     const graphStore = {
@@ -132,7 +151,7 @@ describe("saveDocumentChange", () => {
     expect(artifact.language).toBe("markdown");
 
     const [[changeEvent]] = recordChangeEvent.mock.calls as Array<[ChangeEvent]>;
-    expect(changeEvent.artifactId).toBe(artifact.id);
-    expect(persisted.artifact.id).toBe(artifact.id);
+    expect(changeEvent.artifactId).toBe("canonical-placeholder");
+    expect(persisted.artifact.id).toBe("canonical-placeholder");
   });
 });

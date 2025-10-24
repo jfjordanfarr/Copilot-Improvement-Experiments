@@ -22,6 +22,7 @@ export interface LinkedArtifactSummary {
   artifact: KnowledgeArtifact;
   linkId: string;
   kind: LinkRelationshipKind;
+  confidence: number;
   direction: "incoming" | "outgoing";
 }
 
@@ -45,7 +46,13 @@ export class GraphStore {
     this.db.close();
   }
 
-  upsertArtifact(artifact: KnowledgeArtifact): void {
+  upsertArtifact(artifact: KnowledgeArtifact): KnowledgeArtifact {
+    const existingByUri = this.db
+      .prepare("SELECT id FROM artifacts WHERE uri = ?")
+      .get(artifact.uri) as { id: string } | undefined;
+
+    const idToUse = existingByUri?.id ?? artifact.id;
+
     const statement = this.db.prepare(`
       INSERT INTO artifacts (id, uri, layer, language, owner, last_synchronized_at, hash, metadata)
       VALUES (@id, @uri, @layer, @language, @owner, @lastSynchronizedAt, @hash, @metadata)
@@ -60,10 +67,22 @@ export class GraphStore {
     `);
 
     statement.run({
-      ...artifact,
-      metadata: artifact.metadata ? JSON.stringify(artifact.metadata, null, JSON_SPACES) : null,
-      lastSynchronizedAt: artifact.lastSynchronizedAt ?? null
+      id: idToUse,
+      uri: artifact.uri,
+      layer: artifact.layer,
+      language: artifact.language ?? null,
+      owner: artifact.owner ?? null,
+      lastSynchronizedAt: artifact.lastSynchronizedAt ?? null,
+      hash: artifact.hash ?? null,
+      metadata: artifact.metadata ? JSON.stringify(artifact.metadata, null, JSON_SPACES) : null
     });
+
+    const stored = this.getArtifactById(idToUse);
+    if (!stored) {
+      throw new Error(`Failed to persist artifact with id ${idToUse}`);
+    }
+
+    return stored;
   }
 
   removeArtifact(id: string): void {
@@ -119,6 +138,7 @@ export class GraphStore {
         SELECT
           l.id AS link_id,
           l.kind AS link_kind,
+          l.confidence AS link_confidence,
           l.source_id AS source_id,
           l.target_id AS target_id,
           a.id AS artifact_id,
@@ -153,6 +173,7 @@ export class GraphStore {
       return {
         linkId: row.link_id,
         kind: row.link_kind,
+        confidence: row.link_confidence,
         direction,
         artifact: this.mapArtifactRow(artifactRow)
       };
@@ -160,6 +181,14 @@ export class GraphStore {
   }
 
   upsertLink(link: LinkRelationship): void {
+    const existing = this.db
+      .prepare(
+        `SELECT id FROM links WHERE source_id = ? AND target_id = ? AND kind = ?`
+      )
+      .get(link.sourceId, link.targetId, link.kind) as { id: string } | undefined;
+
+    const idToUse = existing?.id ?? link.id;
+
     const statement = this.db.prepare(`
       INSERT INTO links (id, source_id, target_id, kind, confidence, created_at, created_by)
       VALUES (@id, @sourceId, @targetId, @kind, @confidence, @createdAt, @createdBy)
@@ -173,8 +202,13 @@ export class GraphStore {
     `);
 
     statement.run({
-      ...link,
-      confidence: Math.max(0, Math.min(1, link.confidence))
+      id: idToUse,
+      sourceId: link.sourceId,
+      targetId: link.targetId,
+      kind: link.kind,
+      confidence: Math.max(0, Math.min(1, link.confidence)),
+      createdAt: link.createdAt,
+      createdBy: link.createdBy
     });
   }
 
@@ -719,6 +753,7 @@ interface ArtifactRow {
 interface LinkedArtifactRow {
   link_id: string;
   link_kind: LinkRelationshipKind;
+  link_confidence: number;
   source_id: string;
   target_id: string;
   artifact_id: string;

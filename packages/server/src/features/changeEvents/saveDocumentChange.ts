@@ -30,12 +30,29 @@ export function persistInferenceResult(
     return;
   }
 
+  const canonicalArtifacts = new Map<string, KnowledgeArtifact>();
+
   for (const artifact of inference.artifacts) {
-    graphStore.upsertArtifact(artifact);
+    const stored = graphStore.upsertArtifact(artifact);
+    canonicalArtifacts.set(artifact.id, stored);
+    canonicalArtifacts.set(stored.id, stored);
   }
 
   for (const link of inference.links) {
-    graphStore.upsertLink(link);
+    const source =
+      canonicalArtifacts.get(link.sourceId) ?? graphStore.getArtifactById(link.sourceId);
+    const target =
+      canonicalArtifacts.get(link.targetId) ?? graphStore.getArtifactById(link.targetId);
+
+    if (!source || !target) {
+      continue;
+    }
+
+    graphStore.upsertLink({
+      ...link,
+      sourceId: source.id,
+      targetId: target.id
+    });
   }
 }
 
@@ -43,13 +60,13 @@ export function saveDocumentChange(options: SaveDocumentChangeOptions): Persiste
   const nowFactory = options.now ?? (() => new Date());
   const artifact = resolveArtifact(options);
 
-  options.graphStore.upsertArtifact(artifact);
+  const storedArtifact = options.graphStore.upsertArtifact(artifact);
 
   const changeEventId = randomUUID();
 
   options.graphStore.recordChangeEvent({
     id: changeEventId,
-    artifactId: artifact.id,
+    artifactId: storedArtifact.id,
     detectedAt: nowFactory().toISOString(),
     summary: DEFAULT_SUMMARY,
     changeType: "content",
@@ -58,7 +75,7 @@ export function saveDocumentChange(options: SaveDocumentChangeOptions): Persiste
   });
 
   return {
-    artifact,
+    artifact: storedArtifact,
     changeEventId
   };
 }

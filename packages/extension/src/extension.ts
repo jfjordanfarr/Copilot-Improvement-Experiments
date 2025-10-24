@@ -12,6 +12,7 @@ import { RebindRequiredPayload, FEEDS_READY_REQUEST, type FeedsReadyResult } fro
 
 import { registerAcknowledgementWorkflow } from "./commands/acknowledgeDiagnostic";
 import { registerExportDiagnosticsCommand } from "./commands/exportDiagnostics";
+import { registerInspectSymbolNeighborsCommand } from "./commands/inspectSymbolNeighbors";
 import { registerOverrideLinkCommand } from "./commands/overrideLink";
 import { registerDependencyQuickPick } from "./diagnostics/dependencyQuickPick";
 import { registerDocDiagnosticProvider } from "./diagnostics/docDiagnosticProvider";
@@ -190,6 +191,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   );
   context.subscriptions.push(registerDocDiagnosticProvider());
   context.subscriptions.push(registerDependencyQuickPick(activeClient));
+  context.subscriptions.push(registerInspectSymbolNeighborsCommand(activeClient));
   context.subscriptions.push(registerSymbolBridge(activeClient));
   context.subscriptions.push(registerExportDiagnosticsCommand(activeClient));
 

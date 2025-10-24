@@ -22,6 +22,11 @@
         "title": "Link Diagnostics: Inspect Dependencies"
       },
       {
+        "command": "linkDiagnostics.inspectSymbolNeighbors",
+        "title": "Link Diagnostics: Inspect Symbol Neighbors",
+        "icon": "$(symbol-structure)"
+      },
+      {
         "command": "linkDiagnostics.analyzeWithAI",
         "title": "Link Diagnostics: Analyze Impact with AI"
       },

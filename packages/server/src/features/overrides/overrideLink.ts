@@ -64,8 +64,7 @@ function ensureArtifact(params: EnsureArtifactParams): KnowledgeArtifact {
         ...existing,
         language: params.descriptor.languageId
       };
-      params.store.upsertArtifact(updated);
-      return updated;
+      return params.store.upsertArtifact(updated);
     }
 
     return existing;
@@ -84,8 +83,7 @@ function ensureArtifact(params: EnsureArtifactParams): KnowledgeArtifact {
     }
   };
 
-  params.store.upsertArtifact(artifact);
-  return artifact;
+  return params.store.upsertArtifact(artifact);
 }
 
 function computeLinkId(

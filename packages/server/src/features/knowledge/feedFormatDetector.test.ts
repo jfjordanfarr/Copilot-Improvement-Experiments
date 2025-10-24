@@ -115,6 +115,30 @@ not json
       expect(result.confidence).toBe(1.0);
     });
 
+    it("should return unknown for legacy static JSON without resolved URIs", () => {
+      const legacyContent = JSON.stringify({
+        label: "Legacy feed",
+        artifacts: [
+          {
+            path: "docs/example.md",
+            layer: "requirements"
+          }
+        ],
+        links: [
+          {
+            sourcePath: "docs/example.md",
+            targetPath: "src/example.ts",
+            kind: "documents"
+          }
+        ]
+      });
+
+      const result = detectFormat(legacyContent);
+
+      expect(result.format).toBe("unknown");
+      expect(result.confidence).toBe(0.0);
+    });
+
     it("should prioritize ExternalSnapshot detection over SCIP when both patterns match", () => {
       // Edge case: a document that has both label+artifacts+links AND metadata+documents
       const ambiguousContent = JSON.stringify({

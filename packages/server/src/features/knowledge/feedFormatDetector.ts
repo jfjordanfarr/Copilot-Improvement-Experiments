@@ -40,18 +40,8 @@ export function detectFormat(content: string): FormatDetectionResult {
     const parsed = JSON.parse(trimmed);
 
     // Check for ExternalSnapshot FIRST (higher priority than SCIP)
-    // Has label, artifacts, links
-    if (
-      typeof parsed === "object" &&
-      parsed !== null &&
-      "label" in parsed &&
-      "artifacts" in parsed &&
-      "links" in parsed &&
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      Array.isArray(parsed.artifacts) &&
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      Array.isArray(parsed.links)
-    ) {
+    // Must resemble the strongly-typed ExternalSnapshot shape
+    if (looksLikeExternalSnapshot(parsed)) {
       return { format: "external-snapshot", confidence: 1.0 };
     }
 
@@ -74,6 +64,50 @@ export function detectFormat(content: string): FormatDetectionResult {
   } catch {
     return { format: "unknown", confidence: 0.0 };
   }
+}
+
+function looksLikeExternalSnapshot(candidate: unknown): candidate is ExternalSnapshot {
+  if (typeof candidate !== "object" || candidate === null) {
+    return false;
+  }
+
+  const value = candidate as Partial<ExternalSnapshot> & Record<string, unknown>;
+
+  if (!("label" in value) || typeof value.label !== "string") {
+    return false;
+  }
+
+  if (!Array.isArray(value.artifacts) || !Array.isArray(value.links)) {
+    return false;
+  }
+
+  const artifactsValid = value.artifacts.every(artifact => {
+    if (typeof artifact !== "object" || artifact === null) {
+      return false;
+    }
+
+    const artifactRecord = artifact as Partial<ExternalSnapshot["artifacts"][number]> &
+      Record<string, unknown>;
+    return typeof artifactRecord.uri === "string" && artifactRecord.uri.length > 0;
+  });
+
+  if (!artifactsValid) {
+    return false;
+  }
+
+  const linksValid = value.links.every(link => {
+    if (typeof link !== "object" || link === null) {
+      return false;
+    }
+
+    const linkRecord = link as Partial<ExternalSnapshot["links"][number]> & Record<string, unknown>;
+    const hasSource = typeof linkRecord.sourceId === "string" && linkRecord.sourceId.length > 0;
+    const hasTarget = typeof linkRecord.targetId === "string" && linkRecord.targetId.length > 0;
+    const hasKind = typeof linkRecord.kind === "string" && linkRecord.kind.length > 0;
+    return hasSource && hasTarget && hasKind;
+  });
+
+  return linksValid;
 }
 
 export interface ParseFeedFileOptions {

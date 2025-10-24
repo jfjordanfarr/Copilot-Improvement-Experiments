@@ -62,6 +62,7 @@ export interface StreamCheckpoint {
 
 export class KnowledgeGraphBridge {
   private checkpoint: StreamCheckpoint | null = null;
+  private readonly artifactIdAliases = new Map<string, string>();
 
   constructor(private readonly store: GraphStore) {}
 
@@ -69,12 +70,23 @@ export class KnowledgeGraphBridge {
     const normalizedArtifacts = snapshot.artifacts.map(toKnowledgeArtifact);
     const normalizedLinks = snapshot.links.map(link => toLinkRelationship(link));
 
+    const aliasMap = new Map<string, string>();
+
     for (const artifact of normalizedArtifacts) {
-      this.store.upsertArtifact(artifact);
+      const stored = this.store.upsertArtifact(artifact);
+      aliasMap.set(artifact.id, stored.id);
+      this.rememberArtifactAlias(artifact.id, stored.id);
     }
 
     for (const link of normalizedLinks) {
-      this.store.upsertLink(link);
+      const sourceId = this.resolveArtifactId(aliasMap, link.sourceId);
+      const targetId = this.resolveArtifactId(aliasMap, link.targetId);
+
+      this.store.upsertLink({
+        ...link,
+        sourceId,
+        targetId
+      });
     }
 
     const knowledgeSnapshot: KnowledgeSnapshot = {
@@ -98,7 +110,10 @@ export class KnowledgeGraphBridge {
         if (!event.artifact) {
           throw new Error("artifact-upsert event must include artifact payload");
         }
-        this.store.upsertArtifact(toKnowledgeArtifact(event.artifact));
+        const stored = this.store.upsertArtifact(toKnowledgeArtifact(event.artifact));
+        if (event.artifact.id) {
+          this.rememberArtifactAlias(event.artifact.id, stored.id);
+        }
         break;
       }
       case "artifact-remove": {
@@ -106,8 +121,14 @@ export class KnowledgeGraphBridge {
           throw new Error("artifact-remove event must include artifactId or artifact.uri");
         }
         if (event.artifactId) {
-          this.store.removeArtifact(event.artifactId);
+          const canonicalId = this.resolveArtifactId(new Map(), event.artifactId);
+          this.store.removeArtifact(canonicalId);
+          this.forgetArtifactAlias(canonicalId);
         } else if (event.artifact?.uri) {
+          const existing = this.store.getArtifactByUri(event.artifact.uri);
+          if (existing) {
+            this.forgetArtifactAlias(existing.id);
+          }
           this.store.removeArtifactByUri(event.artifact.uri);
         }
         break;
@@ -116,7 +137,15 @@ export class KnowledgeGraphBridge {
         if (!event.link) {
           throw new Error("link-upsert event must include link payload");
         }
-        this.store.upsertLink(toLinkRelationship(event.link));
+        const link = toLinkRelationship(event.link);
+        const sourceId = this.resolveArtifactId(new Map(), link.sourceId);
+        const targetId = this.resolveArtifactId(new Map(), link.targetId);
+
+        this.store.upsertLink({
+          ...link,
+          sourceId,
+          targetId
+        });
         break;
       }
       case "link-remove": {
@@ -135,6 +164,24 @@ export class KnowledgeGraphBridge {
       lastSequenceId: event.sequenceId,
       updatedAt: event.detectedAt
     };
+  }
+
+  private rememberArtifactAlias(externalId: string, canonicalId: string): void {
+    this.artifactIdAliases.set(externalId, canonicalId);
+    this.artifactIdAliases.set(canonicalId, canonicalId);
+  }
+
+  private forgetArtifactAlias(canonicalId: string): void {
+    for (const [alias, mapped] of Array.from(this.artifactIdAliases.entries())) {
+      if (alias === canonicalId || mapped === canonicalId) {
+        this.artifactIdAliases.delete(alias);
+      }
+    }
+  }
+
+  private resolveArtifactId(local: Map<string, string>, candidate: string): string {
+    const mapped = local.get(candidate) ?? this.artifactIdAliases.get(candidate);
+    return mapped ?? candidate;
   }
 
   getCheckpoint(): StreamCheckpoint | null {

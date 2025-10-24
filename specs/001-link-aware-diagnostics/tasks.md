@@ -161,10 +161,10 @@ description: "Task list for Link-Aware Diagnostics"
 
 **Independent Test**: Invoking the “Inspect Symbol Neighbors” command (or CLI) returns hop-limited neighbors grouped by relationship kind without mutating diagnostics.
 
-- [ ] T063 [P] [US4] Add server-side traversal unit tests in `packages/server/src/features/dependencies/symbolNeighbors.test.ts` covering hop limits, relationship grouping, and confidence ordering
-- [ ] T064 [US4] Implement neighbor traversal service in `packages/server/src/features/dependencies/symbolNeighbors.ts` that queries the graph store and enforces hop/depth limits
-- [ ] T065 [P] [US4] Expose an LSP request/response contract in `packages/server/src/main.ts` & `packages/shared/src/contracts/diagnostics.ts` (or new contract) with telemetry hooks for future LLM usage
-- [ ] T066 [US4] Implement VS Code command palette + quick pick UI in `packages/extension/src/commands/inspectSymbolNeighbors.ts` consuming the LSP request and rendering grouped results
+- [x] T063 [P] [US4] Add server-side traversal unit tests in `packages/server/src/features/dependencies/symbolNeighbors.test.ts` covering hop limits, relationship grouping, and confidence ordering
+- [x] T064 [US4] Implement neighbor traversal service in `packages/server/src/features/dependencies/symbolNeighbors.ts` that queries the graph store and enforces hop/depth limits
+- [x] T065 [P] [US4] Expose an LSP request/response contract in `packages/server/src/main.ts` & `packages/shared/src/contracts/diagnostics.ts` (or new contract) with telemetry hooks for future LLM usage
+- [x] T066 [US4] Implement VS Code command palette + quick pick UI in `packages/extension/src/commands/inspectSymbolNeighbors.ts` consuming the LSP request and rendering grouped results
 - [ ] T067 [P] [US4] Add a developer-focused CLI entry (e.g., `scripts/graph-tools/inspect-symbol.ts`) and document workflow in `.mdmd/layer-4/extension-services` or quickstart appendix for internal dogfooding
 
 **Checkpoint**: Symbol neighborhood explorer available for dogfooding, returning actionable graph insights without relying on diagnostics.
