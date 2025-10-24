@@ -2,7 +2,7 @@
 
 ## Purpose & Scope
 
-Establish the server-side pipeline that ingests external knowledge-graph data and folds it into the unified dependency graph that powers diagnostics. The architecture covers KnowledgeSnapshot imports, streaming delta feeds, validation, persistence, and their interaction with the link inference orchestrator. This design satisfies [FR-015](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) and [FR-016](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) in the feature spec and sets the stage for [T040](../../specs/001-link-aware-diagnostics/tasks.md) / [T041](../../specs/001-link-aware-diagnostics/tasks.md).
+Establish the server-side pipeline that ingests external knowledge-graph data and folds it into the unified dependency graph that powers diagnostics. The architecture covers KnowledgeSnapshot imports, streaming delta feeds, validation, persistence, and their interaction with the link inference orchestrator. This design satisfies [FR-015](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) and [FR-016](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) in the feature spec and sets the stage for [T040](../../specs/001-link-aware-diagnostics/tasks.md) / [T041](../../specs/001-link-aware-diagnostics/tasks.md). Upcoming LLM-driven ingestion described in [LLM Ingestion Pipeline](./llm-ingestion-pipeline.mdmd.md) complements, rather than replaces, these external feeds by supplying additional edges that still flow through the same validation/persistence stack.
 
 ## Key Responsibilities
 

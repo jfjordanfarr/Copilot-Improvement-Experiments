@@ -21,6 +21,8 @@ Thumbs.db
 # SQLite caches
 *.sqlite
 *.sqlite-journal
+*.db-shm
+*.db-wal
 
 # Test outputs
 *.tap

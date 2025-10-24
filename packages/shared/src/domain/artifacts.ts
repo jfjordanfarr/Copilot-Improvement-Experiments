@@ -32,6 +32,26 @@ export interface LinkRelationship {
   createdBy: string;
 }
 
+export type LlmConfidenceTier = "high" | "medium" | "low";
+
+export interface LlmEdgeProvenance {
+  linkId: string;
+  templateId: string;
+  templateVersion: string;
+  promptHash: string;
+  modelId: string;
+  issuedAt: string;
+  createdAt: string;
+  confidenceTier: LlmConfidenceTier;
+  calibratedConfidence: number;
+  rawConfidence?: number;
+  supportingChunks?: string[];
+  rationale?: string;
+  diagnosticsEligible?: boolean;
+  shadowed?: boolean;
+  promotionCriteria?: string[];
+}
+
 export type ChangeEventType = "content" | "metadata" | "rename" | "delete";
 
 export type ChangeEventProvenance = "save" | "git" | "external";

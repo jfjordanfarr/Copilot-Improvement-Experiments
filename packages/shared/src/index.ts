@@ -10,3 +10,23 @@ export * from "./contracts/scip";
 export * from "./knowledge/knowledgeGraphBridge";
 export * from "./inference/fallbackInference";
 export * from "./inference/linkInference";
+export {
+	RelationshipExtractor,
+	RelationshipExtractorError,
+	type RelationshipExtractorLogger,
+	type RelationshipExtractionBatch,
+	type RelationshipExtractionPrompt,
+	type RelationshipExtractionRequest,
+	type RawRelationshipCandidate,
+	type ModelInvocationRequest,
+	type ModelInvocationResult,
+	type ModelInvoker,
+	type ModelUsage
+} from "./inference/llm/relationshipExtractor";
+
+export {
+	calibrateConfidence,
+	type CalibratedRelationship,
+	type ConfidenceTier as LlmConfidenceTier,
+	type CalibrationContext
+} from "./inference/llm/confidenceCalibrator";

@@ -165,7 +165,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T064 [US4] Implement neighbor traversal service in `packages/server/src/features/dependencies/symbolNeighbors.ts` that queries the graph store and enforces hop/depth limits
 - [x] T065 [P] [US4] Expose an LSP request/response contract in `packages/server/src/main.ts` & `packages/shared/src/contracts/diagnostics.ts` (or new contract) with telemetry hooks for future LLM usage
 - [x] T066 [US4] Implement VS Code command palette + quick pick UI in `packages/extension/src/commands/inspectSymbolNeighbors.ts` consuming the LSP request and rendering grouped results
-- [ ] T067 [P] [US4] Add a developer-focused CLI entry (e.g., `scripts/graph-tools/inspect-symbol.ts`) and document workflow in `.mdmd/layer-4/extension-services` or quickstart appendix for internal dogfooding
+- [x] T067 [P] [US4] Add a developer-focused CLI entry (e.g., `scripts/graph-tools/inspect-symbol.ts`) and document workflow in `.mdmd/layer-4/extension-services` or quickstart appendix for internal dogfooding
 
 **Checkpoint**: Symbol neighborhood explorer available for dogfooding, returning actionable graph insights without relying on diagnostics.
 
@@ -186,6 +186,16 @@ description: "Task list for Link-Aware Diagnostics"
 - [ ] T060 Curate AST-backed benchmark repos (starting with C and at least one additional language) under `tests/integration/benchmarks/ast-fixtures/`
 - [ ] T061 Implement AST comparison harness in `tests/integration/benchmarks/astAccuracy.test.ts` that reconciles inferred graphs with canonical ASTs
 - [ ] T062 Integrate dual-mode benchmark selection (AST vs self-similarity) into CI via root `package.json` scripts and `npm run ci-check`
+
+---
+
+## Phase 8: LLM Ingestion (Next Iteration)
+
+- [x] T068 Capture LLM ingestion architecture and confidence taxonomy in `.mdmd/layer-3/llm-ingestion-pipeline.mdmd.md`.
+- [ ] T069 [P] Author reproducible prompt templates and schema contracts under `packages/server/src/prompts/llm-ingestion/` with accompanying dry-run fixtures.
+- [ ] T070 Implement `LLMIngestionOrchestrator` in `packages/server/src/features/knowledge/llmIngestionOrchestrator.ts` with batching, consent gating, and throttling.
+- [ ] T071 [P] Build shared `relationshipExtractor` + `confidenceCalibrator` utilities in `packages/shared/src/inference/llm/` with unit coverage verifying JSON decoding and confidence mapping.
+- [ ] T072 Add integration test `tests/integration/us5/llmIngestionFallback.test.ts` that exercises dry-run mode, ensures provenance storage, and verifies diagnostics ignore `Low` confidence edges by default.
 
 ---
 

@@ -95,6 +95,7 @@ Engineering or documentation leads review outstanding drift diagnostics, assign 
 - External knowledge-graph feeds may become unreachable or provide stale/partial payloads; the system MUST surface a warning diagnostic, pause ingestion for the impacted feed, and fall back to local inference without mutating cached relationships until a valid payload is received.
 - Streaming feeds MUST resume gracefully after transient failures by replaying missed deltas, while on-demand snapshot imports MUST preserve the previously ingested snapshot until replacement data passes validation.
 - Benchmark workspaces without canonical ASTs MUST fall back to self-similarity accuracy checks and record that limitation alongside the results so pipelines remain informative without blocking on missing ground truth.
+- LLM-sourced relationships MUST record model provenance, prompt hash, and chunk identifiers so auditors can reproduce their derivation and revoke edges produced by a misbehaving prompt or provider.
 
 ### Inference Inputs by Artifact Type
 
@@ -139,6 +140,7 @@ Graph projections, override manifests, and drift history live under the workspac
 - **FR-016**: System MUST define and enforce a minimal schema for ingesting external knowledge-graph data, including artifact identifiers, edge types, timestamps, and confidence metadata, and MUST validate incoming feeds against this contract before integrating them.
 - **FR-017**: Development-time verification MUST compare the inferred code dependency graph against canonical abstract syntax trees for curated benchmark workspaces when ground-truth ASTs are available, and MUST fall back to multi-run self-similarity benchmarks for workspaces lacking authoritative ASTs so accuracy remains measurable in both contexts.
 - **FR-018**: System MUST expose a developer-facing symbol neighborhood query (initially dogfooding-only) that, given a symbol or artifact identifier, returns hop-limited neighbors with relationship metadata and is pluggable into future LLM-assisted explanation tools.
+- **FR-019**: System MUST provide an LLM-driven ingestion pipeline that extracts relationship candidates from arbitrary workspace text via `vscode.lm`, annotates each candidate with a confidence tier (`High`, `Medium`, `Low`), persists provenance (model id, prompt hash, supporting chunk ids), and honours manual overrides by demoting conflicting edges. Diagnostics MAY only consume `High` edges automatically, while `Medium` and `Low` edges require corroboration or human promotion before surfacing.
 
 ### Key Entities *(include if feature involves data)*
 

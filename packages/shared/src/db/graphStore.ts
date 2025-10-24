@@ -7,6 +7,7 @@ import {
   DiagnosticStatus,
   DriftHistoryEntry,
   DriftHistoryStatus,
+  LlmEdgeProvenance,
   KnowledgeArtifact,
   KnowledgeSnapshot,
   LinkRelationship,
@@ -214,6 +215,130 @@ export class GraphStore {
 
   removeLink(id: string): void {
     this.db.prepare("DELETE FROM links WHERE id = ?").run(id);
+  }
+
+  getLink(sourceId: string, targetId: string, kind: LinkRelationshipKind): LinkRelationship | undefined {
+    const row = this.db
+      .prepare(
+        `SELECT id, source_id, target_id, kind, confidence, created_at, created_by FROM links WHERE source_id = ? AND target_id = ? AND kind = ?`
+      )
+      .get(sourceId, targetId, kind) as LinkRow | undefined;
+
+    if (!row) {
+      return undefined;
+    }
+
+    return mapLinkRow(row);
+  }
+
+  storeLlmEdgeProvenance(provenance: LlmEdgeProvenance): void {
+    const statement = this.db.prepare(
+      `
+      INSERT INTO llm_edge_provenance (
+        link_id,
+        template_id,
+        template_version,
+        prompt_hash,
+        model_id,
+        issued_at,
+        created_at,
+        confidence_tier,
+        calibrated_confidence,
+        raw_confidence,
+        diagnostics_eligible,
+        shadowed,
+        supporting_chunks,
+        promotion_criteria,
+        rationale
+      ) VALUES (
+        @linkId,
+        @templateId,
+        @templateVersion,
+        @promptHash,
+        @modelId,
+        @issuedAt,
+        @createdAt,
+        @confidenceTier,
+        @calibratedConfidence,
+        @rawConfidence,
+        @diagnosticsEligible,
+        @shadowed,
+        @supportingChunks,
+        @promotionCriteria,
+        @rationale
+      )
+      ON CONFLICT(link_id) DO UPDATE SET
+        template_id = excluded.template_id,
+        template_version = excluded.template_version,
+        prompt_hash = excluded.prompt_hash,
+        model_id = excluded.model_id,
+        issued_at = excluded.issued_at,
+        created_at = excluded.created_at,
+        confidence_tier = excluded.confidence_tier,
+        calibrated_confidence = excluded.calibrated_confidence,
+        raw_confidence = excluded.raw_confidence,
+        diagnostics_eligible = excluded.diagnostics_eligible,
+        shadowed = excluded.shadowed,
+        supporting_chunks = excluded.supporting_chunks,
+        promotion_criteria = excluded.promotion_criteria,
+        rationale = excluded.rationale;
+      `
+    );
+
+    statement.run({
+      linkId: provenance.linkId,
+      templateId: provenance.templateId,
+      templateVersion: provenance.templateVersion,
+      promptHash: provenance.promptHash,
+      modelId: provenance.modelId,
+      issuedAt: provenance.issuedAt,
+      createdAt: provenance.createdAt,
+      confidenceTier: provenance.confidenceTier,
+      calibratedConfidence: provenance.calibratedConfidence,
+      rawConfidence: typeof provenance.rawConfidence === "number" ? provenance.rawConfidence : null,
+      diagnosticsEligible: provenance.diagnosticsEligible ? 1 : 0,
+      shadowed: provenance.shadowed ? 1 : 0,
+      supportingChunks: provenance.supportingChunks
+        ? JSON.stringify(provenance.supportingChunks, null, JSON_SPACES)
+        : null,
+      promotionCriteria: provenance.promotionCriteria
+        ? JSON.stringify(provenance.promotionCriteria, null, JSON_SPACES)
+        : null,
+      rationale: provenance.rationale ?? null
+    });
+  }
+
+  getLlmEdgeProvenance(linkId: string): LlmEdgeProvenance | undefined {
+    const row = this.db
+      .prepare(
+        `
+        SELECT
+          link_id,
+          template_id,
+          template_version,
+          prompt_hash,
+          model_id,
+          issued_at,
+          created_at,
+          confidence_tier,
+          calibrated_confidence,
+          raw_confidence,
+          diagnostics_eligible,
+          shadowed,
+          supporting_chunks,
+          promotion_criteria,
+          rationale
+        FROM llm_edge_provenance
+        WHERE link_id = @linkId
+      `
+      )
+      .get({ linkId }) as LlmEdgeProvenanceRow | undefined;
+
+    if (!row) {
+      return undefined;
+    }
+
+    return mapLlmEdgeProvenanceRow(row);
   }
 
   recordChangeEvent(change: ChangeEvent): void {
@@ -586,6 +711,25 @@ export class GraphStore {
 
       CREATE UNIQUE INDEX IF NOT EXISTS idx_links_unique ON links (source_id, target_id, kind);
 
+      CREATE TABLE IF NOT EXISTS llm_edge_provenance (
+        link_id TEXT PRIMARY KEY,
+        template_id TEXT NOT NULL,
+        template_version TEXT NOT NULL,
+        prompt_hash TEXT NOT NULL,
+        model_id TEXT NOT NULL,
+        issued_at TEXT NOT NULL,
+        created_at TEXT NOT NULL,
+        confidence_tier TEXT NOT NULL,
+        calibrated_confidence REAL NOT NULL,
+        raw_confidence REAL,
+        diagnostics_eligible INTEGER NOT NULL,
+        shadowed INTEGER NOT NULL,
+        supporting_chunks TEXT,
+        promotion_criteria TEXT,
+        rationale TEXT,
+        FOREIGN KEY (link_id) REFERENCES links (id) ON DELETE CASCADE
+      );
+
       CREATE TABLE IF NOT EXISTS change_events (
         id TEXT PRIMARY KEY,
         artifact_id TEXT NOT NULL,
@@ -748,6 +892,90 @@ interface ArtifactRow {
   last_synchronized_at: string | null;
   hash: string | null;
   metadata: string | null;
+}
+
+interface LinkRow {
+  id: string;
+  source_id: string;
+  target_id: string;
+  kind: string;
+  confidence: number;
+  created_at: string;
+  created_by: string;
+}
+
+function mapLinkRow(row: LinkRow): LinkRelationship {
+  return {
+    id: row.id,
+    sourceId: row.source_id,
+    targetId: row.target_id,
+    kind: row.kind as LinkRelationshipKind,
+    confidence: row.confidence,
+    createdAt: row.created_at,
+    createdBy: row.created_by
+  } satisfies LinkRelationship;
+}
+
+interface LlmEdgeProvenanceRow {
+  link_id: string;
+  template_id: string;
+  template_version: string;
+  prompt_hash: string;
+  model_id: string;
+  issued_at: string;
+  created_at: string;
+  confidence_tier: string;
+  calibrated_confidence: number;
+  raw_confidence: number | null;
+  diagnostics_eligible: number;
+  shadowed: number;
+  supporting_chunks: string | null;
+  promotion_criteria: string | null;
+  rationale: string | null;
+}
+
+function mapLlmEdgeProvenanceRow(row: LlmEdgeProvenanceRow): LlmEdgeProvenance {
+  return {
+    linkId: row.link_id,
+    templateId: row.template_id,
+    templateVersion: row.template_version,
+    promptHash: row.prompt_hash,
+    modelId: row.model_id,
+    issuedAt: row.issued_at,
+    createdAt: row.created_at,
+    confidenceTier: normalizeTier(row.confidence_tier),
+    calibratedConfidence: row.calibrated_confidence,
+    rawConfidence: typeof row.raw_confidence === "number" ? row.raw_confidence : undefined,
+    diagnosticsEligible: row.diagnostics_eligible === 1,
+    shadowed: row.shadowed === 1,
+    supportingChunks: parseStringArray(row.supporting_chunks),
+    promotionCriteria: parseStringArray(row.promotion_criteria),
+    rationale: row.rationale ?? undefined
+  } satisfies LlmEdgeProvenance;
+}
+
+function normalizeTier(tier: string): "high" | "medium" | "low" {
+  const normal = tier.toLowerCase();
+  if (normal === "high" || normal === "medium" || normal === "low") {
+    return normal;
+  }
+  return "low";
+}
+
+function parseStringArray(value: string | null): string[] | undefined {
+  if (!value) {
+    return undefined;
+  }
+
+  try {
+    const parsed = JSON.parse(value) as unknown;
+    if (!Array.isArray(parsed)) {
+      return undefined;
+    }
+    return (parsed as unknown[]).filter((item): item is string => typeof item === "string");
+  } catch {
+    return undefined;
+  }
 }
 
 interface LinkedArtifactRow {

@@ -49,4 +49,65 @@ describe("GraphStore", () => {
       store.close();
     }
   });
+
+  it("stores and retrieves llm provenance metadata", () => {
+    const store = createStore();
+
+    try {
+      const source = store.upsertArtifact({
+        id: randomUUID(),
+        uri: "file:///tmp/source.ts",
+        layer: "code"
+      });
+      const target = store.upsertArtifact({
+        id: randomUUID(),
+        uri: "file:///tmp/target.ts",
+        layer: "code"
+      });
+
+      const linkId = randomUUID();
+      const timestamp = new Date().toISOString();
+
+      store.upsertLink({
+        id: linkId,
+        sourceId: source.id,
+        targetId: target.id,
+        kind: "depends_on",
+        confidence: 0.9,
+        createdAt: timestamp,
+        createdBy: "test"
+      });
+
+      store.storeLlmEdgeProvenance({
+        linkId,
+        templateId: "link-aware-diagnostics.llm-ingestion.v1",
+        templateVersion: "2025-10-24",
+        promptHash: "hash",
+        modelId: "mock",
+        issuedAt: timestamp,
+        createdAt: timestamp,
+        confidenceTier: "high",
+        calibratedConfidence: 0.92,
+        rawConfidence: 0.85,
+        supportingChunks: ["chunk-1"],
+        rationale: "imports chunk",
+        diagnosticsEligible: true,
+        shadowed: false,
+        promotionCriteria: ["requires corroboration"]
+      });
+
+      const provenance = store.getLlmEdgeProvenance(linkId);
+      expect(provenance).toBeDefined();
+      expect(provenance).toMatchObject({
+        linkId,
+        confidenceTier: "high",
+        diagnosticsEligible: true,
+        shadowed: false,
+        supportingChunks: ["chunk-1"],
+        promotionCriteria: ["requires corroboration"]
+      });
+    } finally {
+      store.close();
+    }
+  });
 });

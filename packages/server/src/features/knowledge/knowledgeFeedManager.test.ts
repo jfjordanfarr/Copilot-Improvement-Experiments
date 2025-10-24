@@ -26,6 +26,21 @@ describe("KnowledgeFeedManager", () => {
   let statuses: FeedStatusSummary[];
   let ingestor: KnowledgeGraphIngestor;
 
+  async function waitForStatus(expected: FeedStatusSummary["status"], timeoutMs = 500): Promise<void> {
+    const deadline = Date.now() + timeoutMs;
+    for (;;) {
+      if (statuses.at(-1)?.status === expected) {
+        return;
+      }
+
+      if (Date.now() >= deadline) {
+        throw new Error(`Expected status ${expected}, saw ${statuses.at(-1)?.status ?? "<none>"}`);
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 10));
+    }
+  }
+
   beforeEach(() => {
     tempDir = mkdtempSync(path.join(tmpdir(), "kg-manager-"));
     graphStore = new GraphStore({ dbPath: path.join(tempDir, "graph.db") });
@@ -153,9 +168,7 @@ describe("KnowledgeFeedManager", () => {
 
     await manager.start();
 
-    await new Promise(resolve => setTimeout(resolve, 50));
-
-    expect(statuses.at(-1)?.status).toBe("degraded");
+    await waitForStatus("degraded");
     expect(manager.getHealthyFeeds()).toHaveLength(0);
 
     await manager.stop();

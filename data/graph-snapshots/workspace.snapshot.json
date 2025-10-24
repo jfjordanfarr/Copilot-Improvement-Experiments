@@ -1,0 +1,4387 @@
+{
+  "generatedAt": "2025-01-01T00:00:00.000Z",
+  "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
+  "totals": {
+    "artifacts": 171,
+    "links": 371
+  },
+  "artifacts": [
+    {
+      "id": "fallback-artifact-c107ff6a4305",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-1/link-aware-diagnostics-vision.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-2138d49b4a84",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-2/falsifiability-requirements.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-04d7e946b4f2",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-2/product-roadmap.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-22ab6043d495",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-3/diagnostics-pipeline.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-e5384e740555",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-3/extension-surfaces.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-d25edccdd671",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-3/falsifiability/ripple-falsifiability-suite.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-be43b051b493",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-3/knowledge-graph-ingestion.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-f868ca4fafe5",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-3/language-server-architecture.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-66e5dfc704c7",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-3/llm-ingestion-pipeline.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-5bec2ce967dc",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/change-events/changeQueue.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-cd12481fb8d6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/change-events/saveCodeChange.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-57e8d0bc4cb1",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/change-events/saveDocumentChange.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-94f2e32a29d9",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/dependencies/buildCodeGraph.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-635940bd0cb3",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/dependencies/dependencyQuickPick.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-f097349872df",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/dependencies/inspectDependencies.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-4cbf2ed387b0",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/dependencies/symbolNeighbors.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-5d31ae97c0b1",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/extension-diagnostics/docDiagnosticProvider.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-ee8b5871b2d5",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/extension-diagnostics/linkAwareExtension.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-d76302e51288",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/extension-diagnostics/symbolNeighborsQuickPick.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-8bd4f4162bc4",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/extension-services/symbolBridge.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-0a6252fbff06",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/extension-settings/configService.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-33d82ea31808",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/knowledge-graph-ingestion/knowledgeFeedManager.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-818dd5418f14",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/knowledge-graph-ingestion/knowledgeGraphBridge.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-607ba6bd975d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/knowledge-graph-ingestion/knowledgeGraphIngestor.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-5106576ef3ab",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/knowledge-graph-ingestion/rippleAnalyzer.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-18251ba77144",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/artifactWatcher.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-e266ed001437",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/docDiagnosticsPublisher.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-d4eb30d6da2d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/languageServerRuntime.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-960ad15bb08d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/maintenanceOrphans.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-7469d9773505",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/llm-ingestion/confidenceCalibrator.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-f7adc56e49d2",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/llm-ingestion/llmIngestionOrchestrator.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-18acd75f00e5",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/llm-ingestion/relationshipExtractor.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-aa5fd1567d39",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-diagnostics/diagnosticUtils.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-38a5acb9b2fd",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-diagnostics/hysteresisController.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-42700b29c3bc",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-diagnostics/noiseFilter.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-b0130ee17cf2",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-diagnostics/publishCodeDiagnostics.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-c7cf86b9a5b6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-settings/providerGuard.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-447483612f98",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-settings/settingsBridge.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-0468ca3f63b6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-telemetry/driftHistoryStore.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-7f46ecf80639",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/symbolsContracts.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-d1be6c5edc21",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared/graphStore.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-992c2c5ad6fa",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/graphCoverageAudit.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-e05a588e331a",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/inspectSymbolNeighborsCli.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-a05a95645bc0",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/workspaceGraphSnapshot.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-189c4987243f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/watchers/fileMaintenanceWatcher.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-c3c1ab97ab25",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/watchers/pathReferenceDetector.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-ab82bcd6c066",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/commands/acknowledgeDiagnostic.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-ac0248747751",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/commands/exportDiagnostics.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-c0556bcbd307",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/commands/exportDiagnostics.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-9f1159e6813b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/commands/inspectSymbolNeighbors.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-cc95686a8cfe",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/commands/inspectSymbolNeighbors.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-7ab3f9e61996",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/commands/overrideLink.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-ce55eea93ce5",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/diagnostics/dependencyQuickPick.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-a8ba5170e3f6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/diagnostics/dependencyQuickPick.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-d050bd76f7de",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/diagnostics/docDiagnosticProvider.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-69cd22c85f1c",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/diagnostics/docDiagnosticProvider.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-e77b56ad7b76",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/extension.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-e9f278b71318",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/onboarding/providerGate.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-42fa4b1d6468",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/prompts/rebindPrompt.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-4ff7ee36515f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/services/symbolBridge.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-349366ee3320",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/services/symbolBridge.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-3461b35df282",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/settings/configService.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-8b74b0c0e0ea",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/shared/artifactSchemas.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-0e495ec902d1",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/testing/testHooks.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-e93a3a665e25",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/views/diagnosticsTree.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-06b6f9817318",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/watchers/fileMaintenance.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-6a982ebd0129",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/changeEvents/changeQueue.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-e1451c8c67e9",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/changeEvents/saveCodeChange.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-4136c531f163",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/changeEvents/saveDocumentChange.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-5a3e7f904515",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/changeEvents/saveDocumentChange.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-6fd7465e828f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/dependencies/buildCodeGraph.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-ebe1c9a6a328",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/dependencies/inspectDependencies.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-d0c2b85a6fbc",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/dependencies/inspectDependencies.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-7407759cbbcb",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/dependencies/symbolNeighbors.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-37c34d9ffa6e",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/dependencies/symbolNeighbors.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-7bb1f7be810f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/acknowledgementService.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-d4f771bb8c02",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/acknowledgementService.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-5995fae386dd",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/diagnosticUtils.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-ce6211f3180c",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/hysteresisController.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-2cb1eb52b53b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/hysteresisController.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-c87c9ff3d3f3",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/listOutstandingDiagnostics.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-71bdc1e57bda",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-479159be8a7f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/noiseFilter.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-11089fd4d185",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/noiseFilter.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-b9043c401911",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/publishCodeDiagnostics.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-2695877249f0",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/publishDocDiagnostics.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-bf7951fb52e9",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/publishDocDiagnostics.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-62a576590554",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/diagnostics/rippleTypes.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-b9b550747c14",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/feedCheckpointStore.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-bb7fb7409dd8",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/feedDiagnosticsGateway.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-c93a9c183c83",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/feedFormatDetector.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-86bae24a7a84",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/feedFormatDetector.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-da5f34501c5c",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/knowledgeFeedManager.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-79f856289517",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/knowledgeFeedManager.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-073e2c89ea22",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/knowledgeGraphBridge.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-9088e217bd33",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/knowledgeGraphBridge.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-95c288989ffa",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-3bebb62ba0de",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/knowledgeGraphIngestor.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-a66fc31574ac",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/lsifParser.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-f2dc2606292d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/lsifParser.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-d9ba6a0a1cb3",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/rippleAnalyzer.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-ef6185b9ea5c",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/rippleAnalyzer.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-a8642de63298",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/schemaValidator.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-230ed35fa0c8",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/scipParser.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-7e81896a79ab",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/scipParser.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-b297240b179e",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-7bdeeb2f90cd",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/symbolBridgeProvider.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-dd515e3b4c50",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/workspaceIndexProvider.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-44f1f953b8b5",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/maintenance/removeOrphans.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-242c8c102351",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/overrides/overrideLink.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-5a0991d4b81c",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/settings/providerGuard.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-cfe19da2dafd",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/settings/settingsBridge.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-5d7e4c772279",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/utils/uri.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-dc2ccfbea05c",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/watchers/artifactWatcher.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-48c92132896f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/watchers/artifactWatcher.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-2cbb3d0224d3",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/watchers/pathReferenceDetector.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-48f1e8780ef1",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/watchers/pathReferenceDetector.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-5b9f460ca88a",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/main.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-343671a89842",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/runtime/changeProcessor.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-5296db465ad3",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/runtime/environment.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-354277347204",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/runtime/knowledgeFeeds.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-cd63fb58825d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/runtime/settings.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-7f7d08497a1e",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/telemetry/driftHistoryStore.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-6519ba5a74f6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/contracts/dependencies.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-b1bddeb65d5c",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/contracts/diagnostics.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-af6195947e4d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/contracts/lsif.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-3f52174b9fd2",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/contracts/maintenance.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-9a4edaef481d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/contracts/overrides.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-5450cc9707d8",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/contracts/scip.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-9c94f0550d2b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/contracts/symbols.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-26ed99822685",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/db/graphStore.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-ef1874b57c43",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/db/graphStore.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-16850a09747b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/domain/artifacts.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-f0fb8bc903f8",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/index.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-2ea13bca9e75",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/inference/fallbackInference.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-508d16669979",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/inference/fallbackInference.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-2a0d70502226",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/inference/linkInference.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-d6ce98aac27b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/inference/linkInference.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-c4586934c11d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/knowledge/knowledgeGraphBridge.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-4b2886477078",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/scripts/graph-tools/audit-doc-coverage.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-0362c8812821",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/scripts/graph-tools/inspect-symbol.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-637117183905",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/scripts/graph-tools/snapshot-workspace.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-3ce6f4e004de",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/scripts/rebuild-better-sqlite3.mjs",
+      "layer": "code",
+      "language": "javascript"
+    },
+    {
+      "id": "fallback-artifact-cd5d211d76ce",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/scripts/safe-to-commit.mjs",
+      "layer": "code",
+      "language": "javascript"
+    },
+    {
+      "id": "fallback-artifact-15d8d84fbc0b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/checklists/inference.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-5cbffe0cb09f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/checklists/requirements.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-726c5872ad39",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/contracts/openapi.yaml",
+      "layer": "requirements",
+      "language": "yaml"
+    },
+    {
+      "id": "fallback-artifact-937e302afd45",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/data-model.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-38f4eb12cd03",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/knowledge-schema.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-6eff399631e2",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/plan.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-c3bc9ede642e",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/quickstart.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-f2e68ced1277",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/research.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-685a40dd3342",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/spec.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-3b9f8b9d91ea",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/specs/001-link-aware-diagnostics/tasks.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-9757dfe40139",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/clean-dist.mjs",
+      "layer": "code",
+      "language": "javascript"
+    },
+    {
+      "id": "fallback-artifact-2760fe531ef0",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-e9514513622b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/simple-workspace/src/core.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-dcdc54aadab7",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/simple-workspace/src/dataAlpha.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-e67efe7a5cf6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/simple-workspace/src/dataBeta.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-02e88360dc60",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/simple-workspace/src/feature.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-e9577547d589",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/simple-workspace/src/util.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-6794e5566852",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/us1/codeImpact.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-55b5fa3ccc42",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/us1/markdownDrift.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-11db819a0761",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/us2/markdownDrift.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-d757fa4c91b6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/us3/acknowledgeDiagnostics.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-0b34ebe23901",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/us3/markdownLinkDrift.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-29eacf636632",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/us4/inspectSymbolNeighbors.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-fd9655b4b128",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/us4/scopeCollision.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-8f3b31347b2e",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/us5/transformRipple.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-29bc9d2e819d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/vscode/runTests.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-53155c73c13b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/vscode/suite/index.ts",
+      "layer": "code",
+      "language": "typescript"
+    }
+  ],
+  "links": [
+    {
+      "id": "orchestrated-link-7a472111",
+      "sourceId": "fallback-artifact-02e88360dc60",
+      "targetId": "fallback-artifact-e9577547d589",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ed623bae",
+      "sourceId": "fallback-artifact-0362c8812821",
+      "targetId": "fallback-artifact-37c34d9ffa6e",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b6b8d774",
+      "sourceId": "fallback-artifact-0468ca3f63b6",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-73bb23f5",
+      "sourceId": "fallback-artifact-0468ca3f63b6",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-263a04d8",
+      "sourceId": "fallback-artifact-0468ca3f63b6",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2dcea177",
+      "sourceId": "fallback-artifact-0468ca3f63b6",
+      "targetId": "fallback-artifact-7f7d08497a1e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b05055f3",
+      "sourceId": "fallback-artifact-0468ca3f63b6",
+      "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-97f1b369",
+      "sourceId": "fallback-artifact-0468ca3f63b6",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1dbe4ab3",
+      "sourceId": "fallback-artifact-04d7e946b4f2",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-298e02d1",
+      "sourceId": "fallback-artifact-04d7e946b4f2",
+      "targetId": "fallback-artifact-c107ff6a4305",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ca6c7cb5",
+      "sourceId": "fallback-artifact-04d7e946b4f2",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3dbfa5a6",
+      "sourceId": "fallback-artifact-04d7e946b4f2",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-73b2d472",
+      "sourceId": "fallback-artifact-073e2c89ea22",
+      "targetId": "fallback-artifact-9088e217bd33",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e4096f32",
+      "sourceId": "fallback-artifact-0a6252fbff06",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2decd12e",
+      "sourceId": "fallback-artifact-0a6252fbff06",
+      "targetId": "fallback-artifact-3461b35df282",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-dfd43ab1",
+      "sourceId": "fallback-artifact-0a6252fbff06",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-92531b94",
+      "sourceId": "fallback-artifact-0a6252fbff06",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-90b7a134",
+      "sourceId": "fallback-artifact-0a6252fbff06",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1c7edbaf",
+      "sourceId": "fallback-artifact-11089fd4d185",
+      "targetId": "fallback-artifact-62a576590554",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d9112a20",
+      "sourceId": "fallback-artifact-11089fd4d185",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0d8a1613",
+      "sourceId": "fallback-artifact-18251ba77144",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-873c1e96",
+      "sourceId": "fallback-artifact-18251ba77144",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bbd3c275",
+      "sourceId": "fallback-artifact-18251ba77144",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2d8b7106",
+      "sourceId": "fallback-artifact-18251ba77144",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-25c79857",
+      "sourceId": "fallback-artifact-189c4987243f",
+      "targetId": "fallback-artifact-06b6f9817318",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0f90e1b4",
+      "sourceId": "fallback-artifact-189c4987243f",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bc3f13b6",
+      "sourceId": "fallback-artifact-189c4987243f",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-573f161b",
+      "sourceId": "fallback-artifact-230ed35fa0c8",
+      "targetId": "fallback-artifact-7e81896a79ab",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-34870eb1",
+      "sourceId": "fallback-artifact-2695877249f0",
+      "targetId": "fallback-artifact-11089fd4d185",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1f633b84",
+      "sourceId": "fallback-artifact-2695877249f0",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-de8da137",
+      "sourceId": "fallback-artifact-2695877249f0",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-760b8469",
+      "sourceId": "fallback-artifact-2695877249f0",
+      "targetId": "fallback-artifact-62a576590554",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3095d871",
+      "sourceId": "fallback-artifact-2695877249f0",
+      "targetId": "fallback-artifact-bf7951fb52e9",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-329dd2da",
+      "sourceId": "fallback-artifact-2695877249f0",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0a634138",
+      "sourceId": "fallback-artifact-2695877249f0",
+      "targetId": "fallback-artifact-d4f771bb8c02",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-98e59e32",
+      "sourceId": "fallback-artifact-26ed99822685",
+      "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7ea8d604",
+      "sourceId": "fallback-artifact-2a0d70502226",
+      "targetId": "fallback-artifact-508d16669979",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f7cb8c59",
+      "sourceId": "fallback-artifact-2a0d70502226",
+      "targetId": "fallback-artifact-c4586934c11d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7d1b3425",
+      "sourceId": "fallback-artifact-2a0d70502226",
+      "targetId": "fallback-artifact-d6ce98aac27b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2afc9329",
+      "sourceId": "fallback-artifact-2cbb3d0224d3",
+      "targetId": "fallback-artifact-48f1e8780ef1",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3e4dc2de",
+      "sourceId": "fallback-artifact-2cbb3d0224d3",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-cffe5e23",
+      "sourceId": "fallback-artifact-2ea13bca9e75",
+      "targetId": "fallback-artifact-508d16669979",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4904b7f5",
+      "sourceId": "fallback-artifact-33d82ea31808",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fb8398d8",
+      "sourceId": "fallback-artifact-33d82ea31808",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-16477b0d",
+      "sourceId": "fallback-artifact-33d82ea31808",
+      "targetId": "fallback-artifact-79f856289517",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-98741fc8",
+      "sourceId": "fallback-artifact-33d82ea31808",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-59c4532d",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-18eeb8e0",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a6615894",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-5296db465ad3",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5bdfc784",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-5a0991d4b81c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2898a000",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-5a3e7f904515",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1e0aba7b",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b06c9c12",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-62a576590554",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1941eca2",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-6a982ebd0129",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f6144dba",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-b9043c401911",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6af6f01a",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-bf7951fb52e9",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6cfeea83",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-44c458e1",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-d4f771bb8c02",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ff9ad60a",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-e1451c8c67e9",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f3969a2f",
+      "sourceId": "fallback-artifact-343671a89842",
+      "targetId": "fallback-artifact-ef6185b9ea5c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-36db086e",
+      "sourceId": "fallback-artifact-354277347204",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c44da822",
+      "sourceId": "fallback-artifact-354277347204",
+      "targetId": "fallback-artifact-5296db465ad3",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4eae5a8b",
+      "sourceId": "fallback-artifact-354277347204",
+      "targetId": "fallback-artifact-9088e217bd33",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4b11a704",
+      "sourceId": "fallback-artifact-37c34d9ffa6e",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-80395f9e",
+      "sourceId": "fallback-artifact-38a5acb9b2fd",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fc02d034",
+      "sourceId": "fallback-artifact-38a5acb9b2fd",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7c042b1d",
+      "sourceId": "fallback-artifact-38a5acb9b2fd",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2e830c00",
+      "sourceId": "fallback-artifact-38a5acb9b2fd",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-092db13d",
+      "sourceId": "fallback-artifact-38a5acb9b2fd",
+      "targetId": "fallback-artifact-ce6211f3180c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a03aba91",
+      "sourceId": "fallback-artifact-38a5acb9b2fd",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-abd83a69",
+      "sourceId": "fallback-artifact-3bebb62ba0de",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e0307761",
+      "sourceId": "fallback-artifact-3bebb62ba0de",
+      "targetId": "fallback-artifact-a8642de63298",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0c89e1c6",
+      "sourceId": "fallback-artifact-3bebb62ba0de",
+      "targetId": "fallback-artifact-b9b550747c14",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-175e5c58",
+      "sourceId": "fallback-artifact-3bebb62ba0de",
+      "targetId": "fallback-artifact-bb7fb7409dd8",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-60c6c0d8",
+      "sourceId": "fallback-artifact-3ce6f4e004de",
+      "targetId": "fallback-artifact-637117183905",
+      "kind": "references",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
+      "id": "orchestrated-link-9f84b972",
+      "sourceId": "fallback-artifact-3f52174b9fd2",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-44a1cb66",
+      "sourceId": "fallback-artifact-4136c531f163",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-544bb286",
+      "sourceId": "fallback-artifact-4136c531f163",
+      "targetId": "fallback-artifact-5a3e7f904515",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-44f4ff28",
+      "sourceId": "fallback-artifact-4136c531f163",
+      "targetId": "fallback-artifact-6a982ebd0129",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-40cf49e6",
+      "sourceId": "fallback-artifact-42700b29c3bc",
+      "targetId": "fallback-artifact-11089fd4d185",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c457461d",
+      "sourceId": "fallback-artifact-42700b29c3bc",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c022119c",
+      "sourceId": "fallback-artifact-42700b29c3bc",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b6ec2bfd",
+      "sourceId": "fallback-artifact-42700b29c3bc",
+      "targetId": "fallback-artifact-447483612f98",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-333d4651",
+      "sourceId": "fallback-artifact-42700b29c3bc",
+      "targetId": "fallback-artifact-479159be8a7f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-72a0f27f",
+      "sourceId": "fallback-artifact-42700b29c3bc",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e458a110",
+      "sourceId": "fallback-artifact-42700b29c3bc",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-97cd7198",
+      "sourceId": "fallback-artifact-447483612f98",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-93983d17",
+      "sourceId": "fallback-artifact-447483612f98",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-46171dfa",
+      "sourceId": "fallback-artifact-447483612f98",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c1a10818",
+      "sourceId": "fallback-artifact-447483612f98",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b7cecc8b",
+      "sourceId": "fallback-artifact-447483612f98",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1a75bd75",
+      "sourceId": "fallback-artifact-44f1f953b8b5",
+      "targetId": "fallback-artifact-5995fae386dd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-93360d2e",
+      "sourceId": "fallback-artifact-44f1f953b8b5",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-cfa3f662",
+      "sourceId": "fallback-artifact-479159be8a7f",
+      "targetId": "fallback-artifact-11089fd4d185",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-11286c1a",
+      "sourceId": "fallback-artifact-479159be8a7f",
+      "targetId": "fallback-artifact-62a576590554",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-cdbaba8b",
+      "sourceId": "fallback-artifact-479159be8a7f",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d9b4671d",
+      "sourceId": "fallback-artifact-48c92132896f",
+      "targetId": "fallback-artifact-48f1e8780ef1",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ed0596d2",
+      "sourceId": "fallback-artifact-48c92132896f",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e83cc8f9",
+      "sourceId": "fallback-artifact-48c92132896f",
+      "targetId": "fallback-artifact-6a982ebd0129",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-017a082c",
+      "sourceId": "fallback-artifact-48f1e8780ef1",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bbfc817c",
+      "sourceId": "fallback-artifact-4cbf2ed387b0",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-93f95918",
+      "sourceId": "fallback-artifact-4cbf2ed387b0",
+      "targetId": "fallback-artifact-29eacf636632",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3af7e231",
+      "sourceId": "fallback-artifact-4cbf2ed387b0",
+      "targetId": "fallback-artifact-37c34d9ffa6e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b7c74cfb",
+      "sourceId": "fallback-artifact-4cbf2ed387b0",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b43b3d21",
+      "sourceId": "fallback-artifact-4cbf2ed387b0",
+      "targetId": "fallback-artifact-7407759cbbcb",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-eb83cc69",
+      "sourceId": "fallback-artifact-4cbf2ed387b0",
+      "targetId": "fallback-artifact-9c94f0550d2b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-dbfddc6f",
+      "sourceId": "fallback-artifact-4cbf2ed387b0",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-decac831",
+      "sourceId": "fallback-artifact-4ff7ee36515f",
+      "targetId": "fallback-artifact-349366ee3320",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-da164bc1",
+      "sourceId": "fallback-artifact-508d16669979",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d307a2bc",
+      "sourceId": "fallback-artifact-5106576ef3ab",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8586839f",
+      "sourceId": "fallback-artifact-5106576ef3ab",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-22770a8f",
+      "sourceId": "fallback-artifact-5106576ef3ab",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1e2e1891",
+      "sourceId": "fallback-artifact-5106576ef3ab",
+      "targetId": "fallback-artifact-ef6185b9ea5c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-28c10da7",
+      "sourceId": "fallback-artifact-5296db465ad3",
+      "targetId": "fallback-artifact-5a0991d4b81c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b109441e",
+      "sourceId": "fallback-artifact-57e8d0bc4cb1",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-acd40f9d",
+      "sourceId": "fallback-artifact-57e8d0bc4cb1",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fc1ffed0",
+      "sourceId": "fallback-artifact-57e8d0bc4cb1",
+      "targetId": "fallback-artifact-4136c531f163",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d8a80181",
+      "sourceId": "fallback-artifact-57e8d0bc4cb1",
+      "targetId": "fallback-artifact-5a3e7f904515",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5f52f080",
+      "sourceId": "fallback-artifact-57e8d0bc4cb1",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d10a9f11",
+      "sourceId": "fallback-artifact-57e8d0bc4cb1",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b2caca17",
+      "sourceId": "fallback-artifact-5a3e7f904515",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b7e6cbb2",
+      "sourceId": "fallback-artifact-5a3e7f904515",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2adbfdac",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-242c8c102351",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9d8204aa",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bbf757d4",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-343671a89842",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9d9a4206",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-354277347204",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-008e186b",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-37c34d9ffa6e",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fb084f81",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-44f1f953b8b5",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5cac6a5d",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ea1f0a11",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-5296db465ad3",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9f9d7901",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-5a0991d4b81c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5cff9e1f",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-6a982ebd0129",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b46ba484",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-71bdc1e57bda",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8a24c451",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-7bdeeb2f90cd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a608399f",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-7f7d08497a1e",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-dc4539b2",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-b297240b179e",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9c65b080",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-cd63fb58825d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b0bc9c00",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9f1f3a78",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-d0c2b85a6fbc",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-88820a5e",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-d4f771bb8c02",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9f5e99a1",
+      "sourceId": "fallback-artifact-5b9f460ca88a",
+      "targetId": "fallback-artifact-dd515e3b4c50",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7a20216e",
+      "sourceId": "fallback-artifact-5bec2ce967dc",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-75eaeced",
+      "sourceId": "fallback-artifact-5bec2ce967dc",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2869cdd0",
+      "sourceId": "fallback-artifact-5bec2ce967dc",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c24875ef",
+      "sourceId": "fallback-artifact-5bec2ce967dc",
+      "targetId": "fallback-artifact-6a982ebd0129",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9a217c61",
+      "sourceId": "fallback-artifact-5bec2ce967dc",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-aad66f61",
+      "sourceId": "fallback-artifact-5cbffe0cb09f",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-773badd5",
+      "sourceId": "fallback-artifact-5d31ae97c0b1",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-01574a29",
+      "sourceId": "fallback-artifact-5d31ae97c0b1",
+      "targetId": "fallback-artifact-69cd22c85f1c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-75a03375",
+      "sourceId": "fallback-artifact-5d31ae97c0b1",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-07f3c5cf",
+      "sourceId": "fallback-artifact-607ba6bd975d",
+      "targetId": "fallback-artifact-3bebb62ba0de",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f53caa17",
+      "sourceId": "fallback-artifact-607ba6bd975d",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-922d3107",
+      "sourceId": "fallback-artifact-607ba6bd975d",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-187221f7",
+      "sourceId": "fallback-artifact-607ba6bd975d",
+      "targetId": "fallback-artifact-f2e68ced1277",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4267abbb",
+      "sourceId": "fallback-artifact-635940bd0cb3",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3e32773a",
+      "sourceId": "fallback-artifact-635940bd0cb3",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f0b1581d",
+      "sourceId": "fallback-artifact-635940bd0cb3",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-603702de",
+      "sourceId": "fallback-artifact-635940bd0cb3",
+      "targetId": "fallback-artifact-a8ba5170e3f6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ef15ddbd",
+      "sourceId": "fallback-artifact-635940bd0cb3",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e58afc41",
+      "sourceId": "fallback-artifact-637117183905",
+      "targetId": "fallback-artifact-dd515e3b4c50",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6deca372",
+      "sourceId": "fallback-artifact-6519ba5a74f6",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-661cf318",
+      "sourceId": "fallback-artifact-69cd22c85f1c",
+      "targetId": "fallback-artifact-ab82bcd6c066",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9811b203",
+      "sourceId": "fallback-artifact-6eff399631e2",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6972ee67",
+      "sourceId": "fallback-artifact-7407759cbbcb",
+      "targetId": "fallback-artifact-37c34d9ffa6e",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ea9f4101",
+      "sourceId": "fallback-artifact-7469d9773505",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6605ce1a",
+      "sourceId": "fallback-artifact-7469d9773505",
+      "targetId": "fallback-artifact-66e5dfc704c7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9d1e21e4",
+      "sourceId": "fallback-artifact-7469d9773505",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6f10fe94",
+      "sourceId": "fallback-artifact-79f856289517",
+      "targetId": "fallback-artifact-3bebb62ba0de",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3d29eed5",
+      "sourceId": "fallback-artifact-79f856289517",
+      "targetId": "fallback-artifact-bb7fb7409dd8",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-09296718",
+      "sourceId": "fallback-artifact-7bb1f7be810f",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-11af9c0d",
+      "sourceId": "fallback-artifact-7bb1f7be810f",
+      "targetId": "fallback-artifact-7f7d08497a1e",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1c63fe6e",
+      "sourceId": "fallback-artifact-7bb1f7be810f",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f4296ccc",
+      "sourceId": "fallback-artifact-7bb1f7be810f",
+      "targetId": "fallback-artifact-d4f771bb8c02",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0d1f6cf1",
+      "sourceId": "fallback-artifact-7f46ecf80639",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8c1acda6",
+      "sourceId": "fallback-artifact-7f46ecf80639",
+      "targetId": "fallback-artifact-37c34d9ffa6e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-08ea3870",
+      "sourceId": "fallback-artifact-7f46ecf80639",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bb691953",
+      "sourceId": "fallback-artifact-7f46ecf80639",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-055e2896",
+      "sourceId": "fallback-artifact-7f46ecf80639",
+      "targetId": "fallback-artifact-7407759cbbcb",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3ca6b7de",
+      "sourceId": "fallback-artifact-7f46ecf80639",
+      "targetId": "fallback-artifact-9c94f0550d2b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2d20c7e4",
+      "sourceId": "fallback-artifact-7f46ecf80639",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9ebf2b79",
+      "sourceId": "fallback-artifact-818dd5418f14",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-513e0c5c",
+      "sourceId": "fallback-artifact-818dd5418f14",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7841dec0",
+      "sourceId": "fallback-artifact-818dd5418f14",
+      "targetId": "fallback-artifact-9088e217bd33",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ee2e934c",
+      "sourceId": "fallback-artifact-818dd5418f14",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c7150d7e",
+      "sourceId": "fallback-artifact-86bae24a7a84",
+      "targetId": "fallback-artifact-7e81896a79ab",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9e4eafe6",
+      "sourceId": "fallback-artifact-86bae24a7a84",
+      "targetId": "fallback-artifact-f2dc2606292d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d5053430",
+      "sourceId": "fallback-artifact-8bd4f4162bc4",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d6a333a3",
+      "sourceId": "fallback-artifact-8bd4f4162bc4",
+      "targetId": "fallback-artifact-349366ee3320",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d0cfffaf",
+      "sourceId": "fallback-artifact-8bd4f4162bc4",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7f5fb09d",
+      "sourceId": "fallback-artifact-8bd4f4162bc4",
+      "targetId": "fallback-artifact-4ff7ee36515f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-834ee092",
+      "sourceId": "fallback-artifact-8bd4f4162bc4",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-81b36632",
+      "sourceId": "fallback-artifact-8bd4f4162bc4",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1a2c72c3",
+      "sourceId": "fallback-artifact-9088e217bd33",
+      "targetId": "fallback-artifact-3bebb62ba0de",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-13b87be6",
+      "sourceId": "fallback-artifact-9088e217bd33",
+      "targetId": "fallback-artifact-79f856289517",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7d238526",
+      "sourceId": "fallback-artifact-9088e217bd33",
+      "targetId": "fallback-artifact-86bae24a7a84",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-dd70e872",
+      "sourceId": "fallback-artifact-9088e217bd33",
+      "targetId": "fallback-artifact-b9b550747c14",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e8456304",
+      "sourceId": "fallback-artifact-9088e217bd33",
+      "targetId": "fallback-artifact-bb7fb7409dd8",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-feb0641e",
+      "sourceId": "fallback-artifact-94f2e32a29d9",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fa7b2f9d",
+      "sourceId": "fallback-artifact-94f2e32a29d9",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-acfa1080",
+      "sourceId": "fallback-artifact-94f2e32a29d9",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-65543015",
+      "sourceId": "fallback-artifact-94f2e32a29d9",
+      "targetId": "fallback-artifact-6fd7465e828f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1eb1bf11",
+      "sourceId": "fallback-artifact-94f2e32a29d9",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-489e7ea9",
+      "sourceId": "fallback-artifact-95c288989ffa",
+      "targetId": "fallback-artifact-3bebb62ba0de",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0be2f458",
+      "sourceId": "fallback-artifact-95c288989ffa",
+      "targetId": "fallback-artifact-b9b550747c14",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-16b76eea",
+      "sourceId": "fallback-artifact-95c288989ffa",
+      "targetId": "fallback-artifact-bb7fb7409dd8",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-30c251ff",
+      "sourceId": "fallback-artifact-960ad15bb08d",
+      "targetId": "fallback-artifact-06b6f9817318",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1a8b9b5c",
+      "sourceId": "fallback-artifact-960ad15bb08d",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2dfe8a3b",
+      "sourceId": "fallback-artifact-960ad15bb08d",
+      "targetId": "fallback-artifact-44f1f953b8b5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c8d547be",
+      "sourceId": "fallback-artifact-960ad15bb08d",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3a8cf64f",
+      "sourceId": "fallback-artifact-960ad15bb08d",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-93e3fe02",
+      "sourceId": "fallback-artifact-992c2c5ad6fa",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d2f72eac",
+      "sourceId": "fallback-artifact-992c2c5ad6fa",
+      "targetId": "fallback-artifact-4b2886477078",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ea8f2483",
+      "sourceId": "fallback-artifact-992c2c5ad6fa",
+      "targetId": "fallback-artifact-cd63fb58825d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b1ba7174",
+      "sourceId": "fallback-artifact-992c2c5ad6fa",
+      "targetId": "fallback-artifact-e05a588e331a",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d0793000",
+      "sourceId": "fallback-artifact-992c2c5ad6fa",
+      "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-41696a41",
+      "sourceId": "fallback-artifact-9a4edaef481d",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a1430886",
+      "sourceId": "fallback-artifact-9c94f0550d2b",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-13a4b29c",
+      "sourceId": "fallback-artifact-9c94f0550d2b",
+      "targetId": "fallback-artifact-508d16669979",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-121710bd",
+      "sourceId": "fallback-artifact-9c94f0550d2b",
+      "targetId": "fallback-artifact-d6ce98aac27b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-31ed5a6e",
+      "sourceId": "fallback-artifact-9f1159e6813b",
+      "targetId": "fallback-artifact-cc95686a8cfe",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-688baa8e",
+      "sourceId": "fallback-artifact-a05a95645bc0",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d782b758",
+      "sourceId": "fallback-artifact-a05a95645bc0",
+      "targetId": "fallback-artifact-637117183905",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8ea93564",
+      "sourceId": "fallback-artifact-a05a95645bc0",
+      "targetId": "fallback-artifact-992c2c5ad6fa",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7111c442",
+      "sourceId": "fallback-artifact-a05a95645bc0",
+      "targetId": "fallback-artifact-c4586934c11d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1a87f2f6",
+      "sourceId": "fallback-artifact-a05a95645bc0",
+      "targetId": "fallback-artifact-d6ce98aac27b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f0dbbfce",
+      "sourceId": "fallback-artifact-a05a95645bc0",
+      "targetId": "fallback-artifact-dd515e3b4c50",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-86621e00",
+      "sourceId": "fallback-artifact-a05a95645bc0",
+      "targetId": "fallback-artifact-e05a588e331a",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a520dc8c",
+      "sourceId": "fallback-artifact-a05a95645bc0",
+      "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9ba8ddc1",
+      "sourceId": "fallback-artifact-a66fc31574ac",
+      "targetId": "fallback-artifact-f2dc2606292d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6ad9e917",
+      "sourceId": "fallback-artifact-a8ba5170e3f6",
+      "targetId": "fallback-artifact-8b74b0c0e0ea",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ef52672c",
+      "sourceId": "fallback-artifact-aa5fd1567d39",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a759f98d",
+      "sourceId": "fallback-artifact-aa5fd1567d39",
+      "targetId": "fallback-artifact-5995fae386dd",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0f53c21f",
+      "sourceId": "fallback-artifact-aa5fd1567d39",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-753e31b5",
+      "sourceId": "fallback-artifact-b0130ee17cf2",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7108fd34",
+      "sourceId": "fallback-artifact-b0130ee17cf2",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2387de17",
+      "sourceId": "fallback-artifact-b0130ee17cf2",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8ab7a21e",
+      "sourceId": "fallback-artifact-b0130ee17cf2",
+      "targetId": "fallback-artifact-b9043c401911",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-953f8ca8",
+      "sourceId": "fallback-artifact-b0130ee17cf2",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-da215297",
+      "sourceId": "fallback-artifact-b9043c401911",
+      "targetId": "fallback-artifact-11089fd4d185",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c4fd7f6a",
+      "sourceId": "fallback-artifact-b9043c401911",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8427e51d",
+      "sourceId": "fallback-artifact-b9043c401911",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-108396ff",
+      "sourceId": "fallback-artifact-b9043c401911",
+      "targetId": "fallback-artifact-5995fae386dd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1ba5c84f",
+      "sourceId": "fallback-artifact-b9043c401911",
+      "targetId": "fallback-artifact-62a576590554",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d83816c0",
+      "sourceId": "fallback-artifact-b9043c401911",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-affd851e",
+      "sourceId": "fallback-artifact-b9043c401911",
+      "targetId": "fallback-artifact-d4f771bb8c02",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8f05c165",
+      "sourceId": "fallback-artifact-be43b051b493",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0a6c4e7e",
+      "sourceId": "fallback-artifact-be43b051b493",
+      "targetId": "fallback-artifact-66e5dfc704c7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4184a248",
+      "sourceId": "fallback-artifact-be43b051b493",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7729e4dd",
+      "sourceId": "fallback-artifact-be43b051b493",
+      "targetId": "fallback-artifact-6eff399631e2",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-410209cd",
+      "sourceId": "fallback-artifact-be43b051b493",
+      "targetId": "fallback-artifact-d6ce98aac27b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-64ba1a28",
+      "sourceId": "fallback-artifact-be43b051b493",
+      "targetId": "fallback-artifact-f2e68ced1277",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e3826437",
+      "sourceId": "fallback-artifact-bf7951fb52e9",
+      "targetId": "fallback-artifact-11089fd4d185",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ce5e910a",
+      "sourceId": "fallback-artifact-bf7951fb52e9",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8d88f6bd",
+      "sourceId": "fallback-artifact-bf7951fb52e9",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-19e4a89f",
+      "sourceId": "fallback-artifact-bf7951fb52e9",
+      "targetId": "fallback-artifact-5995fae386dd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2506d9ef",
+      "sourceId": "fallback-artifact-bf7951fb52e9",
+      "targetId": "fallback-artifact-62a576590554",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e1992860",
+      "sourceId": "fallback-artifact-bf7951fb52e9",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b95e96be",
+      "sourceId": "fallback-artifact-bf7951fb52e9",
+      "targetId": "fallback-artifact-d4f771bb8c02",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5df928dd",
+      "sourceId": "fallback-artifact-c3c1ab97ab25",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-59c3f45c",
+      "sourceId": "fallback-artifact-c3c1ab97ab25",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-adeb8aba",
+      "sourceId": "fallback-artifact-c3c1ab97ab25",
+      "targetId": "fallback-artifact-48f1e8780ef1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0c42d53f",
+      "sourceId": "fallback-artifact-c3c1ab97ab25",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7dfa83d0",
+      "sourceId": "fallback-artifact-c3c1ab97ab25",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-42220acc",
+      "sourceId": "fallback-artifact-c4586934c11d",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7b7a5c2d",
+      "sourceId": "fallback-artifact-c4586934c11d",
+      "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4538298a",
+      "sourceId": "fallback-artifact-c7cf86b9a5b6",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4102f509",
+      "sourceId": "fallback-artifact-c7cf86b9a5b6",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a00abee9",
+      "sourceId": "fallback-artifact-c7cf86b9a5b6",
+      "targetId": "fallback-artifact-5a0991d4b81c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f381d5ec",
+      "sourceId": "fallback-artifact-c7cf86b9a5b6",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6539847d",
+      "sourceId": "fallback-artifact-c7cf86b9a5b6",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-db58b44c",
+      "sourceId": "fallback-artifact-c87c9ff3d3f3",
+      "targetId": "fallback-artifact-71bdc1e57bda",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a575a81a",
+      "sourceId": "fallback-artifact-c93a9c183c83",
+      "targetId": "fallback-artifact-86bae24a7a84",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f5bb04fb",
+      "sourceId": "fallback-artifact-cc95686a8cfe",
+      "targetId": "fallback-artifact-0e495ec902d1",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-107a5601",
+      "sourceId": "fallback-artifact-cc95686a8cfe",
+      "targetId": "fallback-artifact-8b74b0c0e0ea",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4da4089b",
+      "sourceId": "fallback-artifact-cd12481fb8d6",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-496ed41a",
+      "sourceId": "fallback-artifact-cd12481fb8d6",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fbedb4fd",
+      "sourceId": "fallback-artifact-cd12481fb8d6",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a57ca6b4",
+      "sourceId": "fallback-artifact-cd12481fb8d6",
+      "targetId": "fallback-artifact-e1451c8c67e9",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6da5638e",
+      "sourceId": "fallback-artifact-cd12481fb8d6",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-04115958",
+      "sourceId": "fallback-artifact-cd63fb58825d",
+      "targetId": "fallback-artifact-5a0991d4b81c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-67262628",
+      "sourceId": "fallback-artifact-ce55eea93ce5",
+      "targetId": "fallback-artifact-a8ba5170e3f6",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f83608a0",
+      "sourceId": "fallback-artifact-ce6211f3180c",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-47bcfdd8",
+      "sourceId": "fallback-artifact-cfe19da2dafd",
+      "targetId": "fallback-artifact-5a0991d4b81c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-12e026b5",
+      "sourceId": "fallback-artifact-d050bd76f7de",
+      "targetId": "fallback-artifact-69cd22c85f1c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6d4f8357",
+      "sourceId": "fallback-artifact-d0c2b85a6fbc",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-197a2cc8",
+      "sourceId": "fallback-artifact-d0c2b85a6fbc",
+      "targetId": "fallback-artifact-6fd7465e828f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1a1bad74",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-073e2c89ea22",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9eb28b52",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-51316c35",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9b267b78",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-7407759cbbcb",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ec274fea",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-7bb1f7be810f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8420627f",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-95c288989ffa",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ee21f325",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1d28e544",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-c87c9ff3d3f3",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-475e9a20",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-d9ba6a0a1cb3",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d615f537",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-da5f34501c5c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-19ae94f9",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-ebe1c9a6a328",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-db47bd50",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c2e91ac6",
+      "sourceId": "fallback-artifact-d1be6c5edc21",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-210dc0bf",
+      "sourceId": "fallback-artifact-d4eb30d6da2d",
+      "targetId": "fallback-artifact-343671a89842",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-832bc84d",
+      "sourceId": "fallback-artifact-d4eb30d6da2d",
+      "targetId": "fallback-artifact-354277347204",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d83852e2",
+      "sourceId": "fallback-artifact-d4eb30d6da2d",
+      "targetId": "fallback-artifact-5296db465ad3",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5f48a63c",
+      "sourceId": "fallback-artifact-d4eb30d6da2d",
+      "targetId": "fallback-artifact-5b9f460ca88a",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c62f5cf5",
+      "sourceId": "fallback-artifact-d4eb30d6da2d",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6a5ba293",
+      "sourceId": "fallback-artifact-d4eb30d6da2d",
+      "targetId": "fallback-artifact-cd63fb58825d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-37e70b86",
+      "sourceId": "fallback-artifact-d4eb30d6da2d",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7265cf63",
+      "sourceId": "fallback-artifact-d4f771bb8c02",
+      "targetId": "fallback-artifact-2cb1eb52b53b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-85a066b9",
+      "sourceId": "fallback-artifact-d4f771bb8c02",
+      "targetId": "fallback-artifact-cfe19da2dafd",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d3106980",
+      "sourceId": "fallback-artifact-d6ce98aac27b",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-45721396",
+      "sourceId": "fallback-artifact-d6ce98aac27b",
+      "targetId": "fallback-artifact-508d16669979",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-be94c9eb",
+      "sourceId": "fallback-artifact-d6ce98aac27b",
+      "targetId": "fallback-artifact-c4586934c11d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-906ff6fb",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-686cce97",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-29eacf636632",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8c3ac27a",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d7d2eca4",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-5b9f460ca88a",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5606d23e",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-8b74b0c0e0ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bff741e8",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-9c94f0550d2b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ad7b7aff",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-9f1159e6813b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0bfde308",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-cc95686a8cfe",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3d1e28fd",
+      "sourceId": "fallback-artifact-d76302e51288",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4a0ca050",
+      "sourceId": "fallback-artifact-d9ba6a0a1cb3",
+      "targetId": "fallback-artifact-ef6185b9ea5c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-02db3161",
+      "sourceId": "fallback-artifact-da5f34501c5c",
+      "targetId": "fallback-artifact-3bebb62ba0de",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fc673a84",
+      "sourceId": "fallback-artifact-da5f34501c5c",
+      "targetId": "fallback-artifact-79f856289517",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c61fa710",
+      "sourceId": "fallback-artifact-da5f34501c5c",
+      "targetId": "fallback-artifact-b9b550747c14",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d0f421a2",
+      "sourceId": "fallback-artifact-da5f34501c5c",
+      "targetId": "fallback-artifact-bb7fb7409dd8",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d297a081",
+      "sourceId": "fallback-artifact-dc2ccfbea05c",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d2ead443",
+      "sourceId": "fallback-artifact-dc2ccfbea05c",
+      "targetId": "fallback-artifact-6a982ebd0129",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e0e71b53",
+      "sourceId": "fallback-artifact-e05a588e331a",
+      "targetId": "fallback-artifact-0362c8812821",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-38a70e03",
+      "sourceId": "fallback-artifact-e05a588e331a",
+      "targetId": "fallback-artifact-29eacf636632",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-dfa5971c",
+      "sourceId": "fallback-artifact-e05a588e331a",
+      "targetId": "fallback-artifact-37c34d9ffa6e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5c7501e6",
+      "sourceId": "fallback-artifact-e05a588e331a",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-20fcd8b6",
+      "sourceId": "fallback-artifact-e05a588e331a",
+      "targetId": "fallback-artifact-5296db465ad3",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0d586869",
+      "sourceId": "fallback-artifact-e05a588e331a",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-990a33e4",
+      "sourceId": "fallback-artifact-e05a588e331a",
+      "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-80ab915a",
+      "sourceId": "fallback-artifact-e05a588e331a",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fae452cd",
+      "sourceId": "fallback-artifact-e1451c8c67e9",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-00005468",
+      "sourceId": "fallback-artifact-e1451c8c67e9",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5109db0b",
+      "sourceId": "fallback-artifact-e266ed001437",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ff53876d",
+      "sourceId": "fallback-artifact-e266ed001437",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9392dd14",
+      "sourceId": "fallback-artifact-e266ed001437",
+      "targetId": "fallback-artifact-bf7951fb52e9",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-710b35fe",
+      "sourceId": "fallback-artifact-e266ed001437",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-35f132f9",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-06b6f9817318",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-77d9f2c0",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-3461b35df282",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b7730429",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-349366ee3320",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9b454608",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-42fa4b1d6468",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5994e346",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-69cd22c85f1c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4955ba5e",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-7ab3f9e61996",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-216ca279",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-a8ba5170e3f6",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8c65c6c7",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-ab82bcd6c066",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-32670354",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-c0556bcbd307",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7b80aacf",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-cc95686a8cfe",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8349243f",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-e93a3a665e25",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9ceee723",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-e9f278b71318",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8cced2ff",
+      "sourceId": "fallback-artifact-e93a3a665e25",
+      "targetId": "fallback-artifact-ab82bcd6c066",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-fcb953b3",
+      "sourceId": "fallback-artifact-e9514513622b",
+      "targetId": "fallback-artifact-02e88360dc60",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-455ddf94",
+      "sourceId": "fallback-artifact-e9f278b71318",
+      "targetId": "fallback-artifact-3461b35df282",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e19de5f5",
+      "sourceId": "fallback-artifact-ebe1c9a6a328",
+      "targetId": "fallback-artifact-d0c2b85a6fbc",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-80457c56",
+      "sourceId": "fallback-artifact-ee8b5871b2d5",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2e8f28b8",
+      "sourceId": "fallback-artifact-ee8b5871b2d5",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2cf3ae58",
+      "sourceId": "fallback-artifact-ee8b5871b2d5",
+      "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-317614bb",
+      "sourceId": "fallback-artifact-ee8b5871b2d5",
+      "targetId": "fallback-artifact-e77b56ad7b76",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-142d7b16",
+      "sourceId": "fallback-artifact-ef1874b57c43",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ec854ba3",
+      "sourceId": "fallback-artifact-ef6185b9ea5c",
+      "targetId": "fallback-artifact-5d7e4c772279",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c40e5e59",
+      "sourceId": "fallback-artifact-f097349872df",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bfd929d8",
+      "sourceId": "fallback-artifact-f097349872df",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-72580abb",
+      "sourceId": "fallback-artifact-f097349872df",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-81f5a761",
+      "sourceId": "fallback-artifact-f097349872df",
+      "targetId": "fallback-artifact-d0c2b85a6fbc",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e40fb94c",
+      "sourceId": "fallback-artifact-f097349872df",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6a870015",
+      "sourceId": "fallback-artifact-f7adc56e49d2",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e5ed8d2e",
+      "sourceId": "fallback-artifact-f7adc56e49d2",
+      "targetId": "fallback-artifact-66e5dfc704c7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1d05e0f8",
+      "sourceId": "fallback-artifact-f7adc56e49d2",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    }
+  ],
+  "providerSummaries": [
+    {
+      "id": "workspace-index",
+      "label": "Workspace Implementation Index",
+      "seedCount": 171,
+      "hintCount": 10,
+      "evidenceCount": 0
+    }
+  ],
+  "errors": []
+}

@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { parseLSIF } from "./lsifParser";
 
@@ -64,16 +64,22 @@ describe("lsifParser", () => {
     });
 
     it("should skip malformed lines", () => {
+      const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+
       const lsifContent = `
 {"id":1,"type":"vertex","label":"metaData","version":"0.6.0"}
 THIS IS NOT JSON
 {"id":2,"type":"vertex","label":"document","uri":"file:///workspace/test.ts","languageId":"typescript"}
       `.trim();
 
-      const snapshot = parseLSIF(lsifContent, { projectRoot, feedId });
+      try {
+        const snapshot = parseLSIF(lsifContent, { projectRoot, feedId });
 
-      expect(snapshot.artifacts).toHaveLength(1);
-      expect(snapshot.artifacts[0].id).toBe("lsif:2");
+        expect(snapshot.artifacts).toHaveLength(1);
+        expect(snapshot.artifacts[0].id).toBe("lsif:2");
+      } finally {
+        warnSpy.mockRestore();
+      }
     });
 
     it("should normalize URIs relative to project root", () => {

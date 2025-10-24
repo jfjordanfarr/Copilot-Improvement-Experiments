@@ -56,10 +56,16 @@
 - **Rationale**: AST-backed comparisons provide a higher-fidelity accuracy signal whenever compiler-grade metadata is available, yet the fallback ensures every workspace still benefits from automated validation. Keeping both paths preserves reproducibility goals without over-relying on a single data source.
 - **Alternatives Considered**: Depend exclusively on self-similarity metrics (rejected: weaker guarantee when ground truth exists); require AST availability for every benchmark (rejected: excludes important languages and bloats setup).
 
-## LLM Augmentation
+## LLM Augmentation & Ingestion
 - **Decision**: Integrate optional reasoning through the `vscode.lm` API, respecting user-selected providers and exposing a “local-only” mode.
 - **Rationale**: API abstracts cloud vs. local (Ollama) models, grants access to future improvements, and keeps consent/usage visible to users. Allows deeper change impact analysis without hard dependency.
 - **Alternatives Considered**: Require dedicated Ollama instance (rejected: limits adoption); custom HTTP integration bypassing VS Code (rejected: duplicates policy handling, raises compliance risk).
+
+### LLM Ingestion Pipeline
+- **Decision**: Adopt a GraphRAG-style pipeline that chunkifies artifacts, prompts `vscode.lm` providers for relationship JSON, and feeds calibrated confidence scores into the knowledge graph while storing prompt/model provenance for reproducibility.
+- **Rationale**: Provides a deterministic, replayable path to harvest cross-file relationships from arbitrary text, ensuring we can bootstrap graphs in thin-tooling environments and audit every AI-sourced edge. Confidence grading lets diagnostics remain conservative until corroboration exists.
+- **Implementation Notes**: Prompt templates will live under `packages/server/src/prompts/llm-ingestion/`; outputs flow through `LLMIngestionOrchestrator` → `RelationshipExtractor` → `ConfidenceCalibrator` before reaching `KnowledgeGraphBridge`. Dry-run snapshots under `AI-Agent-Workspace/llm-ingestion-snapshots/` allow regression testing without graph mutation.
+- **Risks**: Token cost variability, potential hallucinated relationships, provider-specific JSON adherence. Mitigations include deterministic chunking, schema-constrained decoding, provenance logging, and human-in-the-loop promotion for low-confidence edges.
 
 ## Testing Approach
 - **Decision**: Use `vitest` for shared modules, `@vscode/test-electron` for extension-client integration, and targeted contract tests for custom LSP messages.
