@@ -33,3 +33,9 @@
 
 ## Ambiguities & Conflicts
 - [x] CHK016 Are there unresolved ambiguities around cache storage location, retention, or privacy that need clarification before implementation? [Ambiguity, Spec §FR-010; Quickstart §Configuration]
+
+## Implementation Traceability
+- [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) owns the inference merge pipeline referenced throughout this checklist.
+- [`packages/server/src/runtime/knowledgeFeeds.ts`](../../packages/server/src/runtime/knowledgeFeeds.ts) wires knowledge-feed ingestion for snapshot and streaming scenarios.
+- [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) and [`knowledgeGraphIngestor.ts`](../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) enforce the availability and validation requirements covered above.
+- [`tests/integration/us5/transformRipple.test.ts`](../../tests/integration/us5/transformRipple.test.ts) proves the ripple inference behaviours this checklist guards.

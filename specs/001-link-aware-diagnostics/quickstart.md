@@ -55,3 +55,9 @@
 
 ## CI Hooks
 - Headless validation executes the full verification pipeline (`npm run verify`), which lint-checks the repo, rebuilds SQLite binaries for Node and Electron, runs unit tests with coverage, and passes through the VS Code integration harness. Use the convenience alias `npm run ci-check` when wiring CI jobs.
+
+## Implementation Traceability
+- [`packages/extension/src/onboarding/providerGate.ts`](../../packages/extension/src/onboarding/providerGate.ts) enforces the consent-driven diagnostics gating described in the setup and configuration sections.
+- [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts) powers the Problems panel experience referenced throughout the workflow steps.
+- [`packages/server/src/features/diagnostics/acknowledgementService.ts`](../../packages/server/src/features/diagnostics/acknowledgementService.ts) and [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts) back the acknowledgement and ripple alert flows.
+- [`tests/integration/us3/acknowledgeDiagnostics.test.ts`](../../tests/integration/us3/acknowledgeDiagnostics.test.ts) and [`tests/integration/us4/scopeCollision.test.ts`](../../tests/integration/us4/scopeCollision.test.ts) provide end-to-end verification for the workflows called out in this quickstart.

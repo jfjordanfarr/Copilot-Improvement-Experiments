@@ -4,14 +4,14 @@
 Outline the extension-side UX surfaces that expose link-aware diagnostics: activation bootstrap, diagnostics providers, dependency inspectors, and file maintenance watchers. This layer coordinates with the language server pipeline to keep VS Code users informed about ripple impacts and documentation drift.
 
 ## Key Components
-- **VS Code Extension Bootstrap** (`packages/extension/src/extension.ts`) – wires activation, commands, diagnostics providers, and settings sync. Ensures YAML + markdown documents participate in ripple analysis and that provider consent gates diagnostics.
-- **DocDiagnosticProvider** (`packages/extension/src/diagnostics/docDiagnosticProvider.ts`) – registers quick fixes and ripple detail explorers for `doc-drift` and `code-ripple` diagnostics emitted by the server.
-- **Dependency Quick Pick** (`packages/extension/src/diagnostics/dependencyQuickPick.ts`) – bridges the `INSPECT_DEPENDENCIES_REQUEST` LSP call into a Quick Pick navigation surface so engineers can explore dependents on demand.
-- **File Maintenance Watcher** (`packages/extension/src/watchers/fileMaintenance.ts`) – observes renames/deletes and notifies the server to trigger orphan cleanup and rebind prompts.
-- **Symbol Bridge Service** (`packages/extension/src/services/symbolBridge.ts`) – harvests workspace symbols and references to seed graph inference before the server processes changes.
-- **Symbol Neighbors CLI** (`scripts/graph-tools/inspect-symbol.ts`) – headless dogfooding entry that invokes the same traversal as the quick pick, enabling CI jobs and shell sessions to query graph neighborhoods without launching VS Code.
-- **Graph Coverage Audit** (`scripts/graph-tools/audit-doc-coverage.ts`) – automation-facing audit that flags code artifacts missing `documents` links and MDMD implementations without code neighbors, giving maintainers a snapshot of documentation drift.
-- **Workspace Graph Snapshot** (`scripts/graph-tools/snapshot-workspace.ts`) – deterministic graph rebuild used to refresh the SQLite cache and JSON fixtures so headless audits and CLIs always operate on fresh data.
+- **VS Code Extension Bootstrap** ([`packages/extension/src/extension.ts`](../../packages/extension/src/extension.ts)) – wires activation, commands, diagnostics providers, and settings sync. Ensures YAML + markdown documents participate in ripple analysis and that provider consent gates diagnostics.
+- **DocDiagnosticProvider** ([`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts)) – registers quick fixes and ripple detail explorers for `doc-drift` and `code-ripple` diagnostics emitted by the server.
+- **Dependency Quick Pick** ([`packages/extension/src/diagnostics/dependencyQuickPick.ts`](../../packages/extension/src/diagnostics/dependencyQuickPick.ts)) – bridges the `INSPECT_DEPENDENCIES_REQUEST` LSP call into a Quick Pick navigation surface so engineers can explore dependents on demand.
+- **File Maintenance Watcher** ([`packages/extension/src/watchers/fileMaintenance.ts`](../../packages/extension/src/watchers/fileMaintenance.ts)) – observes renames/deletes and notifies the server to trigger orphan cleanup and rebind prompts.
+- **Symbol Bridge Service** ([`packages/extension/src/services/symbolBridge.ts`](../../packages/extension/src/services/symbolBridge.ts)) – harvests workspace symbols and references to seed graph inference before the server processes changes.
+- **Symbol Neighbors CLI** ([`scripts/graph-tools/inspect-symbol.ts`](../../scripts/graph-tools/inspect-symbol.ts)) – headless dogfooding entry that invokes the same traversal as the quick pick, enabling CI jobs and shell sessions to query graph neighborhoods without launching VS Code.
+- **Graph Coverage Audit** ([`scripts/graph-tools/audit-doc-coverage.ts`](../../scripts/graph-tools/audit-doc-coverage.ts)) – automation-facing audit that flags code artifacts missing `documents` links and MDMD implementations without code neighbors, giving maintainers a snapshot of documentation drift.
+- **Workspace Graph Snapshot** ([`scripts/graph-tools/snapshot-workspace.ts`](../../scripts/graph-tools/snapshot-workspace.ts)) – deterministic graph rebuild used to refresh the SQLite cache and JSON fixtures so headless audits and CLIs always operate on fresh data.
 
 ## Interaction Model
 1. **Activation** – Bootstrap resolves runtime settings via `ConfigService`, executes provider guard onboarding, and starts the language client.

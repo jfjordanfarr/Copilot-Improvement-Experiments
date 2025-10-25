@@ -3,6 +3,12 @@
 ## Purpose
 Describe how the language server orchestrates change ingestion, inference, diagnostics, and knowledge-feed integration to answer "what else does this change impact?" within VS Code.
 
+## Source Mapping
+- [`packages/server/src/main.ts`](../../packages/server/src/main.ts) wires up the shared services and registers LSP handlers.
+- [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) merges inference sources and persists artifacts.
+- [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts) and [`publishDocDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishDocDiagnostics.ts) emit ripple diagnostics with hysteresis controls.
+- [`packages/server/src/runtime/knowledgeFeeds.ts`](../../packages/server/src/runtime/knowledgeFeeds.ts) hydrates the feed bridge so ingestion stays aligned with the runtime stages below.
+
 ## Runtime Stages
 1. **Initialization (`main.ts`)**
    - Resolve workspace root, storage paths, and apply provider guard settings.

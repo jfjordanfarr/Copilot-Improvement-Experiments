@@ -92,3 +92,10 @@ tests/
 | [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
 | [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
 
+
+## Implementation Traceability
+- [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts) and [`packages/extension/src/diagnostics/dependencyQuickPick.ts`](../../packages/extension/src/diagnostics/dependencyQuickPick.ts) deliver the UX commitments in Phases 3–4.
+- [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) and [`packages/server/src/runtime/knowledgeFeeds.ts`](../../packages/server/src/runtime/knowledgeFeeds.ts) align with the graph ingestion and ripple analysis milestones described in Phases 2–5.
+- [`packages/shared/src/db/graphStore.ts`](../../packages/shared/src/db/graphStore.ts) and [`packages/shared/src/domain/artifacts.ts`](../../packages/shared/src/domain/artifacts.ts) underpin the storage and schema deliverables outlined in Phase 1.
+- [`tests/integration/us1/codeImpact.test.ts`](../../tests/integration/us1/codeImpact.test.ts) and [`tests/integration/us5/transformRipple.test.ts`](../../tests/integration/us5/transformRipple.test.ts) verify the cross-file impact promise articulated throughout the plan.
+

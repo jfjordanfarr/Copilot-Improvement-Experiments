@@ -71,3 +71,10 @@
 - **Decision**: Use `vitest` for shared modules, `@vscode/test-electron` for extension-client integration, and targeted contract tests for custom LSP messages.
 - **Rationale**: Matches existing VS Code ecosystem practices, provides fast unit feedback, and ensures protocol stability.
 - **Alternatives Considered**: Jest (less aligned with ESM/TypeScript setup); integration-only manual validation (insufficient coverage).
+
+## Implementation Traceability
+- [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) implements the diagnostic architecture decisions captured above.
+- [`packages/server/src/features/knowledge/workspaceIndexProvider.ts`](../../packages/server/src/features/knowledge/workspaceIndexProvider.ts), [`lsifParser.ts`](../../packages/server/src/features/knowledge/lsifParser.ts), and [`scipParser.ts`](../../packages/server/src/features/knowledge/scipParser.ts) operationalise the symbol ingestion and fallback strategies.
+- [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) and [`feedCheckpointStore.ts`](../../packages/server/src/features/knowledge/feedCheckpointStore.ts) cover the feed resilience and schema contract research outcomes.
+- [`packages/server/src/features/knowledge/llmIngestionOrchestrator.ts`](../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts) translates the LLM augmentation findings into executable pipeline stages.
+- [`tests/integration/us5/transformRipple.test.ts`](../../tests/integration/us5/transformRipple.test.ts) and [`tests/integration/us3/markdownLinkDrift.test.ts`](../../tests/integration/us3/markdownLinkDrift.test.ts) validate key hypotheses around ripple analysis and documentation drift surfaced in this research.

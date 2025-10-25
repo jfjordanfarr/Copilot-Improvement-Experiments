@@ -1,39 +1,37 @@
 # RelationshipExtractor (Layer 4)
 
 ## Source Mapping
-- Implementation (planned): `packages/shared/src/inference/llm/relationshipExtractor.ts`
-- Collaborators: `ProviderGuard`, `ConfidenceCalibrator`, `PromptTemplates`
+- Implementation: [`packages/shared/src/inference/llm/relationshipExtractor.ts`](../../../packages/shared/src/inference/llm/relationshipExtractor.ts)
+- Collaborators: runtime-supplied `ModelInvoker`, [`calibrateConfidence`](../../../packages/shared/src/inference/llm/confidenceCalibrator.ts) (downstream), [`LlmIngestionOrchestrator`](../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts)
 - Parent design: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 - Spec references: [FR-019](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T071](../../../specs/001-link-aware-diagnostics/tasks.md)
 
 ## Responsibility
-Issue constrained `vscode.lm` completions using repository-defined prompt templates, enforce JSON adherence, and translate model responses into strongly typed relationship descriptors with provenance metadata.
+Wrap a provided `ModelInvoker`, enforce JSON response shape, and emit typed relationship batches enriched with provenance metadata (template id, version, prompt hash, model id, usage stats).
 
 ## Entry Points
-- `extractRelationships(request: ExtractionRequest): Promise<ExtractionResult>`
-  - Prepares the prompt, executes the model call, and returns structured relationships plus raw response metadata.
-- `validateResponse(raw: string | object): RelationshipBatch` converts model output into DTOs, throwing typed errors when schema validation fails.
+- `extractRelationships(request: RelationshipExtractionRequest): Promise<RelationshipExtractionBatch>` invokes the model, validates output, and returns structured relationships + usage metadata.
 
 ## Workflow
-1. Combine chunked artifact data, known artifact identifiers, and allowed relationship kinds into the prompt template.
-2. Invoke `vscode.lm.complete` with deterministic options (`temperature = 0`, `top_p = 0`, schema-constrained response mode when available).
-3. Parse the response; if schema-constrained decoding fails, attempt a fallback JSON parse and emit diagnostics with the offending text.
-4. Map each relationship to internal structures (`sourceId`, `targetId`, `kind`, `modelConfidence`, `supportingChunks`, `rationale`).
-5. Return structured data alongside provider telemetry (tokens used, duration, model id) for logging.
+1. Augment the outgoing request with template + prompt hash tags so downstream telemetry can attribute results.
+2. Invoke the injected `ModelInvoker` (default stub lives in [`LlmIngestionManager`](../../../packages/server/src/runtime/llmIngestion.ts)) with prompt text and optional schema.
+3. Parse string responses as JSON, or accept object responses as-is, retaining the raw text for debugging.
+4. Validate `response.relationships` using an internal structural check, coercing optional fields (`confidence`, `supportingChunks`).
+5. Return a batch payload containing relationships, prompt metadata, and provider usage numbers for provenance storage.
 
 ## Confidence Handling
-- Raw confidence values from the model (`"high"`, `0-1`, etc.) are normalised upstream by `ConfidenceCalibrator`.
-- Record original values in `rawConfidence` for audit.
+- Leaves raw confidence values untouched; downstream calibration converts them into tiered diagnostics eligibility.
+- Clamps numeric confidences to the `0..1` range to avoid invalid inputs.
 
 ## Error Modes
-- **Schema violation**: Throw `SchemaError` with contextual metadata; orchestrator logs via `LLMIngestionDiagnostics`.
-- **Provider rejection**: Wrap errors from `vscode.lm` (quota, policy) in `ProviderError` to allow retry/backoff.
-- **Empty output**: Return an empty relationship batch while warning telemetry so we can flag prompt regressions.
+- Invalid JSON raises `RelationshipExtractorError` with the offending payload for the orchestrator to log.
+- Missing or malformed `relationships` arrays trigger validation failures with detailed reasons.
+- All other errors propagate so callers can attribute them to provider unavailability or runtime faults.
 
 ## Testing
-- Unit tests mock `vscode.lm` to simulate well-formed JSON, malformed responses, and provider failures.
-- Golden prompt fixtures ensure chunk identifiers and allowed relationship lists render deterministically.
+- Unit tests should stub `ModelInvoker` to cover valid output, malformed JSON, and structural validation failures (see [`relationshipExtractor.test.ts`](../../../packages/shared/src/inference/llm/relationshipExtractor.test.ts)).
+- Snapshot-style tests can assert that provenance tags (`link-aware.template`, `link-aware.prompt-hash`) are attached when requests are issued.
 
 ## Follow-ups
-- Investigate streaming completion support to reduce latency once `vscode.lm` exposes JSON streaming APIs.
-- Add cost estimation helpers so orchestrator can budget per-artifact token spend before executing requests.
+- Layer on schema-based validation once providers expose JSON mode guarantees.
+- Capture token cost telemetry per request to inform orchestrator budgeting and throttling decisions.

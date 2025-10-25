@@ -180,3 +180,11 @@ Graph projections, override manifests, and drift history live under the workspac
 - Q: How are links between markdown and code artifacts declared? → A: Default to automatic inference from language-server data and knowledge-graph feeds, with an override command available to pin or adjust relationships when necessary.
 
 
+## Implementation Traceability
+- [`packages/server/src/main.ts`](../../packages/server/src/main.ts) and [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) execute the end-to-end flow outlined in the functional requirements.
+- [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts), [`publishDocDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishDocDiagnostics.ts), and [`acknowledgementService.ts`](../../packages/server/src/features/diagnostics/acknowledgementService.ts) implement the diagnostic lifecycle and acknowledgement criteria.
+- [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../packages/server/src/features/knowledge/knowledgeFeedManager.ts), [`knowledgeGraphIngestor.ts`](../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts), and [`workspaceIndexProvider.ts`](../../packages/server/src/features/knowledge/workspaceIndexProvider.ts) realise the knowledge-feed and fallback inference requirements.
+- [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts), [`packages/extension/src/views/diagnosticsTree.ts`](../../packages/extension/src/views/diagnosticsTree.ts), and [`packages/extension/src/commands/exportDiagnostics.ts`](../../packages/extension/src/commands/exportDiagnostics.ts) deliver the UX commitments enumerated in the user scenarios.
+- [`tests/integration/us1/codeImpact.test.ts`](../../tests/integration/us1/codeImpact.test.ts), [`tests/integration/us3/markdownLinkDrift.test.ts`](../../tests/integration/us3/markdownLinkDrift.test.ts), and [`tests/integration/us5/transformRipple.test.ts`](../../tests/integration/us5/transformRipple.test.ts) enforce the falsifiability metrics and success criteria.
+
+

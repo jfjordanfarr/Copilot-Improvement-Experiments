@@ -43,6 +43,7 @@ import { inspectSymbolNeighbors } from "./features/dependencies/symbolNeighbors"
 import { AcknowledgementService } from "./features/diagnostics/acknowledgementService";
 import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import { buildOutstandingDiagnosticsResult } from "./features/diagnostics/listOutstandingDiagnostics";
+import { LlmIngestionOrchestrator } from "./features/knowledge/llmIngestionOrchestrator";
 import { createStaticFeedWorkspaceProvider } from "./features/knowledge/staticFeedWorkspaceProvider";
 import { createSymbolBridgeProvider } from "./features/knowledge/symbolBridgeProvider";
 import { createWorkspaceIndexProvider } from "./features/knowledge/workspaceIndexProvider";
@@ -61,6 +62,7 @@ import { ArtifactWatcher } from "./features/watchers/artifactWatcher";
 import { createChangeProcessor } from "./runtime/changeProcessor";
 import { ensureDirectory, resolveDatabasePath, resolveWorkspaceRoot } from "./runtime/environment";
 import { KnowledgeFeedController } from "./runtime/knowledgeFeeds";
+import { createDefaultRelationshipExtractor, LlmIngestionManager } from "./runtime/llmIngestion";
 import {
   extractExtensionSettings,
   extractTestModeOverrides,
@@ -94,6 +96,7 @@ const knowledgeFeedController = new KnowledgeFeedController({
 const hysteresisController = new HysteresisController();
 let acknowledgementService: AcknowledgementService | null = null;
 let driftHistoryStore: DriftHistoryStore | null = null;
+let llmIngestionManager: LlmIngestionManager | null = null;
 
 let changeQueue: ChangeQueue | null = null;
 let runtimeSettings: RuntimeSettings = DEFAULT_RUNTIME_SETTINGS;
@@ -109,7 +112,8 @@ const changeProcessor = createChangeProcessor({
     graphStore: null,
     artifactWatcher: null,
     runtimeSettings,
-    acknowledgements: null
+    acknowledgements: null,
+    llmIngestionManager: null
   }
 });
 changeProcessor.updateContext({ runtimeSettings });
@@ -132,6 +136,25 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
   driftHistoryStore = new DriftHistoryStore({
     graphStore,
     now: () => new Date()
+  });
+
+  const relationshipExtractor = createDefaultRelationshipExtractor({
+    connection,
+    providerGuard
+  });
+
+  const llmOrchestrator = new LlmIngestionOrchestrator({
+    graphStore,
+    providerGuard,
+    relationshipExtractor,
+    storageDirectory,
+    logger: connection.console,
+    now: () => new Date()
+  });
+
+  llmIngestionManager = new LlmIngestionManager({
+    orchestrator: llmOrchestrator,
+    connection
   });
 
   runtimeSettings = deriveRuntimeSettings(providerGuard.getSettings());
@@ -161,7 +184,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
     now: () => new Date()
   });
 
-  changeProcessor.updateContext({ graphStore, artifactWatcher });
+  changeProcessor.updateContext({ graphStore, artifactWatcher, llmIngestionManager });
 
   const workspaceProviders = [];
 
@@ -240,11 +263,13 @@ connection.onShutdown(() => {
   changeProcessor.updateContext({
     graphStore: null,
     artifactWatcher: null,
-    acknowledgements: null
+    acknowledgements: null,
+    llmIngestionManager: null
   });
 
   acknowledgementService = null;
   driftHistoryStore = null;
+  llmIngestionManager = null;
 
   connection.console.info("link-aware-diagnostics server shutdown complete");
 });
@@ -447,6 +472,10 @@ function syncRuntimeSettings(): void {
     storageDirectory,
     workspaceRoot: workspaceRootPath
   });
+
+  if (llmIngestionManager) {
+    changeProcessor.updateContext({ llmIngestionManager });
+  }
 
   connection.console.info(
     `runtime settings updated (debounce=${runtimeSettings.debounceMs}ms, noise=${runtimeSettings.noiseSuppression.level})`

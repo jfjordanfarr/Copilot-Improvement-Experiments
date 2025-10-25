@@ -2,50 +2,44 @@
 
 ## Purpose & Scope
 
-Describe the next iteration of our ingestion architecture where large language models convert arbitrary workspace text into graph edges that enrich ripple diagnostics. The pipeline must operate when native language servers or external knowledge feeds are absent, emit reproducible outputs, and record confidence grades so downstream consumers can decide how aggressively to trust LLM-sourced relationships.
+Describe the ingestion architecture that turns workspace artifacts into graph edges through the LLM-backed orchestrator. The current milestone focuses on queueing artifacts, invoking the orchestration loop, and persisting calibrated relationships while a stubbed extractor keeps behaviour deterministic until live providers are enabled.
 
 ## Goals
 
-- Enable format-agnostic artifact parsing (code, markdown, config, prose) via a staged, reproducible GraphRAG-style flow.
-- Produce relationship candidates annotated with `High`, `Medium`, or `Low` confidence categories plus supporting rationales.
-- Preserve provenance (prompt, model id, chunk references) for each inferred edge and allow auditors to rerun the extraction.
-- Plug into existing `KnowledgeGraphBridge` persistence without bypassing schema validation or manual overrides.
-- Run locally against `vscode.lm` providers and respect Responsible Intelligence consent gates before sending any content to cloud services.
+- Keep ingestion opt-in friendly: honour workspace consent settings and fall back to a no-op extractor when external providers are unavailable.
+- Ensure every artifact passes through a deterministic chunking + calibration flow before results can influence diagnostics.
+- Persist LLM-sourced edges through `GraphStore` while attaching provenance data (template id, prompt hash, rationale) for audits.
+- Record orchestration outcomes so operators can trace stored, skipped, and failed artifacts.
+- Preserve upgrade paths for richer prompt grounding and cloud providers without breaking the local-only flow.
 
 ## Pipeline Overview
 
 1. **Artifact Discovery**
-   - Extend the watcher to enqueue artifacts that lack high-confidence relationships or have stale embeddings.
-   - Reuse existing throttling/debounce settings so LLM jobs do not starve diagnostics.
+   - [`ArtifactWatcher`](../../packages/server/src/features/watchers/artifactWatcher.ts) and [`ChangeProcessor`](../../packages/server/src/runtime/changeProcessor.ts) enqueue impacted artifact ids via [`LlmIngestionManager.enqueue`](../../packages/server/src/runtime/llmIngestion.ts).
+   - The manager collapses duplicate requests and schedules the orchestrator run loop on demand.
 2. **Chunk & Context Build**
-   - Use deterministic chunkers (`packages/shared/src/inference/chunking/*`) to create overlapping windows tagged with artifact metadata (layer, language hints, last change hash).
-   - Capture adjacent artifact summaries (e.g., requirements referenced in the same folder) to feed prompt grounding.
-3. **Entity & Relationship Extraction**
-   - Issue a single `vscode.lm.complete` call with a structured prompt template that enumerates:
-     - Known artifact identifiers (from `GraphStore`) to bias selection.
-     - Allowed relationship kinds grouped by target layer.
-     - Rules for emitting JSON records with `sourceId`, `targetId`, `relationship`, `confidence`, and `rationale` fields.
-   - Models must respond with deterministic JSON (enforced through `json` response format or schema-constrained decoding when available).
-4. **Confidence Normalisation**
-   - Map raw model scores/string labels to repository-wide enums:
-     - `High`: explicit references or repeated evidence across chunks.
-     - `Medium`: implied relationships with partial evidence or single mention.
-     - `Low`: speculative links flagged for human review; these are stored but not used for diagnostics until corroborated.
-   - Store derivation metadata (e.g., `supportingChunkIds`) for re-validation runs.
-5. **Persistence & Conflict Resolution**
-   - Validate emitted JSON with the existing schema validator and persist via `KnowledgeGraphBridge.upsertInferredEdge`.
-   - If a manual override contradicts an LLM edge, downgrade the LLM edge to `shadowed` status and record that the override took precedence.
-   - Emit telemetry events (`llmIngestion.edgeCreated`, `llmIngestion.edgeShadowed`) for later analytics.
+   - The orchestrator loads artifact content from disk, builds deterministic chunks in-process, and gathers neighbouring graph entries for grounding.
+   - Allowed relationship kinds remain scoped (`depends_on`, `implements`, `documents`, `references`) to avoid runaway outputs.
+3. **Relationship Extraction**
+   - The orchestrator uses [`RelationshipExtractor`](../../packages/shared/src/inference/llm/relationshipExtractor.ts) with a runtime-supplied `ModelInvoker`; the default invoker lives in [`llmIngestion.ts`](../../packages/server/src/runtime/llmIngestion.ts), logs once, and returns an empty batch.
+   - Prompt metadata tags every request with template and artifact identifiers for downstream auditing.
+4. **Confidence Calibration**
+   - Raw model confidences feed [`calibrateConfidence`](../../packages/shared/src/inference/llm/confidenceCalibrator.ts), producing diagnostics-eligible flags and promotion metadata.
+   - Calibration currently treats existing edges as corroboration, ensuring new edges start conservative.
+5. **Persistence & Reporting**
+   - Graph updates flow through [`GraphStore.upsertLink`](../../packages/shared/src/db/graphStore.ts) and `storeLlmEdgeProvenance` inside the orchestrator, preserving prompt hashes and rationales.
+   - The manager summarises stored, skipped, and failed artifacts to the LSP connection console for operator visibility (see [`logResults`](../../packages/server/src/runtime/llmIngestion.ts)).
 
 ## Component Responsibilities
 
-| Component | Location (planned) | Responsibility |
-|-----------|-------------------|----------------|
-| `LLMIngestionOrchestrator` | `packages/server/src/features/knowledge/llmIngestionOrchestrator.ts` | Coordinates batching, prompt assembly, and persistence hand-off. |
-| `ChunkSummariser` | `packages/shared/src/inference/llm/llmChunker.ts` | Deterministically splits artifacts and tags chunks with metadata for prompts. |
-| `RelationshipExtractor` | `packages/shared/src/inference/llm/relationshipExtractor.ts` | Wraps `vscode.lm` calls, enforces schema-constrained decoding, and translates raw outputs into internal DTOs. |
-| `ConfidenceCalibrator` | `packages/shared/src/inference/llm/confidenceCalibrator.ts` | Maps model-supplied scores to `High/Medium/Low` and applies decay heuristics when evidence is thin. |
-| `LLMIngestionDiagnostics` | `packages/server/src/features/knowledge/llmIngestionDiagnostics.ts` | Surfaces warnings when prompts fail, quotas are exhausted, or outputs violate schema. |
+| Component | Location | Responsibility |
+|-----------|----------|----------------|
+| `LlmIngestionManager` | [`packages/server/src/runtime/llmIngestion.ts`](../../packages/server/src/runtime/llmIngestion.ts) | Queues artifacts, triggers orchestrator runs, and logs aggregated ingestion outcomes. |
+| `LlmIngestionOrchestrator` | [`packages/server/src/features/knowledge/llmIngestionOrchestrator.ts`](../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts) | Builds prompts, invokes the extractor, calibrates relationships, and persists results (or snapshots during dry runs). |
+| `RelationshipExtractor` | [`packages/shared/src/inference/llm/relationshipExtractor.ts`](../../packages/shared/src/inference/llm/relationshipExtractor.ts) | Calls the supplied `ModelInvoker`, validates JSON payloads, and returns relationship batches with provenance. |
+| `GraphStore` | [`packages/shared/src/db/graphStore.ts`](../../packages/shared/src/db/graphStore.ts) | Supplies artifacts, neighbours, and writes inferred links plus provenance records. |
+| `ProviderGuard` | [`packages/server/src/features/settings/providerGuard.ts`](../../packages/server/src/features/settings/providerGuard.ts) | Exposes consent settings and determines whether ingestion is permitted (`disabled`, `local-only`, `prompt`). |
+| `calibrateConfidence` | [`packages/shared/src/inference/llm/confidenceCalibrator.ts`](../../packages/shared/src/inference/llm/confidenceCalibrator.ts) | Normalises raw confidences and marks diagnostics eligibility. |
 
 ## Interaction Diagram
 
@@ -67,19 +61,19 @@ ArtifactWatcher ──► LLMIngestionOrchestrator ──► ChunkSummariser
 
 ## Safeguards
 
-- Prompt templates live in `packages/server/src/prompts/llm-ingestion/` and include version hashes so we can replay historical prompts during audits.
-- All requests funnel through `ProviderGuard` to enforce consent, offline mode, and cost ceilings.
-- The orchestrator honours workspace `maxTokensPerMinute` limits and queues work when models throttle.
-- A dry-run mode writes outputs to `AI-Agent-Workspace/llm-ingestion-snapshots/` for regression tests without mutating the graph.
+- Prompt templates live in [`packages/server/src/prompts/llm-ingestion/relationshipTemplate.ts`](../../packages/server/src/prompts/llm-ingestion/relationshipTemplate.ts) and versioned hashes are stored with every provenance record.
+- [`ProviderGuard`](../../packages/server/src/features/settings/providerGuard.ts) settings gate execution; when `llmProviderMode` is `disabled` the orchestrator skips work without mutating state.
+- Dry-run snapshots write JSON fixtures under `llm-ingestion-snapshots/`, preserving prompt + calibration metadata for reproducibility (see [`writeDryRunSnapshot`](../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts)).
+- The default `ModelInvoker` returns empty relationships, ensuring local-only environments stay deterministic until a provider is wired (see [`createDefaultRelationshipExtractor`](../../packages/server/src/runtime/llmIngestion.ts)).
 
 ## Open Questions
 
-- How aggressively should we cache chunk embeddings to avoid re-sending unchanged text?
-- Should manual reviewers promote `Low` edges to higher confidence via a quick action in diagnostics tooling?
-- What heuristics decide when enough corroboration exists to promote `Medium` edges into diagnostic scope automatically?
+- Which provider will replace the stubbed `ModelInvoker`, and what authentication flow keeps the manager stateless?
+- Do we need richer chunk metadata (language, symbols) before enabling relationship creation in diagnostics by default?
+- How should we surface ingestion health to users beyond connection console logs (e.g., tree item, notification, telemetry)?
 
 ## Related Spec Touchpoints
 
-- Introduces new functional requirement `FR-019` (see `spec.md`).
-- Informs upcoming plan tasks `T068–T072` for implementation and validation sequencing.
-- Extends research threads under “LLM Augmentation” with concrete pipeline steps.
+- Introduces new functional requirement `FR-019` (see [`spec.md`](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)).
+- Informs upcoming plan tasks `T068–T072` for implementation and validation sequencing (see [`tasks.md`](../../specs/001-link-aware-diagnostics/tasks.md)).
+- Extends research threads under “LLM Augmentation” with concrete pipeline steps (see [`research.md`](../../specs/001-link-aware-diagnostics/research.md#llm-augmentation)).

@@ -98,3 +98,9 @@
   - `metadata` (JSON, optional) – snapshot of link IDs or additional context.
 - **Relationships**: Many-to-one with diagnostics and change events; aggregated for reporting by artifact or change series.
 - **Validation Rules**: Append-only (no updates after insert); ensure acknowledgement entries reference an existing `emitted` entry; `metadata` size bounded to 8 KB.
+
+## Implementation Traceability
+- [`packages/shared/src/domain/artifacts.ts`](../../packages/shared/src/domain/artifacts.ts) defines the TypeScript contracts for every entity documented here.
+- [`packages/shared/src/db/graphStore.ts`](../../packages/shared/src/db/graphStore.ts) persists artifacts, links, and change events in SQLite.
+- [`packages/server/src/features/changeEvents/saveDocumentChange.ts`](../../packages/server/src/features/changeEvents/saveDocumentChange.ts) and [`saveCodeChange.ts`](../../packages/server/src/features/changeEvents/saveCodeChange.ts) emit the `ChangeEvent` records that feed this model.
+- [`tests/integration/us3/acknowledgeDiagnostics.test.ts`](../../tests/integration/us3/acknowledgeDiagnostics.test.ts) and [`tests/integration/us5/transformRipple.test.ts`](../../tests/integration/us5/transformRipple.test.ts) assert the runtime behaviours tied to `DiagnosticRecord` and ripple history.

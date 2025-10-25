@@ -3,6 +3,7 @@ import type { Connection } from "vscode-languageserver/node";
 import type { GraphStore, KnowledgeArtifact } from "@copilot-improvement/shared";
 
 import { describeError } from "./environment";
+import type { LlmIngestionManager } from "./llmIngestion";
 import type { QueuedChange } from "../features/changeEvents/changeQueue";
 import { saveCodeChange } from "../features/changeEvents/saveCodeChange";
 import { persistInferenceResult, saveDocumentChange } from "../features/changeEvents/saveDocumentChange";
@@ -26,6 +27,7 @@ export interface ChangeProcessorContext {
   artifactWatcher: ArtifactWatcher | null;
   runtimeSettings: RuntimeSettings;
   acknowledgements: AcknowledgementService | null;
+  llmIngestionManager: LlmIngestionManager | null;
 }
 
 export interface ChangeProcessor {
@@ -38,22 +40,27 @@ export interface ChangeProcessorOptions {
   providerGuard: ProviderGuard;
   hysteresisController: HysteresisController;
   initialContext: ChangeProcessorContext;
+  llmIngestionManager?: LlmIngestionManager | null;
 }
 
 export function createChangeProcessor({
   connection,
   providerGuard,
   hysteresisController,
-  initialContext
+  initialContext,
+  llmIngestionManager = null
 }: ChangeProcessorOptions): ChangeProcessor {
-  const context: ChangeProcessorContext = { ...initialContext };
+  const context: ChangeProcessorContext = {
+    ...initialContext,
+    llmIngestionManager: initialContext.llmIngestionManager ?? llmIngestionManager ?? null
+  };
 
   function updateContext(update: Partial<ChangeProcessorContext>): void {
     Object.assign(context, update);
   }
 
   async function process(changes: QueuedChange[]): Promise<void> {
-    const { graphStore, artifactWatcher, acknowledgements } = context;
+    const { graphStore, artifactWatcher, acknowledgements, llmIngestionManager: ingestionManager } = context;
     const runtimeSettings: RuntimeSettings = context.runtimeSettings;
     const rippleSettings: RuntimeSettings["ripple"] = runtimeSettings.ripple;
 
@@ -106,6 +113,7 @@ export function createChangeProcessor({
     const nowFactory = () => new Date();
     const documentContexts: DocumentChangeContext[] = [];
     const codeContexts: CodeChangeContext[] = [];
+  const llmQueue = new Map<string, string>();
 
     const processedDocuments = watcherResult.processed.filter(
       (change): change is DocumentTrackedArtifactChange => change.category === "document"
@@ -210,6 +218,9 @@ export function createChangeProcessor({
           changeEventId: persisted.changeEventId,
           rippleImpacts
         });
+        if (persisted.artifact.id) {
+          llmQueue.set(persisted.artifact.id, "document-change");
+        }
         connection.console.info(
           `document change persisted for ${persisted.artifact.uri}; ripple impacts=${rippleImpacts.length}`
         );
@@ -234,6 +245,9 @@ export function createChangeProcessor({
           changeEventId: persisted.changeEventId,
           rippleImpacts
         });
+        if (persisted.artifact.id) {
+          llmQueue.set(persisted.artifact.id, "code-change");
+        }
         connection.console.info(
           `code change persisted for ${persisted.artifact.uri}; ripple impacts=${rippleImpacts.length}`
         );
@@ -374,6 +388,12 @@ export function createChangeProcessor({
       connection.console.info(
         `artifact watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
       );
+    }
+
+    if (ingestionManager && llmQueue.size > 0) {
+      for (const [artifactId, reason] of llmQueue.entries()) {
+        ingestionManager.enqueue([artifactId], reason);
+      }
     }
   }
 

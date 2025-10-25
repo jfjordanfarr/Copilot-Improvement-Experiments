@@ -1,45 +1,50 @@
 # LLMIngestionOrchestrator (Layer 4)
 
 ## Source Mapping
-- Implementation (planned): `packages/server/src/features/knowledge/llmIngestionOrchestrator.ts`
-- Collaborators: `ChunkSummariser`, `RelationshipExtractor`, `ConfidenceCalibrator`, `KnowledgeGraphBridge`, `ProviderGuard`
+- Implementation: [`packages/server/src/features/knowledge/llmIngestionOrchestrator.ts`](../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts)
+- Collaborators:
+	- [`GraphStore`](../../../packages/shared/src/db/graphStore.ts)
+	- [`ProviderGuard`](../../../packages/server/src/features/settings/providerGuard.ts)
+	- [`RelationshipExtractor`](../../../packages/shared/src/inference/llm/relationshipExtractor.ts)
+	- [`calibrateConfidence`](../../../packages/shared/src/inference/llm/confidenceCalibrator.ts)
+	- [`LlmIngestionManager`](../../../packages/server/src/runtime/llmIngestion.ts)
 - Parent design: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 - Spec references: [FR-019](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T070](../../../specs/001-link-aware-diagnostics/tasks.md)
 
 ## Responsibility
-Coordinate artifact batching, prompt assembly, throttling, and persistence for the LLM ingestion pipeline. Ensures only consented providers receive artifact content, captures provenance for every request, and reconciles LLM-sourced edges with existing graph state before persistence.
+Drain queued artifact ids, build prompts, invoke the configured `RelationshipExtractor`, and persist calibrated relationships with provenance. The orchestrator owns chunk creation, dry-run snapshot generation, and logging warnings when ingestion is skipped or fails.
 
 ## Entry Points
-- `enqueueArtifacts(artifactIds, reason)` schedules artifacts for ingestion with priority metadata.
-- `runOnce()` drains the queue, prepares prompt payloads, invokes `RelationshipExtractor`, and writes outputs through `KnowledgeGraphBridge`.
-- `runDryRun(snapshotPath)` executes the pipeline without mutating SQLite, emitting captured edges as JSON fixtures for regression tests.
+- `enqueueArtifacts(artifactIds, reason)` deduplicates requested artifacts in the in-memory queue.
+- `runOnce()` processes a bounded batch (default size `1`) and returns per-artifact ingestion results.
+- `runDryRun(snapshotDirectory)` mirrors `runOnce()` but writes JSON snapshots instead of updating the graph.
 
 ## Workflow
-1. Dequeue artifacts while respecting `maxConcurrentJobs` and workspace throttling limits.
-2. Fetch canonical artifact metadata and existing relationships to seed prompt context.
-3. Call `ChunkSummariser` to build deterministic chunks (includes hash + layer classification).
-4. Assemble prompt using versioned templates under `packages/server/src/prompts/llm-ingestion/` and enforce a schema-constrained response mode.
-5. Dispatch request via `ProviderGuard.executeWithConsent`, passing provider configuration and recording model id/token usage.
-6. Validate and calibrate relationships using `RelationshipExtractor` + `ConfidenceCalibrator`.
-7. Persist edges by calling `KnowledgeGraphBridge.upsertInferredEdge`, tagging each with provenance (prompt hash, chunk ids, model id) and confidence tier.
-8. Raise events to `LLMIngestionDiagnostics` for success/failure telemetry.
+1. Pop up to `maxConcurrentJobs` items from the queue.
+2. Consult [`ProviderGuard`](../../../packages/server/src/features/settings/providerGuard.ts) settings; skip work when `llmProviderMode === "disabled"`.
+3. Resolve the artifact via [`GraphStore`](../../../packages/shared/src/db/graphStore.ts), read file content, and build deterministic chunks (SHA-1 hashed, line scoped).
+4. Gather neighbouring artifacts for grounding and render the relationship prompt using the versioned template under [`prompts/llm-ingestion/relationshipTemplate.ts`](../../../packages/server/src/prompts/llm-ingestion/relationshipTemplate.ts).
+5. Call [`RelationshipExtractor.extractRelationships`](../../../packages/shared/src/inference/llm/relationshipExtractor.ts), attaching template + artifact tags for provenance.
+6. Pass responses through [`calibrateConfidence`](../../../packages/shared/src/inference/llm/confidenceCalibrator.ts), marking diagnostics eligibility and promotion metadata.
+7. Persist eligible links through [`GraphStore.upsertLink`](../../../packages/shared/src/db/graphStore.ts) and `storeLlmEdgeProvenance`, or emit dry-run snapshots when requested.
+8. Return stored/skipped counts and surface warnings for missing artifacts, unreadable files, or failed requests.
 
 ## Configuration
-- `maxConcurrentJobs` (default `1`): prevents multi-request bursts from exhausting provider quotas.
-- `maxTokensPerMinute` / `maxRequestsPerMinute`: derived from user settings or provider defaults to honour rate limits.
-- `dryRunOutputPath`: optional path for writing JSON snapshots without persisting results.
-- `calibrationThresholds`: numeric boundaries for promoting `Medium` edges when corroboration evidence exists.
+- `maxConcurrentJobs` (defaults to `1`) keeps the loop single-threaded until rate-limiting heuristics are introduced.
+- `maxChunkCharacters` (defaults to `1600`) defines the chunk window used when slicing file content.
+- `storageDirectory` hosts dry-run snapshot output under `llm-ingestion-snapshots/`.
+- Injected dependencies (`fileReader`, `now`, `calibrate`) make unit tests deterministic.
 
 ## Failure Handling
-- When `ProviderGuard` indicates consent is missing, skip ingestion and log a warning without enqueuing follow-up attempts.
-- Schema validation failures route through `LLMIngestionDiagnostics` and mark the artifact for manual review by storing the raw response in the dry-run directory.
-- Rate-limit responses pause the queue with exponential backoff and reschedule pending artifacts.
+- Missing artifacts, unreadable files, or unsupported URIs emit warnings and count as skipped work.
+- Exceptions from the extractor bubble up as `LlmIngestionResult.error` entries; the manager logs these without halting future runs.
+- Non-diagnostics relationships are skipped with info-level logging so operators can audit confidence gating decisions.
 
 ## Testing
-- Unit tests will stub collaborators to assert batching, consent enforcement, and provenance recording.
-- Integration test `tests/integration/us5/llmIngestionFallback.test.ts` will verify dry-run mode and confidence gating ahead of full persistence.
+- Unit coverage should mock `GraphStore`, `RelationshipExtractor`, and `ProviderGuard` to assert queue draining, chunk boundaries, and provenance writes (see [`llmIngestionOrchestrator.test.ts`](../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.test.ts)).
+- Integration coverage should exercise dry-run output to verify snapshot shape while the default extractor is stubbed.
 
 ## Follow-ups
-- Auto-promote `Medium` edges when corroborated by subsequent manual overrides or external feeds.
-- Surface ingestion queue depth and last-success timestamps via telemetry.
-- Explore embedding caching to reduce repeated prompt costs for unchanged artifacts.
+- Wire provider consent and rate-limit enforcement once real model calls replace the stubbed invoker.
+- Surface queue depth and last-run metadata through telemetry or a dedicated extension view.
+- Extend chunk metadata with language + symbol hints before enabling high-confidence persistence by default.

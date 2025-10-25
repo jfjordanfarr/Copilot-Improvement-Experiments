@@ -2,6 +2,7 @@
 
 ## Source Mapping
 - Implementation: [`packages/server/src/features/watchers/pathReferenceDetector.ts`](../../../packages/server/src/features/watchers/pathReferenceDetector.ts)
+- Unit tests: [`pathReferenceDetector.test.ts`](../../../packages/server/src/features/watchers/pathReferenceDetector.test.ts)
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-004](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T028](../../../specs/001-link-aware-diagnostics/tasks.md)
 

@@ -17,9 +17,13 @@ Establish the server-side pipeline that ingests external knowledge-graph data an
 | Component | Location | Role |
 |-----------|----------|------|
 | **KnowledgeFeedManager** | `packages/server/src/features/knowledge/knowledgeFeedManager.ts` | Owns feed configuration, schedules snapshot pulls, subscribes to streaming deltas, and coordinates validation + persistence per [plan.md §Phases 3–4](../../specs/001-link-aware-diagnostics/plan.md#phases--key-deliverables).
+| **FeedFormatDetector** | `packages/server/src/features/knowledge/feedFormatDetector.ts` | Normalizes external feed payloads by auto-detecting LSIF, SCIP, or native snapshot formats before invoking the appropriate parser, keeping ingestion agnostic to source formats.
+| **LSIFParser / SCIPParser** | `packages/server/src/features/knowledge/lsifParser.ts`, `scipParser.ts` | Convert LSIF and SCIP exports into normalized snapshots with artifacts and cross-file links ready for validation and persistence.
 | **KnowledgeGraphIngestor** | `packages/server/src/features/knowledge/knowledgeGraphIngestor.ts` | Wraps the shared `KnowledgeGraphBridge`, runs validations, and updates the graph store/checkpoints; emits diagnostics/events for failures. Aligns with [research.md §Knowledge-Graph Schema Contract](../../specs/001-link-aware-diagnostics/research.md#knowledge-graph-schema-contract).
 | **SchemaValidator** | `packages/server/src/features/knowledge/schemaValidator.ts` | Already enforces the contract – reused by the ingestor before committing data ([T056](../../specs/001-link-aware-diagnostics/tasks.md)).
-| **FeedDiagnosticsGateway** | `packages/server/src/features/knowledge/feedDiagnostics.ts` | Emits warning diagnostics or console telemetry when feeds degrade or recover, supporting [FR-015](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) resilience requirements.
+| **FeedCheckpointStore** | `packages/server/src/features/knowledge/feedCheckpointStore.ts` | Persists stream checkpoints per feed so ingestion can resume after restarts without replaying snapshots.
+| **FeedDiagnosticsGateway** | `packages/server/src/features/knowledge/feedDiagnosticsGateway.ts` | Tracks feed health, emits structured logs, and notifies listeners for diagnostics surfaces.
+| **StaticFeedWorkspaceProvider** | `packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts` | Supplies fallback artifacts and links from workspace JSON fixtures when external feeds are unavailable.
 | **Runtime Wiring** | `packages/server/src/main.ts` | Instantiates the manager, registers it with the artifact watcher (so accepted feeds appear in orchestrator runs), and handles shutdown per [plan.md §Runtime Wiring](../../specs/001-link-aware-diagnostics/plan.md#phases--key-deliverables).
 
 ## Data Flow

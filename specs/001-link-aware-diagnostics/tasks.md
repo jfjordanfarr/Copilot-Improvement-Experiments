@@ -199,6 +199,12 @@ description: "Task list for Link-Aware Diagnostics"
 
 ---
 
+## Implementation Traceability
+- [`packages/server/src/main.ts`](../../packages/server/src/main.ts), [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts), and [`packages/server/src/runtime/knowledgeFeeds.ts`](../../packages/server/src/runtime/knowledgeFeeds.ts) map directly to the server-side tasks enumerated above.
+- [`packages/extension/src/extension.ts`](../../packages/extension/src/extension.ts), [`packages/extension/src/watchers/fileMaintenance.ts`](../../packages/extension/src/watchers/fileMaintenance.ts), and [`packages/extension/src/views/diagnosticsTree.ts`](../../packages/extension/src/views/diagnosticsTree.ts) fulfill the extension deliverables outlined throughout the task list.
+- [`packages/shared/src/domain/artifacts.ts`](../../packages/shared/src/domain/artifacts.ts), [`packages/shared/src/db/graphStore.ts`](../../packages/shared/src/db/graphStore.ts), and [`packages/shared/src/inference/linkInference.ts`](../../packages/shared/src/inference/linkInference.ts) provide the shared infrastructure referenced in Phase 1 and later phases.
+- [`tests/integration/us1/codeImpact.test.ts`](../../tests/integration/us1/codeImpact.test.ts), [`tests/integration/us3/acknowledgeDiagnostics.test.ts`](../../tests/integration/us3/acknowledgeDiagnostics.test.ts), and [`tests/integration/us5/transformRipple.test.ts`](../../tests/integration/us5/transformRipple.test.ts) enforce the test coverage called out alongside each user story.
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

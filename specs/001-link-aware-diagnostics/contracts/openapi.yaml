@@ -1,3 +1,6 @@
+# @link packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts
+# @link packages/server/src/runtime/changeProcessor.ts
+# @link tests/integration/us3/acknowledgeDiagnostics.test.ts
 openapi: 3.1.0
 info:
   title: Link-Aware Diagnostics Service

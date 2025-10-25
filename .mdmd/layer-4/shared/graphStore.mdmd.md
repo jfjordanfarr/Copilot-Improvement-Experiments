@@ -5,6 +5,7 @@
 
 ## Source Mapping
 - Implementation: [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts)
+- Tests: [`packages/shared/src/db/graphStore.test.ts`](../../../packages/shared/src/db/graphStore.test.ts)
 - Consumer highlights: language server `main.ts`, diagnostics subsystems, dependency traversal (`symbolNeighbors.ts`), ripple analyzer, maintenance routines
 - Parent designs: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md), [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Spec references: [FR-001](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-017](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T001–T005](../../../specs/001-link-aware-diagnostics/tasks.md)

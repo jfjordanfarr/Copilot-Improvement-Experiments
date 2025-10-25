@@ -3,14 +3,16 @@
 ## Overview
 Synchronises on-disk artifact changes with the knowledge graph to emit actionable ripple diagnostics inside VS Code.
 
-- **Extension front-end**: watchers/fileMaintenance sends rename/delete notifications; document selectors in `extension.ts` ensure YAML + markdown feed change events into the language client.
-- **Change ingestion**: `ArtifactWatcher` classifies saved artifacts as document vs. code, loads contents, seeds providers, and reconciles inference hints against `GraphStore`.
-- **Ripple analysis**: `changeProcessor.ts` persists change events, runs `RippleAnalyzer`, and collates ripple impacts for code+document contexts.
+- **Extension front-end**: watchers/fileMaintenance sends rename/delete notifications; document selectors in [`extension.ts`](../../packages/extension/src/extension.ts) ensure YAML + markdown feed change events into the language client.
+- **Change ingestion**: [`ArtifactWatcher`](../../packages/server/src/features/watchers/artifactWatcher.ts) classifies saved artifacts as document vs. code, loads contents, seeds providers, and reconciles inference hints against [`GraphStore`](../../packages/shared/src/db/graphStore.ts).
+- **Ripple analysis**: [`changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) persists change events, runs [`RippleAnalyzer`](../../packages/server/src/features/knowledge/rippleAnalyzer.ts), and collates ripple impacts for code+document contexts.
 - **Diagnostic publication**:
-  - `publishDocDiagnostics` surfaces broken markdown links and ripple metadata for docs.
-  - `publishCodeDiagnostics` (existing) handles code ripple hints with hysteresis + batching.
-  - `removeOrphans` responds to rename/delete notifications, notifying clients and sending interim diagnostics.
-- **Client UX**: `docDiagnosticProvider` transforms diagnostic metadata into quick actions and ripple explorers.
+   - [`publishDocDiagnostics`](../layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md) surfaces broken markdown links and ripple metadata for docs, coordinating acknowledgement + hysteresis suppression.
+   - [`publishCodeDiagnostics`](../layer-4/server-diagnostics/publishCodeDiagnostics.mdmd.md) handles code ripple hints with hysteresis + batching.
+   - [`AcknowledgementService`](../layer-4/server-diagnostics/acknowledgementService.mdmd.md) persists acknowledgement state and feeds suppression decisions.
+   - [`listOutstandingDiagnostics`](../layer-4/server-diagnostics/listOutstandingDiagnostics.mdmd.md) produces summaries for CLI/UIs.
+   - [`removeOrphans`](../../packages/server/src/features/maintenance/removeOrphans.ts) responds to rename/delete notifications, notifying clients and sending interim diagnostics.
+- **Client UX**: [`docDiagnosticProvider`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts) transforms diagnostic metadata into quick actions and ripple explorers.
 
 ## Data Flow
 1. **Save Event** *(VS Code)*
@@ -28,11 +30,12 @@ Synchronises on-disk artifact changes with the knowledge graph to emit actionabl
    - `noiseFilter` trims low-confidence or redundant ripple impacts based on the active noise suppression preset before publication.
    - Suppression metrics feed runtime logging so operators can tune thresholds.
 6. **Diagnostics Emission**
-   - `publishDocDiagnostics` emits `doc-drift` records for:
-     - Broken markdown paths (new static scan).
-     - Ripple impacts referencing linked artifacts.
-   - `publishCodeDiagnostics` emits `code-ripple` records for dependent code artifacts.
-   - Diagnostics guarded by hysteresis + budget from runtime settings.
+    - [`publishDocDiagnostics`](../layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md) emits `doc-drift` records for:
+       - Broken markdown paths (new static scan).
+       - Ripple impacts referencing linked artifacts.
+    - [`publishCodeDiagnostics`](../layer-4/server-diagnostics/publishCodeDiagnostics.mdmd.md) emits `code-ripple` records for dependent code artifacts.
+    - Diagnostics guarded by hysteresis + budget from runtime settings via [`HysteresisController`](../layer-4/server-diagnostics/hysteresisController.mdmd.md) and [`NoiseFilter`](../layer-4/server-diagnostics/noiseFilter.mdmd.md).
+    - [`AcknowledgementService`](../layer-4/server-diagnostics/acknowledgementService.mdmd.md) records acknowledgements and suppresses repeats; [`listOutstandingDiagnostics`](../layer-4/server-diagnostics/listOutstandingDiagnostics.mdmd.md) exposes unresolved records to clients.
 7. **Client Presentation**
    - `docDiagnosticProvider` registers quick actions (`Open linked artifact`, ripple explorer).
    - `fileMaintenance.ts` signals rename/delete back to server, triggering `removeOrphans` diagnostics + rebind prompts.
@@ -43,7 +46,7 @@ Synchronises on-disk artifact changes with the knowledge graph to emit actionabl
 - `linkAwareDiagnostics.llmProviderMode` must be set (guarded by providerGate) before diagnostics ship.
 
 ## Test Coverage
-- **Unit**: `publishDocDiagnostics.test.ts`, `artifactWatcher.test.ts`, `docDiagnosticProvider.test.ts`, `rippleAnalyzer.test.ts`.
+- **Unit**: [`publishDocDiagnostics.test.ts`](../../packages/server/src/features/diagnostics/publishDocDiagnostics.test.ts), [`acknowledgementService.test.ts`](../../packages/server/src/features/diagnostics/acknowledgementService.test.ts), [`listOutstandingDiagnostics.test.ts`](../../packages/server/src/features/diagnostics/listOutstandingDiagnostics.test.ts), [`artifactWatcher.test.ts`](../../packages/server/src/features/watchers/artifactWatcher.test.ts), [`docDiagnosticProvider.test.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.test.ts), [`rippleAnalyzer.test.ts`](../../packages/server/src/features/knowledge/rippleAnalyzer.test.ts).
 - **Integration**: US1–US5 suites validate writer, developer, rename, and template ripple flows using fixture workspace `tests/integration/fixtures/simple-workspace`.
 - **Verify task**: `npm run verify` orchestrates lint, unit, integration before commits.
 

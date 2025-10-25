@@ -104,3 +104,9 @@ The fallback inference pipeline (T054) runs when rich language server signals ar
 - Support optional LLM enrichers that can propose additional links. LLM suggestions retain their own `createdBy` label but share the same edge schema.
 
 Future providers must adhere to this schema so the `KnowledgeGraphBridge` can merge incoming data without additional migration code.
+
+## Implementation Traceability
+- [`packages/server/src/features/knowledge/feedFormatDetector.ts`](../../packages/server/src/features/knowledge/feedFormatDetector.ts) implements the feed detection behaviours described above.
+- [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) validates and persists the `ExternalSnapshot` payloads.
+- [`packages/shared/src/knowledge/knowledgeGraphBridge.ts`](../../packages/shared/src/knowledge/knowledgeGraphBridge.ts) exposes the typed contracts to both extension and server clients.
+- [`tests/integration/us5/transformRipple.test.ts`](../../tests/integration/us5/transformRipple.test.ts) and [`tests/integration/us3/markdownLinkDrift.test.ts`](../../tests/integration/us3/markdownLinkDrift.test.ts) confirm schema compatibility across fallback and knowledge-feed pipelines.

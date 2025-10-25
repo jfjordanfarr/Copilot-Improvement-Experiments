@@ -1,7 +1,7 @@
 # Falsifiability Requirements for Link-Aware Diagnostics
 
 ## Context
-Layer-2 requirements clarifying the falsifiability goals supporting spec `001-link-aware-diagnostics`. Derived from ongoing implementation gaps and aligned with Layer-3 architecture (`.mdmd/layer-3/falsifiability/ripple-falsifiability-suite.mdmd.md`).
+Layer-2 requirements clarifying the falsifiability goals supporting spec [`001-link-aware-diagnostics`](../../specs/001-link-aware-diagnostics/spec.md). Derived from ongoing implementation gaps and aligned with Layer-3 architecture ([`.mdmd/layer-3/falsifiability/ripple-falsifiability-suite.mdmd.md`](../layer-3/falsifiability/ripple-falsifiability-suite.mdmd.md)).
 
 ## Requirement Set F1: Broken Documentation Links Surface Diagnostics
 - **F1.1**: When a markdown document contains a relative link to another document or code artifact, and that target becomes invalid (file rename, move, or link text edit), the system must emit a documentation diagnostic (`code: doc-drift`) attached to the referencing document.
@@ -19,11 +19,16 @@ Layer-2 requirements clarifying the falsifiability goals supporting spec `001-li
 - **F3.3**: Diagnostics from F3 must remain within the existing noise suppression budget and respect hysteresis, demonstrating that the system can integrate pipeline-style dependencies without destabilizing emission controls.
 
 ## Verification Mapping
-- F1: Covered by integration suite `US3 – Markdown Link Drift` (to implement); unit coverage for link detection helper functions.
-- F2: Covered by `US4 – Scoped Identifier Guard` integration suite plus unit tests targeting ripple analyzer filtering.
-- F3: Covered by `US5 – Transform Pipeline Ripples`; additional unit tests for knowledge feed ingestion if new helpers are added.
+- F1: Covered by integration suite [US3 – Markdown Link Drift](../../tests/integration/us3/markdownLinkDrift.test.ts) plus unit coverage for [`pathReferenceDetector`](../../packages/server/src/features/watchers/pathReferenceDetector.ts).
+- F2: Covered by [US4 – Scoped Identifier Guard](../../tests/integration/us4/scopeCollision.test.ts) and ripple analyzer unit tests ([`rippleAnalyzer.test.ts`](../../packages/server/src/features/knowledge/rippleAnalyzer.test.ts)).
+- F3: Covered by [US5 – Transform Ripple](../../tests/integration/us5/transformRipple.test.ts) with additional ingestion validation in [`knowledgeFeedManager.test.ts`](../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts).
 
 ## Open Dependencies
 - Need tests to simulate file rename/move operations within VS Code integration harness.
 - Requires fixture-specific knowledge feed bootstrap files.
 - May introduce auxiliary scripts for template execution; ensure they run within Node-based harness without external tooling.
+
+## Implementation Alignment
+- [FeedCheckpointStore](../layer-4/knowledge-graph-ingestion/feedCheckpointStore.mdmd.md) and [FeedDiagnosticsGateway](../layer-4/knowledge-graph-ingestion/feedDiagnosticsGateway.mdmd.md) ensure F1/F3 feeds stay recoverable and observable.
+- [Dependency Quick Pick](../layer-4/extension-diagnostics/dependencyQuickPick.mdmd.md) verifies ripple explanations remain trustworthy while meeting F2 noise guarantees.
+- [Fallback Inference](../layer-4/shared/fallbackInference.mdmd.md) and [Link Inference Orchestrator](../layer-4/language-server-runtime/linkInferenceOrchestrator.mdmd.md) provide the inference layer these falsifiability suites stress.
