@@ -4,7 +4,7 @@
 - Implementation: [`packages/server/src/features/knowledge/scipParser.ts`](../../../packages/server/src/features/knowledge/scipParser.ts)
 - Tests: [`packages/server/src/features/knowledge/scipParser.test.ts`](../../../packages/server/src/features/knowledge/scipParser.test.ts)
 - Upstream detector: [`feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../knowledge-graph-ingestion.mdmd.md)
+- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
 ## Responsibility
 Normalize SCIP indexes produced by language analyzers into `ExternalSnapshot` objects. The parser emits code artifacts and dependency/reference links so the ingestion pipeline can merge SCIP intelligence with workspace-derived diagnostics.

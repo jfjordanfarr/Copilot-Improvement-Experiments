@@ -4,7 +4,7 @@
 - Implementation: [`packages/server/src/features/knowledge/feedDiagnosticsGateway.ts`](../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts)
 - Collaborators: [`knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) (status updates), [`knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) (failure reporting)
 - Tests: [`knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../knowledge-graph-ingestion.mdmd.md)
+- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
 ## Responsibility
 Centralize status updates for external knowledge feeds, translating health transitions into structured logs and event callbacks. Maintains the latest observed state per feed so diagnostics views and runtime watchers can present accurate health information.

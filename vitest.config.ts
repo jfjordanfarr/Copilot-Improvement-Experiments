@@ -18,6 +18,12 @@ export default defineConfig({
       "packages/server/src/**/*.test.ts",
       "packages/extension/src/**/*.test.ts"
     ],
+    poolOptions: {
+      threads: {
+        minThreads: 1,
+        maxThreads: 1
+      }
+    },
     coverage: {
       enabled: true,
       reporter: ["text", "html"],

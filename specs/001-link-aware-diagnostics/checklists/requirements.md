@@ -34,6 +34,6 @@
 - Items marked incomplete require spec updates before `/speckit.clarify` or `/speckit.plan`
 
 ## Implementation Traceability
-- [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts) and [`dependencyQuickPick.ts`](../../packages/extension/src/diagnostics/dependencyQuickPick.ts) reflect the user-facing behaviours this checklist validates.
-- [`packages/server/src/main.ts`](../../packages/server/src/main.ts) and [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) operationalise the specification flows under review.
-- [`tests/integration/us3/acknowledgeDiagnostics.test.ts`](../../tests/integration/us3/acknowledgeDiagnostics.test.ts) and [`tests/integration/us4/scopeCollision.test.ts`](../../tests/integration/us4/scopeCollision.test.ts) provide falsifiability coverage tied back to these requirements.
+- [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](/packages/extension/src/diagnostics/docDiagnosticProvider.ts) and [`dependencyQuickPick.ts`](/packages/extension/src/diagnostics/dependencyQuickPick.ts) reflect the user-facing behaviours this checklist validates.
+- [`packages/server/src/main.ts`](/packages/server/src/main.ts) and [`packages/server/src/runtime/changeProcessor.ts`](/packages/server/src/runtime/changeProcessor.ts) operationalise the specification flows under review.
+- [`tests/integration/us3/acknowledgeDiagnostics.test.ts`](/tests/integration/us3/acknowledgeDiagnostics.test.ts) and [`tests/integration/us4/scopeCollision.test.ts`](/tests/integration/us4/scopeCollision.test.ts) provide falsifiability coverage tied back to these requirements.

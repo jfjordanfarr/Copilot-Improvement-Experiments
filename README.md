@@ -52,7 +52,10 @@ When files are deleted or moved, the client raises a rebind prompt (`linkDiagnos
 | `npm run test:unit` | Vitest suite with coverage. Automatically rebuilds `better-sqlite3` for Node (respects `SKIP_BETTER_SQLITE3_REBUILD=1`). |
 | `npm run test:integration` | VS Code integration harness. Always rebuilds `better-sqlite3` for the current Electron runtime and exercises all user stories. |
 | `npm run verify` | End-to-end gate: lint → force Node rebuild → unit tests → integration tests. This is the script CI and pre-commit hooks should use. |
-| `npm run ci-check` | Alias for `npm run verify` to simplify CI configuration. |
+| `npm run safe:commit` | Composite gate: verify → graph snapshot → graph audit → SlopCop markdown lint → git status summary. Pass `--skip-git-status` in CI. |
+| `npm run ci-check` | Runs the safe-to-commit pipeline in CI-friendly mode (`--skip-git-status`). |
+| `npm run slopcop:markdown` | Markdown/MDMD link audit (use `-- --json` for machine output). |
+| `npm run slopcop:assets` | HTML/CSS asset reference audit (use `-- --json` for machine output). |
 
 ### Better-SQLite3 rebuild hints
 - The `rebuild:better-sqlite3:force` script installs a matching native binary for the current Node version.

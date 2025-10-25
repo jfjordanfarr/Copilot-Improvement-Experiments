@@ -16,23 +16,39 @@ function runStep(label, command, args, options = {}) {
   }
 }
 
+function runNpmScript(label, args) {
+  const npmArgs = Array.isArray(args) ? args : [args];
+  const npmExecPath = process.env.npm_execpath;
+
+  if (npmExecPath && npmExecPath.endsWith('.js')) {
+    runStep(label, process.execPath, [npmExecPath, ...npmArgs]);
+  } else {
+    runStep(label, npmCommand, npmArgs, {
+      shell: process.platform === 'win32'
+    });
+  }
+}
+
 function runSafeCommitCheck() {
+  const flags = parseFlags(process.argv.slice(2));
+
   try {
-    const npmArgs = ['run', 'verify'];
-    const npmExecPath = process.env.npm_execpath;
-    if (npmExecPath && npmExecPath.endsWith('.js')) {
-      runStep('Verify (lint + unit + integration)', process.execPath, [npmExecPath, ...npmArgs]);
-    } else {
-      runStep('Verify (lint + unit + integration)', npmCommand, npmArgs, {
-        shell: process.platform === 'win32'
-      });
-    }
+    runNpmScript('Verify (lint + unit + integration)', ['run', 'verify']);
+    runNpmScript('Graph snapshot', ['run', 'graph:snapshot', '--', '--quiet']);
+    runNpmScript('Graph coverage audit', ['run', 'graph:audit']);
+    runNpmScript('SlopCop markdown audit', ['run', 'slopcop:markdown']);
   } catch (error) {
-    console.error('\nSafe to commit check failed during verification.');
+    console.error('\nSafe to commit check failed.');
     if (error instanceof Error) {
       console.error(error.message);
     }
     process.exit(1);
+  }
+
+  if (flags.skipGitStatus) {
+    console.log('\nSkipping git status summary (CI mode).');
+    console.log('Safe to commit? Tests and lint gates passed.');
+    return;
   }
 
   const statusResult = spawnSync(gitCommand, ['status', '-sb'], { encoding: 'utf-8' });
@@ -58,3 +74,25 @@ function runSafeCommitCheck() {
 }
 
 runSafeCommitCheck();
+
+function parseFlags(argv) {
+  let skipGitStatus = false;
+
+  for (const token of argv) {
+    switch (token) {
+      case '--skip-git-status':
+      case '--ci':
+        skipGitStatus = true;
+        break;
+      default:
+        console.error(`Unknown argument: ${token}`);
+        process.exit(1);
+    }
+  }
+
+  if (!skipGitStatus && process.env.CI === 'true') {
+    skipGitStatus = true;
+  }
+
+  return { skipGitStatus };
+}

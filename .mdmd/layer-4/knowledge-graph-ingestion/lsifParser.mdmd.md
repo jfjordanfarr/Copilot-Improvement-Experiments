@@ -4,7 +4,7 @@
 - Implementation: [`packages/server/src/features/knowledge/lsifParser.ts`](../../../packages/server/src/features/knowledge/lsifParser.ts)
 - Tests: [`packages/server/src/features/knowledge/lsifParser.test.ts`](../../../packages/server/src/features/knowledge/lsifParser.test.ts)
 - Upstream detector: [`feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../knowledge-graph-ingestion.mdmd.md)
+- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
 ## Responsibility
 Translate LSIF newline-delimited JSON dumps into the project-wide `ExternalSnapshot` format. The parser lifts documents into artifacts and builds cross-file reference links, allowing the ingestion pipeline to fold LSIF exports into the link-aware diagnostics graph.

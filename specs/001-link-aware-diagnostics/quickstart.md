@@ -9,7 +9,7 @@
 ## Setup
 1. Clone the repository and install dependencies:
    ```powershell
-   git clone <repo-url>
+   git clone https://github.com/jfjordanfarr/Copilot-Improvement-Experiments.git
    cd Copilot-Improvement-Experiments
    npm install
    ```

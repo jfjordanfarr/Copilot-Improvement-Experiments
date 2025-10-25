@@ -3,7 +3,7 @@
 ## Source Mapping
 - Implementation: [`packages/server/src/features/knowledge/feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts)
 - Tests: [`packages/server/src/features/knowledge/feedFormatDetector.test.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.test.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../knowledge-graph-ingestion.mdmd.md)
+- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Related runtime: [KnowledgeFeedManager](./knowledgeFeedManager.mdmd.md)
 - Spec references: [FR-014](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T036](../../../specs/001-link-aware-diagnostics/tasks.md)
 

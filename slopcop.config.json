@@ -1,0 +1,14 @@
+{
+  "ignoreGlobs": [
+    "AI-Agent-Workspace/ChatHistory/**"
+  ],
+  "markdown": {
+    "ignoreTargets": []
+  },
+  "assets": {
+    "includeGlobs": [
+      "**/*.{html,htm,css,scss,sass}"
+    ],
+    "ignoreTargets": []
+  }
+}

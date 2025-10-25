@@ -2,7 +2,7 @@
 
 ## Source Mapping
 - Implementation: [`packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts`](../../../packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../knowledge-graph-ingestion.mdmd.md)
+- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Data inputs: `data/knowledge-feeds/*.json`
 
 ## Responsibility

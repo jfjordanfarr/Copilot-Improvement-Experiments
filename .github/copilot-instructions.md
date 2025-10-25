@@ -1,6 +1,6 @@
 ﻿# Copilot Instructions
 
-Last updated: 2025-10-24
+Last updated: 2025-10-25
 
 ## What We Are Building
 
@@ -11,12 +11,16 @@ For any given change in any given file, this extension provides the definitive a
 
 We might think of what we are building as "projectwide pseudocode AST". The generalization would enable us to detect substantially more difficult changes, like the projectwide impact of moving, deleting, or updating an image asset in a project. 
 
+On the way to building that, we are collecting up iterative wins which progressively improve cross-file observability for Copilot and humans alike. Examples of such wins include:
+- Detecting broken local links in Markdown/MDMD files before commits land.
+- Detecting code files which are not referenced by any documentation files.
+
 ## Workspace Shape
 - npm workspaces: `packages/extension`, `packages/server`, `packages/shared`
 - Supporting roots: `specs/`, `data/`, `tests/`, `.specify/`
 - TypeScript 5.x targeting Node.js 22 (see `.nvmrc`)
 - Projectwide documentation: `.mdmd/` (see note about 'MDMD' below)
-- Specific feature/story documentation: `specs\[###-feature-name]\` (see note about 'Spec-Kit' below)
+- Specific feature/story documentation: stored under folders like `specs/NNN-feature-name/` (see note about 'Spec-Kit' below)
 - **Copilot's (your) own scratch space/workspace during development:** `./AI-Agent-Workspace/`
     - **The entire development history, in summarized and unsummarized form, is located at `./AI-Agent-Workspace/ChatHistory/`.**
 
@@ -26,22 +30,22 @@ We might think of what we are building as "projectwide pseudocode AST". The gene
 - Optional LLM access through `vscode.lm`
 
 ## Commands
-- `npm run lint`
-- `npm run build`
-- `npm run test:unit`
-- `npm run test:integration`
+- `npm run safe:commit`: comprehensive chained linting, unit testing, integration testing, and project-derived tooling validations to ensure the workspace is structurally sound before commits land.
 
 ## Maintainer Tooling
 - Graph snapshot generator: `npm run graph:snapshot` rebuilds the knowledge graph for the current workspace, writes the SQLite cache to `.link-aware-diagnostics/link-aware-diagnostics.db`, and emits a JSON fixture under `data/graph-snapshots/`. Pass `--timestamp` for reproducible history branches.
 - Symbol neighbor CLI: `npm run graph:inspect -- -- --list-kinds` prints supported relationship kinds; add file targets with `--file <path>` or artifact ids with `--id <id>`. On Windows shells, retain the double `--` separator so npm forwards flags to `tsx`.
 - Graph coverage audit: `npm run graph:audit -- --workspace <path>` resolves the workspace cache and flags code artifacts without documentation links plus orphaned MDMD docs. Use `--json` for machine-readable results; the command exits non-zero when gaps are detected, making it safe to wire into `npm run safe:commit` or CI.
+- SlopCop markdown audit: `npm run slopcop:markdown` scans `.md`/`.mdmd` files for broken local links. Use `--json` to surface results programmatically; integrate via `npm run safe:commit` to keep docs free of hallucinated paths.
+- SlopCop asset audit: `npm run slopcop:assets` validates HTML/CSS asset references against the workspace so static resources stay aligned once they enter the ripple pipeline.
 
-```
-npm run graph:snapshot -- --timestamp 2025-10-24T00:00:00Z
-npm run graph:inspect -- -- --list-kinds
-npm run graph:inspect -- --file packages/server/src/main.ts
-npm run graph:audit -- --workspace . --json
-```
+Example invocations:
+- `npm run graph:inspect -- -- --list-kinds`
+- `npm run graph:inspect -- --file packages/server/src/main.ts`
+- `npm run graph:audit -- --workspace . --json`
+- `npm run slopcop:markdown -- --json`
+- `npm run slopcop:assets -- --json`
+- `npm run safe:commit -- --skip-git-status` (CI-friendly pipeline covering verify, graph snapshot/audit, and SlopCop checks)
 
 ## Behavior Expectations
 
@@ -54,12 +58,14 @@ npm run graph:audit -- --workspace . --json
 ## Documentation Conventions
 
 Our project aims to follow a 4-layered structure of markdown docs which progressively describes a solution of any type, from most abstract/public to most concrete/internal. 
-- Layer 1: Vision/User Stories
-- Layer 2: Requirements/Work Items/Roadmap
+- Layer 1: Vision/Roadmap
+- Layer 2: Requirements/User Stories/Work Items/Issues/Epics/Tasks
 - Layer 3: Architecture/Solution Components
 - Layer 4: Implementation docs (somewhat like a more human-readable C Header file, describing the programmatic surface of a singular distinct solution artifact, like a single code file). 
 
-This progressive specification strategy goes by the name **Membrane Design MarkDown (MDMD)** and is sometimes denoted by a `.mdmd.md` file extension. In the longer-term, `.mdmd.md` files aspire to be an AST-supported format which can be formally linked to code artifacts, enabling traceability from vision to implementation. MDMD, as envisioned, aims to create a reproducible and bidirectional bridge between code and docs, enabling docs-to-code, code-to-docs, or hybrid implementation strategies. **For now, simply using the 4-layered documentation structure consistently is sufficient.**
+This progressive specification strategy goes by the name **Membrane Design MarkDown (MDMD)** and is denoted by a `.mdmd.md` file extension. In the longer-term, `.mdmd.md` files aspire to be an AST-supported format which can be formally linked to code artifacts, enabling traceability from vision to implementation. MDMD, as envisioned, aims to create a reproducible and bidirectional bridge between code and docs, enabling docs-to-code, code-to-docs, or hybrid implementation strategies.
+
+**The key insight of MDMD is that markdown header sections, markdown links, and relative paths can be treated as a lightweight AST which can be parsed, analyzed, and linked to code artifacts.** 
 
 Unlike the `.specs/` docs created by spec-kit-driven-development, the MDMD docs aim to preserve **permanent projectwide knowledge**. 
 
@@ -67,7 +73,7 @@ Unlike the `.specs/` docs created by spec-kit-driven-development, the MDMD docs 
 
 Our project utilizes Spec-Kit to plan, document, and implement specific feature-branch-sized stories (or greenfield new projects, like this one's first spec: `001-link-aware-diagnostics`). As the spec-kit ecosystem evolves, files in the `.specify/` folder may update from time to time. Visit here to see the kinds of prompts which power the `/speckit.{command}` slashcommands for reproducible agentic development. 
 
-Documentation artifacts created as part of a `.specs/` folder do not necessarily need to be migrated to the `.mdmd/` permanent documentation structure, but the changes which result from a development story demarcated by a single `specs\[###-feature-name]\` folder should be migrated to the permanent documentation structure.
+Documentation artifacts created as part of a `.specs/` folder do not necessarily need to be migrated to the `.mdmd/` permanent documentation structure, but the changes which result from a development story demarcated by a single folder such as `specs/NNN-feature-name/` should be migrated to the permanent documentation structure.
 
 During development, the following general guidances should be observed to prevent common pitfalls in LLM-assisted development:
 - Try to consolidate magic strings into constants that can be referenced; this prevents common string value hallucinations.

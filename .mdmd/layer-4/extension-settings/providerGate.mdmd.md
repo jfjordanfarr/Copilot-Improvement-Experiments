@@ -3,7 +3,7 @@
 ## Source Mapping
 - Implementation: [`packages/extension/src/onboarding/providerGate.ts`](../../../packages/extension/src/onboarding/providerGate.ts)
 - Settings service: [`packages/extension/src/settings/configService.ts`](../../../packages/extension/src/settings/configService.ts)
-- Parent design: [Extension Onboarding](../extension-services/linkAwareExtension.mdmd.md)
+- Parent design: [Extension Diagnostics – Link-Aware Extension](../extension-diagnostics/linkAwareExtension.mdmd.md)
 
 ## Responsibility
 Ensure first-time users select how Link-Aware Diagnostics should interact with LLM providers and diagnostics. Persists the chosen mode, updates workspace configuration, and suppresses future prompts once onboarding completes.

@@ -4,7 +4,7 @@
 - Implementation: [`packages/server/src/features/knowledge/schemaValidator.ts`](../../../packages/server/src/features/knowledge/schemaValidator.ts)
 - Consumers: [`knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts), [`knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts)
 - Shared contracts: [`packages/shared/src/contracts`](../../../packages/shared/src/contracts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../knowledge-graph-ingestion.mdmd.md)
+- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
 ## Responsibility
 Enforce the structural contract for incoming knowledge snapshots and stream events before they mutate the graph. Guards against malformed artifacts/links so ingestion can safely accept external intelligence from LSIF, SCIP, or future feeds.

@@ -4,7 +4,7 @@
 - Implementation: [`packages/server/src/features/knowledge/feedCheckpointStore.ts`](../../../packages/server/src/features/knowledge/feedCheckpointStore.ts)
 - Collaborators: [`knowledgeGraphBridge.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts) (factory wiring), [`knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) (snapshot + stream lifecycle)
 - Tests: [`knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts), [`knowledgeGraphIngestor.test.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../knowledge-graph-ingestion.mdmd.md)
+- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
 ## Responsibility
 Persist and retrieve stream checkpoints for external knowledge feeds so ingestion can resume after restarts or backoff delays without replaying the full snapshot. The default `FileFeedCheckpointStore` records checkpoints on disk, scoped per feed.

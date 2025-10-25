@@ -1,8 +1,8 @@
 # File Maintenance Watcher (Layer 4)
 
 ## Source Mapping
-- Implementation: [`packages/extension/src/watchers/fileMaintenance.ts`](../../../packages/extension/src/watchers/fileMaintenance.ts)
-- Related contracts: [`packages/shared/src/contracts/codebaseMaintenance.ts`](../../../packages/shared/src/contracts/codebaseMaintenance.ts)
+- Implementation: [`packages/extension/src/watchers/fileMaintenance.ts`](/packages/extension/src/watchers/fileMaintenance.ts)
+- Related contracts: [`packages/shared/src/contracts/maintenance.ts`](/packages/shared/src/contracts/maintenance.ts)
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
 
 ## Responsibility

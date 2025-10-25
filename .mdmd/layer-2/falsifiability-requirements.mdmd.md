@@ -18,17 +18,26 @@ Layer-2 requirements clarifying the falsifiability goals supporting spec [`001-l
 - **F3.2**: Editing a template or transform definition must trigger `code-ripple` diagnostics on the generated output and intermediary transform script, reflecting depth and path metadata.
 - **F3.3**: Diagnostics from F3 must remain within the existing noise suppression budget and respect hysteresis, demonstrating that the system can integrate pipeline-style dependencies without destabilizing emission controls.
 
+## Requirement Set F4: Documentation Integrity Gate (SlopCop)
+- **F4.1**: Repository markdown/MDMD files must lint clean via the SlopCop CLI; any missing local link target produces a deterministic non-zero exit code blocking the pipeline.
+- **F4.2**: SlopCop must honour repo-configurable ignore patterns (e.g., `slopcop.config.json`) so generated or chat-history artefacts do not create false positives.
+- **F4.3**: `npm run safe:commit` must fail when SlopCop reports findings, ensuring documentation integrity is treated as a pre-commit invariant alongside lint/tests/graph audit.
+- **F4.4**: SlopCop asset audits must verify HTML/CSS references using the same configuration file and exit semantics, providing parity between documentation proxies and static assets.
+
 ## Verification Mapping
 - F1: Covered by integration suite [US3 – Markdown Link Drift](../../tests/integration/us3/markdownLinkDrift.test.ts) plus unit coverage for [`pathReferenceDetector`](../../packages/server/src/features/watchers/pathReferenceDetector.ts).
 - F2: Covered by [US4 – Scoped Identifier Guard](../../tests/integration/us4/scopeCollision.test.ts) and ripple analyzer unit tests ([`rippleAnalyzer.test.ts`](../../packages/server/src/features/knowledge/rippleAnalyzer.test.ts)).
 - F3: Covered by [US5 – Transform Ripple](../../tests/integration/us5/transformRipple.test.ts) with additional ingestion validation in [`knowledgeFeedManager.test.ts`](../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts).
+- F4: Covered by [`markdownLinks.test.ts`](../../packages/shared/src/tooling/markdownLinks.test.ts), [`assetPaths.test.ts`](../../packages/shared/src/tooling/assetPaths.test.ts), and the CLI exercised through [`npm run slopcop:markdown`](/scripts/slopcop/check-markdown-links.ts) / [`npm run slopcop:assets`](/scripts/slopcop/check-asset-paths.ts) within the safe-to-commit pipeline.
 
 ## Open Dependencies
 - Need tests to simulate file rename/move operations within VS Code integration harness.
 - Requires fixture-specific knowledge feed bootstrap files.
 - May introduce auxiliary scripts for template execution; ensure they run within Node-based harness without external tooling.
+- SlopCop asset checks are staged for safe-to-commit integration once coverage hardens; symbol reference analysis remains a planned follow-up pending graph APIs.
 
 ## Implementation Alignment
 - [FeedCheckpointStore](../layer-4/knowledge-graph-ingestion/feedCheckpointStore.mdmd.md) and [FeedDiagnosticsGateway](../layer-4/knowledge-graph-ingestion/feedDiagnosticsGateway.mdmd.md) ensure F1/F3 feeds stay recoverable and observable.
 - [Dependency Quick Pick](../layer-4/extension-diagnostics/dependencyQuickPick.mdmd.md) verifies ripple explanations remain trustworthy while meeting F2 noise guarantees.
 - [Fallback Inference](../layer-4/shared/fallbackInference.mdmd.md) and [Link Inference Orchestrator](../layer-4/language-server-runtime/linkInferenceOrchestrator.mdmd.md) provide the inference layer these falsifiability suites stress.
+- [SlopCop Markdown Audit](../layer-4/tooling/slopcopMarkdownLinks.mdmd.md) and the shared detectors in [`markdownLinks.ts`](../../packages/shared/src/tooling/markdownLinks.ts) satisfy the documentation lint; [SlopCop Asset Reference Audit](../layer-4/tooling/slopcopAssetPaths.mdmd.md) and [`assetPaths.ts`](../../packages/shared/src/tooling/assetPaths.ts) extend the same guarantees to static resources while [`symbolReferences.ts`](../../packages/shared/src/tooling/symbolReferences.ts) seeds upcoming symbol validation.

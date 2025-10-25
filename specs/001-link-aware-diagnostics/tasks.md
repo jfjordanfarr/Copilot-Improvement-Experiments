@@ -186,6 +186,8 @@ description: "Task list for Link-Aware Diagnostics"
 - [ ] T060 Curate AST-backed benchmark repos (starting with C and at least one additional language) under `tests/integration/benchmarks/ast-fixtures/`
 - [ ] T061 Implement AST comparison harness in `tests/integration/benchmarks/astAccuracy.test.ts` that reconciles inferred graphs with canonical ASTs
 - [ ] T062 Integrate dual-mode benchmark selection (AST vs self-similarity) into CI via root `package.json` scripts and `npm run ci-check`
+- [ ] T073 [P] Author SlopCop markdown audit CLI docs in `.mdmd/layer-4/tooling/slopcopMarkdownLinks.mdmd.md`
+- [ ] T074 Implement markdown link audit CLI in `scripts/slopcop/check-markdown-links.ts` and wire into `safe:commit`
 
 ---
 
