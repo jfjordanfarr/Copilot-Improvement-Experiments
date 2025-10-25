@@ -95,9 +95,13 @@ describe("LlmIngestionOrchestrator", () => {
 
     expect(results).toHaveLength(1);
     expect(results[0].stored).toBe(1);
+  expect(results[0].skipped).toBe(1);
 
     const link = (store as any).getLink(sourceArtifact.id, targetArtifact.id, "depends_on");
     expect(link).toBeDefined();
+
+  const skippedLink = (store as any).getLink(sourceArtifact.id, "missing", "depends_on");
+  expect(skippedLink).toBeUndefined();
 
     const provenance = (store as any).getLlmEdgeProvenance(link!.id);
     expect(provenance).toBeDefined();
@@ -164,11 +168,17 @@ describe("LlmIngestionOrchestrator", () => {
     expect(results[0].stored).toBe(0);
 
     const snapshotPath = results[0].dryRunSnapshotPath!;
-    const snapshotExists = await import("node:fs/promises").then(fs => fs.stat(snapshotPath)).then(
+    const fs = await import("node:fs/promises");
+    const snapshotExists = await fs.stat(snapshotPath).then(
       () => true,
       () => false
     );
     expect(snapshotExists).toBe(true);
+
+    const snapshot = JSON.parse(await fs.readFile(snapshotPath, "utf8"));
+    expect(snapshot.relationships).toHaveLength(1);
+    expect(snapshot.relationships[0].diagnosticsEligible).toBe(false);
+    expect(snapshot.relationships[0].confidenceTier).toBe("low");
 
     const link = (store as any).getLink(sourceArtifact.id, "unknown", "documents");
     expect(link).toBeUndefined();

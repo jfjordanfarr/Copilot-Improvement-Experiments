@@ -192,10 +192,10 @@ description: "Task list for Link-Aware Diagnostics"
 ## Phase 8: LLM Ingestion (Next Iteration)
 
 - [x] T068 Capture LLM ingestion architecture and confidence taxonomy in `.mdmd/layer-3/llm-ingestion-pipeline.mdmd.md`.
-- [ ] T069 [P] Author reproducible prompt templates and schema contracts under `packages/server/src/prompts/llm-ingestion/` with accompanying dry-run fixtures.
-- [ ] T070 Implement `LLMIngestionOrchestrator` in `packages/server/src/features/knowledge/llmIngestionOrchestrator.ts` with batching, consent gating, and throttling.
-- [ ] T071 [P] Build shared `relationshipExtractor` + `confidenceCalibrator` utilities in `packages/shared/src/inference/llm/` with unit coverage verifying JSON decoding and confidence mapping.
-- [ ] T072 Add integration test `tests/integration/us5/llmIngestionFallback.test.ts` that exercises dry-run mode, ensures provenance storage, and verifies diagnostics ignore `Low` confidence edges by default.
+- [x] T069 [P] Author reproducible prompt templates and schema contracts under `packages/server/src/prompts/llm-ingestion/` with accompanying dry-run fixtures.
+- [x] T070 Implement `LLMIngestionOrchestrator` in `packages/server/src/features/knowledge/llmIngestionOrchestrator.ts` with batching, consent gating, and throttling.
+- [x] T071 [P] Build shared `relationshipExtractor` + `confidenceCalibrator` utilities in `packages/shared/src/inference/llm/` with unit coverage verifying JSON decoding and confidence mapping.
+- [x] T072 Add integration test `tests/integration/us5/llmIngestionDryRun.test.ts` that exercises dry-run mode, ensures provenance storage, and verifies diagnostics ignore `Low` confidence edges by default.
 
 ---
 

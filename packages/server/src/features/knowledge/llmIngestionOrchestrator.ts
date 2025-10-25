@@ -224,6 +224,13 @@ export class LlmIngestionOrchestrator {
     relationship: CalibratedRelationship,
     extraction: RelationshipExtractionBatch
   ): boolean {
+    if (!relationship.diagnosticsEligible) {
+      this.logger?.info?.(
+        `Skipping relationship ${relationship.sourceId} -> ${relationship.targetId} (${relationship.relationship}) due to low confidence`
+      );
+      return false;
+    }
+
     const targetArtifact = this.options.graphStore.getArtifactById(relationship.targetId);
     const sourceArtifact = this.options.graphStore.getArtifactById(relationship.sourceId);
 
@@ -306,9 +313,13 @@ export class LlmIngestionOrchestrator {
         targetId: rel.targetId,
         relationship: rel.relationship,
         confidence: rel.calibratedConfidence,
-        confidenceLabel: rel.confidenceTier,
+        confidenceLabel: rel.rawConfidenceLabel ?? rel.confidenceTier,
+        confidenceTier: rel.confidenceTier,
         diagnosticsEligible: rel.diagnosticsEligible,
+        // Shadowed edges already exist in the graph with stronger evidence; we surface them for auditing but do not enable diagnostics.
+        shadowed: rel.shadowed,
         supportingChunks: rel.supportingChunks,
+        promotionCriteria: rel.promotionCriteria,
         rationale: rel.rationale
       }))
     };
