@@ -14,7 +14,7 @@ Link-aware diagnostics treats every emitted warning as a contract: once a develo
 
 ## Responsibilities
 - Determine whether a new ripple impact should emit (`shouldEmitDiagnostic`) by inspecting existing graph records.
-- Register emissions (`registerEmission`) so acknowledged diagnostics can be replayed when evidence changes, including drift-history provenance.
+- Register emissions (`registerEmission`) so acknowledged diagnostics can be replayed when evidence changes, including drift-history provenance and clearing any stale `llmAssessment` before returning to the active state.
 - Accept acknowledgement requests, persist acknowledgement metadata, release hysteresis locks, and log actor/notes for audit trails.
 - Update runtime behaviour when noise-suppression settings change, keeping logs in sync with current hysteresis windows.
 

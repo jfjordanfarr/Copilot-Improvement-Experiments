@@ -39,7 +39,18 @@ describe("buildOutstandingDiagnosticsResult", () => {
       createdAt: "2025-01-01T00:00:00.000Z",
       acknowledgedAt: undefined,
       acknowledgedBy: undefined,
-      linkIds: ["link-1", "link-2"]
+      linkIds: ["link-1", "link-2"],
+      llmAssessment: {
+        summary: "The implementation has not been updated to match documentation.",
+        confidence: 0.8,
+        recommendedActions: ["Review linked implementation", "Update quickstart instructions"],
+        generatedAt: "2025-01-01T01:00:00.000Z",
+        model: {
+          id: "local/ollama:llama3",
+          vendor: "ollama"
+        },
+        promptHash: "hash-1"
+      }
     };
 
     const snapshot = buildOutstandingDiagnosticsResult(
@@ -68,7 +79,8 @@ describe("buildOutstandingDiagnosticsResult", () => {
         uri: triggerArtifact.uri,
         layer: triggerArtifact.layer,
         language: triggerArtifact.language
-      }
+      },
+      llmAssessment: diagnostic.llmAssessment
     });
   });
 

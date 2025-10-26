@@ -22,13 +22,9 @@ Owns the language server bootstrap loop: wiring LSP lifecycle events, projecting
 - **Workspace Providers** – composed symbol/workspace index providers registered with the watcher to seed relationship hints during inference.
 
 ## Public API Surfaces
-- `connection.onInitialize` – performs workspace discovery, storage bootstrap, and service wiring (change queue, watcher, knowledge feeds).
-- `connection.onDidChangeConfiguration` / `SETTINGS_NOTIFICATION` – synchronize client-driven configuration changes and refresh runtime settings.
-- `connection.onNotification(FILE_DELETED|FILE_RENAMED)` – propagate file system events to the maintenance subsystem.
-- `connection.onRequest(OVERRIDE_LINK_REQUEST)` – apply manual dependency overrides with graph store persistence.
 - `connection.onRequest(INSPECT_DEPENDENCIES_REQUEST)` – surface dependency graph snapshots for the client.
-- `documents.onDidSave` – enqueue persisted document/code changes for batch processing.
-- `syncRuntimeSettings()` – recompute runtime parameters, update the change queue + change processor, and re-initialize knowledge feeds when thresholds shift.
+- `connection.onRequest(SET_DIAGNOSTIC_ASSESSMENT_REQUEST)` – persist AI assessments to the graph store and echo the updated record back to the client.
+- `connection.onRequest(INVOKE_LLM_REQUEST)` (handled via `createDefaultRelationshipExtractor`) – forward ingestion prompts to the extension-host model invoker when provider mode permits.
 
 ## Internal Flow
 ```mermaid
@@ -63,4 +59,5 @@ graph TD
 - Splitting helpers into `runtime/*` modules keeps `main.ts` below the 500-line threshold and enables targeted unit tests for settings derivation, environment resolution, change processing, and knowledge feed lifecycle management.
 - `syncRuntimeSettings` now rehydrates both the change queue and knowledge feed controller, aligning debounce/noise configuration across diagnostics and external feed ingestion.
 - The language server registers for `workspace/didChangeConfiguration` in `onInitialized` so that client-driven setting changes can be observed without additional manual plumbing.
+- `createDefaultRelationshipExtractor` now sends `INVOKE_LLM_REQUEST` payloads to the client, logging provider mode/model id whenever live ingestion is active.
 - Future work: layer-3 documentation should codify the broader language server architecture, building on this runtime bootstrap contract.

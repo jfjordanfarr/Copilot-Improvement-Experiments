@@ -120,7 +120,8 @@ export class AcknowledgementService {
         status: "active",
         acknowledgedAt: existing.status === "acknowledged" ? existing.acknowledgedAt : undefined,
         acknowledgedBy: existing.status === "acknowledged" ? existing.acknowledgedBy : undefined,
-        linkIds: payload.linkIds ?? existing.linkIds
+        linkIds: payload.linkIds ?? existing.linkIds,
+        llmAssessment: undefined
       };
 
       this.options.graphStore.storeDiagnostic(updated);

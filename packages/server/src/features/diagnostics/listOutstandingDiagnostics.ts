@@ -38,7 +38,8 @@ export function mapOutstandingDiagnostic(
     acknowledgedBy: record.acknowledgedBy,
     linkIds: record.linkIds,
     target: mapArtifactSummary(targetArtifact),
-    trigger: mapArtifactSummary(triggerArtifact)
+    trigger: mapArtifactSummary(triggerArtifact),
+    llmAssessment: record.llmAssessment
   } satisfies OutstandingDiagnosticSummary;
 }
 

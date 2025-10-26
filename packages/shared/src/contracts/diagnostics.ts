@@ -1,3 +1,5 @@
+import type { LlmAssessment } from "../domain/artifacts";
+
 export const ACKNOWLEDGE_DIAGNOSTIC_REQUEST = "linkDiagnostics/diagnostics/acknowledge";
 
 export interface AcknowledgeDiagnosticParams {
@@ -45,11 +47,25 @@ export interface OutstandingDiagnosticSummary {
   linkIds: string[];
   target?: DiagnosticArtifactSummary;
   trigger?: DiagnosticArtifactSummary;
+  llmAssessment?: LlmAssessment;
 }
 
 export interface ListOutstandingDiagnosticsResult {
   generatedAt: string;
   diagnostics: OutstandingDiagnosticSummary[];
+}
+
+export const SET_DIAGNOSTIC_ASSESSMENT_REQUEST = "linkDiagnostics/diagnostics/setAssessment";
+
+export interface SetDiagnosticAssessmentParams {
+  diagnosticId: string;
+  assessment?: LlmAssessment;
+}
+
+export interface SetDiagnosticAssessmentResult {
+  diagnosticId: string;
+  updatedAt: string;
+  assessment?: LlmAssessment;
 }
 
 export const EXPORT_DIAGNOSTICS_REQUEST = "linkDiagnostics/diagnostics/export";

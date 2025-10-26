@@ -1,8 +1,11 @@
 import type { Connection } from "vscode-languageserver/node";
 
 import {
+  type InvokeLlmRequest,
+  type InvokeLlmResult,
   type ModelInvoker,
-  RelationshipExtractor
+  RelationshipExtractor,
+  INVOKE_LLM_REQUEST
 } from "@copilot-improvement/shared";
 
 import { LlmIngestionOrchestrator, type LlmIngestionResult } from "../features/knowledge/llmIngestionOrchestrator";
@@ -85,29 +88,44 @@ export function createDefaultRelationshipExtractor(
   const { connection, providerGuard } = options;
   let loggedOnce = false;
 
-  const invokeModel: ModelInvoker = ({ tags }) => {
+  const invokeModel: ModelInvoker = async request => {
     const settings = providerGuard.getSettings();
     const providerMode = settings.llmProviderMode ?? "local-only";
-    if (!loggedOnce) {
-      connection.console.info(
-        `[llm-ingestion] model invocation stub active (mode=${providerMode}); returning empty relationships`
-      );
-      loggedOnce = true;
+    if (providerMode === "disabled") {
+      if (!loggedOnce) {
+        connection.console.warn(
+          "[llm-ingestion] skipping model invocation because llmProviderMode=disabled"
+        );
+        loggedOnce = true;
+      }
+      return {
+        response: {
+          relationships: []
+        },
+        modelId: "llm-provider-disabled"
+      } satisfies InvokeLlmResult;
     }
 
-    const templateId = tags?.["link-aware.template"] ?? "link-aware-diagnostics.llm-ingestion.v1";
-    const templateVersion = tags?.["link-aware.version"] ?? "unknown";
+    const payload: InvokeLlmRequest = {
+      prompt: request.prompt,
+      schema: request.schema,
+      tags: request.tags
+    };
 
-    return Promise.resolve({
-      response: {
-        metadata: {
-          templateId,
-          templateVersion
-        },
-        relationships: []
-      },
-      modelId: providerMode === "prompt" ? "llm-provider-unavailable" : "llm-local-disabled"
-    });
+    try {
+      const response = await connection.sendRequest<InvokeLlmResult>(INVOKE_LLM_REQUEST, payload);
+      if (!loggedOnce) {
+        connection.console.info(
+          `[llm-ingestion] dispatched model invocation (mode=${providerMode}, model=${response.modelId ?? "unknown"})`
+        );
+        loggedOnce = true;
+      }
+      return response;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      connection.console.error(`[llm-ingestion] model invocation failed: ${message}`);
+      throw error;
+    }
   };
 
   return new RelationshipExtractor({

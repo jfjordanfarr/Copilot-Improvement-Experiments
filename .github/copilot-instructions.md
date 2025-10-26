@@ -41,13 +41,14 @@ On the way to building that, we are collecting up iterative wins which progressi
 - SlopCop symbol audit (opt-in): `npm run slopcop:symbols` verifies Markdown/MDMD headings against local and cross-document anchors using GitHub-compatible slugging. Enable via `symbols.enabled` in `slopcop.config.json` once duplicate headings are resolved.
 
 Example invocations:
+- `npm run graph:snapshot`: **Rebuilds the graph and emits a snapshot fixture. Do this first.**
 - `npm run graph:inspect -- -- --list-kinds`
 - `npm run graph:inspect -- --file packages/server/src/main.ts`
 - `npm run graph:audit -- --workspace . --json`
 - `npm run slopcop:markdown -- --json`
 - `npm run slopcop:assets -- --json`
 - `npm run slopcop:symbols -- --json`
-- `npm run safe:commit -- --skip-git-status` (CI-friendly pipeline covering verify, graph snapshot/audit, and SlopCop checks)
+- `npm run safe:commit`
 
 ## Behavior Expectations
 
@@ -75,7 +76,10 @@ Unlike the `.specs/` docs created by spec-kit-driven-development, the MDMD docs 
 
 Our project utilizes Spec-Kit to plan, document, and implement specific feature-branch-sized stories (or greenfield new projects, like this one's first spec: `001-link-aware-diagnostics`). As the spec-kit ecosystem evolves, files in the `.specify/` folder may update from time to time. Visit here to see the kinds of prompts which power the `/speckit.{command}` slashcommands for reproducible agentic development. 
 
-Documentation artifacts created as part of a `.specs/` folder do not necessarily need to be migrated to the `.mdmd/` permanent documentation structure, but the changes which result from a development story demarcated by a single folder such as `specs/NNN-feature-name/` should be migrated to the permanent documentation structure.
+> [!Note]
+> Documentation artifacts created as part of a `.specs/` folder do not necessarily need to be migrated to the `.mdmd/` permanent documentation structure, but the changes which result from a development story demarcated by a single folder such as `specs/NNN-feature-name/` should be migrated to the permanent documentation structure.
+
+### General Development Guidelines
 
 During development, the following general guidances should be observed to prevent common pitfalls in LLM-assisted development:
 - Try to consolidate magic strings into constants that can be referenced; this prevents common string value hallucinations.
@@ -83,3 +87,13 @@ During development, the following general guidances should be observed to preven
 - Optimize for readability and maintainability over brevity; prefer clear code over clever code.
 - To the best of your ability, Don't Repeat Yourself (DRY); the simplest solution is often the truest.
 - **Refactor files which exceed ~500 lines of code**; File edit LLM tools routinely make mistakes above this size threshold.
+
+### For the Big Problems: Code Like Clay
+
+This is where we tie together all of our ideas, both in this instruction document and in the broader software we are building. 
+
+When you are faced with a large development task which is expected to take more than one context window to complete (read: virtually anything worth doing), you have the tools in your hands to fully envision a solution before you start writing the code: **MDMD**. 
+
+For the big features, I begin by creating the MDMD documentation for the things I _think_ I will need to build. Then, I perform an initial implementation pass, allowing harsh realities to dash against my initial design, forcing repeated back-and-forth refinements between documentation and implementation until the two are in harmony and the solution is complete. This particular style of development I call "Code Like Clay", and it is astoundingly well-suited to LLM-driven development, as it preserves intent across multiple context windows, allowing the LLM to reason about the problem at hand without losing sight of the big picture. 
+
+Our own project's tooling is improving progressively to better support this style of development. For example, the `npm run safe:commit` command runs a battery of validations which ensure that the codebase is in a sound state before commits land, including linting, unit tests, integration tests, graph snapshotting, graph auditing, and SlopCop checks. 

@@ -1,4 +1,6 @@
 import Database from "better-sqlite3";
+import fs from "node:fs";
+import path from "node:path";
 
 import {
   AcknowledgementAction,
@@ -7,6 +9,7 @@ import {
   DiagnosticStatus,
   DriftHistoryEntry,
   DriftHistoryStatus,
+  LlmAssessment,
   LlmEdgeProvenance,
   KnowledgeArtifact,
   KnowledgeSnapshot,
@@ -29,6 +32,33 @@ export interface LinkedArtifactSummary {
 
 const JSON_SPACES = 0;
 
+const BETTER_SQLITE_MODULE_VERSION = process.versions.modules ?? "";
+const BETTER_SQLITE_MODULE_VERSION_NUMBER = Number(BETTER_SQLITE_MODULE_VERSION || "0");
+const BETTER_SQLITE_NATIVE_BINDING = resolveBetterSqliteNativeBinding(BETTER_SQLITE_MODULE_VERSION);
+const NEEDS_EXPLICIT_NATIVE_BINDING = BETTER_SQLITE_MODULE_VERSION_NUMBER >= 136;
+
+function resolveBetterSqliteNativeBinding(moduleVersion: string | undefined): string | undefined {
+  if (!moduleVersion) {
+    return undefined;
+  }
+
+  try {
+    const packagePath = require.resolve("better-sqlite3/package.json");
+    const moduleRoot = path.dirname(packagePath);
+    const candidate = path.join(
+      moduleRoot,
+      "build",
+      "Release",
+      `abi-${moduleVersion}`,
+      "better_sqlite3.node"
+    );
+
+    return fs.existsSync(candidate) ? candidate : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 /**
  * Thin wrapper around better-sqlite3 that materialises our knowledge-graph projections. The
  * implementation deliberately keeps schema bootstrapping local so the store can be rebuilt after
@@ -38,7 +68,18 @@ export class GraphStore {
   private readonly db: Database.Database;
 
   constructor(private readonly options: GraphStoreOptions) {
-    this.db = new Database(options.dbPath);
+    if (NEEDS_EXPLICIT_NATIVE_BINDING && !BETTER_SQLITE_NATIVE_BINDING) {
+      throw new Error(
+        `better-sqlite3 native binding for ABI ${BETTER_SQLITE_MODULE_VERSION} was not found. ` +
+          `Run "npm run rebuild:better-sqlite3:force" to regenerate Electron-compatible binaries.`
+      );
+    }
+
+    const databaseOptions: Database.Options | undefined = BETTER_SQLITE_NATIVE_BINDING
+      ? { nativeBinding: BETTER_SQLITE_NATIVE_BINDING }
+      : undefined;
+
+    this.db = new Database(options.dbPath, databaseOptions);
     this.configure();
     this.ensureSchema();
   }
@@ -412,6 +453,23 @@ export class GraphStore {
         ? JSON.stringify(diagnostic.llmAssessment, null, JSON_SPACES)
         : null
     });
+  }
+
+  updateDiagnosticAssessment(options: { id: string; assessment?: LlmAssessment }): void {
+    this.db
+      .prepare(
+        `
+        UPDATE diagnostics
+        SET llm_assessment = @llmAssessment
+        WHERE id = @id
+      `
+      )
+      .run({
+        id: options.id,
+        llmAssessment: options.assessment
+          ? JSON.stringify(options.assessment, null, JSON_SPACES)
+          : null
+      });
   }
 
   logAcknowledgement(action: AcknowledgementAction): void {
@@ -849,8 +907,84 @@ export class GraphStore {
       acknowledgedAt: row.acknowledged_at ?? undefined,
       acknowledgedBy: row.acknowledged_by ?? undefined,
       linkIds: this.parseLinkIds(row.link_ids),
-      llmAssessment: this.parseMetadata(row.llm_assessment)
+      llmAssessment: this.parseLlmAssessment(row.llm_assessment)
     };
+  }
+
+  private parseLlmAssessment(value: string | null): LlmAssessment | undefined {
+    if (!value) {
+      return undefined;
+    }
+
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(value) as unknown;
+    } catch {
+      return undefined;
+    }
+
+    if (!parsed || typeof parsed !== "object") {
+      return undefined;
+    }
+
+    const record = parsed as Record<string, unknown>;
+    const summary = typeof record.summary === "string" ? record.summary : undefined;
+    const confidence = typeof record.confidence === "number" ? record.confidence : undefined;
+    const recommendedRaw = Array.isArray(record.recommendedActions)
+      ? record.recommendedActions.filter((item): item is string => typeof item === "string")
+      : [];
+
+    if (!summary || confidence === undefined) {
+      return undefined;
+    }
+
+    const normalized: LlmAssessment = {
+      summary,
+      confidence: Math.max(0, Math.min(1, confidence)),
+      recommendedActions: recommendedRaw.slice(0, 10)
+    };
+
+    if (typeof record.generatedAt === "string") {
+      normalized.generatedAt = record.generatedAt;
+    }
+
+    const model = record.model;
+    if (model && typeof model === "object") {
+      const modelRecord = model as Record<string, unknown>;
+      const id = typeof modelRecord.id === "string" ? modelRecord.id : undefined;
+      if (id) {
+        normalized.model = {
+          id,
+          name: typeof modelRecord.name === "string" ? modelRecord.name : undefined,
+          vendor: typeof modelRecord.vendor === "string" ? modelRecord.vendor : undefined,
+          family: typeof modelRecord.family === "string" ? modelRecord.family : undefined,
+          version: typeof modelRecord.version === "string" ? modelRecord.version : undefined
+        };
+      }
+    }
+
+    if (typeof record.promptHash === "string") {
+      normalized.promptHash = record.promptHash;
+    }
+
+    if (typeof record.rawResponse === "string") {
+      normalized.rawResponse = record.rawResponse;
+    }
+
+    if (record.tags && typeof record.tags === "object") {
+      const tags = record.tags as Record<string, unknown>;
+      const cleaned: Record<string, string> = {};
+      for (const [key, value] of Object.entries(tags)) {
+        if (typeof value === "string") {
+          cleaned[key] = value;
+        }
+      }
+      if (Object.keys(cleaned).length > 0) {
+        normalized.tags = cleaned;
+      }
+    }
+
+    return normalized;
   }
 
   private mapDriftHistoryRow(row: DriftHistoryRow): DriftHistoryEntry {

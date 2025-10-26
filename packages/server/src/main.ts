@@ -28,6 +28,9 @@ import {
   type DiagnosticAcknowledgedPayload,
   LIST_OUTSTANDING_DIAGNOSTICS_REQUEST,
   type ListOutstandingDiagnosticsResult,
+  SET_DIAGNOSTIC_ASSESSMENT_REQUEST,
+  type SetDiagnosticAssessmentParams,
+  type SetDiagnosticAssessmentResult,
   FEEDS_READY_REQUEST,
   type FeedsReadyResult,
   type InspectDependenciesParams,
@@ -420,6 +423,33 @@ connection.onRequest(
 
     const diagnostics = acknowledgementService.listActiveDiagnostics();
     return buildOutstandingDiagnosticsResult(diagnostics, graphStore);
+  }
+);
+
+connection.onRequest(
+  SET_DIAGNOSTIC_ASSESSMENT_REQUEST,
+  (payload: SetDiagnosticAssessmentParams): SetDiagnosticAssessmentResult => {
+    if (!graphStore) {
+      throw new Error("Graph store is not available");
+    }
+
+    const existing = graphStore.getDiagnosticById(payload.diagnosticId);
+    if (!existing) {
+      throw new Error(`Diagnostic ${payload.diagnosticId} not found`);
+    }
+
+    graphStore.updateDiagnosticAssessment({ id: payload.diagnosticId, assessment: payload.assessment });
+
+    const updated = graphStore.getDiagnosticById(payload.diagnosticId);
+    connection.console.info(
+      `[diagnostics] stored LLM assessment for ${payload.diagnosticId} (assessment=${payload.assessment ? "set" : "cleared"})`
+    );
+
+    return {
+      diagnosticId: payload.diagnosticId,
+      updatedAt: new Date().toISOString(),
+      assessment: updated?.llmAssessment
+    } satisfies SetDiagnosticAssessmentResult;
   }
 );
 

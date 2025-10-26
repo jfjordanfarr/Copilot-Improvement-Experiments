@@ -10,12 +10,12 @@
 After ripple diagnostics emit, users need a consistent way to review what remains unresolved—especially in headless contexts (CLI, CI, telemetry dashboards). The helpers in `listOutstandingDiagnostics.ts` transform raw `DiagnosticRecord`s from the graph store into lightweight summaries tailored for LSP responses and tooling. By centralising this translation layer, we guarantee that every consumer sees acknowledged timestamps, artifact metadata, and link provenance in the same shape.
 
 ## Responsibilities
-- Convert graph records and related artifacts into `ListOutstandingDiagnosticsResult` payloads with ISO timestamps.
+- Convert graph records and related artifacts into `ListOutstandingDiagnosticsResult` payloads with ISO timestamps and optional `llmAssessment` details for each diagnostic.
 - Safely handle missing artifact references (e.g., deleted files) by returning `undefined` targets/triggers instead of throwing.
 - Provide a single place to evolve the summary schema; tests lock down field coverage so client commands stay backward compatible.
 
 ## Behaviour Notes
-- `mapOutstandingDiagnostic` reads both the target artifact (diagnostic location) and trigger artifact (source of ripple) to populate the summary.
+- `mapOutstandingDiagnostic` reads both the target artifact (diagnostic location) and trigger artifact (source of ripple) to populate the summary, and now preserves any stored `LlmAssessment` so the extension tree view can surface AI guidance.
 - Artifact metadata is sourced lazily from `GraphStore.getArtifactById`, so the helper can be used in batch scripts without preloading graphs.
 - The optional `now` factory keeps payload generation deterministic in tests and repeatable in automation.
 

@@ -194,6 +194,21 @@ export class DiagnosticsTreeDataProvider
     if (diagnostic.linkIds.length > 0) {
       lines.push(`Links: ${diagnostic.linkIds.join(", ")}`);
     }
+    const assessment = diagnostic.llmAssessment;
+    if (assessment?.summary) {
+      lines.push("");
+      lines.push("AI Summary:");
+      lines.push(assessment.summary);
+      if (typeof assessment.confidence === "number") {
+        lines.push(`AI Confidence: ${formatConfidence(assessment.confidence)}`);
+      }
+      if (assessment.recommendedActions?.length) {
+        lines.push("AI Recommended Actions:");
+        for (const action of assessment.recommendedActions) {
+          lines.push(`- ${action}`);
+        }
+      }
+    }
     return lines.join("\n");
   }
 
@@ -223,6 +238,11 @@ function formatLocalTimestamp(value: string): string {
     hour: "2-digit",
     minute: "2-digit"
   }).format(date);
+}
+
+function formatConfidence(value: number): string {
+  const percentage = Math.round(Math.max(0, Math.min(1, value)) * 100);
+  return `${percentage}%`;
 }
 
 export function isDiagnosticNode(node: TreeNode): node is DiagnosticNode {

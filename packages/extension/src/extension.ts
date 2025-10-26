@@ -8,9 +8,17 @@ import {
   TransportKind
 } from "vscode-languageclient/node";
 
-import { RebindRequiredPayload, FEEDS_READY_REQUEST, type FeedsReadyResult } from "@copilot-improvement/shared";
+import {
+  RebindRequiredPayload,
+  FEEDS_READY_REQUEST,
+  INVOKE_LLM_REQUEST,
+  type FeedsReadyResult,
+  type InvokeLlmRequest,
+  type InvokeLlmResult
+} from "@copilot-improvement/shared";
 
 import { registerAcknowledgementWorkflow } from "./commands/acknowledgeDiagnostic";
+import { registerAnalyzeWithAICommand } from "./commands/analyzeWithAI";
 import { registerExportDiagnosticsCommand } from "./commands/exportDiagnostics";
 import { registerInspectSymbolNeighborsCommand } from "./commands/inspectSymbolNeighbors";
 import { registerOverrideLinkCommand } from "./commands/overrideLink";
@@ -18,6 +26,7 @@ import { registerDependencyQuickPick } from "./diagnostics/dependencyQuickPick";
 import { registerDocDiagnosticProvider } from "./diagnostics/docDiagnosticProvider";
 import { ensureProviderSelection } from "./onboarding/providerGate";
 import { showRebindPrompt } from "./prompts/rebindPrompt";
+import { LlmInvoker, LlmInvocationError } from "./services/llmInvoker";
 import { registerSymbolBridge } from "./services/symbolBridge";
 import { ConfigService } from "./settings/configService";
 import { registerDiagnosticsTreeView } from "./views/diagnosticsTree";
@@ -34,6 +43,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   const serverModule = context.asAbsolutePath(path.join("..", "server", "dist", "main.js"));
 
   configService = new ConfigService();
+  const llmInvoker = new LlmInvoker(() => configService!.settings);
   context.subscriptions.push(configService);
 
   await ensureProviderSelection(context, configService);
@@ -173,6 +183,35 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   await activeClient.sendNotification(SETTINGS_NOTIFICATION, activeConfigService.settings);
 
   context.subscriptions.push(
+    activeClient.onRequest(
+      INVOKE_LLM_REQUEST,
+      async (payload: InvokeLlmRequest): Promise<InvokeLlmResult> => {
+        try {
+          const result = await llmInvoker.invoke({
+            prompt: payload.prompt,
+            tags: payload.tags,
+            justification: "Link-Aware Diagnostics ingestion",
+            interactive: false
+          });
+
+          return {
+            response: result.text,
+            modelId: result.model.id
+          } satisfies InvokeLlmResult;
+        } catch (error) {
+          if (error instanceof LlmInvocationError) {
+            console.warn(
+              `LLM invocation skipped (${error.reason}): ${error.message}`
+            );
+            throw new Error(error.message);
+          }
+          throw error;
+        }
+      }
+    )
+  );
+
+  context.subscriptions.push(
     activeClient.onNotification(REBIND_NOTIFICATION, (payload: RebindRequiredPayload) => {
       void showRebindPrompt(payload);
     })
@@ -194,6 +233,14 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   context.subscriptions.push(registerInspectSymbolNeighborsCommand(activeClient));
   context.subscriptions.push(registerSymbolBridge(activeClient));
   context.subscriptions.push(registerExportDiagnosticsCommand(activeClient));
+  context.subscriptions.push(
+    registerAnalyzeWithAICommand({
+      client: activeClient,
+      llmInvoker,
+      getSettings: () => activeConfigService.settings,
+      refreshDiagnosticsTree: () => diagnosticsTree.provider.refresh()
+    })
+  );
 
   context.subscriptions.push(
     vscode.languages.onDidChangeDiagnostics(event => {
@@ -220,13 +267,6 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     })
   );
 
-  context.subscriptions.push(
-    vscode.commands.registerCommand("linkDiagnostics.analyzeWithAI", async () => {
-      await vscode.window.showInformationMessage(
-        "AI analysis is gated until provider consent is implemented."
-      );
-    })
-  );
 }
 
 export async function deactivate(): Promise<void> {

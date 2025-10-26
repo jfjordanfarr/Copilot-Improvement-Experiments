@@ -75,6 +75,25 @@ export type DiagnosticSeverity = "warning" | "info" | "hint";
 
 export type DiagnosticStatus = "active" | "acknowledged" | "suppressed";
 
+export interface LlmModelMetadata {
+  id: string;
+  name?: string;
+  vendor?: string;
+  family?: string;
+  version?: string;
+}
+
+export interface LlmAssessment {
+  summary: string;
+  confidence: number;
+  recommendedActions: string[];
+  generatedAt?: string;
+  model?: LlmModelMetadata;
+  promptHash?: string;
+  rawResponse?: string;
+  tags?: Record<string, string>;
+}
+
 export interface DiagnosticRecord {
   id: string;
   artifactId: string;
@@ -87,7 +106,7 @@ export interface DiagnosticRecord {
   acknowledgedAt?: string;
   acknowledgedBy?: string;
   linkIds: string[];
-  llmAssessment?: Record<string, unknown>;
+  llmAssessment?: LlmAssessment;
 }
 
 export interface KnowledgeSnapshot {

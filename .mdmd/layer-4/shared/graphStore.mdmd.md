@@ -1,7 +1,7 @@
 # GraphStore (Layer 4)
 
 **Created:** 2025-10-16 *(from git history)*  
-**Last Edited:** 2025-10-23
+**Last Edited:** 2025-10-26
 
 ## Source Mapping
 - Implementation: [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts)
@@ -23,10 +23,11 @@
 - Constructor: `new GraphStore({ dbPath })` bootstraps the database and ensures migrations are applied.
 - Artifact APIs: `upsertArtifact`, `removeArtifact`, `getArtifactById/Uri`, `listArtifacts`.
 - Link APIs: `upsertLink`, `removeLink`, `listLinkedArtifacts` (returns `LinkedArtifactSummary` with `linkId`, `kind`, **`confidence`**, direction, and neighbor artifact).
-- Diagnostics/Telemetry APIs: helpers for change events, drift history, acknowledgements, and summary queries.
+- Diagnostics/Telemetry APIs: helpers for change events, drift history, acknowledgements, summary queries, and LLM assessment persistence/upserts.
 - Internal utilities: row mappers (`mapArtifactRow`, etc.) translating raw SQLite rows into domain objects.
 
 ## Recent Changes
+- Added `updateDiagnosticAssessment` helper plus JSON column plumbing so server and extension flows can set/clear `LlmAssessment` payloads without rewriting entire diagnostic records.
 - `LinkedArtifactSummary` and underlying SQL now surface `confidence` values so traversal code can rank neighbors by strength. Any consumer relying on `listLinkedArtifacts` should prefer the new field instead of re-querying the `links` table.
 
 ## Key Collaborators
