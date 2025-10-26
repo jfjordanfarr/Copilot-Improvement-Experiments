@@ -1,11 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
 
+export type SeveritySetting = "off" | "warn" | "error";
+
 export interface SlopcopConfigSection {
   includeGlobs?: string[];
   ignoreGlobs?: string[];
   ignoreTargets?: string[];
   rootDirectories?: string[];
+}
+
+export interface SlopcopSymbolConfig extends SlopcopConfigSection {
+  enabled?: boolean;
+  duplicateHeadingSeverity?: SeveritySetting;
+  missingAnchorSeverity?: SeveritySetting;
 }
 
 export interface SlopcopConfig {
@@ -14,12 +22,13 @@ export interface SlopcopConfig {
   rootDirectories?: string[];
   markdown?: SlopcopConfigSection;
   assets?: SlopcopConfigSection;
+  symbols?: SlopcopSymbolConfig;
   [key: string]: unknown;
 }
 
 export const CONFIG_FILE_NAME = "slopcop.config.json";
 
-type SectionKey = "markdown" | "assets";
+type SectionKey = "markdown" | "assets" | "symbols";
 
 export function loadSlopcopConfig(workspaceRoot: string): SlopcopConfig {
   const configPath = path.join(workspaceRoot, CONFIG_FILE_NAME);
@@ -122,6 +131,9 @@ function normalizeConfig(raw: Record<string, unknown>): SlopcopConfig {
   if (isPlainObject(raw.assets)) {
     normalized.assets = normalizeSection(raw.assets as Record<string, unknown>);
   }
+  if (isPlainObject(raw.symbols)) {
+    normalized.symbols = normalizeSymbolSection(raw.symbols as Record<string, unknown>);
+  }
 
   return normalized;
 }
@@ -143,6 +155,48 @@ function normalizeSection(section: Record<string, unknown>): SlopcopConfigSectio
   }
 
   return normalized;
+}
+
+function normalizeSymbolSection(section: Record<string, unknown>): SlopcopSymbolConfig {
+  const base = normalizeSection(section);
+  const normalized: SlopcopSymbolConfig = { ...base };
+
+  if (typeof section.enabled === "boolean") {
+    normalized.enabled = section.enabled;
+  }
+
+  if (section.duplicateHeadingSeverity !== undefined) {
+    normalized.duplicateHeadingSeverity = normalizeSeverity(
+      section.duplicateHeadingSeverity,
+      "duplicateHeadingSeverity"
+    );
+  }
+
+  if (section.missingAnchorSeverity !== undefined) {
+    normalized.missingAnchorSeverity = normalizeSeverity(
+      section.missingAnchorSeverity,
+      "missingAnchorSeverity"
+    );
+  }
+
+  return normalized;
+}
+
+function normalizeSeverity(value: unknown, field: string): SeveritySetting {
+  if (typeof value !== "string") {
+    throw new Error(`${field} must be a string severity (off|warn|error)`);
+  }
+
+  const normalized = value.toLowerCase();
+  if (normalized === "warning") {
+    return "warn";
+  }
+
+  if (normalized === "off" || normalized === "warn" || normalized === "error") {
+    return normalized;
+  }
+
+  throw new Error(`${field} must be one of: off, warn, error`);
 }
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {

@@ -36,7 +36,9 @@ function runSafeCommitCheck() {
     runNpmScript('Verify (lint + unit + integration)', ['run', 'verify']);
     runNpmScript('Graph snapshot', ['run', 'graph:snapshot', '--', '--quiet']);
     runNpmScript('Graph coverage audit', ['run', 'graph:audit']);
-    runNpmScript('SlopCop markdown audit', ['run', 'slopcop:markdown']);
+  runNpmScript('SlopCop markdown audit', ['run', 'slopcop:markdown']);
+  runNpmScript('SlopCop asset audit', ['run', 'slopcop:assets']);
+  runNpmScript('SlopCop symbol audit', ['run', 'slopcop:symbols']);
   } catch (error) {
     console.error('\nSafe to commit check failed.');
     if (error instanceof Error) {

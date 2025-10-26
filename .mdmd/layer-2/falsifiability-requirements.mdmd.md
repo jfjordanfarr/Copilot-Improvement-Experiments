@@ -24,17 +24,24 @@ Layer-2 requirements clarifying the falsifiability goals supporting spec [`001-l
 - **F4.3**: `npm run safe:commit` must fail when SlopCop reports findings, ensuring documentation integrity is treated as a pre-commit invariant alongside lint/tests/graph audit.
 - **F4.4**: SlopCop asset audits must verify HTML/CSS references using the same configuration file and exit semantics, providing parity between documentation proxies and static assets.
 
+## Requirement Set F5: Symbol Integrity
+- **F5.1** *(S0 shipped)*: Markdown headings referenced via local or cross-document anchors must exist, with duplicate slugs flagged as actionable diagnostics.
+- **F5.2** *(planned)*: Layer‑4 documentation files must reference only symbols that exist in the knowledge graph snapshot, and exported symbols covered by the graph must have corresponding documentation entries or be explicitly ignored.
+- **F5.3** *(planned)*: Language-backed symbol harvesting (TypeScript, JSON Schema, etc.) must rely on existing compilers or graph imports; SlopCop should report "unsupported" when optional language extractors are disabled rather than emitting false positives.
+- **F5.4** *(planned)*: The symbol audit CLI must return exit code `3` on missing/ambiguous symbols and integrate with `npm run safe:commit` once phases F5.1–F5.3 are satisfied.
+
 ## Verification Mapping
 - F1: Covered by integration suite [US3 – Markdown Link Drift](../../tests/integration/us3/markdownLinkDrift.test.ts) plus unit coverage for [`pathReferenceDetector`](../../packages/server/src/features/watchers/pathReferenceDetector.ts).
 - F2: Covered by [US4 – Scoped Identifier Guard](../../tests/integration/us4/scopeCollision.test.ts) and ripple analyzer unit tests ([`rippleAnalyzer.test.ts`](../../packages/server/src/features/knowledge/rippleAnalyzer.test.ts)).
 - F3: Covered by [US5 – Transform Ripple](../../tests/integration/us5/transformRipple.test.ts) with additional ingestion validation in [`knowledgeFeedManager.test.ts`](../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts).
-- F4: Covered by [`markdownLinks.test.ts`](../../packages/shared/src/tooling/markdownLinks.test.ts), [`assetPaths.test.ts`](../../packages/shared/src/tooling/assetPaths.test.ts), [`slopcopAssetCli.test.ts`](../../packages/shared/src/tooling/slopcopAssetCli.test.ts), and the CLI exercised through [`npm run slopcop:markdown`](/scripts/slopcop/check-markdown-links.ts) / [`npm run slopcop:assets`](/scripts/slopcop/check-asset-paths.ts) within the safe-to-commit pipeline.
+- F4: Covered by [`markdownLinks.test.ts`](../../packages/shared/src/tooling/markdownLinks.test.ts), [`assetPaths.test.ts`](../../packages/shared/src/tooling/assetPaths.test.ts), [`slopcopAssetCli.test.ts`](../../packages/shared/src/tooling/slopcopAssetCli.test.ts), and the CLI exercised through [`npm run slopcop:markdown`](/scripts/slopcop/check-markdown-links.ts) / [`npm run slopcop:assets`](/scripts/slopcop/check-asset-paths.ts) / [`npm run slopcop:symbols`](/scripts/slopcop/check-symbols.ts) within the safe-to-commit pipeline.
+- F5: S0 verified by [`githubSlugger.test.ts`](../../packages/shared/src/tooling/githubSlugger.test.ts), [`symbolReferences.test.ts`](../../packages/shared/src/tooling/symbolReferences.test.ts), [`slopcopSymbolsCli.test.ts`](../../packages/shared/src/tooling/slopcopSymbolsCli.test.ts), and the curated [`tests/integration/fixtures/slopcop-symbols`](/tests/integration/fixtures/slopcop-symbols). S1–S3 instrumentation pending future graph-backed harvesting.
 
 ## Open Dependencies
 - Need tests to simulate file rename/move operations within VS Code integration harness.
 - Requires fixture-specific knowledge feed bootstrap files.
 - May introduce auxiliary scripts for template execution; ensure they run within Node-based harness without external tooling.
-- SlopCop asset checks are staged for safe-to-commit integration once coverage hardens; symbol reference analysis remains a planned follow-up pending graph APIs.
+- SlopCop asset checks now ship inside safe-to-commit; symbol S1+ work remains pending graph APIs and documentation-policy decisions (e.g., orphan heading tolerance).
 
 ## Implementation Alignment
 - [FeedCheckpointStore](../layer-4/knowledge-graph-ingestion/feedCheckpointStore.mdmd.md) and [FeedDiagnosticsGateway](../layer-4/knowledge-graph-ingestion/feedDiagnosticsGateway.mdmd.md) ensure F1/F3 feeds stay recoverable and observable.

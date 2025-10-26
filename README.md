@@ -52,15 +52,17 @@ When files are deleted or moved, the client raises a rebind prompt (`linkDiagnos
 | `npm run test:unit` | Vitest suite with coverage. Automatically rebuilds `better-sqlite3` for Node (respects `SKIP_BETTER_SQLITE3_REBUILD=1`). |
 | `npm run test:integration` | VS Code integration harness. Always rebuilds `better-sqlite3` for the current Electron runtime and exercises all user stories. |
 | `npm run verify` | End-to-end gate: lint → force Node rebuild → unit tests → integration tests. This is the script CI and pre-commit hooks should use. |
-| `npm run safe:commit` | Composite gate: verify → graph snapshot → graph audit → SlopCop markdown lint → git status summary. Pass `--skip-git-status` in CI. |
+| `npm run safe:commit` | Composite gate: verify → graph snapshot → graph audit → SlopCop lint (markdown, assets, symbols) → git status summary. Pass `--skip-git-status` in CI. |
 | `npm run ci-check` | Runs the safe-to-commit pipeline in CI-friendly mode (`--skip-git-status`). |
 | `npm run slopcop:markdown` | Markdown/MDMD link audit (use `-- --json` for machine output). |
 | `npm run slopcop:assets` | HTML/CSS asset reference audit (use `-- --json` for machine output). |
+| `npm run slopcop:symbols` | Markdown/MDMD symbol audit (duplicate headings, missing anchors); requires `symbols.enabled` opt-in. |
 
 ### SlopCop configuration
-- All lint passes read [`slopcop.config.json`](./slopcop.config.json). Top-level `ignoreGlobs` apply to every check, while sections such as `markdown` and `assets` support per-pass `includeGlobs`, `ignoreGlobs`, and regex-based `ignoreTargets`.
+- All lint passes read [`slopcop.config.json`](./slopcop.config.json). Top-level `ignoreGlobs` apply to every check, while sections such as `markdown`, `assets`, and `symbols` support per-pass `includeGlobs`, `ignoreGlobs`, and regex-based `ignoreTargets`.
 - `assets.rootDirectories` maps absolute workspace paths (for example `/images/logo.png`) to alternate roots such as `public/` or `static/` so projects can mirror bundler behaviour without rewriting source assets.
 - The default config ships with a hashed-filename ignore (`\.[a-f0-9]{8,}\.[a-z0-9]+$`) to suppress generated artefacts; adjust or remove it as needed for your build pipeline.
+- `symbols.enabled` gates the Markdown anchor audit. Leave it `false` while triaging existing docs; enable per workspace when you're ready to enforce anchor hygiene.
 
 ### Better-SQLite3 rebuild hints
 - The `rebuild:better-sqlite3:force` script installs a matching native binary for the current Node version.

@@ -12,6 +12,7 @@
    - Integrate ripple metadata into Copilot prompts and Problems hover tooltips.
 4. **T07x – Documentation & Asset Integrity** *(new)*
    - Ship SlopCop linting passes (markdown in production, asset paths expanding with root-directory support and hashed-ignore ergonomics) so documentation remains a trustworthy proxy for ripple analysis.
+   - Deliver symbol-level lint S0 (Markdown anchor integrity with GitHub slug parity) while designing S1+ for knowledge-graph-backed code symbols; defer bespoke compilers in favour of graph ingestion.
    - Promote lint findings into safe-to-commit and CI pipelines, keeping hallucinated links from landing while publishing fixture-backed examples future iterations can dogfood.
 5. **T08x – Auto-Repair Tooling**
    - Offer guided workflows to rebind or prune stale links after rename/delete events.
@@ -21,15 +22,15 @@
 - **T04x – Ripple Observability Foundations**: ✅ Complete. All US1–US5 suites green; diagnostics tree, acknowledgements, and hysteresis hardened.
 - **T05x – Knowledge Graph Enrichment**: 🟡 In progress. Feed ingestion scaffolding, schema validation, and drift history storage shipped; external feed prioritization pending.
 - **T06x – Operational UX**: 🟡 In progress. Export diagnostics, dependency quick pick, and symbol neighbor flows live; dashboard and telemetry surfacing remain.
-- **T07x – Documentation & Asset Integrity**: 🟢 Newly active. SlopCop markdown lint, shared detectors, and safe-to-commit integration landed; asset/symbol lint follow-ups queued.
+- **T07x – Documentation & Asset Integrity**: 🟢 In motion. Markdown + asset lint dogfooded via safe-to-commit, asset CLI now covers root directories + hashed ignores, and symbol S0 (Markdown anchors) ships behind an opt-in config with fixture-backed tests.
 - **T08x – Auto-Repair Tooling**: 🔭 Planned. Requirements captured, awaiting confidence gating data from LLM ingestion dry run.
 
 ## Verification Strategy
-- **Pre-commit guard**: [`npm run safe:commit`](/scripts/safe-to-commit.mjs) chaining lint/unit/integration, graph snapshot/audit, and SlopCop markdown linting.
+- **Pre-commit guard**: [`npm run safe:commit`](/scripts/safe-to-commit.mjs) chaining lint/unit/integration, graph snapshot/audit, and the SlopCop suite (markdown, asset, symbol audits).
 - **Integration coverage**: US1–US5 suites emulate writer, developer, and template-transform flows ([us1](/tests/integration/us1/codeImpact.test.ts), [us2](/tests/integration/us2/markdownDrift.test.ts), [us3](/tests/integration/us3/markdownLinkDrift.test.ts), [us4](/tests/integration/us4/scopeCollision.test.ts), [us5](/tests/integration/us5/transformRipple.test.ts)).
 - **Knowledge feed diffs**: Snapshot JSON fixtures tracked under [`tests/integration/fixtures/simple-workspace/data/knowledge-feeds`](/tests/integration/fixtures/simple-workspace/data/knowledge-feeds) ensure deterministic graph bootstrapping.
 - **Benchmark placeholder**: Introduce curated workspaces with canonical ASTs (per FR-017) before closing T05x.
-- **SlopCop unit contract**: [`markdownLinks.test.ts`](/packages/shared/src/tooling/markdownLinks.test.ts) locks link parsing, ignore behaviour, and regression fixtures before CLI runs. [`assetPaths.test.ts`](/packages/shared/src/tooling/assetPaths.test.ts) + [`slopcopAssetCli.test.ts`](/packages/shared/src/tooling/slopcopAssetCli.test.ts) cover asset root mapping against the curated [`tests/integration/fixtures/slopcop-assets`](/tests/integration/fixtures/slopcop-assets) workspace.
+- **SlopCop unit contract**: [`markdownLinks.test.ts`](/packages/shared/src/tooling/markdownLinks.test.ts) locks link parsing, ignore behaviour, and regression fixtures before CLI runs. [`assetPaths.test.ts`](/packages/shared/src/tooling/assetPaths.test.ts) + [`slopcopAssetCli.test.ts`](/packages/shared/src/tooling/slopcopAssetCli.test.ts) cover asset root mapping against the curated [`tests/integration/fixtures/slopcop-assets`](/tests/integration/fixtures/slopcop-assets) workspace. Symbol coverage now includes [`symbolReferences.test.ts`](/packages/shared/src/tooling/symbolReferences.test.ts), a GitHub slug parity suite ([`githubSlugger.test.ts`](/packages/shared/src/tooling/githubSlugger.test.ts)), and CLI smoke via [`slopcopSymbolsCli.test.ts`](/packages/shared/src/tooling/slopcopSymbolsCli.test.ts) against [`tests/integration/fixtures/slopcop-symbols`](/tests/integration/fixtures/slopcop-symbols).
 
 ## Traceability Links
 - Vision alignment: [Layer-1 Vision](../layer-1/link-aware-diagnostics-vision.mdmd.md)

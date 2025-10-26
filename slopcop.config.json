@@ -19,5 +19,17 @@
       "public",
       "static"
     ]
+  },
+  "symbols": {
+    "enabled": false,
+    "includeGlobs": [
+      "**/*.md",
+      "**/*.mdmd",
+      "**/*.mdmd.md"
+    ],
+    "ignoreGlobs": [
+      "tests/integration/fixtures/slopcop-symbols/workspace/**"
+    ],
+    "ignoreTargets": []
   }
 }

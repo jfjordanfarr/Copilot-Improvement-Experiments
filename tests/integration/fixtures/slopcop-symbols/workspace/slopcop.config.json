@@ -1,0 +1,7 @@
+{
+  "symbols": {
+    "enabled": true,
+    "duplicateHeadingSeverity": "warn",
+    "missingAnchorSeverity": "error"
+  }
+}

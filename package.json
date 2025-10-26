@@ -25,6 +25,7 @@
     "graph:snapshot": "tsx --tsconfig ./tsconfig.base.json scripts/graph-tools/snapshot-workspace.ts",
   "slopcop:markdown": "tsx --tsconfig ./tsconfig.base.json scripts/slopcop/check-markdown-links.ts",
   "slopcop:assets": "tsx --tsconfig ./tsconfig.base.json scripts/slopcop/check-asset-paths.ts",
+  "slopcop:symbols": "tsx --tsconfig ./tsconfig.base.json scripts/slopcop/check-symbols.ts",
     "test:contracts": "npm run test:contracts -w packages/server",
     "ci-check": "node ./scripts/safe-to-commit.mjs --skip-git-status"
   },

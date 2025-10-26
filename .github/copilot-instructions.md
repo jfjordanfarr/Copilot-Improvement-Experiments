@@ -38,6 +38,7 @@ On the way to building that, we are collecting up iterative wins which progressi
 - Graph coverage audit: `npm run graph:audit -- --workspace <path>` resolves the workspace cache and flags code artifacts without documentation links plus orphaned MDMD docs. Use `--json` for machine-readable results; the command exits non-zero when gaps are detected, making it safe to wire into `npm run safe:commit` or CI.
 - SlopCop markdown audit: `npm run slopcop:markdown` scans `.md`/`.mdmd` files for broken local links. Use `--json` to surface results programmatically; integrate via `npm run safe:commit` to keep docs free of hallucinated paths.
 - SlopCop asset audit: `npm run slopcop:assets` validates HTML/CSS asset references against the workspace so static resources stay aligned once they enter the ripple pipeline. Configure roots/ignores via [`slopcop.config.json`](../slopcop.config.json); `assets.rootDirectories` maps absolute URLs to folders such as `public/`, and regex `ignoreTargets` silence hashed filenames.
+- SlopCop symbol audit (opt-in): `npm run slopcop:symbols` verifies Markdown/MDMD headings against local and cross-document anchors using GitHub-compatible slugging. Enable via `symbols.enabled` in `slopcop.config.json` once duplicate headings are resolved.
 
 Example invocations:
 - `npm run graph:inspect -- -- --list-kinds`
@@ -45,6 +46,7 @@ Example invocations:
 - `npm run graph:audit -- --workspace . --json`
 - `npm run slopcop:markdown -- --json`
 - `npm run slopcop:assets -- --json`
+- `npm run slopcop:symbols -- --json`
 - `npm run safe:commit -- --skip-git-status` (CI-friendly pipeline covering verify, graph snapshot/audit, and SlopCop checks)
 
 ## Behavior Expectations
