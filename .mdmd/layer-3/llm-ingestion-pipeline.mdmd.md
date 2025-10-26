@@ -76,4 +76,4 @@ ArtifactWatcher ──► LLMIngestionOrchestrator ──► ChunkSummariser
 
 - Introduces new functional requirement `FR-019` (see [`spec.md`](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)).
 - Informs upcoming plan tasks `T068–T072` for implementation and validation sequencing (see [`tasks.md`](../../specs/001-link-aware-diagnostics/tasks.md)).
-- Extends research threads under “LLM Augmentation” with concrete pipeline steps (see [`research.md`](../../specs/001-link-aware-diagnostics/research.md#llm-augmentation)).
+- Extends research threads under “LLM Augmentation” with concrete pipeline steps (see [`research.md`](../../specs/001-link-aware-diagnostics/research.md#llm-augmentation--ingestion)).

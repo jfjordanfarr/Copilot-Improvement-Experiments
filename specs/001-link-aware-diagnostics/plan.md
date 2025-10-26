@@ -75,15 +75,32 @@ tests/
 
 ## Phases & Key Deliverables
 
-- **Phase 0 – Research**: Finalize heuristic/LLM inference strategy (including GraphRAG-style generation when no language server is present), confirm reliance on VS Code providers vs. Tree-sitter fallbacks as optimizations, document LLM consent/onboarding flow, and evaluate external knowledge graph providers (GitLab Knowledge Graph, LSIF-derived graphs) for cross-artifact monitoring along with the schema contract they must satisfy.
-- **Phase 1 – Domain & Contracts**: Ship data model, SQLite schema, language server contracts (including `workspace/selectLLMProvider` handshake), and quickstart instructions emphasising first-run provider selection.
-- **Phase 2 – Foundations**: Scaffold extension/server packages, implement configuration surfaces (LLM provider selection gating, storage path, noise suppression), and build graph persistence primitives that run the baseline heuristic/LLM inference, incorporate VS Code workspace index data when available, enforce the external knowledge-graph schema contract alongside override manifests to populate the rebuildable link graph, and record override provenance so manual decisions supersede subsequent inference passes until revoked.
-- **Phase 3 – User Story 1 (Developers)**: Detect code edits, build the dependency graph, surface ripple diagnostics with hysteresis, and validate accuracy against benchmark workspaces (with and without AST metadata).
-- **Phase 4 – User Story 2 (Writers)**: Extend the unified graph to documentation layers so markdown edits raise diagnostics on linked implementation files and downstream docs using the same infrastructure.
-- **Phase 5 – User Story 3 (Leads)**: Build acknowledgement workflows, consolidated views, telemetry that tracks acknowledgement latency without breaking hysteresis or consent rules, and drift history persistence/reporting so leads can audit long-term divergence trends.
-- **Phase 6 – User Story 4 (Maintainers)**: Deliver exploratory graph tooling so maintainers can select a symbol/artifact, enumerate nearest neighbors within an adjustable hop depth, group results by relationship layer, and export summaries for future LLM prompts.
-- **Phase 7 – Hardening & Ops**: Add delete/rename repair tooling, performance validation (latency + ricochet metrics), inference accuracy benchmarking using a canonical repo, onboarding polish, documentation for governance/compliance, chaos-style exercises that verify knowledge-graph feed failure handling (retry budget, stale snapshot retention, recovery alerts), and an AST-backed accuracy suite for curated benchmark workspaces with a fallback self-similarity track when canonical ASTs are unavailable.
-- **Phase 8 – LLM Ingestion**: Design and implement the GraphRAG-inspired ingestion pipeline that chunkifies artifacts, prompts `vscode.lm` providers for relationship candidates, calibrates confidence tiers, records provenance metadata, and integrates results through the existing `KnowledgeGraphBridge`. Ship dry-run tooling, consent-aware throttling, and telemetry needed to audit LLM-sourced edges before promoting them into diagnostics.
+### Phase 0 – Research
+Finalize heuristic/LLM inference strategy (including GraphRAG-style generation when no language server is present), confirm reliance on VS Code providers vs. Tree-sitter fallbacks as optimizations, document LLM consent/onboarding flow, and evaluate external knowledge graph providers (GitLab Knowledge Graph, LSIF-derived graphs) for cross-artifact monitoring along with the schema contract they must satisfy.
+
+### Phase 1 – Domain & Contracts
+Ship data model, SQLite schema, language server contracts (including `workspace/selectLLMProvider` handshake), and quickstart instructions emphasising first-run provider selection.
+
+### Phase 2 – Foundations
+Scaffold extension/server packages, implement configuration surfaces (LLM provider selection gating, storage path, noise suppression), and build graph persistence primitives that run the baseline heuristic/LLM inference, incorporate VS Code workspace index data when available, enforce the external knowledge-graph schema contract alongside override manifests to populate the rebuildable link graph, and record override provenance so manual decisions supersede subsequent inference passes until revoked.
+
+### Phase 3 – User Story 1 (Developers)
+Detect code edits, build the dependency graph, surface ripple diagnostics with hysteresis, and validate accuracy against benchmark workspaces (with and without AST metadata).
+
+### Phase 4 – User Story 2 (Writers)
+Extend the unified graph to documentation layers so markdown edits raise diagnostics on linked implementation files and downstream docs using the same infrastructure.
+
+### Phase 5 – User Story 3 (Leads)
+Build acknowledgement workflows, consolidated views, telemetry that tracks acknowledgement latency without breaking hysteresis or consent rules, and drift history persistence/reporting so leads can audit long-term divergence trends.
+
+### Phase 6 – User Story 4 (Maintainers)
+Deliver exploratory graph tooling so maintainers can select a symbol/artifact, enumerate nearest neighbors within an adjustable hop depth, group results by relationship layer, and export summaries for future LLM prompts.
+
+### Phase 7 – Hardening & Ops
+Add delete/rename repair tooling, performance validation (latency + ricochet metrics), inference accuracy benchmarking using a canonical repo, onboarding polish, documentation for governance/compliance, chaos-style exercises that verify knowledge-graph feed failure handling (retry budget, stale snapshot retention, recovery alerts), and an AST-backed accuracy suite for curated benchmark workspaces with a fallback self-similarity track when canonical ASTs are unavailable.
+
+### Phase 8 – LLM Ingestion
+Design and implement the GraphRAG-inspired ingestion pipeline that chunkifies artifacts, prompts `vscode.lm` providers for relationship candidates, calibrates confidence tiers, records provenance metadata, and integrates results through the existing `KnowledgeGraphBridge`. Ship dry-run tooling, consent-aware throttling, and telemetry needed to audit LLM-sourced edges before promoting them into diagnostics.
 
 *Fill ONLY if Constitution Check has violations that must be justified*
 

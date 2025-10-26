@@ -22,32 +22,6 @@ description: "Task list for Link-Aware Diagnostics"
 - Shared utilities & domain: `packages/shared/`
 - SQLite migrations: `data/migrations/`
 - Tests: `tests/unit/`, `tests/integration/`
-
----
-
-## Phase 1: Setup (Shared Infrastructure)
-
-**Input**: Design documents from `/specs/001-link-aware-diagnostics/`
-**Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/
-
-**Tests**: Integration tests are included per user story to guarantee independent validation of each slice.
-
-**Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
-
-## Format: `[ID] [P?] [Story] Description`
-- **[P]**: Can run in parallel (different files, no dependencies)
-- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3)
-- Include exact file paths in descriptions
-
-## Path Conventions
-- VS Code extension client: `packages/extension/`
-- Language server: `packages/server/`
-- Shared utilities & domain: `packages/shared/`
-- SQLite migrations: `data/migrations/`
-- Tests: `tests/unit/`, `tests/integration/`
-
----
-
 ## Phase 1: Setup (Shared Infrastructure)
 
 **Purpose**: Establish workspace configuration, tooling, and launch assets

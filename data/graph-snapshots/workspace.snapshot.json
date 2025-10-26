@@ -1524,15 +1524,6 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-286d910e",
-      "sourceId": "fallback-artifact-04d7e946b4f2",
-      "targetId": "fallback-artifact-11db819a0761",
-      "kind": "documents",
-      "confidence": 0.7,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
-    },
-    {
       "id": "orchestrated-link-1dbe4ab3",
       "sourceId": "fallback-artifact-04d7e946b4f2",
       "targetId": "fallback-artifact-22ab6043d495",
@@ -1581,6 +1572,15 @@
       "id": "orchestrated-link-b07fc49f",
       "sourceId": "fallback-artifact-04d7e946b4f2",
       "targetId": "fallback-artifact-457db1a68d0d",
+      "kind": "documents",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-de4309c9",
+      "sourceId": "fallback-artifact-04d7e946b4f2",
+      "targetId": "fallback-artifact-55b5fa3ccc42",
       "kind": "documents",
       "confidence": 0.7,
       "createdAt": "2025-01-01T00:00:00.000Z",

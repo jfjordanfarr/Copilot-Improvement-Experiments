@@ -28,7 +28,8 @@
       "**/*.mdmd.md"
     ],
     "ignoreGlobs": [
-      "tests/integration/fixtures/slopcop-symbols/workspace/**"
+      "tests/integration/fixtures/slopcop-symbols/workspace/**",
+      "tests/integration/fixtures/simple-workspace/**"
     ],
     "ignoreTargets": []
   }

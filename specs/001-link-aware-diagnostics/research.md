@@ -35,7 +35,7 @@
 - **Rationale**: SQLite is lightweight, cross-platform, and proven for property-graph workloads at our target scale. Works offline and simplifies distribution.
 - **Alternatives Considered**: KùzuDB (kept in reserve if queries require richer pattern matching); in-memory store only (rejected: no history/audit, loses data on restart).
 
--## Knowledge-Graph Schema Contract
+## Knowledge Graph Schema Contract
 - **Decision**: Require external feeds to provide artifact identifiers, edge types, directionality, timestamps, and optional confidence scores in a normalized schema that maps directly onto our SQLite tables. Support two ingestion modes—on-demand KnowledgeSnapshot imports and streaming feeds—that share the same contract so payloads can be validated consistently before mutation.
 - **Rationale**: Allows deterministic ingestion regardless of provider (GitLab GKG, LSIF/SCIP exports, custom GraphRAG output) and makes validation straightforward before data mutates the graph store. Shared contracts ensure snapshot payloads can be replayed for reproducibility while streaming feeds can resume after outages by checkpointing the last accepted event.
 - **Alternatives Considered**: Accept provider-specific payloads with on-the-fly mapping (rejected: hard to validate, increases maintenance); mandate a proprietary format (rejected: reduces interoperability).
