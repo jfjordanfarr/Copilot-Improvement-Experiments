@@ -2,6 +2,7 @@ import { Dirent } from "node:fs";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import { pathToFileURL } from "node:url";
+import ts from "typescript";
 
 import {
   ArtifactSeed,
@@ -22,6 +23,29 @@ interface WorkspaceIndexProviderOptions {
 
 export const DEFAULT_CODE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cts", ".mts"]);
 export const DEFAULT_DOC_EXTENSIONS = new Set([".md", ".mdx", ".markdown", ".txt", ".yaml", ".yml"]);
+
+export type ExportedSymbolKind =
+  | "class"
+  | "function"
+  | "variable"
+  | "enum"
+  | "interface"
+  | "type"
+  | "namespace"
+  | "default"
+  | "unknown";
+
+export interface ExportedSymbolMetadata {
+  name: string;
+  kind: ExportedSymbolKind;
+  isDefault?: boolean;
+  isTypeOnly?: boolean;
+}
+
+export interface DocumentSymbolReferenceMetadata {
+  symbol: string;
+  context?: string;
+}
 
 /**
  * Lightweight workspace indexer that seeds implementation artifacts so markdown linkage heuristics
@@ -52,11 +76,18 @@ export function createWorkspaceIndexProvider(options: WorkspaceIndexProviderOpti
             if (await isLikelyBinaryFile(filePath)) return;
             const content = await fs.readFile(filePath, "utf8");
             const uri = pathToFileURL(filePath).toString();
+
+            const exportedSymbols = extractExportedSymbols(filePath, content);
+            const metadata: Record<string, unknown> | undefined = exportedSymbols.length
+              ? { exportedSymbols }
+              : undefined;
+
             seeds.push({
               uri,
               layer: "code",
               language: inferLanguage(filePath),
-              content
+              content,
+              metadata
             });
 
             const directiveHints = await extractLinkHints({
@@ -92,11 +123,18 @@ export function createWorkspaceIndexProvider(options: WorkspaceIndexProviderOpti
             if (await isLikelyBinaryFile(filePath)) return;
             const content = await fs.readFile(filePath, "utf8");
             const uri = pathToFileURL(filePath).toString();
+
+            const symbolReferences = extractDocumentSymbolReferences(content);
+            const metadata: Record<string, unknown> | undefined = symbolReferences.length
+              ? { symbolReferences }
+              : undefined;
+
             seeds.push({
               uri,
               layer: "requirements",
               language: inferDocLanguage(filePath),
-              content
+              content,
+              metadata
             });
 
             const directiveHints = await extractLinkHints({
@@ -124,11 +162,18 @@ export function createWorkspaceIndexProvider(options: WorkspaceIndexProviderOpti
             if (await isLikelyBinaryFile(filePath)) return;
             const content = await fs.readFile(filePath, "utf8");
             const uri = pathToFileURL(filePath).toString();
+
+            const exportedSymbols = extractExportedSymbols(filePath, content);
+            const metadata: Record<string, unknown> | undefined = exportedSymbols.length
+              ? { exportedSymbols }
+              : undefined;
+
             seeds.push({
               uri,
               layer: "code",
               language: inferLanguage(filePath),
-              content
+              content,
+              metadata
             });
 
             const pathHints = await extractPathReferenceHints({
@@ -440,6 +485,235 @@ async function extractPathFunctionHints(context: LinkHintContext): Promise<Relat
   }
 
   return hints;
+}
+
+function extractExportedSymbols(filePath: string, content: string): ExportedSymbolMetadata[] {
+  const extension = path.extname(filePath).toLowerCase();
+  if (!DEFAULT_CODE_EXTENSIONS.has(extension)) {
+    return [];
+  }
+
+  const scriptKind = inferScriptKind(extension);
+  const sourceFile = ts.createSourceFile(filePath, content, ts.ScriptTarget.Latest, true, scriptKind);
+  const collected = new Map<string, ExportedSymbolMetadata>();
+
+  const record = (entry: ExportedSymbolMetadata): void => {
+    if (!entry.name) {
+      return;
+    }
+    collected.set(entry.name, entry);
+  };
+
+  for (const statement of sourceFile.statements) {
+    if (ts.isExportAssignment(statement)) {
+      const name = resolveExportAssignmentName(statement);
+      if (name) {
+        record({
+          name,
+          kind: "default",
+          isDefault: true
+        });
+      }
+      continue;
+    }
+
+    if (!hasExportModifier(statement)) {
+      continue;
+    }
+
+    if (ts.isFunctionDeclaration(statement)) {
+      const name = statement.name?.text ?? (hasDefaultModifier(statement) ? "default" : undefined);
+      if (!name) continue;
+      record({
+        name,
+        kind: "function",
+        isDefault: name === "default"
+      });
+      continue;
+    }
+
+    if (ts.isClassDeclaration(statement)) {
+      const name = statement.name?.text ?? (hasDefaultModifier(statement) ? "default" : undefined);
+      if (!name) continue;
+      record({
+        name,
+        kind: "class",
+        isDefault: name === "default"
+      });
+      continue;
+    }
+
+    if (ts.isInterfaceDeclaration(statement)) {
+      const name = statement.name.text;
+      record({
+        name,
+        kind: "interface"
+      });
+      continue;
+    }
+
+    if (ts.isTypeAliasDeclaration(statement)) {
+      const name = statement.name.text;
+      record({
+        name,
+        kind: "type"
+      });
+      continue;
+    }
+
+    if (ts.isEnumDeclaration(statement)) {
+      const name = statement.name.text;
+      record({
+        name,
+        kind: "enum"
+      });
+      continue;
+    }
+
+    if (ts.isModuleDeclaration(statement)) {
+      const name = statement.name.getText(sourceFile);
+      if (name) {
+        record({
+          name,
+          kind: "namespace"
+        });
+      }
+      continue;
+    }
+
+    if (ts.isVariableStatement(statement)) {
+      const kind = inferVariableKind(statement);
+      const names = collectBindingNames(statement.declarationList);
+      for (const name of names) {
+        record({
+          name,
+          kind
+        });
+      }
+      continue;
+    }
+
+    if (
+      ts.isExportDeclaration(statement) &&
+      !statement.moduleSpecifier &&
+      statement.exportClause &&
+      ts.isNamedExports(statement.exportClause)
+    ) {
+      for (const specifier of statement.exportClause.elements) {
+        const name = specifier.name.text;
+        record({
+          name,
+          kind: specifier.isTypeOnly ? "type" : "unknown",
+          isTypeOnly: specifier.isTypeOnly
+        });
+      }
+    }
+  }
+
+  return Array.from(collected.values());
+}
+
+function resolveExportAssignmentName(statement: ts.ExportAssignment): string | undefined {
+  if (ts.isIdentifier(statement.expression)) {
+    return statement.expression.text;
+  }
+
+  if (ts.isPropertyAccessExpression(statement.expression)) {
+    return statement.expression.getText();
+  }
+
+  return "default";
+}
+
+function hasExportModifier(node: ts.Node): boolean {
+  if (!ts.canHaveModifiers(node)) {
+    return false;
+  }
+
+  const modifiers = ts.getModifiers(node) ?? [];
+  return modifiers.some(modifier => modifier.kind === ts.SyntaxKind.ExportKeyword);
+}
+
+function hasDefaultModifier(node: ts.Node): boolean {
+  if (!ts.canHaveModifiers(node)) {
+    return false;
+  }
+
+  const modifiers = ts.getModifiers(node) ?? [];
+  return modifiers.some(modifier => modifier.kind === ts.SyntaxKind.DefaultKeyword);
+}
+
+function inferVariableKind(statement: ts.VariableStatement): ExportedSymbolKind {
+  const flags = ts.getCombinedNodeFlags(statement.declarationList);
+  if (flags & ts.NodeFlags.Const) return "variable";
+  if (flags & ts.NodeFlags.Let) return "variable";
+  return "variable";
+}
+
+function collectBindingNames(list: ts.VariableDeclarationList): string[] {
+  const names: string[] = [];
+  for (const declaration of list.declarations) {
+    collectNamesFromBinding(declaration.name, names);
+  }
+  return names;
+}
+
+function collectNamesFromBinding(binding: ts.BindingName, output: string[]): void {
+  if (ts.isIdentifier(binding)) {
+    output.push(binding.text);
+    return;
+  }
+
+  if (ts.isObjectBindingPattern(binding) || ts.isArrayBindingPattern(binding)) {
+    for (const element of binding.elements) {
+      if (ts.isBindingElement(element)) {
+        collectNamesFromBinding(element.name, output);
+      }
+    }
+  }
+}
+
+function inferScriptKind(extension: string): ts.ScriptKind {
+  switch (extension) {
+    case ".ts":
+    case ".mts":
+    case ".cts":
+      return ts.ScriptKind.TS;
+    case ".tsx":
+      return ts.ScriptKind.TSX;
+    case ".jsx":
+      return ts.ScriptKind.JSX;
+    case ".mjs":
+    case ".js":
+      return ts.ScriptKind.JS;
+    default:
+      return ts.ScriptKind.Unknown;
+  }
+}
+
+const SYMBOL_REFERENCE_PATTERN = /`([^`]+)`/g;
+
+function extractDocumentSymbolReferences(content: string): DocumentSymbolReferenceMetadata[] {
+  const references = new Map<string, DocumentSymbolReferenceMetadata>();
+  let match: RegExpExecArray | null;
+
+  while ((match = SYMBOL_REFERENCE_PATTERN.exec(content)) !== null) {
+    const snippet = (match[1] ?? "").trim();
+    if (!snippet || !looksLikeSymbolIdentifier(snippet)) {
+      continue;
+    }
+
+    references.set(snippet, {
+      symbol: snippet,
+      context: "inline-code"
+    });
+  }
+
+  return Array.from(references.values());
+}
+
+function looksLikeSymbolIdentifier(candidate: string): boolean {
+  return /^[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)*$/.test(candidate);
 }
 
 function findMatchingParen(source: string, openIndex: number): number {

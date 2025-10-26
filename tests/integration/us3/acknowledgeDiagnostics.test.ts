@@ -1,7 +1,7 @@
 import * as assert from "node:assert";
 import * as path from "node:path";
 import * as os from "node:os";
-import { promises as fs } from "node:fs";
+import { promises as fs, existsSync } from "node:fs";
 import Database from "better-sqlite3";
 import * as vscode from "vscode";
 
@@ -81,7 +81,7 @@ suite("US3: Diagnostics acknowledgement workflow", () => {
     }
 
   const dbPath = await locateDatabasePath(storageDir, workspaceUri.fsPath, 10000);
-  const driftDb = new Database(dbPath, { readonly: true });
+  const driftDb = openReadonlyDatabase(dbPath);
     try {
       const rows = driftDb
         .prepare(
@@ -168,6 +168,39 @@ async function appendText(document: vscode.TextDocument, text: string): Promise<
 
 interface DiagnosticWithRecordId extends vscode.Diagnostic {
   data?: Record<string, unknown> & { recordId?: string };
+}
+
+function openReadonlyDatabase(dbPath: string): Database.Database {
+  const nativeBinding = resolveBetterSqliteNativeBinding();
+  const options: Database.Options = nativeBinding
+    ? { readonly: true, nativeBinding }
+    : { readonly: true };
+  return new Database(dbPath, options);
+}
+
+function resolveBetterSqliteNativeBinding(): string | undefined {
+  const moduleVersion = process.versions.modules;
+  if (!moduleVersion) {
+    return undefined;
+  }
+
+  let packageDir: string;
+  try {
+    const packageJsonPath = require.resolve("better-sqlite3/package.json");
+    packageDir = path.dirname(packageJsonPath);
+  } catch {
+    return undefined;
+  }
+
+  const candidate = path.join(
+    packageDir,
+    "build",
+    "Release",
+    `abi-${moduleVersion}`,
+    "better_sqlite3.node"
+  );
+
+  return existsSync(candidate) ? candidate : undefined;
 }
 
 function extractChangeEventId(diagnostic: vscode.Diagnostic): string | undefined {

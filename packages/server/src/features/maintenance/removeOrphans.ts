@@ -8,7 +8,7 @@ import {
   RebindReason
 } from "@copilot-improvement/shared";
 
-import { normaliseDisplayPath } from "../diagnostics/diagnosticUtils";
+import { normaliseDisplayPath, type DiagnosticSender } from "../diagnostics/diagnosticUtils";
 import { normalizeFileUri } from "../utils/uri";
 
 const REBIND_NOTIFICATION = "linkDiagnostics/maintenance/rebindRequired";
@@ -16,18 +16,20 @@ const REBIND_NOTIFICATION = "linkDiagnostics/maintenance/rebindRequired";
 export function handleArtifactDeleted(
   connection: Connection,
   store: GraphStore,
-  uri: string
+  uri: string,
+  diagnostics: DiagnosticSender
 ): void {
-  handleRemoval(connection, store, uri, "delete");
+  handleRemoval(connection, store, uri, "delete", diagnostics);
 }
 
 export function handleArtifactRenamed(
   connection: Connection,
   store: GraphStore,
   oldUri: string,
-  newUri: string
+  newUri: string,
+  diagnostics: DiagnosticSender
 ): void {
-  handleRemoval(connection, store, oldUri, "rename", newUri);
+  handleRemoval(connection, store, oldUri, "rename", diagnostics, newUri);
 }
 
 function handleRemoval(
@@ -35,6 +37,7 @@ function handleRemoval(
   store: GraphStore,
   uri: string,
   reason: RebindReason,
+  diagnostics: DiagnosticSender,
   newUri?: string
 ): void {
   const canonicalUri = normalizeFileUri(uri);
@@ -54,7 +57,7 @@ function handleRemoval(
     return;
   }
 
-  publishRemovalDiagnostics(connection, artifact.uri, linked, reason, canonicalNewUri);
+  publishRemovalDiagnostics(diagnostics, artifact.uri, linked, reason, canonicalNewUri);
 
   const impacted: RebindImpactedArtifact[] = linked.map(toImpactedArtifact);
 
@@ -78,7 +81,7 @@ function toImpactedArtifact(summary: LinkedArtifactSummary): RebindImpactedArtif
 }
 
 function publishRemovalDiagnostics(
-  connection: Connection,
+  diagnosticsSender: DiagnosticSender,
   removedUri: string,
   linked: LinkedArtifactSummary[],
   reason: RebindReason,
@@ -116,6 +119,6 @@ function publishRemovalDiagnostics(
   }
 
   for (const [uri, diagnostics] of diagnosticsByUri.entries()) {
-    void connection.sendDiagnostics({ uri, diagnostics });
+    diagnosticsSender.sendDiagnostics({ uri, diagnostics });
   }
 }

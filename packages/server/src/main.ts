@@ -10,7 +10,9 @@ import {
   TextDocumentSyncKind,
   TextDocuments,
   TextDocumentsConfiguration,
-  createConnection
+  createConnection,
+  DocumentDiagnosticRequest,
+  type DocumentDiagnosticParams
 } from "vscode-languageserver/node";
 import { TextDocument } from "vscode-languageserver-textdocument";
 
@@ -44,6 +46,7 @@ import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
 import { inspectDependencies } from "./features/dependencies/inspectDependencies";
 import { inspectSymbolNeighbors } from "./features/dependencies/symbolNeighbors";
 import { AcknowledgementService } from "./features/diagnostics/acknowledgementService";
+import { DiagnosticPublisher } from "./features/diagnostics/diagnosticPublisher";
 import { HysteresisController } from "./features/diagnostics/hysteresisController";
 import { buildOutstandingDiagnosticsResult } from "./features/diagnostics/listOutstandingDiagnostics";
 import { LlmIngestionOrchestrator } from "./features/knowledge/llmIngestionOrchestrator";
@@ -89,6 +92,7 @@ const textDocumentConfig: TextDocumentsConfiguration<TextDocument> = {
 const documents: TextDocuments<TextDocument> = new TextDocuments(textDocumentConfig);
 
 const linkInferenceOrchestrator = new LinkInferenceOrchestrator();
+const diagnosticPublisher = new DiagnosticPublisher(connection);
 
 let graphStore: GraphStore | null = null;
 const providerGuard = new ProviderGuard(connection);
@@ -117,12 +121,14 @@ const changeProcessor = createChangeProcessor({
     runtimeSettings,
     acknowledgements: null,
     llmIngestionManager: null
-  }
+  },
+  diagnosticSender: diagnosticPublisher
 });
 changeProcessor.updateContext({ runtimeSettings });
 
 connection.onInitialize((params: InitializeParams): InitializeResult => {
   connection.console.info("link-aware-diagnostics server starting up");
+  diagnosticPublisher.clear();
 
   const initialSettings = extractExtensionSettings(params.initializationOptions);
   const forcedSettings = mergeExtensionSettings(
@@ -249,6 +255,13 @@ connection.onInitialized(() => {
   void connection.client.register(DidChangeConfigurationNotification.type, undefined);
 });
 
+connection.onRequest(
+  DocumentDiagnosticRequest.type,
+  (params: DocumentDiagnosticParams) => {
+    return diagnosticPublisher.buildDocumentReport(params.textDocument.uri, params.previousResultId);
+  }
+);
+
 connection.onShutdown(() => {
   changeQueue?.dispose();
   changeQueue = null;
@@ -273,6 +286,7 @@ connection.onShutdown(() => {
   acknowledgementService = null;
   driftHistoryStore = null;
   llmIngestionManager = null;
+  diagnosticPublisher.clear();
 
   connection.console.info("link-aware-diagnostics server shutdown complete");
 });
@@ -296,7 +310,7 @@ connection.onNotification(FILE_DELETED_NOTIFICATION, (payload: { uri: string }) 
     return;
   }
 
-  handleArtifactDeleted(connection, graphStore, payload.uri);
+  handleArtifactDeleted(connection, graphStore, payload.uri, diagnosticPublisher);
 });
 
 connection.onNotification(
@@ -307,7 +321,7 @@ connection.onNotification(
       return;
     }
 
-    handleArtifactRenamed(connection, graphStore, payload.oldUri, payload.newUri);
+    handleArtifactRenamed(connection, graphStore, payload.oldUri, payload.newUri, diagnosticPublisher);
   }
 );
 
@@ -402,6 +416,7 @@ connection.onRequest(
     };
 
     void connection.sendNotification(DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION, notification);
+    diagnosticPublisher.removeByRecordId(targetArtifact?.uri, record.id);
 
     return {
       status: outcome.kind === "acknowledged" ? "acknowledged" : "already_acknowledged",

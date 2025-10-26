@@ -116,34 +116,39 @@ async function readElectronVersion(vscodeExecutablePath: string): Promise<string
 }
 
 function rebuildNativeModules(repoRoot: string, electronVersion: string): void {
-  const npmCli = getNpmCliPath();
-  const npmArgsPrefix = [npmCli];
-  const rebuildArgs = [
-    "rebuild",
-    "better-sqlite3",
-    `--runtime=electron`,
-    `--target=${electronVersion}`,
-    "--dist-url=https://electronjs.org/headers",
-    "--build-from-source"
-  ];
+  const scriptPath = path.join(repoRoot, "scripts", "rebuild-better-sqlite3.mjs");
 
   console.log(
-    `Rebuilding better-sqlite3 for Electron ${electronVersion} (override with SKIP_NATIVE_REBUILD=1 to skip).`
+    `Rebuilding better-sqlite3 for Electron ${electronVersion} via ${path.relative(repoRoot, scriptPath)} ` +
+      "(override with SKIP_NATIVE_REBUILD=1 to skip)."
   );
 
-  const result = spawnSync(process.execPath, [...npmArgsPrefix, ...rebuildArgs], {
+  const result = spawnSync(process.execPath, [scriptPath], {
     cwd: repoRoot,
     stdio: "inherit",
     env: {
       ...process.env,
-      npm_config_build_from_source: "true"
+      BETTER_SQLITE3_REBUILD_FORCE: "1",
+      VSCODE_ELECTRON_VERSION: electronVersion
     }
   });
 
   if (result.status !== 0) {
     const detail = result.error ? ` (${result.error.message})` : "";
-    throw new Error(`npm rebuild better-sqlite3 failed with exit code ${result.status ?? "unknown"}${detail}`);
+    throw new Error(
+      `better-sqlite3 rebuild script failed with exit code ${result.status ?? "unknown"}${detail}`
+    );
   }
+}
+
+function getNpmCliPath(): string {
+  return path.resolve(
+    path.dirname(process.execPath),
+    "node_modules",
+    "npm",
+    "bin",
+    "npm-cli.js"
+  );
 }
 
 function resolveVSCodeCliPath(vscodeExecutablePath: string): string {
@@ -155,16 +160,6 @@ function resolveVSCodeCliPath(vscodeExecutablePath: string): string {
     return path.join(base, "..", "..", "MacOS", "Electron");
   }
   return path.join(base, "bin", "code");
-}
-
-function getNpmCliPath(): string {
-  return path.resolve(
-    path.dirname(process.execPath),
-    "node_modules",
-    "npm",
-    "bin",
-    "npm-cli.js"
-  );
 }
 
 async function prepareIntegrationWorkspace(

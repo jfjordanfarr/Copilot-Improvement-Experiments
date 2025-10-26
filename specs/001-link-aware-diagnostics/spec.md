@@ -22,6 +22,8 @@
 
 ### User Story 1 - Developers see the full impact of a code change (Priority: P1)
 
+**Status**: Delivered (2025-10-26) — validated by `tests/integration/us1/codeImpact.test.ts`
+
 Developers commit a change to any source file and immediately see the complete set of files that may be impacted, including direct dependents and inferred transitive ripples.
 
 **Why this priority**: Delivering the definitive change-impact answer for code edits is the core promise of the extension and lays the groundwork for richer artifact coverage.
@@ -37,6 +39,8 @@ Developers commit a change to any source file and immediately see the complete s
 ---
 
 ### User Story 4 - Maintainers explore symbol neighborhoods (Priority: P4)
+
+**Status**: Delivered (2025-10-26) — validated by `tests/integration/us4/inspectSymbolNeighbors.test.ts`
 
 Maintainers and Copilot agents dogfood the graph by selecting any symbol and querying its nearest neighbors across layers to understand dependency context before making changes.
 
@@ -54,6 +58,8 @@ Maintainers and Copilot agents dogfood the graph by selecting any symbol and que
 
 ### User Story 2 - Writers get drift alerts (Priority: P2)
 
+**Status**: Delivered (2025-10-26) — validated by `tests/integration/us2/markdownDrift.test.ts`
+
 Technical writers update requirements or architecture markdown and need a guaranteed signal identifying the code paths and lower-layer docs that require follow-up.
 
 **Why this priority**: Once the code-centric dependency map is trustworthy, extending it to documentation keeps planning artifacts aligned without diluting early focus.
@@ -68,6 +74,8 @@ Technical writers update requirements or architecture markdown and need a guaran
 ---
 
 ### User Story 3 - Leads resolve alerts efficiently (Priority: P3)
+
+**Status**: Delivered (2025-10-26) — validated by `tests/integration/us3/acknowledgeDiagnostics.test.ts`
 
 Engineering or documentation leads review outstanding drift diagnostics, assign follow-up, and mark items resolved once verification is complete.
 

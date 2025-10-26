@@ -33,18 +33,20 @@ const nodeAbiVersion = nodeAbi.getAbi(nodeVersion, "node");
 
 console.log(`[better-sqlite3] ensuring native binary for Node ${nodeVersion} (ABI ${nodeAbiVersion})`);
 
-const electronAbiVersion = detectElectronAbi();
-const electronTarget = nodeAbi.getTarget(electronAbiVersion, "electron");
+const electronRuntime = detectElectronRuntime();
+const electronTarget = electronRuntime.version ?? nodeAbi.getTarget(electronRuntime.abi, "electron");
 
 if (!electronTarget) {
   console.error(
-    `[better-sqlite3] unable to resolve Electron target for ABI ${electronAbiVersion}. ` +
+    `[better-sqlite3] unable to resolve Electron target for ABI ${electronRuntime.abi}. ` +
       "Set VSCODE_ELECTRON_ABI or VSCODE_ELECTRON_VERSION explicitly."
   );
   process.exit(1);
 }
 
-const electronLabel = `Electron ABI ${electronAbiVersion}`;
+const electronLabel = electronRuntime.version
+  ? `Electron ${electronRuntime.version} (ABI ${electronRuntime.abi})`
+  : `Electron ABI ${electronRuntime.abi}`;
 
 function run(command, args, options) {
   const result = spawnSync(command, args, {
@@ -167,7 +169,7 @@ try {
   const electronBinaryPath = ensureBinaryForRuntime(
     "electron",
     electronTarget,
-    electronAbiVersion,
+    electronRuntime.abi,
     electronLabel
   );
 
@@ -194,34 +196,43 @@ try {
   process.exit(1);
 }
 
-function detectElectronAbi() {
-  if (process.env.VSCODE_ELECTRON_ABI) {
-    return process.env.VSCODE_ELECTRON_ABI;
+function detectElectronRuntime() {
+  const versionEnv = process.env.VSCODE_ELECTRON_VERSION;
+  const abiEnv = process.env.VSCODE_ELECTRON_ABI;
+
+  if (versionEnv) {
+    const version = normaliseVersionSpecifier(versionEnv) ?? versionEnv;
+    const abi = nodeAbi.getAbi(version, "electron");
+    console.log(
+      `[better-sqlite3] using Electron ${version} (ABI ${abi}) from VSCODE_ELECTRON_VERSION=${versionEnv}`
+    );
+    return { abi, version };
   }
 
-  if (process.env.VSCODE_ELECTRON_VERSION) {
-    const inferred = nodeAbi.getAbi(process.env.VSCODE_ELECTRON_VERSION, "electron");
+  if (abiEnv) {
+    const version = nodeAbi.getTarget(abiEnv, "electron") ?? undefined;
     console.log(
-      `[better-sqlite3] inferred Electron ABI ${inferred} from VSCODE_ELECTRON_VERSION=${process.env.VSCODE_ELECTRON_VERSION}`
+      `[better-sqlite3] using Electron ABI ${abiEnv}${version ? ` (maps to Electron ${version})` : ""} from VSCODE_ELECTRON_ABI`
     );
-    return inferred;
+    return { abi: abiEnv, version };
   }
 
   const discoveredVersion = findElectronVersionFromInstall();
   if (discoveredVersion) {
-    const inferred = nodeAbi.getAbi(discoveredVersion, "electron");
+    const abi = nodeAbi.getAbi(discoveredVersion, "electron");
     console.log(
-      `[better-sqlite3] detected local VS Code Electron ${discoveredVersion} (ABI ${inferred})`
+      `[better-sqlite3] detected local VS Code Electron ${discoveredVersion} (ABI ${abi})`
     );
-    return inferred;
+    return { abi, version: discoveredVersion };
   }
 
   const fallbackAbi = "136"; // Electron 37.x
+  const fallbackVersion = nodeAbi.getTarget(fallbackAbi, "electron") ?? undefined;
   console.warn(
     `[better-sqlite3] unable to detect VS Code Electron version automatically; using ABI ${fallbackAbi}. ` +
       "Set VSCODE_ELECTRON_ABI or VSCODE_ELECTRON_VERSION to override."
   );
-  return fallbackAbi;
+  return { abi: fallbackAbi, version: fallbackVersion };
 }
 
 function findElectronVersionFromInstall() {

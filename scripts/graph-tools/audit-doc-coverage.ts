@@ -14,6 +14,7 @@ import {
 interface ParsedArgs {
   helpRequested: boolean;
   jsonOutput: boolean;
+  strictSymbols: boolean;
   dbPath?: string;
   workspace?: string;
 }
@@ -24,6 +25,24 @@ interface ArtifactSummary {
   layer: ArtifactLayer;
 }
 
+interface ExportedSymbol {
+  name: string;
+  kind?: string;
+  isDefault?: boolean;
+  isTypeOnly?: boolean;
+}
+
+interface SymbolCoverageGap {
+  artifact: ArtifactSummary;
+  symbol: ExportedSymbol;
+}
+
+interface SymbolCoverageTotals {
+  total: number;
+  documented: number;
+  undocumented: number;
+}
+
 interface AuditReport {
   totals: {
     artifacts: number;
@@ -32,6 +51,10 @@ interface AuditReport {
   };
   missingDocumentation: ArtifactSummary[];
   orphanDocuments: ArtifactSummary[];
+  symbolCoverage: {
+    totals: SymbolCoverageTotals;
+    gaps: SymbolCoverageGap[];
+  };
 }
 
 interface GroupedArtifacts {
@@ -44,6 +67,7 @@ const EXIT_INVALID_ARGS = 1;
 const EXIT_MISSING_DB = 2;
 const EXIT_COVERAGE_GAPS = 3;
 const EXIT_UNCAUGHT_ERROR = 4;
+const EXIT_SYMBOL_GAPS = 5;
 
 const DOCUMENTATION_LAYERS: Set<ArtifactLayer> = new Set([
   "vision",
@@ -65,7 +89,8 @@ const KNOWN_ROOT_SEGMENTS = new Set([
 function parseArgs(argv: string[]): ParsedArgs {
   const parsed: ParsedArgs = {
     helpRequested: false,
-    jsonOutput: false
+    jsonOutput: false,
+    strictSymbols: false
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -80,6 +105,11 @@ function parseArgs(argv: string[]): ParsedArgs {
 
       case "--json": {
         parsed.jsonOutput = true;
+        break;
+      }
+
+      case "--strict-symbols": {
+        parsed.strictSymbols = true;
         break;
       }
 
@@ -120,6 +150,7 @@ function usage(): string {
     "  --workspace <path>            Workspace root used to locate .link-aware-diagnostics storage.\n\n" +
     "Output controls:\n" +
     "  --json                       Emit raw JSON instead of formatted text.\n" +
+    "  --strict-symbols             Treat undocumented exported symbols as fatal gaps.\n" +
     "  --help                       Display this help text.\n\n" +
     "Examples:\n" +
     "  npm run graph:audit -- --workspace .\n" +
@@ -203,6 +234,7 @@ function resolveDatabasePath(options: ParsedArgs): string {
 function auditCoverage(store: GraphStore): AuditReport {
   const artifacts = store.listArtifacts();
   const cache = new Map<string, LinkedArtifactSummary[]>();
+  const docSymbolCache = new Map<string, Set<string>>();
 
   function getNeighbors(id: string): LinkedArtifactSummary[] {
     let neighbors = cache.get(id);
@@ -215,9 +247,12 @@ function auditCoverage(store: GraphStore): AuditReport {
 
   const missingDocumentation: ArtifactSummary[] = [];
   const orphanDocuments: ArtifactSummary[] = [];
+  const symbolGaps: SymbolCoverageGap[] = [];
 
   let codeCount = 0;
   let docCount = 0;
+  let totalSymbols = 0;
+  let documentedSymbols = 0;
 
   for (const artifact of artifacts) {
     if (artifact.layer === "code") {
@@ -232,6 +267,35 @@ function auditCoverage(store: GraphStore): AuditReport {
 
       if (!hasDocLink) {
         missingDocumentation.push(toSummary(artifact));
+      }
+
+      const exportedSymbols = readExportedSymbols(artifact.metadata);
+      if (exportedSymbols.length) {
+        const docNeighbors = neighbors.filter(neighbor => {
+          if (neighbor.kind !== "documents") {
+            return false;
+          }
+
+          return DOCUMENTATION_LAYERS.has(neighbor.artifact.layer as ArtifactLayer);
+        });
+
+        const referencedSymbols = collectReferencedSymbols(docNeighbors, docSymbolCache);
+
+        for (const symbol of exportedSymbols) {
+          if (!symbol.name || symbol.name === "default") {
+            continue;
+          }
+
+          totalSymbols += 1;
+          if (referencedSymbols.has(symbol.name)) {
+            documentedSymbols += 1;
+          } else {
+            symbolGaps.push({
+              artifact: toSummary(artifact),
+              symbol
+            });
+          }
+        }
       }
 
       continue;
@@ -260,7 +324,15 @@ function auditCoverage(store: GraphStore): AuditReport {
       documentation: docCount
     },
     missingDocumentation,
-    orphanDocuments
+    orphanDocuments,
+    symbolCoverage: {
+      totals: {
+        total: totalSymbols,
+        documented: documentedSymbols,
+        undocumented: Math.max(totalSymbols - documentedSymbols, 0)
+      },
+      gaps: symbolGaps
+    }
   };
 }
 
@@ -272,9 +344,21 @@ function toSummary(artifact: KnowledgeArtifact): ArtifactSummary {
   };
 }
 
-function printReport(report: AuditReport, json: boolean): number {
+function printReport(report: AuditReport, options: { json: boolean; strictSymbols: boolean }): number {
+  const { json, strictSymbols } = options;
+
   if (json) {
     console.log(JSON.stringify(report, null, 2));
+    if (
+      report.missingDocumentation.length === 0 &&
+      report.orphanDocuments.length === 0 &&
+      (report.symbolCoverage.gaps.length === 0 || !strictSymbols)
+    ) {
+      return EXIT_SUCCESS;
+    }
+    if (strictSymbols && report.symbolCoverage.gaps.length > 0) {
+      return EXIT_SYMBOL_GAPS;
+    }
     if (report.missingDocumentation.length === 0 && report.orphanDocuments.length === 0) {
       return EXIT_SUCCESS;
     }
@@ -286,9 +370,11 @@ function printReport(report: AuditReport, json: boolean): number {
   console.log(`  Code artifacts: ${report.totals.code}`);
   console.log(`  Documentation artifacts: ${report.totals.documentation}`);
 
-  if (report.missingDocumentation.length === 0 && report.orphanDocuments.length === 0) {
-    console.log("  ✔ No gaps detected");
-    return EXIT_SUCCESS;
+  const hasDocGaps = report.missingDocumentation.length > 0 || report.orphanDocuments.length > 0;
+  const hasSymbolGaps = report.symbolCoverage.gaps.length > 0;
+
+  if (!hasDocGaps) {
+    console.log("  ✔ No file-level documentation gaps detected");
   }
 
   if (report.missingDocumentation.length > 0) {
@@ -311,6 +397,36 @@ function printReport(report: AuditReport, json: boolean): number {
         console.log(`    - ${resolveReadablePath(artifact.uri)} (${artifact.id}) [${artifact.layer}]`);
       }
     }
+  }
+
+  const symbolTotals = report.symbolCoverage.totals;
+  if (symbolTotals.total > 0) {
+    const coveragePercentage = symbolTotals.total === 0 ? 100 : Math.round((symbolTotals.documented / symbolTotals.total) * 100);
+    console.log("\nSymbol coverage preview:");
+    console.log(
+      `  Documented exports: ${symbolTotals.documented}/${symbolTotals.total} (${coveragePercentage}% coverage)`
+    );
+  }
+
+  if (report.symbolCoverage.gaps.length > 0) {
+    console.log("\nExports lacking MDMD symbol references:");
+    const grouped = groupSymbolGaps(report.symbolCoverage.gaps);
+    for (const { group, entries } of grouped) {
+      console.log(`  ${group}`);
+      for (const gap of entries) {
+        const readable = resolveReadablePath(gap.artifact.uri);
+        const kindLabel = gap.symbol.kind ? ` (${gap.symbol.kind})` : "";
+        console.log(`    - ${readable} :: ${gap.symbol.name}${kindLabel}`);
+      }
+    }
+  }
+
+  if (!hasDocGaps && (!hasSymbolGaps || !strictSymbols)) {
+    return EXIT_SUCCESS;
+  }
+
+  if (strictSymbols && hasSymbolGaps) {
+    return EXIT_SYMBOL_GAPS;
   }
 
   return EXIT_COVERAGE_GAPS;
@@ -344,7 +460,7 @@ function main(): void {
   const store = new GraphStore({ dbPath });
   try {
     const report = auditCoverage(store);
-    const exitCode = printReport(report, parsed.jsonOutput);
+    const exitCode = printReport(report, { json: parsed.jsonOutput, strictSymbols: parsed.strictSymbols });
     process.exit(exitCode);
   } catch (error) {
     console.error("Failed to audit graph coverage.");
@@ -360,3 +476,116 @@ function main(): void {
 }
 
 main();
+
+function readExportedSymbols(metadata: Record<string, unknown> | undefined): ExportedSymbol[] {
+  if (!metadata) {
+    return [];
+  }
+
+  const candidate = (metadata as { exportedSymbols?: unknown }).exportedSymbols;
+  if (!Array.isArray(candidate)) {
+    return [];
+  }
+
+  const symbols: ExportedSymbol[] = [];
+  for (const entry of candidate) {
+    if (!entry || typeof entry !== "object") {
+      continue;
+    }
+
+    const name = (entry as { name?: unknown }).name;
+    if (typeof name !== "string" || name.trim() === "") {
+      continue;
+    }
+
+    const kind = typeof (entry as { kind?: unknown }).kind === "string" ? String((entry as { kind?: unknown }).kind) : undefined;
+    const isDefault = Boolean((entry as { isDefault?: unknown }).isDefault);
+    const isTypeOnly = Boolean((entry as { isTypeOnly?: unknown }).isTypeOnly);
+
+    symbols.push({
+      name,
+      kind,
+      isDefault,
+      isTypeOnly
+    });
+  }
+
+  return symbols;
+}
+
+function collectReferencedSymbols(
+  neighbors: LinkedArtifactSummary[],
+  cache: Map<string, Set<string>>
+): Set<string> {
+  const aggregated = new Set<string>();
+
+  for (const neighbor of neighbors) {
+    const artifactId = neighbor.artifact.id;
+    let symbols = cache.get(artifactId);
+    if (!symbols) {
+      symbols = readDocumentSymbolReferences(neighbor.artifact.metadata);
+      cache.set(artifactId, symbols);
+    }
+
+    for (const symbol of symbols) {
+      aggregated.add(symbol);
+    }
+  }
+
+  return aggregated;
+}
+
+function readDocumentSymbolReferences(metadata: Record<string, unknown> | undefined): Set<string> {
+  if (!metadata) {
+    return new Set();
+  }
+
+  const candidate = (metadata as { symbolReferences?: unknown }).symbolReferences;
+  if (!Array.isArray(candidate)) {
+    return new Set();
+  }
+
+  const references = new Set<string>();
+  for (const entry of candidate) {
+    if (!entry || typeof entry !== "object") {
+      continue;
+    }
+
+    const symbol = (entry as { symbol?: unknown }).symbol;
+    if (typeof symbol === "string" && symbol.trim() !== "") {
+      references.add(symbol.trim());
+    }
+  }
+
+  return references;
+}
+
+function groupSymbolGaps(gaps: SymbolCoverageGap[]): GroupedSymbolGaps[] {
+  const buckets = new Map<string, SymbolCoverageGap[]>();
+
+  for (const gap of gaps) {
+    const key = deriveGroupLabel(gap.artifact);
+    const entry = buckets.get(key);
+    if (entry) {
+      entry.push(gap);
+    } else {
+      buckets.set(key, [gap]);
+    }
+  }
+
+  return [...buckets.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([group, entries]) => ({
+      group,
+      entries: entries.sort((left, right) => {
+        const leftKey = `${resolveReadablePath(left.artifact.uri)}:${left.symbol.name}`;
+        const rightKey = `${resolveReadablePath(right.artifact.uri)}:${right.symbol.name}`;
+        return leftKey.localeCompare(rightKey);
+      })
+    }));
+}
+
+interface GroupedSymbolGaps {
+  group: string;
+  entries: SymbolCoverageGap[];
+}

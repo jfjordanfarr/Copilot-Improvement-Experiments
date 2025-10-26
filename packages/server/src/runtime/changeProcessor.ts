@@ -8,6 +8,7 @@ import type { QueuedChange } from "../features/changeEvents/changeQueue";
 import { saveCodeChange } from "../features/changeEvents/saveCodeChange";
 import { persistInferenceResult, saveDocumentChange } from "../features/changeEvents/saveDocumentChange";
 import type { AcknowledgementService } from "../features/diagnostics/acknowledgementService";
+import type { DiagnosticSender } from "../features/diagnostics/diagnosticUtils";
 import type { HysteresisController } from "../features/diagnostics/hysteresisController";
 import { publishCodeDiagnostics, type CodeChangeContext } from "../features/diagnostics/publishCodeDiagnostics";
 import { publishDocDiagnostics, type DocumentChangeContext } from "../features/diagnostics/publishDocDiagnostics";
@@ -41,6 +42,7 @@ export interface ChangeProcessorOptions {
   hysteresisController: HysteresisController;
   initialContext: ChangeProcessorContext;
   llmIngestionManager?: LlmIngestionManager | null;
+  diagnosticSender: DiagnosticSender;
 }
 
 export function createChangeProcessor({
@@ -48,7 +50,8 @@ export function createChangeProcessor({
   providerGuard,
   hysteresisController,
   initialContext,
-  llmIngestionManager = null
+  llmIngestionManager = null,
+  diagnosticSender
 }: ChangeProcessorOptions): ChangeProcessor {
   const context: ChangeProcessorContext = {
     ...initialContext,
@@ -271,11 +274,7 @@ export function createChangeProcessor({
     const docDiagnosticsResult =
       documentContexts.length > 0
         ? publishDocDiagnostics({
-            sender: {
-              sendDiagnostics: params => {
-                void connection.sendDiagnostics(params);
-              }
-            },
+            sender: diagnosticSender,
             contexts: documentContexts,
             runtimeSettings,
             hysteresis: hysteresisController,
@@ -332,11 +331,7 @@ export function createChangeProcessor({
     const codeDiagnosticsResult =
       codeContexts.length > 0
         ? publishCodeDiagnostics({
-            sender: {
-              sendDiagnostics: params => {
-                void connection.sendDiagnostics(params);
-              }
-            },
+            sender: diagnosticSender,
             contexts: codeContexts,
             runtimeSettings: codeRuntimeSettings,
             hysteresis: hysteresisController,
