@@ -36,6 +36,28 @@ describe("findBrokenAssetReferences", () => {
     });
   });
 
+  it("resolves absolute paths against the workspace and configured asset roots", () => {
+    withWorkspace((workspace) => {
+      writeFile(
+        workspace,
+        "docs/home.html",
+        "<img src=\"/images/banner.png\" />\n<img src=\"/images/gallery.png\" />"
+      );
+      writeFile(path.join(workspace, "public"), "images/banner.png", "");
+
+      const issues = findBrokenAssetReferences(path.join(workspace, "docs/home.html"), {
+        workspaceRoot: workspace,
+        assetRootDirectories: [path.join(workspace, "public")]
+      });
+
+      expect(issues).toHaveLength(1);
+      expect(issues[0]).toMatchObject({
+        target: "/images/gallery.png",
+        attribute: "src"
+      });
+    });
+  });
+
   it("ignores external and data URIs", () => {
     withWorkspace((workspace) => {
       writeFile(
@@ -98,6 +120,52 @@ describe("findBrokenAssetReferences", () => {
       });
 
       expect(issues).toHaveLength(0);
+    });
+  });
+
+  it("supports hashed filename ignore patterns", () => {
+    withWorkspace((workspace) => {
+      writeFile(
+        workspace,
+        "docs/app.html",
+        "<script src=\"/scripts/app.1234abcd5678ef00.js\"></script>"
+      );
+
+      const issues = findBrokenAssetReferences(path.join(workspace, "docs/app.html"), {
+        workspaceRoot: workspace,
+        ignoreTargetPatterns: [/\.[a-f0-9]{8,}\.[a-z0-9]+$/i]
+      });
+
+      expect(issues).toHaveLength(0);
+    });
+  });
+
+  it("captures missing stylesheet href references", () => {
+    withWorkspace((workspace) => {
+      writeFile(
+        workspace,
+        "docs/layout.html",
+        [
+          "<html>",
+          "  <head>",
+          "    <link rel=\"stylesheet\" href=\"/styles/site.css\" />",
+          "    <link rel=\"stylesheet\" href=\"/styles/missing.css\" />",
+          "  </head>",
+          "</html>"
+        ].join("\n")
+      );
+      writeFile(path.join(workspace, "styles"), "site.css", "body {}\n");
+
+      const issues = findBrokenAssetReferences(path.join(workspace, "docs/layout.html"), {
+        workspaceRoot: workspace
+      });
+
+      expect(issues).toHaveLength(1);
+      expect(issues[0]).toMatchObject({
+        target: "/styles/missing.css",
+        attribute: "href",
+        line: 4
+      });
     });
   });
 });

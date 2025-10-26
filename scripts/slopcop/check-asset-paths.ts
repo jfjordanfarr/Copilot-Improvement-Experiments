@@ -8,7 +8,8 @@ import {
   compileIgnorePatterns,
   loadSlopcopConfig,
   resolveIgnoreGlobs,
-  resolveIncludeGlobs
+  resolveIncludeGlobs,
+  resolveRootDirectories
 } from "./config";
 import {
   findBrokenAssetReferences,
@@ -62,12 +63,16 @@ const DEFAULT_PATTERNS = ["**/*.html", "**/*.htm", "**/*.css", "**/*.scss", "**/
     const ignoreGlobs = resolveIgnoreGlobs(config, "assets", DEFAULT_IGNORE);
     const includeGlobs = resolveIncludeGlobs(config, "assets", DEFAULT_PATTERNS);
     const ignoreTargetPatterns = compileIgnorePatterns(config, "assets");
+    const rootDirectories = resolveRootDirectories(config, "assets").map((entry) =>
+      path.isAbsolute(entry) ? entry : path.resolve(workspaceRoot, entry)
+    );
 
     const files = collectAssetFiles(workspaceRoot, includeGlobs, ignoreGlobs);
     const issues = files.flatMap((file) =>
       findBrokenAssetReferences(file, {
         workspaceRoot,
-        ignoreTargetPatterns
+        ignoreTargetPatterns,
+        assetRootDirectories: rootDirectories
       })
     );
 

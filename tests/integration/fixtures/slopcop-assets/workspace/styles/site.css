@@ -1,0 +1,14 @@
+body {
+  background-image: url("/images/background.png");
+  font-family: "Demo", sans-serif;
+}
+
+@font-face {
+  font-family: "Demo";
+  src: url('/fonts/awesome.woff2') format('woff2'),
+       url('/fonts/ghost.woff2') format('woff2');
+}
+
+.icon {
+  mask: url(/images/icon.d41d8cd98f00aa11.png);
+}

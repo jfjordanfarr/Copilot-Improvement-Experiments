@@ -11,8 +11,8 @@
    - Provide lead-friendly dashboards, export CLI, and acknowledgement audit trails (see [FR-004/FR-005](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)).
    - Integrate ripple metadata into Copilot prompts and Problems hover tooltips.
 4. **T07x – Documentation & Asset Integrity** *(new)*
-   - Ship SlopCop linting passes (markdown today, asset paths next) so documentation remains a trustworthy proxy for ripple analysis.
-   - Promote lint findings into safe-to-commit and CI pipelines, keeping hallucinated links from landing.
+   - Ship SlopCop linting passes (markdown in production, asset paths expanding with root-directory support and hashed-ignore ergonomics) so documentation remains a trustworthy proxy for ripple analysis.
+   - Promote lint findings into safe-to-commit and CI pipelines, keeping hallucinated links from landing while publishing fixture-backed examples future iterations can dogfood.
 5. **T08x – Auto-Repair Tooling**
    - Offer guided workflows to rebind or prune stale links after rename/delete events.
    - Explore safe auto-fix suggestions when diagnostics identify simple drifts (e.g., markdown link updates).
@@ -29,7 +29,7 @@
 - **Integration coverage**: US1–US5 suites emulate writer, developer, and template-transform flows ([us1](/tests/integration/us1/codeImpact.test.ts), [us2](/tests/integration/us2/markdownDrift.test.ts), [us3](/tests/integration/us3/markdownLinkDrift.test.ts), [us4](/tests/integration/us4/scopeCollision.test.ts), [us5](/tests/integration/us5/transformRipple.test.ts)).
 - **Knowledge feed diffs**: Snapshot JSON fixtures tracked under [`tests/integration/fixtures/simple-workspace/data/knowledge-feeds`](/tests/integration/fixtures/simple-workspace/data/knowledge-feeds) ensure deterministic graph bootstrapping.
 - **Benchmark placeholder**: Introduce curated workspaces with canonical ASTs (per FR-017) before closing T05x.
-- **SlopCop unit contract**: [`markdownLinks.test.ts`](/packages/shared/src/tooling/markdownLinks.test.ts) locks link parsing, ignore behaviour, and regression fixtures before CLI runs.
+- **SlopCop unit contract**: [`markdownLinks.test.ts`](/packages/shared/src/tooling/markdownLinks.test.ts) locks link parsing, ignore behaviour, and regression fixtures before CLI runs. [`assetPaths.test.ts`](/packages/shared/src/tooling/assetPaths.test.ts) + [`slopcopAssetCli.test.ts`](/packages/shared/src/tooling/slopcopAssetCli.test.ts) cover asset root mapping against the curated [`tests/integration/fixtures/slopcop-assets`](/tests/integration/fixtures/slopcop-assets) workspace.
 
 ## Traceability Links
 - Vision alignment: [Layer-1 Vision](../layer-1/link-aware-diagnostics-vision.mdmd.md)

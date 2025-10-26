@@ -37,7 +37,7 @@ On the way to building that, we are collecting up iterative wins which progressi
 - Symbol neighbor CLI: `npm run graph:inspect -- -- --list-kinds` prints supported relationship kinds; add file targets with `--file <path>` or artifact ids with `--id <id>`. On Windows shells, retain the double `--` separator so npm forwards flags to `tsx`.
 - Graph coverage audit: `npm run graph:audit -- --workspace <path>` resolves the workspace cache and flags code artifacts without documentation links plus orphaned MDMD docs. Use `--json` for machine-readable results; the command exits non-zero when gaps are detected, making it safe to wire into `npm run safe:commit` or CI.
 - SlopCop markdown audit: `npm run slopcop:markdown` scans `.md`/`.mdmd` files for broken local links. Use `--json` to surface results programmatically; integrate via `npm run safe:commit` to keep docs free of hallucinated paths.
-- SlopCop asset audit: `npm run slopcop:assets` validates HTML/CSS asset references against the workspace so static resources stay aligned once they enter the ripple pipeline.
+- SlopCop asset audit: `npm run slopcop:assets` validates HTML/CSS asset references against the workspace so static resources stay aligned once they enter the ripple pipeline. Configure roots/ignores via [`slopcop.config.json`](../slopcop.config.json); `assets.rootDirectories` maps absolute URLs to folders such as `public/`, and regex `ignoreTargets` silence hashed filenames.
 
 Example invocations:
 - `npm run graph:inspect -- -- --list-kinds`

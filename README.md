@@ -57,6 +57,11 @@ When files are deleted or moved, the client raises a rebind prompt (`linkDiagnos
 | `npm run slopcop:markdown` | Markdown/MDMD link audit (use `-- --json` for machine output). |
 | `npm run slopcop:assets` | HTML/CSS asset reference audit (use `-- --json` for machine output). |
 
+### SlopCop configuration
+- All lint passes read [`slopcop.config.json`](./slopcop.config.json). Top-level `ignoreGlobs` apply to every check, while sections such as `markdown` and `assets` support per-pass `includeGlobs`, `ignoreGlobs`, and regex-based `ignoreTargets`.
+- `assets.rootDirectories` maps absolute workspace paths (for example `/images/logo.png`) to alternate roots such as `public/` or `static/` so projects can mirror bundler behaviour without rewriting source assets.
+- The default config ships with a hashed-filename ignore (`\.[a-f0-9]{8,}\.[a-z0-9]+$`) to suppress generated artefacts; adjust or remove it as needed for your build pipeline.
+
 ### Better-SQLite3 rebuild hints
 - The `rebuild:better-sqlite3:force` script installs a matching native binary for the current Node version.
 - Integration tests ignore `SKIP_NATIVE_REBUILD` to guarantee an Electron-compatible build, preventing ABI mismatches between Node and Electron runtimes.

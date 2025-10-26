@@ -13,6 +13,7 @@ export interface AssetReferenceIssue {
 export interface AssetAuditOptions {
   workspaceRoot: string;
   ignoreTargetPatterns?: RegExp[];
+  assetRootDirectories?: string[];
 }
 
 const HTML_ATTRIBUTE =
@@ -30,13 +31,14 @@ export function findBrokenAssetReferences(
   const content = fs.readFileSync(filePath, "utf8");
   const lineStarts = computeLineStarts(content);
   const ignorePatterns = options.ignoreTargetPatterns ?? [];
+  const assetRoots = options.assetRootDirectories ?? [];
 
   const issues: AssetReferenceIssue[] = [];
 
   for (const match of content.matchAll(HTML_ATTRIBUTE)) {
     const groups = match.groups ?? {};
-  const attribute = (groups.attr || "").toLowerCase();
-  const rawTarget = groups.valueDouble || groups.valueSingle;
+    const attribute = (groups.attr || "").toLowerCase();
+    const rawTarget = groups.valueDouble || groups.valueSingle;
     if (!rawTarget) {
       continue;
     }
@@ -48,12 +50,12 @@ export function findBrokenAssetReferences(
         continue;
       }
 
-      const resolved = resolveTarget(target, filePath, options.workspaceRoot);
+      const resolved = resolveTargetCandidates(target, filePath, options.workspaceRoot, assetRoots);
       if (!resolved) {
         continue;
       }
 
-      if (!fs.existsSync(resolved)) {
+      if (!candidateExists(resolved)) {
         issues.push(makeIssue(filePath, match.index ?? 0, match[0], target, attribute, lineStarts));
       }
     }
@@ -65,12 +67,12 @@ export function findBrokenAssetReferences(
       continue;
     }
 
-    const resolved = resolveTarget(target, filePath, options.workspaceRoot);
+    const resolved = resolveTargetCandidates(target, filePath, options.workspaceRoot, assetRoots);
     if (!resolved) {
       continue;
     }
 
-    if (!fs.existsSync(resolved)) {
+    if (!candidateExists(resolved)) {
       issues.push(makeIssue(filePath, match.index ?? 0, match[0], target, "url", lineStarts));
     }
   }
@@ -107,7 +109,12 @@ function shouldSkipTarget(target: string, patterns: RegExp[]): boolean {
   return patterns.some((pattern) => pattern.test(target));
 }
 
-function resolveTarget(target: string, filePath: string, workspaceRoot: string): string | undefined {
+function resolveTargetCandidates(
+  target: string,
+  filePath: string,
+  workspaceRoot: string,
+  assetRoots: string[]
+): string[] | undefined {
   const sanitized = stripFragmentAndQuery(target);
   if (!sanitized) {
     return undefined;
@@ -121,11 +128,18 @@ function resolveTarget(target: string, filePath: string, workspaceRoot: string):
   }
 
   if (normalized.startsWith("/")) {
-    return path.resolve(workspaceRoot, "." + normalized);
+    const candidates = new Set<string>();
+    candidates.add(path.resolve(workspaceRoot, "." + normalized));
+    const relative = normalized.slice(1);
+    for (const root of assetRoots) {
+      const base = path.resolve(root);
+      candidates.add(path.resolve(base, relative));
+    }
+    return Array.from(candidates);
   }
 
   const directory = path.dirname(filePath);
-  return path.resolve(directory, normalized);
+  return [path.resolve(directory, normalized)];
 }
 
 function stripFragmentAndQuery(target: string): string {
@@ -171,6 +185,15 @@ function makeIssue(
     target,
     attribute: attribute || undefined
   };
+}
+
+function candidateExists(candidates: string[]): boolean {
+  for (const candidate of candidates) {
+    if (fs.existsSync(candidate)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function getPosition(index: number, lineStarts: number[]) {

@@ -5,11 +5,13 @@ export interface SlopcopConfigSection {
   includeGlobs?: string[];
   ignoreGlobs?: string[];
   ignoreTargets?: string[];
+  rootDirectories?: string[];
 }
 
 export interface SlopcopConfig {
   ignoreGlobs?: string[];
   ignoreTargets?: string[];
+  rootDirectories?: string[];
   markdown?: SlopcopConfigSection;
   assets?: SlopcopConfigSection;
   [key: string]: unknown;
@@ -86,6 +88,21 @@ export function compileIgnorePatterns(
   return compiled;
 }
 
+export function resolveRootDirectories(
+  config: SlopcopConfig,
+  section: SectionKey
+): string[] {
+  const directories: string[] = [];
+  if (Array.isArray(config.rootDirectories)) {
+    directories.push(...config.rootDirectories.map(String));
+  }
+  const sectionDirectories = config[section]?.rootDirectories;
+  if (Array.isArray(sectionDirectories)) {
+    directories.push(...sectionDirectories.map(String));
+  }
+  return directories;
+}
+
 function normalizeConfig(raw: Record<string, unknown>): SlopcopConfig {
   const normalized: SlopcopConfig = {};
 
@@ -94,6 +111,9 @@ function normalizeConfig(raw: Record<string, unknown>): SlopcopConfig {
   }
   if (Array.isArray(raw.ignoreTargets)) {
     normalized.ignoreTargets = raw.ignoreTargets.map(String);
+  }
+  if (Array.isArray(raw.rootDirectories)) {
+    normalized.rootDirectories = raw.rootDirectories.map(String);
   }
 
   if (isPlainObject(raw.markdown)) {
@@ -117,6 +137,9 @@ function normalizeSection(section: Record<string, unknown>): SlopcopConfigSectio
   }
   if (Array.isArray(section.ignoreTargets)) {
     normalized.ignoreTargets = section.ignoreTargets.map(String);
+  }
+  if (Array.isArray(section.rootDirectories)) {
+    normalized.rootDirectories = section.rootDirectories.map(String);
   }
 
   return normalized;

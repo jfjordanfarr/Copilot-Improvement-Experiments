@@ -9,6 +9,15 @@
     "includeGlobs": [
       "**/*.{html,htm,css,scss,sass}"
     ],
-    "ignoreTargets": []
+    "ignoreGlobs": [
+      "tests/integration/fixtures/slopcop-assets/workspace/**"
+    ],
+    "ignoreTargets": [
+      "\\.[a-f0-9]{8,}\\.[a-z0-9]+$"
+    ],
+    "rootDirectories": [
+      "public",
+      "static"
+    ]
   }
 }

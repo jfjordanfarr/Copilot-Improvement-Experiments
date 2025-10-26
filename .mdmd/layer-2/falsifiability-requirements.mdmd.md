@@ -28,7 +28,7 @@ Layer-2 requirements clarifying the falsifiability goals supporting spec [`001-l
 - F1: Covered by integration suite [US3 – Markdown Link Drift](../../tests/integration/us3/markdownLinkDrift.test.ts) plus unit coverage for [`pathReferenceDetector`](../../packages/server/src/features/watchers/pathReferenceDetector.ts).
 - F2: Covered by [US4 – Scoped Identifier Guard](../../tests/integration/us4/scopeCollision.test.ts) and ripple analyzer unit tests ([`rippleAnalyzer.test.ts`](../../packages/server/src/features/knowledge/rippleAnalyzer.test.ts)).
 - F3: Covered by [US5 – Transform Ripple](../../tests/integration/us5/transformRipple.test.ts) with additional ingestion validation in [`knowledgeFeedManager.test.ts`](../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts).
-- F4: Covered by [`markdownLinks.test.ts`](../../packages/shared/src/tooling/markdownLinks.test.ts), [`assetPaths.test.ts`](../../packages/shared/src/tooling/assetPaths.test.ts), and the CLI exercised through [`npm run slopcop:markdown`](/scripts/slopcop/check-markdown-links.ts) / [`npm run slopcop:assets`](/scripts/slopcop/check-asset-paths.ts) within the safe-to-commit pipeline.
+- F4: Covered by [`markdownLinks.test.ts`](../../packages/shared/src/tooling/markdownLinks.test.ts), [`assetPaths.test.ts`](../../packages/shared/src/tooling/assetPaths.test.ts), [`slopcopAssetCli.test.ts`](../../packages/shared/src/tooling/slopcopAssetCli.test.ts), and the CLI exercised through [`npm run slopcop:markdown`](/scripts/slopcop/check-markdown-links.ts) / [`npm run slopcop:assets`](/scripts/slopcop/check-asset-paths.ts) within the safe-to-commit pipeline.
 
 ## Open Dependencies
 - Need tests to simulate file rename/move operations within VS Code integration harness.
