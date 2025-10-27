@@ -11,8 +11,12 @@
 - Spec references: [FR-002](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-010](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-014](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
 
 ## Exported Symbols
-- `activate` — extension entry point responsible for bootstrapping the language client and front-end services.
-- `deactivate` — teardown helper ensuring the language client stops cleanly during shutdown.
+
+#### activate
+The `activate` function boots the language client and front-end services for the extension.
+
+#### deactivate
+The `deactivate` function tears down the language client cleanly during shutdown.
 
 ## Responsibility
 Initialises the language client, pushes configuration changes to the server, and wires front-end UX surfaces (diagnostics, commands, dependency inspector). Ensures the server only starts once the user selects an LLM provider or opts into local-only mode, and now mediates LLM invocations between server ingestion flows and local VS Code models.

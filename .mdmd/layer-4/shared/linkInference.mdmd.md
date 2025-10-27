@@ -10,7 +10,7 @@
 `LinkInferenceTraceOrigin` enumerates the possible sources of a trace entry (workspace providers, knowledge feeds, fallback heuristics/LLM).
 
 #### LinkInferenceTraceEntry
-`LinkInferenceTraceEntry` captures per-link provenance (`origin`, `confidence`, `rationale`) for downstream diagnostics and audits.
+`LinkInferenceTraceEntry` captures per-link provenance (origin, confidence, rationale) for downstream diagnostics and audits.
 
 #### LinkEvidence
 `LinkEvidence` allows workspace providers to contribute explicit relationships with optional confidence and author metadata.

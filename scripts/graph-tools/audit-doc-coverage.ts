@@ -55,6 +55,12 @@ interface AuditReport {
     totals: SymbolCoverageTotals;
     gaps: SymbolCoverageGap[];
   };
+  orphanDocumentSymbols: DocumentSymbolOrphan[];
+}
+
+interface DocumentSymbolOrphan {
+  document: ArtifactSummary;
+  symbol: string;
 }
 
 interface GroupedArtifacts {
@@ -252,6 +258,7 @@ function auditCoverage(store: GraphStore, options: AuditOptions = EMPTY_AUDIT_OP
   const artifacts = store.listArtifacts();
   const cache = new Map<string, LinkedArtifactSummary[]>();
   const docSymbolCache = new Map<string, Set<string>>();
+  const docExportedSymbolCache = new Map<string, string[]>();
 
   function getNeighbors(id: string): LinkedArtifactSummary[] {
     let neighbors = cache.get(id);
@@ -265,6 +272,7 @@ function auditCoverage(store: GraphStore, options: AuditOptions = EMPTY_AUDIT_OP
   const missingDocumentation: ArtifactSummary[] = [];
   const orphanDocuments: ArtifactSummary[] = [];
   const symbolGaps: SymbolCoverageGap[] = [];
+  const docSymbolOrphans: DocumentSymbolOrphan[] = [];
 
   let codeCount = 0;
   let docCount = 0;
@@ -332,6 +340,40 @@ function auditCoverage(store: GraphStore, options: AuditOptions = EMPTY_AUDIT_OP
       if (!touchesCode) {
         orphanDocuments.push(toSummary(artifact));
       }
+
+      const exportedSymbolsDeclared = readDocumentExportedSymbols(artifact.uri, docExportedSymbolCache);
+      if (exportedSymbolsDeclared.length > 0) {
+        const codeNeighbors = neighbors.filter(neighbor => {
+          if (neighbor.kind !== "documents") {
+            return false;
+          }
+          return neighbor.artifact.layer === "code";
+        });
+
+        const availableSymbols = new Set<string>();
+        for (const neighbor of codeNeighbors) {
+          const neighborSymbols = readExportedSymbols(neighbor.artifact.metadata);
+          for (const symbol of neighborSymbols) {
+            if (!symbol.name || symbol.name === "default") {
+              continue;
+            }
+            availableSymbols.add(symbol.name);
+          }
+        }
+
+        for (const declared of exportedSymbolsDeclared) {
+          const candidate = declared.trim();
+          if (!candidate || candidate === "default") {
+            continue;
+          }
+          if (!availableSymbols.has(candidate)) {
+            docSymbolOrphans.push({
+              document: toSummary(artifact),
+              symbol: candidate
+            });
+          }
+        }
+      }
     }
   }
 
@@ -350,7 +392,8 @@ function auditCoverage(store: GraphStore, options: AuditOptions = EMPTY_AUDIT_OP
         undocumented: Math.max(totalSymbols - documentedSymbols, 0)
       },
       gaps: symbolGaps
-    }
+    },
+    orphanDocumentSymbols: docSymbolOrphans
   };
 }
 
@@ -367,19 +410,22 @@ function printReport(report: AuditReport, options: { json: boolean; strictSymbol
 
   if (json) {
     console.log(JSON.stringify(report, null, 2));
-    if (
-      report.missingDocumentation.length === 0 &&
-      report.orphanDocuments.length === 0 &&
-      (report.symbolCoverage.gaps.length === 0 || !strictSymbols)
-    ) {
+    const hasDocGaps = report.missingDocumentation.length > 0 || report.orphanDocuments.length > 0;
+    const hasSymbolGaps = report.symbolCoverage.gaps.length > 0;
+    const hasDocSymbolOrphans = report.orphanDocumentSymbols.length > 0;
+
+    if (!hasDocGaps && !hasSymbolGaps && !hasDocSymbolOrphans) {
       return EXIT_SUCCESS;
     }
-    if (strictSymbols && report.symbolCoverage.gaps.length > 0) {
+
+    if (hasDocSymbolOrphans || (strictSymbols && hasSymbolGaps)) {
       return EXIT_SYMBOL_GAPS;
     }
-    if (report.missingDocumentation.length === 0 && report.orphanDocuments.length === 0) {
+
+    if (!hasDocGaps) {
       return EXIT_SUCCESS;
     }
+
     return EXIT_COVERAGE_GAPS;
   }
 
@@ -390,6 +436,7 @@ function printReport(report: AuditReport, options: { json: boolean; strictSymbol
 
   const hasDocGaps = report.missingDocumentation.length > 0 || report.orphanDocuments.length > 0;
   const hasSymbolGaps = report.symbolCoverage.gaps.length > 0;
+  const hasDocSymbolOrphans = report.orphanDocumentSymbols.length > 0;
 
   if (!hasDocGaps) {
     console.log("  ✔ No file-level documentation gaps detected");
@@ -439,11 +486,23 @@ function printReport(report: AuditReport, options: { json: boolean; strictSymbol
     }
   }
 
-  if (!hasDocGaps && (!hasSymbolGaps || !strictSymbols)) {
+  if (report.orphanDocumentSymbols.length > 0) {
+    console.log("\nDocument exported symbol references missing in code:");
+    const grouped = groupDocumentSymbolOrphans(report.orphanDocumentSymbols);
+    for (const entry of grouped) {
+      const readable = resolveReadablePath(entry.document.uri);
+      console.log(`  ${readable}`);
+      for (const symbol of entry.symbols) {
+        console.log(`    - ${symbol}`);
+      }
+    }
+  }
+
+  if (!hasDocGaps && !hasDocSymbolOrphans && (!hasSymbolGaps || !strictSymbols)) {
     return EXIT_SUCCESS;
   }
 
-  if (strictSymbols && hasSymbolGaps) {
+  if (hasDocSymbolOrphans || (strictSymbols && hasSymbolGaps)) {
     return EXIT_SYMBOL_GAPS;
   }
 
@@ -685,4 +744,105 @@ function groupSymbolGaps(gaps: SymbolCoverageGap[]): GroupedSymbolGaps[] {
 interface GroupedSymbolGaps {
   group: string;
   entries: SymbolCoverageGap[];
+}
+
+function readDocumentExportedSymbols(uri: string, cache: Map<string, string[]>): string[] {
+  const cached = cache.get(uri);
+  if (cached) {
+    return cached;
+  }
+
+  if (!uri.startsWith("file://")) {
+    cache.set(uri, []);
+    return [];
+  }
+
+  let content: string;
+  try {
+    const filePath = fileURLToPath(uri);
+    content = fs.readFileSync(filePath, "utf8");
+  } catch {
+    cache.set(uri, []);
+    return [];
+  }
+
+  const symbols = extractExportedSymbolsSection(content);
+  cache.set(uri, symbols);
+  return symbols;
+}
+
+function extractExportedSymbolsSection(content: string): string[] {
+  const lines = content.split(/\r?\n/);
+  const collected = new Set<string>();
+  let inSection = false;
+  let sectionLevel = 0;
+
+  for (const line of lines) {
+    const headingMatch = line.match(/^(#{1,6})\s+(.*)$/);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      const title = headingMatch[2].trim();
+
+      if (!inSection) {
+        if (title.toLowerCase().startsWith("exported symbols")) {
+          inSection = true;
+          sectionLevel = level;
+        }
+        continue;
+      }
+
+      if (level <= sectionLevel) {
+        break;
+      }
+
+      const candidate = title.trim();
+      if (looksLikeSymbolIdentifier(candidate)) {
+        collected.add(candidate);
+      }
+      continue;
+    }
+
+    if (!inSection) {
+      continue;
+    }
+
+    const matches = line.match(/`([^`]+)`/g);
+    if (!matches) {
+      continue;
+    }
+
+    for (const match of matches) {
+      const symbol = match.slice(1, -1).trim();
+      if (symbol && looksLikeSymbolIdentifier(symbol)) {
+        collected.add(symbol);
+      }
+    }
+  }
+
+  return [...collected];
+}
+
+function looksLikeSymbolIdentifier(candidate: string): boolean {
+  return /^[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)*$/.test(candidate);
+}
+
+function groupDocumentSymbolOrphans(entries: DocumentSymbolOrphan[]): Array<{ document: ArtifactSummary; symbols: string[] }> {
+  const buckets = new Map<string, { summary: ArtifactSummary; symbols: Set<string> }>();
+
+  for (const entry of entries) {
+    const key = entry.document.id;
+    const bucket = buckets.get(key);
+    if (bucket) {
+      bucket.symbols.add(entry.symbol);
+    } else {
+      buckets.set(key, {
+        summary: entry.document,
+        symbols: new Set([entry.symbol])
+      });
+    }
+  }
+
+  return [...buckets.values()]
+    .sort((left, right) => resolveReadablePath(left.summary.uri).localeCompare(resolveReadablePath(right.summary.uri)))
+    .map(entry => ({ document: entry.summary, symbols: [...entry.symbols].sort((a, b) => a.localeCompare(b)) }));
 }

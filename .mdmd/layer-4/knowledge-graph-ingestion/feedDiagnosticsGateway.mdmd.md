@@ -8,17 +8,17 @@
 
 ## Exported Symbols
 
-### `FeedHealthStatus`
-String literal union describing feed health (`healthy`, `degraded`, `blocked`). Drives logger severity and UI labelling so operators can immediately gauge ingest reliability.
+#### FeedHealthStatus
+The `FeedHealthStatus` union describes feed health states (healthy, degraded, blocked) and drives logger severity plus UI labelling so operators can immediately gauge ingest reliability.
 
-### `FeedStatusSummary`
-Canonical snapshot emitted for each health update: captures status, timestamp, log payload, and optional `KnowledgeFeedSummary` metadata that downstream dashboards can render.
+#### FeedStatusSummary
+The `FeedStatusSummary` shape captures status, timestamp, log payload, and optional metadata that downstream dashboards can render.
 
-### `FeedDiagnosticsGatewayOptions`
-Constructor contract bundling optional logger hooks and an `onStatusChanged` callback for observers that need push updates when feed state changes.
+#### FeedDiagnosticsGatewayOptions
+The `FeedDiagnosticsGatewayOptions` interface bundles optional logger hooks and an onStatusChanged callback for observers that need push updates when feed state changes.
 
-### `FeedDiagnosticsGateway`
-Class maintaining per-feed status in memory, routing formatted health messages to the provided logger, and publishing change notifications for UI refreshes.
+#### FeedDiagnosticsGateway
+The `FeedDiagnosticsGateway` class maintains per-feed status in memory, routes formatted health messages to the provided logger, and publishes change notifications for UI refreshes.
 
 ## Responsibility
 Centralize status updates for external knowledge feeds, translating health transitions into structured logs and event callbacks. Maintains the latest observed state per feed so diagnostics views and runtime watchers can present accurate health information.

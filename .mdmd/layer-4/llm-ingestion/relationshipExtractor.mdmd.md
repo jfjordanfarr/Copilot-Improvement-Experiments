@@ -27,13 +27,13 @@
 `RelationshipExtractionPrompt` captures the template metadata and rendered prompt shared with the model.
 
 #### RelationshipExtractionRequest
-`RelationshipExtractionRequest` combines the prompt, template metadata, and optional schema passed to `extractRelationships`.
+`RelationshipExtractionRequest` combines the prompt, template metadata, and optional schema passed to extractRelationships.
 
 #### RelationshipExtractionBatch
 `RelationshipExtractionBatch` packages the candidate relationships, prompt info, and usage details returned by the extractor.
 
 #### RelationshipExtractorLogger
-`RelationshipExtractorLogger` defines the `warn`/`error` hooks used to surface provider issues.
+`RelationshipExtractorLogger` defines the warn/error hooks used to surface provider issues.
 
 #### RelationshipExtractorOptions
 `RelationshipExtractorOptions` wires the model invoker and logger into a constructed extractor.
@@ -45,7 +45,7 @@
 Wrap a provided `ModelInvoker`, enforce JSON response shape, and emit typed relationship batches enriched with provenance metadata (template id, version, prompt hash, model id, usage stats).
 
 ## Entry Points
-- `extractRelationships(request: RelationshipExtractionRequest): Promise<RelationshipExtractionBatch>` invokes the model, validates output, and returns structured relationships + usage metadata.
+- The extractRelationships entry point invokes the model, validates output, and returns structured relationships plus usage metadata.
 
 ## Workflow
 1. Augment the outgoing request with template + prompt hash tags so downstream telemetry can attribute results.

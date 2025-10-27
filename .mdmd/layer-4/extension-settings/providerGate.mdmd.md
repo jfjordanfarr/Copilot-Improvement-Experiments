@@ -14,7 +14,9 @@ Ensure first-time users select how Link-Aware Diagnostics should interact with L
 - **Forced mode**: Environment variable `LINK_AWARE_PROVIDER_MODE` and test mode allow automation to bypass UI prompts.
 
 ## Exported Symbols
-- `ensureProviderSelection` — onboarding helper that persists provider mode choices and refreshes settings.
+
+#### ensureProviderSelection
+The `ensureProviderSelection` helper persists provider mode selections and refreshes extension settings before enabling diagnostics.
 
 ## Internal Flow
 1. Short-circuit when the onboarding flag is already set.

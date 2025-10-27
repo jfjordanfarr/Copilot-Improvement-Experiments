@@ -12,7 +12,7 @@
 Describes a single schema failure (JSON path + error message). Aggregated to render actionable diagnostics.
 
 ### `SchemaValidationResult`
-Wrapper for the validation outcome (`valid` flag plus collected `SchemaViolation[]`).
+Wrapper for the validation outcome (boolean flag plus collected SchemaViolation entries).
 
 ### `validateSnapshot`
 Non-throwing validator that inspects snapshot artifacts/links and returns a `SchemaValidationResult`.

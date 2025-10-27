@@ -7,20 +7,20 @@
 
 ## Exported Symbols
 
-### `KnowledgeGraphIngestorLogger`
-Optional logger interface providing `info`, `warn`, and `error` used for detailed ingest telemetry.
+#### KnowledgeGraphIngestorLogger
+The `KnowledgeGraphIngestorLogger` interface provides optional info, warn, and error hooks used for detailed ingest telemetry.
 
-### `KnowledgeGraphIngestorOptions`
-Constructor configuration combining the graph store, shared bridge, checkpoint store, diagnostics gateway, and optional logger/clock overrides.
+#### KnowledgeGraphIngestorOptions
+The `KnowledgeGraphIngestorOptions` interface combines the graph store, shared bridge, checkpoint store, diagnostics gateway, and optional logger or clock overrides.
 
-### `SnapshotIngestResult`
-Return payload from `ingestSnapshot`, exposing the normalized snapshot and resulting `KnowledgeSnapshot` applied to the store.
+#### SnapshotIngestResult
+The `SnapshotIngestResult` shape is returned from ingestSnapshot, exposing the normalized snapshot and resulting knowledge snapshot applied to the store.
 
-### `StreamIngestResult`
-Return payload from `ingestStreamEvent`, including the normalized stream event and persisted checkpoint for idempotency.
+#### StreamIngestResult
+The `StreamIngestResult` shape is returned from ingestStreamEvent, including the normalized stream event and persisted checkpoint for idempotency.
 
-### `KnowledgeGraphIngestor`
-Stateful coordinator that validates, normalizes, and persists knowledge feed snapshots/stream events while managing checkpoints and diagnostics.
+#### KnowledgeGraphIngestor
+The `KnowledgeGraphIngestor` class validates, normalizes, and persists knowledge feed snapshots and stream events while managing checkpoints and diagnostics.
 
 ## Responsibility
 Coordinates validation and persistence of external knowledge-graph feeds. Normalizes payloads, writes them through the shared `KnowledgeGraphBridge`, prunes stale artifacts keyed by `metadata.knowledgeFeedId`, manages per-feed checkpoints, and updates feed diagnostics.

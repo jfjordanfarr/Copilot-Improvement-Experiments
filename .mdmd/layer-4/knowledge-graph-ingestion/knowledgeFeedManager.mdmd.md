@@ -7,29 +7,29 @@
 
 ## Exported Symbols
 
-### `Disposable`
-Simple interface with a `dispose` method. Returned by `onStatusChanged` so listeners can unsubscribe from feed health notifications.
+#### Disposable
+The `Disposable` interface exposes a dispose method and is returned by the onStatusChanged listener registration so observers can unsubscribe from feed health notifications.
 
-### `KnowledgeFeedManagerLogger`
-Shape for optional logger dependencies supplying `info`, `warn`, and `error`. Allows host environments to plug in structured logging without hard-coding transports.
+#### KnowledgeFeedManagerLogger
+The `KnowledgeFeedManagerLogger` interface defines optional logger dependencies supplying info, warn, and error hooks so hosts can plug in structured logging without hard-coding transports.
 
-### `FeedSnapshotSource`
-Descriptor for loading initial snapshots: includes a label and async loader returning an `ExternalSnapshot`.
+#### FeedSnapshotSource
+The `FeedSnapshotSource` descriptor identifies how to load initial snapshots, providing a label and async loader that returns an external snapshot payload.
 
-### `FeedStreamSource`
-Descriptor for stream ingestion, exposing a label and iterator that yields `ExternalStreamEvent`s. Supports lazy async construction of stream iterables.
+#### FeedStreamSource
+The `FeedStreamSource` descriptor exposes a label and iterator that yields external stream events, supporting lazy async construction of stream iterables.
 
-### `FeedConfiguration`
-Per-feed configuration assembled from runtime settings: identifiers plus optional snapshot/stream descriptors and metadata bag.
+#### FeedConfiguration
+The `FeedConfiguration` interface captures per-feed settings: identifiers plus optional snapshot and stream descriptors with metadata.
 
-### `BackoffOptions`
-Tuning knobs for the exponential backoff (initial delay, multiplier, maximum). Passed to internal backoff helper.
+#### BackoffOptions
+The `BackoffOptions` shape carries tuning knobs for exponential backoff (initial delay, multiplier, maximum) used by the internal scheduler.
 
-### `KnowledgeFeedManagerOptions`
-Constructor arguments bundling feed configurations, the `KnowledgeGraphIngestor`, diagnostics gateway, optional logger, backoff settings, and clock override.
+#### KnowledgeFeedManagerOptions
+The `KnowledgeFeedManagerOptions` interface bundles feed configurations, the knowledge graph ingestor, diagnostics gateway, optional logger, backoff settings, and clock override.
 
-### `KnowledgeFeedManager`
-Coordinator class that boots configured feeds, ingests snapshots, consumes stream events with backoff/retry, maintains healthy feed descriptors, and notifies observers of status changes.
+#### KnowledgeFeedManager
+The `KnowledgeFeedManager` class coordinates feeds, ingests snapshots, consumes stream events with backoff and retry, maintains healthy feed descriptors, and notifies observers of status changes.
 
 ## Responsibility
 Coordinates external knowledge feeds: loading snapshots, streaming deltas, tracking health status, and exposing currently healthy feeds to the `ArtifactWatcher`/`LinkInferenceOrchestrator`. Applies backoff and recovery per the feed resilience strategy.

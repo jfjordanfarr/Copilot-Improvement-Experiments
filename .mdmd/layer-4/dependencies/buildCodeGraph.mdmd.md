@@ -11,10 +11,10 @@
 `CodeImpactEdge` captures each trigger→dependent hop discovered during traversal, preserving the originating artifact, the dependent, link metadata, depth, and the accumulated path so downstream tooling can render ripple chains.
 
 #### BuildCodeGraphOptions
-`BuildCodeGraphOptions` configures traversal bounds via `maxDepth` and `linkKinds`, allowing callers to widen relationship kinds or explore deeper dependency radii when UX affordances permit.
+The `BuildCodeGraphOptions` interface configures traversal bounds via the maxDepth and linkKinds fields, allowing callers to widen relationship kinds or explore deeper dependency radii when UX affordances permit.
 
 #### buildCodeImpactGraph
-`buildCodeImpactGraph` performs a breadth-first walk over the knowledge graph, returning `CodeImpactEdge[]` that respect depth limits, deduplicate trigger/dependent pairs, and mirror the caller-supplied trigger metadata.
+The `buildCodeImpactGraph` function performs a breadth-first walk over the knowledge graph, returning `CodeImpactEdge[]` that respect depth limits, deduplicate trigger/dependent pairs, and mirror the caller-supplied trigger metadata.
 
 ## Responsibility
 Traverse the knowledge graph outward from one or more trigger artifacts to compute a breadth-first set of code impact edges. These edges power the dependency inspector and ripple diagnostics by describing how a saved artifact influences downstream dependents.

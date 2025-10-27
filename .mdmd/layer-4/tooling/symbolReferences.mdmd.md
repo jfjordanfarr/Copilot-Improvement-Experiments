@@ -7,13 +7,13 @@
 ## Exported Symbols
 
 #### SymbolIssueKind
-`SymbolIssueKind` lists the anomaly categories surfaced by the audit (`duplicate-heading`, `missing-anchor`).
+`SymbolIssueKind` lists the anomaly categories surfaced by the audit (duplicate-heading, missing-anchor).
 
 #### SymbolIssueSeverity
-`SymbolIssueSeverity` defines the severity levels (`warn`, `error`) applied to issues.
+`SymbolIssueSeverity` defines the severity levels (warn, error) applied to issues.
 
 #### SymbolRuleSetting
-`SymbolRuleSetting` encodes user configuration for each rule (`off`, `warn`, `error`).
+`SymbolRuleSetting` encodes user configuration for each rule (off, warn, error).
 
 #### SymbolReferenceIssue
 `SymbolReferenceIssue` captures the file, position, slug, and descriptive message for a detected issue.

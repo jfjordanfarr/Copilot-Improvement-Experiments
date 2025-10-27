@@ -24,7 +24,7 @@ Change-event metadata used to decide whether a ripple/doc diagnostic should surf
 Extends the emission decision payload with message, severity, and link hints before persisting.
 
 ### `AcknowledgeOutcome`
-Discriminated union describing acknowledgement results (`acknowledged`, `already_acknowledged`, or `not_found`).
+Discriminated union describing acknowledgement results (acknowledged, already_acknowledged, or not_found).
 
 ### `AcknowledgementService`
 Core class orchestrating emission gating, acknowledgement persistence, and hysteresis lifecycle.
@@ -44,8 +44,8 @@ Link-aware diagnostics treats every emitted warning as a contract: once a develo
 - The service is intentionally synchronous: callers (e.g., `publishDocDiagnostics`) can assume persistence finished before returning to the client.
 
 ## Error Handling & Logging
-- Missing diagnostics during acknowledgement result in a warning and a `not_found` outcome—callers can surface UI errors without throwing.
-- Duplicate acknowledgements short-circuit with an `already_acknowledged` response to keep client UX idempotent.
+- Missing diagnostics during acknowledgement result in a warning and a not_found outcome—callers can surface UI errors without throwing.
+- Duplicate acknowledgements short-circuit with an already_acknowledged response to keep client UX idempotent.
 - Hysteresis release warns when associated artifacts are missing, avoiding crashes if the graph was pruned.
 
 ## Follow-ups

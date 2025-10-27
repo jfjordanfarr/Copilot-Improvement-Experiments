@@ -7,12 +7,24 @@
 - Related server doc: [PublishDocDiagnostics](../server-diagnostics/publishDocDiagnostics.mdmd.md)
 
 ## Exported Symbols
-- `TreeNode` — discriminated union representing tree targets and individual diagnostics.
-- `DiagnosticsTreeDataProvider` — VS Code tree provider and refreshable snapshot cache.
-- `isDiagnosticNode` — type guard used by commands before acknowledging diagnostics.
-- `buildTreeAcknowledgementArgs` — command helper that extracts acknowledgement payloads from nodes.
-- `DiagnosticsTreeRegistration` — disposable handle exposing the provider instance.
-- `registerDiagnosticsTreeView` — activation entry point that binds the provider and commands.
+
+#### TreeNode
+The `TreeNode` discriminated union represents diagnostics tree nodes, covering high-level entry points and individual diagnostic leaves displayed in the view.
+
+#### DiagnosticsTreeDataProvider
+The `DiagnosticsTreeDataProvider` class implements the VS Code tree provider with a refreshable snapshot cache.
+
+#### isDiagnosticNode
+The `isDiagnosticNode` type guard is used by commands before acknowledging diagnostics.
+
+#### buildTreeAcknowledgementArgs
+The `buildTreeAcknowledgementArgs` helper extracts acknowledgement payloads from nodes.
+
+#### DiagnosticsTreeRegistration
+The `DiagnosticsTreeRegistration` interface exposes the provider instance through a disposable handle.
+
+#### registerDiagnosticsTreeView
+The `registerDiagnosticsTreeView` function is the activation entry point that binds the provider and commands.
 
 ## Responsibility
 Render outstanding diagnostics in a tree view grouped by target artifact. Allows users to open files with unresolved issues, acknowledge individual diagnostics, review AI-generated assessments, and refresh the snapshot pulled from the language server.

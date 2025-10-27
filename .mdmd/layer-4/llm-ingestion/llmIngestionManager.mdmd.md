@@ -22,14 +22,14 @@
 `CreateRelationshipExtractorOptions` passes the LSP connection and provider guard into the default relationship extractor factory.
 
 #### createDefaultRelationshipExtractor
-`createDefaultRelationshipExtractor` builds a `RelationshipExtractor` that honours provider mode, dispatches `INVOKE_LLM_REQUEST` messages, and logs invocation outcomes.
+`createDefaultRelationshipExtractor` builds a `RelationshipExtractor` that honours provider mode, dispatches invoke-LLM requests, and logs invocation outcomes.
 
 ## Responsibility
 Queue artifact ids for ingestion, trigger the orchestrator run loop, and surface ingestion outcomes to the language server console. Also exposes a default `RelationshipExtractor` factory that now delegates invocations to the extension when provider mode permits while remaining deterministic if no provider is configured.
 
 ## Entry Points
 - `enqueue(artifactIds, reason?)` deduplicates artifact ids, pushes them into the orchestrator queue, and schedules an asynchronous run.
-- `createDefaultRelationshipExtractor({ connection, providerGuard })` returns a `RelationshipExtractor` whose invoker respects provider settings: it skips work (logging once) when disabled, or forwards `INVOKE_LLM_REQUEST` messages to the client when enabled.
+- `createDefaultRelationshipExtractor({ connection, providerGuard })` returns a `RelationshipExtractor` whose invoker respects provider settings: it skips work (logging once) when disabled, or forwards invoke-LLM requests to the client when enabled.
 
 ## Workflow
 1. Accept artifact ids from change processors or other runtime callers (notably [`changeProcessor.ts`](../../../packages/server/src/runtime/changeProcessor.ts)); ignore empty batches to avoid needless runs.

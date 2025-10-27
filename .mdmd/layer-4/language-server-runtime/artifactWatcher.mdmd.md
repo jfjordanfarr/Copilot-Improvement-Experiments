@@ -14,10 +14,10 @@
 `DocumentStore` abstracts the text document cache used to retrieve live editor content before falling back to disk reads.
 
 #### ArtifactWatcherLogger
-`ArtifactWatcherLogger` defines minimal `info`/`warn` hooks for structured watcher telemetry.
+`ArtifactWatcherLogger` defines minimal info/warn hooks for structured watcher telemetry.
 
 #### ArtifactWatcherOptions
-`ArtifactWatcherOptions` wires the `DocumentStore`, `GraphStore`, path reference detector, and logger into the watcher, plus optional size thresholds and debounce windows.
+`ArtifactWatcherOptions` wires the document store, graph store, path reference detector, and logger into the watcher, plus optional size thresholds and debounce windows.
 
 #### TrackedArtifactChange
 `TrackedArtifactChange` captures the normalized change payload shared with inference orchestrators, including canonical URIs, prior artifacts, content, and hints.

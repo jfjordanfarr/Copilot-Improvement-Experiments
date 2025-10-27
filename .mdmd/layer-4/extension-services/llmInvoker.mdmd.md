@@ -6,12 +6,24 @@
 - Downstream consumer: [`Analyze With AI Command`](../extension-commands/analyzeWithAI.mdmd.md)
 
 ## Exported Symbols
-- `LlmProviderMode` — settings-derived enum constraining invocation behaviour (`prompt`, `local-only`, `disabled`).
-- `LlmInvocationFailureReason` — error reason union that callers can switch on for UX decisions.
-- `LlmInvocationError` — error class exposing the failure reason plus optional cause.
-- `InvokeChatOptions` — parameter bag for configuring prompt text, tags, and cancellation.
-- `InvokeChatResult` — shape returned after an invocation, bundling raw text and provider metadata.
-- `LlmInvoker` — service wrapper that caches model choices and performs gated invocations.
+
+#### LlmProviderMode
+The `LlmProviderMode` type enumerates the allowed provider modes (prompt, local-only, disabled) pulled from the extension settings snapshot to gate invocations before any VS Code API calls run.
+
+#### LlmInvocationFailureReason
+The `LlmInvocationFailureReason` union defines failure reasons that callers switch on to tailor UX when the invoker aborts (disabled, no-model, cancelled, failed).
+
+#### LlmInvocationError
+The `LlmInvocationError` class carries the failure reason and optional underlying cause so upstream commands can branch without parsing strings.
+
+#### InvokeChatOptions
+The `InvokeChatOptions` interface is the options bag accepted by the invoke method covering prompt text, justification metadata, tags, and cancellation tokens.
+
+#### InvokeChatResult
+The `InvokeChatResult` interface returns response text plus the resolved language model chat instance, allowing callers to persist provenance alongside the generated content.
+
+#### LlmInvoker
+The `LlmInvoker` class is the session-scoped service that filters eligible models, prompts the user when required, caches selections, and streams chat responses.
 
 ## Purpose
 Encapsulate VS Code's `vscode.lm` chat model selection and invocation logic so extension commands can request language model output without duplicating provider-mode checks, Quick Pick UI, or streaming assembly. The service also caches the most recent model selection to make repeated requests faster.

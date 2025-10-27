@@ -21,7 +21,7 @@
 `LLMRelationshipSuggestion` records model-proposed relationships with confidence and rationale.
 
 #### TraceOrigin
-`TraceOrigin` tags inference traces with their provenance (`heuristic`, `hint`, or `llm`).
+`TraceOrigin` tags inference traces with their provenance (heuristic, hint, or llm).
 
 #### FallbackInferenceResult
 `FallbackInferenceResult` aggregates inferred artifacts, relationships, and trace entries produced by the pipeline.
@@ -36,7 +36,7 @@ Generate provisional knowledge graph artifacts and links when external feeds are
 - **ArtifactSeed**: Minimal description of workspace files provided by watchers and providers; may include inline content.
 - **Heuristic passes**: Markdown links, wiki links, import statements, and `@link` directives produce candidate relationships.
 - **LLM bridge**: Optional `FallbackLLMBridge` augments heuristics with model-driven suggestions when content volume justifies the cost.
-- **Inference traces**: Every generated link records origin (`heuristic`, `llm`, or `hint`) plus rationale for debugging and audit.
+- **Inference traces**: Every generated link records origin (heuristic, llm, or hint) plus rationale for debugging and audit.
 
 ## Public API
 - `inferFallbackGraph(input, options?): Promise<FallbackInferenceResult>`

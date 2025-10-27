@@ -8,20 +8,20 @@
 
 ## Exported Symbols
 
-### `KnowledgeGraphBridgeLogger`
-Optional logger contract injected for structured logging. Supplies `info`, `warn`, and `error` hooks reused across child components.
+#### KnowledgeGraphBridgeLogger
+The `KnowledgeGraphBridgeLogger` interface is an optional logger contract injected for structured logging, supplying info, warn, and error hooks reused across child components.
 
-### `KnowledgeGraphBridgeServiceOptions`
-Constructor bundle providing the graph store, storage directory, workspace root, logger, factories, and configuration overrides needed to wire ingestion.
+#### KnowledgeGraphBridgeServiceOptions
+The `KnowledgeGraphBridgeServiceOptions` interface bundles the graph store, storage directory, workspace root, logger, factories, and configuration overrides needed to wire ingestion.
 
-### `KnowledgeGraphBridgeStartResult`
-Return shape from `start`, reporting how many feeds were configured. Helps callers decide whether ingestion activated.
+#### KnowledgeGraphBridgeStartResult
+The `KnowledgeGraphBridgeStartResult` shape is returned from the start lifecycle method, reporting how many feeds were configured so callers can decide whether ingestion activated.
 
-### `KnowledgeGraphBridgeDisposable`
-Disposable handle returned by `onStatusChanged`, allowing listeners to unsubscribe from bridge-level status notifications.
+#### KnowledgeGraphBridgeDisposable
+The `KnowledgeGraphBridgeDisposable` handle is returned by the onStatusChanged listener registration, allowing observers to unsubscribe from bridge-level status notifications.
 
-### `KnowledgeGraphBridgeService`
-Facade class that discovers feed configurations, constructs ingestion infrastructure, manages lifecycle, and forwards health updates to listeners.
+#### KnowledgeGraphBridgeService
+The `KnowledgeGraphBridgeService` class discovers feed configurations, constructs ingestion infrastructure, manages lifecycle, and forwards health updates to listeners.
 
 ## Responsibility
 Coordinates discovery, ingestion, and health tracking for external knowledge feeds. Orchestrates snapshot/stream processing, checkpoint persistence, and diagnostics reporting so the runtime can blend static descriptors with workspace-inferred links.

@@ -9,20 +9,20 @@
 
 ## Exported Symbols
 
-### `FeedFormat`
-String literal union describing supported feed payloads (`lsif`, `scip`, `external-snapshot`, `unknown`). Guides downstream branching and confidence thresholds.
+#### FeedFormat
+The `FeedFormat` union describes supported feed payloads (lsif, scip, external-snapshot, unknown) and guides downstream branching plus confidence thresholds.
 
-### `FormatDetectionResult`
-Return payload from `detectFormat`, pairing the detected `FeedFormat` with a confidence score so callers can decide whether to trust automatic parsing.
+#### FormatDetectionResult
+The `FormatDetectionResult` shape is returned from `detectFormat`, pairing the detected feed format with a confidence score so callers can decide whether to trust automatic parsing.
 
-### `ParseFeedFileOptions`
-Parameters required to parse a feed file (paths, feed id, optional confidence override). Passed through to LSIF/SCIP parser adapters.
+#### ParseFeedFileOptions
+The `ParseFeedFileOptions` interface carries the parameters required to parse a feed file (paths, feed id, optional confidence override) and is passed through to LSIF or SCIP parser adapters.
 
-### `detectFormat`
-Fast structural probe that inspects raw file content to classify LSIF, SCIP, or ready-made snapshots while avoiding expensive parsing when possible.
+#### detectFormat
+The `detectFormat` function is a fast structural probe that inspects raw file content to classify LSIF, SCIP, or ready-made snapshots while avoiding expensive parsing when possible.
 
-### `parseFeedFile`
-Orchestrates end-to-end ingestion for a single file: reads contents, detects format, dispatches to the appropriate parser, and normalizes the result into an `ExternalSnapshot`.
+#### parseFeedFile
+The `parseFeedFile` function orchestrates end-to-end ingestion for a single file: it reads contents, detects format, dispatches to the appropriate parser, and normalizes the result into an external snapshot.
 
 ## Responsibility
 Normalize heterogeneous knowledge feed payloads into the internal `ExternalSnapshot` shape. Detects whether incoming files are newline-delimited LSIF, SCIP indexes, or already-conforming external snapshots, enabling downstream ingestion to treat all feeds uniformly.

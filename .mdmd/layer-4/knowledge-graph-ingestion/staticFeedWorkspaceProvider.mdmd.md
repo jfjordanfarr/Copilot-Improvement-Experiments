@@ -11,10 +11,10 @@
 Configuration describing the workspace root and optional logger for warning surfacing when files are missing.
 
 ### `createStaticFeedWorkspaceProvider`
-Factory that returns a `WorkspaceLinkProvider` capable of loading static feed JSON fixtures, generating artifact seeds, and emitting link evidences.
+Factory that returns a workspace link provider capable of loading static feed JSON fixtures, generating artifact seeds, and emitting link evidences.
 
 ## Responsibility
-Expose a workspace-scope fallback provider that seeds the knowledge graph with statically defined artifacts and links when external feeds are unavailable. Reads JSON fixtures from `data/knowledge-feeds/` and produces `WorkspaceLinkContribution` objects for the link inference orchestrator.
+Expose a workspace-scope fallback provider that seeds the knowledge graph with statically defined artifacts and links when external feeds are unavailable. Reads JSON fixtures from `data/knowledge-feeds/` and produces workspace link contribution objects for the link inference orchestrator.
 
 ## Internal Flow
 1. Compute the `data/knowledge-feeds` directory relative to `rootPath` and collect `.json` entries when present.

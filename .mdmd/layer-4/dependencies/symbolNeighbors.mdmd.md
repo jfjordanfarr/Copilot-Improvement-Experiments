@@ -12,10 +12,10 @@
 ## Exported Symbols
 
 #### InspectSymbolNeighborsOptions
-`InspectSymbolNeighborsOptions` bundles the `GraphStore` handle plus optional `artifactId`, `artifactUri`, traversal depth, result limits, and relationship filters so callers can tailor how much of the neighborhood to explore.
+The `InspectSymbolNeighborsOptions` interface bundles the graph store handle plus optional artifactId, artifactUri, traversal depth, result limits, and relationship filters so callers can tailor how much of the neighborhood to explore.
 
 #### inspectSymbolNeighbors
-`inspectSymbolNeighbors` walks the knowledge graph breadth-first around the origin artifact, returning an `InspectSymbolNeighborsResult` that groups neighbors by link kind and reports summary metrics for the dependency inspector.
+The `inspectSymbolNeighbors` function walks the knowledge graph breadth-first around the origin artifact, returning the shared inspect result that groups neighbors by link kind and reports summary metrics for the dependency inspector.
 
 ## Purpose
 This module computes the transitive neighborhood around a knowledge artifact so Copilot can answer "what else does this symbol touch?" without forcing the extension to materialise the graph client-side. It exists to provide a canonical, server-side traversal that powers dependency-aware diagnostics and upcoming symbol-inspection commands.

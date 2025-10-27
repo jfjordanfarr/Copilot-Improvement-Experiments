@@ -15,11 +15,18 @@ Provide the `linkDiagnostics.inspectDependencies` command that displays downstre
 - **Edge description**: `describeEdgePath` summarizes transitive chains (e.g., `via docs/api.md → src/service.ts`) to contextualize deeper dependencies.
 
 ## Exported Symbols
-- `registerDependencyQuickPick` — command registrar that instantiates the controller and binds VS Code command id.
-- `DependencyQuickPickController` — exposes `show` for reuse in tests and other command surfaces.
-- `describeEdgePath` — helper that summarizes transitive dependency paths for UI consumption.
-- `InspectDependenciesResultValidator` — exported schema for consumers needing contract validation.
-- `ParsedEdge` — inferred dependency edge type used by downstream features and tests.
+
+#### registerDependencyQuickPick
+The `registerDependencyQuickPick` function instantiates the controller and binds the VS Code command identifier.
+
+#### DependencyQuickPickController
+The `DependencyQuickPickController` class exposes the show workflow for reuse in tests and other command surfaces.
+
+#### describeEdgePath
+The `describeEdgePath` helper summarizes transitive dependency paths for quick-pick detail strings.
+
+#### InspectDependenciesResultValidator
+The `InspectDependenciesResultValidator` schema allows downstream consumers to validate dependency inspection payloads.
 
 ## Internal Flow
 1. Resolve the target URI from command arguments or the active editor; surface an info toast when nothing is selected.

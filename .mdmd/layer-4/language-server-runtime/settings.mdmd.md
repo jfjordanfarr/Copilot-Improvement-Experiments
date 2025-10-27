@@ -8,10 +8,10 @@
 ## Exported Symbols
 
 #### extractExtensionSettings
-`extractExtensionSettings` normalises the VS Code settings payload into the internal `ExtensionSettings` shape, handling nested `settings` containers and per-feature namespaces.
+`extractExtensionSettings` normalises the VS Code settings payload into the internal ExtensionSettings shape, handling nested settings containers and per-feature namespaces.
 
 #### extractTestModeOverrides
-`extractTestModeOverrides` pulls test harness overrides (used by integration suites) into the same `ExtensionSettings` structure for easy merge.
+`extractTestModeOverrides` pulls test harness overrides (used by integration suites) into the same ExtensionSettings structure for easy merge.
 
 #### mergeExtensionSettings
 `mergeExtensionSettings` overlays optional overrides onto the base settings so runtime configuration can honour test-mode tweaks without mutating the original snapshot.

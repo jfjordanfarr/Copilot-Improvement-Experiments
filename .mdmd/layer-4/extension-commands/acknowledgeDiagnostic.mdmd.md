@@ -7,9 +7,15 @@
 - Related surfaces: [`DocDiagnosticProvider`](../extension-diagnostics/docDiagnosticProvider.mdmd.md), [`Diagnostics Tree View`](../extension-views/diagnosticsTree.mdmd.md)
 
 ## Exported Symbols
-- `ACKNOWLEDGE_DIAGNOSTIC_COMMAND` — shared command id invoked by quick fixes, tree actions, and tests.
-- `AcknowledgementWorkflowOptions` — optional callbacks for reacting to acknowledgement events (e.g., refreshing trees).
-- `registerAcknowledgementWorkflow` — binds the command and server notification, pruning client-side diagnostics when records clear.
+
+#### ACKNOWLEDGE_DIAGNOSTIC_COMMAND
+The `ACKNOWLEDGE_DIAGNOSTIC_COMMAND` identifier powers quick fixes, diagnostics tree actions, and automated acknowledgement flows.
+
+#### AcknowledgementWorkflowOptions
+`AcknowledgementWorkflowOptions` carries optional callbacks so hosts can react when the acknowledgement pipeline completes.
+
+#### registerAcknowledgementWorkflow
+The `registerAcknowledgementWorkflow` function binds the command and server notification, pruning client-side diagnostics when records clear.
 
 ## Purpose
 Provide a single acknowledgement workflow that dual-serves UI gestures (tree view, Problems quick fixes) and server push notifications. The command requests acknowledgement from the language server, surfaces UX feedback, and removes stale diagnostics from the client cache so users immediately see the updated state.

@@ -8,14 +8,14 @@
 
 ## Exported Symbols
 
-### `LSIFParserOptions`
-Configuration for the parser (project root, feed id, optional confidence) so URIs normalise correctly and metadata carries deterministic provenance.
+#### LSIFParserOptions
+The `LSIFParserOptions` type carries the parser configuration (project root, feed ID, optional confidence) so URIs normalise correctly and metadata preserves deterministic provenance.
 
-### `LSIFParser`
-Stateful parser class that indexes LSIF vertices/edges, extracts artifacts/links, and emits an `ExternalSnapshot`.
+#### LSIFParser
+The `LSIFParser` class indexes LSIF vertices/edges, extracts artifacts/links, and emits an external snapshot for downstream ingestion.
 
-### `parseLSIF`
-Convenience wrapper that instantiates `LSIFParser` and returns the parsed snapshot in one call.
+#### parseLSIF
+The `parseLSIF` helper instantiates `LSIFParser` and returns the parsed snapshot in a single call.
 
 ## Responsibility
 Translate LSIF newline-delimited JSON dumps into the project-wide `ExternalSnapshot` format. The parser lifts documents into artifacts and builds cross-file reference links, allowing the ingestion pipeline to fold LSIF exports into the link-aware diagnostics graph.

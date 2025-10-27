@@ -14,13 +14,13 @@
 ## Exported Symbols
 
 #### LlmIngestionLogger
-`LlmIngestionLogger` defines the `info`, `warn`, and `error` hooks the orchestrator uses so callers can route ingestion telemetry to custom sinks.
+`LlmIngestionLogger` defines the info, warn, and error hooks the orchestrator uses so callers can route ingestion telemetry to custom sinks.
 
 #### EnqueueOptions
-`EnqueueOptions` lets the runtime provide artifact identifiers and the enqueue `reason`, giving operators traceability for why work entered the queue.
+`EnqueueOptions` lets the runtime provide artifact identifiers and the enqueue reason, giving operators traceability for why work entered the queue.
 
 #### LlmIngestionResult
-`LlmIngestionResult` captures per-artifact outcomes (`stored`, `skipped`, `error`, dry-run payload), enabling managers to roll up ingestion health.
+`LlmIngestionResult` captures per-artifact outcomes (stored, skipped, error, dry-run payload), enabling managers to roll up ingestion health.
 
 #### LlmIngestionOrchestratorOptions
 `LlmIngestionOrchestratorOptions` wires together the `GraphStore`, prompt renderer, calibrator, file reader, and configuration knobs used to run ingestion loops.

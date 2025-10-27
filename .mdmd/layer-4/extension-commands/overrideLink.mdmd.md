@@ -14,7 +14,9 @@ Expose the `linkDiagnostics.overrideLink` VS Code command used to correct or reb
 - **Rebind flow**: Iterates impacted artifacts, emitting batched override requests to restore relationships after renames/deletions.
 
 ## Exported Symbols
-- `registerOverrideLinkCommand` — command registrar handling both manual override and rebind payloads.
+
+#### registerOverrideLinkCommand
+The `registerOverrideLinkCommand` function handles both manual override and rebind payloads.
 
 ## Internal Flow
 1. Register the command and branch between manual override and rebind paths depending on payload.

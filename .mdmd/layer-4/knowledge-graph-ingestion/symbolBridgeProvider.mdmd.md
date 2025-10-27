@@ -8,7 +8,7 @@
 ## Exported Symbols
 
 #### createSymbolBridgeProvider
-`createSymbolBridgeProvider` adapts an LSP `Connection` into a shared `WorkspaceLinkProvider`, issuing `COLLECT_WORKSPACE_SYMBOLS_REQUEST` calls and normalising contributions (seeds, hints, evidences) for the knowledge graph bridge.
+`createSymbolBridgeProvider` adapts an LSP connection into a shared workspace link provider, issuing COLLECT_WORKSPACE_SYMBOLS_REQUEST calls and normalising contributions (seeds, hints, evidences) for the knowledge graph bridge.
 
 ## Responsibility
 Bridge workspace symbol insights from the VS Code extension into the knowledge graph ingestion pipeline. The provider issues a typed request over the LSP connection, validates the payload with `zod`, and exposes structured contributions that downstream components merge into the graph.
@@ -25,8 +25,8 @@ Bridge workspace symbol insights from the VS Code extension into the knowledge g
 - Guards against missing contribution payloads, warning operators instead of attempting to dereference `undefined` shapes.
 
 ## Observability
-- Logger hooks (`info`/`warn`) emit namespaced messages (`[symbol-bridge] ...`) for ease of filtration.
-- Request identifiers reuse the shared `COLLECT_WORKSPACE_SYMBOLS_REQUEST` constant to track transport usage across components.
+- Logger hooks (info/warn) emit namespaced messages (`[symbol-bridge] ...`) for ease of filtration.
+- Request identifiers reuse the shared COLLECT_WORKSPACE_SYMBOLS_REQUEST constant to track transport usage across components.
 
 ## Follow-ups
 - Back off or retry on transient LSP failures once telemetry reveals common failure modes.

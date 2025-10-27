@@ -12,7 +12,7 @@
 `ChangeProcessorContext` carries the live collaborators (graph store, artifact watcher, runtime settings, acknowledgements, LLM manager) that the processor needs to persist changes, compute ripples, and publish diagnostics.
 
 #### ChangeProcessor
-`ChangeProcessor` exposes the runtime contract: `process` to handle batches flushed from the change queue and `updateContext` to refresh collaborators when the language server bootstraps or settings change.
+`ChangeProcessor` exposes the runtime contract: the process method handles batches flushed from the change queue and updateContext refreshes collaborators when the language server bootstraps or settings change.
 
 #### ChangeProcessorOptions
 `ChangeProcessorOptions` wires in the LSP connection, provider guard, hysteresis controller, initial context, and diagnostic sender used to evaluate ripples and throttle diagnostic noise.

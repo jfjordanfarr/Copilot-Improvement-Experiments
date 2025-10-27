@@ -6,8 +6,12 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
 
 ## Exported Symbols
-- `LinkDiagnosticsSettings` — shape describing the extension configuration snapshot shared across runtime boundaries.
-- `ConfigService` — disposable wrapper that watches configuration changes and emits updated settings.
+
+#### LinkDiagnosticsSettings
+The `LinkDiagnosticsSettings` interface describes the extension configuration snapshot shared across runtime boundaries.
+
+#### ConfigService
+The `ConfigService` class is a disposable wrapper that watches configuration changes and emits updated settings.
 
 ## Responsibility
 Centralises access to the `linkAwareDiagnostics` configuration namespace, keeping the extension and language client runtime in sync with user preferences (provider consent, debounce windows, diagnostics enablement).

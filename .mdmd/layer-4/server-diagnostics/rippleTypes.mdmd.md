@@ -8,17 +8,17 @@
 ## Exported Symbols
 
 ### `RippleHint`
-Extends the shared `RelationshipHint` contract with optional `depth` and `path` metadata so diagnostics retain ripple provenance (distance from the trigger artifact and intermediate hops).
+Extends the shared RelationshipHint contract with optional depth and path metadata so diagnostics retain ripple provenance (distance from the trigger artifact and intermediate hops).
 
 ### `RippleImpact`
-Package-local data shape coupling a target `KnowledgeArtifact` with its `RippleHint`, allowing diagnostics pipelines to route emissions and render contextual metadata.
+Package-local data shape coupling a target KnowledgeArtifact with its RippleHint, allowing diagnostics pipelines to route emissions and render contextual metadata.
 
 ## Purpose
 Provides the minimal TypeScript surface that ties shared knowledge graph hints to server-side diagnostics workflows. By centralising the ripple metadata extension, downstream publishers can evolve depth/path handling without duplicating structural definitions.
 
 ## Behaviour Notes
-- `depth` remains optional to support legacy inference results; downstream code defaults to `1` when omitted.
-- `path` captures intermediate artifact URIs, enabling future UI affordances such as hop-by-hop visualisations.
+- Depth remains optional to support legacy inference results; downstream code defaults to 1 when omitted.
+- Path captures intermediate artifact URIs, enabling future UI affordances such as hop-by-hop visualisations.
 
 ## Follow-ups
 - Consider promoting `RippleImpact` to the shared contracts package if extension-side tooling needs to consume the same shape.

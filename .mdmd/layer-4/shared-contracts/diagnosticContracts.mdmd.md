@@ -13,7 +13,7 @@
 `AcknowledgeDiagnosticParams` carries the diagnostic id plus actor metadata when recording acknowledgements.
 
 #### AcknowledgeDiagnosticStatus
-`AcknowledgeDiagnosticStatus` enumerates acknowledgement outcomes (`acknowledged`, `already_acknowledged`, `not_found`).
+`AcknowledgeDiagnosticStatus` enumerates acknowledgement outcomes (acknowledged, already_acknowledged, not_found).
 
 #### AcknowledgeDiagnosticResult
 `AcknowledgeDiagnosticResult` reports the acknowledgement status, target identifiers, and timestamps back to the client.

@@ -6,7 +6,7 @@
 ## Exported Symbols
 
 #### SeveritySetting
-`SeveritySetting` enumerates rule severities (`off`, `warn`, `error`).
+`SeveritySetting` enumerates rule severities (off, warn, error).
 
 #### SlopcopConfigSection
 `SlopcopConfigSection` defines shared include/ignore/root options for markdown and asset audits.
@@ -15,10 +15,10 @@
 `SlopcopSymbolConfig` extends the section schema with symbol-specific toggles and severity overrides.
 
 #### SlopcopConfig
-`SlopcopConfig` is the root configuration shape loaded from `slopcop.config.json`.
+`SlopcopConfig` is the root configuration shape loaded from slopcop.config.json.
 
 #### CONFIG_FILE_NAME
-`CONFIG_FILE_NAME` exposes the canonical config filename (`slopcop.config.json`).
+`CONFIG_FILE_NAME` exposes the canonical config filename (slopcop.config.json).
 
 #### loadSlopcopConfig
 `loadSlopcopConfig` reads and normalises configuration from disk, throwing descriptive errors for invalid schemas.
@@ -30,7 +30,7 @@
 `resolveIncludeGlobs` selects section-specific include globs or falls back to defaults.
 
 #### compileIgnorePatterns
-`compileIgnorePatterns` compiles global + section regex patterns into `RegExp` objects, validating inputs.
+`compileIgnorePatterns` compiles global + section regex patterns into RegExp objects, validating inputs.
 
 #### resolveRootDirectories
 `resolveRootDirectories` merges global and section root directories for asset resolution.

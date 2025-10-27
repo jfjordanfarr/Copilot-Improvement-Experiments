@@ -7,7 +7,7 @@
 ## Exported Symbols
 
 #### LinkOverrideReason
-`LinkOverrideReason` enumerates why a link override is being applied (`manual`, `rebind`, `external`).
+`LinkOverrideReason` enumerates why a link override is being applied (manual, rebind, external).
 
 #### OverrideLinkArtifactInput
 `OverrideLinkArtifactInput` identifies the source or target artifact being overridden, including optional language metadata.

@@ -940,14 +940,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "maxDepth",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "linkKinds",
-            "context": "inline-code"
-          },
-          {
             "symbol": "buildCodeImpactGraph",
             "context": "inline-code"
           },
@@ -961,6 +953,10 @@
           },
           {
             "symbol": "depends_on",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "maxDepth",
             "context": "inline-code"
           },
           {
@@ -1028,19 +1024,15 @@
             "context": "inline-code"
           },
           {
-            "symbol": "GraphStore",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "maxDepth",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "linkKinds",
-            "context": "inline-code"
-          },
-          {
             "symbol": "inspectDependencies",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "INSPECT_DEPENDENCIES_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "GraphStore",
             "context": "inline-code"
           },
           {
@@ -1049,10 +1041,6 @@
           },
           {
             "symbol": "InspectDependenciesResult",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "INSPECT_DEPENDENCIES_REQUEST",
             "context": "inline-code"
           },
           {
@@ -1100,6 +1088,14 @@
             "context": "inline-code"
           },
           {
+            "symbol": "maxDepth",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "linkKinds",
+            "context": "inline-code"
+          },
+          {
             "symbol": "settingsBridge.ts",
             "context": "inline-code"
           }
@@ -1122,23 +1118,11 @@
             "context": "inline-code"
           },
           {
-            "symbol": "GraphStore",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "artifactId",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "artifactUri",
-            "context": "inline-code"
-          },
-          {
             "symbol": "inspectSymbolNeighbors",
             "context": "inline-code"
           },
           {
-            "symbol": "InspectSymbolNeighborsResult",
+            "symbol": "GraphStore",
             "context": "inline-code"
           },
           {
@@ -1151,6 +1135,14 @@
           },
           {
             "symbol": "graphStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "artifactId",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "artifactUri",
             "context": "inline-code"
           },
           {
@@ -1404,15 +1396,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "show",
-            "context": "inline-code"
-          },
-          {
             "symbol": "InspectDependenciesResultValidator",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "ParsedEdge",
             "context": "inline-code"
           },
           {
@@ -1658,14 +1642,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "prompt",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "disabled",
-            "context": "inline-code"
-          },
-          {
             "symbol": "LlmInvocationFailureReason",
             "context": "inline-code"
           },
@@ -1695,6 +1671,14 @@
           },
           {
             "symbol": "LinkDiagnosticsSettings.llmProviderMode",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "disabled",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "prompt",
             "context": "inline-code"
           },
           {
@@ -2042,7 +2026,15 @@
             "context": "inline-code"
           },
           {
+            "symbol": "FileFeedCheckpointStore",
+            "context": "inline-code"
+          },
+          {
             "symbol": "read",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "null",
             "context": "inline-code"
           },
           {
@@ -2051,14 +2043,6 @@
           },
           {
             "symbol": "clear",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "FileFeedCheckpointStore",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "null",
             "context": "inline-code"
           },
           {
@@ -2104,31 +2088,11 @@
             "context": "inline-code"
           },
           {
-            "symbol": "healthy",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "degraded",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "blocked",
-            "context": "inline-code"
-          },
-          {
             "symbol": "FeedStatusSummary",
             "context": "inline-code"
           },
           {
-            "symbol": "KnowledgeFeedSummary",
-            "context": "inline-code"
-          },
-          {
             "symbol": "FeedDiagnosticsGatewayOptions",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "onStatusChanged",
             "context": "inline-code"
           },
           {
@@ -2156,6 +2120,10 @@
             "context": "inline-code"
           },
           {
+            "symbol": "onStatusChanged",
+            "context": "inline-code"
+          },
+          {
             "symbol": "listStatuses",
             "context": "inline-code"
           },
@@ -2175,18 +2143,6 @@
         "symbolReferences": [
           {
             "symbol": "FeedFormat",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "lsif",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "scip",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "unknown",
             "context": "inline-code"
           },
           {
@@ -2236,27 +2192,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "dispose",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "onStatusChanged",
-            "context": "inline-code"
-          },
-          {
             "symbol": "KnowledgeFeedManagerLogger",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "info",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "error",
             "context": "inline-code"
           },
           {
@@ -2264,15 +2200,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "ExternalSnapshot",
-            "context": "inline-code"
-          },
-          {
             "symbol": "FeedStreamSource",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "ExternalStreamEvent",
             "context": "inline-code"
           },
           {
@@ -2285,10 +2213,6 @@
           },
           {
             "symbol": "KnowledgeFeedManagerOptions",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "KnowledgeGraphIngestor",
             "context": "inline-code"
           },
           {
@@ -2334,18 +2258,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "info",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "error",
-            "context": "inline-code"
-          },
-          {
             "symbol": "KnowledgeGraphBridgeServiceOptions",
             "context": "inline-code"
           },
@@ -2354,19 +2266,15 @@
             "context": "inline-code"
           },
           {
-            "symbol": "start",
-            "context": "inline-code"
-          },
-          {
             "symbol": "KnowledgeGraphBridgeDisposable",
             "context": "inline-code"
           },
           {
-            "symbol": "onStatusChanged",
+            "symbol": "KnowledgeGraphBridgeService",
             "context": "inline-code"
           },
           {
-            "symbol": "KnowledgeGraphBridgeService",
+            "symbol": "onStatusChanged",
             "context": "inline-code"
           },
           {
@@ -2396,18 +2304,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "info",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "error",
-            "context": "inline-code"
-          },
-          {
             "symbol": "KnowledgeGraphIngestorOptions",
             "context": "inline-code"
           },
@@ -2416,19 +2312,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "ingestSnapshot",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "KnowledgeSnapshot",
-            "context": "inline-code"
-          },
-          {
             "symbol": "StreamIngestResult",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "ingestStreamEvent",
             "context": "inline-code"
           },
           {
@@ -2490,11 +2374,11 @@
             "context": "inline-code"
           },
           {
-            "symbol": "ExternalSnapshot",
+            "symbol": "parseLSIF",
             "context": "inline-code"
           },
           {
-            "symbol": "parseLSIF",
+            "symbol": "ExternalSnapshot",
             "context": "inline-code"
           },
           {
@@ -2533,22 +2417,6 @@
           },
           {
             "symbol": "RippleAnalyzerLogger",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "debug",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "info",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "error",
             "context": "inline-code"
           },
           {
@@ -2626,10 +2494,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "valid",
-            "context": "inline-code"
-          },
-          {
             "symbol": "validateSnapshot",
             "context": "inline-code"
           },
@@ -2704,10 +2568,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "ExternalSnapshot",
-            "context": "inline-code"
-          },
-          {
             "symbol": "parseSCIP",
             "context": "inline-code"
           },
@@ -2735,14 +2595,6 @@
           },
           {
             "symbol": "createStaticFeedWorkspaceProvider",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "WorkspaceLinkProvider",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "WorkspaceLinkContribution",
             "context": "inline-code"
           },
           {
@@ -2780,18 +2632,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "Connection",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "WorkspaceLinkProvider",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "COLLECT_WORKSPACE_SYMBOLS_REQUEST",
-            "context": "inline-code"
-          },
-          {
             "symbol": "zod",
             "context": "inline-code"
           },
@@ -2818,14 +2658,6 @@
           {
             "symbol": "undefined",
             "context": "inline-code"
-          },
-          {
-            "symbol": "info",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
           }
         ]
       }
@@ -2850,27 +2682,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "exportedSymbols",
-            "context": "inline-code"
-          },
-          {
             "symbol": "ExportedSymbolMetadata",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "name",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "kind",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "isDefault",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "isTypeOnly",
             "context": "inline-code"
           },
           {
@@ -2878,15 +2690,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "symbol",
-            "context": "inline-code"
-          },
-          {
             "symbol": "createWorkspaceIndexProvider",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "WorkspaceLinkProvider",
             "context": "inline-code"
           },
           {
@@ -2952,19 +2756,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "info",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
             "symbol": "ArtifactWatcherOptions",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "GraphStore",
             "context": "inline-code"
           },
           {
@@ -3055,14 +2847,6 @@
           },
           {
             "symbol": "ChangeProcessor",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "process",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "updateContext",
             "context": "inline-code"
           },
           {
@@ -3210,18 +2994,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "name",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "message",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "Error",
-            "context": "inline-code"
-          },
-          {
             "symbol": "rootUri",
             "context": "inline-code"
           },
@@ -3358,10 +3130,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "RebindRequiredPayload",
-            "context": "inline-code"
-          },
-          {
             "symbol": "handleArtifactRenamed",
             "context": "inline-code"
           },
@@ -3425,14 +3193,6 @@
           },
           {
             "symbol": "extractExtensionSettings",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "ExtensionSettings",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "settings",
             "context": "inline-code"
           },
           {
@@ -3592,10 +3352,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "INVOKE_LLM_REQUEST",
-            "context": "inline-code"
-          },
-          {
             "symbol": "changeProcessor.ts",
             "context": "inline-code"
           },
@@ -3678,35 +3434,11 @@
             "context": "inline-code"
           },
           {
-            "symbol": "info",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "error",
-            "context": "inline-code"
-          },
-          {
             "symbol": "EnqueueOptions",
             "context": "inline-code"
           },
           {
-            "symbol": "reason",
-            "context": "inline-code"
-          },
-          {
             "symbol": "LlmIngestionResult",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "stored",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "skipped",
             "context": "inline-code"
           },
           {
@@ -3812,23 +3544,11 @@
             "context": "inline-code"
           },
           {
-            "symbol": "extractRelationships",
-            "context": "inline-code"
-          },
-          {
             "symbol": "RelationshipExtractionBatch",
             "context": "inline-code"
           },
           {
             "symbol": "RelationshipExtractorLogger",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "error",
             "context": "inline-code"
           },
           {
@@ -3961,18 +3681,6 @@
           },
           {
             "symbol": "AcknowledgeOutcome",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "acknowledged",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "already_acknowledged",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "not_found",
             "context": "inline-code"
           },
           {
@@ -4132,15 +3840,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "ListOutstandingDiagnosticsResult",
-            "context": "inline-code"
-          },
-          {
             "symbol": "mapOutstandingDiagnostic",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "DiagnosticRecord",
             "context": "inline-code"
           },
           {
@@ -4456,19 +4156,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "depth",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "path",
-            "context": "inline-code"
-          },
-          {
             "symbol": "RippleImpact",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "KnowledgeArtifact",
             "context": "inline-code"
           }
         ]
@@ -4556,19 +4244,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "minConfidence",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "applyNoiseFilter",
-            "context": "inline-code"
-          },
-          {
             "symbol": "NoiseSuppressionRuntime",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "level",
             "context": "inline-code"
           },
           {
@@ -4576,19 +4252,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "maxDepth",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "maxResults",
-            "context": "inline-code"
-          },
-          {
             "symbol": "deriveRuntimeSettings",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "ExtensionSettings",
             "context": "inline-code"
           },
           {
@@ -4617,30 +4281,6 @@
           },
           {
             "symbol": "DEFAULT_RUNTIME_SETTINGS.debounceMs",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "noiseSuppression.level",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "maxPerChange",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "maxPerArtifact",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "documentKinds",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "codeKinds",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "allowedKinds",
             "context": "inline-code"
           },
           {
@@ -4814,18 +4454,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "acknowledged",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "already_acknowledged",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "not_found",
-            "context": "inline-code"
-          },
-          {
             "symbol": "AcknowledgeDiagnosticResult",
             "context": "inline-code"
           },
@@ -4992,14 +4620,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "outV",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "inV",
-            "context": "inline-code"
-          },
-          {
             "symbol": "LSIFMetaData",
             "context": "inline-code"
           },
@@ -5036,15 +4656,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "item",
-            "context": "inline-code"
-          },
-          {
             "symbol": "LSIFNextEdge",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "next",
             "context": "inline-code"
           },
           {
@@ -5143,18 +4755,6 @@
         "symbolReferences": [
           {
             "symbol": "LinkOverrideReason",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "manual",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "rebind",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "external",
             "context": "inline-code"
           },
           {
@@ -5378,22 +4978,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "documents",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "implements",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "depends_on",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "references",
-            "context": "inline-code"
-          },
-          {
             "symbol": "LlmConfidenceTier",
             "context": "inline-code"
           },
@@ -5406,35 +4990,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "content",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "metadata",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "rename",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "delete",
-            "context": "inline-code"
-          },
-          {
             "symbol": "ChangeEventProvenance",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "save",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "git",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "external",
             "context": "inline-code"
           },
           {
@@ -5443,18 +4999,6 @@
           },
           {
             "symbol": "DiagnosticStatus",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "active",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "acknowledged",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "suppressed",
             "context": "inline-code"
           },
           {
@@ -5474,27 +5018,11 @@
             "context": "inline-code"
           },
           {
-            "symbol": "acknowledge",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "dismiss",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "reopen",
-            "context": "inline-code"
-          },
-          {
             "symbol": "AcknowledgementAction",
             "context": "inline-code"
           },
           {
             "symbol": "DriftHistoryStatus",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "emitted",
             "context": "inline-code"
           },
           {
@@ -5541,18 +5069,6 @@
           },
           {
             "symbol": "TraceOrigin",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "heuristic",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "hint",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "llm",
             "context": "inline-code"
           },
           {
@@ -5622,10 +5138,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "listLinkedArtifacts",
-            "context": "inline-code"
-          },
-          {
             "symbol": "DriftHistorySummary",
             "context": "inline-code"
           },
@@ -5643,10 +5155,6 @@
           },
           {
             "symbol": "diagnostics",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "confidence",
             "context": "inline-code"
           },
           {
@@ -5767,18 +5275,6 @@
           },
           {
             "symbol": "LinkInferenceTraceEntry",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "origin",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "confidence",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "rationale",
             "context": "inline-code"
           },
           {
@@ -6410,18 +5906,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "off",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "error",
-            "context": "inline-code"
-          },
-          {
             "symbol": "SlopcopConfigSection",
             "context": "inline-code"
           },
@@ -6431,10 +5915,6 @@
           },
           {
             "symbol": "SlopcopConfig",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "slopcop.config.json",
             "context": "inline-code"
           },
           {
@@ -6455,10 +5935,6 @@
           },
           {
             "symbol": "compileIgnorePatterns",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "RegExp",
             "context": "inline-code"
           },
           {
@@ -6600,19 +6076,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "warn",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "error",
-            "context": "inline-code"
-          },
-          {
             "symbol": "SymbolRuleSetting",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "off",
             "context": "inline-code"
           },
           {

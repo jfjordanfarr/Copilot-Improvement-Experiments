@@ -13,7 +13,9 @@ Provide a controlled seam for overriding VS Code window APIs during extension un
 - **Fallback binding**: When no override is provided, the hooks bind back to the real VS Code APIs, preserving extension runtime behavior.
 
 ## Exported Symbols
-- `resolveWindowApis` — returns resolved VS Code window methods or test overrides, keeping call sites deterministic.
+
+#### resolveWindowApis
+The `resolveWindowApis` helper returns the resolved VS Code window APIs or supplied test overrides so command handlers remain deterministic during integration tests.
 
 ## Internal Flow
 1. Inspect the global test hooks container for window overrides.

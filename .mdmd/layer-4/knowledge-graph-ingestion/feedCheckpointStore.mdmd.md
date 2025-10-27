@@ -8,11 +8,11 @@
 
 ## Exported Symbols
 
-### `FeedCheckpointStore`
-Interface describing the persistence contract (`read`, `write`, `clear`) for stream checkpoints keyed by feed id. Enables alternative backends (cloud KV, SQLite) to plug into the ingestion runtime.
+#### FeedCheckpointStore
+The `FeedCheckpointStore` interface describes the persistence contract for stream checkpoints keyed by feed id. Enables alternative backends (cloud KV, SQLite) to plug into the ingestion runtime.
 
-### `FileFeedCheckpointStore`
-Filesystem implementation storing checkpoints as JSON per feed using slugified filenames. Guarantees directory existence, tolerates missing files during reads/clears, and validates payloads before returning them.
+#### FileFeedCheckpointStore
+The `FileFeedCheckpointStore` class is the filesystem implementation storing checkpoints as JSON per feed using slugified filenames. It guarantees directory existence, tolerates missing files during reads and clears, and validates payloads before returning them.
 
 ## Responsibility
 Persist and retrieve stream checkpoints for external knowledge feeds so ingestion can resume after restarts or backoff delays without replaying the full snapshot. The default `FileFeedCheckpointStore` records checkpoints on disk, scoped per feed.

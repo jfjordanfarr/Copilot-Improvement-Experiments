@@ -9,7 +9,7 @@
 ## Exported Symbols
 
 #### handleArtifactDeleted
-`handleArtifactDeleted` removes the specified artifact from the graph, issues drift diagnostics to downstream dependents, and raises a `RebindRequiredPayload` when recomputation is necessary.
+`handleArtifactDeleted` removes the specified artifact from the graph, issues drift diagnostics to downstream dependents, and raises a rebind-required payload when recomputation is necessary.
 
 #### handleArtifactRenamed
 `handleArtifactRenamed` updates graph entries when a file moves, pruning the old artifact, inserting the renamed version, and emitting drift diagnostics so the client can reconcile bindings.
@@ -24,7 +24,7 @@
 2. `handleRemoval` normalises URIs (`normalizeFileUri`) and fetches the associated artifact from `GraphStore`.
 3. Linked artifact summaries are enumerated; the removed artifact is deleted from the store.
 4. `publishRemovalDiagnostics` emits `doc-drift` informational diagnostics to each linked artifact, highlighting the missing source and rename targets when applicable.
-5. A `RebindRequiredPayload` with impacted artifacts/relationships is dispatched to the client via LSP notification for UI handling.
+5. A rebind-required payload with impacted artifacts/relationships is dispatched to the client via LSP notification for UI handling.
 
 ## Diagnostic Schema
 - `code`: `doc-drift`

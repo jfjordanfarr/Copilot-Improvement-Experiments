@@ -16,7 +16,7 @@
 `GraphStoreOptions` carries the absolute SQLite database path supplied when constructing a `GraphStore` instance.
 
 #### LinkedArtifactSummary
-`LinkedArtifactSummary` summarises neighbours returned by `listLinkedArtifacts`, including direction and link confidence.
+`LinkedArtifactSummary` summarises neighbours returned by the listLinkedArtifacts helper, including direction and link confidence.
 
 #### DriftHistorySummary
 `DriftHistorySummary` aggregates acknowledgement counts and timestamps for a change event, powering drift dashboards.
@@ -30,19 +30,19 @@
 ## Responsibilities
 - Initialise and maintain the SQLite schema (`artifacts`, `links`, `diagnostics`, drift history, etc.) without external tooling.
 - Provide CRUD operations for artifacts, links, diagnostics, change events, and drift history records.
-- Expose traversal helpers such as `listLinkedArtifacts`, now including per-link `confidence`, direction, and normalized artifact payloads for BFS-style consumers.
+- Expose traversal helpers such as listLinkedArtifacts, now including per-link confidence, direction, and normalized artifact payloads for BFS-style consumers.
 - Enforce database constraints (conflict resolution, JSON serialization) and consistent error handling across server features.
 
 ## Public Interfaces
 - Constructor: `new GraphStore({ dbPath })` bootstraps the database and ensures migrations are applied.
 - Artifact APIs: `upsertArtifact`, `removeArtifact`, `getArtifactById/Uri`, `listArtifacts`.
-- Link APIs: `upsertLink`, `removeLink`, `listLinkedArtifacts` (returns `LinkedArtifactSummary` with `linkId`, `kind`, **`confidence`**, direction, and neighbor artifact).
+- Link APIs: `upsertLink`, `removeLink`, listLinkedArtifacts (returns `LinkedArtifactSummary` with `linkId`, `kind`, confidence, direction, and neighbor artifact).
 - Diagnostics/Telemetry APIs: helpers for change events, drift history, acknowledgements, summary queries, and LLM assessment persistence/upserts.
 - Internal utilities: row mappers (`mapArtifactRow`, etc.) translating raw SQLite rows into domain objects.
 
 ## Recent Changes
 - Added `updateDiagnosticAssessment` helper plus JSON column plumbing so server and extension flows can set/clear `LlmAssessment` payloads without rewriting entire diagnostic records.
-- `LinkedArtifactSummary` and underlying SQL now surface `confidence` values so traversal code can rank neighbors by strength. Any consumer relying on `listLinkedArtifacts` should prefer the new field instead of re-querying the `links` table.
+- `LinkedArtifactSummary` and underlying SQL now surface confidence values so traversal code can rank neighbors by strength. Any consumer relying on listLinkedArtifacts should prefer the new field instead of re-querying the `links` table.
 
 ## Key Collaborators
 - Server features under `packages/server/src/features/**` rely on `GraphStore` for persistence.

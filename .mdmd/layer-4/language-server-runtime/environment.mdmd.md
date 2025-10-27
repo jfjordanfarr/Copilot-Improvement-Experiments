@@ -20,7 +20,7 @@
 `ensureDirectory` lazily creates the directory tree containing the SQLite database and workspace cache before the server starts writing data.
 
 #### describeError
-`describeError` renders arbitrary errors into concise loggable strings, preserving `name` and `message` for real `Error` instances.
+`describeError` renders arbitrary errors into concise loggable strings, preserving the name and message fields for real Error instances.
 
 ## Responsibility
 Provide small, dependable helpers for resolving workspace and storage paths as the language server initialises, ensuring downstream runtime setup routines do not repeat URI/FS handling edge cases.

@@ -19,7 +19,7 @@
 `LSIFVertex` narrows `LSIFElement` to vertex records, enforcing the `type: "vertex"` discriminator.
 
 #### LSIFEdge
-`LSIFEdge` narrows `LSIFElement` to edges, capturing `outV` and `inV` endpoints.
+`LSIFEdge` narrows `LSIFElement` to edges, capturing the outV and inV endpoints.
 
 #### LSIFMetaData
 `LSIFMetaData` represents the top-level metadata vertex with project root and tool information.
@@ -46,10 +46,10 @@
 `LSIFContainsEdge` represents containment edges with their list of child vertices.
 
 #### LSIFItemEdge
-`LSIFItemEdge` models `item` edges that join documents to definitions or references.
+`LSIFItemEdge` models item edges that join documents to definitions or references.
 
 #### LSIFNextEdge
-`LSIFNextEdge` captures `next` edges connecting sequential vertices in LSIF paths.
+`LSIFNextEdge` captures next edges connecting sequential vertices in LSIF paths.
 
 #### LSIFDefinitionEdge
 `LSIFDefinitionEdge` maps `textDocument/definition` LSIF edges.

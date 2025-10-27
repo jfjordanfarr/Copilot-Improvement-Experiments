@@ -15,8 +15,12 @@ Provide a VS Code command (`linkDiagnostics.exportDiagnostics`) that exports out
 - **User prompts**: Quick pick collects format, save dialog selects destination, optional information message opens exported file.
 
 ## Exported Symbols
-- `EXPORT_DIAGNOSTICS_COMMAND` — command identifier shared with server-side diagnostics export flows.
-- `registerExportDiagnosticsCommand` — registers the export command handler against a language client.
+
+#### EXPORT_DIAGNOSTICS_COMMAND
+The `EXPORT_DIAGNOSTICS_COMMAND` identifier is shared with server-side export flows and integration tests.
+
+#### registerExportDiagnosticsCommand
+The `registerExportDiagnosticsCommand` function registers the export command handler against the language client.
 
 ## Internal Flow
 1. Register the command with VS Code, wiring the handler to the supplied language client.

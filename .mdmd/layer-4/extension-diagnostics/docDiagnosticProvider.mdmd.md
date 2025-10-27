@@ -6,12 +6,24 @@
 - Spec references: [US1](../../../specs/001-link-aware-diagnostics/spec.md#user-story-1--developers-see-the-full-impact-of-a-code-change-priority-p1), [US2](../../../specs/001-link-aware-diagnostics/spec.md#user-story-2--writers-get-drift-alerts-priority-p2), [FR-011](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
 
 ## Exported Symbols
-- `OPEN_LINKED_ARTIFACT_COMMAND` — command id reused wherever diagnostics jump to the trigger artifact.
-- `VIEW_RIPPLE_DETAILS_COMMAND` — command id launching ripple inspection quick picks.
-- `registerDocDiagnosticProvider` — entry point that binds the provider and registers supporting commands.
-- `buildOpenActionTitle` — helper for generating relationship-aware quick fix titles.
-- `buildRippleSummary` — composes the ripple placeholder text shared between quick fixes and notifications.
-- `formatConfidenceLabel` — normalises confidence values into human-readable percentages.
+
+#### OPEN_LINKED_ARTIFACT_COMMAND
+The `OPEN_LINKED_ARTIFACT_COMMAND` identifier is reused wherever diagnostics jump back to the triggering artifact.
+
+#### VIEW_RIPPLE_DETAILS_COMMAND
+The `VIEW_RIPPLE_DETAILS_COMMAND` identifier launches ripple inspection quick picks.
+
+#### registerDocDiagnosticProvider
+The `registerDocDiagnosticProvider` function binds the provider and registers supporting commands.
+
+#### buildOpenActionTitle
+The `buildOpenActionTitle` helper generates relationship-aware quick fix titles.
+
+#### buildRippleSummary
+The `buildRippleSummary` helper composes the ripple placeholder text shared between quick fixes and notifications.
+
+#### formatConfidenceLabel
+The `formatConfidenceLabel` helper normalises confidence values into human-readable percentages.
 
 ## Responsibility
 Registers the VS Code quick-fix surface for link-aware diagnostics. Provides context-aware actions that open the originating artifact for both documentation drift (`doc-drift`) and code ripple (`code-ripple`) diagnostics, and exposes a detail viewer so engineers can inspect ripple metadata (depth, relationship kind, confidence, path) without leaving the editor.

@@ -8,22 +8,22 @@
 ## Exported Symbols
 
 #### NoiseSuppressionLevel
-`NoiseSuppressionLevel` defines the preset identifiers (`"low"`, `"medium"`, `"high"`) that map to tuned suppression + hysteresis bundles.
+`NoiseSuppressionLevel` defines the preset identifiers ("low", "medium", "high") that map to tuned suppression + hysteresis bundles.
 
 #### NoiseFilterRuntimeConfig
-`NoiseFilterRuntimeConfig` captures the per-level filter knobs (`minConfidence`, optional depth/limit caps) that `applyNoiseFilter` consumes.
+`NoiseFilterRuntimeConfig` captures the per-level filter knobs (minConfidence, optional depth/limit caps) that applyNoiseFilter consumes.
 
 #### NoiseSuppressionRuntime
-`NoiseSuppressionRuntime` combines preset metadata (`level`, diagnostics caps, hysteresis) with the derived `NoiseFilterRuntimeConfig` for runtime consumers.
+`NoiseSuppressionRuntime` combines preset metadata (level, diagnostics caps, hysteresis) with the derived `NoiseFilterRuntimeConfig` for runtime consumers.
 
 #### RippleRuntimeSettings
-`RippleRuntimeSettings` encapsulates ripple traversal bounds—`maxDepth`, `maxResults`, allowed relationship kinds, and per-layer subsets.
+`RippleRuntimeSettings` encapsulates ripple traversal bounds—maxDepth, maxResults, allowed relationship kinds, and per-layer subsets.
 
 #### deriveRuntimeSettings
-`deriveRuntimeSettings` normalises the extension's `ExtensionSettings` snapshot into a `RuntimeSettings` object, applying defaults and clamping overrides to safe ranges.
+`deriveRuntimeSettings` normalises the extension's ExtensionSettings snapshot into a `RuntimeSettings` object, applying defaults and clamping overrides to safe ranges.
 
 ## Responsibility
-Normalize the extension-facing `ExtensionSettings` into deterministic runtime knobs consumed by change queues, hysteresis controllers, ripple analyzers, and dependency inspectors. Supplies conservative defaults when the client omits configuration fields.
+Normalize the extension-facing ExtensionSettings into deterministic runtime knobs consumed by change queues, hysteresis controllers, ripple analyzers, and dependency inspectors. Supplies conservative defaults when the client omits configuration fields.
 
 ## Output Contract
 `RuntimeSettings` contains three buckets:
@@ -33,11 +33,11 @@ Normalize the extension-facing `ExtensionSettings` into deterministic runtime kn
 
 ## Normalization Rules
 - `debounceMs` coerced to non-negative integers; falls back to `DEFAULT_RUNTIME_SETTINGS.debounceMs` (1000 ms).
-- `noiseSuppression.level` restricted to `low|medium|high`; maps to predefined presets (diagnostic budget + hysteresis + noise filter thresholds). Presets tune `minConfidence`, `maxDepth`, `maxPerChange`, and `maxPerArtifact`, with overrides clamped to safe ranges.
-- Noise filter overrides respect the active ripple `maxDepth` ceiling so suppression never exceeds traversal bounds.
-- Ripple link kind arrays filtered against the supported set `{depends_on, implements, documents, references}` and deduplicated.
-- `documentKinds`/`codeKinds` subsets forced to remain within `allowedKinds`; fallback ensures each bucket retains at least one entry.
-- `maxDepth`/`maxResults` clamped to positive integers.
+- NoiseSuppression.level restricted to low|medium|high; maps to predefined presets (diagnostic budget + hysteresis + noise filter thresholds). Presets tune minConfidence, maxDepth, maxPerChange, and maxPerArtifact, with overrides clamped to safe ranges.
+- Noise filter overrides respect the active ripple maxDepth ceiling so suppression never exceeds traversal bounds.
+- Ripple link kind arrays filtered against the supported set {depends_on, implements, documents, references} and deduplicated.
+- documentKinds/codeKinds subsets forced to remain within allowedKinds; fallback ensures each bucket retains at least one entry.
+- maxDepth/maxResults clamped to positive integers.
 
 ## Implementation Notes
 - Re-exports `DEFAULT_RUNTIME_SETTINGS` for reuse in tests and bootstrap code.

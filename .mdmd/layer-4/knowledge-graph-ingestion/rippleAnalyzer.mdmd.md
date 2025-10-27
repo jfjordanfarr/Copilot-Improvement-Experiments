@@ -9,10 +9,10 @@
 ## Exported Symbols
 
 ### `RippleAnalyzerLogger`
-Optional logger interface with leveled methods (`debug`, `info`, `warn`, `error`) to observe traversal behaviour without hard-coding transports.
+Optional logger interface with leveled methods (debug, info, warn, error) to observe traversal behaviour without hard-coding transports.
 
 ### `RippleAnalyzerOptions`
-Constructor configuration specifying the `GraphStore`, default depth/result limits, allowed relationship kinds, and logger.
+Constructor configuration specifying the graph store dependency, default depth/result limits, allowed relationship kinds, and logger.
 
 ### `RippleAnalysisRequest`
 Per-call overrides enabling callers to adjust depth, result caps, allowed link kinds, target URI, or exclusion set.

@@ -20,11 +20,21 @@ Expose a palette command that lets maintainers and Copilot agents inspect the gr
 5. Open the selected neighbor in a non-preview editor, enabling fast investigation workflows.
 
 ## Exported Symbols
-- `registerInspectSymbolNeighborsCommand` — command registrar that constructs the controller and binds to VS Code.
-- `SymbolNeighborQuickPickController` — orchestrates request building, response parsing, and neighbor presentation.
-- `ParsedInspectSymbolNeighborsResult` — zod-inferred type describing validated command responses.
-- `ParsedNeighborNode` — inferred node shape for individual neighbor entries.
-- `InspectSymbolNeighborsResultValidator` — zod schema exported for validation in tests and downstream features.
+
+#### registerInspectSymbolNeighborsCommand
+The `registerInspectSymbolNeighborsCommand` function constructs the symbol neighbors controller and binds it to VS Code.
+
+#### SymbolNeighborQuickPickController
+The `SymbolNeighborQuickPickController` class orchestrates request building, response parsing, and neighbor presentation.
+
+#### ParsedInspectSymbolNeighborsResult
+`ParsedInspectSymbolNeighborsResult` is the zod-inferred type describing validated command responses.
+
+#### ParsedNeighborNode
+`ParsedNeighborNode` captures the inferred node shape for individual neighbor entries.
+
+#### InspectSymbolNeighborsResultValidator
+The `InspectSymbolNeighborsResultValidator` schema is exported for validation in tests and downstream features.
 
 ## Collaborators
 - Depends on the shared contract: [`INSPECT_SYMBOL_NEIGHBORS_REQUEST`](../../../packages/shared/src/contracts/symbols.ts).
