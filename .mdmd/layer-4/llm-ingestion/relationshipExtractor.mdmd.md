@@ -6,6 +6,41 @@
 - Parent design: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 - Spec references: [FR-019](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T071](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### ConfidenceTier
+`ConfidenceTier` mirrors the high/medium/low tiers used throughout LLM ingestion, matching the calibrator output.
+
+#### ModelInvocationRequest
+`ModelInvocationRequest` is the payload sent to the underlying model invoker (prompt, schema, metadata tags).
+
+#### ModelInvocationResult
+`ModelInvocationResult` represents the raw model response, including usage telemetry and optional parsed relationships.
+
+#### ModelUsage
+`ModelUsage` holds token accounting information returned by the provider.
+
+#### RawRelationshipCandidate
+`RawRelationshipCandidate` is a single relationship emitted by the model prior to calibration.
+
+#### RelationshipExtractionPrompt
+`RelationshipExtractionPrompt` captures the template metadata and rendered prompt shared with the model.
+
+#### RelationshipExtractionRequest
+`RelationshipExtractionRequest` combines the prompt, template metadata, and optional schema passed to `extractRelationships`.
+
+#### RelationshipExtractionBatch
+`RelationshipExtractionBatch` packages the candidate relationships, prompt info, and usage details returned by the extractor.
+
+#### RelationshipExtractorLogger
+`RelationshipExtractorLogger` defines the `warn`/`error` hooks used to surface provider issues.
+
+#### RelationshipExtractorOptions
+`RelationshipExtractorOptions` wires the model invoker and logger into a constructed extractor.
+
+#### RelationshipExtractor
+`RelationshipExtractor` wraps the model invoker, validates output, and emits structured relationship batches.
+
 ## Responsibility
 Wrap a provided `ModelInvoker`, enforce JSON response shape, and emit typed relationship batches enriched with provenance metadata (template id, version, prompt hash, model id, usage stats).
 

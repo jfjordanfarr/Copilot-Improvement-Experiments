@@ -7,7 +7,9 @@
   - [`packages/server/src/features/diagnostics/diagnosticUtils.ts`](../../../packages/server/src/features/diagnostics/diagnosticUtils.ts) defines the `DiagnosticSender` contract satisfied here.
 
 ## Exported Symbols
-- `DiagnosticPublisher`
+
+### `DiagnosticPublisher`
+Implements the client-facing diagnostic sender; handles publish/pull flows plus acknowledgement pruning.
 
 ## Purpose
 `DiagnosticPublisher` is the language server's bridge between our aggregated drift/ripple analysis and the VS Code diagnostic transports. It packages server-emitted findings into push notifications, retains the minimal cache required for pull-based refreshes, and prunes acknowledged entries so clients only see actionable alerts. Without it, the server would re-compute diagnostics on every pull request and acknowledgements would linger in the Problems panel.

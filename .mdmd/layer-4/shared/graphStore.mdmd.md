@@ -10,6 +10,20 @@
 - Parent designs: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md), [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Spec references: [FR-001](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-017](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T001–T005](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### GraphStoreOptions
+`GraphStoreOptions` carries the absolute SQLite database path supplied when constructing a `GraphStore` instance.
+
+#### LinkedArtifactSummary
+`LinkedArtifactSummary` summarises neighbours returned by `listLinkedArtifacts`, including direction and link confidence.
+
+#### DriftHistorySummary
+`DriftHistorySummary` aggregates acknowledgement counts and timestamps for a change event, powering drift dashboards.
+
+#### ListDriftHistoryOptions
+`ListDriftHistoryOptions` filters drift history queries by change event, target artifact, diagnostic id, status, or result limits.
+
 ## Purpose
 `GraphStore` is the single SQLite-backed persistence layer for the knowledge graph. Every feature that inspects relationships between artifacts depends on this abstraction for durable reads/writes, so the file exists to encapsulate schema bootstrapping, migrations, and high-level query helpers in one place.
 

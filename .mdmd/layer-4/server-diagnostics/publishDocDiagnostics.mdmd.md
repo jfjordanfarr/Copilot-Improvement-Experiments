@@ -10,6 +10,20 @@
   - Ripple metadata from [`RippleImpact`](../../../packages/server/src/features/diagnostics/rippleTypes.ts)
   - Markdown link scan helpers inside the same file (`collectBrokenLinkDiagnostics`)
 
+## Exported Symbols
+
+### `DocumentChangeContext`
+Represents a documentation-triggered ripple batch: combines the tracked change, source artifact, change-event id, and ripple impacts bound for dependent docs.
+
+### `PublishDocDiagnosticsOptions`
+Caller-supplied dependencies (diagnostic sender, contexts, runtime settings, optional hysteresis and acknowledgement services) required for publication.
+
+### `PublishDocDiagnosticsResult`
+Emission summary counters returned to the caller, including how many diagnostics shipped versus those suppressed by budgets, hysteresis, or acknowledgement, plus the noise-filter totals.
+
+### `publishDocDiagnostics`
+Main entry point that scans markdown for broken links, filters ripple impacts, enforces suppression policies, and dispatches the resulting diagnostics to the LSP client.
+
 ## Why This File Exists
 Documentation churn is one of the earliest signals that ripple analysis produces. `publishDocDiagnostics` translates change-processor results into LSP diagnostics, balancing three competing goals: keep writers informed, avoid noisy repeats, and capture missing markdown assets. It is the sole coordinator that combines ripple impacts, acknowledgement state, hysteresis budgets, and markdown scans into the doc-drift diagnostics surfaced in VS Code and headless tooling.
 

@@ -5,6 +5,14 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-007](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T024](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### InspectDependenciesOptions
+`InspectDependenciesOptions` carries the `GraphStore`, canonical workspace URI, and optional traversal overrides (`maxDepth`, `linkKinds`) so callers can tailor the dependency neighbourhood they want to analyse.
+
+#### inspectDependencies
+`inspectDependencies` normalises the requested URI, resolves the trigger artifact, invokes `buildCodeImpactGraph`, and returns an `InspectDependenciesResult` summarising dependents and maximum depth for the extension UI.
+
 ## Responsibility
 Serve the `INSPECT_DEPENDENCIES_REQUEST` handler by normalising the requested URI, locating the corresponding artifact in the `GraphStore`, invoking `buildCodeImpactGraph`, and projecting the results into the shared `InspectDependenciesResult` contract consumed by the extension's dependency quick pick.
 

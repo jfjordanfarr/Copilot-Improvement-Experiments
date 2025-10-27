@@ -5,6 +5,17 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-010](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T021](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### RippleExtensionSettings
+`RippleExtensionSettings` models the extension's persisted configuration (enablement, provider mode, debounce settings, suppression presets) that the guard merges over time.
+
+#### ExtensionSettings
+`ExtensionSettings` extends `RippleExtensionSettings` with optional runtime overrides supplied by the language server, providing the canonical shape stored inside the guard.
+
+#### ProviderGuard
+`ProviderGuard` caches extension settings, exposes `areDiagnosticsEnabled()`, and forwards consent-related logs to the language server connection so diagnostics remain opt-in.
+
 ## Responsibility
 Track the extension-provided configuration snapshot and gate diagnostic emission until the user explicitly enables the feature. Also relays consent-related log messages back to the client via the language server connection.
 

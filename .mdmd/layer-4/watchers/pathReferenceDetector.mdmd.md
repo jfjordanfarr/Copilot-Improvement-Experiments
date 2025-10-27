@@ -6,6 +6,17 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-004](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T028](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### ArtifactCategory
+`ArtifactCategory` labels the source artifact as `"document"` or `"code"`, steering hint kind selection.
+
+#### PathReferenceOrigin
+`PathReferenceOrigin` documents which detector (`"import"`, `"markdown"`, etc.) produced a hint, feeding rationale and confidence weighting.
+
+#### buildFileReferenceHints
+`buildFileReferenceHints` scans file content for relative references, resolves absolute targets, and returns `RelationshipHint[]` annotated with origin metadata.
+
 ## Responsibility
 Scan saved artifact content for relative path references (imports, markdown links, literal hints) and emit `RelationshipHint` entries that seed the inference pipeline before diagnostics run. Helps bootstrap dependency edges even when the knowledge graph has not yet been enriched by symbol analysis or external feeds.
 

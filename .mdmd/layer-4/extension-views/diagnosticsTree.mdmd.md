@@ -6,6 +6,14 @@
 - Shared contract: [`ListOutstandingDiagnosticsResult`](../../../packages/shared/src/contracts/diagnostics.ts)
 - Related server doc: [PublishDocDiagnostics](../server-diagnostics/publishDocDiagnostics.mdmd.md)
 
+## Exported Symbols
+- `TreeNode` — discriminated union representing tree targets and individual diagnostics.
+- `DiagnosticsTreeDataProvider` — VS Code tree provider and refreshable snapshot cache.
+- `isDiagnosticNode` — type guard used by commands before acknowledging diagnostics.
+- `buildTreeAcknowledgementArgs` — command helper that extracts acknowledgement payloads from nodes.
+- `DiagnosticsTreeRegistration` — disposable handle exposing the provider instance.
+- `registerDiagnosticsTreeView` — activation entry point that binds the provider and commands.
+
 ## Responsibility
 Render outstanding diagnostics in a tree view grouped by target artifact. Allows users to open files with unresolved issues, acknowledge individual diagnostics, review AI-generated assessments, and refresh the snapshot pulled from the language server.
 

@@ -5,6 +5,14 @@
 - Parent design: [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
 - Downstream consumer: [`Analyze With AI Command`](../extension-commands/analyzeWithAI.mdmd.md)
 
+## Exported Symbols
+- `LlmProviderMode` — settings-derived enum constraining invocation behaviour (`prompt`, `local-only`, `disabled`).
+- `LlmInvocationFailureReason` — error reason union that callers can switch on for UX decisions.
+- `LlmInvocationError` — error class exposing the failure reason plus optional cause.
+- `InvokeChatOptions` — parameter bag for configuring prompt text, tags, and cancellation.
+- `InvokeChatResult` — shape returned after an invocation, bundling raw text and provider metadata.
+- `LlmInvoker` — service wrapper that caches model choices and performs gated invocations.
+
 ## Purpose
 Encapsulate VS Code's `vscode.lm` chat model selection and invocation logic so extension commands can request language model output without duplicating provider-mode checks, Quick Pick UI, or streaming assembly. The service also caches the most recent model selection to make repeated requests faster.
 

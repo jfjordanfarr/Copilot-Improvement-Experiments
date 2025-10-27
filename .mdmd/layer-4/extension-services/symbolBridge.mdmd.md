@@ -6,6 +6,10 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
 - Spec references: [FR-006](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T035](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+- `registerSymbolBridge` — language-client request handler that routes symbol collection to the analyzer.
+- `SymbolBridgeAnalyzer` — reusable collector that materialises seeds, evidences, and hints from workspace symbol data.
+
 ## Responsibility
 Collects workspace symbols and reference relationships via built-in VS Code providers, converting them into seeds, evidences, and hints that enrich the server’s knowledge graph. Acts as the extension-side counterpart to the server’s symbol bridge provider, making sure inferred links stay aligned with current code usage.
 

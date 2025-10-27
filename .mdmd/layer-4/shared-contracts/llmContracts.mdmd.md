@@ -5,13 +5,19 @@
 - Re-export: [`packages/shared/src/index.ts`](../../../packages/shared/src/index.ts)
 - Parent designs: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md), [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
 
+## Exported Symbols
+
+#### INVOKE_LLM_REQUEST
+`INVOKE_LLM_REQUEST` is the request identifier used when the server delegates model invocations to the extension.
+
+#### InvokeLlmRequest
+`InvokeLlmRequest` packages the prompt, optional JSON schema, and telemetry tags for an invocation.
+
+#### InvokeLlmResult
+`InvokeLlmResult` returns the model response payload, resolved model id, and optional usage metrics.
+
 ## Purpose
 Define the language server ↔ extension contract for model invocation requests so both sides share the same identifiers and payload shapes. These interfaces allow the server to delegate language model work to the extension host (and eventually other providers) while keeping usage accounting and prompt metadata consistent.
-
-## Public Interfaces
-- `INVOKE_LLM_REQUEST` – Request id used by the language server when forwarding ingestion prompts to the client.
-- `InvokeLlmRequest` – Carries the prompt text plus optional JSON schema and telemetry tags to help providers enforce structured outputs.
-- `InvokeLlmResult` – Reports the model response (string or already-parsed object), the provider-resolved `modelId`, and optional `usage` metrics (`promptTokens`, `completionTokens`, etc.).
 
 ## Integration Notes
 - The server-side [`createDefaultRelationshipExtractor`](../../layer-4/llm-ingestion/llmIngestionManager.mdmd.md) sends `InvokeLlmRequest` messages when provider mode permits live ingestion.

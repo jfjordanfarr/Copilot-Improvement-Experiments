@@ -5,6 +5,23 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-010](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T021](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### NoiseSuppressionLevel
+`NoiseSuppressionLevel` defines the preset identifiers (`"low"`, `"medium"`, `"high"`) that map to tuned suppression + hysteresis bundles.
+
+#### NoiseFilterRuntimeConfig
+`NoiseFilterRuntimeConfig` captures the per-level filter knobs (`minConfidence`, optional depth/limit caps) that `applyNoiseFilter` consumes.
+
+#### NoiseSuppressionRuntime
+`NoiseSuppressionRuntime` combines preset metadata (`level`, diagnostics caps, hysteresis) with the derived `NoiseFilterRuntimeConfig` for runtime consumers.
+
+#### RippleRuntimeSettings
+`RippleRuntimeSettings` encapsulates ripple traversal bounds—`maxDepth`, `maxResults`, allowed relationship kinds, and per-layer subsets.
+
+#### deriveRuntimeSettings
+`deriveRuntimeSettings` normalises the extension's `ExtensionSettings` snapshot into a `RuntimeSettings` object, applying defaults and clamping overrides to safe ranges.
+
 ## Responsibility
 Normalize the extension-facing `ExtensionSettings` into deterministic runtime knobs consumed by change queues, hysteresis controllers, ripple analyzers, and dependency inspectors. Supplies conservative defaults when the client omits configuration fields.
 

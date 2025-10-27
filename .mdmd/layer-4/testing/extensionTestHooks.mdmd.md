@@ -12,8 +12,8 @@ Provide a controlled seam for overriding VS Code window APIs during extension un
 - **Window overrides**: Subset of VS Code window methods (`showQuickPick`, `showInformationMessage`, `showErrorMessage`) that tests frequently need to stub.
 - **Fallback binding**: When no override is provided, the hooks bind back to the real VS Code APIs, preserving extension runtime behavior.
 
-## Public API
-- `resolveWindowApis(): { showQuickPick, showInformationMessage, showErrorMessage }`
+## Exported Symbols
+- `resolveWindowApis` — returns resolved VS Code window methods or test overrides, keeping call sites deterministic.
 
 ## Internal Flow
 1. Inspect the global test hooks container for window overrides.

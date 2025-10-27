@@ -10,6 +10,20 @@
 - Parent design: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 - Spec references: [FR-019](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T068](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### LlmIngestionManagerOptions
+`LlmIngestionManagerOptions` holds the orchestrator and LSP connection dependencies required to instantiate the ingestion manager.
+
+#### LlmIngestionManager
+`LlmIngestionManager` queues artifact ids, drains the orchestrator run loop, and reports ingestion health via the language server console.
+
+#### CreateRelationshipExtractorOptions
+`CreateRelationshipExtractorOptions` passes the LSP connection and provider guard into the default relationship extractor factory.
+
+#### createDefaultRelationshipExtractor
+`createDefaultRelationshipExtractor` builds a `RelationshipExtractor` that honours provider mode, dispatches `INVOKE_LLM_REQUEST` messages, and logs invocation outcomes.
+
 ## Responsibility
 Queue artifact ids for ingestion, trigger the orchestrator run loop, and surface ingestion outcomes to the language server console. Also exposes a default `RelationshipExtractor` factory that now delegates invocations to the extension when provider mode permits while remaining deterministic if no provider is configured.
 

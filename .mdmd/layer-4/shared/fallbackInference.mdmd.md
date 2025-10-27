@@ -6,6 +6,29 @@
 - Workspace providers: [`packages/shared/src/inference/linkInference.ts`](../../../packages/shared/src/inference/linkInference.ts)
 - Parent design: [Language Server Architecture](../language-server-runtime/linkInferenceOrchestrator.mdmd.md)
 
+## Exported Symbols
+
+#### ArtifactSeed
+`ArtifactSeed` captures the minimal artifact description supplied by watchers ahead of inference.
+
+#### KnowledgeArtifactSummary
+`KnowledgeArtifactSummary` summarises persisted artifacts and assists with deduplication during inference.
+
+#### RelationshipHint
+`RelationshipHint` encodes manual hints, giving fallback inference authoritative signals when heuristics are ambiguous.
+
+#### LLMRelationshipSuggestion
+`LLMRelationshipSuggestion` records model-proposed relationships with confidence and rationale.
+
+#### TraceOrigin
+`TraceOrigin` tags inference traces with their provenance (`heuristic`, `hint`, or `llm`).
+
+#### FallbackInferenceResult
+`FallbackInferenceResult` aggregates inferred artifacts, relationships, and trace entries produced by the pipeline.
+
+#### inferFallbackGraph
+`inferFallbackGraph` executes the fallback pipeline, merging heuristics, hints, and optional LLM suggestions into a deduplicated graph.
+
 ## Responsibility
 Generate provisional knowledge graph artifacts and links when external feeds are unavailable. Combines lightweight heuristics, optional LLM suggestions, and explicit hints to infer relationships that keep diagnostics functional in the absence of authoritative data.
 

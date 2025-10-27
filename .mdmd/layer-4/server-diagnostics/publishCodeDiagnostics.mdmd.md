@@ -6,6 +6,20 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-002](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-006](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T037](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `CodeChangeContext`
+Aggregated ripple payload representing a single triggering artifact change, including the change event id and inferred ripple impacts destined for dependent code files.
+
+### `PublishCodeDiagnosticsOptions`
+Invocation contract supplying the incoming contexts, runtime settings, optional hysteresis controller, acknowledgement service, and the LSP diagnostic sender.
+
+### `PublishCodeDiagnosticsResult`
+Summary metrics returned after publication, reporting how many diagnostics emitted versus those suppressed by budgets, hysteresis, acknowledgement, or missing dependents alongside noise-filter totals.
+
+### `publishCodeDiagnostics`
+Core workflow that trims ripple impacts, enforces suppression rules, assigns diagnostics to dependent URIs, and ships them to the LSP client while recording acknowledgement metadata.
+
 ## Responsibility
 Transforms captured ripple impacts from code saves into LSP diagnostics, respecting suppression budgets and hysteresis rules so dependent modules receive actionable alerts without flooding the Problems view.
 

@@ -5,6 +5,17 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-007](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T025](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### CodeImpactEdge
+`CodeImpactEdge` captures each trigger→dependent hop discovered during traversal, preserving the originating artifact, the dependent, link metadata, depth, and the accumulated path so downstream tooling can render ripple chains.
+
+#### BuildCodeGraphOptions
+`BuildCodeGraphOptions` configures traversal bounds via `maxDepth` and `linkKinds`, allowing callers to widen relationship kinds or explore deeper dependency radii when UX affordances permit.
+
+#### buildCodeImpactGraph
+`buildCodeImpactGraph` performs a breadth-first walk over the knowledge graph, returning `CodeImpactEdge[]` that respect depth limits, deduplicate trigger/dependent pairs, and mirror the caller-supplied trigger metadata.
+
 ## Responsibility
 Traverse the knowledge graph outward from one or more trigger artifacts to compute a breadth-first set of code impact edges. These edges power the dependency inspector and ripple diagnostics by describing how a saved artifact influences downstream dependents.
 

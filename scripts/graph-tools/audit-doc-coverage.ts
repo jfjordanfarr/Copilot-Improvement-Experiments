@@ -86,6 +86,23 @@ const KNOWN_ROOT_SEGMENTS = new Set([
   "AI-Agent-Workspace"
 ]);
 
+interface SymbolCoverageIgnoreConfig {
+  artifactGlobs: string[];
+}
+
+interface CompiledGlobPattern {
+  original: string;
+  regex: RegExp;
+}
+
+interface AuditOptions {
+  symbolIgnorePatterns: CompiledGlobPattern[];
+}
+
+const EMPTY_AUDIT_OPTIONS: AuditOptions = {
+  symbolIgnorePatterns: []
+};
+
 function parseArgs(argv: string[]): ParsedArgs {
   const parsed: ParsedArgs = {
     helpRequested: false,
@@ -231,7 +248,7 @@ function resolveDatabasePath(options: ParsedArgs): string {
   return path.join(workspace, ".link-aware-diagnostics", "link-aware-diagnostics.db");
 }
 
-function auditCoverage(store: GraphStore): AuditReport {
+function auditCoverage(store: GraphStore, options: AuditOptions = EMPTY_AUDIT_OPTIONS): AuditReport {
   const artifacts = store.listArtifacts();
   const cache = new Map<string, LinkedArtifactSummary[]>();
   const docSymbolCache = new Map<string, Set<string>>();
@@ -270,7 +287,8 @@ function auditCoverage(store: GraphStore): AuditReport {
       }
 
       const exportedSymbols = readExportedSymbols(artifact.metadata);
-      if (exportedSymbols.length) {
+      const ignoreSymbols = shouldIgnoreSymbolCoverage(artifact, options.symbolIgnorePatterns);
+      if (exportedSymbols.length && !ignoreSymbols) {
         const docNeighbors = neighbors.filter(neighbor => {
           if (neighbor.kind !== "documents") {
             return false;
@@ -449,6 +467,10 @@ function main(): void {
     return;
   }
 
+  const workspaceRoot = parsed.workspace ? path.resolve(parsed.workspace) : process.cwd();
+  const ignoreConfig = loadSymbolCoverageIgnoreConfig(workspaceRoot);
+  const compiledIgnores = compileGlobPatterns(ignoreConfig.artifactGlobs);
+
   const dbPath = resolveDatabasePath(parsed);
   if (!fs.existsSync(dbPath)) {
     console.error(`Graph database not found at ${dbPath}.`);
@@ -459,7 +481,7 @@ function main(): void {
 
   const store = new GraphStore({ dbPath });
   try {
-    const report = auditCoverage(store);
+    const report = auditCoverage(store, { symbolIgnorePatterns: compiledIgnores });
     const exitCode = printReport(report, { json: parsed.jsonOutput, strictSymbols: parsed.strictSymbols });
     process.exit(exitCode);
   } catch (error) {
@@ -476,6 +498,81 @@ function main(): void {
 }
 
 main();
+
+function loadSymbolCoverageIgnoreConfig(workspaceRoot: string): SymbolCoverageIgnoreConfig {
+  const configPath = path.join(workspaceRoot, "symbol-coverage.ignore.json");
+  if (!fs.existsSync(configPath)) {
+    return { artifactGlobs: [] };
+  }
+
+  try {
+    const contents = fs.readFileSync(configPath, "utf8");
+    const parsed = JSON.parse(contents) as Partial<SymbolCoverageIgnoreConfig>;
+    if (!parsed || typeof parsed !== "object") {
+      throw new Error("Ignore config must be a JSON object");
+    }
+
+    const artifactGlobs = Array.isArray(parsed.artifactGlobs)
+      ? parsed.artifactGlobs.filter((entry): entry is string => typeof entry === "string" && entry.trim().length > 0)
+      : [];
+
+    return { artifactGlobs };
+  } catch (error) {
+    console.warn(
+      `Failed to read symbol coverage ignore config at ${configPath}: ${error instanceof Error ? error.message : String(error)}.`
+    );
+    return { artifactGlobs: [] };
+  }
+}
+
+function compileGlobPatterns(patterns: string[]): CompiledGlobPattern[] {
+  return patterns.map(pattern => ({
+    original: pattern,
+    regex: globToRegExp(pattern)
+  }));
+}
+
+function globToRegExp(glob: string): RegExp {
+  let regex = "";
+  for (let index = 0; index < glob.length; index += 1) {
+    const char = glob[index];
+    if (char === "*") {
+      const next = glob[index + 1];
+      if (next === "*") {
+        regex += ".*";
+        index += 1;
+        continue;
+      }
+      regex += "[^/]*";
+      continue;
+    }
+
+    if (char === "?") {
+      regex += "[^/]";
+      continue;
+    }
+
+    regex += escapeRegex(char);
+  }
+
+  return new RegExp(`^${regex}$`);
+}
+
+function escapeRegex(character: string): string {
+  return character.replace(/[|\\{}()[\]^$+*?.]/g, "\\$&");
+}
+
+function shouldIgnoreSymbolCoverage(
+  artifact: KnowledgeArtifact,
+  patterns: CompiledGlobPattern[]
+): boolean {
+  if (patterns.length === 0) {
+    return false;
+  }
+
+  const readable = resolveReadablePath(artifact.uri).replace(/\\/g, "/");
+  return patterns.some(pattern => pattern.regex.test(readable));
+}
 
 function readExportedSymbols(metadata: Record<string, unknown> | undefined): ExportedSymbol[] {
   if (!metadata) {

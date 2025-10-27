@@ -5,6 +5,38 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-001](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-002](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
 
+## Exported Symbols
+
+#### ArtifactCategory
+`ArtifactCategory` distinguishes the `"document"` and `"code"` change categories so downstream pipelines can branch on artifact type.
+
+#### DocumentStore
+`DocumentStore` abstracts the text document cache used to retrieve live editor content before falling back to disk reads.
+
+#### ArtifactWatcherLogger
+`ArtifactWatcherLogger` defines minimal `info`/`warn` hooks for structured watcher telemetry.
+
+#### ArtifactWatcherOptions
+`ArtifactWatcherOptions` wires the `DocumentStore`, `GraphStore`, path reference detector, and logger into the watcher, plus optional size thresholds and debounce windows.
+
+#### TrackedArtifactChange
+`TrackedArtifactChange` captures the normalized change payload shared with inference orchestrators, including canonical URIs, prior artifacts, content, and hints.
+
+#### DocumentTrackedArtifactChange
+`DocumentTrackedArtifactChange` narrows `TrackedArtifactChange` to documentation artifacts, helping inference treat prose differently from code.
+
+#### CodeTrackedArtifactChange
+`CodeTrackedArtifactChange` narrows the same payload for code changes so LLM inference and dependency analysis receive enriched metadata.
+
+#### SkippedArtifactChange
+`SkippedArtifactChange` records ignored events alongside reasons (missing content, unsupported type) for observability.
+
+#### ArtifactWatcherResult
+`ArtifactWatcherResult` aggregates both processed changes and skipped entries, letting callers decide how to react to partial successes.
+
+#### ArtifactWatcher
+`ArtifactWatcher` listens to file events, classifies artifacts, loads content, enriches hints, and emits `TrackedArtifactChange` batches for inference.
+
 ## Responsibility
 Classifies and prepares workspace change events for inference:
 - Normalises URIs for consistency across filesystem events.

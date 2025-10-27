@@ -14,10 +14,12 @@ Provide the `linkDiagnostics.inspectDependencies` command that displays downstre
 - **Zod validation**: `InspectDependenciesResultSchema` hardens the client against malformed server responses before presenting data.
 - **Edge description**: `describeEdgePath` summarizes transitive chains (e.g., `via docs/api.md → src/service.ts`) to contextualize deeper dependencies.
 
-## Public API
-- `registerDependencyQuickPick(client: LanguageClient): vscode.Disposable`
-- `DependencyQuickPickController.show(target?): Promise<void>`
-- `describeEdgePath(edge, formatter): string | undefined`
+## Exported Symbols
+- `registerDependencyQuickPick` — command registrar that instantiates the controller and binds VS Code command id.
+- `DependencyQuickPickController` — exposes `show` for reuse in tests and other command surfaces.
+- `describeEdgePath` — helper that summarizes transitive dependency paths for UI consumption.
+- `InspectDependenciesResultValidator` — exported schema for consumers needing contract validation.
+- `ParsedEdge` — inferred dependency edge type used by downstream features and tests.
 
 ## Internal Flow
 1. Resolve the target URI from command arguments or the active editor; surface an info toast when nothing is selected.

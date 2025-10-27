@@ -5,6 +5,14 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-012](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T022](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `ChangeQueue`
+Event-loop friendly queue that debounces file change notifications and delivers batches to downstream processors.
+
+### `QueuedChange`
+Shape describing the metadata captured for each pending change (URI, layer, latest content hash, and change provenance).
+
 ## Responsibility
 Buffers rapid-fire document/code change notifications and flushes them after a debounce window so downstream inference, persistence, and diagnostics execute in predictable batches.
 

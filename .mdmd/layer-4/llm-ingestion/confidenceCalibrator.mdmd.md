@@ -8,6 +8,17 @@
 - Parent design: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 - Spec references: [FR-019](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T071](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### ConfidenceTier
+`ConfidenceTier` enumerates the high/medium/low buckets assigned to calibrated relationships.
+
+#### CalibrationContext
+`CalibrationContext` supplies existing link metadata so the calibrator can decide when to promote or shadow candidates.
+
+#### CalibratedRelationship
+`CalibratedRelationship` is the enriched candidate returned by the calibrator, including eligibility flags and promotion criteria.
+
 ## Responsibility
 Normalize raw model confidences into repository-wide tiers, decide whether an inferred relationship is safe for diagnostics, and annotate each edge with provenance needed for audits (`confidenceTier`, `shadowed`, `promotionCriteria`).
 

@@ -6,17 +6,19 @@
 - Upstream detector: [`feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts)
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
+## Exported Symbols
+
+### `SCIPParserOptions`
+Parser configuration (project root, feed id, optional confidence) used to normalise URIs and annotate metadata.
+
+### `SCIPParser`
+Parser class that converts SCIP indexes into `ExternalSnapshot` artifacts and links.
+
+### `parseSCIP`
+Wrapper function that instantiates `SCIPParser` and returns the snapshot in one call.
+
 ## Responsibility
 Normalize SCIP indexes produced by language analyzers into `ExternalSnapshot` objects. The parser emits code artifacts and dependency/reference links so the ingestion pipeline can merge SCIP intelligence with workspace-derived diagnostics.
-
-## Key Concepts
-- **SCIPIndex**: Structured JSON containing documents, occurrences, and symbols emitted by SCIP exporters.
-- **Symbol roles**: Bit flags on occurrences used to differentiate definitions, write accesses, and plain references.
-- **Language inference**: Fallback mapping from file extension to language when exporters omit the language field.
-
-## Public API
-- `class SCIPParser` with `parse(index: SCIPIndex): ExternalSnapshot`
-- `parseSCIP(index, options): ExternalSnapshot` convenience wrapper
 
 ## Internal Flow
 1. Iterate documents to create artifacts, normalizing URIs to `file://` and capturing metadata (feed ID, relative path, confidence).

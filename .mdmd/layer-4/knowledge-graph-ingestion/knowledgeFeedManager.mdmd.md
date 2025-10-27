@@ -5,21 +5,34 @@
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Spec references: [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-016](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T040](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `Disposable`
+Simple interface with a `dispose` method. Returned by `onStatusChanged` so listeners can unsubscribe from feed health notifications.
+
+### `KnowledgeFeedManagerLogger`
+Shape for optional logger dependencies supplying `info`, `warn`, and `error`. Allows host environments to plug in structured logging without hard-coding transports.
+
+### `FeedSnapshotSource`
+Descriptor for loading initial snapshots: includes a label and async loader returning an `ExternalSnapshot`.
+
+### `FeedStreamSource`
+Descriptor for stream ingestion, exposing a label and iterator that yields `ExternalStreamEvent`s. Supports lazy async construction of stream iterables.
+
+### `FeedConfiguration`
+Per-feed configuration assembled from runtime settings: identifiers plus optional snapshot/stream descriptors and metadata bag.
+
+### `BackoffOptions`
+Tuning knobs for the exponential backoff (initial delay, multiplier, maximum). Passed to internal backoff helper.
+
+### `KnowledgeFeedManagerOptions`
+Constructor arguments bundling feed configurations, the `KnowledgeGraphIngestor`, diagnostics gateway, optional logger, backoff settings, and clock override.
+
+### `KnowledgeFeedManager`
+Coordinator class that boots configured feeds, ingests snapshots, consumes stream events with backoff/retry, maintains healthy feed descriptors, and notifies observers of status changes.
+
 ## Responsibility
 Coordinates external knowledge feeds: loading snapshots, streaming deltas, tracking health status, and exposing currently healthy feeds to the `ArtifactWatcher`/`LinkInferenceOrchestrator`. Applies backoff and recovery per the feed resilience strategy.
-
-## Key Concepts
-- **FeedConfiguration**: Structured descriptor (id, snapshot loader, stream iterator, auth metadata) derived from workspace settings.
-- **Healthy feeds cache**: In-memory map from feed ID to `KnowledgeFeed` descriptor handed to the orchestrator.
-- **Backoff policy**: Exponential schedule (e.g., 1s → 5s → 25s → 2m) capped at configurable ceiling.
-- **Observers**: Event emitter notifying runtime when health status changes (for diagnostics + watcher refresh).
-
-## Public API
-- `constructor(options: KnowledgeFeedManagerOptions)`
-- `start(): Promise<void>` – bootstrap snapshots, launch stream workers.
-- `stop(): Promise<void>` – cancel timers, close streams, flush checkpoints.
-- `getHealthyFeeds(): KnowledgeFeed[]`
-- `onStatusChanged(listener: (summary: FeedStatusSummary) => void): Disposable`
 
 ## Internal Flow
 ```mermaid

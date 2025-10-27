@@ -6,18 +6,22 @@
 - Tests: [`knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts)
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
+## Exported Symbols
+
+### `FeedHealthStatus`
+String literal union describing feed health (`healthy`, `degraded`, `blocked`). Drives logger severity and UI labelling so operators can immediately gauge ingest reliability.
+
+### `FeedStatusSummary`
+Canonical snapshot emitted for each health update: captures status, timestamp, log payload, and optional `KnowledgeFeedSummary` metadata that downstream dashboards can render.
+
+### `FeedDiagnosticsGatewayOptions`
+Constructor contract bundling optional logger hooks and an `onStatusChanged` callback for observers that need push updates when feed state changes.
+
+### `FeedDiagnosticsGateway`
+Class maintaining per-feed status in memory, routing formatted health messages to the provided logger, and publishing change notifications for UI refreshes.
+
 ## Responsibility
 Centralize status updates for external knowledge feeds, translating health transitions into structured logs and event callbacks. Maintains the latest observed state per feed so diagnostics views and runtime watchers can present accurate health information.
-
-## Key Concepts
-- **FeedHealthStatus**: Enumerated states (`healthy`, `degraded`, `blocked`) describing whether a feed can be trusted by inference.
-- **FeedStatusSummary**: Snapshot capturing the status, timestamp, optional message/details, and the most recent `KnowledgeFeedSummary` metadata.
-- **Listeners**: Optional `onStatusChanged` hook allows the runtime to broadcast updates (e.g., to diagnostics tree providers).
-
-## Public API
-- `updateStatus(feedId, status, message?, details?, snapshot?): FeedStatusSummary`
-- `getStatus(feedId): FeedStatusSummary | undefined`
-- `listStatuses(): FeedStatusSummary[]`
 
 ## Internal Flow
 1. Mutate the in-memory `Map` keyed by feed ID when `updateStatus` is called.

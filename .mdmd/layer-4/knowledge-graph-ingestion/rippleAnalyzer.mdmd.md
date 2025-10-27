@@ -6,11 +6,25 @@
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Spec references: [FR-017](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T041](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `RippleAnalyzerLogger`
+Optional logger interface with leveled methods (`debug`, `info`, `warn`, `error`) to observe traversal behaviour without hard-coding transports.
+
+### `RippleAnalyzerOptions`
+Constructor configuration specifying the `GraphStore`, default depth/result limits, allowed relationship kinds, and logger.
+
+### `RippleAnalysisRequest`
+Per-call overrides enabling callers to adjust depth, result caps, allowed link kinds, target URI, or exclusion set.
+
+### `RippleHint`
+Extended relationship hint emitted by the analyzer, enriching shared metadata with traversal depth and hop-by-hop path for diagnostics.
+
+### `RippleAnalyzer`
+Breadth-first traversal engine that generates ripple hints from the knowledge graph while enforcing depth/result budgets and exclusion rules.
+
 ## Responsibility
 Traverse the knowledge graph around a source artifact and emit ranked relationship hints that describe potential ripple impacts. Normalises URIs, filters on allowed link kinds, and applies depth-based confidence scoring so downstream diagnostics can surface actionable impact predictions.
-
-## Entry Points
-- `generateHintsForArtifact(artifact, request)` kicks off analysis for a canonicalised artifact, applying per-request overrides (depth, results, relationship filters, excluded IDs).
 
 ## Algorithm
 - Canonicalise source URI through `normalizeFileUri` to stabilise comparisons across schemes/path casing.

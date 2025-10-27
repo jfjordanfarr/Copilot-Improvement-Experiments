@@ -14,8 +14,9 @@ Provide a VS Code command (`linkDiagnostics.exportDiagnostics`) that exports out
 - **ListOutstandingDiagnosticsResult**: Shared contract delivering server-side diagnostics to the extension.
 - **User prompts**: Quick pick collects format, save dialog selects destination, optional information message opens exported file.
 
-## Public API
-- `registerExportDiagnosticsCommand(client: LanguageClient): vscode.Disposable`
+## Exported Symbols
+- `EXPORT_DIAGNOSTICS_COMMAND` — command identifier shared with server-side diagnostics export flows.
+- `registerExportDiagnosticsCommand` — registers the export command handler against a language client.
 
 ## Internal Flow
 1. Register the command with VS Code, wiring the handler to the supplied language client.

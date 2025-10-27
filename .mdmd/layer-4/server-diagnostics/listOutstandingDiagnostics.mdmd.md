@@ -6,6 +6,14 @@
 - Upstream data: [`GraphStore`](../../../packages/shared/src/db/graphStore.ts) diagnostic APIs
 - Downstream consumers: acknowledgement CLI/commands exposed via [`packages/extension/src/commands/acknowledgeDiagnostic.ts`](../../../packages/extension/src/commands/acknowledgeDiagnostic.ts)
 
+## Exported Symbols
+
+### `buildOutstandingDiagnosticsResult`
+Aggregates persisted diagnostic records into the LSP-friendly `ListOutstandingDiagnosticsResult` shape.
+
+### `mapOutstandingDiagnostic`
+Transforms a single `DiagnosticRecord` into a summary, resolving artifact metadata from the graph store.
+
 ## Why This File Exists
 After ripple diagnostics emit, users need a consistent way to review what remains unresolved—especially in headless contexts (CLI, CI, telemetry dashboards). The helpers in `listOutstandingDiagnostics.ts` transform raw `DiagnosticRecord`s from the graph store into lightweight summaries tailored for LSP responses and tooling. By centralising this translation layer, we guarantee that every consumer sees acknowledged timestamps, artifact metadata, and link provenance in the same shape.
 

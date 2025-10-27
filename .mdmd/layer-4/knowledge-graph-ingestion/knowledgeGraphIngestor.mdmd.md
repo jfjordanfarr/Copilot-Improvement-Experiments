@@ -5,48 +5,25 @@
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Spec references: [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-016](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [Research §Knowledge-Graph Schema Contract](../../../specs/001-link-aware-diagnostics/research.md#knowledge-graph-schema-contract)
 
+## Exported Symbols
+
+### `KnowledgeGraphIngestorLogger`
+Optional logger interface providing `info`, `warn`, and `error` used for detailed ingest telemetry.
+
+### `KnowledgeGraphIngestorOptions`
+Constructor configuration combining the graph store, shared bridge, checkpoint store, diagnostics gateway, and optional logger/clock overrides.
+
+### `SnapshotIngestResult`
+Return payload from `ingestSnapshot`, exposing the normalized snapshot and resulting `KnowledgeSnapshot` applied to the store.
+
+### `StreamIngestResult`
+Return payload from `ingestStreamEvent`, including the normalized stream event and persisted checkpoint for idempotency.
+
+### `KnowledgeGraphIngestor`
+Stateful coordinator that validates, normalizes, and persists knowledge feed snapshots/stream events while managing checkpoints and diagnostics.
+
 ## Responsibility
 Coordinates validation and persistence of external knowledge-graph feeds. Normalizes payloads, writes them through the shared `KnowledgeGraphBridge`, prunes stale artifacts keyed by `metadata.knowledgeFeedId`, manages per-feed checkpoints, and updates feed diagnostics.
-
-## Dependencies
-- `GraphStore` (SQLite persistence backing knowledge projections)
-- `KnowledgeGraphBridge` (shared projector for snapshot and stream ingestion)
-- Schema validator utilities (`assertValidSnapshot`, `assertValidStreamEvent`)
-- `FeedDiagnosticsGateway` (health reporting)
-- `FeedCheckpointStore` (workspace-backed JSON checkpoints)
-- `Logger` abstraction shared across server features
-
-## Data Contracts
-- `KnowledgeGraphIngestorOptions`
-	- `graphStore: GraphStore`
-	- `bridge: KnowledgeGraphBridge`
-	- `diagnostics: FeedDiagnosticsGateway`
-	- `checkpoints: FeedCheckpointStore`
-	- `logger: Logger`
-	- `now?: () => Date`
-- `ExternalSnapshot` *(from `@copilot-improvement/shared/knowledgeGraphBridge`)*
-	- `artifacts: ExternalArtifact[]`
-	- `links: ExternalLink[]`
-	- `createdAt?: string`
-- `ExternalStreamEvent`
-	- `kind: StreamEventKind`
-	- `sequenceId: string`
-	- `detectedAt: string`
-	- `artifact?: ExternalArtifact`
-	- `artifactId?: string`
-	- `link?: ExternalLink`
-	- `linkId?: string`
-- `StreamCheckpoint`
-	- `lastSequenceId: string`
-	- `updatedAt: string`
-
-## Core Methods
-- `ingestSnapshot(feedId: string, snapshot: ExternalSnapshot): Promise<void>`
-- `ingestStreamEvent(feedId: string, event: ExternalStreamEvent): Promise<void>`
-- `loadCheckpoint(feedId: string): Promise<StreamCheckpoint | null>`
-- `persistCheckpoint(feedId: string, checkpoint: StreamCheckpoint): Promise<void>`
-- `clearCheckpoint(feedId: string): Promise<void>`
-- `withFeedLock<T>(feedId: string, work: () => Promise<T>): Promise<T>` *(guards concurrent ingestion)*
 
 ## Process Outline
 1. **Validation** – assert payloads comply with schema contract before mutation.

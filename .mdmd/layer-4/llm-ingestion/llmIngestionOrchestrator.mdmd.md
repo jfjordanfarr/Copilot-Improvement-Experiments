@@ -11,6 +11,23 @@
 - Parent design: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 - Spec references: [FR-019](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T070](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+#### LlmIngestionLogger
+`LlmIngestionLogger` defines the `info`, `warn`, and `error` hooks the orchestrator uses so callers can route ingestion telemetry to custom sinks.
+
+#### EnqueueOptions
+`EnqueueOptions` lets the runtime provide artifact identifiers and the enqueue `reason`, giving operators traceability for why work entered the queue.
+
+#### LlmIngestionResult
+`LlmIngestionResult` captures per-artifact outcomes (`stored`, `skipped`, `error`, dry-run payload), enabling managers to roll up ingestion health.
+
+#### LlmIngestionOrchestratorOptions
+`LlmIngestionOrchestratorOptions` wires together the `GraphStore`, prompt renderer, calibrator, file reader, and configuration knobs used to run ingestion loops.
+
+#### LlmIngestionOrchestrator
+`LlmIngestionOrchestrator` drains queued artifact ids, renders prompts, invokes the relationship extractor, calibrates responses, and persists eligible relationships (or writes dry-run snapshots).
+
 ## Responsibility
 Drain queued artifact ids, build prompts, invoke the configured `RelationshipExtractor`, and persist calibrated relationships with provenance. The orchestrator owns chunk creation, dry-run snapshot generation, and logging warnings when ingestion is skipped or fails.
 

@@ -6,6 +6,20 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md), [Settings Bridge](../../layer-4/server-settings/settingsBridge.mdmd.md)
 - Spec references: [FR-008](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T046](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `NoiseFilterTotals`
+Counter bundle tracking how many ripple impacts were discarded for confidence, depth, per-change, and per-artifact limits. Returned with every filter invocation so telemetry and acknowledgement services can reason about suppression pressure.
+
+### `ZERO_NOISE_FILTER_TOTALS`
+Reusable zeroed structure used to seed suppression counters. Cloning this constant keeps results immutable for callers while avoiding repeated literal construction.
+
+### `NoiseFilterResult`
+Typed return payload combining the filtered contexts with their `NoiseFilterTotals`. Enables downstream pipelines to forward both the sanitized ripple set and the suppression diagnostics in one object.
+
+### `applyNoiseFilter`
+Primary entry point: applies runtime-configured suppression rules to ripple contexts, producing trimmed impacts plus updated totals for observability.
+
 ## Responsibility
 Applies level-aware noise suppression rules to ripple diagnostics before they are published. The filter trims low-confidence or overly redundant ripple impacts so the remaining diagnostics stay actionable without overwhelming the Problems view.
 

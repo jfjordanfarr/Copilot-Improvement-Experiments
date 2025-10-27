@@ -5,6 +5,17 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-002](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T031](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `PersistedCodeChange`
+Persisted shape returned once the code artifact save has been written to the graph store.
+
+### `SaveCodeChangeOptions`
+Input contract covering the watcher payload, persisted artifact snapshot, and optional timestamp factory.
+
+### `saveCodeChange`
+Orchestrates normalization, graph persistence, and change-event creation for implementation files.
+
 ## Responsibility
 Records code artifact saves in the knowledge graph so ripple analysis can trace dependencies back to concrete change events with stable IDs.
 

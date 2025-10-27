@@ -6,6 +6,9 @@
 - Shared contracts: [`LIST_OUTSTANDING_DIAGNOSTICS_REQUEST`, `SET_DIAGNOSTIC_ASSESSMENT_REQUEST`](../../../packages/shared/src/contracts/diagnostics.ts)
 - Parent design: [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
 
+## Exported Symbols
+- `registerAnalyzeWithAICommand` — wires the command into VS Code, providing dependencies and lifecycle management.
+
 ## Purpose
 Provide the `linkDiagnostics.analyzeWithAI` command so leads can request an on-demand language model assessment for any outstanding diagnostic. The command orchestrates diagnostic selection, prompt construction, model invocation, JSON parsing, and persistence, ensuring AI guidance lands back in the knowledge graph with provenance metadata.
 

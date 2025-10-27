@@ -2,8 +2,8 @@
   "generatedAt": "2025-01-01T00:00:00.000Z",
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
   "totals": {
-    "artifacts": 245,
-    "links": 826
+    "artifacts": 273,
+    "links": 935
   },
   "artifacts": [
     {
@@ -768,6 +768,14 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "ChangeQueue",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "QueuedChange",
+            "context": "inline-code"
+          },
+          {
             "symbol": "onFlush",
             "context": "inline-code"
           },
@@ -794,6 +802,10 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "applyOverrideLink",
+            "context": "inline-code"
+          },
+          {
             "symbol": "ensureArtifact",
             "context": "inline-code"
           },
@@ -815,6 +827,18 @@
       "language": "markdown",
       "metadata": {
         "symbolReferences": [
+          {
+            "symbol": "PersistedCodeChange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SaveCodeChangeOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "saveCodeChange",
+            "context": "inline-code"
+          },
           {
             "symbol": "nextArtifact",
             "context": "inline-code"
@@ -858,6 +882,22 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "PersistedDocumentChange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SaveDocumentChangeOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "persistInferenceResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "saveDocumentChange",
+            "context": "inline-code"
+          },
+          {
             "symbol": "KnowledgeArtifact",
             "context": "inline-code"
           },
@@ -892,6 +932,26 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "CodeImpactEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "BuildCodeGraphOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "maxDepth",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "linkKinds",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "buildCodeImpactGraph",
+            "context": "inline-code"
+          },
+          {
             "symbol": "GraphStore",
             "context": "inline-code"
           },
@@ -901,14 +961,6 @@
           },
           {
             "symbol": "depends_on",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "CodeImpactEdge",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "maxDepth",
             "context": "inline-code"
           },
           {
@@ -972,11 +1024,23 @@
       "metadata": {
         "symbolReferences": [
           {
-            "symbol": "INSPECT_DEPENDENCIES_REQUEST",
+            "symbol": "InspectDependenciesOptions",
             "context": "inline-code"
           },
           {
             "symbol": "GraphStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "maxDepth",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "linkKinds",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "inspectDependencies",
             "context": "inline-code"
           },
           {
@@ -988,15 +1052,15 @@
             "context": "inline-code"
           },
           {
+            "symbol": "INSPECT_DEPENDENCIES_REQUEST",
+            "context": "inline-code"
+          },
+          {
             "symbol": "normalizeFileUri",
             "context": "inline-code"
           },
           {
             "symbol": "KnowledgeArtifact",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "InspectDependenciesOptions",
             "context": "inline-code"
           },
           {
@@ -1036,14 +1100,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "maxDepth",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "linkKinds",
-            "context": "inline-code"
-          },
-          {
             "symbol": "settingsBridge.ts",
             "context": "inline-code"
           }
@@ -1062,7 +1118,27 @@
             "context": "inline-code"
           },
           {
+            "symbol": "InspectSymbolNeighborsOptions",
+            "context": "inline-code"
+          },
+          {
             "symbol": "GraphStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "artifactId",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "artifactUri",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "inspectSymbolNeighbors",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InspectSymbolNeighborsResult",
             "context": "inline-code"
           },
           {
@@ -1075,14 +1151,6 @@
           },
           {
             "symbol": "graphStore",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "artifactId",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "artifactUri",
             "context": "inline-code"
           },
           {
@@ -1129,6 +1197,52 @@
       }
     },
     {
+      "id": "fallback-artifact-cb2627c22226",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/extension-commands/acknowledgeDiagnostic.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "ACKNOWLEDGE_DIAGNOSTIC_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DocDiagnosticProvider",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ACKNOWLEDGE_DIAGNOSTIC_COMMAND",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AcknowledgementWorkflowOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "registerAcknowledgementWorkflow",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "recordId",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "not_found",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "already_acknowledged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-fdb669f9b76f",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/extension-commands/analyzeWithAI.mdmd.md",
       "layer": "requirements",
@@ -1141,6 +1255,10 @@
           },
           {
             "symbol": "SET_DIAGNOSTIC_ASSESSMENT_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "registerAnalyzeWithAICommand",
             "context": "inline-code"
           },
           {
@@ -1202,6 +1320,14 @@
             "context": "inline-code"
           },
           {
+            "symbol": "EXPORT_DIAGNOSTICS_COMMAND",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "registerExportDiagnosticsCommand",
+            "context": "inline-code"
+          },
+          {
             "symbol": "fs.writeFile",
             "context": "inline-code"
           },
@@ -1236,6 +1362,10 @@
             "context": "inline-code"
           },
           {
+            "symbol": "registerOverrideLinkCommand",
+            "context": "inline-code"
+          },
+          {
             "symbol": "showErrorMessage",
             "context": "inline-code"
           }
@@ -1266,6 +1396,26 @@
             "context": "inline-code"
           },
           {
+            "symbol": "registerDependencyQuickPick",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DependencyQuickPickController",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "show",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InspectDependenciesResultValidator",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ParsedEdge",
+            "context": "inline-code"
+          },
+          {
             "symbol": "KnowledgeArtifactSchema",
             "context": "inline-code"
           },
@@ -1283,6 +1433,30 @@
       "language": "markdown",
       "metadata": {
         "symbolReferences": [
+          {
+            "symbol": "OPEN_LINKED_ARTIFACT_COMMAND",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "VIEW_RIPPLE_DETAILS_COMMAND",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "registerDocDiagnosticProvider",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "buildOpenActionTitle",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "buildRippleSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "formatConfidenceLabel",
+            "context": "inline-code"
+          },
           {
             "symbol": "languages.registerCodeActionsProvider",
             "context": "inline-code"
@@ -1345,6 +1519,14 @@
       "language": "markdown",
       "metadata": {
         "symbolReferences": [
+          {
+            "symbol": "activate",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "deactivate",
+            "context": "inline-code"
+          },
           {
             "symbol": "ConfigService",
             "context": "inline-code"
@@ -1416,11 +1598,19 @@
             "context": "inline-code"
           },
           {
-            "symbol": "linkDiagnostics.inspectSymbolNeighbors",
+            "symbol": "registerInspectSymbolNeighborsCommand",
             "context": "inline-code"
           },
           {
-            "symbol": "vscode.Uri",
+            "symbol": "SymbolNeighborQuickPickController",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ParsedInspectSymbolNeighborsResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ParsedNeighborNode",
             "context": "inline-code"
           },
           {
@@ -1464,6 +1654,38 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "LlmProviderMode",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "prompt",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "disabled",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmInvocationFailureReason",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmInvocationError",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InvokeChatOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InvokeChatResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmInvoker",
+            "context": "inline-code"
+          },
+          {
             "symbol": "vscode.lm",
             "context": "inline-code"
           },
@@ -1476,19 +1698,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "disabled",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "prompt",
-            "context": "inline-code"
-          },
-          {
             "symbol": "modelOptions",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "LlmInvocationError",
             "context": "inline-code"
           },
           {
@@ -1497,10 +1707,6 @@
           },
           {
             "symbol": "failed",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "LlmInvoker",
             "context": "inline-code"
           }
         ]
@@ -1513,6 +1719,14 @@
       "language": "markdown",
       "metadata": {
         "symbolReferences": [
+          {
+            "symbol": "registerSymbolBridge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SymbolBridgeAnalyzer",
+            "context": "inline-code"
+          },
           {
             "symbol": "COLLECT_WORKSPACE_SYMBOLS_REQUEST",
             "context": "inline-code"
@@ -1583,6 +1797,14 @@
       "language": "markdown",
       "metadata": {
         "symbolReferences": [
+          {
+            "symbol": "LinkDiagnosticsSettings",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ConfigService",
+            "context": "inline-code"
+          },
           {
             "symbol": "linkAwareDiagnostics",
             "context": "inline-code"
@@ -1666,11 +1888,53 @@
             "context": "inline-code"
           },
           {
+            "symbol": "ensureProviderSelection",
+            "context": "inline-code"
+          },
+          {
             "symbol": "applySelection",
             "context": "inline-code"
           },
           {
             "symbol": "Promise.all",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-9e3644921615",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/extension-shared/artifactSchemas.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "ArtifactLayerSchema",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ArtifactLayer",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeArtifactSchema",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeArtifact",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkRelationshipKindSchema",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkRelationshipKind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "zod",
             "context": "inline-code"
           }
         ]
@@ -1693,6 +1957,30 @@
           },
           {
             "symbol": "ListOutstandingDiagnosticsResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "TreeNode",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DiagnosticsTreeDataProvider",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "isDiagnosticNode",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "buildTreeAcknowledgementArgs",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DiagnosticsTreeRegistration",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "registerDiagnosticsTreeView",
             "context": "inline-code"
           },
           {
@@ -1750,23 +2038,11 @@
             "context": "inline-code"
           },
           {
-            "symbol": "FileFeedCheckpointStore",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "lastSequenceId",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "updatedAt",
+            "symbol": "FeedCheckpointStore",
             "context": "inline-code"
           },
           {
             "symbol": "read",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "null",
             "context": "inline-code"
           },
           {
@@ -1775,6 +2051,14 @@
           },
           {
             "symbol": "clear",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FileFeedCheckpointStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "null",
             "context": "inline-code"
           },
           {
@@ -1816,6 +2100,10 @@
             "context": "inline-code"
           },
           {
+            "symbol": "FeedHealthStatus",
+            "context": "inline-code"
+          },
+          {
             "symbol": "healthy",
             "context": "inline-code"
           },
@@ -1828,11 +2116,23 @@
             "context": "inline-code"
           },
           {
+            "symbol": "FeedStatusSummary",
+            "context": "inline-code"
+          },
+          {
             "symbol": "KnowledgeFeedSummary",
             "context": "inline-code"
           },
           {
+            "symbol": "FeedDiagnosticsGatewayOptions",
+            "context": "inline-code"
+          },
+          {
             "symbol": "onStatusChanged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FeedDiagnosticsGateway",
             "context": "inline-code"
           },
           {
@@ -1862,10 +2162,6 @@
           {
             "symbol": "KnowledgeFeedManager",
             "context": "inline-code"
-          },
-          {
-            "symbol": "FeedHealthStatus",
-            "context": "inline-code"
           }
         ]
       }
@@ -1878,7 +2174,7 @@
       "metadata": {
         "symbolReferences": [
           {
-            "symbol": "ExternalSnapshot",
+            "symbol": "FeedFormat",
             "context": "inline-code"
           },
           {
@@ -1894,15 +2190,23 @@
             "context": "inline-code"
           },
           {
-            "symbol": "parseLSIF",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "parseSCIP",
+            "symbol": "FormatDetectionResult",
             "context": "inline-code"
           },
           {
             "symbol": "detectFormat",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ParseFeedFileOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "parseFeedFile",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExternalSnapshot",
             "context": "inline-code"
           },
           {
@@ -1911,10 +2215,6 @@
           },
           {
             "symbol": "KnowledgeFeedManager",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "parseFeedFile",
             "context": "inline-code"
           },
           {
@@ -1932,15 +2232,75 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "Disposable",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "dispose",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "onStatusChanged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedManagerLogger",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "info",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FeedSnapshotSource",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExternalSnapshot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FeedStreamSource",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExternalStreamEvent",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FeedConfiguration",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "BackoffOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedManagerOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphIngestor",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedManager",
+            "context": "inline-code"
+          },
+          {
             "symbol": "ArtifactWatcher",
             "context": "inline-code"
           },
           {
             "symbol": "LinkInferenceOrchestrator",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "KnowledgeFeed",
             "context": "inline-code"
           }
         ]
@@ -1970,7 +2330,43 @@
             "context": "inline-code"
           },
           {
+            "symbol": "KnowledgeGraphBridgeLogger",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "info",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphBridgeServiceOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphBridgeStartResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "start",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphBridgeDisposable",
+            "context": "inline-code"
+          },
+          {
             "symbol": "onStatusChanged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphBridgeService",
             "context": "inline-code"
           },
           {
@@ -1979,10 +2375,6 @@
           },
           {
             "symbol": "checkpointStoreFactory",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "KnowledgeGraphBridgeLogger",
             "context": "inline-code"
           },
           {
@@ -2000,6 +2392,50 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "KnowledgeGraphIngestorLogger",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "info",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphIngestorOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SnapshotIngestResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ingestSnapshot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeSnapshot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "StreamIngestResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ingestStreamEvent",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphIngestor",
+            "context": "inline-code"
+          },
+          {
             "symbol": "KnowledgeGraphBridge",
             "context": "inline-code"
           },
@@ -2008,43 +2444,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "GraphStore",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "assertValidSnapshot",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "assertValidStreamEvent",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "FeedDiagnosticsGateway",
-            "context": "inline-code"
-          },
-          {
             "symbol": "FeedCheckpointStore",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "Logger",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "KnowledgeGraphIngestorOptions",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "ExternalSnapshot",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "ExternalStreamEvent",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "StreamCheckpoint",
             "context": "inline-code"
           },
           {
@@ -2053,6 +2453,10 @@
           },
           {
             "symbol": "degraded",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FeedDiagnosticsGateway",
             "context": "inline-code"
           },
           {
@@ -2078,15 +2482,19 @@
             "context": "inline-code"
           },
           {
+            "symbol": "LSIFParserOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFParser",
+            "context": "inline-code"
+          },
+          {
             "symbol": "ExternalSnapshot",
             "context": "inline-code"
           },
           {
-            "symbol": "document",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "resultSet",
+            "symbol": "parseLSIF",
             "context": "inline-code"
           },
           {
@@ -2124,6 +2532,42 @@
             "context": "inline-code"
           },
           {
+            "symbol": "RippleAnalyzerLogger",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "debug",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "info",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RippleAnalyzerOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RippleAnalysisRequest",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RippleHint",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RippleAnalyzer",
+            "context": "inline-code"
+          },
+          {
             "symbol": "normalizeFileUri",
             "context": "inline-code"
           },
@@ -2141,10 +2585,6 @@
           },
           {
             "symbol": "DEPTH_PENALTY",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "RippleHint",
             "context": "inline-code"
           },
           {
@@ -2178,7 +2618,31 @@
             "context": "inline-code"
           },
           {
+            "symbol": "SchemaViolation",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SchemaValidationResult",
+            "context": "inline-code"
+          },
+          {
             "symbol": "valid",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "validateSnapshot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "validateStreamEvent",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "assertValidSnapshot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "assertValidStreamEvent",
             "context": "inline-code"
           },
           {
@@ -2232,7 +2696,19 @@
             "context": "inline-code"
           },
           {
+            "symbol": "SCIPParserOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPParser",
+            "context": "inline-code"
+          },
+          {
             "symbol": "ExternalSnapshot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "parseSCIP",
             "context": "inline-code"
           },
           {
@@ -2253,6 +2729,18 @@
       "language": "markdown",
       "metadata": {
         "symbolReferences": [
+          {
+            "symbol": "StaticFeedWorkspaceProviderOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "createStaticFeedWorkspaceProvider",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "WorkspaceLinkProvider",
+            "context": "inline-code"
+          },
           {
             "symbol": "WorkspaceLinkContribution",
             "context": "inline-code"
@@ -2281,6 +2769,170 @@
       }
     },
     {
+      "id": "fallback-artifact-be403a5336c4",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/knowledge-graph-ingestion/symbolBridgeProvider.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "createSymbolBridgeProvider",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "Connection",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "WorkspaceLinkProvider",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "COLLECT_WORKSPACE_SYMBOLS_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "zod",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CollectWorkspaceSymbolsParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "seeds",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "maxSeeds",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CollectWorkspaceSymbolsResultSchema",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "null",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "undefined",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "info",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-562d2ddc374e",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/knowledge-graph-ingestion/workspaceIndexProvider.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "DEFAULT_CODE_EXTENSIONS",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DEFAULT_DOC_EXTENSIONS",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExportedSymbolKind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "exportedSymbols",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExportedSymbolMetadata",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "name",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "kind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "isDefault",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "isTypeOnly",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DocumentSymbolReferenceMetadata",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "symbol",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "createWorkspaceIndexProvider",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "WorkspaceLinkProvider",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "docs",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "specs",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "README.md",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "requirements",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "extractExportedSymbols",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "extractDocumentSymbolReferences",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "extractPathReferenceHints",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "extractLinkHints",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "logger.info",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "WorkspaceLinkContribution",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-18251ba77144",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/artifactWatcher.mdmd.md",
       "layer": "requirements",
@@ -2288,11 +2940,59 @@
       "metadata": {
         "symbolReferences": [
           {
-            "symbol": "TextDocument",
+            "symbol": "ArtifactCategory",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DocumentStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ArtifactWatcherLogger",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "info",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ArtifactWatcherOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "GraphStore",
             "context": "inline-code"
           },
           {
             "symbol": "TrackedArtifactChange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DocumentTrackedArtifactChange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CodeTrackedArtifactChange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SkippedArtifactChange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ArtifactWatcherResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ArtifactWatcher",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "TextDocument",
             "context": "inline-code"
           },
           {
@@ -2321,6 +3021,80 @@
           },
           {
             "symbol": "nextArtifact",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-09cc8db4c319",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/changeProcessor.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "artifactWatcher.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "publishDocDiagnostics.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "publishCodeDiagnostics.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "llmIngestion.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ChangeProcessorContext",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ChangeProcessor",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "process",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "updateContext",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ChangeProcessorOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "createChangeProcessor",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RippleAnalyzer",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ArtifactWatcher.processChanges",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "QueuedChange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ArtifactWatcher",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "saveDocumentChange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "saveCodeChange",
             "context": "inline-code"
           }
         ]
@@ -2409,6 +3183,98 @@
       }
     },
     {
+      "id": "fallback-artifact-7ed0f0cf88bf",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/environment.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "resolveDatabasePath",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "resolveWorkspaceRoot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "fileUriToPath",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ensureDirectory",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "describeError",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "name",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "message",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "Error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "rootUri",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "rootPath",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "path.resolve",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "us3",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-e7f3b1dc87d0",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/knowledgeFeeds.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "knowledgeGraphBridge.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "artifactWatcher.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedControllerOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedInitializeParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedController",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphBridgeService",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-d4eb30d6da2d",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/languageServerRuntime.mdmd.md",
       "layer": "requirements",
@@ -2488,6 +3354,18 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "handleArtifactDeleted",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RebindRequiredPayload",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "handleArtifactRenamed",
+            "context": "inline-code"
+          },
+          {
             "symbol": "fileMaintenance.ts",
             "context": "inline-code"
           },
@@ -2505,10 +3383,6 @@
           },
           {
             "symbol": "publishRemovalDiagnostics",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "RebindRequiredPayload",
             "context": "inline-code"
           },
           {
@@ -2539,6 +3413,56 @@
       }
     },
     {
+      "id": "fallback-artifact-90baa0b8c608",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/language-server-runtime/settings.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "providerGuard.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "extractExtensionSettings",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExtensionSettings",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "settings",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "extractTestModeOverrides",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "mergeExtensionSettings",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "llmProviderMode",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "level",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "allowedKinds",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "linkAwareDiagnostics",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-7469d9773505",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/llm-ingestion/confidenceCalibrator.mdmd.md",
       "layer": "requirements",
@@ -2551,6 +3475,18 @@
           },
           {
             "symbol": "LlmIngestionOrchestrator",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ConfidenceTier",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CalibrationContext",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CalibratedRelationship",
             "context": "inline-code"
           },
           {
@@ -2640,6 +3576,22 @@
             "context": "inline-code"
           },
           {
+            "symbol": "LlmIngestionManagerOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmIngestionManager",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CreateRelationshipExtractorOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "createDefaultRelationshipExtractor",
+            "context": "inline-code"
+          },
+          {
             "symbol": "INVOKE_LLM_REQUEST",
             "context": "inline-code"
           },
@@ -2688,10 +3640,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "createDefaultRelationshipExtractor",
-            "context": "inline-code"
-          },
-          {
             "symbol": "enqueue",
             "context": "inline-code"
           }
@@ -2723,6 +3671,50 @@
           },
           {
             "symbol": "LlmIngestionManager",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmIngestionLogger",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "info",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "EnqueueOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "reason",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmIngestionResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "stored",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "skipped",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmIngestionOrchestratorOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmIngestionOrchestrator",
             "context": "inline-code"
           },
           {
@@ -2792,6 +3784,62 @@
             "context": "inline-code"
           },
           {
+            "symbol": "ConfidenceTier",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ModelInvocationRequest",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ModelInvocationResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ModelUsage",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RawRelationshipCandidate",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipExtractionPrompt",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipExtractionRequest",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "extractRelationships",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipExtractionBatch",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipExtractorLogger",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipExtractorOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipExtractor",
+            "context": "inline-code"
+          },
+          {
             "symbol": "LlmIngestionManager",
             "context": "inline-code"
           },
@@ -2817,6 +3865,52 @@
           },
           {
             "symbol": "relationshipExtractor.test.ts",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-c0c151b9fd90",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/llm-ingestion/relationshipTemplate.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "ConfidenceLabel",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "PromptArtifactSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "PromptChunkSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipPromptOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RenderedRelationshipPrompt",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "renderRelationshipExtractionPrompt",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RELATIONSHIP_RESPONSE_SCHEMA",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkRelationshipKind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "promptHash",
             "context": "inline-code"
           }
         ]
@@ -2850,6 +3944,38 @@
             "context": "inline-code"
           },
           {
+            "symbol": "AcknowledgementServiceOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AcknowledgeDiagnosticInput",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ShouldEmitDiagnosticInput",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RegisterDiagnosticEmissionInput",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AcknowledgeOutcome",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "acknowledged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "already_acknowledged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "not_found",
+            "context": "inline-code"
+          },
+          {
             "symbol": "AcknowledgementService",
             "context": "inline-code"
           },
@@ -2871,14 +3997,6 @@
           },
           {
             "symbol": "publishDocDiagnostics",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "not_found",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "already_acknowledged",
             "context": "inline-code"
           }
         ]
@@ -2960,6 +4078,14 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "HysteresisControllerOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "HysteresisController",
+            "context": "inline-code"
+          },
+          {
             "symbol": "HysteresisRecord",
             "context": "inline-code"
           },
@@ -3002,7 +4128,15 @@
             "context": "inline-code"
           },
           {
-            "symbol": "listOutstandingDiagnostics.ts",
+            "symbol": "buildOutstandingDiagnosticsResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ListOutstandingDiagnosticsResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "mapOutstandingDiagnostic",
             "context": "inline-code"
           },
           {
@@ -3010,7 +4144,7 @@
             "context": "inline-code"
           },
           {
-            "symbol": "ListOutstandingDiagnosticsResult",
+            "symbol": "listOutstandingDiagnostics.ts",
             "context": "inline-code"
           },
           {
@@ -3019,10 +4153,6 @@
           },
           {
             "symbol": "undefined",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "mapOutstandingDiagnostic",
             "context": "inline-code"
           },
           {
@@ -3047,6 +4177,22 @@
       "language": "markdown",
       "metadata": {
         "symbolReferences": [
+          {
+            "symbol": "NoiseFilterTotals",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ZERO_NOISE_FILTER_TOTALS",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "NoiseFilterResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "applyNoiseFilter",
+            "context": "inline-code"
+          },
           {
             "symbol": "RippleImpact",
             "context": "inline-code"
@@ -3138,6 +4284,18 @@
             "context": "inline-code"
           },
           {
+            "symbol": "PublishCodeDiagnosticsOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "PublishCodeDiagnosticsResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "publishCodeDiagnostics",
+            "context": "inline-code"
+          },
+          {
             "symbol": "sendDiagnostics",
             "context": "inline-code"
           },
@@ -3220,6 +4378,18 @@
             "context": "inline-code"
           },
           {
+            "symbol": "DocumentChangeContext",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "PublishDocDiagnosticsOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "PublishDocDiagnosticsResult",
+            "context": "inline-code"
+          },
+          {
             "symbol": "publishDocDiagnostics",
             "context": "inline-code"
           },
@@ -3259,6 +4429,52 @@
       }
     },
     {
+      "id": "fallback-artifact-b97ef0210908",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-diagnostics/rippleTypes.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "publishCodeDiagnostics",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "publishDocDiagnostics",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "noiseFilter",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipHint",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RippleHint",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "depth",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "path",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RippleImpact",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeArtifact",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-c7cf86b9a5b6",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/server-settings/providerGuard.mdmd.md",
       "layer": "requirements",
@@ -3266,7 +4482,15 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "RippleExtensionSettings",
+            "context": "inline-code"
+          },
+          {
             "symbol": "ExtensionSettings",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ProviderGuard",
             "context": "inline-code"
           },
           {
@@ -3324,6 +4548,46 @@
       "metadata": {
         "symbolReferences": [
           {
+            "symbol": "NoiseSuppressionLevel",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "NoiseFilterRuntimeConfig",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "minConfidence",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "applyNoiseFilter",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "NoiseSuppressionRuntime",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "level",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RippleRuntimeSettings",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "maxDepth",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "maxResults",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "deriveRuntimeSettings",
+            "context": "inline-code"
+          },
+          {
             "symbol": "ExtensionSettings",
             "context": "inline-code"
           },
@@ -3360,14 +4624,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "minConfidence",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "maxDepth",
-            "context": "inline-code"
-          },
-          {
             "symbol": "maxPerChange",
             "context": "inline-code"
           },
@@ -3385,10 +4641,6 @@
           },
           {
             "symbol": "allowedKinds",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "maxResults",
             "context": "inline-code"
           },
           {
@@ -3513,6 +4765,126 @@
       }
     },
     {
+      "id": "fallback-artifact-0625a280ce68",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/dependencyContracts.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "INSPECT_DEPENDENCIES_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InspectDependenciesParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DependencyGraphEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InspectDependenciesSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InspectDependenciesResult",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-9b66c912496d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/diagnosticContracts.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "ACKNOWLEDGE_DIAGNOSTIC_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AcknowledgeDiagnosticParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AcknowledgeDiagnosticStatus",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "acknowledged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "already_acknowledged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "not_found",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AcknowledgeDiagnosticResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DiagnosticAcknowledgedPayload",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LIST_OUTSTANDING_DIAGNOSTICS_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DiagnosticArtifactSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OutstandingDiagnosticSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ListOutstandingDiagnosticsResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SET_DIAGNOSTIC_ASSESSMENT_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SetDiagnosticAssessmentParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SetDiagnosticAssessmentResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "EXPORT_DIAGNOSTICS_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExportDiagnosticsResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FEEDS_READY_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FeedsReadyResult",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-2b226afb7ec3",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/knowledgeFeedContracts.mdmd.md",
       "layer": "requirements",
@@ -3570,22 +4942,6 @@
             "context": "inline-code"
           },
           {
-            "symbol": "modelId",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "usage",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "promptTokens",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "completionTokens",
-            "context": "inline-code"
-          },
-          {
             "symbol": "createDefaultRelationshipExtractor",
             "context": "inline-code"
           },
@@ -3603,6 +4959,112 @@
           },
           {
             "symbol": "relationshipExtractor.test.ts",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-b7b09489713c",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/lsifContracts.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "LSIFVertexLabel",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFEdgeLabel",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFElement",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFVertex",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "outV",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "inV",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFMetaData",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFProject",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFDocument",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFRange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFResultSet",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFDefinitionResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFReferenceResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFContainsEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFItemEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "item",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFNextEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "next",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFDefinitionEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFReferencesEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LSIFEntry",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ParsedLSIFIndex",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "workspaceIndexProvider.mdmd.md",
             "context": "inline-code"
           }
         ]
@@ -3637,6 +5099,198 @@
           },
           {
             "symbol": "RebindReason",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-3029f847d4d1",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/maintenanceContracts.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "RebindReason",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RebindRequiredArtifact",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RebindImpactedArtifact",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RebindRequiredPayload",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "maintenanceOrphans.mdmd.md",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-2fbff3cb2286",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/overrideContracts.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "LinkOverrideReason",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "manual",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "rebind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "external",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OverrideLinkArtifactInput",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OverrideLinkRequest",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OverrideLinkResponse",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OVERRIDE_LINK_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "overrideLink.mdmd.md",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-c67d65cb856a",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/scipContracts.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "SCIPIndex",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPMetadata",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPToolInfo",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPDocument",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPOccurrence",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPSymbolInformation",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPRelationship",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPDiagnostic",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPSignature",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPSymbolRole",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SCIPSymbolKind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ParsedSCIPIndex",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "workspaceIndexProvider.mdmd.md",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-335f75f91b2f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared-contracts/symbolContracts.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "COLLECT_WORKSPACE_SYMBOLS_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CollectWorkspaceSymbolsParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CollectWorkspaceSymbolsResultSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CollectWorkspaceSymbolsResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "INSPECT_SYMBOL_NEIGHBORS_REQUEST",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InspectSymbolNeighborsParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SymbolNeighborPath",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SymbolNeighborNode",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SymbolNeighborGroup",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InspectSymbolNeighborsSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InspectSymbolNeighborsResult",
             "context": "inline-code"
           }
         ]
@@ -3709,6 +5363,160 @@
       }
     },
     {
+      "id": "fallback-artifact-7103f4b2d659",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared/artifactDomain.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "ArtifactLayer",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkRelationshipKind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "documents",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "implements",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "depends_on",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "references",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmConfidenceTier",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmEdgeProvenance",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ChangeEventType",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "content",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "metadata",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "rename",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "delete",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ChangeEventProvenance",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "save",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "git",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "external",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ChangeEventRange",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DiagnosticStatus",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "active",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "acknowledged",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "suppressed",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmModelMetadata",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LlmAssessment",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeSnapshot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AcknowledgementActionType",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "acknowledge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "dismiss",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "reopen",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AcknowledgementAction",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DriftHistoryStatus",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "emitted",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DriftHistoryEntry",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "changeProcessor",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "driftHistoryStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "acknowledgementService",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-6ac24f1465ba",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared/fallbackInference.mdmd.md",
       "layer": "requirements",
@@ -3716,7 +5524,23 @@
       "metadata": {
         "symbolReferences": [
           {
-            "symbol": "FallbackLLMBridge",
+            "symbol": "ArtifactSeed",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeArtifactSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RelationshipHint",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LLMRelationshipSuggestion",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "TraceOrigin",
             "context": "inline-code"
           },
           {
@@ -3724,11 +5548,23 @@
             "context": "inline-code"
           },
           {
+            "symbol": "hint",
+            "context": "inline-code"
+          },
+          {
             "symbol": "llm",
             "context": "inline-code"
           },
           {
-            "symbol": "hint",
+            "symbol": "FallbackInferenceResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "inferFallbackGraph",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "FallbackLLMBridge",
             "context": "inline-code"
           },
           {
@@ -3774,7 +5610,27 @@
             "context": "inline-code"
           },
           {
+            "symbol": "GraphStoreOptions",
+            "context": "inline-code"
+          },
+          {
             "symbol": "GraphStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkedArtifactSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "listLinkedArtifacts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DriftHistorySummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ListDriftHistoryOptions",
             "context": "inline-code"
           },
           {
@@ -3787,10 +5643,6 @@
           },
           {
             "symbol": "diagnostics",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "listLinkedArtifacts",
             "context": "inline-code"
           },
           {
@@ -3815,10 +5667,6 @@
           },
           {
             "symbol": "removeLink",
-            "context": "inline-code"
-          },
-          {
-            "symbol": "LinkedArtifactSummary",
             "context": "inline-code"
           },
           {
@@ -3865,6 +5713,126 @@
       }
     },
     {
+      "id": "fallback-artifact-ed47f33220a6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared/knowledgeGraphBridge.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "ExternalArtifact",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExternalLink",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExternalSnapshot",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "StreamEventKind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ExternalStreamEvent",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "StreamCheckpoint",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeGraphBridge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "knowledgeFeeds.mdmd.md",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-4fdfd3529245",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared/linkInference.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "LinkInferenceTraceOrigin",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkInferenceTraceEntry",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "origin",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "confidence",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "rationale",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkEvidence",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "WorkspaceLinkContribution",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "WorkspaceLinkProviderContext",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "WorkspaceProviderSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedSnapshotSource",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedStreamSource",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeed",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "KnowledgeFeedSummary",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkInferenceRunInput",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkInferenceError",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LinkInferenceRunResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "linkInferenceOrchestrator.mdmd.md",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-097d1f18f614",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared/sharedIndex.mdmd.md",
       "layer": "requirements",
@@ -3877,6 +5845,44 @@
           },
           {
             "symbol": "graphStore",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-a6deb72e0aff",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/telemetry/driftHistoryStore.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "GraphStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "changeProcessor.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DriftHistoryStoreOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RecordDriftEmissionParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RecordDriftAcknowledgementParams",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "DriftHistoryStore",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "linkIds",
             "context": "inline-code"
           }
         ]
@@ -3903,6 +5909,10 @@
           },
           {
             "symbol": "showErrorMessage",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "resolveWindowApis",
             "context": "inline-code"
           },
           {
@@ -4109,6 +6119,32 @@
       }
     },
     {
+      "id": "fallback-artifact-cb703f333e9e",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/assetPaths.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "AssetReferenceIssue",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AssetAuditOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "findBrokenAssetReferences",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "slopcopAssetPaths.mdmd.md",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-bfc2536263b5",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/betterSqlite3Rebuild.mdmd.md",
       "layer": "requirements",
@@ -4121,6 +6157,50 @@
           },
           {
             "symbol": "npx",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-400303d840af",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/githubSlugger.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "SlugContext",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "GitHubSlugger",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "slug",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "createSlugger",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-d87bc98aca73",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/githubSluggerRegex.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "GITHUB_SLUG_REMOVE_PATTERN",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "githubSlugger.ts",
             "context": "inline-code"
           }
         ]
@@ -4157,6 +6237,62 @@
           },
           {
             "symbol": "inspectSymbolNeighbors",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-d72b59e1c3de",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/markdownLinks.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "MarkdownLinkIssue",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "MarkdownLinkAuditOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "findBrokenMarkdownLinks",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-3c54fd3febb6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/markdownShared.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "ReferenceDefinition",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "extractReferenceDefinitions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "computeLineStarts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "toLineAndColumn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "parseLinkTarget",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "markdownLinks.ts",
             "context": "inline-code"
           }
         ]
@@ -4257,6 +6393,76 @@
           },
           {
             "symbol": "tsx",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-f80021cb75d0",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/slopcopConfig.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "SeveritySetting",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "off",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SlopcopConfigSection",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SlopcopSymbolConfig",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SlopcopConfig",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "slopcop.config.json",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CONFIG_FILE_NAME",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "loadSlopcopConfig",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "resolveIgnoreGlobs",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "resolveIncludeGlobs",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "compileIgnorePatterns",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "RegExp",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "resolveRootDirectories",
             "context": "inline-code"
           }
         ]
@@ -4379,6 +6585,52 @@
       }
     },
     {
+      "id": "fallback-artifact-26552c1c1b3d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/symbolReferences.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "SymbolIssueKind",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SymbolIssueSeverity",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "warn",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "error",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SymbolRuleSetting",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "off",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SymbolReferenceIssue",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SymbolAuditOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "findSymbolReferenceAnomalies",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-a05a95645bc0",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/workspaceGraphSnapshot.mdmd.md",
       "layer": "requirements",
@@ -4411,6 +6663,10 @@
       "language": "markdown",
       "metadata": {
         "symbolReferences": [
+          {
+            "symbol": "registerFileMaintenanceWatcher",
+            "context": "inline-code"
+          },
           {
             "symbol": "FileSystemWatcher",
             "context": "inline-code"
@@ -4458,6 +6714,10 @@
             "context": "inline-code"
           },
           {
+            "symbol": "normalizeFileUri",
+            "context": "inline-code"
+          },
+          {
             "symbol": "path.normalize",
             "context": "inline-code"
           }
@@ -4473,6 +6733,18 @@
         "symbolReferences": [
           {
             "symbol": "pathReferenceDetector.test.ts",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ArtifactCategory",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "PathReferenceOrigin",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "buildFileReferenceHints",
             "context": "inline-code"
           },
           {
@@ -8572,6 +10844,33 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-69563de8",
+      "sourceId": "fallback-artifact-0625a280ce68",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c64dd3c1",
+      "sourceId": "fallback-artifact-0625a280ce68",
+      "targetId": "fallback-artifact-6519ba5a74f6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8725950b",
+      "sourceId": "fallback-artifact-0625a280ce68",
+      "targetId": "fallback-artifact-a8ba5170e3f6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-73b2d472",
       "sourceId": "fallback-artifact-073e2c89ea22",
       "targetId": "fallback-artifact-9088e217bd33",
@@ -8629,6 +10928,105 @@
       "id": "orchestrated-link-52d42ace",
       "sourceId": "fallback-artifact-097d1f18f614",
       "targetId": "fallback-artifact-f0fb8bc903f8",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8ba0d81d",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-0b34ebe23901",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-50607fdf",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5988900b",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-343671a89842",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c573ba6b",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-36891531f4ca",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ca128862",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-97c37588",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-5b9f460ca88a",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-feaa2c41",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-65d9f048",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-b9043c401911",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-92e981e8",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-bf7951fb52e9",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b39c88a4",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-d757fa4c91b6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7061dad2",
+      "sourceId": "fallback-artifact-09cc8db4c319",
+      "targetId": "fallback-artifact-f868ca4fafe5",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -9481,6 +11879,33 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-3fdc9769",
+      "sourceId": "fallback-artifact-26552c1c1b3d",
+      "targetId": "fallback-artifact-4fbda2c3837a",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-62b2f062",
+      "sourceId": "fallback-artifact-26552c1c1b3d",
+      "targetId": "fallback-artifact-7880aaaa06a5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5c58c3b9",
+      "sourceId": "fallback-artifact-26552c1c1b3d",
+      "targetId": "fallback-artifact-95280102c9b1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-34870eb1",
       "sourceId": "fallback-artifact-2695877249f0",
       "targetId": "fallback-artifact-11089fd4d185",
@@ -9718,6 +12143,87 @@
       "id": "orchestrated-link-2fc53d4d",
       "sourceId": "fallback-artifact-2f87f8a36cf0",
       "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9c5df6ca",
+      "sourceId": "fallback-artifact-2fbff3cb2286",
+      "targetId": "fallback-artifact-1d30dcb85f97",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8229e75c",
+      "sourceId": "fallback-artifact-2fbff3cb2286",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-80b54004",
+      "sourceId": "fallback-artifact-2fbff3cb2286",
+      "targetId": "fallback-artifact-9a4edaef481d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-672b1641",
+      "sourceId": "fallback-artifact-3029f847d4d1",
+      "targetId": "fallback-artifact-3f52174b9fd2",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-33694f04",
+      "sourceId": "fallback-artifact-3029f847d4d1",
+      "targetId": "fallback-artifact-960ad15bb08d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-edfd9dba",
+      "sourceId": "fallback-artifact-3029f847d4d1",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b8c5a063",
+      "sourceId": "fallback-artifact-335f75f91b2f",
+      "targetId": "fallback-artifact-0362c8812821",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3888bb77",
+      "sourceId": "fallback-artifact-335f75f91b2f",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-68100664",
+      "sourceId": "fallback-artifact-335f75f91b2f",
+      "targetId": "fallback-artifact-9c94f0550d2b",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -10264,6 +12770,33 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-9570be65",
+      "sourceId": "fallback-artifact-3c54fd3febb6",
+      "targetId": "fallback-artifact-594406941b19",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6b911d51",
+      "sourceId": "fallback-artifact-3c54fd3febb6",
+      "targetId": "fallback-artifact-95280102c9b1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4772bd2b",
+      "sourceId": "fallback-artifact-3c54fd3febb6",
+      "targetId": "fallback-artifact-d72b59e1c3de",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-2b48dfbd",
       "sourceId": "fallback-artifact-3ce6f4e004de",
       "targetId": "fallback-artifact-29bc9d2e819d",
@@ -10286,6 +12819,33 @@
       "sourceId": "fallback-artifact-3f52174b9fd2",
       "targetId": "fallback-artifact-16850a09747b",
       "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7ba4c67b",
+      "sourceId": "fallback-artifact-400303d840af",
+      "targetId": "fallback-artifact-4fbda2c3837a",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9820f2cb",
+      "sourceId": "fallback-artifact-400303d840af",
+      "targetId": "fallback-artifact-95280102c9b1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e835aea3",
+      "sourceId": "fallback-artifact-400303d840af",
+      "targetId": "fallback-artifact-b42ec5e87bd1",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -10759,6 +13319,42 @@
       "createdBy": "fallback-hint"
     },
     {
+      "id": "orchestrated-link-8d54efcc",
+      "sourceId": "fallback-artifact-4fdfd3529245",
+      "targetId": "fallback-artifact-8dabe7e77862",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2b797916",
+      "sourceId": "fallback-artifact-4fdfd3529245",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8e0659ab",
+      "sourceId": "fallback-artifact-4fdfd3529245",
+      "targetId": "fallback-artifact-d6ce98aac27b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-59d15066",
+      "sourceId": "fallback-artifact-4fdfd3529245",
+      "targetId": "fallback-artifact-f7adc56e49d2",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-decac831",
       "sourceId": "fallback-artifact-4ff7ee36515f",
       "targetId": "fallback-artifact-349366ee3320",
@@ -10843,6 +13439,33 @@
       "id": "orchestrated-link-4e0a0e06",
       "sourceId": "fallback-artifact-55a8378b3206",
       "targetId": "fallback-artifact-9757dfe40139",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-38b31467",
+      "sourceId": "fallback-artifact-562d2ddc374e",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d5a39b57",
+      "sourceId": "fallback-artifact-562d2ddc374e",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0e8448c4",
+      "sourceId": "fallback-artifact-562d2ddc374e",
+      "targetId": "fallback-artifact-dd515e3b4c50",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -11965,6 +14588,24 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-52b0e3eb",
+      "sourceId": "fallback-artifact-7103f4b2d659",
+      "targetId": "fallback-artifact-16850a09747b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5f22983f",
+      "sourceId": "fallback-artifact-7103f4b2d659",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-1596801b",
       "sourceId": "fallback-artifact-71bdc1e57bda",
       "targetId": "fallback-artifact-726c5872ad39",
@@ -12211,6 +14852,33 @@
       "id": "orchestrated-link-1dda54b1",
       "sourceId": "fallback-artifact-7e5f52b81aa0",
       "targetId": "fallback-artifact-da5f34501c5c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-cd9a1162",
+      "sourceId": "fallback-artifact-7ed0f0cf88bf",
+      "targetId": "fallback-artifact-5296db465ad3",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bb911b75",
+      "sourceId": "fallback-artifact-7ed0f0cf88bf",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2d48ca06",
+      "sourceId": "fallback-artifact-7ed0f0cf88bf",
+      "targetId": "fallback-artifact-f868ca4fafe5",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -12554,6 +15222,42 @@
       "sourceId": "fallback-artifact-9088e217bd33",
       "targetId": "fallback-artifact-bb7fb7409dd8",
       "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0081c403",
+      "sourceId": "fallback-artifact-90baa0b8c608",
+      "targetId": "fallback-artifact-11db819a0761",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-50a51307",
+      "sourceId": "fallback-artifact-90baa0b8c608",
+      "targetId": "fallback-artifact-5a0991d4b81c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-48486fa8",
+      "sourceId": "fallback-artifact-90baa0b8c608",
+      "targetId": "fallback-artifact-cd63fb58825d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-15d3d89b",
+      "sourceId": "fallback-artifact-90baa0b8c608",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -12937,6 +15641,42 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-72ec20cb",
+      "sourceId": "fallback-artifact-9b66c912496d",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-90bb77ee",
+      "sourceId": "fallback-artifact-9b66c912496d",
+      "targetId": "fallback-artifact-a8ba5170e3f6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a0b134c8",
+      "sourceId": "fallback-artifact-9b66c912496d",
+      "targetId": "fallback-artifact-b1bddeb65d5c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1804a568",
+      "sourceId": "fallback-artifact-9b66c912496d",
+      "targetId": "fallback-artifact-e93a3a665e25",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-a1430886",
       "sourceId": "fallback-artifact-9c94f0550d2b",
       "targetId": "fallback-artifact-16850a09747b",
@@ -12977,6 +15717,51 @@
       "sourceId": "fallback-artifact-9c9dd85007c8",
       "targetId": "fallback-artifact-73f8b67ab260",
       "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e587ea80",
+      "sourceId": "fallback-artifact-9e3644921615",
+      "targetId": "fallback-artifact-349366ee3320",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-88a11a9c",
+      "sourceId": "fallback-artifact-9e3644921615",
+      "targetId": "fallback-artifact-38f4eb12cd03",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a980c650",
+      "sourceId": "fallback-artifact-9e3644921615",
+      "targetId": "fallback-artifact-8b74b0c0e0ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-01b94230",
+      "sourceId": "fallback-artifact-9e3644921615",
+      "targetId": "fallback-artifact-a8ba5170e3f6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5f77d71a",
+      "sourceId": "fallback-artifact-9e3644921615",
+      "targetId": "fallback-artifact-cc95686a8cfe",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -13094,6 +15879,60 @@
       "sourceId": "fallback-artifact-a66fc31574ac",
       "targetId": "fallback-artifact-f2dc2606292d",
       "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2eab476f",
+      "sourceId": "fallback-artifact-a6deb72e0aff",
+      "targetId": "fallback-artifact-22ab6043d495",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a308c2a7",
+      "sourceId": "fallback-artifact-a6deb72e0aff",
+      "targetId": "fallback-artifact-26ed99822685",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-37d3579b",
+      "sourceId": "fallback-artifact-a6deb72e0aff",
+      "targetId": "fallback-artifact-343671a89842",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e4899070",
+      "sourceId": "fallback-artifact-a6deb72e0aff",
+      "targetId": "fallback-artifact-7f7d08497a1e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-91e75034",
+      "sourceId": "fallback-artifact-a6deb72e0aff",
+      "targetId": "fallback-artifact-d757fa4c91b6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-670b44ec",
+      "sourceId": "fallback-artifact-a6deb72e0aff",
+      "targetId": "fallback-artifact-ef1874b57c43",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -13315,6 +16154,33 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-30121ac8",
+      "sourceId": "fallback-artifact-b7b09489713c",
+      "targetId": "fallback-artifact-562d2ddc374e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-4d745b84",
+      "sourceId": "fallback-artifact-b7b09489713c",
+      "targetId": "fallback-artifact-af6195947e4d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d7830507",
+      "sourceId": "fallback-artifact-b7b09489713c",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-da215297",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-11089fd4d185",
@@ -13378,10 +16244,82 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-8986329a",
+      "sourceId": "fallback-artifact-b97ef0210908",
+      "targetId": "fallback-artifact-42700b29c3bc",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f0935bb0",
+      "sourceId": "fallback-artifact-b97ef0210908",
+      "targetId": "fallback-artifact-62a576590554",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-34b50004",
+      "sourceId": "fallback-artifact-b97ef0210908",
+      "targetId": "fallback-artifact-6abfdfea6f4b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-30345a02",
+      "sourceId": "fallback-artifact-b97ef0210908",
+      "targetId": "fallback-artifact-b0130ee17cf2",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ac287886",
+      "sourceId": "fallback-artifact-b97ef0210908",
+      "targetId": "fallback-artifact-d6ce98aac27b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-c7eb038f",
       "sourceId": "fallback-artifact-be1990ad75fb",
       "targetId": "fallback-artifact-5995fae386dd",
       "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-cb72fe81",
+      "sourceId": "fallback-artifact-be403a5336c4",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-24b5f22e",
+      "sourceId": "fallback-artifact-be403a5336c4",
+      "targetId": "fallback-artifact-7bdeeb2f90cd",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-68638571",
+      "sourceId": "fallback-artifact-be403a5336c4",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -13507,6 +16445,42 @@
       "id": "orchestrated-link-5ddee9ba",
       "sourceId": "fallback-artifact-bfc2536263b5",
       "targetId": "fallback-artifact-3ce6f4e004de",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c31689fa",
+      "sourceId": "fallback-artifact-c0c151b9fd90",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3e7d1713",
+      "sourceId": "fallback-artifact-c0c151b9fd90",
+      "targetId": "fallback-artifact-66e5dfc704c7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-75956add",
+      "sourceId": "fallback-artifact-c0c151b9fd90",
+      "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-139933cb",
+      "sourceId": "fallback-artifact-c0c151b9fd90",
+      "targetId": "fallback-artifact-73f8b67ab260",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -13738,6 +16712,33 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-b0560245",
+      "sourceId": "fallback-artifact-c67d65cb856a",
+      "targetId": "fallback-artifact-5450cc9707d8",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-3fb02a0b",
+      "sourceId": "fallback-artifact-c67d65cb856a",
+      "targetId": "fallback-artifact-562d2ddc374e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e721144a",
+      "sourceId": "fallback-artifact-c67d65cb856a",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-4538298a",
       "sourceId": "fallback-artifact-c7cf86b9a5b6",
       "targetId": "fallback-artifact-22ab6043d495",
@@ -13796,6 +16797,87 @@
       "sourceId": "fallback-artifact-c93a9c183c83",
       "targetId": "fallback-artifact-86bae24a7a84",
       "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-920c7be8",
+      "sourceId": "fallback-artifact-cb2627c22226",
+      "targetId": "fallback-artifact-5d31ae97c0b1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-68770923",
+      "sourceId": "fallback-artifact-cb2627c22226",
+      "targetId": "fallback-artifact-8992f770e10f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2e7c4798",
+      "sourceId": "fallback-artifact-cb2627c22226",
+      "targetId": "fallback-artifact-ab82bcd6c066",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e027ea80",
+      "sourceId": "fallback-artifact-cb2627c22226",
+      "targetId": "fallback-artifact-b1bddeb65d5c",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-159edf48",
+      "sourceId": "fallback-artifact-cb2627c22226",
+      "targetId": "fallback-artifact-d757fa4c91b6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-14745877",
+      "sourceId": "fallback-artifact-cb703f333e9e",
+      "targetId": "fallback-artifact-0ff7c8f18636",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ee2ecd5a",
+      "sourceId": "fallback-artifact-cb703f333e9e",
+      "targetId": "fallback-artifact-12ecc88a206f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-cafd0fb9",
+      "sourceId": "fallback-artifact-cb703f333e9e",
+      "targetId": "fallback-artifact-95280102c9b1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c31e7be2",
+      "sourceId": "fallback-artifact-cb703f333e9e",
+      "targetId": "fallback-artifact-e88b77890dcd",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -14458,6 +17540,33 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-f285bcdb",
+      "sourceId": "fallback-artifact-d72b59e1c3de",
+      "targetId": "fallback-artifact-0b03337952d7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-dd52269a",
+      "sourceId": "fallback-artifact-d72b59e1c3de",
+      "targetId": "fallback-artifact-6ce6889a55aa",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-49974bde",
+      "sourceId": "fallback-artifact-d72b59e1c3de",
+      "targetId": "fallback-artifact-95280102c9b1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-aa8bb764",
       "sourceId": "fallback-artifact-d757fa4c91b6",
       "targetId": "fallback-artifact-726c5872ad39",
@@ -14542,6 +17651,33 @@
       "id": "orchestrated-link-3d1e28fd",
       "sourceId": "fallback-artifact-d76302e51288",
       "targetId": "fallback-artifact-e5384e740555",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8017ff7b",
+      "sourceId": "fallback-artifact-d87bc98aca73",
+      "targetId": "fallback-artifact-1234f1da2bde",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e8457537",
+      "sourceId": "fallback-artifact-d87bc98aca73",
+      "targetId": "fallback-artifact-400303d840af",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-1c0912aa",
+      "sourceId": "fallback-artifact-d87bc98aca73",
+      "targetId": "fallback-artifact-95280102c9b1",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -14944,6 +18080,60 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-f535d3a0",
+      "sourceId": "fallback-artifact-e7f3b1dc87d0",
+      "targetId": "fallback-artifact-354277347204",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-03a1c469",
+      "sourceId": "fallback-artifact-e7f3b1dc87d0",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f8e1f19a",
+      "sourceId": "fallback-artifact-e7f3b1dc87d0",
+      "targetId": "fallback-artifact-8f3b31347b2e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5f3d3aac",
+      "sourceId": "fallback-artifact-e7f3b1dc87d0",
+      "targetId": "fallback-artifact-9088e217bd33",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d529ef38",
+      "sourceId": "fallback-artifact-e7f3b1dc87d0",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a9f116d9",
+      "sourceId": "fallback-artifact-e7f3b1dc87d0",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-28b8fe6d",
       "sourceId": "fallback-artifact-e88b77890dcd",
       "targetId": "fallback-artifact-0ff7c8f18636",
@@ -15119,6 +18309,33 @@
       "sourceId": "fallback-artifact-ebe1c9a6a328",
       "targetId": "fallback-artifact-d0c2b85a6fbc",
       "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-778f9a6f",
+      "sourceId": "fallback-artifact-ed47f33220a6",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-30a64c50",
+      "sourceId": "fallback-artifact-ed47f33220a6",
+      "targetId": "fallback-artifact-c4586934c11d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-95db946f",
+      "sourceId": "fallback-artifact-ed47f33220a6",
+      "targetId": "fallback-artifact-e7f3b1dc87d0",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -15457,6 +18674,42 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-b2da63c5",
+      "sourceId": "fallback-artifact-f80021cb75d0",
+      "targetId": "fallback-artifact-0b03337952d7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f5a25080",
+      "sourceId": "fallback-artifact-f80021cb75d0",
+      "targetId": "fallback-artifact-1ecf3b8e854f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ed6fc678",
+      "sourceId": "fallback-artifact-f80021cb75d0",
+      "targetId": "fallback-artifact-4fbda2c3837a",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-09ebf2c8",
+      "sourceId": "fallback-artifact-f80021cb75d0",
+      "targetId": "fallback-artifact-95280102c9b1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-eecf2a51",
       "sourceId": "fallback-artifact-f868ca4fafe5",
       "targetId": "fallback-artifact-343671a89842",
@@ -15659,8 +18912,8 @@
     {
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
-      "seedCount": 245,
-      "hintCount": 21,
+      "seedCount": 273,
+      "hintCount": 22,
       "evidenceCount": 0
     }
   ],

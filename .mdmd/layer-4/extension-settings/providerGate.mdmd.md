@@ -13,8 +13,8 @@ Ensure first-time users select how Link-Aware Diagnostics should interact with L
 - **Global state flag**: `linkDiagnostics.providerOnboarded` prevents re-prompting after the first decision.
 - **Forced mode**: Environment variable `LINK_AWARE_PROVIDER_MODE` and test mode allow automation to bypass UI prompts.
 
-## Public API
-- `ensureProviderSelection(context, configService): Promise<void>`
+## Exported Symbols
+- `ensureProviderSelection` — onboarding helper that persists provider mode choices and refreshes settings.
 
 ## Internal Flow
 1. Short-circuit when the onboarding flag is already set.

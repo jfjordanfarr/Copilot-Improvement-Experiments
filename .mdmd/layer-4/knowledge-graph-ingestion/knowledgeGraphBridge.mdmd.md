@@ -6,6 +6,23 @@
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Spec references: [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-016](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T040](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `KnowledgeGraphBridgeLogger`
+Optional logger contract injected for structured logging. Supplies `info`, `warn`, and `error` hooks reused across child components.
+
+### `KnowledgeGraphBridgeServiceOptions`
+Constructor bundle providing the graph store, storage directory, workspace root, logger, factories, and configuration overrides needed to wire ingestion.
+
+### `KnowledgeGraphBridgeStartResult`
+Return shape from `start`, reporting how many feeds were configured. Helps callers decide whether ingestion activated.
+
+### `KnowledgeGraphBridgeDisposable`
+Disposable handle returned by `onStatusChanged`, allowing listeners to unsubscribe from bridge-level status notifications.
+
+### `KnowledgeGraphBridgeService`
+Facade class that discovers feed configurations, constructs ingestion infrastructure, manages lifecycle, and forwards health updates to listeners.
+
 ## Responsibility
 Coordinates discovery, ingestion, and health tracking for external knowledge feeds. Orchestrates snapshot/stream processing, checkpoint persistence, and diagnostics reporting so the runtime can blend static descriptors with workspace-inferred links.
 

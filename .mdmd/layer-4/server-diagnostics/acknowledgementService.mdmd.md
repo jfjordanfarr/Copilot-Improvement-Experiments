@@ -9,6 +9,26 @@
   - [`DriftHistoryStore`](../../../packages/server/src/telemetry/driftHistoryStore.ts) (via adapter) for durable audit logging
   - [`RuntimeSettings`](../../../packages/server/src/features/settings/settingsBridge.ts) for noise-suppression knobs
 
+## Exported Symbols
+
+### `AcknowledgementServiceOptions`
+Dependency bundle (graph store, hysteresis controller, runtime settings, drift history, logging) required to instantiate the service.
+
+### `AcknowledgeDiagnosticInput`
+Command payload received from the extension when an operator acknowledges a diagnostic entry.
+
+### `ShouldEmitDiagnosticInput`
+Change-event metadata used to decide whether a ripple/doc diagnostic should surface again.
+
+### `RegisterDiagnosticEmissionInput`
+Extends the emission decision payload with message, severity, and link hints before persisting.
+
+### `AcknowledgeOutcome`
+Discriminated union describing acknowledgement results (`acknowledged`, `already_acknowledged`, or `not_found`).
+
+### `AcknowledgementService`
+Core class orchestrating emission gating, acknowledgement persistence, and hysteresis lifecycle.
+
 ## Why This File Exists
 Link-aware diagnostics treats every emitted warning as a contract: once a developer acknowledges it, the system must stop re-sending noise until new evidence arises. `AcknowledgementService` is the server-side owner of that contract. It decides when a ripple or doc drift diagnostic should surface, persists acknowledgement state in the graph store, and records telemetry so future sessions (and human reviewers) can see who muted an alert and why. Without this service, repeated ripple notifications would continually reopen acknowledged issues, breaking trust in the tooling.
 

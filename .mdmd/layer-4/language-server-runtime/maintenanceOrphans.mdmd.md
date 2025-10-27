@@ -6,6 +6,14 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-013](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
 
+## Exported Symbols
+
+#### handleArtifactDeleted
+`handleArtifactDeleted` removes the specified artifact from the graph, issues drift diagnostics to downstream dependents, and raises a `RebindRequiredPayload` when recomputation is necessary.
+
+#### handleArtifactRenamed
+`handleArtifactRenamed` updates graph entries when a file moves, pruning the old artifact, inserting the renamed version, and emitting drift diagnostics so the client can reconcile bindings.
+
 ## Responsibility
 - React to file rename/delete notifications from the extension client.
 - Remove orphaned artifacts from the knowledge graph and emit diagnostics to linked dependents.

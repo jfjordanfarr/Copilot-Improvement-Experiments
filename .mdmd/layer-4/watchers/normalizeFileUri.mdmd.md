@@ -11,8 +11,10 @@ Provide a consistent canonical form for `file://` URIs across the server runtime
 - **Canonicalization**: Converts `file://` URIs to absolute normalized filesystem paths and back to URLs, eliminating duplicate representations of the same file.
 - **Resilience**: Swallows conversion errors, returning the original URI when `fileURLToPath` fails (e.g., malformed URIs) so callers can still proceed.
 
-## Public API
-- `normalizeFileUri(uri: string): string`
+## Exported Symbols
+
+#### normalizeFileUri
+`normalizeFileUri` trims a URI, normalises `file://` schemes to canonical paths, and falls back to the original string when conversion fails.
 
 ## Internal Flow
 1. Trim whitespace and exit early for non-`file://` schemes.

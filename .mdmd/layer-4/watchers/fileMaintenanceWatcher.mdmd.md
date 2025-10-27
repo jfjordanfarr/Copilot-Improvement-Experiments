@@ -5,6 +5,9 @@
 - Related contracts: [`packages/shared/src/contracts/maintenance.ts`](/packages/shared/src/contracts/maintenance.ts)
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
 
+## Exported Symbols
+- `registerFileMaintenanceWatcher` — sets up delete/rename listeners and forwards events to the language server.
+
 ## Responsibility
 Observes the workspace for orphaned/moved files and notifies the language server to reconcile diagnostics that point at stale paths. Provides the first line of defense against broken cross-file links caused by deletes or renames outside VS Code.
 

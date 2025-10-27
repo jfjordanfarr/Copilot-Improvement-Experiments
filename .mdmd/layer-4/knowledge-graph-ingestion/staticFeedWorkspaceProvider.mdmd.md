@@ -5,16 +5,16 @@
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Data inputs: `data/knowledge-feeds/*.json`
 
+## Exported Symbols
+
+### `StaticFeedWorkspaceProviderOptions`
+Configuration describing the workspace root and optional logger for warning surfacing when files are missing.
+
+### `createStaticFeedWorkspaceProvider`
+Factory that returns a `WorkspaceLinkProvider` capable of loading static feed JSON fixtures, generating artifact seeds, and emitting link evidences.
+
 ## Responsibility
 Expose a workspace-scope fallback provider that seeds the knowledge graph with statically defined artifacts and links when external feeds are unavailable. Reads JSON fixtures from `data/knowledge-feeds/` and produces `WorkspaceLinkContribution` objects for the link inference orchestrator.
-
-## Key Concepts
-- **Artifact seeds**: Minimal descriptors (URI, layer, language) used to bootstrap the graph.
-- **Evidence links**: Relationships inferred from the static feed; tagged with `workspace-static-feed` as the creator and a rationale referencing the source file.
-- **Alias map**: Tracks URIs by id/path hints so link endpoints can resolve even when the JSON references artifacts by different keys.
-
-## Public API
-- `createStaticFeedWorkspaceProvider(options): WorkspaceLinkProvider`
 
 ## Internal Flow
 1. Compute the `data/knowledge-feeds` directory relative to `rootPath` and collect `.json` entries when present.

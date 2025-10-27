@@ -7,17 +7,25 @@
 - Related runtime: [KnowledgeFeedManager](./knowledgeFeedManager.mdmd.md)
 - Spec references: [FR-014](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T036](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `FeedFormat`
+String literal union describing supported feed payloads (`lsif`, `scip`, `external-snapshot`, `unknown`). Guides downstream branching and confidence thresholds.
+
+### `FormatDetectionResult`
+Return payload from `detectFormat`, pairing the detected `FeedFormat` with a confidence score so callers can decide whether to trust automatic parsing.
+
+### `ParseFeedFileOptions`
+Parameters required to parse a feed file (paths, feed id, optional confidence override). Passed through to LSIF/SCIP parser adapters.
+
+### `detectFormat`
+Fast structural probe that inspects raw file content to classify LSIF, SCIP, or ready-made snapshots while avoiding expensive parsing when possible.
+
+### `parseFeedFile`
+Orchestrates end-to-end ingestion for a single file: reads contents, detects format, dispatches to the appropriate parser, and normalizes the result into an `ExternalSnapshot`.
+
 ## Responsibility
 Normalize heterogeneous knowledge feed payloads into the internal `ExternalSnapshot` shape. Detects whether incoming files are newline-delimited LSIF, SCIP indexes, or already-conforming external snapshots, enabling downstream ingestion to treat all feeds uniformly.
-
-## Key Concepts
-- **FeedFormat**: Categorizes payloads as `lsif`, `scip`, `external-snapshot`, or `unknown` alongside a confidence score.
-- **Detection heuristics**: Lightweight structural checks on raw content (newline JSON for LSIF, strongly typed arrays for snapshots, metadata/documents block for SCIP) to avoid full parsing when possible.
-- **Parser adapters**: Bridges to `parseLSIF` and `parseSCIP`, which convert format-specific structures into `ExternalSnapshot` instances.
-
-## Public API
-- `detectFormat(content: string): FormatDetectionResult`
-- `parseFeedFile(options: ParseFeedFileOptions): Promise<ExternalSnapshot | null>`
 
 ## Internal Flow
 1. Read feed file contents via `node:fs/promises`.

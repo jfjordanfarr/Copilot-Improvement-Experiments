@@ -13,8 +13,10 @@ Apply operator-specified link overrides directly to the knowledge graph. Ensures
 - **Artifact upsert**: Guarantees both source and target artifacts exist in the graph, creating them with override metadata when absent.
 - **Deterministic link IDs**: SHA1 hash of `source|kind|target` prevents duplicate overrides and supports idempotent retries.
 
-## Public API
-- `applyOverrideLink(store, request): OverrideLinkResponse`
+## Exported Symbols
+
+#### applyOverrideLink
+`applyOverrideLink` upserts the supplied source/target artifacts, computes a deterministic link id, and persists the override relationship before returning the identifiers required for acknowledgement and diagnostics updates.
 
 ## Internal Flow
 1. Capture a timestamp used for both artifact metadata and link creation.

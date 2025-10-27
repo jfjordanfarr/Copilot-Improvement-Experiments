@@ -19,10 +19,12 @@ Expose a palette command that lets maintainers and Copilot agents inspect the gr
 4. Handle empty or missing data states gracefully with actionable messaging.
 5. Open the selected neighbor in a non-preview editor, enabling fast investigation workflows.
 
-## Public Interfaces
-- `registerInspectSymbolNeighborsCommand(client: LanguageClient): Disposable` — registers the `linkDiagnostics.inspectSymbolNeighbors` command and wires it to the language client.
-- `SymbolNeighborQuickPickController.show(target?: SymbolNeighborCommandTarget)` — entry point used by the command; accepts a `vscode.Uri`, artifact id, or parameter bag (`{ artifactId?: string; uri?: string; maxDepth?: number; maxResults?: number; linkKinds?: LinkRelationshipKind[] }`).
-- `InspectSymbolNeighborsResultValidator` — exported zod schema used by unit tests and future callers to validate contract conformance.
+## Exported Symbols
+- `registerInspectSymbolNeighborsCommand` — command registrar that constructs the controller and binds to VS Code.
+- `SymbolNeighborQuickPickController` — orchestrates request building, response parsing, and neighbor presentation.
+- `ParsedInspectSymbolNeighborsResult` — zod-inferred type describing validated command responses.
+- `ParsedNeighborNode` — inferred node shape for individual neighbor entries.
+- `InspectSymbolNeighborsResultValidator` — zod schema exported for validation in tests and downstream features.
 
 ## Collaborators
 - Depends on the shared contract: [`INSPECT_SYMBOL_NEIGHBORS_REQUEST`](../../../packages/shared/src/contracts/symbols.ts).

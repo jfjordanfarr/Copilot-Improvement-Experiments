@@ -13,8 +13,8 @@ Expose the `linkDiagnostics.overrideLink` VS Code command used to correct or reb
 - **Layer selection**: Prompts help the user classify artifacts into documentation vs. code layers, driving default relationship kinds.
 - **Rebind flow**: Iterates impacted artifacts, emitting batched override requests to restore relationships after renames/deletions.
 
-## Public API
-- `registerOverrideLinkCommand(client: LanguageClient): vscode.Disposable`
+## Exported Symbols
+- `registerOverrideLinkCommand` — command registrar handling both manual override and rebind payloads.
 
 ## Internal Flow
 1. Register the command and branch between manual override and rebind paths depending on payload.

@@ -6,6 +6,14 @@
 - Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-011](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T033](../../../specs/001-link-aware-diagnostics/tasks.md)
 
+## Exported Symbols
+
+### `HysteresisControllerOptions`
+Optional tuning knobs (clock injection, cap sizes, pruning multiplier) passed to the controller constructor.
+
+### `HysteresisController`
+In-memory suppression manager that tempers reciprocal diagnostics until acknowledgements or timeouts clear them.
+
 ## Responsibility
 Enforces a suppression window that prevents diagnostics from ricocheting between linked artifacts. When module A emits an alert targeting module B, reciprocal alerts back to A are muted until the configured hysteresis window expires or an acknowledgement clears the pair.
 

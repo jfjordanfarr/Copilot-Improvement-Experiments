@@ -6,19 +6,28 @@
 - Shared contracts: [`packages/shared/src/contracts`](../../../packages/shared/src/contracts)
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
+## Exported Symbols
+
+### `SchemaViolation`
+Describes a single schema failure (JSON path + error message). Aggregated to render actionable diagnostics.
+
+### `SchemaValidationResult`
+Wrapper for the validation outcome (`valid` flag plus collected `SchemaViolation[]`).
+
+### `validateSnapshot`
+Non-throwing validator that inspects snapshot artifacts/links and returns a `SchemaValidationResult`.
+
+### `validateStreamEvent`
+Non-throwing validator for stream events, ensuring kind-specific payload requirements are satisfied.
+
+### `assertValidSnapshot`
+Throws when `validateSnapshot` uncovers issues, formatting violations into a multi-line error string.
+
+### `assertValidStreamEvent`
+Throws when `validateStreamEvent` detects problems, enabling ingestion callers to short-circuit with context.
+
 ## Responsibility
 Enforce the structural contract for incoming knowledge snapshots and stream events before they mutate the graph. Guards against malformed artifacts/links so ingestion can safely accept external intelligence from LSIF, SCIP, or future feeds.
-
-## Key Concepts
-- **SchemaValidationResult**: Tuple of `valid` flag and aggregated `SchemaViolation[]` for surfaced issues.
-- **Artifact/link validators**: Reusable checks that ensure IDs, URIs, kinds, and metadata adhere to allowed enums and formats.
-- **Stream kind gating**: Only permits `artifact-upsert/remove` and `link-upsert/remove` events with the necessary payload scaffolding.
-
-## Public API
-- `validateSnapshot(snapshot): SchemaValidationResult`
-- `validateStreamEvent(event): SchemaValidationResult`
-- `assertValidSnapshot(snapshot): void`
-- `assertValidStreamEvent(event): void`
 
 ## Internal Flow
 1. For snapshots, verify top-level fields (`label`, `createdAt`, `artifacts`, `links`) and iterate artifacts/links, accumulating violations.
