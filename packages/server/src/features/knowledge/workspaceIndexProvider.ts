@@ -21,7 +21,16 @@ interface WorkspaceIndexProviderOptions {
   };
 }
 
-export const DEFAULT_CODE_EXTENSIONS = new Set([".ts", ".tsx", ".js", ".jsx", ".mjs", ".cts", ".mts"]);
+export const DEFAULT_CODE_EXTENSIONS = new Set([
+  ".ts",
+  ".tsx",
+  ".js",
+  ".jsx",
+  ".mjs",
+  ".cts",
+  ".mts",
+  ".cs"
+]);
 export const DEFAULT_DOC_EXTENSIONS = new Set([".md", ".mdx", ".markdown", ".txt", ".yaml", ".yml"]);
 
 export type ExportedSymbolKind =
@@ -260,6 +269,8 @@ function inferLanguage(filePath: string): string | undefined {
     case ".jsx":
     case ".mjs":
       return "javascript";
+    case ".cs":
+      return "csharp";
     default:
       return undefined;
   }
@@ -490,6 +501,10 @@ async function extractPathFunctionHints(context: LinkHintContext): Promise<Relat
 function extractExportedSymbols(filePath: string, content: string): ExportedSymbolMetadata[] {
   const extension = path.extname(filePath).toLowerCase();
   if (!DEFAULT_CODE_EXTENSIONS.has(extension)) {
+    return [];
+  }
+
+  if (extension === ".cs") {
     return [];
   }
 

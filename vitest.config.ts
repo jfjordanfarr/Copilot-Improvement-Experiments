@@ -16,7 +16,8 @@ export default defineConfig({
     include: [
       "packages/shared/src/**/*.test.ts",
       "packages/server/src/**/*.test.ts",
-      "packages/extension/src/**/*.test.ts"
+      "packages/extension/src/**/*.test.ts",
+      "tests/integration/slopcop/**/*.test.ts"
     ],
     poolOptions: {
       threads: {

@@ -20,6 +20,7 @@ interface ParsedArgs {
   helpRequested: boolean;
   jsonOutput: boolean;
   workspace?: string;
+  config?: string;
 }
 
 interface GroupedIssues {
@@ -58,8 +59,8 @@ const DEFAULT_PATTERNS = ["**/*.html", "**/*.htm", "**/*.css", "**/*.scss", "**/
       console.error(`Workspace directory not found: ${workspaceRoot}`);
       process.exit(EXIT_FAILURE);
     }
-
-    const config = loadSlopcopConfig(workspaceRoot);
+    const configPath = args.config ? path.resolve(args.config) : undefined;
+    const config = loadSlopcopConfig(workspaceRoot, configPath);
     const ignoreGlobs = resolveIgnoreGlobs(config, "assets", DEFAULT_IGNORE);
     const includeGlobs = resolveIncludeGlobs(config, "assets", DEFAULT_PATTERNS);
     const ignoreTargetPatterns = compileIgnorePatterns(config, "assets");
@@ -123,6 +124,15 @@ function parseArgs(argv: string[]): ParsedArgs {
           throw new Error("--workspace requires a path argument");
         }
         parsed.workspace = next;
+        index += 1;
+        break;
+      }
+      case "--config": {
+        const next = argv[index + 1];
+        if (!next) {
+          throw new Error("--config requires a path argument");
+        }
+        parsed.config = next;
         index += 1;
         break;
       }
@@ -216,6 +226,7 @@ function printHelp(): void {
       "Options:\n" +
       "  --json            Emit JSON instead of human-readable output\n" +
       "  --workspace PATH  Override the workspace root (defaults to CWD)\n" +
+      "  --config PATH     Explicit slopcop.config.json to load\n" +
       "  -h, --help        Show this help message"
   );
 }

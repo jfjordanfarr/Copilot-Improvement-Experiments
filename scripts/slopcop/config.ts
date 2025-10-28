@@ -30,14 +30,17 @@ export const CONFIG_FILE_NAME = "slopcop.config.json";
 
 type SectionKey = "markdown" | "assets" | "symbols";
 
-export function loadSlopcopConfig(workspaceRoot: string): SlopcopConfig {
-  const configPath = path.join(workspaceRoot, CONFIG_FILE_NAME);
-  if (!fs.existsSync(configPath)) {
+export function loadSlopcopConfig(workspaceRoot: string, overridePath?: string): SlopcopConfig {
+  const resolvedPath = overridePath ? path.resolve(overridePath) : path.join(workspaceRoot, CONFIG_FILE_NAME);
+  if (!fs.existsSync(resolvedPath)) {
+    if (overridePath) {
+      throw new Error(`Configuration file not found: ${resolvedPath}`);
+    }
     return {};
   }
 
   try {
-    const raw = fs.readFileSync(configPath, "utf8");
+    const raw = fs.readFileSync(resolvedPath, "utf8");
     const parsed = JSON.parse(raw);
     if (!isPlainObject(parsed)) {
       throw new Error("Configuration must be an object");

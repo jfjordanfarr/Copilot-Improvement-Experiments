@@ -61,7 +61,7 @@ Example invocations:
 ## Documentation Conventions
 
 Our project aims to follow a 4-layered structure of markdown docs which progressively describes a solution of any type, from most abstract/public to most concrete/internal. 
-- Layer 1: Vision/Roadmap
+- Layer 1: Vision/Roadmap/Features
 - Layer 2: Requirements/User Stories/Work Items/Issues/Epics/Tasks
 - Layer 3: Architecture/Solution Components
 - Layer 4: Implementation docs (somewhat like a more human-readable C Header file, describing the programmatic surface of a singular distinct solution artifact, like a single code file). 
@@ -97,3 +97,7 @@ When you are faced with a large development task which is expected to take more 
 For the big features, I begin by creating the MDMD documentation for the things I _think_ I will need to build. Then, I perform an initial implementation pass, allowing harsh realities to dash against my initial design, forcing repeated back-and-forth refinements between documentation and implementation until the two are in harmony and the solution is complete. This particular style of development I call "Code Like Clay", and it is astoundingly well-suited to LLM-driven development, as it preserves intent across multiple context windows, allowing the LLM to reason about the problem at hand without losing sight of the big picture. 
 
 Our own project's tooling is improving progressively to better support this style of development. For example, the `npm run safe:commit` command runs a battery of validations which ensure that the codebase is in a sound state before commits land, including linting, unit tests, integration tests, graph snapshotting, graph auditing, and SlopCop checks. 
+
+## Final Note: Context and Autosummarization
+
+Every ~64k-128k of tokens of chat history/context that goes through Github Copilot, an automatic summarization step occurs. Under the hood, this raises a new underlying conversation with a clean context window, save for the summary and the latest user prompt. This VS Code-initiated process makes a best attempt at enabling Github Copilot to continue its efforts uninterrupted across summarization windows but is far from perfect. If you exit an autosummarization process, try to rehydrate from the end of the active dev day's conversation history file to catch back up. 

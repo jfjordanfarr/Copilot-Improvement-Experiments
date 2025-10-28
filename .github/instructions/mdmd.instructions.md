@@ -7,7 +7,7 @@ applyTo: "**/*.mdmd.md"
 ## Documentation Conventions
 
 Our project aims to follow a 4-layered structure of markdown docs which progressively describes a solution of any type, from most abstract/public to most concrete/internal. 
-- Layer 1: Vision/Roadmap
+- Layer 1: Vision/Roadmap/Features
 - Layer 2: Requirements/User Stories/Work Items/Issues/Epics/Tasks
 - Layer 3: Architecture/Solution Components
 - Layer 4: Implementation docs (somewhat like a more human-readable C Header file, describing the programmatic surface of a singular distinct solution artifact, like a single code file). 

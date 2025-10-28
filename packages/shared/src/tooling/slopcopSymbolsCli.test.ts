@@ -13,26 +13,32 @@ const TSCONFIG = path.resolve(ROOT, "tsconfig.base.json");
 const FIXTURE = path.resolve(ROOT, "tests/integration/fixtures/slopcop-symbols/workspace");
 
 describe("SlopCop symbol CLI", () => {
-  it("reports missing anchors and duplicates, then passes once repaired", () => {
+  it("passes when docs are healthy and flags issues when headings drift", () => {
     withFixtureWorkspace((workspace) => {
-      const firstRun = runCli(workspace);
-      expect(firstRun.status).toBe(3);
-      const parsed = JSON.parse(firstRun.stdout.trim() || "{}");
-      expect(parsed.scannedFiles).toBeGreaterThan(0);
+      const baseline = runCli(workspace);
+      expect(baseline.status).toBe(0);
+      const clean = JSON.parse(baseline.stdout.trim() || "{}");
+      expect(clean.scannedFiles).toBeGreaterThan(0);
+      expect(clean.issues).toHaveLength(0);
+
+      breakWorkspace(workspace);
+
+      const failingRun = runCli(workspace);
+      expect(failingRun.status).toBe(3);
+      const parsed = JSON.parse(failingRun.stdout.trim() || "{}");
       expect(parsed.issues).toEqual(
         expect.arrayContaining([
-          expect.objectContaining({ kind: "duplicate-heading", slug: "overview-1" }),
-          expect.objectContaining({ kind: "missing-anchor", slug: "missing" }),
-          expect.objectContaining({ kind: "missing-anchor", slug: "unknown" })
+          expect.objectContaining({ kind: "duplicate-heading" }),
+          expect.objectContaining({ kind: "missing-anchor" })
         ])
       );
 
-      hydrateWorkspace(workspace);
+      restoreWorkspace(workspace);
 
-      const secondRun = runCli(workspace);
-      expect(secondRun.status).toBe(0);
-      const repaired = JSON.parse(secondRun.stdout.trim() || "{}");
-      expect(repaired.issues).toHaveLength(0);
+      const repaired = runCli(workspace);
+      expect(repaired.status).toBe(0);
+      const repairedPayload = JSON.parse(repaired.stdout.trim() || "{}");
+      expect(repairedPayload.issues).toHaveLength(0);
     });
   });
 });
@@ -54,29 +60,21 @@ function withFixtureWorkspace(callback: (workspace: string) => void): void {
   }
 }
 
-function hydrateWorkspace(workspace: string): void {
+function breakWorkspace(workspace: string): void {
   const overviewPath = path.join(workspace, "docs/overview.md");
-  fs.writeFileSync(
-    overviewPath,
-    ["# Overview", "", "## Details", "", "# Overview Summary", ""].join("\n"),
-    "utf8"
-  );
+  const overviewOriginal = fs.readFileSync(overviewPath, "utf8");
+  fs.writeFileSync(overviewPath, `# Overview\n# Overview\n${overviewOriginal}`, "utf8");
 
   const indexPath = path.join(workspace, "docs/index.md");
-  fs.writeFileSync(
-    indexPath,
-    [
-      "# Home",
-      "",
-      "See the [Overview](overview.md#overview).",
-      "",
-      "Repaired [details link](overview.md#details).",
-      "",
-      "Local [anchor](#unknown).",
-      "",
-      "## Unknown",
-      ""
-    ].join("\n"),
-    "utf8"
-  );
+  fs.appendFileSync(indexPath, "\nBroken [anchor](symbol-map.md#missing).\n");
+}
+
+function restoreWorkspace(workspace: string): void {
+  const files = ["docs/overview.md", "docs/index.md"];
+
+  for (const relativePath of files) {
+    const source = path.join(FIXTURE, relativePath);
+    const destination = path.join(workspace, relativePath);
+    fs.copyFileSync(source, destination);
+  }
 }

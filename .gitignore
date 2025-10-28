@@ -38,3 +38,9 @@ packages/**/src/**/*.js.map
 # Local lint outputs (ensure clean repo)
 eslint-report.json
 lint-output.txt
+
+# Ignore generated MDMD signal scaffolding
+AI-Agent-Workspace/ChatHistory/MDMD-Signals/
+
+# Ignore transient agent workspace scratch directories
+**/AI-Agent-Workspace/tmp/

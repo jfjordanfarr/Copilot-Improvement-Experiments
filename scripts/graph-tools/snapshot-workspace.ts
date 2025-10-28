@@ -382,12 +382,25 @@ async function main(): Promise<void> {
     : path.resolve(workspaceRoot, args.dbPath ?? DEFAULT_DB);
   const outputPath = path.resolve(workspaceRoot, args.outputPath ?? DEFAULT_OUTPUT);
 
+  const orchestrationTargets = {
+    implementation: ["packages", "tests", "scripts", "src", "lib", "examples"],
+    documentation: [
+      ".mdmd",
+      "specs",
+      "docs",
+      path.join("tests", "integration", "fixtures", "simple-workspace", "docs"),
+      path.join("tests", "integration", "fixtures", "slopcop-symbols", "workspace", "docs"),
+      path.join("tests", "integration", "fixtures", "csharp-advanced-symbols", "docs")
+    ],
+    scripts: ["scripts", "tools"]
+  };
+
   const orchestrator = new LinkInferenceOrchestrator();
   const workspaceProvider = createWorkspaceIndexProvider({
     rootPath: workspaceRoot,
-    implementationGlobs: ["packages", "tests", "scripts"],
-    documentationGlobs: [".mdmd", "specs"],
-    scriptGlobs: [],
+    implementationGlobs: orchestrationTargets.implementation,
+    documentationGlobs: orchestrationTargets.documentation,
+    scriptGlobs: orchestrationTargets.scripts,
     logger: args.quiet
       ? undefined
       : {

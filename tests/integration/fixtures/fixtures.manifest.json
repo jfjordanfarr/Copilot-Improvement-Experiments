@@ -1,0 +1,34 @@
+[
+  {
+    "id": "simple-workspace",
+    "label": "US1–US3 TypeScript baseline",
+    "path": "tests/integration/fixtures/simple-workspace",
+    "stories": ["US1", "US2", "US3"],
+    "languages": ["TypeScript", "Markdown"],
+    "slopcopConfig": "slopcop.config.json"
+  },
+  {
+    "id": "slopcop-assets",
+    "label": "Asset lint dogfood workspace",
+    "path": "tests/integration/fixtures/slopcop-assets/workspace",
+    "stories": ["Tooling"],
+    "languages": ["HTML", "CSS"],
+    "slopcopConfig": "tests/integration/fixtures/slopcop-assets/workspace/slopcop.config.json"
+  },
+  {
+    "id": "slopcop-symbols",
+    "label": "Markdown symbol audit workspace",
+    "path": "tests/integration/fixtures/slopcop-symbols/workspace",
+    "stories": ["Tooling"],
+    "languages": ["Markdown"],
+    "slopcopConfig": "tests/integration/fixtures/slopcop-symbols/workspace/slopcop.config.json"
+  },
+  {
+    "id": "csharp-advanced-symbols",
+    "label": "C# heritage and accessibility stress workspace",
+    "path": "tests/integration/fixtures/csharp-advanced-symbols",
+    "stories": ["US4"],
+    "languages": ["C#", "Markdown"],
+    "slopcopConfig": "slopcop.config.json"
+  }
+]

@@ -9,7 +9,8 @@ export async function run(): Promise<void> {
   const testFiles = globSync("**/*.test.js", {
     cwd: compiledTestsRoot,
     absolute: true,
-    ignore: ["vscode/**", "suite/**"]
+    // SlopCop fixtures have dedicated Vitest coverage; omit them from the Mocha suite.
+    ignore: ["vscode/**", "suite/**", "slopcop/**"]
   });
 
   console.log(`Discovered ${testFiles.length} integration test file(s)`);

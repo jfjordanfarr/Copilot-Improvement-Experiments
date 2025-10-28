@@ -19,6 +19,7 @@ interface ParsedArgs {
   helpRequested: boolean;
   jsonOutput: boolean;
   workspace?: string;
+  config?: string;
 }
 
 interface GroupedIssues {
@@ -57,8 +58,8 @@ const DEFAULT_PATTERNS = ["**/*.md", "**/*.mdmd", "**/README", "**/README.md"];
       console.error(`Workspace directory not found: ${workspaceRoot}`);
       process.exit(EXIT_FAILURE);
     }
-
-    const config = loadSlopcopConfig(workspaceRoot);
+    const configPath = args.config ? path.resolve(args.config) : undefined;
+    const config = loadSlopcopConfig(workspaceRoot, configPath);
     const ignoreGlobs = resolveIgnoreGlobs(config, "markdown", DEFAULT_IGNORE);
     const patterns = resolveIncludeGlobs(config, "markdown", DEFAULT_PATTERNS);
     const ignoreTargetPatterns = compileIgnorePatterns(config, "markdown");
@@ -118,6 +119,15 @@ function parseArgs(argv: string[]): ParsedArgs {
           throw new Error("--workspace requires a path argument");
         }
         parsed.workspace = next;
+        index += 1;
+        break;
+      }
+      case "--config": {
+        const next = argv[index + 1];
+        if (!next) {
+          throw new Error("--config requires a path argument");
+        }
+        parsed.config = next;
         index += 1;
         break;
       }
@@ -208,6 +218,13 @@ function groupIssues(issues: MarkdownLinkIssue[]): GroupedIssues[] {
 }
 
 function printHelp(): void {
-  console.log(`Usage: slopcop-markdown [options]\n\n` + "Options:\n" + "  --json            Emit JSON instead of human-readable output\n" + "  --workspace PATH  Override the workspace root (defaults to CWD)\n" + "  -h, --help        Show this help message");
+  console.log(
+    "Usage: slopcop-markdown [options]\n\n" +
+      "Options:\n" +
+      "  --json            Emit JSON instead of human-readable output\n" +
+      "  --workspace PATH  Override the workspace root (defaults to CWD)\n" +
+      "  --config PATH     Explicit slopcop.config.json to load\n" +
+      "  -h, --help        Show this help message"
+  );
 }
 
