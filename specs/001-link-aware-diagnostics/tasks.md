@@ -123,7 +123,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T044 [P] [US3] Create diagnostics tree view provider in `packages/extension/src/views/diagnosticsTree.ts`
 - [x] T045 [US3] Implement export diagnostics command in `packages/extension/src/commands/exportDiagnostics.ts`
 - [x] T046 [US3] Add configurable noise suppression filters in `packages/server/src/features/diagnostics/noiseFilter.ts`
-- [ ] T047 [P] [US3] Wire optional AI analysis command using `vscode.lm` in `packages/extension/src/commands/analyzeWithAI.ts`
+- [x] T047 [P] [US3] Wire optional AI analysis command using `vscode.lm` in `packages/extension/src/commands/analyzeWithAI.ts`
 - [x] T059 [US3] Persist drift history log entries in `packages/server/src/telemetry/driftHistoryStore.ts` and expose summary reporting demanded by FR-009
 
 **Checkpoint**: All user stories independently functional with full workflow coverage
@@ -150,11 +150,11 @@ description: "Task list for Link-Aware Diagnostics"
 **Purpose**: Hardening, documentation, instrumentation, and release readiness
 
 - [ ] T048 Update walkthrough with delete/rebind workflow and settings table in `specs/001-link-aware-diagnostics/quickstart.md`
-- [ ] T049 [P] Add CI script `ci-check` to root `package.json` invoking headless validation
-- [ ] T050 [P] Document constitution alignment, consent controls, and configuration guidance in `README.md`
+- [x] T049 [P] Add CI script `ci-check` to root `package.json` invoking headless validation
+- [x] T050 [P] Document constitution alignment, consent controls, and configuration guidance in `README.md`
 - [ ] T051 Execute full regression suite via `tests/integration/` runner and record results in `docs/test-report.md`
-- [ ] T052 Instrument diagnostic latency telemetry in `packages/server/src/telemetry/latencyTracker.ts`
-- [ ] T053 [P] Add performance validation test `tests/integration/perf/diagnosticLatency.test.ts`
+- [x] T052 Instrument diagnostic latency telemetry in `packages/server/src/telemetry/latencyTracker.ts`
+- [x] T053 [P] Add performance validation test `tests/integration/perf/diagnosticLatency.test.ts`
 - [ ] T057 Establish benchmark workspace automation in `tests/integration/benchmarks/rebuildStability.test.ts` measuring link graph reproducibility
 - [ ] T058 [P] Capture inference accuracy metrics and reporting pipeline in `packages/server/src/telemetry/inferenceAccuracy.ts`
 - [ ] T060 Curate AST-backed benchmark repos (starting with C and at least one additional language) under `tests/integration/benchmarks/ast-fixtures/`

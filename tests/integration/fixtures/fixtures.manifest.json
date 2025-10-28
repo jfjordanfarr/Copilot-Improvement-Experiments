@@ -13,7 +13,8 @@
     "path": "tests/integration/fixtures/slopcop-assets/workspace",
     "stories": ["Tooling"],
     "languages": ["HTML", "CSS"],
-    "slopcopConfig": "tests/integration/fixtures/slopcop-assets/workspace/slopcop.config.json"
+    "slopcopConfig": "tests/integration/fixtures/slopcop-assets/workspace/slopcop.config.json",
+    "slopcopSuites": ["assets"]
   },
   {
     "id": "slopcop-symbols",
@@ -21,7 +22,8 @@
     "path": "tests/integration/fixtures/slopcop-symbols/workspace",
     "stories": ["Tooling"],
     "languages": ["Markdown"],
-    "slopcopConfig": "tests/integration/fixtures/slopcop-symbols/workspace/slopcop.config.json"
+    "slopcopConfig": "tests/integration/fixtures/slopcop-symbols/workspace/slopcop.config.json",
+    "slopcopSuites": ["markdown", "symbols"]
   },
   {
     "id": "csharp-advanced-symbols",
@@ -29,6 +31,7 @@
     "path": "tests/integration/fixtures/csharp-advanced-symbols",
     "stories": ["US4"],
     "languages": ["C#", "Markdown"],
-    "slopcopConfig": "slopcop.config.json"
+    "slopcopConfig": "slopcop.config.json",
+    "slopcopSuites": ["markdown", "symbols"]
   }
 ]

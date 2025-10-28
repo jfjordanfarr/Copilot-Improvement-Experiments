@@ -21,6 +21,7 @@ import { registerAcknowledgementWorkflow } from "./commands/acknowledgeDiagnosti
 import { registerAnalyzeWithAICommand } from "./commands/analyzeWithAI";
 import { registerExportDiagnosticsCommand } from "./commands/exportDiagnostics";
 import { registerInspectSymbolNeighborsCommand } from "./commands/inspectSymbolNeighbors";
+import { registerLatencyTelemetryCommands } from "./commands/latencySummary";
 import { registerOverrideLinkCommand } from "./commands/overrideLink";
 import { registerDependencyQuickPick } from "./diagnostics/dependencyQuickPick";
 import { registerDocDiagnosticProvider } from "./diagnostics/docDiagnosticProvider";
@@ -233,6 +234,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   context.subscriptions.push(registerInspectSymbolNeighborsCommand(activeClient));
   context.subscriptions.push(registerSymbolBridge(activeClient));
   context.subscriptions.push(registerExportDiagnosticsCommand(activeClient));
+  context.subscriptions.push(registerLatencyTelemetryCommands(activeClient));
   context.subscriptions.push(
     registerAnalyzeWithAICommand({
       client: activeClient,

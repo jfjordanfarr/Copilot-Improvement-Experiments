@@ -8,6 +8,7 @@ export * from "./contracts/diagnostics";
 export * from "./contracts/llm";
 export * from "./contracts/lsif";
 export * from "./contracts/scip";
+export * from "./contracts/telemetry";
 export * from "./knowledge/knowledgeGraphBridge";
 export * from "./inference/fallbackInference";
 export * from "./inference/linkInference";

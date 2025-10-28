@@ -35,6 +35,9 @@ import {
   type SetDiagnosticAssessmentResult,
   FEEDS_READY_REQUEST,
   type FeedsReadyResult,
+  LATENCY_SUMMARY_REQUEST,
+  type LatencySummaryRequest,
+  type LatencySummaryResponse,
   type InspectDependenciesParams,
   type InspectDependenciesResult,
   INSPECT_SYMBOL_NEIGHBORS_REQUEST,
@@ -75,6 +78,7 @@ import {
   mergeExtensionSettings
 } from "./runtime/settings";
 import { DriftHistoryStore } from "./telemetry/driftHistoryStore";
+import { LatencyTracker } from "./telemetry/latencyTracker";
 
 const SETTINGS_NOTIFICATION = "linkDiagnostics/settings/update";
 const FILE_DELETED_NOTIFICATION = "linkDiagnostics/files/deleted";
@@ -104,6 +108,7 @@ const hysteresisController = new HysteresisController();
 let acknowledgementService: AcknowledgementService | null = null;
 let driftHistoryStore: DriftHistoryStore | null = null;
 let llmIngestionManager: LlmIngestionManager | null = null;
+let latencyTracker: LatencyTracker | null = null;
 
 let changeQueue: ChangeQueue | null = null;
 let runtimeSettings: RuntimeSettings = DEFAULT_RUNTIME_SETTINGS;
@@ -120,7 +125,8 @@ const changeProcessor = createChangeProcessor({
     artifactWatcher: null,
     runtimeSettings,
     acknowledgements: null,
-    llmIngestionManager: null
+    llmIngestionManager: null,
+    latencyTracker: null
   },
   diagnosticSender: diagnosticPublisher
 });
@@ -146,6 +152,14 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
     graphStore,
     now: () => new Date()
   });
+
+  latencyTracker = new LatencyTracker({
+    logger: {
+      warn: message => connection.console.warn(message),
+      info: message => connection.console.info(message)
+    }
+  });
+  changeProcessor.updateContext({ latencyTracker });
 
   const relationshipExtractor = createDefaultRelationshipExtractor({
     connection,
@@ -182,7 +196,8 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
   changeQueue?.dispose();
   changeQueue = new ChangeQueue({
     debounceMs: runtimeSettings.debounceMs,
-    onFlush: changes => changeProcessor.process(changes)
+    onFlush: changes => changeProcessor.process(changes),
+    onEnqueue: change => latencyTracker?.recordEnqueue(change.uri)
   });
 
   artifactWatcher = new ArtifactWatcher({
@@ -193,7 +208,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
     now: () => new Date()
   });
 
-  changeProcessor.updateContext({ graphStore, artifactWatcher, llmIngestionManager });
+  changeProcessor.updateContext({ graphStore, artifactWatcher, llmIngestionManager, latencyTracker });
 
   const workspaceProviders = [];
 
@@ -280,12 +295,14 @@ connection.onShutdown(() => {
     graphStore: null,
     artifactWatcher: null,
     acknowledgements: null,
-    llmIngestionManager: null
+    llmIngestionManager: null,
+    latencyTracker: null
   });
 
   acknowledgementService = null;
   driftHistoryStore = null;
   llmIngestionManager = null;
+  latencyTracker = null;
   diagnosticPublisher.clear();
 
   connection.console.info("link-aware-diagnostics server shutdown complete");
@@ -488,6 +505,26 @@ connection.onRequest(
   }
 );
 
+connection.onRequest(
+  LATENCY_SUMMARY_REQUEST,
+  (payload: LatencySummaryRequest = {}): LatencySummaryResponse => {
+    if (!latencyTracker) {
+      throw new Error("Latency tracker is not available");
+    }
+
+    const summary = latencyTracker.snapshot({
+      reset: payload.reset,
+      maxSamples: payload.maxSamples
+    });
+
+    connection.console.info(
+      `[latency] summary requested (reset=${Boolean(payload.reset)}, recentSamples=${summary.recentSamples.length})`
+    );
+
+    return { summary } satisfies LatencySummaryResponse;
+  }
+);
+
 documents.onDidSave((event: TextDocumentChangeEvent<TextDocument>) => {
   const payload: QueuedChange = {
     uri: event.document.uri,
@@ -498,6 +535,7 @@ documents.onDidSave((event: TextDocumentChangeEvent<TextDocument>) => {
   if (changeQueue) {
     changeQueue.enqueue(payload);
   } else {
+    latencyTracker?.recordEnqueue(payload.uri);
     void changeProcessor.process([payload]);
   }
 });

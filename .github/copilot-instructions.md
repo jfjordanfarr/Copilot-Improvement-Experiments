@@ -61,10 +61,10 @@ Example invocations:
 ## Documentation Conventions
 
 Our project aims to follow a 4-layered structure of markdown docs which progressively describes a solution of any type, from most abstract/public to most concrete/internal. 
-- Layer 1: Vision/Roadmap/Features
-- Layer 2: Requirements/User Stories/Work Items/Issues/Epics/Tasks
-- Layer 3: Architecture/Solution Components
-- Layer 4: Implementation docs (somewhat like a more human-readable C Header file, describing the programmatic surface of a singular distinct solution artifact, like a single code file). 
+- Layer 1: Vision/Roadmap/Features. This layer is the answer to the overall question "What are we trying to accomplish?"
+- Layer 2: Requirements/User Stories/Work Items/Issues/Epics/Tasks. This layer is the overall answer to the question "What must be done to accomplish it?"
+- Layer 3: Architecture/Solution Components. This layer is the overall answer to the question "How will it be accomplished?"
+- Layer 4: Implementation docs (somewhat like a more human-readable C Header file, describing the programmatic surface of a singular distinct solution artifact, like a single code file). This layer is the overall answer to the question "What has been accomplished so far?"
 
 This progressive specification strategy goes by the name **Membrane Design MarkDown (MDMD)** and is denoted by a `.mdmd.md` file extension. In the longer-term, `.mdmd.md` files aspire to be an AST-supported format which can be formally linked to code artifacts, enabling traceability from vision to implementation. MDMD, as envisioned, aims to create a reproducible and bidirectional bridge between code and docs, enabling docs-to-code, code-to-docs, or hybrid implementation strategies.
 

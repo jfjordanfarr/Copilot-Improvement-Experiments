@@ -37,6 +37,7 @@ export interface PublishDocDiagnosticsResult {
   suppressedByHysteresis: number;
   suppressedByAcknowledgement: number;
   noiseFilter: NoiseFilterTotals;
+  emittedByChange: Record<string, number>;
 }
 
 export function publishDocDiagnostics(
@@ -48,7 +49,8 @@ export function publishDocDiagnostics(
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
       suppressedByAcknowledgement: 0,
-      noiseFilter: { ...ZERO_NOISE_FILTER_TOTALS }
+      noiseFilter: { ...ZERO_NOISE_FILTER_TOTALS },
+      emittedByChange: {}
     };
   }
 
@@ -62,6 +64,7 @@ export function publishDocDiagnostics(
   let remaining = options.runtimeSettings.noiseSuppression.maxDiagnosticsPerBatch;
   const hysteresisWindow = options.runtimeSettings.noiseSuppression.hysteresisMs;
   const acknowledgementService = options.acknowledgements;
+  const emittedByChange: Record<string, number> = {};
   for (const context of contexts) {
     const brokenLinkDiagnostics = collectBrokenLinkDiagnostics(context);
     if (brokenLinkDiagnostics.length > 0) {
@@ -69,6 +72,8 @@ export function publishDocDiagnostics(
       bucket.push(...brokenLinkDiagnostics);
       diagnosticsByUri.set(context.artifact.uri, bucket);
       emitted += brokenLinkDiagnostics.length;
+      emittedByChange[context.changeEventId] =
+        (emittedByChange[context.changeEventId] ?? 0) + brokenLinkDiagnostics.length;
     }
 
     if (context.rippleImpacts.length === 0) {
@@ -117,6 +122,8 @@ export function publishDocDiagnostics(
       diagnosticsByUri.set(targetUri, existing);
       emitted += 1;
       remaining -= 1;
+      emittedByChange[context.changeEventId] =
+        (emittedByChange[context.changeEventId] ?? 0) + 1;
 
       options.hysteresis?.recordEmission(
         context.artifact.uri,
@@ -154,7 +161,8 @@ export function publishDocDiagnostics(
     suppressedByBudget,
     suppressedByHysteresis,
     suppressedByAcknowledgement,
-    noiseFilter: filterOutcome.totals
+    noiseFilter: filterOutcome.totals,
+    emittedByChange
   };
 }
 

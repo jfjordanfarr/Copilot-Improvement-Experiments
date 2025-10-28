@@ -29,6 +29,12 @@ Diagnostics are gated on first run to ensure teams opt into AI features explicit
 - Choose a connected provider only after completing the necessary consent and data-governance reviews for your organization.
 - Select `disabled` to suppress AI-backed analysis entirely; heuristics and knowledge feeds still run.
 
+Additional guardrails:
+- Diagnostics stay disabled until onboarding completes _and_ `linkAwareDiagnostics.enableDiagnostics` flips to `true`. You can turn the setting off later for read-only audits without uninstalling the extension.
+- The `linkDiagnostics.analyzeWithAI` command checks `llmProviderMode` on every invocation. When the value is `disabled` or consent has not been granted, the command exits before contacting a model.
+- In `local-only` mode the extension only talks to providers hosted on the local machine (for example Ollama); the server still performs heuristic inference so tests remain stable.
+- No workspace content is uploaded when diagnostics are disabled or the provider mode is `disabled`; the language server limits itself to the SQLite cache on disk.
+
 Until a decision is made, diagnostics remain disabled and the client polls the `linkDiagnostics/feedsReady` endpoint. Fallback inference keeps integration tests deterministic by seeding relationships from workspace JSON fixtures.
 
 ## Configuration Overview
@@ -44,6 +50,21 @@ Settings can be managed from VS Code (`Settings → Extensions → Link-Aware Di
 | `linkAwareDiagnostics.experimental.feeds` | `[]` | Optional quick-start feed descriptors for static or streaming knowledge sources. |
 
 When files are deleted or moved, the client raises a rebind prompt (`linkDiagnostics/maintenance/rebindRequired`). Accepting the prompt clears stale graph nodes, replays configured knowledge feeds, and keeps acknowledgement history intact. You can re-open the workflow later via the command palette (`Link Diagnostics: Rebind Workspace`).
+
+### Workspace guardrails and scoping
+- **Per-folder settings**: Multi-root workspaces let you tune diagnostics per folder. Add `.vscode/settings.json` inside any folder to override values such as `linkAwareDiagnostics.noiseSuppression.level` or to set `linkAwareDiagnostics.enableDiagnostics` to `false` for generated sources.
+- **Watcher exclusions**: Respect `files.watcherExclude` and `files.exclude` to keep the file watcher from reporting churn in build artefacts. Example:
+   ```json
+   {
+      "linkAwareDiagnostics.enableDiagnostics": false,
+      "files.watcherExclude": {
+         "**/dist/**": true,
+         "**/*.generated.*": true
+      }
+   }
+   ```
+- **Selective knowledge feeds**: Populate `data/knowledge-feeds/*.json` with curated links when you want deterministic relationships for a subset of folders. The language server treats those fixtures as high-confidence evidence during the first inference pass.
+- **Runtime overrides**: The CLI entry `npm run ci-check` runs `safe-to-commit` without a git summary, making it suitable for CI pipelines that should enforce the same guardrails before publishing artifacts.
 
 ## Development Commands
 | Command | Purpose |

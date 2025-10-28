@@ -28,7 +28,11 @@ export default defineConfig({
     coverage: {
       enabled: true,
       reporter: ["text", "html"],
-      reportsDirectory: "coverage"
+      reportsDirectory: "coverage",
+      exclude: [
+        "scripts/**/*.ts",
+        "packages/extension/src/extension.ts"
+      ]
     }
   }
 });

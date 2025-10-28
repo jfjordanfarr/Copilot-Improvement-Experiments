@@ -153,7 +153,8 @@ describe("publishDocDiagnostics", () => {
       emitted: 1,
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
-      suppressedByAcknowledgement: 0
+      suppressedByAcknowledgement: 0,
+      emittedByChange: { "change-event-doc": 1 }
     });
     expect(result.noiseFilter).toEqual(ZERO_NOISE_FILTER_TOTALS);
     expect(sendDiagnostics).toHaveBeenCalledTimes(1);
@@ -232,7 +233,8 @@ describe("publishDocDiagnostics", () => {
       suppressedByBudget: 1,
       suppressedByHysteresis: 0,
       suppressedByAcknowledgement: 0,
-      noiseFilter: ZERO_NOISE_FILTER_TOTALS
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS,
+      emittedByChange: {}
     });
     expect(sendDiagnostics).not.toHaveBeenCalled();
   });
@@ -282,6 +284,7 @@ describe("publishDocDiagnostics", () => {
       ...ZERO_NOISE_FILTER_TOTALS,
       byConfidence: 1
     });
+    expect(result.emittedByChange).toEqual({ "change-event-doc": 1 });
     expect(sendDiagnostics).toHaveBeenCalledTimes(1);
   });
 
@@ -301,7 +304,8 @@ describe("publishDocDiagnostics", () => {
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
       suppressedByAcknowledgement: 0,
-      noiseFilter: ZERO_NOISE_FILTER_TOTALS
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS,
+      emittedByChange: {}
     });
     expect(sendDiagnostics).not.toHaveBeenCalled();
   });
@@ -324,7 +328,8 @@ describe("publishDocDiagnostics", () => {
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
       suppressedByAcknowledgement: 0,
-      noiseFilter: ZERO_NOISE_FILTER_TOTALS
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS,
+      emittedByChange: { "change-event-doc": 1 }
     });
 
     const codeArtifact: KnowledgeArtifact = {
@@ -385,7 +390,8 @@ describe("publishDocDiagnostics", () => {
       suppressedByBudget: 0,
       suppressedByHysteresis: 1,
       suppressedByAcknowledgement: 0,
-      noiseFilter: ZERO_NOISE_FILTER_TOTALS
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS,
+      emittedByChange: {}
     });
   });
 
@@ -412,7 +418,8 @@ describe("publishDocDiagnostics", () => {
       suppressedByBudget: 0,
       suppressedByHysteresis: 0,
       suppressedByAcknowledgement: 1,
-      noiseFilter: ZERO_NOISE_FILTER_TOTALS
+      noiseFilter: ZERO_NOISE_FILTER_TOTALS,
+      emittedByChange: {}
     });
     // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(acknowledgements.shouldEmitDiagnostic).toHaveBeenCalledTimes(1);

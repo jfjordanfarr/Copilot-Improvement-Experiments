@@ -35,6 +35,7 @@ export interface PublishCodeDiagnosticsResult {
   withoutDependents: number;
   suppressedByAcknowledgement: number;
   noiseFilter: NoiseFilterTotals;
+  emittedByChange: Record<string, number>;
 }
 
 const DIAGNOSTIC_CODE = "code-ripple";
@@ -53,7 +54,8 @@ export function publishCodeDiagnostics(
       suppressedByHysteresis: 0,
       withoutDependents: 0,
       suppressedByAcknowledgement: 0,
-      noiseFilter: { ...ZERO_NOISE_FILTER_TOTALS }
+      noiseFilter: { ...ZERO_NOISE_FILTER_TOTALS },
+      emittedByChange: {}
     };
   }
 
@@ -68,6 +70,7 @@ export function publishCodeDiagnostics(
   let withoutDependents = 0;
   let suppressedByAcknowledgement = 0;
   const acknowledgementService = options.acknowledgements;
+  const emittedByChange: Record<string, number> = {};
 
   for (let index = 0; index < filteredContexts.length; index += 1) {
     const context = filteredContexts[index];
@@ -120,6 +123,8 @@ export function publishCodeDiagnostics(
       diagnosticsByUri.set(dependentUri, existing);
       emitted += 1;
       remaining -= 1;
+      emittedByChange[context.changeEventId] =
+        (emittedByChange[context.changeEventId] ?? 0) + 1;
 
       options.hysteresis?.recordEmission(context.artifact.uri, dependentUri, context.changeEventId);
 
@@ -154,7 +159,8 @@ export function publishCodeDiagnostics(
     suppressedByHysteresis,
     withoutDependents,
     suppressedByAcknowledgement,
-    noiseFilter: filterOutcome.totals
+    noiseFilter: filterOutcome.totals,
+    emittedByChange
   };
 }
 

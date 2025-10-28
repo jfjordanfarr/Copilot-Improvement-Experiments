@@ -29,16 +29,63 @@
 | Setting key | Default | Description |
 | --- | --- | --- |
 | `linkAwareDiagnostics.llmProviderMode` | `prompt` | Consent gate for AI features. Choose `local-only` for deterministic tests or `disabled` to operate strictly on heuristics. |
-| `linkAwareDiagnostics.enableDiagnostics` | `false` until onboarding completes | Master toggle that becomes `true` after provider consent. Can be flipped off for read-only audit sessions. |
+| `linkAwareDiagnostics.enableDiagnostics` | `false` until onboarding completes | Master toggle that becomes `true` after provider consent. Flip it off for read-only audits without tearing down the graph. |
 | `linkAwareDiagnostics.noiseSuppression.level` | `medium` | Tunes diagnostic filtering: `low` emits every ripple, `medium` balances churn, `high` suppresses lower-confidence hops. |
+| `linkAwareDiagnostics.noiseSuppression.minConfidence` | n/a | Optional floor (0-1) for ripple confidence. Raise it when the graph feels noisy; leave unset to use per-relationship defaults. |
+| `linkAwareDiagnostics.noiseSuppression.maxDepth` | n/a | Clamp ripple propagation to the specified hop count. Useful for large repos where third-degree signals overwhelm the Problems panel. |
+| `linkAwareDiagnostics.noiseSuppression.maxPerChange` | n/a | Hard limit on how many diagnostics a single change event can emit before throttling kicks in. |
+| `linkAwareDiagnostics.noiseSuppression.maxPerArtifact` | n/a | Prevents the same dependent artifact from surfacing more than N diagnostics per change. |
 | `linkAwareDiagnostics.debounce.ms` | `1000` | Batching window for change events. Increase when editing large files to reduce churn; decrease for eager feedback. |
 | `linkAwareDiagnostics.storagePath` | per-workspace global storage | Disk location for the SQLite knowledge store and acknowledgement ledger. Point to a repo-local path if you need portable caches. |
 | `linkAwareDiagnostics.experimental.feeds` | `[]` | Optional quick-start list of static or streaming feed descriptors. Useful for CI fixtures and air-gapped environments. |
 
+### Scoping diagnostics by folder
+Use VS Code’s multi-root and per-folder settings to focus diagnostics on the parts of a monorepo that matter.
+
+1. Create a workspace file (for example `link-aware.code-workspace`) that lists each folder you want to analyze:
+    ```json
+    {
+       "folders": [
+          { "path": "." },
+          { "path": "packages/extension", "name": "extension" },
+          { "path": "docs", "name": "docs" }
+       ]
+    }
+    ```
+    Open this workspace in VS Code; every folder gets its own `.vscode/settings.json` scope.
+2. Inside folders that should emit fewer diagnostics, add `.vscode/settings.json` with stricter filters:
+    ```json
+    {
+       "linkAwareDiagnostics.noiseSuppression.level": "high",
+       "linkAwareDiagnostics.noiseSuppression.maxPerChange": 2,
+       "linkAwareDiagnostics.enableDiagnostics": true
+    }
+    ```
+    The parent workspace can use looser settings (for example `"level": "low"`) so implementation code still emits full ripple traces.
+3. To disable diagnostics entirely for generated artifacts, place a `.vscode/settings.json` at the folder root with:
+    ```json
+    {
+       "linkAwareDiagnostics.enableDiagnostics": false,
+       "files.watcherExclude": {
+          "**/*.generated.*": true,
+          "**/dist/**": true
+       }
+    }
+    ```
+    The extension’s file-system watcher respects `files.watcherExclude`, so the server never queues changes from these paths.
+4. Combine folder-level settings with `files.exclude` when you want the IDE to hide the same directories, keeping the explorer in sync with diagnostic coverage.
+
+### Pre-seeding or restricting targets
+- Place curated link fixtures under `data/knowledge-feeds/*.json` to bootstrap relationships for specific paths before the first inference pass. Only artifacts referenced in these files will be seeded, which is helpful for narrow doc-only worktrees.
+- When pairing selective feeds with the folder-level settings above, run `npm run graph:snapshot -- --workspace <path>` to confirm the graph contains only the expected artifacts before enabling diagnostics for the whole workspace.
+- You can revert to default coverage at any time by deleting the folder-specific settings files and reloading the window (`Developer: Reload Window`).
+
 ### Maintenance and rebind workflow
-- Delete or move events detected by the client’s file-maintenance watcher trigger a `linkDiagnostics/maintenance/rebindRequired` notification. The extension displays a consent-aware rebind prompt so leads can reconcile renamed artifacts without losing acknowledgements.
-- Accepting the rebind clears stale nodes, replays persisted knowledge feeds, and re-applies overrides. Declining leaves diagnostics in place so you can manually resolve them; the prompt can be re-opened later via the command palette.
-- For catastrophic cache drift, run `Link Diagnostics: Clear All Diagnostics` to flush the current Problems entries, then use the rebind prompt to rebuild the graph. When both LSP feeds and the workspace provider are healthy, readiness logs report `configured` vs `healthy` feed counts to confirm the rebuild completed.
+1. The file-maintenance watcher raises `linkDiagnostics/maintenance/rebindRequired` whenever a linked artifact is deleted or renamed. The client surfaces a consent-aware toast summarizing impacted artifacts and offering **Rebind links** or **Dismiss**.
+2. Choose **Rebind links** to launch the override flow. If the rename carried workspace metadata, the prompt offers to reuse the detected `newUri`; otherwise it opens a file picker so you can point the graph at the successor artifact.
+3. The override command replays the affected relationships, preserving acknowledgement history and backfilling cached evidence. Progress updates report how many links were restored, and diagnostics resolve as each hop is rebound.
+4. Dismissing the prompt leaves drift diagnostics active so teams can manually curate replacements later. You can reopen the wizard by running `Link Diagnostics: Override Link` from the Command Palette; pass the replacement path to bulk-rebind without waiting for another notification.
+5. For catastrophic cache drift, run `Link Diagnostics: Clear All Diagnostics` first, then execute the rebind prompt. When feeds and workspace providers report `healthy`, the Problems panel repopulates using the rebuilt graph.
 
 ## Typical Workflow
 1. **Let inference run**: Open the workspace; the language server rebuilds the link graph from indexed symbols and diagnostics. Inspect inferred relationships via the Problems panel or the upcoming diagnostics view.

@@ -5,6 +5,8 @@ import * as os from "node:os";
 import * as path from "node:path";
 import process from "node:process";
 
+type SlopcopSuite = "markdown" | "assets" | "symbols";
+
 interface FixtureDefinition {
   id: string;
   label: string;
@@ -13,17 +15,20 @@ interface FixtureDefinition {
   languages?: string[];
   slopcopConfig?: string;
   skipGraphAudit?: boolean;
+  slopcopSuites?: SlopcopSuite[];
 }
 
 interface FixtureContext {
   definition: FixtureDefinition;
   absolutePath: string;
   slopcopConfigPath: string;
+  slopcopSuites: SlopcopSuite[];
 }
 
 const REPO_ROOT = path.resolve(path.join(__dirname, "..", ".."));
 const FIXTURE_TIMESTAMP = "2025-01-01T00:00:00.000Z";
 const TSX_CLI = path.join(REPO_ROOT, "node_modules", "tsx", "dist", "cli.mjs");
+const DEFAULT_SLOPCOP_SUITES: readonly SlopcopSuite[] = ["markdown", "assets", "symbols"];
 
 async function main(): Promise<void> {
   const repoRoot = REPO_ROOT;
@@ -57,11 +62,17 @@ function toContext(repoRoot: string, definition: FixtureDefinition): FixtureCont
     repoRoot,
     definition.slopcopConfig ?? "slopcop.config.json"
   );
+  const requestedSuites = definition.slopcopSuites ?? DEFAULT_SLOPCOP_SUITES;
+  const suites = requestedSuites.filter((suite, index, all) =>
+    DEFAULT_SLOPCOP_SUITES.includes(suite) && all.indexOf(suite) === index
+  );
+  const normalizedSuites = suites.length > 0 ? suites : [...DEFAULT_SLOPCOP_SUITES];
 
   return {
     definition,
     absolutePath,
-    slopcopConfigPath
+    slopcopConfigPath,
+    slopcopSuites: normalizedSuites
   };
 }
 
@@ -151,30 +162,32 @@ async function runAudit(repoRoot: string, dbPath: string, workspaceRoot: string)
 async function runSlopcopSuites(repoRoot: string, context: FixtureContext): Promise<void> {
   const tsxCli = TSX_CLI;
   const tsconfig = path.join(repoRoot, "tsconfig.base.json");
+  if (context.slopcopSuites.length === 0) {
+    console.log("→ slopcop (skipped)");
+    return;
+  }
 
-  const commands: Array<{ label: string; script: string; args: string[] }> = [
-    {
-      label: "slopcop:markdown",
-      script: path.join(repoRoot, "scripts", "slopcop", "check-markdown-links.ts"),
-      args: ["--workspace", context.absolutePath, "--config", context.slopcopConfigPath, "--json"]
-    },
-    {
-      label: "slopcop:assets",
-      script: path.join(repoRoot, "scripts", "slopcop", "check-asset-paths.ts"),
-      args: ["--workspace", context.absolutePath, "--config", context.slopcopConfigPath, "--json"]
-    },
-    {
-      label: "slopcop:symbols",
-      script: path.join(repoRoot, "scripts", "slopcop", "check-symbols.ts"),
-      args: ["--workspace", context.absolutePath, "--config", context.slopcopConfigPath, "--json"]
-    }
-  ];
+  const suiteScripts: Record<SlopcopSuite, string> = {
+    markdown: path.join(repoRoot, "scripts", "slopcop", "check-markdown-links.ts"),
+    assets: path.join(repoRoot, "scripts", "slopcop", "check-asset-paths.ts"),
+    symbols: path.join(repoRoot, "scripts", "slopcop", "check-symbols.ts")
+  } as const;
 
-  for (const command of commands) {
+  for (const suite of context.slopcopSuites) {
     await runProcess(
-      command.label,
+      `slopcop:${suite}`,
       process.execPath,
-      [tsxCli, "--tsconfig", tsconfig, command.script, ...command.args],
+      [
+        tsxCli,
+        "--tsconfig",
+        tsconfig,
+        suiteScripts[suite],
+        "--workspace",
+        context.absolutePath,
+        "--config",
+        context.slopcopConfigPath,
+        "--json"
+      ],
       context.absolutePath
     );
   }

@@ -18,6 +18,7 @@ export interface QueuedChange {
 interface ChangeQueueOptions {
   debounceMs: number;
   onFlush: (changes: QueuedChange[]) => void | Promise<void>;
+  onEnqueue?: (change: QueuedChange) => void;
 }
 
 export class ChangeQueue {
@@ -31,6 +32,7 @@ export class ChangeQueue {
 
   enqueue(change: QueuedChange): void {
     this.pending.set(change.uri, change);
+    this.options.onEnqueue?.(change);
     this.schedule();
   }
 

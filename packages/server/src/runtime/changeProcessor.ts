@@ -22,6 +22,7 @@ import {
   type CodeTrackedArtifactChange,
   type DocumentTrackedArtifactChange
 } from "../features/watchers/artifactWatcher";
+import type { LatencyTracker } from "../telemetry/latencyTracker";
 
 export interface ChangeProcessorContext {
   graphStore: GraphStore | null;
@@ -29,6 +30,7 @@ export interface ChangeProcessorContext {
   runtimeSettings: RuntimeSettings;
   acknowledgements: AcknowledgementService | null;
   llmIngestionManager: LlmIngestionManager | null;
+  latencyTracker: LatencyTracker | null;
 }
 
 export interface ChangeProcessor {
@@ -55,7 +57,8 @@ export function createChangeProcessor({
 }: ChangeProcessorOptions): ChangeProcessor {
   const context: ChangeProcessorContext = {
     ...initialContext,
-    llmIngestionManager: initialContext.llmIngestionManager ?? llmIngestionManager ?? null
+    llmIngestionManager: initialContext.llmIngestionManager ?? llmIngestionManager ?? null,
+    latencyTracker: initialContext.latencyTracker ?? null
   };
 
   function updateContext(update: Partial<ChangeProcessorContext>): void {
@@ -63,20 +66,62 @@ export function createChangeProcessor({
   }
 
   async function process(changes: QueuedChange[]): Promise<void> {
-    const { graphStore, artifactWatcher, acknowledgements, llmIngestionManager: ingestionManager } = context;
+    const {
+      graphStore,
+      artifactWatcher,
+      acknowledgements,
+      llmIngestionManager: ingestionManager,
+      latencyTracker
+    } = context;
     const runtimeSettings: RuntimeSettings = context.runtimeSettings;
     const rippleSettings: RuntimeSettings["ripple"] = runtimeSettings.ripple;
 
     if (!graphStore) {
+      if (latencyTracker) {
+        for (const change of changes) {
+          latencyTracker.discardQueuedChange(change.uri);
+        }
+      }
       return;
     }
 
     if (!artifactWatcher) {
       connection.console.warn("artifact watcher not initialised; skipping change batch");
+      if (latencyTracker) {
+        for (const change of changes) {
+          latencyTracker.discardQueuedChange(change.uri);
+        }
+      }
       return;
     }
 
     let watcherResult: Awaited<ReturnType<ArtifactWatcher["processChanges"]>> | null = null;
+
+    const discardQueued = (uris: Iterable<string>): void => {
+      if (!latencyTracker) {
+        return;
+      }
+
+      for (const uri of uris) {
+        latencyTracker.discardQueuedChange(uri);
+      }
+    };
+
+    const finalizeChanges = (
+      contextsToFinalize: Array<{ changeEventId: string }>,
+      emittedByChange: Record<string, number> | undefined
+    ): void => {
+      if (!latencyTracker || contextsToFinalize.length === 0) {
+        return;
+      }
+
+      for (const item of contextsToFinalize) {
+        latencyTracker.complete({
+          changeEventId: item.changeEventId,
+          diagnosticsEmitted: emittedByChange?.[item.changeEventId] ?? 0
+        });
+      }
+    };
 
     try {
       watcherResult = await artifactWatcher.processChanges(changes);
@@ -87,6 +132,7 @@ export function createChangeProcessor({
       }
     } catch (error) {
       connection.console.error(`artifact watcher processing threw: ${describeError(error)}`);
+      discardQueued(changes.map(change => change.uri));
       return;
     }
 
@@ -95,8 +141,24 @@ export function createChangeProcessor({
         connection.console.info(
           `artifact watcher skipped ${watcherResult.skipped.length} change(s) due to missing content`
         );
+        discardQueued(watcherResult.skipped.map(item => item.change.uri));
       }
+      discardQueued(changes.map(change => change.uri));
       return;
+    }
+
+    discardQueued(watcherResult.skipped.map(item => item.change.uri));
+
+    if (latencyTracker) {
+      const processedUris = new Set(
+        watcherResult.processed.map(item => normalizeFileUri(item.uri))
+      );
+      for (const change of changes) {
+        const canonical = normalizeFileUri(change.uri);
+        if (!processedUris.has(canonical)) {
+          latencyTracker.discardQueuedChange(change.uri);
+        }
+      }
     }
 
     if (watcherResult.inference) {
@@ -116,7 +178,7 @@ export function createChangeProcessor({
     const nowFactory = () => new Date();
     const documentContexts: DocumentChangeContext[] = [];
     const codeContexts: CodeChangeContext[] = [];
-  const llmQueue = new Map<string, string>();
+    const llmQueue = new Map<string, string>();
 
     const processedDocuments = watcherResult.processed.filter(
       (change): change is DocumentTrackedArtifactChange => change.category === "document"
@@ -201,6 +263,13 @@ export function createChangeProcessor({
           persisted.artifact,
           rippleSettings.documentKinds
         );
+        latencyTracker?.registerPersisted({
+          changeEventId: persisted.changeEventId,
+          uri: processed.uri,
+          artifactId: persisted.artifact.id,
+          changeType: "document",
+          at: Date.now()
+        });
         // Instrumentation: log ripple targets for document-driven ripples to help debug multi-hop chains
         if (rippleImpacts.length > 0) {
           const details = rippleImpacts
@@ -231,6 +300,7 @@ export function createChangeProcessor({
         connection.console.error(
           `failed to persist document change for ${processed.uri}: ${describeError(error)}`
         );
+        latencyTracker?.discardQueuedChange(processed.uri);
       }
     }
 
@@ -242,6 +312,13 @@ export function createChangeProcessor({
           rippleSettings.codeKinds,
           target => target.layer === "code"
         );
+        latencyTracker?.registerPersisted({
+          changeEventId: persisted.changeEventId,
+          uri: processed.uri,
+          artifactId: persisted.artifact.id,
+          changeType: "code",
+          at: Date.now()
+        });
         codeContexts.push({
           change: processed,
           artifact: persisted.artifact,
@@ -258,11 +335,14 @@ export function createChangeProcessor({
         connection.console.error(
           `failed to persist code change for ${processed.uri}: ${describeError(error)}`
         );
+        latencyTracker?.discardQueuedChange(processed.uri);
       }
     }
 
     if (!providerGuard.areDiagnosticsEnabled()) {
       connection.console.info("diagnostics disabled via provider guard; skipping publication");
+      finalizeChanges(documentContexts, undefined);
+      finalizeChanges(codeContexts, undefined);
       return;
     }
 
@@ -315,6 +395,8 @@ export function createChangeProcessor({
         `published ${docDiagnosticsResult?.emitted ?? 0} documentation diagnostic(s) for ${documentContexts.length} document change(s)`
       );
     }
+
+    finalizeChanges(documentContexts, docDiagnosticsResult?.emittedByChange);
 
     const remainingBudget = Math.max(
       0,
@@ -378,6 +460,8 @@ export function createChangeProcessor({
         `published ${codeDiagnosticsResult?.emitted ?? 0} code diagnostic(s) for ${codeContexts.length} code change(s)`
       );
     }
+
+    finalizeChanges(codeContexts, codeDiagnosticsResult?.emittedByChange);
 
     if (watcherResult.skipped.length > 0) {
       connection.console.info(
