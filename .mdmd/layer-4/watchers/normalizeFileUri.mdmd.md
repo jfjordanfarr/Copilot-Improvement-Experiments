@@ -1,7 +1,7 @@
 # normalizeFileUri Utility (Layer 4)
 
 ## Source Mapping
-- Implementation: [`packages/server/src/features/utils/uri.ts`](../../../packages/server/src/features/utils/uri.ts)
+- Implementation: [`packages/shared/src/uri/normalizeFileUri.ts`](../../../packages/shared/src/uri/normalizeFileUri.ts) (consumed in the server via [`packages/server/src/features/utils/uri.ts`](../../../packages/server/src/features/utils/uri.ts))
 - Consumers: [`runtime/changeProcessor.ts`](../../../packages/server/src/runtime/changeProcessor.ts), [`features/watchers/artifactWatcher.ts`](../../../packages/server/src/features/watchers/artifactWatcher.ts), [`features/watchers/pathReferenceDetector.ts`](../../../packages/server/src/features/watchers/pathReferenceDetector.ts)
 
 ## Responsibility

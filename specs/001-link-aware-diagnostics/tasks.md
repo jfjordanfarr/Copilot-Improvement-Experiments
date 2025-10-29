@@ -149,19 +149,19 @@ description: "Task list for Link-Aware Diagnostics"
 
 **Purpose**: Hardening, documentation, instrumentation, and release readiness
 
-- [ ] T048 Update walkthrough with delete/rebind workflow and settings table in `specs/001-link-aware-diagnostics/quickstart.md`
+- [x] T048 Update walkthrough with delete/rebind workflow and settings table in `specs/001-link-aware-diagnostics/quickstart.md`
 - [x] T049 [P] Add CI script `ci-check` to root `package.json` invoking headless validation
 - [x] T050 [P] Document constitution alignment, consent controls, and configuration guidance in `README.md`
 - [ ] T051 Execute full regression suite via `tests/integration/` runner and record results in `docs/test-report.md`
 - [x] T052 Instrument diagnostic latency telemetry in `packages/server/src/telemetry/latencyTracker.ts`
 - [x] T053 [P] Add performance validation test `tests/integration/perf/diagnosticLatency.test.ts`
-- [ ] T057 Establish benchmark workspace automation in `tests/integration/benchmarks/rebuildStability.test.ts` measuring link graph reproducibility
-- [ ] T058 [P] Capture inference accuracy metrics and reporting pipeline in `packages/server/src/telemetry/inferenceAccuracy.ts`
+- [x] T057 Establish benchmark workspace automation in `tests/integration/benchmarks/rebuildStability.test.ts` measuring link graph reproducibility
+- [x] T058 [P] Capture inference accuracy metrics and reporting pipeline in `packages/server/src/telemetry/inferenceAccuracy.ts`
 - [ ] T060 Curate AST-backed benchmark repos (starting with C and at least one additional language) under `tests/integration/benchmarks/ast-fixtures/`
-- [ ] T061 Implement AST comparison harness in `tests/integration/benchmarks/astAccuracy.test.ts` that reconciles inferred graphs with canonical ASTs
+- [x] T061 Implement AST comparison harness in `tests/integration/benchmarks/astAccuracy.test.ts` that reconciles inferred graphs with canonical ASTs
 - [ ] T062 Integrate dual-mode benchmark selection (AST vs self-similarity) into CI via root `package.json` scripts and `npm run ci-check`
-- [ ] T073 [P] Author SlopCop markdown audit CLI docs in `.mdmd/layer-4/tooling/slopcopMarkdownLinks.mdmd.md`
-- [ ] T074 Implement markdown link audit CLI in `scripts/slopcop/check-markdown-links.ts` and wire into `safe:commit`
+- [x] T073 [P] Author SlopCop markdown audit CLI docs in `.mdmd/layer-4/tooling/slopcopMarkdownLinks.mdmd.md`
+- [x] T074 Implement markdown link audit CLI in `scripts/slopcop/check-markdown-links.ts` and wire into `safe:commit`
 - [x] T075 [P] Vendor GitHub slugging logic and heading extractor in `packages/shared/src/tooling/symbolReferences.ts` with unit coverage + slugger parity tests
 - [x] T076 Implement SlopCop symbol CLI (`scripts/slopcop/check-symbols.ts`) with fixture-backed regression test in `packages/shared/src/tooling/slopcopSymbolsCli.test.ts`
 - [x] T077 Update safe-to-commit, README, and MDMD docs to cover asset + symbol audits and their configuration gates

@@ -61,8 +61,8 @@ Example invocations:
 ## Documentation Conventions
 
 Our project aims to follow a 4-layered structure of markdown docs which progressively describes a solution of any type, from most abstract/public to most concrete/internal. 
-- Layer 1: Vision/Roadmap/Features. This layer is the answer to the overall question "What are we trying to accomplish?"
-- Layer 2: Requirements/User Stories/Work Items/Issues/Epics/Tasks. This layer is the overall answer to the question "What must be done to accomplish it?"
+- Layer 1: Vision/Features/User Stories/High-Level Roadmap. This layer is the answer to the overall question "What are we trying to accomplish?"
+- Layer 2: Requirements/Work Items/Issues/Epics/Tasks. This layer is the overall answer to the question "What must be done to accomplish it?"
 - Layer 3: Architecture/Solution Components. This layer is the overall answer to the question "How will it be accomplished?"
 - Layer 4: Implementation docs (somewhat like a more human-readable C Header file, describing the programmatic surface of a singular distinct solution artifact, like a single code file). This layer is the overall answer to the question "What has been accomplished so far?"
 

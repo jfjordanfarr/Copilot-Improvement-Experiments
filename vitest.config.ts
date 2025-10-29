@@ -3,12 +3,16 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   resolve: {
-    alias: {
-      "@copilot-improvement/shared": path.resolve(
-        __dirname,
-        "packages/shared/src/index.ts"
-      )
-    }
+    alias: [
+      {
+        find: /^@copilot-improvement\/shared$/,
+        replacement: path.resolve(__dirname, "packages/shared/src/index.ts")
+      },
+      {
+        find: /^@copilot-improvement\/shared\/(.*)$/,
+        replacement: path.resolve(__dirname, "packages/shared/src/$1")
+      }
+    ]
   },
   test: {
     globals: true,
@@ -27,10 +31,17 @@ export default defineConfig({
     },
     coverage: {
       enabled: true,
-      reporter: ["text", "html"],
+      reporter: ["text-summary", "html"],
       reportsDirectory: "coverage",
+      include: [
+        "packages/**/src/**/*.{ts,tsx}"
+      ],
       exclude: [
         "scripts/**/*.ts",
+        "tests/**",
+        "AI-Agent-Workspace/**",
+        ".vscode-test/**",
+        "coverage/**",
         "packages/extension/src/extension.ts"
       ]
     }

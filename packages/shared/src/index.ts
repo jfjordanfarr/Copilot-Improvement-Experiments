@@ -15,6 +15,8 @@ export * from "./inference/linkInference";
 export * from "./tooling/markdownLinks";
 export * from "./tooling/assetPaths";
 export * from "./tooling/symbolReferences";
+export * from "./telemetry/inferenceAccuracy";
+export * from "./uri/normalizeFileUri";
 export {
 	RelationshipExtractor,
 	RelationshipExtractorError,

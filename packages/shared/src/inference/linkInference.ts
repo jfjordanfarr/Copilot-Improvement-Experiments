@@ -650,11 +650,16 @@ function summariseProvider(
   provider: WorkspaceLinkProvider,
   contribution: WorkspaceLinkContribution | null | undefined
 ): WorkspaceProviderSummary {
+  const rawHints = contribution?.hints ?? [];
+  const uniqueHintCount = rawHints.length
+    ? new Set(rawHints.map(hint => JSON.stringify(hint))).size
+    : 0;
+
   return {
     id: provider.id,
     label: provider.label,
     seedCount: contribution?.seeds?.length ?? 0,
-    hintCount: contribution?.hints?.length ?? 0,
+    hintCount: uniqueHintCount,
     evidenceCount: contribution?.evidences?.length ?? 0
   };
 }
