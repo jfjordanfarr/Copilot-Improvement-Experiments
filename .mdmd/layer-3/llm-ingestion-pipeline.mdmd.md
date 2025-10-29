@@ -21,7 +21,8 @@ Describe the ingestion architecture that turns workspace artifacts into graph ed
    - The orchestrator loads artifact content from disk, builds deterministic chunks in-process, and gathers neighbouring graph entries for grounding.
    - Allowed relationship kinds remain scoped (`depends_on`, `implements`, `documents`, `references`) to avoid runaway outputs.
 3. **Relationship Extraction**
-   - The orchestrator uses [`RelationshipExtractor`](../../packages/shared/src/inference/llm/relationshipExtractor.ts) with a runtime-supplied `ModelInvoker`; the default invoker now delegates to the extension via `INVOKE_LLM_REQUEST` so local model settings (`llmProviderMode`) drive execution, while still logging once when providers are disabled.
+   - The orchestrator uses [`RelationshipExtractor`](../../packages/shared/src/inference/llm/relationshipExtractor.ts) with a runtime-supplied `ModelInvoker`; the default invoker delegates to the extension via `INVOKE_LLM_REQUEST` so local model settings (`llmProviderMode`) drive execution, while still logging once when providers are disabled.
+   - When the client reports `llmProviderMode === "local-only"` but no `vscode.lm` providers are registered, the extension routes the request through [`invokeLocalOllamaBridge`](../../packages/extension/src/services/localOllamaBridge.ts), which hits the workspace Ollama endpoint (or emits a deterministic mock response) so ingestion tests stay stable.
    - Prompt metadata tags every request with template and artifact identifiers for downstream auditing.
 4. **Confidence Calibration**
    - Raw model confidences feed [`calibrateConfidence`](../../packages/shared/src/inference/llm/confidenceCalibrator.ts), producing diagnostics-eligible flags and promotion metadata.
@@ -65,7 +66,7 @@ ArtifactWatcher ──► LLMIngestionOrchestrator ──► ChunkSummariser
 - [`ProviderGuard`](../../packages/server/src/features/settings/providerGuard.ts) settings gate execution; when `llmProviderMode` is `disabled` the orchestrator skips work without mutating state and logs the skip once.
 - Delegation to the extension host honours consent as well—`INVOKE_LLM_REQUEST` shares prompt/schema/tags with `LlmInvoker`, which can enforce local-only model selection or interactive prompts before any remote call is made.
 - Dry-run snapshots write JSON fixtures under `llm-ingestion-snapshots/`, preserving prompt + calibration metadata for reproducibility (see [`writeDryRunSnapshot`](../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts)).
-- The default `ModelInvoker` returns empty relationships, ensuring local-only environments stay deterministic until a provider is wired (see [`createDefaultRelationshipExtractor`](../../packages/server/src/runtime/llmIngestion.ts)).
+- The extension-side fallback emits deterministic mock relationships via [`invokeLocalOllamaBridge`](../../packages/extension/src/services/localOllamaBridge.ts) when no local provider is registered, keeping local-only environments deterministic without blocking ingestion runs.
 
 ## Open Questions
 

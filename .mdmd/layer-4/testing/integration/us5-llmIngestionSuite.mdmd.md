@@ -7,6 +7,7 @@
 	- [`packages/server/src/features/knowledge/llmIngestionOrchestrator.ts`](../../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts)
 	- [`packages/server/src/runtime/llmIngestion.ts`](../../../../packages/server/src/runtime/llmIngestion.ts)
 	- [`packages/shared/src/db/graphStore.ts`](../../../../packages/shared/src/db/graphStore.ts)
+	- [`packages/extension/src/services/localOllamaBridge.ts`](../../../../packages/extension/src/services/localOllamaBridge.ts)
 
 ## Responsibility
 Exercise the LLM ingestion pipeline end-to-end, covering both dry-run snapshot generation and persisted ripple transforms. Ensures calibration, provenance capture, and ripple diagnostics integrate cleanly with the knowledge graph.
@@ -19,7 +20,9 @@ Exercise the LLM ingestion pipeline end-to-end, covering both dry-run snapshot g
 1. Spin up a temporary GraphStore and instantiate `LlmIngestionOrchestrator`/`LlmIngestionManager` with stubbed extractors.
 2. Enqueue artifacts, invoke dry-run or persisted ingestion, and inspect snapshots/provenance records on disk.
 3. Assert ripple diagnostics reflect ingested edges and that calibration flags (`diagnosticsEligible`, `shadowed`) behave as expected.
+4. When `llmProviderMode === "local-only"`, the extension falls back to the workspace-local Ollama bridge, returning deterministic mock relationships so Mocha runs stay reproducible without remote providers.
 
 ## Follow-ups
 - Add coverage for provider consent transitions once live `vscode.lm` providers are wired into the orchestrator.
 - Include failure-path tests (extractor errors, file read failures) to validate logging and retry behaviour.
+- Record a fixture for the mock Ollama bridge output once real prompts are enabled to detect future schema drift.

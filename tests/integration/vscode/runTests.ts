@@ -50,6 +50,18 @@ async function main(): Promise<void> {
       process.env.LINK_AWARE_PROVIDER_MODE = "local-only";
     }
 
+    if (!process.env.LINK_AWARE_OLLAMA_MODEL && process.env.OLLAMA_MODEL) {
+      process.env.LINK_AWARE_OLLAMA_MODEL = process.env.OLLAMA_MODEL;
+    }
+
+    if (!process.env.LINK_AWARE_OLLAMA_TRACE_DIR) {
+      process.env.LINK_AWARE_OLLAMA_TRACE_DIR = path.join(
+        repoRoot,
+        "AI-Agent-Workspace",
+        "ollama-traces"
+      );
+    }
+
     try {
       await runTests({
         vscodeExecutablePath,
@@ -172,6 +184,10 @@ async function prepareIntegrationWorkspace(
   return {
     workspacePath,
     cleanup: async () => {
+      if (process.env.LINK_AWARE_KEEP_WORKSPACE === "1") {
+        console.log(`[integration] Preserving workspace at ${workspacePath}`);
+        return;
+      }
       await fs.promises.rm(tempRoot, { recursive: true, force: true });
     }
   };

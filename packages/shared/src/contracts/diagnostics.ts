@@ -27,6 +27,8 @@ export interface DiagnosticAcknowledgedPayload {
   triggerUri?: string;
 }
 
+export const RESET_DIAGNOSTIC_STATE_NOTIFICATION = "linkDiagnostics/diagnostics/resetState";
+
 export const LIST_OUTSTANDING_DIAGNOSTICS_REQUEST = "linkDiagnostics/diagnostics/list";
 
 export interface DiagnosticArtifactSummary {

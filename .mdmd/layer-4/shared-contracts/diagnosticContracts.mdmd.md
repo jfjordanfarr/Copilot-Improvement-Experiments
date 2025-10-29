@@ -57,6 +57,9 @@
 #### FeedsReadyResult
 `FeedsReadyResult` reports whether feeds are ready along with counts for configured and healthy feeds.
 
+#### RESET_DIAGNOSTIC_STATE_NOTIFICATION
+`RESET_DIAGNOSTIC_STATE_NOTIFICATION` lets the client request that the server clears cached diagnostics and hysteresis suppression so fresh test runs start from a clean slate.
+
 ## Responsibility
 Define the diagnostic-related request/response pairs so the server and extension maintain a consistent contract for acknowledging, listing, exporting, and annotating ripple diagnostics.
 

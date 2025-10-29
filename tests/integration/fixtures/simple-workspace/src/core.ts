@@ -32,25 +32,3 @@ export function validateRequest(request: Request): boolean {
   const evaluation = evaluateFeature(request.payload);
   return Boolean(request.id && evaluation.ok);
 }
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation
-// Updated implementation

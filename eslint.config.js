@@ -15,6 +15,7 @@ module.exports = tseslint.config(
       "node_modules/**",
       "**/*.d.ts",
       "eslint.config.js",
+  "AI-Agent-Workspace/**",
       // Generated CommonJS shims that live alongside TypeScript sources in the shared package.
       "packages/shared/src/**/*.js",
       // Temporarily ignore test files to avoid typed-rule crashes in our environment

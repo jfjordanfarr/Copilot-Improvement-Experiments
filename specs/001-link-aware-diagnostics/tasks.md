@@ -165,6 +165,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T075 [P] Vendor GitHub slugging logic and heading extractor in `packages/shared/src/tooling/symbolReferences.ts` with unit coverage + slugger parity tests
 - [x] T076 Implement SlopCop symbol CLI (`scripts/slopcop/check-symbols.ts`) with fixture-backed regression test in `packages/shared/src/tooling/slopcopSymbolsCli.test.ts`
 - [x] T077 Update safe-to-commit, README, and MDMD docs to cover asset + symbol audits and their configuration gates
+- [x] T078 [P] Wire the local Ollama bridge (shared helper, CLI fallback, harness defaults) across `packages/extension`, `packages/shared`, `scripts/ollama`, and integration docs
 
 ---
 
@@ -237,7 +238,7 @@ description: "Task list for Link-Aware Diagnostics"
 ---
 
 ## Summary
-- **Total Tasks**: 67
+- **Total Tasks**: 68
 - **User Story Task Counts**:
   - US1: 8 tasks (including T034 test)
   - US2: 8 tasks (including T026 test)

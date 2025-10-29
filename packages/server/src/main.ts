@@ -28,6 +28,7 @@ import {
   type AcknowledgeDiagnosticResult,
   DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION,
   type DiagnosticAcknowledgedPayload,
+  RESET_DIAGNOSTIC_STATE_NOTIFICATION,
   LIST_OUTSTANDING_DIAGNOSTICS_REQUEST,
   type ListOutstandingDiagnosticsResult,
   SET_DIAGNOSTIC_ASSESSMENT_REQUEST,
@@ -524,6 +525,12 @@ connection.onRequest(
     return { summary } satisfies LatencySummaryResponse;
   }
 );
+
+connection.onNotification(RESET_DIAGNOSTIC_STATE_NOTIFICATION, () => {
+  hysteresisController.reset();
+  diagnosticPublisher.clear();
+  connection.console.info("diagnostic state reset via client request");
+});
 
 documents.onDidSave((event: TextDocumentChangeEvent<TextDocument>) => {
   const payload: QueuedChange = {

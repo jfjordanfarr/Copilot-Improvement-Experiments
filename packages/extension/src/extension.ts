@@ -12,6 +12,7 @@ import {
   RebindRequiredPayload,
   FEEDS_READY_REQUEST,
   INVOKE_LLM_REQUEST,
+  RESET_DIAGNOSTIC_STATE_NOTIFICATION,
   type FeedsReadyResult,
   type InvokeLlmRequest,
   type InvokeLlmResult
@@ -28,6 +29,7 @@ import { registerDocDiagnosticProvider } from "./diagnostics/docDiagnosticProvid
 import { ensureProviderSelection } from "./onboarding/providerGate";
 import { showRebindPrompt } from "./prompts/rebindPrompt";
 import { LlmInvoker, LlmInvocationError } from "./services/llmInvoker";
+import { invokeLocalOllamaBridge } from "./services/localOllamaBridge";
 import { registerSymbolBridge } from "./services/symbolBridge";
 import { ConfigService } from "./settings/configService";
 import { registerDiagnosticsTreeView } from "./views/diagnosticsTree";
@@ -161,6 +163,9 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   context.subscriptions.push(
     vscode.commands.registerCommand("linkAwareDiagnostics.clearAllDiagnostics", () => {
       client?.diagnostics?.clear();
+      if (client) {
+        void client.sendNotification(RESET_DIAGNOSTIC_STATE_NOTIFICATION);
+      }
       return true;
     })
   );
@@ -201,6 +206,12 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
           } satisfies InvokeLlmResult;
         } catch (error) {
           if (error instanceof LlmInvocationError) {
+            if (
+              error.reason === "no-model" &&
+              (activeConfigService.settings.llmProviderMode ?? "prompt") === "local-only"
+            ) {
+              return invokeLocalOllamaBridge({ prompt: payload.prompt });
+            }
             console.warn(
               `LLM invocation skipped (${error.reason}): ${error.message}`
             );

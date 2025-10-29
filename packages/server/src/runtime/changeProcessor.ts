@@ -319,6 +319,19 @@ export function createChangeProcessor({
           changeType: "code",
           at: Date.now()
         });
+        if (rippleImpacts.length > 0) {
+          const details = rippleImpacts
+            .slice(0, 10)
+            .map(imp => `${normalizeFileUri(imp.target.uri)}[${imp.hint.kind} d=${imp.hint.depth}]`)
+            .join(", ");
+          connection.console.info(
+            `ripple(debug) code ${normalizeFileUri(persisted.artifact.uri)} -> ${rippleImpacts.length} target(s): ${details}`
+          );
+        } else {
+          connection.console.info(
+            `ripple(debug) code ${normalizeFileUri(persisted.artifact.uri)} produced no ripple targets`
+          );
+        }
         codeContexts.push({
           change: processed,
           artifact: persisted.artifact,

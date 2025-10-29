@@ -31,8 +31,8 @@ Records code artifact saves in the knowledge graph so ripple analysis can trace 
 - Leaves range metadata empty pending future AST diff integration; placeholders keep schema consistent.
 
 ## Testing
+- Unit coverage lives in [`packages/server/src/features/changeEvents/saveCodeChange.test.ts`](../../../packages/server/src/features/changeEvents/saveCodeChange.test.ts), asserting we reuse the canonical artifact id when persisting and emit matching change-event records.
 - Behaviour validated through integration suites (US1 code impact, US5 transform pipeline) which assert diagnostics include `changeEventId` resolved from this save path.
 
 ## Follow-ups
-- Add dedicated unit coverage mirroring the document path to protect against regressions.
 - Populate `ranges` once AST diffing lands, enabling more granular acknowledgement prompts.

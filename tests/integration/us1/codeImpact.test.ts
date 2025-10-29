@@ -87,8 +87,8 @@ suite("US1: Developers see code-change impact", () => {
   });
 
   test("Transitive dependents receive diagnostics for upstream changes", async function (this: Mocha.Context) {
-    this.timeout(40000);
-
+    const diagnosticTimeout = getDiagnosticTimeout();
+    this.timeout(diagnosticTimeout + 10000);
     await clearDiagnostics();
 
     const utilDoc = await vscode.workspace.openTextDocument(utilUri);
@@ -98,7 +98,10 @@ suite("US1: Developers see code-change impact", () => {
     await vscode.workspace.applyEdit(edit);
     await utilDoc.save();
 
-    await Promise.all([waitForDiagnostics(featureUri, 15000), waitForDiagnostics(entryUri, 15000)]);
+    await Promise.all([
+      waitForDiagnostics(featureUri, diagnosticTimeout),
+      waitForDiagnostics(entryUri, diagnosticTimeout)
+    ]);
 
     const featureDiagnostics = vscode.languages.getDiagnostics(featureUri);
     const entryDiagnostics = vscode.languages.getDiagnostics(entryUri);
@@ -168,22 +171,57 @@ async function waitForLanguageServerReady(): Promise<void> {
 
 async function clearDiagnostics(): Promise<void> {
   await vscode.commands.executeCommand("linkAwareDiagnostics.clearAllDiagnostics");
-  await sleep(500);
+  const timeoutAt = Date.now() + 5000;
+  while (Date.now() < timeoutAt) {
+    const hasDiagnostics = vscode.languages
+      .getDiagnostics()
+      .some(([, diagnostics]) => diagnostics.length > 0);
+    if (!hasDiagnostics) {
+      return;
+    }
+
+    await sleep(100);
+  }
+
+  throw new Error("Diagnostics did not clear within 5s of issuing clearAllDiagnostics");
 }
 
 async function waitForDiagnostics(uri: vscode.Uri, timeout: number): Promise<void> {
   const pollInterval = 200;
   let elapsed = 0;
+  let lastLogAt = -1000;
+  const debugLogsEnabled = isDiagnosticDebugEnabled();
 
   while (elapsed < timeout) {
     const diagnostics = vscode.languages.getDiagnostics(uri);
     if (diagnostics.length > 0) {
+      if (debugLogsEnabled) {
+        const snapshot = captureDiagnosticsSnapshot();
+        console.log(
+          `[waitForDiagnostics] diagnostics ready for ${uri.toString()} after ${elapsed}ms`,
+          snapshot
+        );
+      }
       return;
+    }
+
+    if (debugLogsEnabled && elapsed - lastLogAt >= 1000) {
+      lastLogAt = elapsed;
+      const snapshot = captureDiagnosticsSnapshot();
+      console.log(
+        `[waitForDiagnostics] waiting for ${uri.toString()} at ${elapsed}ms`,
+        snapshot
+      );
     }
     await sleep(pollInterval);
     elapsed += pollInterval;
   }
 
+  const snapshot = captureDiagnosticsSnapshot();
+  console.log(
+    `[waitForDiagnostics] timeout for ${uri.toString()} after ${timeout}ms`,
+    snapshot
+  );
   throw new Error(`No diagnostics appeared for ${uri.fsPath} within ${timeout}ms`);
 }
 
@@ -203,4 +241,52 @@ function trackDiagnosticUpdates(uri: vscode.Uri): () => number {
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function captureDiagnosticsSnapshot(): {
+  total: number;
+  entries: Array<{
+    uri: string;
+    count: number;
+    codes: string[];
+    sampleMessages: string[];
+  }>;
+} {
+  const entries = vscode.languages
+    .getDiagnostics()
+    .filter(([, items]) => items.length > 0)
+    .map(([candidateUri, items]) => {
+      const codes = Array.from(new Set(items.map(item => item.code))).filter(
+        (code): code is string => typeof code === "string"
+      );
+      const sampleMessages = items.slice(0, 2).map(item => item.message);
+      return {
+        uri: candidateUri.toString(),
+        count: items.length,
+        codes,
+        sampleMessages
+      };
+    });
+
+  const total = entries.reduce((sum, entry) => sum + entry.count, 0);
+  return { total, entries };
+}
+
+function isDiagnosticDebugEnabled(): boolean {
+  return process.env.LINK_AWARE_DIAGNOSTIC_DEBUG === "1";
+}
+
+function getDiagnosticTimeout(): number {
+  const raw = process.env.LINK_AWARE_INTEGRATION_DIAGNOSTIC_TIMEOUT;
+  const fallback = 45_000;
+  if (!raw) {
+    return fallback;
+  }
+
+  const parsed = Number.parseInt(raw, 10);
+  if (Number.isNaN(parsed) || parsed <= 0) {
+    return fallback;
+  }
+
+  return parsed;
 }

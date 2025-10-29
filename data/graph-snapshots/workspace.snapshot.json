@@ -2,8 +2,8 @@
   "generatedAt": "2025-01-01T00:00:00.000Z",
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
   "totals": {
-    "artifacts": 326,
-    "links": 1076
+    "artifacts": 334,
+    "links": 1091
   },
   "artifacts": [
     {
@@ -661,6 +661,14 @@
           },
           {
             "symbol": "llmProviderMode",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "vscode.lm",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "invokeLocalOllamaBridge",
             "context": "inline-code"
           },
           {
@@ -4664,6 +4672,10 @@
           {
             "symbol": "FeedsReadyResult",
             "context": "inline-code"
+          },
+          {
+            "symbol": "RESET_DIAGNOSTIC_STATE_NOTIFICATION",
+            "context": "inline-code"
           }
         ]
       }
@@ -6129,6 +6141,88 @@
       }
     },
     {
+      "id": "fallback-artifact-6c6f4e9c3bc8",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/ollamaBridge.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "resolveOllamaEndpoint",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LINK_AWARE_OLLAMA_ENDPOINT",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OLLAMA_ENDPOINT",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "github.copilot.chat.byok.ollamaEndpoint",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "invokeLocalOllamaBridge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "vscode.lm",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "invokeOllamaChat",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "createMockOllamaResponse",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "LINK_AWARE_OLLAMA_TRACE_DIR",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OllamaChatRequest",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OllamaChatResult",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OllamaChatUsage",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OllamaInvocationError",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "ResolveOllamaEndpointOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "WorkspaceConfigurationLike",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "MockOllamaResponse",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CreateMockOllamaResponseOptions",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "github.copilot.chat.byok.ollamaModel",
+            "context": "inline-code"
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-70aa66339254",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/safeToCommit.mdmd.md",
       "layer": "requirements",
@@ -6971,6 +7065,27 @@
       }
     },
     {
+      "id": "fallback-artifact-b9d9a5732162",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/services/localOllamaBridge.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-4a3017d370fa",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/services/localOllamaBridge.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "invokeLocalOllamaBridge",
+            "kind": "function",
+            "isDefault": false
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-4ff7ee36515f",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/extension/src/services/symbolBridge.test.ts",
       "layer": "code",
@@ -7135,6 +7250,12 @@
           }
         ]
       }
+    },
+    {
+      "id": "fallback-artifact-b880a020103d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/changeEvents/saveCodeChange.test.ts",
+      "layer": "code",
+      "language": "typescript"
     },
     {
       "id": "fallback-artifact-e1451c8c67e9",
@@ -8449,6 +8570,10 @@
             "kind": "interface"
           },
           {
+            "name": "RESET_DIAGNOSTIC_STATE_NOTIFICATION",
+            "kind": "variable"
+          },
+          {
             "name": "LIST_OUTSTANDING_DIAGNOSTICS_REQUEST",
             "kind": "variable"
           },
@@ -9407,6 +9532,84 @@
       }
     },
     {
+      "id": "fallback-artifact-8890738e46f5",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/tooling/ollamaClient.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "OllamaChatRequest",
+            "kind": "interface"
+          },
+          {
+            "name": "OllamaChatUsage",
+            "kind": "interface"
+          },
+          {
+            "name": "OllamaChatResult",
+            "kind": "interface"
+          },
+          {
+            "name": "OllamaInvocationError",
+            "kind": "class",
+            "isDefault": false
+          },
+          {
+            "name": "invokeOllamaChat",
+            "kind": "function",
+            "isDefault": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-edd47ef60cd6",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/tooling/ollamaEndpoint.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "ResolveOllamaEndpointOptions",
+            "kind": "interface"
+          },
+          {
+            "name": "WorkspaceConfigurationLike",
+            "kind": "interface"
+          },
+          {
+            "name": "resolveOllamaEndpoint",
+            "kind": "function",
+            "isDefault": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-4f1eb7b97f4f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/tooling/ollamaMock.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "MockOllamaResponse",
+            "kind": "interface"
+          },
+          {
+            "name": "CreateMockOllamaResponseOptions",
+            "kind": "interface"
+          },
+          {
+            "name": "createMockOllamaResponse",
+            "kind": "function",
+            "isDefault": false
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-6c66c2ffc10e",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/tooling/slopcopAssetCli.test.ts",
       "layer": "code",
@@ -9498,6 +9701,13 @@
     {
       "id": "fallback-artifact-637117183905",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/scripts/graph-tools/snapshot-workspace.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {}
+    },
+    {
+      "id": "fallback-artifact-b656ee208512",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/scripts/ollama/run-chat.ts",
       "layer": "code",
       "language": "typescript",
       "metadata": {}
@@ -11446,6 +11656,15 @@
       "id": "orchestrated-link-7f793312",
       "sourceId": "fallback-artifact-0773ef7f79be",
       "targetId": "fallback-artifact-36891531f4ca",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c9d064d3",
+      "sourceId": "fallback-artifact-0773ef7f79be",
+      "targetId": "fallback-artifact-4a3017d370fa",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -14134,6 +14353,15 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-34f51cf9",
+      "sourceId": "fallback-artifact-4f1eb7b97f4f",
+      "targetId": "fallback-artifact-8890738e46f5",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-cfdcda4f",
       "sourceId": "fallback-artifact-4fbda2c3837a",
       "targetId": "fallback-artifact-1ecf3b8e854f",
@@ -14971,6 +15199,15 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-9e3b142d",
+      "sourceId": "fallback-artifact-66e5dfc704c7",
+      "targetId": "fallback-artifact-4a3017d370fa",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-39a33d3f",
       "sourceId": "fallback-artifact-66e5dfc704c7",
       "targetId": "fallback-artifact-5a0991d4b81c",
@@ -15380,6 +15617,78 @@
       "sourceId": "fallback-artifact-6c1f62fe0ae1",
       "targetId": "fallback-artifact-fd26e5602292",
       "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5d3ce326",
+      "sourceId": "fallback-artifact-6c6f4e9c3bc8",
+      "targetId": "fallback-artifact-29bc9d2e819d",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-dce986af",
+      "sourceId": "fallback-artifact-6c6f4e9c3bc8",
+      "targetId": "fallback-artifact-4a3017d370fa",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-903e7c8f",
+      "sourceId": "fallback-artifact-6c6f4e9c3bc8",
+      "targetId": "fallback-artifact-4f1eb7b97f4f",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b0cafbb6",
+      "sourceId": "fallback-artifact-6c6f4e9c3bc8",
+      "targetId": "fallback-artifact-6c1f62fe0ae1",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-db02a9cd",
+      "sourceId": "fallback-artifact-6c6f4e9c3bc8",
+      "targetId": "fallback-artifact-8890738e46f5",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7942e40d",
+      "sourceId": "fallback-artifact-6c6f4e9c3bc8",
+      "targetId": "fallback-artifact-b656ee208512",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f34717d3",
+      "sourceId": "fallback-artifact-6c6f4e9c3bc8",
+      "targetId": "fallback-artifact-b9d9a5732162",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7ed4516e",
+      "sourceId": "fallback-artifact-6c6f4e9c3bc8",
+      "targetId": "fallback-artifact-edd47ef60cd6",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -17455,6 +17764,24 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-2a3d83d9",
+      "sourceId": "fallback-artifact-b880a020103d",
+      "targetId": "fallback-artifact-48c92132896f",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-10e9a103",
+      "sourceId": "fallback-artifact-b880a020103d",
+      "targetId": "fallback-artifact-e1451c8c67e9",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-da215297",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-11089fd4d185",
@@ -18367,6 +18694,15 @@
       "id": "orchestrated-link-fbedb4fd",
       "sourceId": "fallback-artifact-cd12481fb8d6",
       "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-307d07c0",
+      "sourceId": "fallback-artifact-cd12481fb8d6",
+      "targetId": "fallback-artifact-b880a020103d",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -19660,6 +19996,15 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-b334328f",
+      "sourceId": "fallback-artifact-e77b56ad7b76",
+      "targetId": "fallback-artifact-4a3017d370fa",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-5994e346",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-69cd22c85f1c",
@@ -20591,7 +20936,7 @@
     {
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
-      "seedCount": 336,
+      "seedCount": 345,
       "hintCount": 40,
       "evidenceCount": 0
     }

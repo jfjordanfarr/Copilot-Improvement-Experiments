@@ -21,13 +21,13 @@ const DEFAULT_SUMMARY = "Implementation updated";
 export function saveCodeChange(options: SaveCodeChangeOptions): PersistedCodeChange {
   const nowFactory = options.now ?? (() => new Date());
   const artifact = resolveArtifact(options.change);
-
-  options.graphStore.upsertArtifact(artifact);
+  // Ensure we reuse the canonical artifact id emitted by the graph store
+  const storedArtifact = options.graphStore.upsertArtifact(artifact);
 
   const changeEventId = randomUUID();
   options.graphStore.recordChangeEvent({
     id: changeEventId,
-    artifactId: artifact.id,
+    artifactId: storedArtifact.id,
     detectedAt: nowFactory().toISOString(),
     summary: DEFAULT_SUMMARY,
     changeType: "content",
@@ -36,7 +36,7 @@ export function saveCodeChange(options: SaveCodeChangeOptions): PersistedCodeCha
   });
 
   return {
-    artifact,
+    artifact: storedArtifact,
     changeEventId
   };
 }
