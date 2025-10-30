@@ -179,6 +179,21 @@ description: "Task list for Link-Aware Diagnostics"
 
 ---
 
+## Phase 9: Documentation Bridges & LLM-Oriented Surfaces
+
+- Focus: graduate workspaces from read-only observation to enforceable contracts by layering path-scoped profiles, docstring bridges, and ripple narratives that copilots and humans both trust.
+
+- [ ] T079 [P] Define docstring bridge metadata schema in `packages/shared/src/tooling/docstringBridgeConfig.ts` and generator `scripts/docbridge/generateConfig.ts` that reads `.mdmd/layer-4/**/*.mdmd.md` front matter to emit a workspace-local `docbridge.config.json` consumed by runtime services.
+- [ ] T080 Implement docstring bridge ingestion service in `packages/server/src/features/docbridge/docstringBridgeService.ts` to load generated mappings, normalize URIs, and expose drift status for diagnostics and sync commands.
+- [ ] T081 Publish docstring drift diagnostics via `packages/server/src/features/diagnostics/publishDocstringDiagnostics.ts`, integrating bridge state into the existing diagnostic pipeline and respecting hysteresis/acknowledgement rules.
+- [ ] T082 Add VS Code command `linkDiagnostics.syncDocstrings` in `packages/extension/src/commands/syncDocstrings.ts` that triggers bridge reloads, surfaces diff previews, and updates Layer‑4 documentation per workspace policy.
+- [ ] T083 Add integration test `tests/integration/us6/docstringBridge.test.ts` covering docstring↔markdown sync, drift diagnostics, and acknowledgement flows using sample MDMD artifacts.
+- [ ] T084 [P] Implement ripple narrative renderer in `packages/shared/src/reporting/rippleNarrative.ts` to produce structured JSON, Markdown tables, and ASCII diagrams with configurable depth/width for humans and copilots.
+- [ ] T085 Wire the narrative renderer into `packages/extension/src/views/diagnosticsTree.ts`, `packages/extension/src/commands/exportDiagnostics.ts`, and new CLI `scripts/graph-tools/render-ripple.ts` so change-impact reports share the same human/LLM-friendly formats.
+- [ ] T086 Add regression tests `tests/integration/benchmarks/rippleNarrative.test.ts` validating renderer output against golden fixtures and enforcing formatting/configuration guarantees required by FR-021.
+
+---
+
 ## Implementation Traceability
 - [`packages/server/src/main.ts`](../../packages/server/src/main.ts), [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts), and [`packages/server/src/runtime/knowledgeFeeds.ts`](../../packages/server/src/runtime/knowledgeFeeds.ts) map directly to the server-side tasks enumerated above.
 - [`packages/extension/src/extension.ts`](../../packages/extension/src/extension.ts), [`packages/extension/src/watchers/fileMaintenance.ts`](../../packages/extension/src/watchers/fileMaintenance.ts), and [`packages/extension/src/views/diagnosticsTree.ts`](../../packages/extension/src/views/diagnosticsTree.ts) fulfill the extension deliverables outlined throughout the task list.

@@ -5,6 +5,8 @@
 **Status**: In Progress  
 **Input**: User description: "Create a system (extension or language server) that raises IntelliSense problems when linked markdown layers and implementation files drift, extending to code files via dependency awareness so Copilot agents notice related context."
 
+**Current Vision**: Deliver a complete, workspace-local understanding of change impact—across code, documentation, and tooling—so humans and copilots can predict and verify consequences without depending on external services.
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
@@ -149,6 +151,8 @@ Graph projections, override manifests, and drift history live under the workspac
 - **FR-017**: Development-time verification MUST compare the inferred code dependency graph against canonical abstract syntax trees for curated benchmark workspaces when ground-truth ASTs are available, and MUST fall back to multi-run self-similarity benchmarks for workspaces lacking authoritative ASTs so accuracy remains measurable in both contexts.
 - **FR-018**: System MUST expose a developer-facing symbol neighborhood query (initially dogfooding-only) that, given a symbol or artifact identifier, returns hop-limited neighbors with relationship metadata and is pluggable into future LLM-assisted explanation tools.
 - **FR-019**: System MUST provide an LLM-driven ingestion pipeline that extracts relationship candidates from arbitrary workspace text via `vscode.lm`, annotates each candidate with a confidence tier (`High`, `Medium`, `Low`), persists provenance (model id, prompt hash, supporting chunk ids), and honours manual overrides by demoting conflicting edges. Diagnostics MAY only consume `High` edges automatically, while `Medium` and `Low` edges require corroboration or human promotion before surfacing.
+- **FR-020**: System MUST offer configurable, workspace-local documentation bridges that synchronise public symbol docstrings (or equivalent inline comments) with markdown sections, raise diagnostics when the two drift, and support presets for common ecosystems (MDMD, TSDoc, Sphinx, Rustdoc) without leaving the repository boundary.
+- **FR-021**: System MUST emit change-impact explanations in formats that are simultaneously human-readable and LLM-friendly—including structured JSON, Markdown tables, and ASCII relationship diagrams—and expose controls for workspace administrators to tune depth, breadth, and formatting of those outputs.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -166,6 +170,7 @@ Graph projections, override manifests, and drift history live under the workspac
 - Users operate within VS Code workspaces where both documentation and implementation artifacts are accessible.
 - Users accept a short debounce window (default 1s) before diagnostics fire during rapid edit sessions to balance responsiveness with signal quality.
 - External knowledge graphs (e.g., GitLab Knowledge Graph) expose read APIs secured by workspace-managed tokens, refresh at least every 15 minutes, and can be mirrored locally so ingestion remains resilient when remote services degrade.
+- Teams can adopt guarantees progressively through path-scoped profiles that start in read-only “observe” mode, advance to guarded linting, and only opt into bridges or enforcement once they are confident in the workspace conventions.
 
 ## Success Criteria *(mandatory)*
 
@@ -178,6 +183,7 @@ Graph projections, override manifests, and drift history live under the workspac
 - **SC-005**: In automated latency validation, diagnostics remain suppressed during acknowledgement windows with zero ricochet regressions recorded.
 - **SC-006**: On a canonical benchmark workspace, repeated graph rebuilds produce ≥95% identical link edges and flag deviations, ensuring inference reproducibility.
 - **SC-007**: On curated AST-backed benchmark workspaces, ≥90% of inferred edges match canonical AST relationships, and variance between runs stays within ±5% when ground-truth ASTs are unavailable, ensuring both validation modes surface actionable accuracy signals.
+- **SC-008**: Docstring-to-markdown bridges report zero unresolved drift diagnostics after `npm run safe:commit`, and automated ripple summaries render ASCII diagrams within the configured width for ≥90% of integration test scenarios.
 
 
 ## Clarifications

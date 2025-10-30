@@ -1,8 +1,9 @@
 # Link-Aware Diagnostics Vision
 
 ## Intent
-- Deliver the definitive answer to "what other files will be impacted by this change?" for every artifact in a VS Code workspace ([AI-Agent-Workspace/ChatHistory/2025-10-16.md](../../AI-Agent-Workspace/ChatHistory/2025-10-16.md)).
+- Deliver a complete, workspace-local understanding of change impact across code, documentation, and tooling without depending on external services ([AI-Agent-Workspace/ChatHistory/2025-10-16.md](../../AI-Agent-Workspace/ChatHistory/2025-10-16.md)).
 - Elevate GitHub Copilot from code-completion to project-wide partner by exposing cross-file ripple context directly inside the editor ([specs/001-link-aware-diagnostics/spec.md](../../specs/001-link-aware-diagnostics/spec.md)).
+- Render ripple intelligence in formats that humans and LLMs can both digest—Markdown narratives, ASCII diagrams, and structured JSON ([AI-Agent-Workspace/ChatHistory/2025-10-29.md](../../AI-Agent-Workspace/ChatHistory/2025-10-29.md)).
 - Preserve architectural and documentation alignment by treating markdown knowledge as first-class citizens in the dependency graph ([AI-Agent-Workspace/ChatHistory/2025-10-19.md](../../AI-Agent-Workspace/ChatHistory/2025-10-19.md)).
 - Anchor future decisions to the curated user-intent census so stakeholder guidance stays visible even when autosummarization trims context ([AI-Agent-Workspace/Notes/user-intent-census.md](../../AI-Agent-Workspace/Notes/user-intent-census.md)).
 
@@ -14,15 +15,16 @@
 ## Desired Outcomes
 - Every save event answers three questions within seconds: triggering artifact, impacted artifacts (depth-aware), and remediation guidance.
 - Documentation drift is surfaced with the same urgency as code regressions, preventing stale architecture narratives.
-- Ripple metadata (relationship, depth, confidence, path) is explorable without leaving VS Code, empowering Copilot prompts with authoritative context.
+- Ripple metadata (relationship, depth, confidence, path) is explorable without leaving VS Code, empowering Copilot prompts with authoritative context and ASCII/Markdown diagrams for summarization.
 - Workspace linting treats markdown, code, and symbol links as the same continuum—starting with deterministic markdown link proof ("SlopCop") and expanding toward full pseudocode AST validation.
 
 ## Guiding Principles
 1. **Graph First** – Treat the knowledge graph as the source of truth; caches are disposable projections rebuildable on demand.
 2. **Noise Discipline** – Diagnostics must respect hysteresis, batching, and acknowledgement workflows to avoid alert fatigue.
-3. **Human + Copilot Symbiosis** – Surfaces should be equally legible to humans and consumable by Copilot prompt engineering.
-4. **Falsifiability** – Every promised behaviour owns a repeatable test (unit, integration, or benchmark) guarding against silent regressions.
-5. **Proxy Iterations** – Use high-signal proxies (markdown links, asset paths) to harden tooling before promoting the same guarantees to symbols and generated artifacts.
+3. **Human + Copilot Symbiosis** – Surfaces must stay equally legible to humans and LLM prompts, favouring portable Markdown tables and ASCII diagrams over bespoke visualisations.
+4. **Workspace-Local First** – Guarantees derive from files, telemetry, and artefacts already present in the repository; external services remain optional accelerators.
+5. **Falsifiability** – Every promised behaviour owns a repeatable test (unit, integration, or benchmark) guarding against silent regressions.
+6. **Proxy Iterations** – Use high-signal proxies (markdown links, asset paths) to harden tooling before promoting the same guarantees to symbols and generated artifacts.
 
 ## Current Capability Snapshot (Dev Day 9)
 - **Ripple Diagnostics** – US1–US5 integration suites verify code, documentation, acknowledgement, scope collision, and transform ripple flows ([`tests/integration`](/tests/integration)).
@@ -42,8 +44,16 @@
 
 ## Evolution Path
 - **Markdown Integrity (present)**: Deterministic markdown link verification ("SlopCop") ensures Layer 1–4 MDMD serve as reliable proxies for impact analysis and spot LLM hallucinations early.
+- **Docstring Bridges (near-term)**: Synchronise public symbol docstrings with Layer‑4 MDMD sections so workspace documentation stays live without leaving the repo.
 - **Asset Path Awareness (near-term)**: Extend linting to HTML/CSS and config files that embed file paths so static assets participate in ripple guarantees.
+- **LLM-Friendly Ripple Surfaces (mid-term)**: Standardise ASCII relationship diagrams, Markdown tables, and structured JSON exports so humans and copilots consume the same change-impact story.
 - **Symbol Graph Grounding (long-term)**: Promote the same guarantees to code symbols, closing the loop between documentation proxies and the full pseudocode AST vision.
+
+## Adoption Path
+- **Stage 0 – Observe**: Ship read-only diagnostics, ripple reports, and ASCII/Markdown/JSON exports with zero documentation contracts required, so teams can trial the graph on any workspace slice.
+- **Stage 1 – Guard**: Layer path-scoped profiles on top of existing folders to enable markdown/symbol/asset linting and graph coverage checks, keeping results informational until the profile opts into enforcement.
+- **Stage 2 – Bridge**: Attach docstring, schema, or telemetry bridges to selected profiles; provide explicit preview/apply commands so drift fixes remain intentional and auditable.
+- **Stage 3 – Sustain**: Treat profiles as contractual—safe-to-commit and CI block on failures, ASCII narratives document ripple health, and code + docs operate as a living AST that copilots and humans both trust.
 
 ## Open Questions
 - What UX affordances best expose ripple metadata without overwhelming users? *(tracked in T042 roadmap)*

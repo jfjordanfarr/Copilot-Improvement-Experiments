@@ -10,27 +10,39 @@
 3. **T06x – Operational UX**
    - Provide lead-friendly dashboards, export CLI, and acknowledgement audit trails (see [FR-004/FR-005](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)).
    - Integrate ripple metadata into Copilot prompts and Problems hover tooltips.
-4. **T07x – Documentation & Asset Integrity** *(new)*
+4. **T07x – Documentation Bridges & Asset Integrity** *(new)*
    - Ship SlopCop linting passes (markdown in production, asset paths expanding with root-directory support and hashed-ignore ergonomics) so documentation remains a trustworthy proxy for ripple analysis.
+   - Introduce workspace-local docstring bridges that keep Layer‑4 MDMD sections in sync with public symbol docstrings while remaining configurable for other doc ecosystems (TSDoc, Sphinx, Rustdoc).
    - Deliver symbol-level lint S0 (Markdown anchor integrity with GitHub slug parity) while designing S1+ for knowledge-graph-backed code symbols; defer bespoke compilers in favour of graph ingestion.
    - Promote lint findings into safe-to-commit and CI pipelines, keeping hallucinated links from landing while publishing fixture-backed examples future iterations can dogfood.
 5. **T08x – Auto-Repair Tooling**
    - Offer guided workflows to rebind or prune stale links after rename/delete events.
    - Explore safe auto-fix suggestions when diagnostics identify simple drifts (e.g., markdown link updates).
+6. **T09x – LLM-Oriented Surfaces** *(planned)*
+   - Standardise ASCII ripple diagrams, Markdown tables, and structured JSON payloads so extension commands and diagnostics feed humans and copilots equally.
+   - Add configuration knobs for diagram width, depth, and focus targets so workspaces can tailor outputs for prompts vs. dashboards.
+   - Bundle presets that align with common repo archetypes (MDMD, TSDoc, Sphinx) while keeping all computation local to the workspace.
 
 ## Current Milestone Status (Dev Day 9)
 - **T04x – Ripple Observability Foundations**: ✅ Complete. All US1–US5 suites green; diagnostics tree, acknowledgements, and hysteresis hardened.
 - **T05x – Knowledge Graph Enrichment**: 🟡 In progress. Feed ingestion scaffolding, schema validation, and drift history storage shipped; external feed prioritization pending.
 - **T06x – Operational UX**: 🟡 In progress. Export diagnostics, dependency quick pick, and symbol neighbor flows live; dashboard and telemetry surfacing remain.
-- **T07x – Documentation & Asset Integrity**: 🟢 In motion. Markdown + asset lint dogfooded via safe-to-commit, asset CLI now covers root directories + hashed ignores, and symbol S0 (Markdown anchors) ships behind an opt-in config with fixture-backed tests.
+- **T07x – Documentation Bridges & Asset Integrity**: 🟢 In motion. Markdown + asset lint dogfooded via safe-to-commit, asset CLI now covers root directories + hashed ignores, symbol S0 (Markdown anchors) ships behind an opt-in config, and docstring bridge design is queued for implementation spikes.
 - **T08x – Auto-Repair Tooling**: 🔭 Planned. Requirements captured, awaiting confidence gating data from LLM ingestion dry run.
+- **T09x – LLM-Oriented Surfaces**: 🔭 Planned. ASCII/Markdown ripple storytelling and structured export surfaces defined at the vision level; implementation waits on docstring bridges and diagnostics telemetry refinements.
+
+## Adoption Strategy
+- **Stage 0 – Observe**: Extension defaults to read-only insight—graph diagnostics, ASCII/Markdown/JSON narratives, and audit CLIs can be scoped by path without demanding new documentation structure.
+- **Stage 1 – Guard**: Workspaces declare profiles that bind code and docs globs to lint/audit suites; findings stay informational until teams flip an `enforce` flag.
+- **Stage 2 – Bridge**: Profiles opt into docstring, schema, or telemetry bridges with explicit preview/apply commands so drift fixes are intentional and auditable.
+- **Stage 3 – Sustain**: Profiles graduate to contractual status, wiring safe-to-commit and CI gates plus ripple narratives that document health for copilots and humans alike.
 
 ## Verification Strategy
 - **Pre-commit guard**: [`npm run safe:commit`](/scripts/safe-to-commit.mjs) chaining lint/unit/integration, graph snapshot/audit, and the SlopCop suite (markdown, asset, symbol audits).
 - **Integration coverage**: US1–US5 suites emulate writer, developer, and template-transform flows ([us1](/tests/integration/us1/codeImpact.test.ts), [us2](/tests/integration/us2/markdownDrift.test.ts), [us3](/tests/integration/us3/markdownLinkDrift.test.ts), [us4](/tests/integration/us4/scopeCollision.test.ts), [us5](/tests/integration/us5/transformRipple.test.ts)).
 - **Knowledge feed diffs**: Snapshot JSON fixtures tracked under [`tests/integration/fixtures/simple-workspace/data/knowledge-feeds`](/tests/integration/fixtures/simple-workspace/data/knowledge-feeds) ensure deterministic graph bootstrapping.
 - **Benchmark placeholder**: Introduce curated workspaces with canonical ASTs (per FR-017) before closing T05x.
-- **SlopCop unit contract**: [`markdownLinks.test.ts`](/packages/shared/src/tooling/markdownLinks.test.ts) locks link parsing, ignore behaviour, and regression fixtures before CLI runs. [`assetPaths.test.ts`](/packages/shared/src/tooling/assetPaths.test.ts) + [`slopcopAssetCli.test.ts`](/packages/shared/src/tooling/slopcopAssetCli.test.ts) cover asset root mapping against the curated [`tests/integration/fixtures/slopcop-assets`](/tests/integration/fixtures/slopcop-assets) workspace. Symbol coverage now includes [`symbolReferences.test.ts`](/packages/shared/src/tooling/symbolReferences.test.ts), a GitHub slug parity suite ([`githubSlugger.test.ts`](/packages/shared/src/tooling/githubSlugger.test.ts)), and CLI smoke via [`slopcopSymbolsCli.test.ts`](/packages/shared/src/tooling/slopcopSymbolsCli.test.ts) against [`tests/integration/fixtures/slopcop-symbols`](/tests/integration/fixtures/slopcop-symbols).
+- **SlopCop unit contract**: [`markdownLinks.test.ts`](/packages/shared/src/tooling/markdownLinks.test.ts) locks link parsing, ignore behaviour, and regression fixtures before CLI runs. [`assetPaths.test.ts`](/packages/shared/src/tooling/assetPaths.test.ts) + [`slopcopAssetCli.test.ts`](/packages/shared/src/tooling/slopcopAssetCli.test.ts) cover asset root mapping against the curated [`tests/integration/fixtures/slopcop-assets`](/tests/integration/fixtures/slopcop-assets) workspace. Symbol coverage now includes [`symbolReferences.test.ts`](/packages/shared/src/tooling/symbolReferences.test.ts), a GitHub slug parity suite ([`githubSlugger.test.ts`](/packages/shared/src/tooling/githubSlugger.test.ts)), and CLI smoke via [`slopcopSymbolsCli.test.ts`](/packages/shared/src/tooling/slopcopSymbolsCli.test.ts) against [`tests/integration/fixtures/slopcop-symbols`](/tests/integration/fixtures/slopcop-symbols). Docstring bridge tests will join this suite once the sync adapters land.
 
 ## Traceability Links
 - Vision alignment: [Layer-1 Vision](../layer-1/link-aware-diagnostics-vision.mdmd.md)
@@ -43,6 +55,7 @@
 - What coverage threshold do we need before promoting SlopCop asset/symbol lint beyond markdown? (Planning)
 - Do we gate Copilot metadata exposure until acknowledgement UX is complete? (Pending)
 - How do we package MDMD artefacts into the extension for future telemetry? (Backlog)
+- Which ASCII/Markdown diagram presets best serve both humans and Copilot prompts without overwhelming the diagnostics surfaces? (New)
 
 ## Implementation Anchors
 - [FeedFormatDetector](../layer-4/knowledge-graph-ingestion/feedFormatDetector.mdmd.md), [SCIPParser](../layer-4/knowledge-graph-ingestion/scipParser.mdmd.md), and [LSIFParser](../layer-4/knowledge-graph-ingestion/lsifParser.mdmd.md) deliver T05x ingestion milestones.
