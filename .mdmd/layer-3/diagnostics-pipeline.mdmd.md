@@ -1,56 +1,70 @@
-# Diagnostics Pipeline Architecture (Layer 3)
+# Diagnostics Pipeline Architecture
 
-## Overview
-Synchronises on-disk artifact changes with the knowledge graph to emit actionable ripple diagnostics inside VS Code.
+## Metadata
+- Layer: 3
+- Component IDs: COMP-001
 
-- **Extension front-end**: watchers/fileMaintenance sends rename/delete notifications; document selectors in [`extension.ts`](../../packages/extension/src/extension.ts) ensure YAML + markdown feed change events into the language client.
-- **Change ingestion**: [`ArtifactWatcher`](../../packages/server/src/features/watchers/artifactWatcher.ts) classifies saved artifacts as document vs. code, loads contents, seeds providers, and reconciles inference hints against [`GraphStore`](../../packages/shared/src/db/graphStore.ts).
-- **Ripple analysis**: [`changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) persists change events, runs [`RippleAnalyzer`](../../packages/server/src/features/knowledge/rippleAnalyzer.ts), and collates ripple impacts for code+document contexts.
-- **Diagnostic publication**:
-   - [`publishDocDiagnostics`](../layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md) surfaces broken markdown links and ripple metadata for docs, coordinating acknowledgement + hysteresis suppression.
-   - [`publishCodeDiagnostics`](../layer-4/server-diagnostics/publishCodeDiagnostics.mdmd.md) handles code ripple hints with hysteresis + batching.
-   - [`AcknowledgementService`](../layer-4/server-diagnostics/acknowledgementService.mdmd.md) persists acknowledgement state and feeds suppression decisions.
-   - [`listOutstandingDiagnostics`](../layer-4/server-diagnostics/listOutstandingDiagnostics.mdmd.md) produces summaries for CLI/UIs.
-   - [`removeOrphans`](../../packages/server/src/features/maintenance/removeOrphans.ts) responds to rename/delete notifications, notifying clients and sending interim diagnostics.
-- **Client UX**: [`docDiagnosticProvider`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts) transforms diagnostic metadata into quick actions and ripple explorers.
+## Components
 
-## Data Flow
-1. **Save Event** *(VS Code)*
-   - Language client enqueues `QueuedChange` (URI, languageId, version) to `changeQueue` with debounce.
-2. **Artifact Preparation** *(ArtifactWatcher)*
-   - Determines category via language/extension heuristics (now includes `.yaml`, `.yml`).
-   - Loads text, aggregates workspace + knowledge feed hints, records inference seeds.
-3. **Inference & Graph Sync**
-   - Runs orchestrators (workspace providers, knowledge feeds, LLM fallback) and persists new edges via `persistInferenceResult`.
-   - Normalises URIs (`normalizeFileUri`) to keep graph canonical.
-4. **Ripple Analysis**
-   - `RippleAnalyzer` generates hints limited by runtime settings (depth, max results, allowed kinds).
-   - Splits document/code contexts; attaches cascade metadata (path, confidence, relationship).
-5. **Noise Filtering**
-   - `noiseFilter` trims low-confidence or redundant ripple impacts based on the active noise suppression preset before publication.
-   - Suppression metrics feed runtime logging so operators can tune thresholds.
-6. **Diagnostics Emission**
-    - [`publishDocDiagnostics`](../layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md) emits `doc-drift` records for:
-       - Broken markdown paths (new static scan).
-       - Ripple impacts referencing linked artifacts.
-    - [`publishCodeDiagnostics`](../layer-4/server-diagnostics/publishCodeDiagnostics.mdmd.md) emits `code-ripple` records for dependent code artifacts.
-    - Diagnostics guarded by hysteresis + budget from runtime settings via [`HysteresisController`](../layer-4/server-diagnostics/hysteresisController.mdmd.md) and [`NoiseFilter`](../layer-4/server-diagnostics/noiseFilter.mdmd.md).
-    - [`AcknowledgementService`](../layer-4/server-diagnostics/acknowledgementService.mdmd.md) records acknowledgements and suppresses repeats; [`listOutstandingDiagnostics`](../layer-4/server-diagnostics/listOutstandingDiagnostics.mdmd.md) exposes unresolved records to clients.
-7. **Client Presentation**
-   - `docDiagnosticProvider` registers quick actions (`Open linked artifact`, ripple explorer).
-   - `fileMaintenance.ts` signals rename/delete back to server, triggering `removeOrphans` diagnostics + rebind prompts.
+### COMP-001 Diagnostics Pipeline
+Supports REQ-001 and REQ-030 by synchronising on-disk artifact changes with the knowledge graph and emitting actionable ripple diagnostics across code and documentation.
 
-## Key Settings & Controls
-- `RuntimeSettings.noiseSuppression` configures max diagnostics per batch + hysteresis window.
-- `linkAwareDiagnostics.enableDiagnostics` toggles entire pipeline; extension ensures YAML is included in watchers.
-- `linkAwareDiagnostics.llmProviderMode` must be set (guarded by providerGate) before diagnostics ship.
+## Responsibilities
 
-## Test Coverage
-- **Unit**: [`publishDocDiagnostics.test.ts`](../../packages/server/src/features/diagnostics/publishDocDiagnostics.test.ts), [`acknowledgementService.test.ts`](../../packages/server/src/features/diagnostics/acknowledgementService.test.ts), [`listOutstandingDiagnostics.test.ts`](../../packages/server/src/features/diagnostics/listOutstandingDiagnostics.test.ts), [`artifactWatcher.test.ts`](../../packages/server/src/features/watchers/artifactWatcher.test.ts), [`docDiagnosticProvider.test.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.test.ts), [`rippleAnalyzer.test.ts`](../../packages/server/src/features/knowledge/rippleAnalyzer.test.ts).
-- **Integration**: US1–US5 suites validate writer, developer, rename, and template ripple flows using fixture workspace `tests/integration/fixtures/simple-workspace`.
-- **Verify task**: `npm run verify` orchestrates lint, unit, integration before commits.
+### Change Intake
+- Watch the workspace for save, rename, and delete events via `ArtifactWatcher` and extension-side file maintenance code.
+- Classify artifacts as document or code, load contents, and seed inference providers with workspace and knowledge feed hints.
 
-## Open Issues / Next Steps
-- Extend architecture doc with knowledge-feed ingestion paths once external feeds are added (T05x).
-- Document acknowledgement/lead workflows in a sibling layer-3 file once US3 (P3 story) is active.
-- Evaluate performance telemetry for ripple analyzer (timings, graph size) prior to scaling to larger workspaces.
+### Ripple Analysis
+- Persist change events through `changeProcessor` and orchestrate `RippleAnalyzer` to calculate dependency impacts with depth, relationship kind, confidence, and noise budgets.
+- Maintain deterministic URI normalisation (`normalizeFileUri`) so graph entries stay canonical across machines.
+
+### Diagnostic Publication
+- Publish `doc-drift` and `code-ripple` diagnostics via server diagnostics publishers while respecting hysteresis, batching, and acknowledgement suppression budgets.
+- Surface ripple metadata, quick actions, and acknowledgement state to the VS Code client through `docDiagnosticProvider` and related extension commands.
+
+## Interfaces
+
+### Inbound Interfaces
+- Language client change queue (`QueuedChange`) with debounce guarantees.
+- Knowledge feed ingestion contracts and LLM fallback orchestrators for inferred edges.
+
+### Outbound Interfaces
+- Diagnostic publication APIs (`publishDocDiagnostics`, `publishCodeDiagnostics`) with acknowledgement (`AcknowledgementService`) and outstanding-diagnostic summaries (`listOutstandingDiagnostics`).
+- Workspace maintenance hooks (`removeOrphans`) and Problems/hover UX registered in the extension.
+
+## Linked Implementations
+
+### IMP-101 docDiagnosticProvider
+Renders diagnostic metadata and quick actions in the extension. [Extension Diagnostic Provider](/.mdmd/layer-4/extension-diagnostics/docDiagnosticProvider.mdmd.md)
+
+### IMP-102 publishDocDiagnostics
+Emits document diagnostics with hysteresis and acknowledgement budgets. [Server Diagnostics Publisher](/.mdmd/layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md)
+
+### IMP-103 changeProcessor
+Persists change events and orchestrates ripple analysis. [Change Processor Runtime](/.mdmd/layer-4/language-server-runtime/changeProcessor.mdmd.md)
+
+### IMP-104 publishCodeDiagnostics
+Produces code-ripple diagnostics with batching and noise suppression. [Code Diagnostics Publisher](/.mdmd/layer-4/server-diagnostics/publishCodeDiagnostics.mdmd.md)
+
+### IMP-105 acknowledgementService
+Maintains acknowledgement state and suppression lookups. [Acknowledgement Service](/.mdmd/layer-4/server-diagnostics/acknowledgementService.mdmd.md)
+
+### IMP-106 listOutstandingDiagnostics
+Summarises unresolved diagnostics for CLI and UI surfaces. [Outstanding Diagnostics](/.mdmd/layer-4/server-diagnostics/listOutstandingDiagnostics.mdmd.md)
+
+### IMP-116 artifactWatcher
+Classifies workspace changes and enriches inference seeds ahead of ripple analysis. [Artifact Watcher](/.mdmd/layer-4/language-server-runtime/artifactWatcher.mdmd.md)
+
+### IMP-117 rippleAnalyzer
+Generates relationship hints that communicate downstream impact for diagnostics surfaces. [Ripple Analyzer](/.mdmd/layer-4/knowledge-graph-ingestion/rippleAnalyzer.mdmd.md)
+
+## Evidence
+- Unit coverage: `publishDocDiagnostics.test.ts`, `acknowledgementService.test.ts`, `listOutstandingDiagnostics.test.ts`, `artifactWatcher.test.ts`, `docDiagnosticProvider.test.ts`, `rippleAnalyzer.test.ts`.
+- Integration coverage: US1–US5 suites exercise writer, developer, rename, and template ripple flows.
+- Safe-to-commit pipeline: `npm run verify` and `npm run safe:commit` run the diagnostics stack before landing changes.
+
+## Operational Notes
+- `RuntimeSettings.noiseSuppression` controls hysteresis window, max diagnostics per batch, and suppression budgets.
+- Diagnostics remain workspace-local; `linkAwareDiagnostics.llmProviderMode` must be configured before publishing ripple insights.
+- Upcoming work (T05x) expands knowledge-feed ingestion; document acknowledgement UX will be captured in a sibling Layer 3 doc when active.

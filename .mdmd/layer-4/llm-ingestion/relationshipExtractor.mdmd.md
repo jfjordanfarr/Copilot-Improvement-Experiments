@@ -1,72 +1,73 @@
-# RelationshipExtractor (Layer 4)
+# RelationshipExtractor
 
-## Source Mapping
-- Implementation: [`packages/shared/src/inference/llm/relationshipExtractor.ts`](../../../packages/shared/src/inference/llm/relationshipExtractor.ts)
-- Collaborators: runtime-supplied `ModelInvoker`, [`calibrateConfidence`](../../../packages/shared/src/inference/llm/confidenceCalibrator.ts) (downstream), [`LlmIngestionOrchestrator`](../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts)
-- Parent design: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
+## Metadata
+- Layer: 4
+- Code Path: [`packages/shared/src/inference/llm/relationshipExtractor.ts`](../../../packages/shared/src/inference/llm/relationshipExtractor.ts)
+- Exports: ConfidenceTier, RelationshipExtractionPrompt, ModelInvocationRequest, ModelUsage, ModelInvocationResult, ModelInvoker, RelationshipExtractionRequest, RawRelationshipCandidate, RelationshipExtractionBatch, RelationshipExtractorOptions, RelationshipExtractorLogger, RelationshipExtractorError, RelationshipExtractor
+- Parent designs: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 - Spec references: [FR-019](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T071](../../../specs/001-link-aware-diagnostics/tasks.md)
+- Tests: [`packages/shared/src/inference/llm/relationshipExtractor.test.ts`](../../../packages/shared/src/inference/llm/relationshipExtractor.test.ts)
 
-## Exported Symbols
+## Purpose
+Wrap the workspace’s `ModelInvoker`, validate raw provider responses, and emit structured relationship batches enriched with provenance and usage metadata so downstream calibration, telemetry, and diagnostics can trust the payload.
 
-#### ConfidenceTier
-`ConfidenceTier` mirrors the high/medium/low tiers used throughout LLM ingestion, matching the calibrator output.
+## Public Symbols
 
-#### ModelInvocationRequest
-`ModelInvocationRequest` is the payload sent to the underlying model invoker (prompt, schema, metadata tags).
+### ConfidenceTier
+Union describing the calibrated confidence labels (`high`, `medium`, `low`) expected by telemetry and diagnostics pipelines.
 
-#### ModelInvocationResult
-`ModelInvocationResult` represents the raw model response, including usage telemetry and optional parsed relationships.
+### RelationshipExtractionPrompt
+Metadata captured alongside rendered prompt text (template id/version, hash, timestamp) so provenance survives ingestion and audit flows.
 
-#### ModelUsage
-`ModelUsage` holds token accounting information returned by the provider.
+### ModelInvocationRequest
+Shape forwarded to the injected model invoker—prompt text, optional JSON schema, and tag map that records template provenance.
 
-#### RawRelationshipCandidate
-`RawRelationshipCandidate` is a single relationship emitted by the model prior to calibration.
+### ModelUsage
+Token accounting payload returned by model providers; callers persist or aggregate usage across runs.
 
-#### RelationshipExtractionPrompt
-`RelationshipExtractionPrompt` captures the template metadata and rendered prompt shared with the model.
+### ModelInvocationResult
+Raw response from the provider (string or object) plus model identifier and optional usage metrics.
 
-#### RelationshipExtractionRequest
-`RelationshipExtractionRequest` combines the prompt, template metadata, and optional schema passed to extractRelationships.
+### ModelInvoker
+Async function signature supplied by runtime hosts; allows server, extension, and tests to substitute real providers or deterministic mocks.
 
-#### RelationshipExtractionBatch
-`RelationshipExtractionBatch` packages the candidate relationships, prompt info, and usage details returned by the extractor.
+### RelationshipExtractionRequest
+Input accepted by `extractRelationships`, bundling prompt metadata, optional schema, and additional tags to forward to the provider.
 
-#### RelationshipExtractorLogger
-`RelationshipExtractorLogger` defines the warn/error hooks used to surface provider issues.
+### RawRelationshipCandidate
+Intermediate relationship structure produced by the LLM prior to calibration. Holds identifiers, relationship kind, confidences, rationales, and supporting chunk references.
 
-#### RelationshipExtractorOptions
-`RelationshipExtractorOptions` wires the model invoker and logger into a constructed extractor.
+### RelationshipExtractionBatch
+Structured payload returned to callers: prompt metadata, model identifier, usage metrics, raw response text, and validated candidate list.
 
-#### RelationshipExtractor
-`RelationshipExtractor` wraps the model invoker, validates output, and emits structured relationship batches.
+### RelationshipExtractorOptions
+Constructor contract specifying the model invoker and optional logger hooks for warning/error surfacing.
 
-## Responsibility
-Wrap a provided `ModelInvoker`, enforce JSON response shape, and emit typed relationship batches enriched with provenance metadata (template id, version, prompt hash, model id, usage stats).
+### RelationshipExtractorLogger
+Minimal logging surface used to inform orchestrators about malformed responses without crashing the extraction pipeline.
 
-## Entry Points
-- The extractRelationships entry point invokes the model, validates output, and returns structured relationships plus usage metadata.
+### RelationshipExtractorError
+Error subclass raised when JSON parsing or structural validation fails. Carries diagnostic context (`response`, `reason`) for log attribution.
 
-## Workflow
-1. Augment the outgoing request with template + prompt hash tags so downstream telemetry can attribute results.
-2. Invoke the injected `ModelInvoker` (default stub lives in [`LlmIngestionManager`](../../../packages/server/src/runtime/llmIngestion.ts)) with prompt text and optional schema.
-3. Parse string responses as JSON, or accept object responses as-is, retaining the raw text for debugging.
-4. Validate `response.relationships` using an internal structural check, coercing optional fields (`confidence`, `supportingChunks`).
-5. Return a batch payload containing relationships, prompt metadata, and provider usage numbers for provenance storage.
+### RelationshipExtractor (class)
+Primary class orchestrating invocation, provenance tagging, validation, and batch assembly.
 
-## Confidence Handling
-- Leaves raw confidence values untouched; downstream calibration converts them into tiered diagnostics eligibility.
-- Clamps numeric confidences to the `0..1` range to avoid invalid inputs.
+## Responsibilities
+- Attach provenance tags (`link-aware.*`) before invoking the model so telemetry and audits can attribute responses.
+- Parse string responses as JSON while retaining original text for troubleshooting.
+- Validate `relationships` arrays, coercing optional numeric fields into the `[0, 1]` range and filtering malformed chunk references.
+- Emit consistent error types when parsing or validation fails, allowing orchestrators to downgrade to mock responses when necessary.
 
-## Error Modes
-- Invalid JSON raises `RelationshipExtractorError` with the offending payload for the orchestrator to log.
-- Missing or malformed `relationships` arrays trigger validation failures with detailed reasons.
-- All other errors propagate so callers can attribute them to provider unavailability or runtime faults.
+## Collaborators
+- [`packages/shared/src/inference/llm/confidenceCalibrator.ts`](../../../packages/shared/src/inference/llm/confidenceCalibrator.ts) consumes `RawRelationshipCandidate` payloads to scale confidences.
+- [`packages/server/src/features/knowledge/llmIngestionOrchestrator.ts`](../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts) owns the default `ModelInvoker` wiring and error handling.
+- [`packages/shared/src/tooling/ollamaClient.ts`](../../../packages/shared/src/tooling/ollamaClient.ts) and [`ollamaMock.ts`](../../../packages/shared/src/tooling/ollamaMock.ts) provide runtime/model implementations for local development.
 
-## Testing
-- Unit tests should stub `ModelInvoker` to cover valid output, malformed JSON, and structural validation failures (see [`relationshipExtractor.test.ts`](../../../packages/shared/src/inference/llm/relationshipExtractor.test.ts)).
-- Snapshot-style tests can assert that provenance tags (`link-aware.template`, `link-aware.prompt-hash`) are attached when requests are issued.
+## Evidence
+- Unit tests: [`packages/shared/src/inference/llm/relationshipExtractor.test.ts`](../../../packages/shared/src/inference/llm/relationshipExtractor.test.ts) cover happy path extraction, JSON parsing failures, and validation edge cases.
+- Integration: `npm run graph:audit` exercises extraction via mock providers to confirm provenance tags land in the persisted graph.
 
-## Follow-ups
-- Layer on schema-based validation once providers expose JSON mode guarantees.
-- Capture token cost telemetry per request to inform orchestrator budgeting and throttling decisions.
+## Failure Modes
+- Invalid JSON responses raise `RelationshipExtractorError` with raw payload for audit logs.
+- Structural validation failures identify the missing field or malformed relationship and surface via the logger before throwing.
+- Unhandled provider failures bubble from the injected `ModelInvoker`, allowing higher layers to decide on retries or fallbacks.

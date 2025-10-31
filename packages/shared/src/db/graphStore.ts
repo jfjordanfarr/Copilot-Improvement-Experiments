@@ -173,7 +173,26 @@ export class GraphStore {
     return rows.map(row => this.mapArtifactRow(row));
   }
 
-  listLinkedArtifacts(artifactId: string): LinkedArtifactSummary[] {
+  listLinkedArtifacts(
+    artifactId: string,
+    filter?: { kinds?: LinkRelationshipKind[] }
+  ): LinkedArtifactSummary[] {
+    const kinds = filter?.kinds ?? [];
+    const conditions = ["(l.source_id = @artifactId OR l.target_id = @artifactId)"];
+    const parameters: Record<string, unknown> = { artifactId };
+
+    if (kinds.length > 0) {
+      const placeholders: string[] = [];
+      kinds.forEach((kind, index) => {
+        const token = `kind_${index}`;
+        placeholders.push(`@${token}`);
+        parameters[token] = kind;
+      });
+      conditions.push(`l.kind IN (${placeholders.join(", ")})`);
+    }
+
+    const whereClause = conditions.join(" AND ");
+
     const rows = this.db
       .prepare(
         `
@@ -193,10 +212,10 @@ export class GraphStore {
           a.metadata AS artifact_metadata
         FROM links l
         JOIN artifacts a ON a.id = CASE WHEN l.source_id = @artifactId THEN l.target_id ELSE l.source_id END
-        WHERE l.source_id = @artifactId OR l.target_id = @artifactId
+        WHERE ${whereClause}
       `
       )
-      .all({ artifactId }) as LinkedArtifactRow[];
+      .all(parameters) as LinkedArtifactRow[];
 
     return rows.map(row => {
       const direction = row.source_id === artifactId ? "outgoing" : "incoming";

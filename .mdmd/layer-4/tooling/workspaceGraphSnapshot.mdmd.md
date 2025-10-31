@@ -1,32 +1,40 @@
-# Workspace Graph Snapshot (Layer 4)
+# Workspace Graph Snapshot
 
-**Created:** 2025-10-24  
-**Last Edited:** 2025-10-24
-
-## Source Mapping
-- Implementation: [`scripts/graph-tools/snapshot-workspace.ts`](../../../scripts/graph-tools/snapshot-workspace.ts)
-- Related tooling: [Graph Coverage Audit](./graphCoverageAudit.mdmd.md), [Symbol Neighbors CLI](./inspectSymbolNeighborsCli.mdmd.md)
-- Spec references: [T067](../../../specs/001-link-aware-diagnostics/tasks.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-304
+- Code Path: [`scripts/graph-tools/snapshot-workspace.ts`](../../../scripts/graph-tools/snapshot-workspace.ts)
+- Exports: main, parseArgs, writeDatabaseWithRecovery
 
 ## Purpose
-Produce a deterministic knowledge-graph snapshot of the current workspace so Copilot (and humans) can dogfood link inference without launching VS Code. The command recreates the SQLite cache and emits a JSON fixture that downstream tests or audits can diff, keeping the graph visible to automation.
+Produce a deterministic knowledge-graph snapshot of the current workspace so agents and humans can diff cross-file relationships without launching VS Code. The CLI rebuilds the SQLite cache and companion JSON fixture that other tooling, tests, and audits rely on for reproducible graph state.
 
-## Responsibilities
-1. Traverse repository code/document globs (`packages/`, `tests/`, `scripts/`, `.mdmd/`, `specs/`) using the same workspace indexer as the language server to seed artifacts and documentation hints.
-2. Run the `LinkInferenceOrchestrator` with a fixed timestamp to generate deterministic artifact IDs, link relationships, and provenance traces.
-3. Normalise and sort the resulting artifacts/links, then persist them both to `.link-aware-diagnostics/link-aware-diagnostics.db` and to `data/graph-snapshots/workspace.snapshot.json`.
-4. Exit non-zero on failures (bad workspace path, unreadable files) so CI `safe:commit` hooks can detect when the snapshot drifts or cannot be generated.
-5. Allow optional overrides (`--workspace`, `--db`, `--output`, `--timestamp`, `--skip-db`, `--quiet`) so other repositories can reuse the tooling without modification.
-6. Detect `better-sqlite3` ABI mismatches, run the local rebuild script automatically, and retry the snapshot so Node upgrades do not strand the CLI.
+## Public Symbols
+
+### main
+Parses CLI flags, verifies the workspace root, orchestrates link inference, and writes both the SQLite cache and JSON snapshot so automation has a fresh graph baseline.
+
+### parseArgs
+Supports the CLI surface (`--workspace`, `--db`, `--output`, `--timestamp`, `--skip-db`, `--quiet`, `--help`) while validating required values to keep builds and pipelines deterministic.
+
+### writeDatabaseWithRecovery
+Persists the snapshot into a SQLite database, rebuilding `better-sqlite3` automatically when Node ABI mismatches surface so developers stay unblocked after upgrades.
 
 ## Collaborators
-- Reuses [`createWorkspaceIndexProvider`](../../../packages/server/src/features/knowledge/workspaceIndexProvider.ts) to align seed/hint generation with the server runtime.
-- Delegates inference to [`LinkInferenceOrchestrator`](../../../packages/shared/src/inference/linkInference.ts), ensuring parity with the headless CLI and LSP traversal.
-- Persists results through [`KnowledgeGraphBridge`](../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts) and [`GraphStore`](../../../packages/shared/src/db/graphStore.ts) to keep schema handling centralized.
+- [`createWorkspaceIndexProvider`](../../../packages/server/src/features/knowledge/workspaceIndexProvider.ts) supplies the same artifact discovery used by the language server.
+- [`LinkInferenceOrchestrator`](../../../packages/shared/src/inference/linkInference.ts) generates artifacts and relationships with deterministic timestamps.
+- [`KnowledgeGraphBridge`](../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts) and [`GraphStore`](../../../packages/shared/src/db/graphStore.ts) ingest and persist the resulting snapshot.
+- [`scripts/rebuild-better-sqlite3.mjs`](../../../scripts/rebuild-better-sqlite3.mjs) is invoked when native bindings need to be rebuilt.
 
-## Testing
-- **Manual/Ad-hoc:** Run `npm run graph:snapshot` after significant changes; follow with `npm run graph:audit` to validate coverage using the freshly generated cache. Expect the snapshot command to rebuild `better-sqlite3` automatically if an ABI mismatch is detected.
-- **Planned automation:** Wire the snapshot command into `npm run safe:commit` so pre-flight checks always operate on the latest deterministic graph fixture.
+## Linked Components
+- [COMP-002 – Extension Surfaces](../../layer-3/extension-surfaces.mdmd.md#imp304-graphsnapshot-cli)
 
-## Rationale
-By owning the graph snapshot generation in-repo, Copilot agents retain continuous visibility over cross-file relationships—even when autosummarisation trims historical context. The deterministic fixture makes graph regressions reviewable in PRs, unlocks fixture-based tests, and provides a trusted baseline for comparing live CLI output against the recorded workspace topology.
+## Evidence
+- `npm run graph:snapshot` rebuilds the snapshot and SQLite cache; follow with `npm run graph:audit` to confirm coverage.
+- `npm run safe:commit` executes the snapshot before audits, ensuring graph fixtures match the current workspace prior to CI hand-off.
+- `tests/integration/benchmarks/rebuildStability.test.ts` verifies repeated snapshots stay identical across runs.
+
+## Operational Notes
+- Default timestamp `2025-01-01T00:00:00.000Z` keeps IDs stable for fixture diffing; override with `--timestamp` for historical captures.
+- `--skip-db` supports read-only scenarios where only the JSON fixture is necessary.
+- CLI emits exit code 1 on invalid flags, propagates inference failures, and logs artifact/link counts when not in `--quiet` mode.

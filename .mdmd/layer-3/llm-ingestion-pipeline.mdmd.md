@@ -1,81 +1,67 @@
-# LLM Ingestion Pipeline (Layer 3)
+# LLM Ingestion Pipeline
 
-## Purpose & Scope
+## Metadata
+- Layer: 3
+- Component IDs: COMP-006
 
-Describe the ingestion architecture that turns workspace artifacts into graph edges through the LLM-backed orchestrator. The current milestone focuses on queueing artifacts, invoking the orchestration loop, and persisting calibrated relationships while a stubbed extractor keeps behaviour deterministic until live providers are enabled.
+## Components
 
-## Goals
+### COMP-006 LLM Ingestion Pipeline
+Supports REQ-020 and CAP-003 by transforming workspace artifacts into graph edges via an LLM-backed orchestrator while preserving deterministic fallbacks for local-only environments.
 
-- Keep ingestion opt-in friendly: honour workspace consent settings and fall back to a no-op extractor when external providers are unavailable.
-- Ensure every artifact passes through a deterministic chunking + calibration flow before results can influence diagnostics.
-- Persist LLM-sourced edges through `GraphStore` while attaching provenance data (template id, prompt hash, rationale) for audits.
-- Record orchestration outcomes so operators can trace stored, skipped, and failed artifacts.
-- Preserve upgrade paths for richer prompt grounding and cloud providers without breaking the local-only flow.
+## Responsibilities
 
-## Pipeline Overview
+### Consent-Aware Queueing
+- Honour provider guard settings when enqueuing artifacts through `LlmIngestionManager` and collapse duplicates before orchestration runs.
+- Skip ingestion cleanly when diagnostics or LLM providers are disabled, logging once for operator awareness.
 
-1. **Artifact Discovery**
-   - [`ArtifactWatcher`](../../packages/server/src/features/watchers/artifactWatcher.ts) and [`ChangeProcessor`](../../packages/server/src/runtime/changeProcessor.ts) enqueue impacted artifact ids via [`LlmIngestionManager.enqueue`](../../packages/server/src/runtime/llmIngestion.ts).
-   - The manager collapses duplicate requests and schedules the orchestrator run loop on demand.
-2. **Chunk & Context Build**
-   - The orchestrator loads artifact content from disk, builds deterministic chunks in-process, and gathers neighbouring graph entries for grounding.
-   - Allowed relationship kinds remain scoped (`depends_on`, `implements`, `documents`, `references`) to avoid runaway outputs.
-3. **Relationship Extraction**
-   - The orchestrator uses [`RelationshipExtractor`](../../packages/shared/src/inference/llm/relationshipExtractor.ts) with a runtime-supplied `ModelInvoker`; the default invoker delegates to the extension via `INVOKE_LLM_REQUEST` so local model settings (`llmProviderMode`) drive execution, while still logging once when providers are disabled.
-   - When the client reports `llmProviderMode === "local-only"` but no `vscode.lm` providers are registered, the extension routes the request through [`invokeLocalOllamaBridge`](../../packages/extension/src/services/localOllamaBridge.ts), which hits the workspace Ollama endpoint (or emits a deterministic mock response) so ingestion tests stay stable.
-   - Prompt metadata tags every request with template and artifact identifiers for downstream auditing.
-4. **Confidence Calibration**
-   - Raw model confidences feed [`calibrateConfidence`](../../packages/shared/src/inference/llm/confidenceCalibrator.ts), producing diagnostics-eligible flags and promotion metadata.
-   - Calibration currently treats existing edges as corroboration, ensuring new edges start conservative.
-5. **Persistence & Reporting**
-   - Graph updates flow through [`GraphStore.upsertLink`](../../packages/shared/src/db/graphStore.ts) and `storeLlmEdgeProvenance` inside the orchestrator, preserving prompt hashes and rationales.
-   - The manager summarises stored, skipped, and failed artifacts to the LSP connection console for operator visibility (see [`logResults`](../../packages/server/src/runtime/llmIngestion.ts)).
+### Prompt Grounding and Extraction
+- Build deterministic artifact chunks and gather neighbouring graph context ahead of model invocation.
+- Invoke `RelationshipExtractor` with the configured `ModelInvoker`, falling back to the extension-side Ollama bridge when no local providers exist.
 
-## Component Responsibilities
+### Confidence Calibration and Persistence
+- Calibrate raw confidences using `calibrateConfidence` so diagnostics only consume corroborated links.
+- Persist accepted edges and provenance (`templateId`, `promptHash`, rationale) via `KnowledgeGraphBridge` and `GraphStore.upsertLink`.
 
-| Component | Location | Responsibility |
-|-----------|----------|----------------|
-| `LlmIngestionManager` | [`packages/server/src/runtime/llmIngestion.ts`](../../packages/server/src/runtime/llmIngestion.ts) | Queues artifacts, triggers orchestrator runs, and logs aggregated ingestion outcomes. |
-| `LlmIngestionOrchestrator` | [`packages/server/src/features/knowledge/llmIngestionOrchestrator.ts`](../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts) | Builds prompts, invokes the extractor, calibrates relationships, and persists results (or snapshots during dry runs). |
-| `RelationshipExtractor` | [`packages/shared/src/inference/llm/relationshipExtractor.ts`](../../packages/shared/src/inference/llm/relationshipExtractor.ts) | Calls the supplied `ModelInvoker`, validates JSON payloads, and returns relationship batches with provenance. |
-| `GraphStore` | [`packages/shared/src/db/graphStore.ts`](../../packages/shared/src/db/graphStore.ts) | Supplies artifacts, neighbours, and writes inferred links plus provenance records. |
-| `ProviderGuard` | [`packages/server/src/features/settings/providerGuard.ts`](../../packages/server/src/features/settings/providerGuard.ts) | Exposes consent settings and determines whether ingestion is permitted (`disabled`, `local-only`, `prompt`). |
-| `calibrateConfidence` | [`packages/shared/src/inference/llm/confidenceCalibrator.ts`](../../packages/shared/src/inference/llm/confidenceCalibrator.ts) | Normalises raw confidences and marks diagnostics eligibility. |
+### Reporting and Auditability
+- Emit orchestration summaries (stored, skipped, failed counts) to the connection console.
+- Capture dry-run snapshots under `llm-ingestion-snapshots/` for reproducibility and later audit tooling.
 
-## Interaction Diagram
+## Interfaces
 
-```
-ArtifactWatcher ──► LLMIngestionOrchestrator ──► ChunkSummariser
-                                         │             │
-                                         │             ├─► RelationshipExtractor ──► ConfidenceCalibrator
-                                         │                                        ▼
-                                         │                               KnowledgeGraphBridge
-                                         ▼
-                               LLMIngestionDiagnostics
-```
+### Inbound Interfaces
+- Change ingestion queue (`LlmIngestionManager.enqueue`) fed by `ArtifactWatcher` and `ChangeProcessor`.
+- Extension `INVOKE_LLM_REQUEST` plumbing that delivers model responses or deterministic mocks.
 
-## Confidence Taxonomy
+### Outbound Interfaces
+- Graph persistence pathways (`GraphStore.upsertLink`, `storeLlmEdgeProvenance`).
+- Diagnostics and audit logging channels reporting ingestion outcomes and degraded provider states.
 
-- `High`: Model cites direct code symbols, explicit import paths, or cross-references that match canonical identifiers. These edges become eligible for diagnostics immediately.
-- `Medium`: Model infers relationships from implied language (e.g., “updates the controller endpoint”) with partial identifier matches; diagnostics consume them only when corroborated by a second signal (manual override, existing edge, or code change).
-- `Low`: Model speculates with weak evidence; edges remain in the graph but are excluded from diagnostics and surfaced in audit tooling for human triage.
+## Linked Implementations
 
-## Safeguards
+### IMP-205 knowledgeGraphIngestor
+Persists validated relationships and provenance into the graph store. [Knowledge Graph Ingestor](/.mdmd/layer-4/knowledge-graph-ingestion/knowledgeGraphIngestor.mdmd.md)
 
-- Prompt templates live in [`packages/server/src/prompts/llm-ingestion/relationshipTemplate.ts`](../../packages/server/src/prompts/llm-ingestion/relationshipTemplate.ts) and versioned hashes are stored with every provenance record.
-- [`ProviderGuard`](../../packages/server/src/features/settings/providerGuard.ts) settings gate execution; when `llmProviderMode` is `disabled` the orchestrator skips work without mutating state and logs the skip once.
-- Delegation to the extension host honours consent as well—`INVOKE_LLM_REQUEST` shares prompt/schema/tags with `LlmInvoker`, which can enforce local-only model selection or interactive prompts before any remote call is made.
-- Dry-run snapshots write JSON fixtures under `llm-ingestion-snapshots/`, preserving prompt + calibration metadata for reproducibility (see [`writeDryRunSnapshot`](../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts)).
-- The extension-side fallback emits deterministic mock relationships via [`invokeLocalOllamaBridge`](../../packages/extension/src/services/localOllamaBridge.ts) when no local provider is registered, keeping local-only environments deterministic without blocking ingestion runs.
+### IMP-501 llmIngestionManager
+Queues artifacts and triggers orchestrator runs. [LLM Ingestion Manager](/.mdmd/layer-4/llm-ingestion/llmIngestionManager.mdmd.md)
 
-## Open Questions
+### IMP-502 llmIngestionOrchestrator
+Builds prompts, invokes extractors, calibrates, and persists edges. [LLM Ingestion Orchestrator](/.mdmd/layer-4/llm-ingestion/llmIngestionOrchestrator.mdmd.md)
 
-- Which provider will replace the stubbed `ModelInvoker`, and what authentication flow keeps the manager stateless?
-- Do we need richer chunk metadata (language, symbols) before enabling relationship creation in diagnostics by default?
-- How should we surface ingestion health to users beyond connection console logs (e.g., tree item, notification, telemetry)?
+### IMP-503 relationshipExtractor
+Normalises model responses and enforces schema correctness. [Relationship Extractor](/.mdmd/layer-4/llm-ingestion/relationshipExtractor.mdmd.md)
 
-## Related Spec Touchpoints
+### IMP-504 confidenceCalibrator
+Transforms raw confidences into diagnostics eligibility signals. [Confidence Calibrator](/.mdmd/layer-4/llm-ingestion/confidenceCalibrator.mdmd.md)
 
-- Introduces new functional requirement `FR-019` (see [`spec.md`](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)).
-- Informs upcoming plan tasks `T068–T072` for implementation and validation sequencing (see [`tasks.md`](../../specs/001-link-aware-diagnostics/tasks.md)).
-- Extends research threads under “LLM Augmentation” with concrete pipeline steps (see [`research.md`](../../specs/001-link-aware-diagnostics/research.md#llm-augmentation--ingestion)).
+### IMP-505 localOllamaBridge
+Provides deterministic local model responses when no provider is registered. [Local Ollama Bridge](/.mdmd/layer-4/tooling/ollamaBridge.mdmd.md)
+
+## Evidence
+- Dry-run snapshot fixtures under `tests/integration/us5/llm-ingestion-snapshots` validate orchestration determinism.
+- Unit suites for `relationshipExtractor`, `confidenceCalibrator`, and `llmIngestionManager` (planned) will capture prompt schema adherence and queue behaviour.
+- Integration suite US5 exercises the pipeline with mocked providers, ensuring diagnostics remain stable.
+
+## Operational Notes
+- Upgrade path keeps local-only behaviour first-class; cloud providers will plug in via `ModelInvoker` without altering this architecture.
+- Upcoming work includes richer chunk metadata, telemetry surfaces for operator dashboards, and authentication flows for remote providers.

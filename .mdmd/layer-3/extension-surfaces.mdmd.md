@@ -1,40 +1,73 @@
-# Extension Surfaces Architecture (Layer 3)
+# Extension Surfaces Architecture
 
-## Purpose
-Outline the extension-side UX surfaces that expose link-aware diagnostics: activation bootstrap, diagnostics providers, dependency inspectors, and file maintenance watchers. This layer coordinates with the language server pipeline to keep VS Code users informed about ripple impacts and documentation drift.
+## Metadata
+- Layer: 3
+- Component IDs: COMP-002
 
-## Key Components
-- **VS Code Extension Bootstrap** ([`packages/extension/src/extension.ts`](../../packages/extension/src/extension.ts)) – wires activation, commands, diagnostics providers, and settings sync. Ensures YAML + markdown documents participate in ripple analysis, that provider consent gates diagnostics, and that both ingestion and UI flows share the same LLM invoker.
-- **DocDiagnosticProvider** ([`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts)) – registers quick fixes and ripple detail explorers for `doc-drift` and `code-ripple` diagnostics emitted by the server.
-- **Dependency Quick Pick** ([`packages/extension/src/diagnostics/dependencyQuickPick.ts`](../../packages/extension/src/diagnostics/dependencyQuickPick.ts)) – bridges the `INSPECT_DEPENDENCIES_REQUEST` LSP call into a Quick Pick navigation surface so engineers can explore dependents on demand.
-- **Analyze With AI Command** ([`packages/extension/src/commands/analyzeWithAI.ts`](../../packages/extension/src/commands/analyzeWithAI.ts)) – lets leads request an LLM assessment for outstanding diagnostics, persists the result, and refreshes the diagnostics tree UI.
-- **File Maintenance Watcher** ([`packages/extension/src/watchers/fileMaintenance.ts`](../../packages/extension/src/watchers/fileMaintenance.ts)) – observes renames/deletes and notifies the server to trigger orphan cleanup and rebind prompts.
-- **Symbol Bridge Service** ([`packages/extension/src/services/symbolBridge.ts`](../../packages/extension/src/services/symbolBridge.ts)) – harvests workspace symbols and references to seed graph inference before the server processes changes.
-- **Symbol Neighbors CLI** ([`scripts/graph-tools/inspect-symbol.ts`](../../scripts/graph-tools/inspect-symbol.ts)) – headless dogfooding entry that invokes the same traversal as the quick pick, enabling CI jobs and shell sessions to query graph neighborhoods without launching VS Code.
-- **Graph Coverage Audit** ([`scripts/graph-tools/audit-doc-coverage.ts`](../../scripts/graph-tools/audit-doc-coverage.ts)) – automation-facing audit that flags code artifacts missing `documents` links and MDMD implementations without code neighbors, giving maintainers a snapshot of documentation drift.
-- **Workspace Graph Snapshot** ([`scripts/graph-tools/snapshot-workspace.ts`](../../scripts/graph-tools/snapshot-workspace.ts)) – deterministic graph rebuild used to refresh the SQLite cache and JSON fixtures so headless audits and CLIs always operate on fresh data.
+## Components
 
-## Interaction Model
-1. **Activation** – Bootstrap resolves runtime settings via `ConfigService`, executes provider guard onboarding, and starts the language client.
-2. **Diagnostics Flow** – Server pushes `doc-drift`/`code-ripple` diagnostics; provider converts them into quick fixes and ripple detail commands. Users can trigger `Analyze With AI` on any outstanding diagnostic to capture model-authored summaries directly within the tree view.
-3. **Ad-hoc Inspection** – Users invoke `linkDiagnostics.inspectDependencies`, triggering Quick Pick population with graph edges from the server. CLI users can call `npm run graph:inspect` to reach the same traversal for automation or scripted audits.
-4. **File Maintenance** – Watcher debounces file renames/deletes and forwards them to the server, which responds with orphan diagnostics and rebind prompts.
-5. **Symbol Sync** – Server requests symbol collection; bridge responds with relationship hints to enrich the knowledge graph.
+### COMP-002 Extension Surfaces
+Supports REQ-001, REQ-020, and REQ-030 by delivering the VS Code UX surfaces that expose diagnostics, ripple intelligence, and adoption tooling while mirroring the server-side capabilities.
 
-## Data Contracts
-- **Diagnostics payload**: `data` object contains `triggerUri`, `targetUri|dependentUri`, `relationshipKind`, `confidence`, `depth`, `path`, `changeEventId`.
-- **Dependency inspection**: `InspectDependenciesResult` with `trigger`, `edges`, `summary` validated client-side via zod schema.
-- **Maintenance notifications**: `MAINTENANCE_ORPHANS` request carries normalized URIs; server replies with rebind diagnostics.
+## Responsibilities
 
-## Settings & Controls
-- The extension respects `linkAwareDiagnostics.*` configuration (provider mode, debounce, noise suppression) and forwards updates to the server.
-- Dependency Quick Pick relies on runtime ripple settings (max depth/kinds) derived server-side and reflected in inspection responses.
+### Activation and Settings Sync
+- Bootstrap the extension (`extension.ts`) and ensure diagnostics opt-in flow, runtime configuration propagation, and YAML/markdown participation in ripple analysis.
+- Forward `linkAwareDiagnostics.*` configuration updates to the language server and record activation telemetry for troubleshooting.
 
-## Observability Hooks
-- Activation logs key milestones (`language client started`, `diagnostics gated`).
-- Diagnostic provider shows user-facing toasts for missing metadata or navigation failures, while the Analyze command surfaces success/error notifications for assessment storage.
-- Quick pick controller surfaces schema/transport errors via `showErrorMessage`.
+### Diagnostics Experience
+- Register `docDiagnosticProvider` to render quick fixes, ripple explorers, and acknowledgement affordances for `doc-drift` and `code-ripple` diagnostics.
+- Provide Analyze with AI command surfaces so leads can capture LLM-authored assessments directly inside the diagnostics tree.
 
-## Open Questions
-- When acknowledgement UX matures, decide whether Quick Pick should annotate entries with acknowledgement state.
-- Explore caching recent inspection results for offline review or diffing after edits.
+### Dependency Exploration and Maintenance
+- Offer `linkDiagnostics.inspectDependencies` Quick Pick views backed by the `INSPECT_DEPENDENCIES_REQUEST` LSP contract.
+- Maintain file rename/delete awareness via `fileMaintenance.ts`, raising orphan diagnostics and rebind prompts in partnership with the server.
+
+### Headless Tooling Support
+- Ship CLI parity (`graph:inspect`, `graph:audit`, `graph:snapshot`) so automation and shell workflows reuse the same traversal contracts as the extension UI.
+- Expose symbol bridge services that harvest workspace symbols for inference seeding.
+
+## Interfaces
+
+### Inbound Interfaces
+- VS Code activation pipeline (commands, configuration events, workspace watches).
+- LSP notifications and requests: diagnostics, dependency inspection, maintenance prompts, symbol bridge pulls.
+
+### Outbound Interfaces
+- Quick Pick controller supplying `InspectDependenciesResult` objects and summarised narratives.
+- CLI scripts (`scripts/graph-tools/*.ts`) invoking shared traversal and audit APIs for headless environments.
+
+## Linked Implementations
+
+### IMP-101 docDiagnosticProvider
+Transforms diagnostics into Problems entries, hovers, and quick actions. [Extension Diagnostic Provider](/.mdmd/layer-4/extension-diagnostics/docDiagnosticProvider.mdmd.md)
+
+### IMP-107 dependencyQuickPick
+Bridges the inspection request into a Quick Pick UX. [Dependency Quick Pick](/.mdmd/layer-4/extension-diagnostics/dependencyQuickPick.mdmd.md)
+
+### IMP-108 analyzeWithAI Command
+Collects LLM assessments for outstanding diagnostics. [Analyze With AI Command](/.mdmd/layer-4/extension-commands/analyzeWithAI.mdmd.md)
+
+### IMP-109 fileMaintenance Watcher
+Debounces rename/delete events and alerts the server. [File Maintenance Watcher](/.mdmd/layer-4/watchers/fileMaintenanceWatcher.mdmd.md)
+
+### IMP-110 symbolBridge Service
+Supplies workspace symbols and references to inference pipelines. [Symbol Bridge Service](/.mdmd/layer-4/extension-services/symbolBridge.mdmd.md)
+
+### IMP-302 graphCoverageAudit CLI
+Headless audit ensuring code/docs linkage. [Graph Coverage Audit](/.mdmd/layer-4/tooling/graphCoverageAudit.mdmd.md)
+
+### IMP-303 inspectSymbolNeighbors CLI
+CLI equivalent of dependency explorer. [Inspect Symbol Neighbors CLI](/.mdmd/layer-4/tooling/inspectSymbolNeighborsCli.mdmd.md)
+
+### IMP-304 graphSnapshot CLI
+Deterministic rebuild of the workspace graph cache. [Workspace Graph Snapshot](/.mdmd/layer-4/tooling/workspaceGraphSnapshot.mdmd.md)
+
+## Evidence
+- Extension unit tests: `docDiagnosticProvider.test.ts`, `dependencyQuickPick.test.ts`, `analyzeWithAI.test.ts`, `fileMaintenance.test.ts` (pending rename once watcher tests land).
+- CLI integration suites under `tests/integration/graph-tools` validate audit and inspection parity.
+- `npm run graph:audit`, `npm run graph:snapshot`, and `npm run safe:commit` capture live adoption telemetry for these surfaces.
+
+## Operational Notes
+- Quick Pick controller surfaces schema failures via `showErrorMessage`; analyze command posts toasts when assessments store or fail.
+- Future acknowledgement UX may feed dependency explorer annotations; caching strategies remain open design questions.

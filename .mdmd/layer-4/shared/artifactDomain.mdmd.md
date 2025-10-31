@@ -1,58 +1,75 @@
-# Artifact Domain Types (Layer 4)
+# Artifact Domain Types
 
-## Source Mapping
-- Implementation: [`packages/shared/src/domain/artifacts.ts`](../../../packages/shared/src/domain/artifacts.ts)
+## Metadata
+- Layer: 4
+- Code Path: [`packages/shared/src/domain/artifacts.ts`](../../../packages/shared/src/domain/artifacts.ts)
+- Exports: ArtifactLayer, KnowledgeArtifact, LinkRelationship, LinkRelationshipKind, ChangeEvent, ChangeEventType, ChangeEventProvenance, ChangeEventRange, DiagnosticRecord, DiagnosticSeverity, DiagnosticStatus, LlmConfidenceTier, LlmEdgeProvenance, LlmModelMetadata, LlmAssessment, KnowledgeSnapshot, AcknowledgementActionType, AcknowledgementAction, DriftHistoryStatus, DriftHistoryEntry
 - Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 
-## Exported Symbols
-
-#### ArtifactLayer
-`ArtifactLayer` enumerates the five supported documentation/code layers used across the graph.
-
-#### LinkRelationshipKind
-`LinkRelationshipKind` lists the graph relationship kinds (documents, implements, depends_on, references).
-
-#### LlmConfidenceTier
-`LlmConfidenceTier` defines bucketed confidence tiers used when calibrating LLM-derived links.
-
-#### LlmEdgeProvenance
-`LlmEdgeProvenance` records metadata about an LLM-generated link, including template details, confidences, supporting chunks, and promotion flags.
-
-#### ChangeEventType
-`ChangeEventType` captures how an artifact changed (content, metadata, rename, delete).
-
-#### ChangeEventProvenance
-`ChangeEventProvenance` indicates where a change originated (save, git, external).
-
-#### ChangeEventRange
-`ChangeEventRange` stores the line-span ranges associated with a change event.
-
-#### DiagnosticStatus
-`DiagnosticStatus` enumerates diagnostic lifecycle states (active, acknowledged, suppressed).
-
-#### LlmModelMetadata
-`LlmModelMetadata` holds descriptive fields about the model producing an assessment.
-
-#### LlmAssessment
-`LlmAssessment` captures AI assessment summaries, confidence, recommended actions, and associated model metadata.
-
-#### KnowledgeSnapshot
-`KnowledgeSnapshot` summarises persisted graph snapshots with artifact/link counts and metadata hashes.
-
-#### AcknowledgementActionType
-`AcknowledgementActionType` enumerates possible acknowledgement actions (acknowledge, dismiss, reopen).
-
-#### AcknowledgementAction
-`AcknowledgementAction` records who performed an acknowledgement action, when, and with optional notes.
-
-#### DriftHistoryStatus
-`DriftHistoryStatus` enumerates drift lifecycle states (emitted, acknowledged).
-
-#### DriftHistoryEntry
-`DriftHistoryEntry` stores individual drift history records with severity, actor notes, and metadata.
-
-## Responsibility
+## Purpose
 Define the shared domain model for knowledge artifacts, relationships, change events, diagnostics, and LLM provenance so both the server and extension operate against the same TypeScript types.
+
+## Public Symbols
+
+### ArtifactLayer
+Enumerates the supported documentation/code layers and enables runtime checks for layer-aware features.
+
+### KnowledgeArtifact
+Canonical representation of a graph artifact (id, uri, layer, metadata) persisted by `GraphStore` and consumed across inference, diagnostics, and auditing flows.
+
+### LinkRelationship
+Describes stored graph edges, capturing relationship kind, direction, confidence, and related artifact identifiers.
+
+### LinkRelationshipKind
+Lists the graph relationship kinds (`documents`, `implements`, `depends_on`, `references`) referenced throughout rule engines and diagnostics.
+
+### ChangeEvent
+Persists change metadata (artifact id, summary, timestamps, provenance) for ripple analysis and acknowledgement workflows.
+
+### ChangeEventType
+Enumerates the types of changes (`content`, `metadata`, `rename`, `delete`) recorded in change events.
+
+### ChangeEventProvenance
+Indicates how a change originated (manual save, git sync, external import) to support audit trails.
+
+### ChangeEventRange
+Stores optional line-span ranges associated with a change event for richer diagnostics.
+
+### DiagnosticRecord
+Primary persistence payload for diagnostics, including status, severity, related artifact ids, and optional LLM assessments.
+
+### DiagnosticSeverity
+Enum-like type that mirrors VS Code diagnostic severities while remaining extension-agnostic.
+
+### DiagnosticStatus
+Lifecycle state of a diagnostic (`active`, `acknowledged`, `suppressed`), used by acknowledgement services.
+
+### LlmConfidenceTier
+Bucketed confidence tiers powering telemetry aggregation and downstream heuristics.
+
+### LlmEdgeProvenance
+Metadata block describing how an LLM produced a relationship, including model info, supporting text, and rationale.
+
+### LlmModelMetadata
+Captures identifying information about the model (provider, family, version) responsible for an assessment or link.
+
+### LlmAssessment
+Stores structured AI assessments attached to diagnostics, including conclusions, suggested actions, and provenance.
+
+### KnowledgeSnapshot
+Summarises persisted graph snapshot metrics, enabling diffing and telemetry across runs.
+
+### AcknowledgementActionType
+Enumerates acknowledgement operations (`acknowledge`, `dismiss`, `reopen`) recorded in drift history.
+
+### AcknowledgementAction
+Stores acknowledgement actor, timestamp, action type, and optional notes for auditing and UI replay.
+
+### DriftHistoryStatus
+Lifecycle status applied to drift history entries (`emitted`, `acknowledged`).
+
+### DriftHistoryEntry
+Represents individual drift history records, including status, actor context, severity, and snapshot of related diagnostics.
 
 ## Evidence
 - Referenced extensively across server features (`changeProcessor`, `driftHistoryStore`, `acknowledgementService`) and documented in their respective Layer-4 MDMD files.

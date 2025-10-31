@@ -1,31 +1,32 @@
-# GraphStore (Layer 4)
+# GraphStore
 
-**Created:** 2025-10-16 *(from git history)*  
-**Last Edited:** 2025-10-26
-
-## Source Mapping
-- Implementation: [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts)
+## Metadata
+- Layer: 4
+- Code Path: [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts)
+- Exports: GraphStore, GraphStoreOptions, LinkedArtifactSummary, DriftHistorySummary, ListDriftHistoryOptions
 - Tests: [`packages/shared/src/db/graphStore.test.ts`](../../../packages/shared/src/db/graphStore.test.ts)
-- Consumer highlights: language server `main.ts`, diagnostics subsystems, dependency traversal (`symbolNeighbors.ts`), ripple analyzer, maintenance routines
 - Parent designs: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md), [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
 - Spec references: [FR-001](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-017](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T001–T005](../../../specs/001-link-aware-diagnostics/tasks.md)
 
-## Exported Symbols
-
-#### GraphStoreOptions
-`GraphStoreOptions` carries the absolute SQLite database path supplied when constructing a `GraphStore` instance.
-
-#### LinkedArtifactSummary
-`LinkedArtifactSummary` summarises neighbours returned by the listLinkedArtifacts helper, including direction and link confidence.
-
-#### DriftHistorySummary
-`DriftHistorySummary` aggregates acknowledgement counts and timestamps for a change event, powering drift dashboards.
-
-#### ListDriftHistoryOptions
-`ListDriftHistoryOptions` filters drift history queries by change event, target artifact, diagnostic id, status, or result limits.
-
 ## Purpose
-`GraphStore` is the single SQLite-backed persistence layer for the knowledge graph. Every feature that inspects relationships between artifacts depends on this abstraction for durable reads/writes, so the file exists to encapsulate schema bootstrapping, migrations, and high-level query helpers in one place.
+`GraphStore` is the single SQLite-backed persistence layer for the knowledge graph. Every feature that inspects relationships between artifacts depends on this abstraction for durable reads/writes, so the file encapsulates schema bootstrapping, migrations, and high-level query helpers.
+
+## Public Symbols
+
+### GraphStore (class)
+Primary class handling schema bootstrapping, migrations, CRUD helpers, and traversal utilities for artifacts, links, diagnostics, change events, and drift history.
+
+### GraphStoreOptions
+Constructor contract carrying the absolute SQLite database path used when instantiating a `GraphStore`.
+
+### LinkedArtifactSummary
+Lightweight neighbor payload returned by `listLinkedArtifacts`, including direction, link kind, and confidence for traversal consumers.
+
+### DriftHistorySummary
+Aggregated acknowledgement metrics and timestamps powering drift dashboards and acknowledgement analytics.
+
+### ListDriftHistoryOptions
+Query filter allowing drift history listings to target specific change events, diagnostics, actors, or result limits.
 
 ## Responsibilities
 - Initialise and maintain the SQLite schema (`artifacts`, `links`, `diagnostics`, drift history, etc.) without external tooling.

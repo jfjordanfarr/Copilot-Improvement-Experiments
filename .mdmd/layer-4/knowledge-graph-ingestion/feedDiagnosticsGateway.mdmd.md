@@ -1,42 +1,45 @@
-# FeedDiagnosticsGateway (Layer 4)
+# Feed Diagnostics Gateway
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/feedDiagnosticsGateway.ts`](../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts)
-- Collaborators: [`knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) (status updates), [`knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) (failure reporting)
-- Tests: [`knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-209
+- Code Path: [`packages/server/src/features/knowledge/feedDiagnosticsGateway.ts`](../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts)
+- Exports: FeedHealthStatus, FeedStatusSummary, FeedDiagnosticsGatewayOptions, FeedDiagnosticsGateway
 
-## Exported Symbols
+## Purpose
+Centralise knowledge-feed health signalling so ingestion failures become immediately visible to operators and downstream tooling.
+- Maintain the latest health state per feed and expose it through structured summaries.
+- Emit logger messages with severity aligned to health transitions (healthy, degraded, blocked).
+- Notify subscribers when feed status changes so diagnostics panels and telemetry exporters stay current.
 
-#### FeedHealthStatus
-The `FeedHealthStatus` union describes feed health states (healthy, degraded, blocked) and drives logger severity plus UI labelling so operators can immediately gauge ingest reliability.
+## Public Symbols
 
-#### FeedStatusSummary
-The `FeedStatusSummary` shape captures status, timestamp, log payload, and optional metadata that downstream dashboards can render.
+### FeedHealthStatus
+Union of allowed health states (`healthy`, `degraded`, `blocked`) used to drive log severity, diagnostics colouring, and alert routing.
 
-#### FeedDiagnosticsGatewayOptions
-The `FeedDiagnosticsGatewayOptions` interface bundles optional logger hooks and an onStatusChanged callback for observers that need push updates when feed state changes.
+### FeedStatusSummary
+Data contract surfaced by `listStatuses`; captures feed identifier, current status, human-readable message, timestamp, and optional metadata for dashboards.
 
-#### FeedDiagnosticsGateway
-The `FeedDiagnosticsGateway` class maintains per-feed status in memory, routes formatted health messages to the provided logger, and publishes change notifications for UI refreshes.
+### FeedDiagnosticsGatewayOptions
+Configuration container supplying optional logger hooks and an `onStatusChanged` callback for push updates, keeping the gateway framework-agnostic.
 
-## Responsibility
-Centralize status updates for external knowledge feeds, translating health transitions into structured logs and event callbacks. Maintains the latest observed state per feed so diagnostics views and runtime watchers can present accurate health information.
+### FeedDiagnosticsGateway
+Stateful gateway that records per-feed health, writes structured logs prefixed with `[knowledge-feed]`, and fan-outs change notifications to registered listeners.
 
-## Internal Flow
-1. Mutate the in-memory `Map` keyed by feed ID when `updateStatus` is called.
-2. Format a human-readable log line prefixed with `[knowledge-feed]` for operator visibility.
-3. Route the message to the provided logger with severity derived from the status (`info` for healthy, `warn` for degraded, `error` for blocked).
-4. Invoke the `onStatusChanged` callback so other subsystems (e.g., VS Code diagnostics publisher) can react.
+## Collaborators
+- [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) invokes `updateStatus` after snapshot/stream attempts and listens for health changes.
+- [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) reports ingestion failures that should surface as degraded/blocked states.
+- Workspace telemetry/logging surfaces honour the injected logger contract to display feed messages consistently alongside other diagnostics.
 
-## Error Handling
-- Gateway itself performs no IO and therefore only throws if the logger or callback throw. Callers wrap updates in their own try/catch to ensure diagnostics remain resilient.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp209-feeddiagnosticsgateway)
 
-## Observability Hooks
-- Structured log messages consolidate feed ID, status, optional message, and snapshot label.
-- `listStatuses` powers health dashboards by exposing the latest summary for each feed.
+## Evidence
+- Exercised indirectly by [`packages/server/src/features/knowledge/knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts), which asserts health transitions and listener notifications.
+- Verified in integration suites (US5 ingestion) where simulated feed failures trigger diagnostics refreshes.
+- Manual smoke: `npm run graph:audit` highlights feed status regressions thanks to gateway-emitted diagnostics logs.
 
-## Integration Notes
-- `KnowledgeFeedManager` calls `updateStatus` after each ingestion attempt, ensuring operators see transitions like degraded → healthy after a retry.
-- Downstream consumers (extension diagnostics tree) poll or subscribe via `onStatusChanged` to refresh UI when feeds change state.
-- Additional health states can be introduced by widening `FeedHealthStatus`; formatting and logger routing already adapt based on the enum value.
+## Operational Notes
+- Gateway performs no async IO; it only surfaces failures thrown by injected loggers or callbacks, making it safe to call during error handling.
+- `listStatuses` returns shallow copies so callers cannot mutate internal state.
+- Additional health states can be introduced by widening `FeedHealthStatus`; downstream formatting automatically adapts via enum mapping.

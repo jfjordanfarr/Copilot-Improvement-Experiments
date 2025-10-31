@@ -1,48 +1,53 @@
-# SchemaValidator (Layer 4)
+# Schema Validator
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/schemaValidator.ts`](../../../packages/server/src/features/knowledge/schemaValidator.ts)
-- Consumers: [`knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts), [`knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts)
-- Shared contracts: [`packages/shared/src/contracts`](../../../packages/shared/src/contracts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-207
+- Code Path: [`packages/server/src/features/knowledge/schemaValidator.ts`](../../../packages/server/src/features/knowledge/schemaValidator.ts)
+- Exports: validateSnapshot, validateStreamEvent, assertValidSnapshot, assertValidStreamEvent, SchemaViolation, SchemaValidationResult
 
-## Exported Symbols
+## Purpose
+Guarantee that snapshots and stream events respect the knowledge-graph contract before ingestion mutates the workspace cache, preventing malformed artifacts or links from degrading ripple analysis.
 
-### `SchemaViolation`
-Describes a single schema failure (JSON path + error message). Aggregated to render actionable diagnostics.
+## Public Symbols
 
-### `SchemaValidationResult`
-Wrapper for the validation outcome (boolean flag plus collected SchemaViolation entries).
+### validateSnapshot
+Non-throwing validator that inspects snapshot structure, artifact fields, and link references, returning a `SchemaValidationResult` with collected violations.
 
-### `validateSnapshot`
-Non-throwing validator that inspects snapshot artifacts/links and returns a `SchemaValidationResult`.
+### validateStreamEvent
+Non-throwing validator for stream events, ensuring permitted kinds, required identifiers, and embedded artifact/link payloads are structurally sound.
 
-### `validateStreamEvent`
-Non-throwing validator for stream events, ensuring kind-specific payload requirements are satisfied.
+### assertValidSnapshot
+Throws when `validateSnapshot` reports issues, aggregating violations into a readable error string so callers can surface actionable diagnostics.
 
-### `assertValidSnapshot`
-Throws when `validateSnapshot` uncovers issues, formatting violations into a multi-line error string.
+### assertValidStreamEvent
+Throws when `validateStreamEvent` fails, allowing ingestion pipelines to halt before applying invalid deltas.
 
-### `assertValidStreamEvent`
-Throws when `validateStreamEvent` detects problems, enabling ingestion callers to short-circuit with context.
+### SchemaViolation
+Structure containing a JSON path and message, used to accumulate validation failures for reporting and diagnostics.
 
-## Responsibility
-Enforce the structural contract for incoming knowledge snapshots and stream events before they mutate the graph. Guards against malformed artifacts/links so ingestion can safely accept external intelligence from LSIF, SCIP, or future feeds.
+### SchemaValidationResult
+Outcome wrapper (`valid`, `issues`) shared across snapshot and stream validators so callers can inspect issues without exceptions.
 
-## Internal Flow
-1. For snapshots, verify top-level fields (`label`, `createdAt`, `artifacts`, `links`) and iterate artifacts/links, accumulating violations.
-2. Track artifact IDs encountered so link validation can ensure `sourceId`/`targetId` refer to known artifacts.
-3. For stream events, validate the event envelope, ensure the `kind` belongs to the allowed list, and inspect nested artifact/link payloads when present.
-4. Assertion helpers raise a combined error message when validation fails, enabling callers to short-circuit ingestion with actionable diagnostics.
+## Responsibilities
+- Enforce allowed artifact layers, link kinds, and stream event types using the shared contract enums.
+- Validate nested structures (artifacts, links) and ensure references point to known artifact IDs before ingestion.
+- Provide assertion wrappers that surface combined error messages for operator-facing diagnostics.
 
-## Error Handling
-- Validation functions never throw; they return a list of issues. Assertion wrappers throw a formatted error summarizing all violations at once.
-- Non-fatal metadata mismatches (e.g., optional fields omitted) are ignored so feeds can be sparse while staying compliant.
+## Collaborators
+- [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) calls the validators before persisting artifacts or links.
+- [`packages/server/src/features/knowledge/feedDiagnosticsGateway.ts`](../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts) receives rendered violation summaries to update diagnostics.
+- [`@copilot-improvement/shared`](../../../packages/shared/src/contracts) supplies shared enums for layers, link kinds, and stream events.
 
-## Observability Hooks
-- Violations are rendered as multi-line strings enumerating the offending paths, making it straightforward to bubble them through `FeedDiagnosticsGateway` for operator visibility.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp207-schemavalidator)
 
-## Integration Notes
-- `KnowledgeGraphIngestor` calls assertion helpers before hitting persistence; failed assertions push degraded status updates through the diagnostics gateway.
-- Allowed layers and link kinds align with shared contract enums, ensuring external feeds cannot introduce unsupported relationship types without a deliberate contract update.
-- Extending validation (e.g., enforcing artifact ownership) requires updating both the allowed constants and targeted checks herein.
+## Evidence
+- Unit tests: [`packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts) exercise validation paths by asserting degraded status when schema violations occur.
+- Integration coverage: US5 ingestion suites trigger schema assertions and checkpoint persistence through `KnowledgeGraphIngestor`.
+- Manual smoke: corrupting `data/knowledge-feeds/bootstrap.json` causes documented schema errors during `npm run graph:snapshot`, visible via feed diagnostics.
+
+## Operational Notes
+- Validation functions avoid throwing to support pipeline reuse in CLI tooling; assertion wrappers add strictness where required.
+- Allowed layers include `vision` through `code`, aligning with MDMD layering to keep documentation parity intact.
+- Extendable architecture: update allowed constants and add validation branches when new artifact metadata becomes first-class.

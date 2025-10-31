@@ -1,0 +1,37 @@
+{
+  "rules": [
+    {
+      "id": "mdmd-layer3-to-code",
+      "label": "Layer 3 architecture docs trace to code",
+      "sequence": [
+        {
+          "name": "layer3-doc",
+          "glob": ".mdmd/layer-3/**/*.mdmd.md",
+          "mdmdLayer": "3"
+        },
+        {
+          "name": "layer4-doc",
+          "glob": ".mdmd/layer-4/**/*.mdmd.md",
+          "resolver": "markdown-links",
+          "linkKind": "documents",
+          "confidence": 0.95
+        },
+        {
+          "name": "code-file",
+          "glob": "{packages,tests,scripts}/**/*.{ts,tsx,js,jsx,cts,mts,mjs}",
+          "resolver": "markdown-links",
+          "linkKind": "documents",
+          "confidence": 0.9
+        }
+      ],
+      "propagate": [
+        {
+          "from": "layer3-doc",
+          "to": "code-file",
+          "linkKind": "documents",
+          "confidence": 0.85
+        }
+      ]
+    }
+  ]
+}

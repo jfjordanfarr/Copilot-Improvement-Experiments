@@ -1,58 +1,54 @@
-# KnowledgeGraphBridgeService (Layer 4)
+# Knowledge Graph Bridge Service
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/knowledgeGraphBridge.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts)
-- Collaborators: `KnowledgeFeedManager`, `KnowledgeGraphIngestor`, `FeedDiagnosticsGateway`, `FileFeedCheckpointStore`
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
-- Spec references: [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-016](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T040](../../../specs/001-link-aware-diagnostics/tasks.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-211
+- Code Path: [`packages/server/src/features/knowledge/knowledgeGraphBridge.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts)
+- Exports: KnowledgeGraphBridgeLogger, KnowledgeGraphBridgeServiceOptions, KnowledgeGraphBridgeStartResult, KnowledgeGraphBridgeDisposable, KnowledgeGraphBridgeService
 
-## Exported Symbols
+## Purpose
+Bootstrap and supervise the ingestion stack that projects external knowledge feeds into the workspace graph.
+- Discover static feed descriptors (JSON, LSIF, SCIP) and wire ingestion collaborators.
+- Start feed management, checkpoint persistence, and diagnostics propagation.
+- Expose healthy feed descriptors plus lifecycle hooks to the language server runtime.
 
-#### KnowledgeGraphBridgeLogger
-The `KnowledgeGraphBridgeLogger` interface is an optional logger contract injected for structured logging, supplying info, warn, and error hooks reused across child components.
+## Public Symbols
 
-#### KnowledgeGraphBridgeServiceOptions
-The `KnowledgeGraphBridgeServiceOptions` interface bundles the graph store, storage directory, workspace root, logger, factories, and configuration overrides needed to wire ingestion.
+### KnowledgeGraphBridgeLogger
+Optional logger contract supplying `info`, `warn`, and `error` hooks reused by the bridge, ingestor, and feed manager for consistent telemetry.
 
-#### KnowledgeGraphBridgeStartResult
-The `KnowledgeGraphBridgeStartResult` shape is returned from the start lifecycle method, reporting how many feeds were configured so callers can decide whether ingestion activated.
+### KnowledgeGraphBridgeServiceOptions
+Configuration bundle accepting the graph store, storage directory, workspace root, optional logger, factory overrides, and feed definitions used during startup.
 
-#### KnowledgeGraphBridgeDisposable
-The `KnowledgeGraphBridgeDisposable` handle is returned by the onStatusChanged listener registration, allowing observers to unsubscribe from bridge-level status notifications.
+### KnowledgeGraphBridgeStartResult
+Shape returned from `start()` that reports how many feeds activated, allowing callers to decide whether ingestion entered service.
 
-#### KnowledgeGraphBridgeService
-The `KnowledgeGraphBridgeService` class discovers feed configurations, constructs ingestion infrastructure, manages lifecycle, and forwards health updates to listeners.
+### KnowledgeGraphBridgeDisposable
+Handle returned by `onStatusChanged`; disposing unsubscribes listeners from feed health updates without touching other observers.
 
-## Responsibility
-Coordinates discovery, ingestion, and health tracking for external knowledge feeds. Orchestrates snapshot/stream processing, checkpoint persistence, and diagnostics reporting so the runtime can blend static descriptors with workspace-inferred links.
+### KnowledgeGraphBridgeService
+Lifecycle manager that discovers feeds, constructs `KnowledgeGraphIngestor`/`KnowledgeFeedManager`, supervises start/stop, and notifies listeners of health changes.
 
-## Startup Flow
-1. Resolve workspace root and discover feed configurations (`data/knowledge-feeds/*.json`) unless explicit configs are injected by tests.
-2. Ensure the storage directory contains a `knowledge-feeds/` subfolder for checkpoints.
-3. Construct `KnowledgeGraphIngestor`, `KnowledgeFeedManager`, and supporting gateways, wiring logger prefixes for observability.
-4. Start feed manager, subscribe to status changes, and notify listeners (UI + diagnostics) once feeds are healthy or degraded.
+## Collaborators
+- [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) schedules snapshots, streams, and health reporting.
+- [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) validates payloads and applies them to the graph store.
+- [`packages/server/src/features/knowledge/feedDiagnosticsGateway.ts`](../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts) records feed health transitions that the bridge relays to observers.
+- [`packages/server/src/features/knowledge/feedCheckpointStore.ts`](../../../packages/server/src/features/knowledge/feedCheckpointStore.ts) persists per-feed cursors in the configured storage directory.
 
-## Behaviour
-- Exposes `start()` / `dispose()` lifecycle that can be invoked by the runtime bootstrap; restart attempts are idempotent.
-- Provides `getHealthyFeeds()` for diagnostics and UI surfaces to display active feeds.
-- Broadcasts feed status updates to listeners via `onStatusChanged`, allowing extension telemetry to react without tight coupling.
-- Falls back gracefully when no workspace root is available, skipping ingestion while keeping inference-only mode operational.
+## Linked Components
+- [COMP-003 – Language Server Runtime](../../layer-3/language-server-architecture.mdmd.md#imp211-knowledgegraphbridgeservice)
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp211-knowledgegraphbridgeservice)
 
-## Implementation Notes
-- Uses factory hooks (`bridgeFactory`, `checkpointStoreFactory`) to facilitate unit tests and future storage implementations.
-- Static feed discovery derives stable IDs from filenames, mapping artifact/link aliases (id/path/uri) into canonical URIs.
-- Applies backoff strategies and diagnostics wiring defined by `KnowledgeFeedManager`/`FeedDiagnosticsGateway` to avoid hot-looping failing feeds.
-- Logs via injected `KnowledgeGraphBridgeLogger`, defaulting to console when absent.
+## Evidence
+- Covered indirectly by [`packages/server/src/features/knowledge/knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts) and [`knowledgeGraphIngestor.test.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts), which boot the bridge via manager constructors.
+- Integration suites for US5 load static feed fixtures through the bridge to confirm deterministic graph snapshots.
+- Manual smoke: `npm run graph:snapshot` relies on bridge bootstrap before gathering workspace knowledge.
 
-## Failure Handling
-- Wraps `stop()` calls in try/catch to prevent asynchronous teardown errors from crashing the server.
-- Captures filesystem errors during feed discovery and reports them through diagnostics + console warnings.
-- Notifies listeners with `undefined` summaries when ingestion is skipped or disposed so UI clears stale state.
-
-## Testing
-- Covered indirectly through unit suites for feed manager/ingestor plus integration tests that seed static JSON feeds (US5 transform pipeline).
-- Additional targeted unit tests can inject mock factories to assert lifecycle behaviour; tracked as a medium-priority enhancement.
+## Operational Notes
+- Restarting `start()` after `dispose()` is idempotent; the bridge lazily re-discovers feeds and rebuilds collaborators.
+- Static feed discovery slugs filenames into stable feed IDs and attaches provenance metadata for downstream audits.
+- Logger child prefixes (`knowledge-feed`, `knowledge-ingestor`) simplify filtering within combined telemetry streams.
 
 ## Follow-ups
-- Persist listener diagnostics across restarts once acknowledgement UX requires continuity.
-- Extend discovery to support remote descriptors (e.g., LSIF endpoints) and dynamic feature toggles when roadmap T05x opens.
+- Add focused unit coverage that injects fake factories to assert lifecycle edges and listener notification semantics.
+- Extend discovery to handle remote feed descriptors and feature-flag-driven inclusion once roadmap tasks open.

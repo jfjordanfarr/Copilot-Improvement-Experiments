@@ -40,3 +40,10 @@ export {
 	type ConfidenceTier as LlmConfidenceTier,
 	type CalibrationContext
 } from "./inference/llm/confidenceCalibrator";
+export * from "./rules/relationshipRuleEngine";
+export * from "./rules/relationshipRuleProvider";
+export * from "./rules/relationshipRuleAudit";
+export * from "./rules/relationshipRuleTypes";
+export * from "./rules/relationshipResolvers";
+export * from "./rules/symbolCorrectnessProfiles";
+export * from "./tooling/pathUtils";

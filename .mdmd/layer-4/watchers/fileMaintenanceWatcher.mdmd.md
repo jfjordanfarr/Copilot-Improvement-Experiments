@@ -1,33 +1,39 @@
-# File Maintenance Watcher (Layer 4)
+# File Maintenance Watcher
 
-## Source Mapping
-- Implementation: [`packages/extension/src/watchers/fileMaintenance.ts`](/packages/extension/src/watchers/fileMaintenance.ts)
-- Related contracts: [`packages/shared/src/contracts/maintenance.ts`](/packages/shared/src/contracts/maintenance.ts)
-- Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-109
+- Code Path: [`packages/extension/src/watchers/fileMaintenance.ts`](../../../packages/extension/src/watchers/fileMaintenance.ts)
+- Exports: registerFileMaintenanceWatcher
 
-## Exported Symbols
+## Purpose
+Observe workspace rename and delete activity, batching events so the language server can reconcile orphaned ripple diagnostics without flooding the transport layer.
 
-#### registerFileMaintenanceWatcher
-The `registerFileMaintenanceWatcher` function wires delete and rename listeners that forward events to the language server for orphan cleanup.
+## Public Symbols
 
-## Responsibility
-Observes the workspace for orphaned/moved files and notifies the language server to reconcile diagnostics that point at stale paths. Provides the first line of defense against broken cross-file links caused by deletes or renames outside VS Code.
+### registerFileMaintenanceWatcher
+Registers a `FileSystemWatcher`, debounces rename/delete bursts, and forwards orphan reconciliation requests to the language server once the language client is ready.
 
-## Behaviour
-- Registers a `FileSystemWatcher` targeting `**/*` (excluding dotfiles) and reacts to `onDidDelete` and `onDidRename`.
-- Batches events for a short debounce window (default 250 ms) to avoid spamming the server on bulk operations.
-- Sends `MAINTENANCE_ORPHANS` requests through the language client once the batch flushes.
-- Drops events when the language client is not yet ready; logs at trace level for observability.
+## Responsibilities
+- Monitor non-dotfile paths for delete and rename events tied to diagnostics.
+- Collapse rapid event bursts (default 250 ms debounce) into single maintenance payloads.
+- Dispatch `MAINTENANCE_ORPHANS` requests via the diagnostics channel when the client session is active.
+- Skip emission gracefully when activation is incomplete, logging at trace level for operators.
 
-## Implementation Notes
-- Debounce implemented with `setTimeout`; pending timers cleared when new events arrive before flush.
-- Normalises paths to workspace-relative form via `workspace.asRelativePath` to reduce payload size.
-- Uses `diagnosticsChannel.send` helper to keep transport consistent with other watcher emissions.
+## Collaborators
+- [`packages/shared/src/contracts/maintenance.ts`](../../../packages/shared/src/contracts/maintenance.ts) defines orphan reconciliation payloads.
+- Diagnostics channel helpers shared with other extension emitters keep LSP transport consistent.
+- Language server `ArtifactWatcher` consumes orphan notifications to prune stale diagnostics.
 
-## Testing & Safety
-- Exercised by integration tests `tests/integration/us1/codeImpact.test.ts` through simulated file deletions.
-- Manual verification: rename/delete files in fixtures and confirm stale diagnostics clear within 500 ms.
+## Linked Components
+- [COMP-001 – Diagnostics Pipeline](../../layer-3/diagnostics-pipeline.mdmd.md)
+- [COMP-002 – Extension Surfaces](../../layer-3/extension-surfaces.mdmd.md)
 
-## Follow-ups
-- Consider collapsing consecutive rename events into single payload entries.
-- Hook into VS Code `FileOperationEvent` once API graduates for richer metadata.
+## Evidence
+- Exercised by `tests/integration/us1/codeImpact.test.ts` through simulated file deletions.
+- Manual QA: renaming or deleting fixture files clears stale diagnostics within ≈500 ms.
+
+## Operational Notes
+- Debounce uses `setTimeout`; new events reset the timer until flush, preventing watcher thrash.
+- Paths normalise through `workspace.asRelativePath` so payloads stay compact and deterministic.
+- Future enhancement: adopt VS Code `FileOperationEvent` once available for richer metadata.

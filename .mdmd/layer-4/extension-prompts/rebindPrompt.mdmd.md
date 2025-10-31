@@ -1,11 +1,11 @@
-# Rebind Prompt (Layer 4)
+# Rebind Prompt
 
-## Source Mapping
-- Implementation: [`packages/extension/src/prompts/rebindPrompt.ts`](../../../packages/extension/src/prompts/rebindPrompt.ts)
-- Triggering diagnostics: [`RebindRequiredPayload`](../../../packages/shared/src/contracts/diagnostics.ts)
-- Command dependency: [`Override Link Command`](../extension-commands/overrideLink.mdmd.md)
+## Metadata
+- Layer: 4
+- Code Path: [`packages/extension/src/prompts/rebindPrompt.ts`](../../../packages/extension/src/prompts/rebindPrompt.ts)
+- Exports: showRebindPrompt
 
-## Responsibility
+## Purpose
 Surface a notification when documentation drift removes or renames artifacts that other files depend on. Encourages the user to rebind impacted links by invoking the override command with the necessary context payload.
 
 ## Key Concepts
@@ -13,8 +13,14 @@ Surface a notification when documentation drift removes or renames artifacts tha
 - **Action prompt**: Uses `showInformationMessage` with contextual detail (sample impacted URIs) to drive user action.
 - **Command chaining**: Executes `linkDiagnostics.overrideLink` with the payload so the override command can batch rebind operations.
 
-## Public API
-- `showRebindPrompt(payload): Promise<void>`
+## Public Symbols
+
+### showRebindPrompt
+Displays the drift notification, previews impacted URIs, and dispatches the override command when the user accepts the rebind action.
+
+## Collaborators
+- Triggering diagnostics: [`RebindRequiredPayload`](../../../packages/shared/src/contracts/diagnostics.ts)
+- Command dependency: [`Override Link Command`](../extension-commands/overrideLink.mdmd.md)
 
 ## Internal Flow
 1. Summarize impacted artifact count and preview up to three URIs; annotate with rename/delete action.

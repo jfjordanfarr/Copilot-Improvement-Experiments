@@ -1,36 +1,38 @@
-# FeedCheckpointStore (Layer 4)
+# Feed Checkpoint Store
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/feedCheckpointStore.ts`](../../../packages/server/src/features/knowledge/feedCheckpointStore.ts)
-- Collaborators: [`knowledgeGraphBridge.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts) (factory wiring), [`knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) (snapshot + stream lifecycle)
-- Tests: [`knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts), [`knowledgeGraphIngestor.test.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-208
+- Code Path: [`packages/server/src/features/knowledge/feedCheckpointStore.ts`](../../../packages/server/src/features/knowledge/feedCheckpointStore.ts)
+- Exports: FeedCheckpointStore, FileFeedCheckpointStore
 
-## Exported Symbols
+## Purpose
+Provide a persistence contract and default filesystem implementation for knowledge-feed checkpoints so ingestion can resume streaming from the last processed sequence ID after restarts or failures.
+- Persist `StreamCheckpoint` payloads emitted by the ingestor after successful snapshot or stream batches.
+- Return `null` when checkpoints are missing or invalid so callers can trigger snapshot rebuilds.
+- Remove stored checkpoints on demand to force full reloads during destructive maintenance.
 
-#### FeedCheckpointStore
-The `FeedCheckpointStore` interface describes the persistence contract for stream checkpoints keyed by feed id. Enables alternative backends (cloud KV, SQLite) to plug into the ingestion runtime.
+## Public Symbols
 
-#### FileFeedCheckpointStore
-The `FileFeedCheckpointStore` class is the filesystem implementation storing checkpoints as JSON per feed using slugified filenames. It guarantees directory existence, tolerates missing files during reads and clears, and validates payloads before returning them.
+### FeedCheckpointStore
+Interface defining `read`, `write`, and `clear` operations for stream checkpoints keyed by feed identifier, enabling alternative backends (SQLite, cloud KV) to plug into the ingestion runtime.
 
-## Responsibility
-Persist and retrieve stream checkpoints for external knowledge feeds so ingestion can resume after restarts or backoff delays without replaying the full snapshot. The default `FileFeedCheckpointStore` records checkpoints on disk, scoped per feed.
+### FileFeedCheckpointStore
+Filesystem-backed implementation that stores checkpoints as JSON per feed, slugifies filenames for portability, and treats missing files as cache misses during reads and clears.
 
-## Internal Flow
-1. Resolve a deterministic file path using the provided feed ID (`replace(/[^a-z0-9-_]/gi, "_")`).
-2. For `read`, attempt to load and parse JSON from disk, returning `null` when the file is missing or fails validation.
-3. For `write`, ensure the parent directory exists, stringify the checkpoint with indentation for auditability, and write atomically to disk.
-4. For `clear`, remove the checkpoint file, ignoring `ENOENT` so idempotent clears do not surface as errors.
+## Collaborators
+- [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) writes checkpoints after successful snapshot/stream ingestion.
+- [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) reads checkpoints to resume stream workers and manages clears during restarts.
+- [`packages/server/src/features/knowledge/knowledgeGraphBridge.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts) wires the store during workspace bootstrap.
 
-## Error Handling
-- Missing files during `read` or `clear` are treated as soft misses and return without error, letting callers treat absence as “no checkpoint yet”.
-- Any other filesystem failure surfaces to the caller, allowing the manager to degrade the feed and emit diagnostics.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp208-feedcheckpointstore)
 
-## Observability Hooks
-- No direct logging; upstream components instrument failures when the promises reject. Callers wrap these operations to emit status via `FeedDiagnosticsGateway`.
+## Evidence
+- Unit coverage: [`packages/server/src/features/knowledge/knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts) and [`knowledgeGraphIngestor.test.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts) exercise checkpoint reads/writes through the filesystem implementation.
+- Manual smoke: stopping and restarting the language server while streaming feeds confirms checkpoints persist under `.link-aware-diagnostics/` storage.
 
-## Integration Notes
-- `KnowledgeGraphBridge` creates a store per workspace to hydrate `KnowledgeGraphIngestor` stream processing.
-- Tests simulate end-to-end usage by wiring the store into ingestion flows, ensuring checkpoints survive across process restarts.
-- Implementations for remote stores (e.g., SQLite or KV-backed) can satisfy the same interface to support multi-instance deployments.
+## Operational Notes
+- JSON payloads are stored with indentation for human-readable audits; rotate directories if long-term history accumulation becomes an issue.
+- Directory creation uses `recursive: true`, supporting nested workspace storage roots without prior setup.
+- Validation ensures checkpoints include `lastSequenceId` and `updatedAt`, preventing corrupt files from silently resuming ingestion.

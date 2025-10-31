@@ -1,64 +1,81 @@
-# Knowledge Graph Ingestion Architecture (Layer 3)
+# Knowledge Graph Ingestion Architecture
 
-## Purpose & Scope
+## Metadata
+- Layer: 3
+- Component IDs: COMP-005
 
-Establish the server-side pipeline that ingests external knowledge-graph data and folds it into the unified dependency graph that powers diagnostics. The architecture covers KnowledgeSnapshot imports, streaming delta feeds, validation, persistence, and their interaction with the link inference orchestrator. This design satisfies [FR-015](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) and [FR-016](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) in the feature spec and sets the stage for [T040](../../specs/001-link-aware-diagnostics/tasks.md) / [T041](../../specs/001-link-aware-diagnostics/tasks.md). Upcoming LLM-driven ingestion described in [LLM Ingestion Pipeline](./llm-ingestion-pipeline.mdmd.md) complements, rather than replaces, these external feeds by supplying additional edges that still flow through the same validation/persistence stack.
+## Components
 
-## Key Responsibilities
+### COMP-005 Knowledge Graph Ingestion
+Supports REQ-020 and REQ-F1/F3 by ingesting external graph feeds, validating schemas, and projecting links into the workspace knowledge base so ripple analysis reflects the broader ecosystem.
 
-- **Feed coordination**: discover, configure, and lifecycle-manage snapshot + streaming feeds that describe cross-artifact relationships.
-- **Schema enforcement**: validate every payload against the shared contract before mutating the graph store.
-- **Persistence**: project valid artifacts/links into SQLite through the existing `GraphStore` so downstream consumers see a consistent view.
-- **Runtime availability**: surface ingestion failures as diagnostics/logs while allowing the system to fall back to local inference.
-- **Provider bridge**: make accepted knowledge feeds available to the `LinkInferenceOrchestrator` as `KnowledgeFeed` inputs so inference can blend external edges with workspace signals.
+## Responsibilities
 
-## Architectural Components
+### Feed Coordination
+- Discover, configure, and lifecycle-manage snapshot and streaming feeds (LSIF, SCIP, bespoke JSON) through `KnowledgeFeedManager`.
+- Respect provider guard settings while keeping graph data ready for future enforcement stages.
 
-| Component | Location | Role |
-|-----------|----------|------|
-| **KnowledgeFeedManager** | `packages/server/src/features/knowledge/knowledgeFeedManager.ts` | Owns feed configuration, schedules snapshot pulls, subscribes to streaming deltas, and coordinates validation + persistence per [plan.md §Phases 3–4](../../specs/001-link-aware-diagnostics/plan.md#phases--key-deliverables).
-| **FeedFormatDetector** | `packages/server/src/features/knowledge/feedFormatDetector.ts` | Normalizes external feed payloads by auto-detecting LSIF, SCIP, or native snapshot formats before invoking the appropriate parser, keeping ingestion agnostic to source formats.
-| **LSIFParser / SCIPParser** | `packages/server/src/features/knowledge/lsifParser.ts`, `scipParser.ts` | Convert LSIF and SCIP exports into normalized snapshots with artifacts and cross-file links ready for validation and persistence.
-| **KnowledgeGraphIngestor** | `packages/server/src/features/knowledge/knowledgeGraphIngestor.ts` | Wraps the shared `KnowledgeGraphBridge`, runs validations, and updates the graph store/checkpoints; emits diagnostics/events for failures. Aligns with [research.md §Knowledge-Graph Schema Contract](../../specs/001-link-aware-diagnostics/research.md#knowledge-graph-schema-contract).
-| **SchemaValidator** | `packages/server/src/features/knowledge/schemaValidator.ts` | Already enforces the contract – reused by the ingestor before committing data ([T056](../../specs/001-link-aware-diagnostics/tasks.md)).
-| **FeedCheckpointStore** | `packages/server/src/features/knowledge/feedCheckpointStore.ts` | Persists stream checkpoints per feed so ingestion can resume after restarts without replaying snapshots.
-| **FeedDiagnosticsGateway** | `packages/server/src/features/knowledge/feedDiagnosticsGateway.ts` | Tracks feed health, emits structured logs, and notifies listeners for diagnostics surfaces.
-| **StaticFeedWorkspaceProvider** | `packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts` | Supplies fallback artifacts and links from workspace JSON fixtures when external feeds are unavailable.
-| **Runtime Wiring** | `packages/server/src/main.ts` | Instantiates the manager, registers it with the artifact watcher (so accepted feeds appear in orchestrator runs), and handles shutdown per [plan.md §Runtime Wiring](../../specs/001-link-aware-diagnostics/plan.md#phases--key-deliverables).
+### Schema Enforcement and Persistence
+- Validate payloads using `SchemaValidator`, `LSIFParser`, and `SCIPParser` before mutating the `GraphStore` via `KnowledgeGraphIngestor`.
+- Maintain checkpoints (`FeedCheckpointStore`) so ingestion can resume without replaying full snapshots.
 
-## Data Flow
+### Runtime Availability and Diagnostics
+- Surface degraded feed states through `FeedDiagnosticsGateway` diagnostics/logging while allowing Workspace-only inference to continue.
+- Refresh knowledge feed descriptors consumed by `ArtifactWatcher` and the inference orchestrator once ingestion succeeds.
 
-1. **Configuration load**: During server initialize, `KnowledgeFeedManager` reads workspace settings (later: VS Code configuration, env, or spec fixture) to determine active feeds ([spec.md §Graph Rebuild Lifecycle](../../specs/001-link-aware-diagnostics/spec.md#graph-rebuild-lifecycle)).
-2. **Snapshot bootstrap**: For each feed with a snapshot source, the manager requests the payload, `KnowledgeGraphIngestor` validates via `SchemaValidator`, then projects it into SQLite (`GraphStore.upsertArtifact`, `GraphStore.upsertLink`, `GraphStore.storeSnapshot`). Checkpoints store snapshot metadata for audit, matching the requirements in [research.md §Feed Resilience Strategy](../../specs/001-link-aware-diagnostics/research.md#feed-resilience-strategy).
-3. **Stream subscription**: For feeds with streaming sources, the manager obtains an async iterator of events. Each event is validated and then applied via the ingestor (`KnowledgeGraphBridge.applyStreamEvent`). The ingestor keeps a checkpoint (`lastSequenceId`) for replay, per [research.md §GitLab Knowledge Graph Integration](../../specs/001-link-aware-diagnostics/research.md#gitlab-knowledge-graph-gkg-integration).
-4. **Inference exposure**: On successful ingestion, the manager refreshes the `KnowledgeFeed[]` it exposes to `ArtifactWatcher.setKnowledgeFeeds`. Subsequent inference runs receive the new edges and satisfy the integration expectations in [plan.md §Phase 3 – User Story 1](../../specs/001-link-aware-diagnostics/plan.md#phase-3--user-story-1-developers).
-5. **Failure handling**: Validation or transport errors trigger warnings through `FeedDiagnosticsGateway` and mark the feed as degraded. While degraded, the `KnowledgeFeed` descriptor is withheld so inference falls back to workspace-only signals. Recovery clears the warning and re-exposes the feed, fulfilling [spec.md §Edge Cases](../../specs/001-link-aware-diagnostics/spec.md#edge-cases) coverage.
+## Interfaces
 
-## Interactions & Dependencies
+### Inbound Interfaces
+- Feed configuration sources (workspace settings, future VS Code config) enumerating snapshot URLs, stream endpoints, and credentials.
+- Snapshot and streaming payloads delivered to the manager and parsers.
 
-- **With ArtifactWatcher**: The watcher queries `KnowledgeFeedManager` for currently healthy feeds and passes them into the orchestrator, complementing the workspace providers defined in [T028](../../specs/001-link-aware-diagnostics/tasks.md).
-- **With LinkInferenceOrchestrator**: The orchestrator already understands snapshot + stream sources described in [linkInference.ts design](../../packages/shared/src/inference/linkInference.ts) and simply consumes the manager-provided descriptors.
-- **With Provider Guard**: Feed polling respects `ProviderGuard` settings (e.g., diagnostics disabled) but still updates the graph for future use, consistent with [spec.md §Requirements FR-010](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements).
-- **With Diagnostics Publishing**: Feed health warnings appear as diagnostics or connection console entries to keep operators informed without blocking core flows, tying into the documentation drift workflows in [spec.md §User Story 2](../../specs/001-link-aware-diagnostics/spec.md#user-story-2--writers-get-drift-alerts-priority-p2).
+### Outbound Interfaces
+- `KnowledgeFeed[]` descriptors provided to `ArtifactWatcher.setKnowledgeFeeds` for runtime inference.
+- Health diagnostics and structured logs emitted via `FeedDiagnosticsGateway` for extension surfaces and CLI audits.
 
-## Failure Modes & Recovery
+## Linked Implementations
 
-| Failure | Detection | Recovery Strategy | Spec Reference |
-|---------|-----------|-------------------|----------------|
-| Snapshot schema violation | `SchemaValidator` rejects payload | Skip application, emit diagnostic, retain previous snapshot | [FR-016](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) |
-| Stream event out of order/missing artifacts | Validation failure in ingestor | Log + diagnostic; request snapshot refresh on next cycle | [Research – Feed Resilience](../../specs/001-link-aware-diagnostics/research.md#feed-resilience-strategy) |
-| Network error fetching snapshot/stream | Transport exception | Mark feed degraded, retry with exponential backoff, rely on fallback inference | [Research – Feed Resilience](../../specs/001-link-aware-diagnostics/research.md#feed-resilience-strategy) |
-| Checkpoint loss (e.g., storage reset) | Missing checkpoint file | Re-run full snapshot ingest and rebuild from scratch | [Spec – Graph Rebuild Lifecycle](../../specs/001-link-aware-diagnostics/spec.md#graph-rebuild-lifecycle) |
+### IMP-112 knowledgeFeedManager
+Orchestrates feed scheduling, validation, and persistence. [Knowledge Feed Manager](/.mdmd/layer-4/knowledge-graph-ingestion/knowledgeFeedManager.mdmd.md)
 
-## Observability
+### IMP-205 knowledgeGraphIngestor
+Applies validated payloads to the graph store and checkpoints progress. [Knowledge Graph Ingestor](/.mdmd/layer-4/knowledge-graph-ingestion/knowledgeGraphIngestor.mdmd.md)
 
-- Console logs for ingest lifecycle (start, success, failure, retry)
-- Diagnostics surfaced through `FeedDiagnosticsGateway` when a feed is degraded for more than one attempt
-- Structured events (later) for telemetry (feed latency, edge counts)
+### IMP-206 feedFormatDetector
+Detects LSIF/SCIP/native payload formats before parsing. [Feed Format Detector](/.mdmd/layer-4/knowledge-graph-ingestion/feedFormatDetector.mdmd.md)
 
-## Open Questions / Follow-up
+### IMP-207 schemaValidator
+Shared schema contract enforcement for ingestion. [Schema Validator](/.mdmd/layer-4/knowledge-graph-ingestion/schemaValidator.mdmd.md)
 
-- Configuration surface for feed URLs/tokens (initially hard-coded; will migrate to user settings in later task).
-- Backoff strategy tuning (constants vs. configurable).
-- Multi-feed prioritization (merging edges from multiple sources).
-- Integration tests to simulate degraded feeds and confirm diagnostics.
+### IMP-208 feedCheckpointStore
+Persists stream offsets for replay-safe ingestion. [Feed Checkpoint Store](/.mdmd/layer-4/knowledge-graph-ingestion/feedCheckpointStore.mdmd.md)
+
+### IMP-209 feedDiagnosticsGateway
+Broadcasts feed health to diagnostics consumers. [Feed Diagnostics Gateway](/.mdmd/layer-4/knowledge-graph-ingestion/feedDiagnosticsGateway.mdmd.md)
+
+### IMP-210 staticFeedWorkspaceProvider
+Provides fallback JSON fixtures when external feeds degrade. [Static Feed Workspace Provider](/.mdmd/layer-4/knowledge-graph-ingestion/staticFeedWorkspaceProvider.mdmd.md)
+
+### IMP-211 knowledgeGraphBridgeService
+Bootstraps feed discovery, wiring, and lifecycle management for the ingestion stack. [Knowledge Graph Bridge Service](/.mdmd/layer-4/knowledge-graph-ingestion/knowledgeGraphBridge.mdmd.md)
+
+### IMP-212 workspaceIndexProvider
+Seeds code and documentation artifacts when external feeds are unavailable. [Workspace Index Provider](/.mdmd/layer-4/knowledge-graph-ingestion/workspaceIndexProvider.mdmd.md)
+
+### IMP-213 scipParser
+Normalises SCIP indexes into workspace snapshot artifacts and links. [SCIP Parser](/.mdmd/layer-4/knowledge-graph-ingestion/scipParser.mdmd.md)
+
+### IMP-214 lsifParser
+Normalises LSIF dumps into workspace snapshot artifacts and links. [LSIF Parser](/.mdmd/layer-4/knowledge-graph-ingestion/lsifParser.mdmd.md)
+
+### IMP-215 symbolBridgeProvider
+Requests workspace symbol contributions from the extension to enrich ingestion seeds. [Symbol Bridge Provider](/.mdmd/layer-4/knowledge-graph-ingestion/symbolBridgeProvider.mdmd.md)
+
+## Evidence
+- Unit suites: `knowledgeFeedManager.test.ts`, `knowledgeGraphIngestor.test.ts`, `schemaValidator.test.ts`, `feedCheckpointStore.test.ts` cover validation and persistence.
+- Integration fixtures under `tests/integration/fixtures/knowledge-feeds` exercise snapshot + stream ingestion paths.
+- Safe-to-commit pipeline runs `npm run graph:snapshot` and `npm run graph:audit` ensuring ingested edges remain deterministic.
+
+## Operational Notes
+- Failure handling distinguishes schema violations, transport errors, and checkpoint loss, each with targeted recovery strategies.
+- Follow-up work tracks configuration surfaces for feed endpoints, backoff tuning, and multi-feed prioritisation.

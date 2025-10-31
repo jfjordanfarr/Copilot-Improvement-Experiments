@@ -1,52 +1,40 @@
-# Analyze With AI Command (Layer 4)
+# Analyze With AI Command
 
-## Source Mapping
-- Implementation: [`packages/extension/src/commands/analyzeWithAI.ts`](../../../packages/extension/src/commands/analyzeWithAI.ts)
-- Tests: [`packages/extension/src/commands/analyzeWithAI.test.ts`](../../../packages/extension/src/commands/analyzeWithAI.test.ts)
-- Shared contracts: [`LIST_OUTSTANDING_DIAGNOSTICS_REQUEST`, `SET_DIAGNOSTIC_ASSESSMENT_REQUEST`](../../../packages/shared/src/contracts/diagnostics.ts)
-- Parent design: [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
-
-## Exported Symbols
-
-#### registerAnalyzeWithAICommand
-The `registerAnalyzeWithAICommand` function registers the Analyze with AI command in VS Code, wiring dependencies and lifecycle management.
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-108
+- Code Path: [`packages/extension/src/commands/analyzeWithAI.ts`](../../../packages/extension/src/commands/analyzeWithAI.ts)
+- Exports: registerAnalyzeWithAICommand
 
 ## Purpose
-Provide the `linkDiagnostics.analyzeWithAI` command so leads can request an on-demand language model assessment for any outstanding diagnostic. The command orchestrates diagnostic selection, prompt construction, model invocation, JSON parsing, and persistence, ensuring AI guidance lands back in the knowledge graph with provenance metadata.
+Expose the `linkDiagnostics.analyzeWithAI` command so leads can request LLM-assisted assessments for outstanding diagnostics while preserving provenance and prompt discipline.
+
+## Public Symbols
+
+### registerAnalyzeWithAICommand
+Registers the Analyze with AI command, orchestrates diagnostic selection, prompt construction, LLM invocation, assessment parsing, and persistence into the knowledge graph.
 
 ## Responsibilities
-- Fetch the latest outstanding diagnostics from the language server and present them in a Quick Pick for interactive selection.
-- Build a grounded prompt that includes diagnostic metadata, prior assessments, and truncated file snippets for the target and trigger artifacts.
-- Invoke the configured language model through `LlmInvoker`, handling cancellation and provider availability errors.
-- Parse the model response into the shared `LlmAssessment` shape, clamp confidence values, and retain the raw response for auditing.
-- Submit the assessment to the server via `SET_DIAGNOSTIC_ASSESSMENT_REQUEST`, then refresh the diagnostics tree and notify the user.
+- Fetch outstanding diagnostics and present them via Quick Pick with graceful cancellation handling.
+- Build grounded prompts that include diagnostic metadata, prior assessments, and truncated file snippets bound by provider limits.
+- Invoke the configured `LlmInvoker`, capture provenance (model id, vendor, prompt hash), and clamp returned confidence values.
+- Persist assessments through `SET_DIAGNOSTIC_ASSESSMENT_REQUEST`, refresh the diagnostics tree, and notify the user of saved results.
 
-## Key Concepts
-- **Prompt hashing** – A SHA-1 hash of the prompt (`promptHash`) tags both telemetry and persisted assessments, helping correlate downstream ingestion runs.
-- **Context snippets** – Target/trigger files are loaded (up to 4k characters) to supply the model with actionable context while keeping prompts within provider limits.
-- **Assessment parsing** – Responses are extracted from fenced code blocks if present, validated for `summary` and `confidence`, and capped to four recommended actions.
-- **LLM provenance** – Stored assessments capture model id, vendor/family, tags, and generation timestamp so future tooling can trace AI involvement.
+## Collaborators
+- [`packages/shared/src/contracts/diagnostics.ts`](../../../packages/shared/src/contracts/diagnostics.ts) supplies outstanding-diagnostics and assessment contracts.
+- Language server endpoints (`LIST_OUTSTANDING_DIAGNOSTICS_REQUEST`, `SET_DIAGNOSTIC_ASSESSMENT_REQUEST`) deliver/accept payloads.
+- Diagnostics tree view ([Diagnostics Tree](../extension-views/diagnosticsTree.mdmd.md)) reflects refreshed assessments post-save.
+- LLM bridges (local Ollama, hosted providers) accessed via `LlmInvoker`.
 
-## Flow Overview
-1. Guard against disabled provider mode (`llmProviderMode === "disabled"`) and bail early with an informational toast.
-2. Request `ListOutstandingDiagnosticsResult`; surface errors via `showErrorMessage` and stop if no diagnostics remain.
-3. Prompt the user to choose a diagnostic; cancellation exits silently.
-4. Build the prompt payload, including previous assessments and context snippets.
-5. Call `LlmInvoker.invoke` within `withProgress`, respecting cancellation tokens and surfacing provider errors.
-6. Parse and enrich the assessment, then send `SET_DIAGNOSTIC_ASSESSMENT_REQUEST` to persist it in the graph store.
-7. Refresh the diagnostics tree (if provided) and display a toast summarising the saved assessment.
-
-## Error Handling
-- Provider disabled: informational toast without contacting the server.
-- Diagnostic retrieval failure: error toast with the underlying message.
-- Model invocation: distinguishes cancellation, provider-mode faults, and unexpected errors; only unexpected errors surface generic failure messages.
-- JSON parsing: throws when the response lacks required fields, preventing malformed assessments from persisting.
-- Persistence errors: surfaced via `showErrorMessage`, leaving the prior assessment untouched.
-
-## Observability & UX
-- Progress notification keeps users informed during model execution and supports cancellation.
-- Saved assessment toast includes a truncated summary preview (<120 chars) for quick confirmation.
-- Console warnings log snippet load failures to aid debugging without interrupting the command flow.
+## Linked Components
+- [COMP-002 – Extension Surfaces](../../layer-3/extension-surfaces.mdmd.md)
+- [COMP-006 – LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 
 ## Evidence
-- [`packages/extension/src/commands/analyzeWithAI.test.ts`](../../../packages/extension/src/commands/analyzeWithAI.test.ts) exercises provider gating, successful invocation, persistence, and diagnostic tree refresh behaviour.
+- Unit tests: [`packages/extension/src/commands/analyzeWithAI.test.ts`](../../../packages/extension/src/commands/analyzeWithAI.test.ts) cover provider gating, invocation success, and diagnostics tree refresh.
+- Manual verification captures prompt hashing and telem logging within AI-Agent workspace sessions (2025-10-29 logs).
+
+## Operational Notes
+- Guard returns informational toasts when provider mode is disabled; no server traffic occurs in that state.
+- JSON parsing enforces the shared `LlmAssessment` schema; malformed responses abort persistence with actionable errors.
+- Future enhancement: emit telemetry on assessment submission outcomes for adoption dashboards.

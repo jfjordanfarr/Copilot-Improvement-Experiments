@@ -6,10 +6,22 @@ import { fileURLToPath } from "node:url";
 
 import {
   GraphStore,
+  compileRelationshipRules,
+  compileSymbolProfiles,
+  evaluateRelationshipCoverage,
+  formatRelationshipDiagnostics,
+  loadRelationshipRuleConfig,
   type ArtifactLayer,
   type KnowledgeArtifact,
-  type LinkedArtifactSummary
+  type LinkedArtifactSummary,
+  type RelationshipCoverageDiagnostic,
+  type RelationshipRuleWarning
 } from "@copilot-improvement/shared";
+
+import {
+  generateSymbolCorrectnessDiagnostics,
+  type SymbolCorrectnessReport
+} from "../../packages/server/src/features/diagnostics/symbolCorrectnessValidator";
 
 interface ParsedArgs {
   helpRequested: boolean;
@@ -56,6 +68,18 @@ interface AuditReport {
     gaps: SymbolCoverageGap[];
   };
   orphanDocumentSymbols: DocumentSymbolOrphan[];
+  relationshipRules?: RelationshipRuleAuditSummary;
+  symbolProfiles?: SymbolProfileAuditSummary;
+}
+
+interface RelationshipRuleAuditSummary {
+  diagnostics: RelationshipCoverageDiagnostic[];
+  warnings: RelationshipRuleWarning[];
+}
+
+interface SymbolProfileAuditSummary {
+  report: SymbolCorrectnessReport;
+  warnings: RelationshipRuleWarning[];
 }
 
 interface DocumentSymbolOrphan {
@@ -109,7 +133,7 @@ const EMPTY_AUDIT_OPTIONS: AuditOptions = {
   symbolIgnorePatterns: []
 };
 
-function parseArgs(argv: string[]): ParsedArgs {
+export function parseArgs(argv: string[]): ParsedArgs {
   const parsed: ParsedArgs = {
     helpRequested: false,
     jsonOutput: false,
@@ -254,7 +278,10 @@ function resolveDatabasePath(options: ParsedArgs): string {
   return path.join(workspace, ".link-aware-diagnostics", "link-aware-diagnostics.db");
 }
 
-function auditCoverage(store: GraphStore, options: AuditOptions = EMPTY_AUDIT_OPTIONS): AuditReport {
+export function auditCoverage(
+  store: GraphStore,
+  options: AuditOptions = EMPTY_AUDIT_OPTIONS
+): AuditReport {
   const artifacts = store.listArtifacts();
   const cache = new Map<string, LinkedArtifactSummary[]>();
   const docSymbolCache = new Map<string, Set<string>>();
@@ -305,7 +332,7 @@ function auditCoverage(store: GraphStore, options: AuditOptions = EMPTY_AUDIT_OP
           return DOCUMENTATION_LAYERS.has(neighbor.artifact.layer as ArtifactLayer);
         });
 
-        const referencedSymbols = collectReferencedSymbols(docNeighbors, docSymbolCache);
+  const referencedSymbols = collectReferencedSymbols(docNeighbors, docSymbolCache, docExportedSymbolCache);
 
         for (const symbol of exportedSymbols) {
           if (!symbol.name || symbol.name === "default") {
@@ -405,12 +432,27 @@ function toSummary(artifact: KnowledgeArtifact): ArtifactSummary {
   };
 }
 
-function printReport(report: AuditReport, options: { json: boolean; strictSymbols: boolean }): number {
+export function printReport(
+  report: AuditReport,
+  options: { json: boolean; strictSymbols: boolean }
+): number {
   const { json, strictSymbols } = options;
+  const ruleDiagnostics = report.relationshipRules?.diagnostics ?? [];
+  const ruleWarnings = report.relationshipRules?.warnings ?? [];
+  const hasRuleDiagnostics = ruleDiagnostics.length > 0;
+  const profileWarnings = report.symbolProfiles?.warnings ?? [];
+  const profileReport = report.symbolProfiles?.report;
+  const profileSummaries = profileReport?.summaries ?? [];
+  const profileViolations = profileReport?.violations ?? [];
+  const hasProfileViolations = profileViolations.length > 0;
 
   if (json) {
     console.log(JSON.stringify(report, null, 2));
-    const hasDocGaps = report.missingDocumentation.length > 0 || report.orphanDocuments.length > 0;
+    const hasDocGaps =
+      report.missingDocumentation.length > 0 ||
+      report.orphanDocuments.length > 0 ||
+      hasRuleDiagnostics ||
+      hasProfileViolations;
     const hasSymbolGaps = report.symbolCoverage.gaps.length > 0;
     const hasDocSymbolOrphans = report.orphanDocumentSymbols.length > 0;
 
@@ -434,7 +476,11 @@ function printReport(report: AuditReport, options: { json: boolean; strictSymbol
   console.log(`  Code artifacts: ${report.totals.code}`);
   console.log(`  Documentation artifacts: ${report.totals.documentation}`);
 
-  const hasDocGaps = report.missingDocumentation.length > 0 || report.orphanDocuments.length > 0;
+  const hasDocGaps =
+    report.missingDocumentation.length > 0 ||
+    report.orphanDocuments.length > 0 ||
+    hasRuleDiagnostics ||
+    hasProfileViolations;
   const hasSymbolGaps = report.symbolCoverage.gaps.length > 0;
   const hasDocSymbolOrphans = report.orphanDocumentSymbols.length > 0;
 
@@ -498,6 +544,64 @@ function printReport(report: AuditReport, options: { json: boolean; strictSymbol
     }
   }
 
+  if (ruleWarnings.length > 0) {
+    console.log("\nRelationship rule warnings:");
+    for (const warning of ruleWarnings) {
+      const { profileId } = warning as { profileId?: string };
+      const prefixParts = [];
+      if (profileId) {
+        prefixParts.push(profileId);
+      }
+      if (warning.ruleId) {
+        prefixParts.push(warning.ruleId);
+      }
+      const prefix = prefixParts.length > 0 ? `${prefixParts.join(" ")}: ` : "";
+      console.log(`  - ${prefix}${warning.message}`);
+    }
+  }
+
+  if (ruleDiagnostics.length > 0) {
+    console.log("\nRelationship rule coverage gaps:");
+    for (const diagnostic of ruleDiagnostics) {
+      const label = diagnostic.label ? `${diagnostic.ruleId} (${diagnostic.label})` : diagnostic.ruleId;
+      console.log(`  ${label}`);
+      console.log(`    - ${diagnostic.source} :: ${diagnostic.hop} :: ${diagnostic.message}`);
+    }
+  }
+
+  if (profileWarnings.length > 0) {
+    console.log("\nSymbol correctness profile warnings:");
+    for (const warning of profileWarnings) {
+      const { profileId } = warning as { profileId?: string };
+      const prefix = profileId ? `${profileId}: ` : "";
+      console.log(`  - ${prefix}${warning.message}`);
+    }
+  }
+
+  if (profileSummaries.length > 0) {
+    console.log("\nSymbol correctness profile coverage:");
+    for (const summary of profileSummaries) {
+      const label = summary.profileLabel ? `${summary.profileId} (${summary.profileLabel})` : summary.profileId;
+      const evaluated = summary.evaluated;
+      const satisfied = summary.satisfied;
+      const coveragePercentage = evaluated === 0 ? 100 : Math.round((satisfied / evaluated) * 100);
+      console.log(`  ${label}: ${satisfied}/${evaluated} artifacts satisfied (${coveragePercentage}% coverage)`);
+    }
+  }
+
+  if (profileViolations.length > 0) {
+    console.log("\nSymbol correctness profile violations:");
+    for (const violation of profileViolations) {
+      const label = violation.profileLabel ? `${violation.profileId} (${violation.profileLabel})` : violation.profileId;
+      const readable = resolveReadablePath(violation.artifactUri);
+      console.log(`  ${label} :: ${violation.requirementId}`);
+      console.log(
+        `    - ${readable} :: expected ≥${violation.expectedMinimum} ${violation.linkKind} (${violation.direction}), observed ${violation.observed}`
+      );
+      console.log(`    - ${violation.message}`);
+    }
+  }
+
   if (!hasDocGaps && !hasDocSymbolOrphans && (!hasSymbolGaps || !strictSymbols)) {
     return EXIT_SUCCESS;
   }
@@ -509,7 +613,7 @@ function printReport(report: AuditReport, options: { json: boolean; strictSymbol
   return EXIT_COVERAGE_GAPS;
 }
 
-function main(): void {
+export async function main(): Promise<void> {
   let parsed: ParsedArgs;
   try {
     parsed = parseArgs(process.argv.slice(2));
@@ -541,6 +645,43 @@ function main(): void {
   const store = new GraphStore({ dbPath });
   try {
     const report = auditCoverage(store, { symbolIgnorePatterns: compiledIgnores });
+    const ruleConfig = loadRelationshipRuleConfig(workspaceRoot);
+    const compiledRules = compileRelationshipRules(ruleConfig.config, workspaceRoot);
+    const ruleWarnings: RelationshipRuleWarning[] = [...ruleConfig.warnings, ...compiledRules.warnings];
+
+    let diagnostics: RelationshipCoverageDiagnostic[] = [];
+    if (compiledRules.rules.length > 0) {
+      const coverage = evaluateRelationshipCoverage({
+        store,
+        compiled: compiledRules,
+        workspaceRoot
+      });
+      diagnostics = formatRelationshipDiagnostics(coverage, workspaceRoot);
+    }
+
+    report.relationshipRules = {
+      diagnostics,
+      warnings: ruleWarnings
+    };
+
+    const compiledProfiles = compileSymbolProfiles(ruleConfig.config, workspaceRoot);
+    const profileReport: SymbolCorrectnessReport =
+      compiledProfiles.profiles.length > 0
+        ? generateSymbolCorrectnessDiagnostics({
+            workspaceRoot,
+            store,
+            profiles: compiledProfiles.profiles,
+            lookup: compiledProfiles.lookup
+          })
+        : { summaries: [], violations: [] };
+
+    if (compiledProfiles.profiles.length > 0 || compiledProfiles.warnings.length > 0) {
+      report.symbolProfiles = {
+        report: profileReport,
+        warnings: compiledProfiles.warnings
+      };
+    }
+
     const exitCode = printReport(report, { json: parsed.jsonOutput, strictSymbols: parsed.strictSymbols });
     process.exit(exitCode);
   } catch (error) {
@@ -556,7 +697,15 @@ function main(): void {
   }
 }
 
-main();
+main().catch(error => {
+  console.error("Failed to audit graph coverage.");
+  if (error instanceof Error) {
+    console.error(error.stack ?? error.message);
+  } else {
+    console.error(String(error));
+  }
+  process.exit(EXIT_UNCAUGHT_ERROR);
+});
 
 function loadSymbolCoverageIgnoreConfig(workspaceRoot: string): SymbolCoverageIgnoreConfig {
   const configPath = path.join(workspaceRoot, "symbol-coverage.ignore.json");
@@ -671,7 +820,8 @@ function readExportedSymbols(metadata: Record<string, unknown> | undefined): Exp
 
 function collectReferencedSymbols(
   neighbors: LinkedArtifactSummary[],
-  cache: Map<string, Set<string>>
+  cache: Map<string, Set<string>>,
+  exportCache: Map<string, string[]>
 ): Set<string> {
   const aggregated = new Set<string>();
 
@@ -680,6 +830,9 @@ function collectReferencedSymbols(
     let symbols = cache.get(artifactId);
     if (!symbols) {
       symbols = readDocumentSymbolReferences(neighbor.artifact.metadata);
+      if (symbols.size === 0) {
+        symbols = new Set(readDocumentExportedSymbols(neighbor.artifact.uri, exportCache));
+      }
       cache.set(artifactId, symbols);
     }
 
@@ -774,31 +927,36 @@ function readDocumentExportedSymbols(uri: string, cache: Map<string, string[]>):
 function extractExportedSymbolsSection(content: string): string[] {
   const lines = content.split(/\r?\n/);
   const collected = new Set<string>();
-  let inSection = false;
+  const sectionTitles = new Set(["exported symbols", "public symbols"]);
+  const headingPattern = /^(#{1,6})\s+(.*)$/;
+
   let sectionLevel = 0;
+  let inSection = false;
 
   for (const line of lines) {
-    const headingMatch = line.match(/^(#{1,6})\s+(.*)$/);
+    const headingMatch = line.match(headingPattern);
     if (headingMatch) {
       const level = headingMatch[1].length;
       const title = headingMatch[2].trim();
+      const normalized = title.toLowerCase();
 
-      if (!inSection) {
-        if (title.toLowerCase().startsWith("exported symbols")) {
-          inSection = true;
-          sectionLevel = level;
-        }
+      if (sectionTitles.has(normalized)) {
+        inSection = true;
+        sectionLevel = level;
         continue;
       }
 
-      if (level <= sectionLevel) {
-        break;
+      if (inSection && level <= sectionLevel) {
+        inSection = false;
       }
 
-      const candidate = title.trim();
-      if (looksLikeSymbolIdentifier(candidate)) {
-        collected.add(candidate);
+      if (inSection && level > sectionLevel) {
+        const candidate = normalizeSymbolHeading(title);
+        if (candidate && looksLikeSymbolIdentifier(candidate)) {
+          collected.add(candidate);
+        }
       }
+
       continue;
     }
 
@@ -806,24 +964,109 @@ function extractExportedSymbolsSection(content: string): string[] {
       continue;
     }
 
-    const matches = line.match(/`([^`]+)`/g);
-    if (!matches) {
-      continue;
-    }
+  }
 
-    for (const match of matches) {
-      const symbol = match.slice(1, -1).trim();
-      if (symbol && looksLikeSymbolIdentifier(symbol)) {
-        collected.add(symbol);
-      }
+  for (const symbol of extractMetadataExports(lines)) {
+    if (looksLikeSymbolIdentifier(symbol)) {
+      collected.add(symbol);
     }
   }
 
   return [...collected];
 }
 
+function extractMetadataExports(lines: string[]): string[] {
+  const headingPattern = /^(#{1,6})\s+(.*)$/;
+  const bulletPattern = /^\s*-\s*(.+)$/;
+  const exports = new Set<string>();
+  let inMetadata = false;
+  let metadataLevel = 0;
+
+  for (const line of lines) {
+    const headingMatch = line.match(headingPattern);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      const title = headingMatch[2].trim().toLowerCase();
+
+      if (!inMetadata && title === "metadata") {
+        inMetadata = true;
+        metadataLevel = level;
+        continue;
+      }
+
+      if (inMetadata && level <= metadataLevel) {
+        break;
+      }
+
+      continue;
+    }
+
+    if (!inMetadata) {
+      continue;
+    }
+
+    const bulletMatch = line.match(bulletPattern);
+    if (!bulletMatch) {
+      continue;
+    }
+
+    const entry = bulletMatch[1].trim();
+    const separatorIndex = entry.indexOf(":");
+    if (separatorIndex === -1) {
+      continue;
+    }
+
+    const key = entry.slice(0, separatorIndex).trim().toLowerCase();
+    if (key !== "exports") {
+      continue;
+    }
+
+    const value = entry.slice(separatorIndex + 1).trim();
+    if (!value) {
+      continue;
+    }
+
+    for (const fragment of value.split(/[,;]/)) {
+      const cleaned = fragment.replace(/`/g, "").replace(/\[/g, "").replace(/\]/g, "").trim();
+      const candidate = normalizeSymbolHeading(cleaned);
+      if (candidate) {
+        exports.add(candidate);
+      }
+    }
+  }
+
+  return [...exports];
+}
+
 function looksLikeSymbolIdentifier(candidate: string): boolean {
   return /^[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)*$/.test(candidate);
+}
+
+function normalizeSymbolHeading(raw: string): string {
+  let candidate = raw.split(" – ")[0]?.trim() ?? "";
+  if (!candidate) {
+    return "";
+  }
+
+  const wrappers: Array<[string, string]> = [
+    ["`", "`"],
+    ["**", "**"],
+    ["_", "_"],
+    ["*", "*"]
+  ];
+
+  let stripped = true;
+  while (stripped && candidate.length > 0) {
+    stripped = false;
+    for (const [start, end] of wrappers) {
+      if (candidate.startsWith(start) && candidate.endsWith(end) && candidate.length >= start.length + end.length) {
+        candidate = candidate.slice(start.length, candidate.length - end.length).trim();
+        stripped = true;
+      }
+    }
+  }
+
+  return candidate;
 }
 
 function groupDocumentSymbolOrphans(entries: DocumentSymbolOrphan[]): Array<{ document: ArtifactSummary; symbols: string[] }> {

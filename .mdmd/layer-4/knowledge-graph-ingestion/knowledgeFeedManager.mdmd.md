@@ -1,62 +1,61 @@
-# KnowledgeFeedManager (Layer 4)
+# Knowledge Feed Manager
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
-- Spec references: [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-016](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T040](../../../specs/001-link-aware-diagnostics/tasks.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-112
+- Code Path: [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts)
+- Exports: KnowledgeFeedManager, KnowledgeFeedManagerOptions, FeedConfiguration, FeedSnapshotSource, FeedStreamSource, BackoffOptions, Disposable, KnowledgeFeedManagerLogger
 
-## Exported Symbols
+## Purpose
+Coordinate knowledge-feed ingestion by loading snapshots, supervising streaming updates with exponential backoff, and surfacing healthy feed descriptors to the language server so workspace inference stays aligned with external sources.
 
-#### Disposable
-The `Disposable` interface exposes a dispose method and is returned by the onStatusChanged listener registration so observers can unsubscribe from feed health notifications.
+## Public Symbols
 
-#### KnowledgeFeedManagerLogger
-The `KnowledgeFeedManagerLogger` interface defines optional logger dependencies supplying info, warn, and error hooks so hosts can plug in structured logging without hard-coding transports.
+### KnowledgeFeedManager
+Entry-point class that boots configured feeds, validates snapshots, ingests stream events, tracks health, and exposes healthy feed descriptors to downstream consumers such as `ArtifactWatcher` and change processors.
 
-#### FeedSnapshotSource
-The `FeedSnapshotSource` descriptor identifies how to load initial snapshots, providing a label and async loader that returns an external snapshot payload.
+### KnowledgeFeedManagerOptions
+Configuration contract combining feed definitions, ingest/diagnostics collaborators, optional logger hooks, backoff tuning, and clock overrides for deterministic testing.
 
-#### FeedStreamSource
-The `FeedStreamSource` descriptor exposes a label and iterator that yields external stream events, supporting lazy async construction of stream iterables.
+### FeedConfiguration
+Describes a single feed (identifier, optional snapshot + stream descriptors, metadata) used to create per-feed workers.
 
-#### FeedConfiguration
-The `FeedConfiguration` interface captures per-feed settings: identifiers plus optional snapshot and stream descriptors with metadata.
+### FeedSnapshotSource
+Provides label and async snapshot loader for initial feed state; used when seeding the knowledge graph on bootstrap.
 
-#### BackoffOptions
-The `BackoffOptions` shape carries tuning knobs for exponential backoff (initial delay, multiplier, maximum) used by the internal scheduler.
+### FeedStreamSource
+Supplies an async iterable factory that yields streaming feed events; the manager supervises this iterator for retries and abort signals.
 
-#### KnowledgeFeedManagerOptions
-The `KnowledgeFeedManagerOptions` interface bundles feed configurations, the knowledge graph ingestor, diagnostics gateway, optional logger, backoff settings, and clock override.
+### BackoffOptions
+Parameterises the exponential backoff scheduler (initial delay, multiplier, max delay) that throttles retry timing after failures.
 
-#### KnowledgeFeedManager
-The `KnowledgeFeedManager` class coordinates feeds, ingests snapshots, consumes stream events with backoff and retry, maintains healthy feed descriptors, and notifies observers of status changes.
+### Disposable
+Return type from `onStatusChanged`, enabling observers to unsubscribe from feed health updates without leaking listeners.
 
-## Responsibility
-Coordinates external knowledge feeds: loading snapshots, streaming deltas, tracking health status, and exposing currently healthy feeds to the `ArtifactWatcher`/`LinkInferenceOrchestrator`. Applies backoff and recovery per the feed resilience strategy.
+### KnowledgeFeedManagerLogger
+Optional logger interface (info, warn, error) allowing hosts to inject structured telemetry without tying the manager to a specific logging implementation.
 
-## Internal Flow
-```mermaid
-graph TD
-  A[Load configuration] --> B[Bootstrap snapshot]
-  B -->|valid| C[Mark healthy & cache feed]
-  B -->|invalid| H[Emit diagnostic & degrade]
-  C --> D[Start stream worker]
-  D -->|event| E[Validate via KnowledgeGraphIngestor]
-  E -->|success| F[Update checkpoint]
-  E -->|failure| H
-  H --> I[Schedule backoff retry]
-```
+## Responsibilities
+- Bootstrap each configured feed: load snapshots, ingest them via `KnowledgeGraphIngestor`, and mark feeds healthy when successful.
+- Manage long-lived stream workers, piping events through the ingestor and updating diagnostics/healthy feed caches.
+- Apply exponential backoff and diagnostics updates when snapshot or stream ingestion fails, ensuring degraded feeds are observable.
+- Notify registered listeners whenever feed health changes so diagnostics views and telemetry exporters stay current.
 
-## Error Handling
-- Snapshot validation failure → status "degraded", diagnostic emitted via gateway, retry on next poll.
-- Stream error (transport/validation) → cancel worker, mark degraded, request fresh snapshot before restart.
-- Unhandled errors bubble to logger and increment feed error metrics.
+## Collaborators
+- [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) validates and persists snapshot/stream payloads.
+- [`packages/server/src/features/knowledge/feedDiagnosticsGateway.ts`](../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts) records feed health status for diagnostics surfaces.
+- [`@copilot-improvement/shared`](../../../packages/shared/src/inference/linkInference.ts) provides shared feed descriptors consumed by the language server runtime.
 
-## Observability Hooks
-- Structured logging (`info/warn/error`) for lifecycle events.
-- Diagnostics updated through `FeedDiagnosticsGateway` on status transitions.
-- Future telemetry: measure snapshot latency, stream throughput.
+## Linked Components
+- [COMP-003 – Language Server Runtime](../../layer-3/language-server-architecture.mdmd.md#imp112-knowledgefeedmanager)
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp112-knowledgefeedmanager)
 
-## Current Implementation Notes
-- Feed configuration is currently bootstrapped from static JSON descriptors under `data/knowledge-feeds/`. Each descriptor supplies a KnowledgeSnapshot that binds Layer 4 documentation to its corresponding implementation files. This keeps the runtime self-hosting while we evolve dynamic feed discovery.
-- Snapshot loaders re-read the JSON source on every initialization so updates to the descriptors propagate without requiring a server restart.
+## Evidence
+- Unit tests: [`packages/server/src/features/knowledge/knowledgeFeedManager.test.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.test.ts) validate snapshot ingestion, stream retries, and listener notifications.
+- Integration coverage: US5 ingestion suites simulate feed bootstrapping and confirm diagnostics reflect healthy/degraded transitions.
+- Manual smoke tests: `npm run graph:snapshot` + `npm run graph:audit` rely on feeds starting cleanly before audits execute.
+
+## Operational Notes
+- Feed state caches computed snapshots so repeated `getHealthyFeeds` calls avoid disk I/O.
+- Abort controllers ensure stream workers exit promptly during shutdown or restart.
+- Backoff defaults (1 s initial, ×5 multiplier, 120 s cap) balance quick recovery with protection against rapid failure loops.

@@ -1,73 +1,49 @@
-# DocDiagnosticProvider (Layer 4)
+# DocDiagnosticProvider
 
-## Source Mapping
-- Implementation: [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts)
-- Parent design: [Extension Surfaces Architecture](../../layer-3/extension-surfaces.mdmd.md)
-- Spec references: [US1](../../../specs/001-link-aware-diagnostics/spec.md#user-story-1--developers-see-the-full-impact-of-a-code-change-priority-p1), [US2](../../../specs/001-link-aware-diagnostics/spec.md#user-story-2--writers-get-drift-alerts-priority-p2), [FR-011](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-101
+- Code Path: [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts)
+- Exports: OPEN_LINKED_ARTIFACT_COMMAND, VIEW_RIPPLE_DETAILS_COMMAND, registerDocDiagnosticProvider, buildOpenActionTitle, buildRippleSummary, formatConfidenceLabel
 
-## Exported Symbols
+## Purpose
+Register the VS Code quick-fix surface for link-aware diagnostics so engineers can open the originating artifact or inspect ripple metadata directly from Problems entries.
 
-#### OPEN_LINKED_ARTIFACT_COMMAND
-The `OPEN_LINKED_ARTIFACT_COMMAND` identifier is reused wherever diagnostics jump back to the triggering artifact.
+## Public Symbols
 
-#### VIEW_RIPPLE_DETAILS_COMMAND
-The `VIEW_RIPPLE_DETAILS_COMMAND` identifier launches ripple inspection quick picks.
+### OPEN_LINKED_ARTIFACT_COMMAND
+Identifier reused wherever diagnostics jump back to the triggering artifact.
 
-#### registerDocDiagnosticProvider
-The `registerDocDiagnosticProvider` function binds the provider and registers supporting commands.
+### VIEW_RIPPLE_DETAILS_COMMAND
+Identifier that launches ripple inspection quick picks for dependent files.
 
-#### buildOpenActionTitle
-The `buildOpenActionTitle` helper generates relationship-aware quick fix titles.
+### registerDocDiagnosticProvider
+Binds the provider, registers commands, and wires up diagnostic selectors for markdown and code documents.
 
-#### buildRippleSummary
-The `buildRippleSummary` helper composes the ripple placeholder text shared between quick fixes and notifications.
+### buildOpenActionTitle
+Generates relationship-aware quick fix titles (e.g., “Open linked dependency”).
 
-#### formatConfidenceLabel
-The `formatConfidenceLabel` helper normalises confidence values into human-readable percentages.
+### buildRippleSummary
+Composes the ripple placeholder text shared between quick fixes and notifications, including depth and confidence labels.
 
-## Responsibility
-Registers the VS Code quick-fix surface for link-aware diagnostics. Provides context-aware actions that open the originating artifact for both documentation drift (`doc-drift`) and code ripple (`code-ripple`) diagnostics, and exposes a detail viewer so engineers can inspect ripple metadata (depth, relationship kind, confidence, path) without leaving the editor.
+### formatConfidenceLabel
+Normalises raw confidence values into human-readable percentages for display.
 
-## Dependencies
-- VS Code `languages.registerCodeActionsProvider` for Problems/Quick Fix integration
-- VS Code command API for `linkDiagnostics.openLinkedArtifact` and `linkDiagnostics.viewRippleDetails`
-- Workspace helper utilities (`workspace.asRelativePath`, `Uri.parse`) for path formatting
-- Diagnostic payload schema emitted by the language server (`publishDocDiagnostics`, `publishCodeDiagnostics`)
+## Collaborators
+- VS Code `languages.registerCodeActionsProvider` and `commands.registerCommand` APIs to surface quick fixes and commands.
+- Language server diagnostics publishers (`publishDocDiagnostics`, `publishCodeDiagnostics`) for payload schema.
+- Ripple metadata helpers (`workspace.asRelativePath`, URI utilities) to format navigation targets.
 
-## Data Contracts
-- Diagnostic `data` payload consumed:
-  - `triggerUri: string` – canonical file that triggered the diagnostic (required)
-  - `dependentUri?: string` / `targetUri?: string` – dependent file receiving the diagnostic
-  - `relationshipKind?: string` – edge type (documents, implements, depends_on, references)
-  - `confidence?: number` – ripple analyzer confidence (0–1)
-  - `depth?: number` – graph hop distance
-  - `path?: string[]` – ordered hop URIs including intermediate artifacts
-  - `changeEventId?: string` – originating change identifier (logged only)
-  - `linkId?: string` (legacy) – retained for backwards compatibility
-- Command arguments:
-  - `linkDiagnostics.openLinkedArtifact(triggerUri: string | Uri)`
-  - `linkDiagnostics.viewRippleDetails(LinkDiagnosticData)`
+## Linked Components
+- [COMP-001 – Diagnostics Pipeline](../../layer-3/diagnostics-pipeline.mdmd.md)
+- [COMP-002 – Extension Surfaces](../../layer-3/extension-surfaces.mdmd.md)
 
-## Core Flow
-1. **Registration** – subscribe to file-like document selectors (markdown, plaintext, TS/JS/JSX/TSX) and attach the `LinkDiagnosticCodeActionProvider`.
-2. **Action discovery** – for each diagnostic matched by `doc-drift` or `code-ripple`, parse metadata, build an "open" quick fix title contextualised by relationship kind, and register command execution payload.
-3. **Ripple inspection** – expose a secondary quick fix for `code-ripple` diagnostics that launches a Quick Pick listing the trigger, intermediate path, and dependent artifacts; selections open the chosen file for investigation.
-4. **Command execution** – `openLinkedArtifact` opens the source document; `viewRippleDetails` renders metadata summary and handles navigation to any hop in the ripple chain.
+## Evidence
+- Unit coverage: `packages/extension/src/diagnostics/docDiagnosticProvider.test.ts` validates action titles, summaries, and confidence formatting.
+- Integration coverage: `tests/integration/us1/codeImpact.test.ts` and `tests/integration/us2/markdownDrift.test.ts` assert quick-fix availability after diagnostics publish.
+- Safe-to-commit: chained runs on 2025-10-29 captured regressions when quick fix registration drifted.
 
-## Failure Modes & Guards
-- Missing or invalid `triggerUri` aborts quick-fix creation to avoid broken commands.
-- Invalid URIs in ripple metadata are filtered out before populating quick-pick items.
-- Empty metadata still surfaces user feedback via an informational message to prevent silent failures.
-
-## Observability & UX Notes
-- Quick Fix titles adapt to relationship kind (e.g., "Open linked dependency" for `depends_on`).
-- Ripple summary placeholder highlights relationship, depth, confidence, and intermediate hops using relative workspace paths for readability.
-- Duplicate quick-pick entries collapse to a single row to avoid noisy lists when trigger and dependent overlap.
-
-## Testing Notes
-- `packages/extension/src/diagnostics/docDiagnosticProvider.test.ts` validates relationship-aware titles, confidence formatting, and ripple summary composition.
-- Integration suites (`tests/integration/us1/codeImpact.test.ts`, `tests/integration/us2/markdownDrift.test.ts`) exercise the provider implicitly by asserting quick-fix availability post-diagnostic publication.
-
-## Follow-ups
-- Add hover tooltips that surface the same ripple metadata inline with the Problems entry.
-- Consider persisting the last ripple metadata view to aid acknowledgement flows planned for US3 (T042).
+## Operational Notes
+- Missing or invalid `triggerUri` aborts quick-fix creation to avoid broken commands; errors surface via informational toasts.
+- Duplicate ripple entries collapse to a single quick-pick row to keep UX concise.
+- Future enhancement: add hover tooltips that reuse `buildRippleSummary` so metadata appears without opening the quick pick.

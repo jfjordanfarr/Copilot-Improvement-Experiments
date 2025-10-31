@@ -1,29 +1,40 @@
-# settingsBridge (Layer 4)
+# settingsBridge
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/settings/settingsBridge.ts`](../../../packages/server/src/features/settings/settingsBridge.ts)
-- Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
+## Metadata
+- Layer: 4
+- Code Path: [`packages/server/src/features/settings/settingsBridge.ts`](../../../packages/server/src/features/settings/settingsBridge.ts)
+- Exports: NoiseSuppressionLevel, NoiseFilterRuntimeConfig, NoiseSuppressionRuntime, RippleRuntimeSettings, RuntimeSettings, DEFAULT_RUNTIME_SETTINGS, deriveRuntimeSettings
 - Spec references: [FR-010](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T021](../../../specs/001-link-aware-diagnostics/tasks.md)
 
-## Exported Symbols
+## Purpose
+Normalise the extension-facing `ExtensionSettings` into deterministic runtime knobs consumed by change queues, hysteresis controllers, ripple analyzers, and dependency inspectors. Supplies conservative defaults when the client omits configuration fields.
 
-#### NoiseSuppressionLevel
-`NoiseSuppressionLevel` defines the preset identifiers ("low", "medium", "high") that map to tuned suppression + hysteresis bundles.
+## Public Symbols
 
-#### NoiseFilterRuntimeConfig
-`NoiseFilterRuntimeConfig` captures the per-level filter knobs (minConfidence, optional depth/limit caps) that applyNoiseFilter consumes.
+### NoiseSuppressionLevel
+Union of preset identifiers (`"low" | "medium" | "high"`) that map user selections to tuned suppression and hysteresis bundles.
 
-#### NoiseSuppressionRuntime
-`NoiseSuppressionRuntime` combines preset metadata (level, diagnostics caps, hysteresis) with the derived `NoiseFilterRuntimeConfig` for runtime consumers.
+### NoiseFilterRuntimeConfig
+Per-level filter knobs (confidence threshold, depth/limit caps) propagated to `applyNoiseFilter` and ripple traversal.
 
-#### RippleRuntimeSettings
-`RippleRuntimeSettings` encapsulates ripple traversal bounds—maxDepth, maxResults, allowed relationship kinds, and per-layer subsets.
+### NoiseSuppressionRuntime
+Derived preset payload combining diagnostics budget, hysteresis delay, and computed `NoiseFilterRuntimeConfig`.
 
-#### deriveRuntimeSettings
-`deriveRuntimeSettings` normalises the extension's ExtensionSettings snapshot into a `RuntimeSettings` object, applying defaults and clamping overrides to safe ranges.
+### RippleRuntimeSettings
+Traversal bounds forwarded to ripple analyzers—maximum depth/results plus allowed relationship kinds segmented by document vs. code neighbors.
 
-## Responsibility
-Normalize the extension-facing ExtensionSettings into deterministic runtime knobs consumed by change queues, hysteresis controllers, ripple analyzers, and dependency inspectors. Supplies conservative defaults when the client omits configuration fields.
+### RuntimeSettings
+Top-level runtime contract returned to the server, bundling debounce interval, suppression preset, and ripple traversal constraints.
+
+### DEFAULT_RUNTIME_SETTINGS
+Conservative defaults used when the extension provides no configuration, ensuring low-noise diagnostics out of the box.
+
+### deriveRuntimeSettings
+Normalises raw `ExtensionSettings`, applies presets, clamps overrides, and returns a stable `RuntimeSettings` object for runtime consumption.
+
+## Collaborators
+- Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md)
+- Parent design: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 
 ## Output Contract
 `RuntimeSettings` contains three buckets:

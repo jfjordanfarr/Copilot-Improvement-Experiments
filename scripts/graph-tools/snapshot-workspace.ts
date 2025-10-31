@@ -9,6 +9,7 @@ import {
   GraphStore,
   KnowledgeGraphBridge,
   LinkInferenceOrchestrator,
+  createRelationshipRuleProvider,
   type KnowledgeArtifact,
   type LinkRelationship,
   type ExternalArtifact,
@@ -71,7 +72,7 @@ const DEFAULT_TIMESTAMP = "2025-01-01T00:00:00.000Z";
 const DEFAULT_DB = path.join(".link-aware-diagnostics", "link-aware-diagnostics.db");
 const DEFAULT_OUTPUT = path.join("data", "graph-snapshots", "workspace.snapshot.json");
 
-function parseArgs(argv: string[]): ParsedArgs {
+export function parseArgs(argv: string[]): ParsedArgs {
   const parsed: ParsedArgs = {
     helpRequested: false,
     quiet: false,
@@ -299,7 +300,7 @@ async function rebuildBetterSqlite3(workspaceRoot: string, quiet: boolean): Prom
   });
 }
 
-async function writeDatabaseWithRecovery(
+export async function writeDatabaseWithRecovery(
   dbPath: string,
   snapshot: ExternalSnapshot,
   options: WriteDatabaseOptions
@@ -351,7 +352,7 @@ async function verifyWorkspaceRoot(workspace: string): Promise<void> {
   }
 }
 
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
   let args: ParsedArgs;
   try {
     args = parseArgs(process.argv.slice(2));
@@ -396,18 +397,30 @@ async function main(): Promise<void> {
   };
 
   const orchestrator = new LinkInferenceOrchestrator();
+  const logInfo = args.quiet ? undefined : (message: string) => console.log(message);
+  const logWarn = args.quiet ? undefined : (message: string) => console.warn(message);
+
   const workspaceProvider = createWorkspaceIndexProvider({
     rootPath: workspaceRoot,
     implementationGlobs: orchestrationTargets.implementation,
     documentationGlobs: orchestrationTargets.documentation,
     scriptGlobs: orchestrationTargets.scripts,
-    logger: args.quiet
-      ? undefined
-      : {
-          info(message: string) {
-            console.log(message);
-          }
+    logger: logInfo
+      ? {
+          info: logInfo
         }
+      : undefined
+  });
+
+  const relationshipRuleProvider = createRelationshipRuleProvider({
+    workspaceRoot,
+    logger:
+      logInfo || logWarn
+        ? {
+            info: logInfo,
+            warn: logWarn
+          }
+        : undefined
   });
 
   if (!args.quiet) {
@@ -416,7 +429,7 @@ async function main(): Promise<void> {
 
   const result = await orchestrator.run({
     seeds: [],
-    workspaceProviders: [workspaceProvider],
+    workspaceProviders: [workspaceProvider, relationshipRuleProvider],
     contentProvider: loadContent,
     now: () => new Date(timestamp)
   });

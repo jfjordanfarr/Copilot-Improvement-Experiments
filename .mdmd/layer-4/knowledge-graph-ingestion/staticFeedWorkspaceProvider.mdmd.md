@@ -1,37 +1,39 @@
-# StaticFeedWorkspaceProvider (Layer 4)
+# Static Feed Workspace Provider
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts`](../../../packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
-- Data inputs: `data/knowledge-feeds/*.json`
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-210
+- Code Path: [`packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts`](../../../packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts)
+- Exports: StaticFeedWorkspaceProviderOptions, createStaticFeedWorkspaceProvider
 
-## Exported Symbols
+## Purpose
+Provide a resilient workspace provider that seeds the knowledge graph with static JSON fixtures when external feeds are unavailable or still stabilising.
+- Load `data/knowledge-feeds/*.json` descriptors and normalise them into artifact seeds plus evidences.
+- Offer a deterministic baseline of graph edges so ripple diagnostics stay informative during outages.
+- Supply the link inference orchestrator with workspace-scoped contributions under the `workspace-static-feed` provider ID.
 
-### `StaticFeedWorkspaceProviderOptions`
-Configuration describing the workspace root and optional logger for warning surfacing when files are missing.
+## Public Symbols
 
-### `createStaticFeedWorkspaceProvider`
-Factory that returns a workspace link provider capable of loading static feed JSON fixtures, generating artifact seeds, and emitting link evidences.
+### StaticFeedWorkspaceProviderOptions
+Configuration contract containing the workspace root and optional logger hooks used to emit warnings for missing files or unresolvable artifact paths.
 
-## Responsibility
-Expose a workspace-scope fallback provider that seeds the knowledge graph with statically defined artifacts and links when external feeds are unavailable. Reads JSON fixtures from `data/knowledge-feeds/` and produces workspace link contribution objects for the link inference orchestrator.
+### createStaticFeedWorkspaceProvider
+Factory that returns an implementation of the workspace provider contract, parsing JSON fixtures, deduplicating artifacts, and emitting evidences with default confidences when unspecified.
 
-## Internal Flow
-1. Compute the `data/knowledge-feeds` directory relative to `rootPath` and collect `.json` entries when present.
-2. For each file, parse artifacts and links, validating object shapes before use.
-3. Resolve artifact URIs using explicit `uri`, filesystem `path`, or by warning when targets do not exist.
-4. Build evidences by resolving link endpoints via alias lookup or fallback `file://` URIs, applying a default confidence of `0.95` when unspecified.
-5. Deduplicate seeds by URI and return them alongside accumulated evidences.
+## Collaborators
+- [`packages/server/src/features/knowledge/knowledgeGraphBridge.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts) activates the provider during bridge startup when static feeds are available.
+- [`packages/server/src/features/watchers/artifactWatcher.ts`](../../../packages/server/src/features/watchers/artifactWatcher.ts) consumes the emitted artifact seeds to enrich ripple diagnostics.
+- [`packages/server/src/features/knowledge/feedDiagnosticsGateway.ts`](../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts) surfaces warnings produced by the optional logger to operators.
 
-## Error Handling
-- Missing directories or files yield empty contributions without logging noise.
-- Per-file parsing errors and missing artifact paths log warnings (via optional logger) but continue processing remaining files.
-- Links missing resolvable endpoints are skipped silently, ensuring partial data does not block ingestion.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp210-staticfeedworkspaceprovider)
 
-## Observability Hooks
-- Optional logger emits warnings for unreadable files and missing artifact paths, helping operators maintain static feed fixtures.
+## Evidence
+- Exercised via [`packages/server/src/features/knowledge/knowledgeGraphBridge.test.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphBridge.test.ts), which loads static JSON feeds to verify baseline seed generation.
+- Integration coverage: US5 ingestion suites rely on static fixtures to confirm deterministic graph snapshots when feeds degrade.
+- Manual smoke: running `npm run graph:snapshot` in a workspace with `data/knowledge-feeds/bootstrap.json` ensures the provider contributes artifacts even without live feeds.
 
-## Integration Notes
-- Acts as a workspace provider ID `workspace-static-feed`, enabling tests and runtime wiring to distinguish fallback contributions.
-- Complements dynamic feeds managed by `KnowledgeFeedManager`; when external feeds fail, this provider still supplies baseline graph edges.
-- JSON schema for static feeds remains intentionally permissive; additional validation can be layered by reusing `SchemaValidator` if requirements tighten.
+## Operational Notes
+- Missing directories yield empty contributions without logging noise, enabling optional adoption.
+- Artifact URI resolution prefers explicit `uri`, then filesystem `path`, and finally warns when neither resolves.
+- Confidence defaults to `0.95` for evidences to highlight their fallback nature while keeping them actionable.

@@ -1,39 +1,42 @@
-# SCIPParser (Layer 4)
+# SCIP Parser
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/scipParser.ts`](../../../packages/server/src/features/knowledge/scipParser.ts)
-- Tests: [`packages/server/src/features/knowledge/scipParser.test.ts`](../../../packages/server/src/features/knowledge/scipParser.test.ts)
-- Upstream detector: [`feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-213
+- Code Path: [`packages/server/src/features/knowledge/scipParser.ts`](../../../packages/server/src/features/knowledge/scipParser.ts)
+- Exports: SCIPParserOptions, SCIPParser, parseSCIP
 
-## Exported Symbols
+## Purpose
+Convert SCIP indexes into external snapshots so the knowledge graph can ingest language-analyser output alongside workspace-derived intelligence.
+- Normalise document URIs to `file://` paths rooted at the workspace.
+- Emit artifacts and cross-document links for symbol definitions and references.
+- Preserve feed metadata and confidence scores for auditing.
 
-### `SCIPParserOptions`
-Parser configuration (project root, feed id, optional confidence) used to normalise URIs and annotate metadata.
+## Public Symbols
 
-### `SCIPParser`
-Parser class that converts SCIP indexes into external snapshot artifacts and links.
+### SCIPParserOptions
+Configuration passed to the parser—workspace root, feed ID, optional confidence override—used for URI normalisation and metadata labelling.
 
-### `parseSCIP`
-Wrapper function that instantiates SCIPParser and returns the snapshot in one call.
+### SCIPParser
+Parser class that traverses SCIP documents, collects artifacts, maps symbol definitions, and emits relationship edges based on reference occurrences.
 
-## Responsibility
-Normalize SCIP indexes produced by language analyzers into external snapshot objects. The parser emits code artifacts and dependency/reference links so the ingestion pipeline can merge SCIP intelligence with workspace-derived diagnostics.
+### parseSCIP
+Convenience wrapper that instantiates `SCIPParser`, performs parsing, and returns the resulting snapshot in a single call.
 
-## Internal Flow
-1. Iterate documents to create artifacts, normalizing URIs to `file://` and capturing metadata (feed ID, relative path, confidence).
-2. Build a lookup table of definitions per symbol across documents.
-3. Emit cross-document links when a reference occurrence targets a symbol defined elsewhere; mark writes as `depends_on`, reads as `references`.
-4. Return an external snapshot labeled with the feed ID and annotated with SCIP metadata.
+## Collaborators
+- [`packages/server/src/features/knowledge/feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts) invokes the parser when a feed file is classified as SCIP.
+- [`packages/shared/src/contracts/scip.ts`](../../../packages/shared/src/contracts/scip.ts) provides type definitions that describe SCIP payload structures.
+- [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts) ultimately receives the emitted snapshot through `KnowledgeGraphIngestor`.
 
-## Error Handling
-- URI normalization is best effort; failures return the raw relative path so ingestion still proceeds.
-- Confidence defaults to `0.95` but respects caller overrides for feeds with lower certainty.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp213-scipparser)
 
-## Observability Hooks
-- No direct logging; calling infrastructure surfaces parser failures. Deterministic IDs make it easy to trace generated links.
+## Evidence
+- Unit tests: [`packages/server/src/features/knowledge/scipParser.test.ts`](../../../packages/server/src/features/knowledge/scipParser.test.ts) verify artifact extraction, cross-file link generation, write/read classification, and confidence propagation.
+- Integration coverage: US5 ingestion suites include SCIP fixtures that exercise parser + ingestor wiring end to end.
+- Manual smoke: running `npm run graph:snapshot` in a workspace with `.scip` fixtures confirms parser output persists into the graph without errors.
 
-## Integration Notes
-- Only cross-document relationships generate links, keeping snapshots focused on actionable navigation edges.
-- Tests exercise artifact creation, cross-file references, write-dependency classification, language inference, and metadata propagation.
-- Designed for extension by adding new symbol role mappings or richer metadata without affecting current consumers.
+## Operational Notes
+- Cross-document references become `depends_on` for write occurrences and `references` for reads; same-document references are ignored to reduce noise.
+- URI normalisation tolerates failures by falling back to relative paths, keeping ingestion resilient to unusual data.
+- Confidence defaults to `0.95` but may be overridden per feed to reflect analyser certainty or experimental mode.

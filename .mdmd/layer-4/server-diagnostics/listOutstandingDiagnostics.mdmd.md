@@ -1,32 +1,40 @@
-# listOutstandingDiagnostics Utilities (Layer 4)
+# List Outstanding Diagnostics Utilities
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts`](../../../packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts)
-- Unit tests: [`listOutstandingDiagnostics.test.ts`](../../../packages/server/src/features/diagnostics/listOutstandingDiagnostics.test.ts)
-- Upstream data: [`GraphStore`](../../../packages/shared/src/db/graphStore.ts) diagnostic APIs
-- Downstream consumers: acknowledgement CLI/commands exposed via [`packages/extension/src/commands/acknowledgeDiagnostic.ts`](../../../packages/extension/src/commands/acknowledgeDiagnostic.ts)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-106
+- Code Path: [`packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts`](../../../packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts)
+- Exports: buildOutstandingDiagnosticsResult, mapOutstandingDiagnostic
 
-## Exported Symbols
+## Purpose
+Translate persisted diagnostic records into LSP-friendly summaries so CLI tools, extension commands, and telemetry dashboards can review unresolved ripple alerts consistently.
 
-### `buildOutstandingDiagnosticsResult`
-Aggregates persisted diagnostic records into the LSP-friendly ListOutstandingDiagnosticsResult shape.
+## Public Symbols
 
-### `mapOutstandingDiagnostic`
-Transforms a single DiagnosticRecord into a summary, resolving artifact metadata from the graph store.
+### buildOutstandingDiagnosticsResult
+Aggregates graph records into the `ListOutstandingDiagnosticsResult` response shape, normalising timestamps and optional LLM assessments.
 
-## Why This File Exists
-After ripple diagnostics emit, users need a consistent way to review what remains unresolved—especially in headless contexts (CLI, CI, telemetry dashboards). The helpers in `listOutstandingDiagnostics.ts` transform raw diagnostic records from the graph store into lightweight summaries tailored for LSP responses and tooling. By centralising this translation layer, we guarantee that every consumer sees acknowledged timestamps, artifact metadata, and link provenance in the same shape.
+### mapOutstandingDiagnostic
+Transforms a single `DiagnosticRecord` into a summary, resolving artifact metadata while tolerating missing or deleted files.
 
 ## Responsibilities
-- Convert graph records and related artifacts into ListOutstandingDiagnosticsResult payloads with ISO timestamps and optional `llmAssessment` details for each diagnostic.
-- Safely handle missing artifact references (e.g., deleted files) by returning `undefined` targets/triggers instead of throwing.
-- Provide a single place to evolve the summary schema; tests lock down field coverage so client commands stay backward compatible.
+- Read diagnostics and related artifacts from `GraphStore`, populating summaries with trigger/target URIs, acknowledgement metadata, and assessments.
+- Handle missing artifacts gracefully by returning `undefined` handles instead of throwing so downstream tooling can render partial data.
+- Keep summary evolution centralised, allowing tests to lock field coverage and clients to remain backward compatible.
 
-## Behaviour Notes
-- `mapOutstandingDiagnostic` reads both the target artifact (diagnostic location) and trigger artifact (source of ripple) to populate the summary, and now preserves any stored `LlmAssessment` so the extension tree view can surface AI guidance.
-- Artifact metadata is sourced lazily from `GraphStore.getArtifactById`, so the helper can be used in batch scripts without preloading graphs.
-- The optional `now` factory keeps payload generation deterministic in tests and repeatable in automation.
+## Collaborators
+- [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts) supplies diagnostic persistence APIs.
+- Extension acknowledgement command ([Acknowledge Diagnostics Command](../../../packages/extension/src/commands/acknowledgeDiagnostic.ts)) renders the summaries to users.
+- Drift history and acknowledgement services enrich persisted records consumed here.
 
-## Follow-ups
-- Extend summaries with acknowledgement history once UI surfaces require insight into who muted an alert and when.
-- Add pagination helpers if diagnostic volumes exceed comfort thresholds in large repositories.
+## Linked Components
+- [COMP-001 – Diagnostics Pipeline](../../layer-3/diagnostics-pipeline.mdmd.md)
+- [COMP-003 – Language Server Runtime](../../layer-3/language-server-architecture.mdmd.md)
+
+## Evidence
+- Unit tests: [`packages/server/src/features/diagnostics/listOutstandingDiagnostics.test.ts`](../../../packages/server/src/features/diagnostics/listOutstandingDiagnostics.test.ts) verify summary coverage and missing artifact handling.
+- Integration flows: acknowledgement workflows and CLI commands rely on these summaries during US3 scenarios.
+
+## Operational Notes
+- Optional `now` factory keeps payload generation deterministic during tests and scripts.
+- Future enhancements include pagination helpers and acknowledgement history enrichment once UI requirements surface.

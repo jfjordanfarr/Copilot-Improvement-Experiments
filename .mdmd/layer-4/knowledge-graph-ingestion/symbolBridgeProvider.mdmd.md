@@ -1,33 +1,36 @@
-# SymbolBridgeProvider (Layer 4)
+# Symbol Bridge Provider
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/symbolBridgeProvider.ts`](../../../packages/server/src/features/knowledge/symbolBridgeProvider.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
-- Spec references: [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-016](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-215
+- Code Path: [`packages/server/src/features/knowledge/symbolBridgeProvider.ts`](../../../packages/server/src/features/knowledge/symbolBridgeProvider.ts)
+- Exports: createSymbolBridgeProvider
 
-## Exported Symbols
+## Purpose
+Request workspace symbol intelligence from the VS Code extension and adapt the response into contributions suitable for knowledge graph ingestion.
+- Invoke the `COLLECT_WORKSPACE_SYMBOLS_REQUEST` command over the LSP transport.
+- Validate the response payload with shared zod schemas before emitting seeds, hints, and evidences.
+- Summarise symbol statistics for telemetry and diagnostics consumers.
 
-#### createSymbolBridgeProvider
-`createSymbolBridgeProvider` adapts an LSP connection into a shared workspace link provider, issuing COLLECT_WORKSPACE_SYMBOLS_REQUEST calls and normalising contributions (seeds, hints, evidences) for the knowledge graph bridge.
+## Public Symbols
 
-## Responsibility
-Bridge workspace symbol insights from the VS Code extension into the knowledge graph ingestion pipeline. The provider issues a typed request over the LSP connection, validates the payload with `zod`, and exposes structured contributions that downstream components merge into the graph.
+### createSymbolBridgeProvider
+Factory that wraps an LSP connection, skipping empty seed batches, issuing symbol collection requests, validating responses, and returning `WorkspaceLinkContribution` payloads for ingestion.
 
-## Behaviour
-- Rejects empty seed batches early to avoid unnecessary server round trips.
-- Sends `CollectWorkspaceSymbolsParams` derived from the ingestion context (`seeds`, optional `maxSeeds`).
-- Validates responses with `CollectWorkspaceSymbolsResultSchema`; malformed payloads surface warnings and throw to ensure ingestion failures are visible.
-- Logs summary statistics (files analysed, symbols visited, references resolved) via the optional logger, aiding telemetry correlation.
-- Returns `null` when the extension declines to contribute, allowing ingestion to continue with other providers.
+## Collaborators
+- [`packages/server/src/features/knowledge/knowledgeGraphBridge.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts) registers the provider when wiring ingestion services.
+- [`packages/extension/src/services/symbolBridge.ts`](../../../packages/extension/src/services/symbolBridge.ts) services the LSP request by traversing workspace symbols inside the extension.
+- [`packages/shared/src/contracts/symbols.ts`](../../../packages/shared/src/contracts/symbols.ts) defines the request/response schemas validated via zod.
 
-## Failure Handling
-- Wraps request/parse errors so callers receive actionable warnings, including schema violation details from `zod`.
-- Guards against missing contribution payloads, warning operators instead of attempting to dereference `undefined` shapes.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp215-symbolbridgeprovider)
 
-## Observability
-- Logger hooks (info/warn) emit namespaced messages (`[symbol-bridge] ...`) for ease of filtration.
-- Request identifiers reuse the shared COLLECT_WORKSPACE_SYMBOLS_REQUEST constant to track transport usage across components.
+## Evidence
+- Integration smoke: `npm run graph:snapshot` triggers the provider when the extension contributes symbol data during CLI runs.
+- Extension-side unit tests cover `registerSymbolBridge` request handling, indirectly exercising provider schema expectations.
+- Manual verification: running the inspect-symbol-neighbours CLI issues symbol bridge requests and logs `[symbol-bridge]` statistics when successful.
 
-## Follow-ups
-- Back off or retry on transient LSP failures once telemetry reveals common failure modes.
-- Expand schema to include confidence tiers or diagnostics metadata should the extension surface richer symbol insights.
+## Operational Notes
+- Returns `null` when the extension declines to contribute (e.g., feature flag disabled) so other providers continue operating.
+- Schema violations or transport errors surface warning logs and throw, ensuring ingestion halts visibly rather than ingesting malformed data.
+- Future enhancements include retry/backoff strategies once telemetry reveals transient failure modes.

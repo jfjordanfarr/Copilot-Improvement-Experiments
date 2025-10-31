@@ -1,66 +1,55 @@
-# KnowledgeGraphIngestor (Layer 4)
+# Knowledge Graph Ingestor
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
-- Spec references: [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-016](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [Research §Knowledge-Graph Schema Contract](../../../specs/001-link-aware-diagnostics/research.md#knowledge-graph-schema-contract)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-205
+- Code Path: [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts)
+- Exports: KnowledgeGraphIngestor, KnowledgeGraphIngestorOptions, KnowledgeGraphIngestorLogger, SnapshotIngestResult, StreamIngestResult
 
-## Exported Symbols
+## Purpose
+Validate, normalise, and persist knowledge-feed snapshots and stream events into the workspace graph while maintaining per-feed checkpoints and diagnostics so external intelligence remains trustworthy.
 
-#### KnowledgeGraphIngestorLogger
-The `KnowledgeGraphIngestorLogger` interface provides optional info, warn, and error hooks used for detailed ingest telemetry.
+## Public Symbols
 
-#### KnowledgeGraphIngestorOptions
-The `KnowledgeGraphIngestorOptions` interface combines the graph store, shared bridge, checkpoint store, diagnostics gateway, and optional logger or clock overrides.
+### KnowledgeGraphIngestor
+Coordinates feed ingestion: validates payloads, applies normalisation (URI canonicalisation, feed metadata tagging), persists results via `KnowledgeGraphBridge`, prunes stale artifacts, and updates diagnostics/checkpoints.
 
-#### SnapshotIngestResult
-The `SnapshotIngestResult` shape is returned from ingestSnapshot, exposing the normalized snapshot and resulting knowledge snapshot applied to the store.
+### KnowledgeGraphIngestorOptions
+Configuration contract bundling the graph store, bridge, checkpoint store, diagnostics gateway, optional logger, and clock overrides used for deterministic testing.
 
-#### StreamIngestResult
-The `StreamIngestResult` shape is returned from ingestStreamEvent, including the normalized stream event and persisted checkpoint for idempotency.
+### KnowledgeGraphIngestorLogger
+Optional logging surface (info/warn/error) to capture ingestion progress, prunes, and failure details without binding to a concrete logger.
 
-#### KnowledgeGraphIngestor
-The `KnowledgeGraphIngestor` class validates, normalizes, and persists knowledge feed snapshots and stream events while managing checkpoints and diagnostics.
+### SnapshotIngestResult
+Return type from `ingestSnapshot` exposing the feed identifier, normalised snapshot, and persisted `KnowledgeSnapshot` for observability and audit.
 
-## Responsibility
-Coordinates validation and persistence of external knowledge-graph feeds. Normalizes payloads, writes them through the shared `KnowledgeGraphBridge`, prunes stale artifacts keyed by `metadata.knowledgeFeedId`, manages per-feed checkpoints, and updates feed diagnostics.
+### StreamIngestResult
+Return type from `ingestStreamEvent` including the feed identifier, normalised stream event, and resulting checkpoint written to storage.
 
-## Process Outline
-1. **Validation** – assert payloads comply with schema contract before mutation.
-2. **Normalization** – canonicalise artifact URIs, stamp `metadata.knowledgeFeedId`, and derive deterministic artifact/link IDs.
-3. **Persistence** – forward normalized payloads to `KnowledgeGraphBridge`, record snapshot summaries, and prune artifacts whose metadata matches the feed but are absent from the payload.
-4. **Checkpointing** – persist snapshot IDs and stream sequence cursors through `FeedCheckpointStore` for replay.
-5. **Diagnostics** – mark the feed `healthy` or `degraded` via `FeedDiagnosticsGateway` and log structured context.
-6. **Observability** – emit structured console logs and telemetry hooks consumed by the manager layer.
+## Responsibilities
+- Enforce schema correctness via `assertValidSnapshot`/`assertValidStreamEvent` before mutating the graph.
+- Normalise artifacts and links (canonical URIs, deterministic IDs, feed metadata) to keep graph entries consistent across runs.
+- Apply snapshots and stream events through `KnowledgeGraphBridge`, pruning feed-owned artifacts absent from payloads to avoid drift.
+- Maintain checkpoints per feed so duplicate stream events are ignored and resyncs resume from the correct cursor.
+- Publish feed health updates to diagnostics, logging structured context for operators.
 
-## Error Modes
-- **Schema violation** → degrade feed status, skip persistence.
-- **GraphStore failure** → log error, mark degraded, rely on manager retry policy.
-- **Checkpoint write failure** → degrade feed and request snapshot rebuild on next cycle.
-- **Unknown artifact/link references** → throw, degrade, and surface diagnostics.
-- **Duplicate sequence IDs** → log as info and ignore to maintain idempotency.
+## Collaborators
+- [`packages/server/src/features/knowledge/feedCheckpointStore.ts`](../../../packages/server/src/features/knowledge/feedCheckpointStore.ts) persists last-seen snapshot/stream cursors.
+- [`packages/server/src/features/knowledge/feedDiagnosticsGateway.ts`](../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts) records healthy/degraded status with optional details.
+- [`packages/server/src/features/knowledge/schemaValidator.ts`](../../../packages/server/src/features/knowledge/schemaValidator.ts) enforces payload contracts before persistence.
+- [`packages/shared/src/knowledge/knowledgeGraphBridge.ts`](../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts) applies snapshots/events to the SQLite-backed graph store.
 
-## Observability
-- Structured `knowledge.ingestor` logs for snapshot sizes, event IDs, and timings.
-- Diagnostic status transitions surfaced via `FeedDiagnosticsGateway`.
-- Checkpoint JSON files stored under workspace storage for auditibility and manual replay.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp205-knowledgegraphingestor)
+- [COMP-003 – Language Server Runtime](../../layer-3/language-server-architecture.mdmd.md#imp205-knowledgegraphingestor)
 
-## Edge Cases
-- Empty snapshots trigger a full prune of artifacts tagged with the feed ID to avoid drift.
-- Duplicate or already processed stream cursors are ignored using the persisted checkpoint.
-- Stream events carrying URIs instead of IDs map to deterministic IDs so stored links remain consistent.
-- Workspace storage exhaustion bubbles descriptive errors and blocks the feed until addressed.
+## Evidence
+- Unit tests: [`packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts) (pending) cover snapshot pruning, stream idempotency, and diagnostics updates.
+- Integration coverage: US5 ingestion suites exercise snapshot + stream flows using LSIF fixtures.
+- Manual verification: `npm run graph:snapshot` and benchmark rebuild suites rely on this ingestor to produce deterministic artifacts/links.
 
-## Concurrency & Performance
-- `withFeedLock` serializes ingestion per feed while permitting multi-feed parallelism.
-- Snapshot application batches upserts through the existing SQLite transaction layer.
-- Stream events reuse a per-call artifact index to avoid unnecessary database lookups.
-
-## Testing Notes
-- Snapshot ingestion without artifact IDs produces deterministic IDs and metadata tagging.
-- Stream link events referencing URIs resolve to canonical IDs and refresh checkpoints.
-- Validation failures surface degraded diagnostics via the gateway.
-
-## TODO / Follow-ups
-- Decide on retention and rotation policy for checkpoint history files.
-- Add integration coverage for mixed snapshot and stream pipelines across multiple feeds.
+## Operational Notes
+- Feed-level locks prevent concurrent mutations per feed while allowing multi-feed parallelism.
+- Pruning logs the number of removed artifacts so drift is observable during feed refreshes.
+- Duplicate stream events return early using persisted checkpoints, favouring idempotency over repeated writes.
+- Failure paths re-throw after diagnostics updates to trigger manager backoff behavior.

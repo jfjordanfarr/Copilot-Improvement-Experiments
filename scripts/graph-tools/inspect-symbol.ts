@@ -39,7 +39,7 @@ const EXIT_MISSING_DB = 2;
 const EXIT_NOT_FOUND = 3;
 const EXIT_UNCAUGHT_ERROR = 4;
 
-function parseArgs(argv: string[]): ParsedArgs {
+export function parseArgs(argv: string[]): ParsedArgs {
   const parsed: ParsedArgs = {
     helpRequested: false,
     listKindsRequested: false,
@@ -230,7 +230,10 @@ function renderGroups(groups: SymbolNeighborGroup[]): void {
   }
 }
 
-function printResult(options: ParsedArgs, result: ReturnType<typeof inspectSymbolNeighbors>): number {
+export function printResult(
+  options: ParsedArgs,
+  result: ReturnType<typeof inspectSymbolNeighbors>
+): number {
   if (!result.origin) {
     console.error("No artifact matched the provided target.");
     return EXIT_NOT_FOUND;
@@ -253,7 +256,7 @@ function printResult(options: ParsedArgs, result: ReturnType<typeof inspectSymbo
   return EXIT_SUCCESS;
 }
 
-function main(): void {
+export function main(): void {
   let parsed: ParsedArgs;
   try {
     parsed = parseArgs(process.argv.slice(2));

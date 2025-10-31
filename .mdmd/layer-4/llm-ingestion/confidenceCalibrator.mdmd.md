@@ -1,30 +1,34 @@
-# ConfidenceCalibrator (Layer 4)
+# ConfidenceCalibrator
 
-## Source Mapping
-- Implementation: [`packages/shared/src/inference/llm/confidenceCalibrator.ts`](../../../packages/shared/src/inference/llm/confidenceCalibrator.ts)
+## Metadata
+- Layer: 4
+- Code Path: [`packages/shared/src/inference/llm/confidenceCalibrator.ts`](../../../packages/shared/src/inference/llm/confidenceCalibrator.ts)
+- Exports: calibrateConfidence, CalibratedRelationship, ConfidenceTier, CalibrationContext
 - Collaborators:
   - [`RelationshipExtractor`](../../../packages/shared/src/inference/llm/relationshipExtractor.ts) – produces the raw candidates we calibrate.
   - [`LlmIngestionOrchestrator`](../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts) – supplies context (existing/corroborated links) and consumes calibrated results.
 - Parent design: [LLM Ingestion Pipeline](../../layer-3/llm-ingestion-pipeline.mdmd.md)
 - Spec references: [FR-019](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T071](../../../specs/001-link-aware-diagnostics/tasks.md)
 
-## Exported Symbols
+## Purpose
+Normalize raw model confidences into repository-wide tiers, decide whether an inferred relationship is safe for diagnostics, and annotate each edge with provenance needed for audits.
 
-#### ConfidenceTier
-`ConfidenceTier` enumerates the high/medium/low buckets assigned to calibrated relationships.
+## Public Symbols
 
-#### CalibrationContext
-`CalibrationContext` supplies existing link metadata so the calibrator can decide when to promote or shadow candidates.
+### calibrateConfidence
+Primary entry point that accepts raw candidates and optional calibration context, returning enriched relationships with tiering and eligibility flags.
 
-#### CalibratedRelationship
-`CalibratedRelationship` is the enriched candidate returned by the calibrator, including eligibility flags and promotion criteria.
+### CalibratedRelationship
+Enriched relationship returned by the calibrator, including eligibility status, shadowed flag, and promotion criteria.
 
-## Responsibility
-Normalize raw model confidences into repository-wide tiers, decide whether an inferred relationship is safe for diagnostics, and annotate each edge with provenance needed for audits (`confidenceTier`, `shadowed`, `promotionCriteria`).
+### ConfidenceTier
+Enumerates the high/medium/low buckets assigned to calibrated relationships.
+
+### CalibrationContext
+Supplies existing link metadata so the calibrator can decide when to promote or shadow candidates.
 
 ## Entry Points
 - `calibrateConfidence(candidates: RawRelationshipCandidate[], context?: CalibrationContext): CalibratedRelationship[]`
-  - Applies label overrides (`high`/`medium`/`low`), numeric thresholds, and corroboration rules to each candidate before returning diagnostics-ready metadata.
 
 ## Calibration Rules
 - Respect explicit confidence labels from the model when present; otherwise clamp and evaluate numeric confidences against defaults (`high ≥ 0.8`, `medium ≥ 0.5`).

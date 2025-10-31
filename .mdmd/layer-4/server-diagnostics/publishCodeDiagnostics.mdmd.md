@@ -1,48 +1,48 @@
-# publishCodeDiagnostics (Layer 4)
+# Publish Code Diagnostics
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts)
-- Tests: implicit via integration suites `tests/integration/us1/codeImpact.test.ts` and `us5/transformRipple.test.ts`
-- Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
-- Spec references: [FR-002](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-006](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T037](../../../specs/001-link-aware-diagnostics/tasks.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-104
+- Code Path: [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts)
+- Exports: CodeChangeContext, PublishCodeDiagnosticsOptions, PublishCodeDiagnosticsResult, publishCodeDiagnostics
 
-## Exported Symbols
+## Purpose
+Publish ripple diagnostics for dependent code files while respecting suppression budgets, hysteresis windows, and acknowledgement state so Problems entries stay actionable.
 
-### `CodeChangeContext`
-Aggregated ripple payload representing a single triggering artifact change, including the change event id and inferred ripple impacts destined for dependent code files.
+## Public Symbols
 
-### `PublishCodeDiagnosticsOptions`
-Invocation contract supplying the incoming contexts, runtime settings, optional hysteresis controller, acknowledgement service, and the LSP diagnostic sender.
+### CodeChangeContext
+Aggregates change-event metadata, ripple impacts, and the originating change id for each triggering artifact.
 
-### `PublishCodeDiagnosticsResult`
-Summary metrics returned after publication, reporting how many diagnostics emitted versus those suppressed by budgets, hysteresis, acknowledgement, or missing dependents alongside noise-filter totals.
+### PublishCodeDiagnosticsOptions
+Invocation contract that supplies runtime settings, acknowledgement and hysteresis controllers, and the LSP diagnostic sender.
 
-### `publishCodeDiagnostics`
-Core workflow that trims ripple impacts, enforces suppression rules, assigns diagnostics to dependent URIs, and ships them to the LSP client while recording acknowledgement metadata.
+### PublishCodeDiagnosticsResult
+Summary counters describing emitted diagnostics and suppression reasons (budget, hysteresis, acknowledgement, missing dependents, noise filter).
 
-## Responsibility
-Transforms captured ripple impacts from code saves into LSP diagnostics, respecting suppression budgets and hysteresis rules so dependent modules receive actionable alerts without flooding the Problems view.
+### publishCodeDiagnostics
+Core workflow that trims ripple impacts, buckets diagnostics per target URI, enforces suppression layers, and dispatches results to the language client.
 
-## Behaviour
-- Accepts `CodeChangeContext` entries (artifact metadata, change event id, ripple impacts) produced by the change processor.
-- Buckets diagnostics by dependent URI, ensuring each target file receives a single batched `sendDiagnostics` call.
-- Applies three suppression layers: noise filter trims low-confidence/deep/duplicate ripple impacts, the `maxDiagnosticsPerBatch` budget enforces per-batch quotas, and hysteresis defers reciprocal alerts still cooling down.
-- Emits diagnostics carrying rich metadata (`relationshipKind`, `confidence`, `depth`, `path`, `changeEventId`) consumed by the extension for hover text and quick fixes.
+## Responsibilities
+- Consume `CodeChangeContext` batches from the change processor and normalise URIs before publishing.
+- Apply noise filtering, per-batch budgets, and hysteresis checks, logging suppression metrics for tuning.
+- Emit diagnostics enriched with relationship metadata (`relationshipKind`, `confidence`, `depth`, `path`, `changeEventId`) consumed by the extension’s quick fixes and hovers.
+- Persist acknowledgement metadata so subsequent runs respect operator decisions.
 
-## Implementation Notes
-- Message format embeds both human-friendly guidance (e.g. `linked dependency changed`) and machine-friendly data in `diagnostic.data`.
-- Utilises `normaliseDisplayPath` for problem messages so Windows paths display cleanly without `file://` schemes.
-- Records hysteresis emissions when alerts are sent to prevent immediate bounce-backs from dependent documents.
+## Collaborators
+- [`packages/server/src/features/diagnostics/acknowledgementService.ts`](../../../packages/server/src/features/diagnostics/acknowledgementService.ts) supplies acknowledgement gating.
+- [`packages/server/src/features/diagnostics/hysteresisController.ts`](../../../packages/server/src/features/diagnostics/hysteresisController.ts) manages cooldown windows.
+- [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts) persists diagnostic artefacts and acknowledgement logs.
 
-## Failure & Edge Handling
-- If ripple impacts omit URIs, the loop skips them to avoid partial diagnostics.
-- Budget exhaustion increments `suppressedByBudget`; noise filter metrics expose why ripple impacts were trimmed so operators can tune presets.
-- Pairings without dependents increment `withoutDependents`, signalling upstream gaps (e.g., missing inference edges).
+## Linked Components
+- [COMP-001 – Diagnostics Pipeline](../../layer-3/diagnostics-pipeline.mdmd.md)
+- [COMP-003 – Language Server Runtime](../../layer-3/language-server-architecture.mdmd.md)
 
-## Testing
-- Integration scenarios assert emitted diagnostics contain "linked dependency changed" and propagate through US1/US5 pipelines.
-- Unit coverage backlog: add direct tests to validate suppression counters and metadata formatting (tracked under T053 follow-up).
+## Evidence
+- Integration suites: `tests/integration/us1/codeImpact.test.ts` and `tests/integration/us5/transformRipple.test.ts` assert emitted diagnostics and metadata.
+- Safe-to-commit runs capture `publishCodeDiagnostics` regressions via ripple pipeline checks (see AI-Agent Workspace logs for 2025-10-29).
 
-## Follow-ups
-- Pipe `summary` metrics into telemetry for dashboarding once the runtime exposes metric sinks.
-- Surface suppressed contexts through the acknowledgement service to explain why a dependent didn’t receive an alert.
+## Operational Notes
+- Diagnostics messages use `normaliseDisplayPath` so Windows environments avoid `file://` noise.
+- Missing dependents increment `withoutDependents`, signalling upstream inference gaps for future bridge tooling.
+- Planned unit coverage (T053) will lock suppression counters once harness scaffolding stabilises.

@@ -1,48 +1,47 @@
-# Dependency Quick Pick (Layer 4)
+# Dependency Quick Pick
 
-## Source Mapping
-- Implementation: [`packages/extension/src/diagnostics/dependencyQuickPick.ts`](../../../packages/extension/src/diagnostics/dependencyQuickPick.ts)
-- Tests: [`packages/extension/src/diagnostics/dependencyQuickPick.test.ts`](../../../packages/extension/src/diagnostics/dependencyQuickPick.test.ts)
-- Server contract: [`INSPECT_DEPENDENCIES_REQUEST`](../../../packages/shared/src/contracts/dependencies.ts)
-- Related UI: [Diagnostics Tree](../extension-views/diagnosticsTree.mdmd.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-107
+- Code Path: [`packages/extension/src/diagnostics/dependencyQuickPick.ts`](../../../packages/extension/src/diagnostics/dependencyQuickPick.ts)
+- Exports: registerDependencyQuickPick, DependencyQuickPickController, describeEdgePath, InspectDependenciesResultValidator
 
-## Responsibility
-Provide the `linkDiagnostics.inspectDependencies` command that displays downstream artifacts impacted by a selected file. Presents a quick pick listing dependents surfaced by the server’s dependency inspection endpoint and opens the chosen artifact in the editor.
+## Purpose
+Power the `linkDiagnostics.inspectDependencies` command so users can explore downstream ripple targets via a VS Code quick pick backed by the dependency inspection LSP request.
 
-## Key Concepts
-- **DependencyQuickPickController**: Encapsulates the command handler logic and validation, enabling reuse and testing.
-- **Zod validation**: `InspectDependenciesResultSchema` hardens the client against malformed server responses before presenting data.
-- **Edge description**: `describeEdgePath` summarizes transitive chains (e.g., `via docs/api.md → src/service.ts`) to contextualize deeper dependencies.
+## Public Symbols
 
-## Exported Symbols
+### registerDependencyQuickPick
+Registers the command handler, wires dependency validation, and returns a disposable for extension activation.
 
-#### registerDependencyQuickPick
-The `registerDependencyQuickPick` function instantiates the controller and binds the VS Code command identifier.
+### DependencyQuickPickController
+Encapsulates command logic—target detection, request dispatch, result presentation—so unit tests and future surfaces can reuse the workflow.
 
-#### DependencyQuickPickController
-The `DependencyQuickPickController` class exposes the show workflow for reuse in tests and other command surfaces.
+### describeEdgePath
+Formats transitive dependency paths (for example, `via docs/api.md → src/service.ts`) into quick-pick detail strings.
 
-#### describeEdgePath
-The `describeEdgePath` helper summarizes transitive dependency paths for quick-pick detail strings.
+### InspectDependenciesResultValidator
+Zod schema that defends the client against malformed `INSPECT_DEPENDENCIES_REQUEST` responses before rendering UI.
 
-#### InspectDependenciesResultValidator
-The `InspectDependenciesResultValidator` schema allows downstream consumers to validate dependency inspection payloads.
+## Responsibilities
+- Resolve the inspection target from command arguments or active editor and bail gracefully when nothing is selected.
+- Issue `INSPECT_DEPENDENCIES_REQUEST`, validate payloads, and surface empty results with informational toasts instead of empty pickers.
+- Present workspace-relative labels with relationship detail and open the selected document once chosen.
+- Handle errors with actionable `showErrorMessage` notifications and avoid crashing command execution.
 
-## Internal Flow
-1. Resolve the target URI from command arguments or the active editor; surface an info toast when nothing is selected.
-2. Issue `INSPECT_DEPENDENCIES_REQUEST` to the language client and validate the payload via Zod schemas.
-3. Handle empty results with informational messages to avoid displaying empty quick picks.
-4. Transform edges into quick pick items with relative path labels, detail strings for transitive paths, and open the selected document.
-5. Report any request/IO errors with actionable messages.
+## Collaborators
+- [`packages/shared/src/contracts/dependencies.ts`](../../../packages/shared/src/contracts/dependencies.ts) supplies inspection request/response contracts.
+- Diagnostics tree view ([Diagnostics Tree](../extension-views/diagnosticsTree.mdmd.md)) links into the same dependency narratives for consistent UX.
+- VS Code `window.showQuickPick` and `workspace.openTextDocument` APIs deliver the UX scaffolding.
 
-## Error Handling
-- Gracefully handles cancellations (no selection) by returning early with no toast.
-- Exceptions from request, schema validation, or document open render descriptive error notifications to the user.
+## Linked Components
+- [COMP-002 – Extension Surfaces](../../layer-3/extension-surfaces.mdmd.md)
+- [COMP-001 – Diagnostics Pipeline](../../layer-3/diagnostics-pipeline.mdmd.md)
 
-## Observability Hooks
-- Relies on VS Code to display info/error notifications; no custom telemetry yet.
+## Evidence
+- Unit tests: [`packages/extension/src/diagnostics/dependencyQuickPick.test.ts`](../../../packages/extension/src/diagnostics/dependencyQuickPick.test.ts) cover happy paths, validation failures, and formatting helpers.
+- Integration coverage: dependency exploration exercised via CLI equivalents (`inspectSymbolNeighbors`) and extension smoke tests.
 
-## Integration Notes
-- Quick pick formatting relies on workspace-relative paths so teams operating in large repos can identify files quickly.
-- Schema validation shares `KnowledgeArtifactSchema` and `LinkRelationshipKindSchema`, keeping the client in sync with shared contracts.
-- Tests exercise happy paths, validation failures, and helper formatting to guard against regressions in UI presentation.
+## Operational Notes
+- Observability currently delegated to VS Code toasts; consider telemetry once adoption metrics require visibility.
+- Shared validator ensures tooling surfaces (extension, CLI) remain consistent when contracts evolve.

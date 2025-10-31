@@ -1,53 +1,55 @@
-# AcknowledgementService (Layer 4)
+# Acknowledgement Service
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/diagnostics/acknowledgementService.ts`](../../../packages/server/src/features/diagnostics/acknowledgementService.ts)
-- Unit tests: [`acknowledgementService.test.ts`](../../../packages/server/src/features/diagnostics/acknowledgementService.test.ts)
-- Collaborators:
-  - [`GraphStore`](../../../packages/shared/src/db/graphStore.ts) for diagnostic persistence and acknowledgement logs
-  - [`HysteresisController`](../../../packages/server/src/features/diagnostics/hysteresisController.ts) to release suppression windows after acknowledgement
-  - [`DriftHistoryStore`](../../../packages/server/src/telemetry/driftHistoryStore.ts) (via adapter) for durable audit logging
-  - [`RuntimeSettings`](../../../packages/server/src/features/settings/settingsBridge.ts) for noise-suppression knobs
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-105
+- Code Path: [`packages/server/src/features/diagnostics/acknowledgementService.ts`](../../../packages/server/src/features/diagnostics/acknowledgementService.ts)
+- Exports: AcknowledgementServiceOptions, AcknowledgeDiagnosticInput, ShouldEmitDiagnosticInput, RegisterDiagnosticEmissionInput, AcknowledgeOutcome, AcknowledgementService
 
-## Exported Symbols
+## Purpose
+Own acknowledgement state for ripple diagnostics so acknowledged alerts stay muted until new evidence arrives, while preserving audit trails and hysteresis alignment.
 
-### `AcknowledgementServiceOptions`
-Dependency bundle (graph store, hysteresis controller, runtime settings, drift history, logging) required to instantiate the service.
+## Public Symbols
 
-### `AcknowledgeDiagnosticInput`
-Command payload received from the extension when an operator acknowledges a diagnostic entry.
+### AcknowledgementServiceOptions
+Dependency bundle (graph store, hysteresis controller, runtime settings, drift history, logger) required to instantiate the service.
 
-### `ShouldEmitDiagnosticInput`
-Change-event metadata used to decide whether a ripple/doc diagnostic should surface again.
+### AcknowledgeDiagnosticInput
+Payload received from the extension when an operator acknowledges a diagnostic entry.
 
-### `RegisterDiagnosticEmissionInput`
-Extends the emission decision payload with message, severity, and link hints before persisting.
+### ShouldEmitDiagnosticInput
+Change-event metadata used to decide whether a ripple or doc diagnostic should surface again.
 
-### `AcknowledgeOutcome`
-Discriminated union describing acknowledgement results (acknowledged, already_acknowledged, or not_found).
+### RegisterDiagnosticEmissionInput
+Extends the emission decision payload with message, severity, and link hints before persisting emission metadata.
 
-### `AcknowledgementService`
-Core class orchestrating emission gating, acknowledgement persistence, and hysteresis lifecycle.
+### AcknowledgeOutcome
+Discriminated union describing acknowledgement results (`acknowledged`, `already_acknowledged`, `not_found`).
 
-## Why This File Exists
-Link-aware diagnostics treats every emitted warning as a contract: once a developer acknowledges it, the system must stop re-sending noise until new evidence arises. `AcknowledgementService` is the server-side owner of that contract. It decides when a ripple or doc drift diagnostic should surface, persists acknowledgement state in the graph store, and records telemetry so future sessions (and human reviewers) can see who muted an alert and why. Without this service, repeated ripple notifications would continually reopen acknowledged issues, breaking trust in the tooling.
+### AcknowledgementService
+Core class orchestrating emission gating, acknowledgement persistence, and hysteresis lifecycle updates.
 
 ## Responsibilities
-- Determine whether a new ripple impact should emit (`shouldEmitDiagnostic`) by inspecting existing graph records.
-- Register emissions (`registerEmission`) so acknowledged diagnostics can be replayed when evidence changes, including drift-history provenance and clearing any stale `llmAssessment` before returning to the active state.
-- Accept acknowledgement requests, persist acknowledgement metadata, release hysteresis locks, and log actor/notes for audit trails.
-- Update runtime behaviour when noise-suppression settings change, keeping logs in sync with current hysteresis windows.
+- Inspect existing graph records to determine whether a diagnostic should emit or remain muted.
+- Register emissions, including drift-history provenance, resetting stale LLM assessments while preserving diagnostic ids.
+- Persist acknowledgements, release hysteresis locks, and record actor notes for downstream telemetry.
+- React to runtime setting changes so suppression behaviour matches the latest noise policies.
 
-## Behaviour Notes
-- Emission registration reuses existing diagnostic ids when re-activating acknowledged entries, ensuring VS Code receives stable diagnostic handles.
-- Acknowledgements log both to `GraphStore.logAcknowledgement` and the drift history adapter so historical dashboards and future conversations explain why a diagnostic went quiet.
-- The service is intentionally synchronous: callers (e.g., `publishDocDiagnostics`) can assume persistence finished before returning to the client.
+## Collaborators
+- [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts) stores diagnostics, acknowledgements, and drift history logs.
+- [`packages/server/src/features/diagnostics/hysteresisController.ts`](../../../packages/server/src/features/diagnostics/hysteresisController.ts) governs suppression windows released after acknowledgement.
+- [`packages/server/src/telemetry/driftHistoryStore.ts`](../../../packages/server/src/telemetry/driftHistoryStore.ts) captures acknowledgement provenance for dashboards.
+- [`packages/server/src/features/settings/settingsBridge.ts`](../../../packages/server/src/features/settings/settingsBridge.ts) surfaces runtime knobs.
 
-## Error Handling & Logging
-- Missing diagnostics during acknowledgement result in a warning and a not_found outcome—callers can surface UI errors without throwing.
-- Duplicate acknowledgements short-circuit with an already_acknowledged response to keep client UX idempotent.
-- Hysteresis release warns when associated artifacts are missing, avoiding crashes if the graph was pruned.
+## Linked Components
+- [COMP-001 – Diagnostics Pipeline](../../layer-3/diagnostics-pipeline.mdmd.md)
+- [COMP-003 – Language Server Runtime](../../layer-3/language-server-architecture.mdmd.md)
 
-## Follow-ups
-- Expand the drift-history adapter once we expose acknowledgement analytics in the UI.
-- Add rate limiting or batching if acknowledgement volume grows (e.g., bulk triage from CI pipelines).
+## Evidence
+- Unit tests: [`packages/server/src/features/diagnostics/acknowledgementService.test.ts`](../../../packages/server/src/features/diagnostics/acknowledgementService.test.ts) verify emission gating, acknowledgement persistence, and hysteresis release.
+- Integration suites (US2, US3) exercise acknowledgement flows end-to-end via extension commands.
+
+## Operational Notes
+- Service runs synchronously so callers can assume persistence before returning to clients.
+- Missing diagnostics during acknowledgement warn and return `not_found`, keeping CLI and UI flows idempotent.
+- Roadmap: emit richer telemetry for dashboards once consent posture allows.

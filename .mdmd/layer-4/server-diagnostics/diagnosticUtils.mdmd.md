@@ -1,11 +1,24 @@
-# diagnosticUtils (Layer 4)
+# diagnosticUtils
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/diagnostics/diagnosticUtils.ts`](../../../packages/server/src/features/diagnostics/diagnosticUtils.ts)
-- Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md), [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
+## Metadata
+- Layer: 4
+- Code Path: [`packages/server/src/features/diagnostics/diagnosticUtils.ts`](../../../packages/server/src/features/diagnostics/diagnosticUtils.ts)
+- Exports: DiagnosticSender, normaliseDisplayPath
 
-## Responsibility
-Provides lightweight helpers shared by diagnostic publishers—currently a thin wrapper around LSP `sendDiagnostics` and normalised path formatting for human-readable messages.
+## Purpose
+Provide lightweight helpers shared by diagnostic publishers—currently a thin wrapper around LSP `sendDiagnostics` and normalised path formatting for human-readable messages.
+
+## Public Symbols
+
+### DiagnosticSender
+Interface abstraction around VS Code’s `DiagnosticCollection` so publishers can emit diagnostics via injected transports in tests and runtime environments.
+
+### normaliseDisplayPath
+Transforms file URIs into platform-appropriate display paths while leaving non-file schemes untouched, keeping Problems panel messages readable.
+
+## Collaborators
+- Parent design: [Diagnostics Pipeline Architecture](../../layer-3/diagnostics-pipeline.mdmd.md)
+- Parent design: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 
 ## Behaviour
 - `DiagnosticSender` interface abstracts the LSP transport so unit tests and integration harnesses can inject spies/stubs.

@@ -20,6 +20,7 @@ import {
   GraphStore,
   INSPECT_DEPENDENCIES_REQUEST,
   LinkInferenceOrchestrator,
+  createRelationshipRuleProvider,
   OVERRIDE_LINK_REQUEST,
   OverrideLinkRequest,
   OverrideLinkResponse,
@@ -219,6 +220,16 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
         rootPath: workspaceRootPath,
         implementationGlobs: ["src"],
         logger: connection.console
+      })
+    );
+
+    workspaceProviders.push(
+      createRelationshipRuleProvider({
+        workspaceRoot: workspaceRootPath,
+        logger: {
+          info: message => connection.console.info(message),
+          warn: message => connection.console.warn(message)
+        }
       })
     );
 

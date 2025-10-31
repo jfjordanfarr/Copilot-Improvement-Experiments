@@ -1,46 +1,60 @@
-# Integration Testing Architecture (Layer 3)
+# Integration Testing Architecture
 
-## Purpose & Scope
-Describe how the workspace exercises multi-module behaviour through end-to-end and integration scenarios. This architecture ties the VS Code harness, reusable fixtures, and scenario suites together so we can validate ripple analysis, diagnostics drift, and LLM ingestion across package boundaries.
+## Metadata
+- Layer: 3
+- Component IDs: COMP-008
 
-## Goals
-- Provide a deterministic harness that runs against built server/extension artifacts and captures regressions in user stories (`us1`–`us5`).
-- Reuse fixture workspaces so scenarios share a common vocabulary for files, relationships, and diagnostics expectations.
-- Ensure test orchestration mirrors real user workflows (build clean stage, launch VS Code driver, execute scenario suites, tear down).
-- Keep integration suites linked to their primary runtime responsibilities (diagnostics, knowledge ingestion, ripple transforms) for traceability.
+## Components
 
-## Key Components
-| Component | Location | Responsibility |
-|-----------|----------|----------------|
-| Clean dist script | [`tests/integration/clean-dist.mjs`](../../tests/integration/clean-dist.mjs) | Clears `packages/*/dist` artifacts before building to guarantee scenarios run against fresh bundles. |
-| VS Code test harness | [`tests/integration/vscode/runTests.ts`](../../tests/integration/vscode/runTests.ts), [`tests/integration/vscode/suite/index.ts`](../../tests/integration/vscode/suite/index.ts) | Spawns the VS Code integration runner and loads individual suites. |
-| Simple workspace fixture | [`tests/integration/fixtures/simple-workspace/`](../../tests/integration/fixtures/simple-workspace/) | Provides a minimal repo with docs, code, and config used by US1–US4 suites. |
-| Scenario suites | [`tests/integration/us*/**/*.test.ts`](../../tests/integration/) | Execute behaviour-focused assertions for ripple analysis, diagnostics drift, scope collisions, and LLM ingestion. |
-| LLM ingestion fixtures | [`tests/integration/us5/__fixtures__/llm-ingestion/dry-run.sample.json`](../../tests/integration/us5/__fixtures__/llm-ingestion/dry-run.sample.json) | Supplies representative dry-run payloads for ingestion verification. |
+### COMP-008 Integration Test Harness
+Supports REQ-001, REQ-030, and REQ-F1 to REQ-F5 by executing end-to-end scenarios that validate diagnostics accuracy, knowledge ingestion, and ripple behaviour across the built extension and server.
 
-## Execution Flow
-1. `npm run build` prepares extension/server bundles; `tests/integration/clean-dist.mjs` wipes stale outputs if suites run standalone.
-2. `tests/integration/vscode/runTests.ts` launches VS Code with the compiled extension and registers the mocha-based suite loader.
-3. Scenario suites (`tests/integration/us1` – `tests/integration/us5`) hydrate the simple workspace fixture, perform actions, and assert behaviour against runtime services (`ChangeProcessor`, `KnowledgeGraphBridge`, `LlmIngestionOrchestrator`).
-4. Harness utilities emit artifacts (snapshots, provenance JSON) into per-suite temp directories for post-run inspection.
+## Responsibilities
 
-## Interaction Diagram
-```
-clean-dist.mjs ──► build artifacts ──► vscode/runTests.ts ──► suite/index.ts
-                                                      │
-                                                      ▼
-                                       fixtures/simple-workspace/**/*
-                                                      │
-                                                      ▼
-                                        us* scenario suites (mocha)
-```
+### Deterministic Execution
+- Build fresh extension/server bundles before runs and clean stale artifacts with `tests/integration/clean-dist.mjs`.
+- Launch the VS Code harness (`tests/integration/vscode/runTests.ts`) to execute suites against compiled output rather than source mocks.
 
-## Observability & Maintenance
-- Suites log through mocha; failures capture fixture workspace paths for manual reproduction.
-- Snapshot outputs (e.g., `llm-ingestion-snapshots`) are kept inside temp dirs so runs stay isolated.
-- Adding a new scenario involves wiring the suite under `tests/integration/<id>/` and updating this architecture doc with its coverage area.
+### Fixture Stewardship
+- Maintain the simple workspace fixture (`tests/integration/fixtures/simple-workspace`) as the canonical testbed for US1–US4.
+- Provide specialised fixtures (LLM ingestion payloads, benchmark repos) for targeted suites without duplicating workspace state.
 
-## Related Documentation
-- Layer 4 implementation notes for individual suites reside under `.mdmd/layer-4/testing/integration/`.
-- LLM ingestion runtime design: `.mdmd/layer-3/llm-ingestion-pipeline.mdmd.md`.
-- Diagnostics pipeline architecture: `.mdmd/layer-3/diagnostics-pipeline.mdmd.md`.
+### Scenario Coverage
+- Ensure suites `us1` through `us5` cover writer, developer, scope collision, acknowledgement, and transform ripple flows.
+- Keep suite responsibilities mapped back to runtime components (diagnostics pipeline, knowledge ingestion, LLM bridge) for traceability.
+
+### Artefact Capture
+- Persist run outputs (snapshot JSON, logs, provenance files) in per-suite temp directories for inspection and regression comparisons.
+
+## Interfaces
+
+### Inbound Interfaces
+- `npm run test:integration` (and safe-to-commit) orchestrations that call the VS Code harness.
+- Fixture configuration toggles controlling which suites execute, allowing targeted regression runs.
+
+### Outbound Interfaces
+- Mocha logs and snapshot files stored under `tests/integration/.tmp` for debugging.
+- Report contributions consumed by the benchmark/reporting pipeline.
+
+## Linked Implementations
+
+### IMP-401 vscodeIntegrationHarness
+Bootstraps VS Code with compiled artifacts and loads suites. [VS Code Integration Harness](/.mdmd/layer-4/testing/integration/vscodeIntegrationHarness.mdmd.md)
+
+### IMP-402 simpleWorkspaceFixture
+Primary workspace assets used across US suites. [Simple Workspace Fixture](/.mdmd/layer-4/testing/integration/simpleWorkspaceFixture.mdmd.md)
+
+### IMP-403 us1ThroughUs5 Suites
+Scenario implementations verifying ripple, writer, developer, scope collision, and transform flows. [US Integration Suites](/.mdmd/layer-4/testing/integration/us1-codeImpactSuite.mdmd.md)
+
+### IMP-404 cleanDistUtility
+Removes stale bundles before integration runs. [Clean Dist Utility](/.mdmd/layer-4/testing/integration/cleanDistUtility.mdmd.md)
+
+## Evidence
+- Integration suites US1–US5 run inside CI and `npm run test:integration`, asserting diagnostics accuracy, acknowledgement flows, and knowledge ingestion behaviour.
+- Harness unit tests (`runTests.test.ts`, planned) verify extension attachment and suite registration.
+- Safe-to-commit orchestration depends on integration success before passing.
+
+## Operational Notes
+- Snapshot directories remain isolated per suite to ease diffing pre/post change.
+- Adding a new scenario requires extending the fixture set and documenting its responsibility here to preserve traceability.

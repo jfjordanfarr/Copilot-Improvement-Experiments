@@ -1,46 +1,51 @@
-# FeedFormatDetector (Layer 4)
+# Feed Format Detector
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts)
-- Tests: [`packages/server/src/features/knowledge/feedFormatDetector.test.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.test.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
-- Related runtime: [KnowledgeFeedManager](./knowledgeFeedManager.mdmd.md)
-- Spec references: [FR-014](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T036](../../../specs/001-link-aware-diagnostics/tasks.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-206
+- Code Path: [`packages/server/src/features/knowledge/feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts)
+- Exports: detectFormat, parseFeedFile, FeedFormat, FormatDetectionResult, ParseFeedFileOptions
 
-## Exported Symbols
+## Purpose
+Classify knowledge feed payloads (LSIF, SCIP, external snapshots) and normalise them into `ExternalSnapshot` structures so the ingestion pipeline accepts heterogeneous sources without bespoke plumbing.
 
-#### FeedFormat
-The `FeedFormat` union describes supported feed payloads (lsif, scip, external-snapshot, unknown) and guides downstream branching plus confidence thresholds.
+## Public Symbols
 
-#### FormatDetectionResult
-The `FormatDetectionResult` shape is returned from `detectFormat`, pairing the detected feed format with a confidence score so callers can decide whether to trust automatic parsing.
+### detectFormat
+Lightweight structural probe that inspects raw file content to determine LSIF, SCIP, or external snapshot formats and returns a confidence score so callers can decide whether automatic parsing is safe.
 
-#### ParseFeedFileOptions
-The `ParseFeedFileOptions` interface carries the parameters required to parse a feed file (paths, feed id, optional confidence override) and is passed through to LSIF or SCIP parser adapters.
+### parseFeedFile
+End-to-end parser that reads a feed file, runs `detectFormat`, and dispatches to LSIF or SCIP parsers (or returns the original snapshot) to produce a normalised `ExternalSnapshot` for ingestion.
 
-#### detectFormat
-The `detectFormat` function is a fast structural probe that inspects raw file content to classify LSIF, SCIP, or ready-made snapshots while avoiding expensive parsing when possible.
+### FeedFormat
+Union of supported feed formats (`lsif`, `scip`, `external-snapshot`, `unknown`) used to gate downstream parser selection and diagnostics.
 
-#### parseFeedFile
-The `parseFeedFile` function orchestrates end-to-end ingestion for a single file: it reads contents, detects format, dispatches to the appropriate parser, and normalizes the result into an external snapshot.
+### FormatDetectionResult
+Return type from `detectFormat`, pairing the detected `FeedFormat` with a confidence metric (0–1) consumed by ingestion decision logic.
 
-## Responsibility
-Normalize heterogeneous knowledge feed payloads into the internal `ExternalSnapshot` shape. Detects whether incoming files are newline-delimited LSIF, SCIP indexes, or already-conforming external snapshots, enabling downstream ingestion to treat all feeds uniformly.
+### ParseFeedFileOptions
+Parameter object accepted by `parseFeedFile`, encapsulating file path, project root, feed identifier, and optional detection confidence override.
 
-## Internal Flow
-1. Read feed file contents via `node:fs/promises`.
-2. Run `detectFormat` to classify the payload using JSON probes and schema guards.
-3. Dispatch to the appropriate parser: LSIF parser for newline JSON, SCIP parser for indexed protobuf JSON, or direct `ExternalSnapshot` hydration when the payload already matches the contract.
-4. Return a normalized `ExternalSnapshot`, or `null` when the format is unknown or parsing fails.
+## Responsibilities
+- Quickly determine the likely format of incoming feed files without loading heavy parsers unnecessarily.
+- Convert LSIF and SCIP payloads into `ExternalSnapshot` records using shared parsers.
+- Surface `null` for unknown or malformed feeds so callers can degrade gracefully and emit diagnostics.
+- Provide extension points for new feed formats by extending detection heuristics before the default branch.
 
-## Error Handling
-- JSON parse failures or format mismatches fall back to `{ format: "unknown", confidence: 0 }` to prevent throwing in the detection path.
-- Any exception during file IO or parsing is caught; the function logs a structured error and returns `null`, allowing the caller to emit diagnostics without crashing the ingestion pipeline.
+## Collaborators
+- [`packages/server/src/features/knowledge/lsifParser.ts`](../../../packages/server/src/features/knowledge/lsifParser.ts) converts newline-delimited LSIF JSON into graph snapshots.
+- [`packages/server/src/features/knowledge/scipParser.ts`](../../../packages/server/src/features/knowledge/scipParser.ts) normalises SCIP indexes into snapshot form.
+- [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts) invokes the detector during feed bootstrap and retries.
 
-## Observability Hooks
-- Structured error logging identifies the feed file path and surfaced error message when parsing cannot complete. Success paths remain quiet to avoid noisy telemetry.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp206-feedformatdetector)
 
-## Integration Notes
-- `KnowledgeFeedManager` invokes `parseFeedFile` while bootstrapping snapshots and during backoff retries, routing failures through `FeedDiagnosticsGateway`.
-- Detection heuristics can be extended to future formats (e.g., SARIF, CodeGraph) by adding discriminators prior to the default branch without affecting existing callers.
-- Confidence thresholds are fed by upstream configuration; default of `0.95` ensures downstream components only trust parsers when the detector has high certainty.
+## Evidence
+- Unit tests: [`packages/server/src/features/knowledge/feedFormatDetector.test.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.test.ts) validate detection heuristics and parsing dispatch.
+- Integration coverage: feed bootstrap flows exercised in US5 ingestion suites rely on this detector to parse LSIF fixtures.
+- Manual verification: running `npm run graph:snapshot` on workspaces with LSIF/SCIP fixtures confirms format detection emits snapshots without errors.
+
+## Operational Notes
+- Detection prioritises external snapshots before SCIP to avoid misclassifying JSON snapshots that also contain `documents` arrays.
+- Confidence defaults (0.95) align with knowledge-feed tolerances; override in options when experimenting with new formats.
+- Parser errors are logged to stderr but suppressed from bubbling to callers, enabling retry/backoff without crashing ingest loops.

@@ -1,36 +1,53 @@
-# Fallback Inference (Layer 4)
+# Fallback Inference
 
-## Source Mapping
-- Implementation: [`packages/shared/src/inference/fallbackInference.ts`](../../../packages/shared/src/inference/fallbackInference.ts)
+## Metadata
+- Layer: 4
+- Code Path: [`packages/shared/src/inference/fallbackInference.ts`](../../../packages/shared/src/inference/fallbackInference.ts)
+- Exports: ArtifactSeed, KnowledgeArtifactSummary, RelationshipHint, LLMRelationshipSuggestion, TraceOrigin, FallbackInferenceInput, FallbackInferenceOptions, FallbackLLMBridge, InferenceTraceEntry, LLMRelationshipRequest, FallbackInferenceResult, inferFallbackGraph
 - Tests: [`packages/shared/src/inference/fallbackInference.test.ts`](../../../packages/shared/src/inference/fallbackInference.test.ts)
-- Workspace providers: [`packages/shared/src/inference/linkInference.ts`](../../../packages/shared/src/inference/linkInference.ts)
+- Collaborator: [`packages/shared/src/inference/linkInference.ts`](../../../packages/shared/src/inference/linkInference.ts)
 - Parent design: [Language Server Architecture](../language-server-runtime/linkInferenceOrchestrator.mdmd.md)
 
-## Exported Symbols
+## Purpose
+Generate provisional knowledge graph artifacts and links when external feeds are unavailable by combining heuristics, hints, and optional LLM suggestions.
 
-#### ArtifactSeed
-`ArtifactSeed` captures the minimal artifact description supplied by watchers ahead of inference.
+## Public Symbols
 
-#### KnowledgeArtifactSummary
-`KnowledgeArtifactSummary` summarises persisted artifacts and assists with deduplication during inference.
+### ArtifactSeed
+Minimal artifact description supplied by watchers ahead of inference (uri, language, optional content).
 
-#### RelationshipHint
-`RelationshipHint` encodes manual hints, giving fallback inference authoritative signals when heuristics are ambiguous.
+### KnowledgeArtifactSummary
+Snapshot of persisted artifacts used for deduplication and to avoid reprocessing unchanged entries.
 
-#### LLMRelationshipSuggestion
-`LLMRelationshipSuggestion` records model-proposed relationships with confidence and rationale.
+### RelationshipHint
+Explicit signal describing known relationships that should be injected into the fallback graph despite heuristic ambiguity.
 
-#### TraceOrigin
-`TraceOrigin` tags inference traces with their provenance (heuristic, hint, or llm).
+### LLMRelationshipSuggestion
+Model-proposed relationship payload including confidence, rationale, and supporting evidence metadata.
 
-#### FallbackInferenceResult
-`FallbackInferenceResult` aggregates inferred artifacts, relationships, and trace entries produced by the pipeline.
+### TraceOrigin
+Enumerates the provenance (`"heuristic" | "hint" | "llm"`) associated with each inference trace entry.
 
-#### inferFallbackGraph
-`inferFallbackGraph` executes the fallback pipeline, merging heuristics, hints, and optional LLM suggestions into a deduplicated graph.
+### FallbackInferenceInput
+Aggregated seeds, hints, and runtime hooks passed into the fallback pipeline.
 
-## Responsibility
-Generate provisional knowledge graph artifacts and links when external feeds are unavailable. Combines lightweight heuristics, optional LLM suggestions, and explicit hints to infer relationships that keep diagnostics functional in the absence of authoritative data.
+### FallbackInferenceOptions
+Execution toggles controlling LLM usage, trace emission, and heuristic sensitivity.
+
+### FallbackLLMBridge
+Interface that adapters implement to invoke external LLMs for additional relationship context.
+
+### InferenceTraceEntry
+Structured trace describing how a relationship was produced, including origin, confidence, and rationale text.
+
+### LLMRelationshipRequest
+Request payload sent to the LLM bridge, containing prompt metadata and candidate seeds.
+
+### FallbackInferenceResult
+Aggregated output: deduplicated artifacts, relationships, and trace entries ready for orchestrator consumption.
+
+### inferFallbackGraph
+Executes the fallback pipeline, merging heuristics, hints, and optional LLM suggestions into a deduplicated graph result.
 
 ## Key Concepts
 - **ArtifactSeed**: Minimal description of workspace files provided by watchers and providers; may include inline content.

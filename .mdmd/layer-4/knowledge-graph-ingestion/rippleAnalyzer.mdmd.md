@@ -1,60 +1,48 @@
-# RippleAnalyzer (Layer 4)
+# Ripple Analyzer
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/rippleAnalyzer.ts`](../../../packages/server/src/features/knowledge/rippleAnalyzer.ts)
-- Collaborators: `GraphStore`, `RelationshipHint`, `KnowledgeArtifact`
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
-- Spec references: [FR-017](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [T041](../../../specs/001-link-aware-diagnostics/tasks.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-117
+- Code Path: [`packages/server/src/features/knowledge/rippleAnalyzer.ts`](../../../packages/server/src/features/knowledge/rippleAnalyzer.ts)
+- Exports: RippleAnalyzerLogger, RippleAnalyzerOptions, RippleAnalysisRequest, RippleHint, RippleAnalyzer
 
-## Exported Symbols
+## Purpose
+Traverse the knowledge graph around a source artifact and emit ranked ripple hints so diagnostics can explain downstream impact.
+- Canonicalise artifact URIs and expand relationship paths subject to depth/result budgets.
+- Score hints by relationship kind and hop count to surface the most relevant ripple paths.
+- Provide a reusable traversal engine shared by diagnostics publishers, quick picks, and CLI tooling.
 
-### `RippleAnalyzerLogger`
-Optional logger interface with leveled methods (debug, info, warn, error) to observe traversal behaviour without hard-coding transports.
+## Public Symbols
 
-### `RippleAnalyzerOptions`
-Constructor configuration specifying the graph store dependency, default depth/result limits, allowed relationship kinds, and logger.
+### RippleAnalyzerLogger
+Optional logger contract (debug/info/warn/error) that records traversal progress and anomalies without binding to a concrete transport.
 
-### `RippleAnalysisRequest`
-Per-call overrides enabling callers to adjust depth, result caps, allowed link kinds, target URI, or exclusion set.
+### RippleAnalyzerOptions
+Constructor parameters covering the graph store dependency, default depth/result limits, allowed relationship kinds, and logger hooks.
 
-### `RippleHint`
-Extended relationship hint emitted by the analyzer, enriching shared metadata with traversal depth and hop-by-hop path for diagnostics.
+### RippleAnalysisRequest
+Per-invocation overrides that adjust traversal depth, result caps, allowed kinds, starting URI, or exclusion sets for fine-grained queries.
 
-### `RippleAnalyzer`
-Breadth-first traversal engine that generates ripple hints from the knowledge graph while enforcing depth/result budgets and exclusion rules.
+### RippleHint
+Extended relationship hint emitted for each discovered path; carries the target artifact, relationship kind, hop depth, derived confidence, and path rationale.
 
-## Responsibility
-Traverse the knowledge graph around a source artifact and emit ranked relationship hints that describe potential ripple impacts. Normalises URIs, filters on allowed link kinds, and applies depth-based confidence scoring so downstream diagnostics can surface actionable impact predictions.
+### RippleAnalyzer
+Breadth-first traversal engine that walks relationships, enforces budgets, deduplicates results, and returns ordered ripple hints ready for diagnostics consumption.
 
-## Algorithm
-- Canonicalise source URI through `normalizeFileUri` to stabilise comparisons across schemes/path casing.
-- Seed a breadth-first queue with the source artifact and expand via `GraphStore.listLinkedArtifacts`.
-- For each linked artifact:
-  - Skip disallowed link kinds or excluded identifiers.
-  - Enforce depth and max-result limits.
-  - Record hop metadata (artifact, relationship kind, direction) so explanations include traversal paths.
-  - De-duplicate hints per `(source,target,kind)` using a composite key.
-- Halt traversal once `maxResults` is reached to protect latency budgets.
+## Collaborators
+- [`packages/shared/src/db/graphStore.ts`](../../../packages/shared/src/db/graphStore.ts) supplies linked artifact queries used for traversal expansion.
+- [`packages/server/src/runtime/changeProcessor.ts`](../../../packages/server/src/runtime/changeProcessor.ts) invokes the analyzer when assembling diagnostics payloads.
+- [`packages/server/src/features/watchers/artifactWatcher.ts`](../../../packages/server/src/features/watchers/artifactWatcher.ts) provides source artifact metadata that seeds ripple analysis.
 
-## Confidence Model
-- Base strength derives from `KIND_BASE_CONFIDENCE`, favouring strong dependency links over softer references.
-- Apply a linear penalty (`DEPTH_PENALTY`) per additional hop; clamp to `[0.1, 0.95]` and round to 3 decimals for deterministic UI.
-- Embed computed confidence and human-readable path rationale in each `RippleHint` for diagnostics panes.
+## Linked Components
+- [COMP-001 – Diagnostics Pipeline](../../layer-3/diagnostics-pipeline.mdmd.md#imp117-rippleanalyzer)
 
-## Configuration
-- Defaults: depth `3`, results `50`, allowed kinds `{depends_on, implements, documents, references}`.
-- Request-level overrides allow callers (e.g., quick pick, diagnostics) to tighten scope without rebuilding the analyzer.
-- Supports caller-specified `excludeArtifactIds` to avoid feedback loops when traversing change batches.
+## Evidence
+- Integration suites (US1 code impact, US2 markdown drift) assert ripple outputs by comparing diagnostics to expected downstream artifacts.
+- Manual smoke: running `npm run graph:audit` after code edits surfaces ripple analyses summarised in CLI output.
+- Planned follow-up: add dedicated unit tests stubbing `GraphStore` to validate BFS ordering, exclusion handling, and confidence decay.
 
-## Failure Handling
-- Logs a warning and returns empty results when the root artifact lacks a stable `id`.
-- Skips traversal edges missing identifiers to avoid populating dangling hints.
-- Guards against non-finite confidence values via `clampConfidence` fallback.
-
-## Testing
-- Exercised implicitly by integration tests that validate dependency ripple diagnostics (US1/US2 suites).
-- Unit coverage gap: Provision a focused suite that stubs `GraphStore` to assert BFS ordering, exclusion handling, and confidence decay curves.
-
-## Follow-ups
-- Expose traversal telemetry (node expansion counts, elapsed time) for observability dashboards.
-- Extend allowed-kinds filtering to support caller-provided scoring weights when richer link taxonomies are introduced.
+## Operational Notes
+- Confidence scoring clamps to `[0.1, 0.95]` and rounds to three decimals for deterministic UI snapshots.
+- Traversal skips edges missing identifiers, preferring omission over emitting low-quality hints.
+- Budget defaults (`depth=3`, `maxResults=50`) balance coverage with latency; callers can tighten or widen via request overrides.

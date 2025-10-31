@@ -1,39 +1,42 @@
-# LSIFParser (Layer 4)
+# LSIF Parser
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/knowledge/lsifParser.ts`](../../../packages/server/src/features/knowledge/lsifParser.ts)
-- Tests: [`packages/server/src/features/knowledge/lsifParser.test.ts`](../../../packages/server/src/features/knowledge/lsifParser.test.ts)
-- Upstream detector: [`feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts)
-- Parent design: [Knowledge Graph Ingestion Architecture](../../layer-3/knowledge-graph-ingestion.mdmd.md)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-214
+- Code Path: [`packages/server/src/features/knowledge/lsifParser.ts`](../../../packages/server/src/features/knowledge/lsifParser.ts)
+- Exports: LSIFParserOptions, LSIFParser, parseLSIF
 
-## Exported Symbols
+## Purpose
+Convert LSIF newline-delimited JSON exports into `ExternalSnapshot` artifacts and links so the workspace graph understands language-server output.
+- Index LSIF vertices/edges to reconstruct documents and symbol relationships.
+- Normalise URIs relative to the workspace root to maintain deterministic artifact identities.
+- Emit relationship edges that capture cross-document dependencies for diagnostics.
 
-#### LSIFParserOptions
-The `LSIFParserOptions` type carries the parser configuration (project root, feed ID, optional confidence) so URIs normalise correctly and metadata preserves deterministic provenance.
+## Public Symbols
 
-#### LSIFParser
-The `LSIFParser` class indexes LSIF vertices/edges, extracts artifacts/links, and emits an external snapshot for downstream ingestion.
+### LSIFParserOptions
+Configuration passed to the parser containing project root, feed identifier, and optional confidence override used during URI normalisation and metadata labelling.
 
-#### parseLSIF
-The `parseLSIF` helper instantiates `LSIFParser` and returns the parsed snapshot in a single call.
+### LSIFParser
+Parser class that indexes vertices, builds artifact/link tables, and outputs an external snapshot ready for ingestion.
 
-## Responsibility
-Translate LSIF newline-delimited JSON dumps into the project-wide `ExternalSnapshot` format. The parser lifts documents into artifacts and builds cross-file reference links, allowing the ingestion pipeline to fold LSIF exports into the link-aware diagnostics graph.
+### parseLSIF
+Convenience helper that instantiates `LSIFParser`, handles parsing, and returns the resulting snapshot in a single call.
 
-## Internal Flow
-1. Split the incoming LSIF dump into lines and build a typed index of vertices/edges (`buildIndex`).
-2. Convert document vertices into artifacts, normalizing URIs relative to the workspace root and attaching metadata.
-3. Walk definition/reference edges to construct `references` links between documents, skipping same-document relationships.
-4. Return an `ExternalSnapshot` with metadata describing LSIF as the source and tagging each item with the feed ID.
+## Collaborators
+- [`packages/server/src/features/knowledge/feedFormatDetector.ts`](../../../packages/server/src/features/knowledge/feedFormatDetector.ts) routes LSIF files to the parser after format detection.
+- [`packages/shared/src/contracts/lsif.ts`](../../../packages/shared/src/contracts/lsif.ts) provides structural types for LSIF payloads.
+- [`packages/server/src/features/knowledge/knowledgeGraphIngestor.ts`](../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) consumes the emitted snapshots and persists artifacts/links into the graph store.
 
-## Error Handling
-- Malformed lines are skipped with a console warning, preventing a single bad vertex from aborting the parse.
-- URI normalization falls back to the original string when conversion fails, ensuring the snapshot stays usable.
+## Linked Components
+- [COMP-005 – Knowledge Graph Ingestion](../../layer-3/knowledge-graph-ingestion.mdmd.md#imp214-lsifparser)
 
-## Observability Hooks
-- Warnings for malformed LSIF lines surface during parsing, aiding feed debugging without halting ingestion.
+## Evidence
+- Unit tests: [`packages/server/src/features/knowledge/lsifParser.test.ts`](../../../packages/server/src/features/knowledge/lsifParser.test.ts) cover artifact extraction, link reconstruction, metadata propagation, and resilience to malformed lines.
+- Integration coverage: US5 ingestion suites ship LSIF fixtures that verify end-to-end ingestion behaviour.
+- Manual smoke: `npm run graph:snapshot` with LSIF inputs logs `[workspace-index]` seed counts and confirms parser output persists without errors.
 
-## Integration Notes
-- Invoked by `feedFormatDetector.parseFeedFile` when the detector classifies input as LSIF.
-- Tests cover artifact extraction, link reconstruction, metadata population, URI normalization, and resilience to invalid lines.
-- Snapshot IDs use a timestamped prefix (`lsif-${Date.now()}`), making deduplication an upstream concern when needed.
+## Operational Notes
+- Malformed lines are skipped with warnings, preventing a single corrupt vertex from halting ingestion.
+- URI normalisation falls back to original inputs when conversion fails, keeping snapshots usable.
+- Snapshot IDs adopt `lsif-` prefixes for traceability; deduplication remains an upstream responsibility.
