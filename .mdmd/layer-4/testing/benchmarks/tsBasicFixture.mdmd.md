@@ -1,9 +1,9 @@
 # TS Basic Benchmark Fixture (Layer 4)
 
 ## Source Mapping
-- Fixture entry point: [`tests/integration/benchmarks/fixtures/ts-basic/src/index.ts`](../../../../tests/integration/benchmarks/fixtures/ts-basic/src/index.ts)
-- Expected relationships: [`tests/integration/benchmarks/fixtures/ts-basic/expected.json`](../../../../tests/integration/benchmarks/fixtures/ts-basic/expected.json)
-- Inferred relationships (capture under test): [`tests/integration/benchmarks/fixtures/ts-basic/inferred.json`](../../../../tests/integration/benchmarks/fixtures/ts-basic/inferred.json)
+- Fixture entry point: [`tests/integration/benchmarks/fixtures/typescript/basic/src/index.ts`](../../../../tests/integration/benchmarks/fixtures/typescript/basic/src/index.ts)
+- Expected relationships: [`tests/integration/benchmarks/fixtures/typescript/basic/expected.json`](../../../../tests/integration/benchmarks/fixtures/typescript/basic/expected.json)
+- Inferred relationships (capture under test): [`tests/integration/benchmarks/fixtures/typescript/basic/inferred.json`](../../../../tests/integration/benchmarks/fixtures/typescript/basic/inferred.json)
 - Parent benchmark plan: [AST Accuracy Benchmark Suite](astAccuracySuite.mdmd.md)
 
 ## Purpose

@@ -30,7 +30,7 @@ On the way to building that, we are collecting up iterative wins which progressi
 - Optional LLM access through `vscode.lm`
 
 ## Commands
-- `npm run safe:commit`: comprehensive chained linting, unit testing, integration testing, and project-derived tooling validations to ensure the workspace is structurally sound before commits land.
+- `npm run safe:commit`: comprehensive chained linting, unit testing, integration testing, and project-derived tooling validations to ensure the workspace is structurally sound before commits land. Pass `--benchmarks` to append the `npm run test:benchmarks` suite (defaults to skipping benchmarks for faster iteration).
 
 ## Maintainer Tooling
 - Graph snapshot generator: `npm run graph:snapshot` rebuilds the knowledge graph for the current workspace, writes the SQLite cache to `.link-aware-diagnostics/link-aware-diagnostics.db`, and emits a JSON fixture under `data/graph-snapshots/`. Pass `--timestamp` for reproducible history branches.

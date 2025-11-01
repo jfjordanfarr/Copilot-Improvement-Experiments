@@ -16,15 +16,16 @@ function runStep(label, command, args, options = {}) {
   }
 }
 
-function runNpmScript(label, args) {
+function runNpmScript(label, args, envOverrides = {}) {
   const npmArgs = Array.isArray(args) ? args : [args];
   const npmExecPath = process.env.npm_execpath;
+  const useNodeShim = Boolean(npmExecPath && npmExecPath.endsWith('.js'));
   const options = {
-    env: { ...process.env },
-    shell: process.platform === 'win32'
+    env: { ...process.env, ...envOverrides },
+    shell: useNodeShim ? false : process.platform === 'win32'
   };
 
-  if (npmExecPath && npmExecPath.endsWith('.js')) {
+  if (useNodeShim && npmExecPath) {
     runStep(label, process.execPath, [npmExecPath, ...npmArgs], options);
   } else {
     runStep(label, npmCommand, npmArgs, options);
@@ -47,6 +48,18 @@ function runSafeCommitCheck() {
     }
 
     runNpmScript('Verify (lint + unit + integration)', verifyArgs);
+
+    if (flags.includeBenchmarks) {
+      const benchmarkArgs = ['run', 'test:benchmarks'];
+      if (flags.benchmarkArgs.length > 0) {
+        benchmarkArgs.push('--', ...flags.benchmarkArgs);
+      }
+      const benchmarkEnv = {};
+      if (flags.mode) {
+        benchmarkEnv.BENCHMARK_MODE = flags.mode;
+      }
+      runNpmScript('Benchmarks', benchmarkArgs, benchmarkEnv);
+    }
     runNpmScript('Graph snapshot', ['run', 'graph:snapshot', '--', '--quiet']);
     runNpmScript('Graph coverage audit', ['run', 'graph:audit']);
     runNpmScript('Fixture workspace verification', ['run', 'fixtures:verify']);
@@ -95,6 +108,8 @@ function parseFlags(argv) {
   let skipGitStatus = coerceBoolean(process.env.npm_config_skip_git_status) ?? false;
   let mode = normalizeMode(process.env.BENCHMARK_MODE ?? process.env.npm_config_mode);
   let generateReport = coerceBoolean(process.env.npm_config_report) ?? false;
+  let includeBenchmarks = coerceBoolean(process.env.npm_config_benchmarks) ?? false;
+  const benchmarkArgs = [];
 
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
@@ -150,6 +165,29 @@ function parseFlags(argv) {
       continue;
     }
 
+    if (token === '--benchmarks') {
+      includeBenchmarks = true;
+      continue;
+    }
+
+    if (token === '--no-benchmarks') {
+      includeBenchmarks = false;
+      continue;
+    }
+
+    if (token === '--suite' || token.startsWith('--suite=')) {
+      const value = token.includes('=') ? token.split('=', 2)[1] : argv[index + 1];
+      if (!value) {
+        console.error('--suite requires a value');
+        process.exit(1);
+      }
+      benchmarkArgs.push('--suite', value);
+      if (!token.includes('=')) {
+        index += 1;
+      }
+      continue;
+    }
+
     if (!token.startsWith('-')) {
       const resolved = normalizeMode(token);
       if (!resolved) {
@@ -168,7 +206,7 @@ function parseFlags(argv) {
     skipGitStatus = true;
   }
 
-  return { skipGitStatus, mode, generateReport };
+  return { skipGitStatus, mode, generateReport, includeBenchmarks, benchmarkArgs };
 }
 
 function normalizeMode(candidate) {

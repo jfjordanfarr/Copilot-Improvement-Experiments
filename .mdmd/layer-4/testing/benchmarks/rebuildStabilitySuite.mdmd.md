@@ -2,7 +2,7 @@
 
 ## Source Mapping
 - Planned test: [`tests/integration/benchmarks/rebuildStability.test.ts`](../../../../tests/integration/benchmarks/rebuildStability.test.ts)
-- Fixture orchestration: [`tests/integration/fixtures/fixtures.manifest.json`](../../../../tests/integration/fixtures/fixtures.manifest.json)
+- Fixture orchestration: [`tests/integration/benchmarks/fixtures/fixtures.manifest.json`](../../../../tests/integration/benchmarks/fixtures/fixtures.manifest.json)
 - Graph snapshot tooling: [`scripts/graph-tools/snapshot-workspace.ts`](../../../../scripts/graph-tools/snapshot-workspace.ts)
 - Design overview: [Benchmark & Telemetry Reporting](../../../layer-3/benchmark-telemetry-pipeline.mdmd.md)
 - Tasks: [T057](../../../../specs/001-link-aware-diagnostics/tasks.md), [T062](../../../../specs/001-link-aware-diagnostics/tasks.md)
@@ -18,10 +18,10 @@ Measure how deterministically the workspace graph reconstructs across repeated r
 - Cleans up temporary artifacts between iterations to avoid polluting subsequent runs.
 
 ## Interactions
-- Consumed by `npm run verify -- --report` and optionally `npm run benchmarks:stability` (planned dedicated script).
+- Consumed by `npm run verify -- --report` and can be targeted with `npm run test:benchmarks -- --rebuild-only` when isolating rebuild measurements.
 - Writes results to a temporary JSON file consumed by `generateTestReport.ts`.
 - Leverages telemetry trackers (latency + inference) to enrich the stability metrics when available.
 
 ## Evidence
-- Integration run logs (captured in `docs/test-report.md`) will include drift tables and rebuild timing benchmarks.
+- Integration run logs (captured in `reports/test-report.md`) will include drift tables and rebuild timing benchmarks.
 - Follow-up unit helpers (`tests/integration/benchmarks/utils/rebuildComparison.test.ts`, planned) cover diffing logic independently.

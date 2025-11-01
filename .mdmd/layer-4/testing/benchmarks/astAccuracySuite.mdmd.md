@@ -19,8 +19,8 @@ Quantify how accurately the pseudocode AST matches ground-truth language-specifi
 - Provides configurable tolerance thresholds to ignore low-impact misses or mark critical regressions.
 
 ## Interactions
-- Executed as part of the full verification pipeline; can also be invoked independently for focused accuracy audits.
-- Feeds metrics directly into the test report generator, which embeds tables and links to raw JSON artifacts in `docs/test-report.md`.
+- Executed as part of the full verification pipeline; can also be invoked independently via `npm run test:benchmarks -- --ast-only` for focused accuracy audits.
+- Feeds metrics directly into the test report generator, which embeds tables and links to raw JSON artifacts in `reports/test-report.md`.
 - Optionally emits VS Code output (via planned command) for manual diagnosis when developers run the suite locally.
 
 ## Evidence

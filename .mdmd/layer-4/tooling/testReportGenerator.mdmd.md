@@ -8,7 +8,7 @@
 - Tasks: [T051](../../../specs/001-link-aware-diagnostics/tasks.md), [T062](../../../specs/001-link-aware-diagnostics/tasks.md)
 
 ## Purpose
-Produce a durable `docs/test-report.md` artifact that captures the outcome of regression, benchmark, and telemetry runs so stakeholders can audit accuracy and performance trends without re-running the suites.
+Produce a durable `reports/test-report.md` artifact that captures the outcome of regression, benchmark, and telemetry runs so stakeholders can audit accuracy and performance trends without re-running the suites.
 
 ## Behaviour
 - Consumes structured JSON emitted by `npm run verify -- --report`, merging unit, integration, benchmark, and telemetry sections.

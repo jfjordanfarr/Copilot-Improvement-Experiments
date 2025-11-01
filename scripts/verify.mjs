@@ -18,12 +18,13 @@ function runStep(label, command, args, options = {}) {
 function runNpmScript(label, args, env) {
   const npmArgs = Array.isArray(args) ? args : [args];
   const npmExecPath = process.env.npm_execpath;
+  const useNodeShim = Boolean(npmExecPath && npmExecPath.endsWith(".js"));
   const options = {
     env: { ...process.env, ...env },
-    shell: process.platform === "win32"
+    shell: useNodeShim ? false : process.platform === "win32"
   };
 
-  if (npmExecPath && npmExecPath.endsWith(".js")) {
+  if (useNodeShim && npmExecPath) {
     runStep(label, process.execPath, [npmExecPath, ...npmArgs], options);
   } else {
     runStep(label, npmCommand, npmArgs, options);

@@ -4,7 +4,7 @@
 - Layer: 4
 - Implementation ID: IMP-321
 - Code Path: [`scripts/verify.mjs`](../../../scripts/verify.mjs)
-- Related Docs: [`benchmark-telemetry-pipeline`](../layer-3/benchmark-telemetry-pipeline.mdmd.md)
+- Related Docs: [`benchmark-telemetry-pipeline`](../../layer-3/benchmark-telemetry-pipeline.mdmd.md)
 
 ## Purpose
 Drive the standard verification gate (`lint`, `unit`, `integration`, optional report generation) while propagating `BENCHMARK_MODE` and report flags across npm subprocesses. Ensures local runs and CI share the same execution contract.

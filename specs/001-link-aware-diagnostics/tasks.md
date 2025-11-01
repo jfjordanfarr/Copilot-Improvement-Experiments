@@ -152,12 +152,12 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T048 Update walkthrough with delete/rebind workflow and settings table in `specs/001-link-aware-diagnostics/quickstart.md`
 - [x] T049 [P] Add CI script `ci-check` to root `package.json` invoking headless validation
 - [x] T050 [P] Document constitution alignment, consent controls, and configuration guidance in `README.md`
-- [ ] T051 Execute full regression suite via `tests/integration/` runner and record results in `docs/test-report.md`
+- [ ] T051 Execute full regression suite via `tests/integration/` runner and record results in `reports/test-report.md`
 - [x] T052 Instrument diagnostic latency telemetry in `packages/server/src/telemetry/latencyTracker.ts`
 - [x] T053 [P] Add performance validation test `tests/integration/perf/diagnosticLatency.test.ts`
 - [x] T057 Establish benchmark workspace automation in `tests/integration/benchmarks/rebuildStability.test.ts` measuring link graph reproducibility
 - [x] T058 [P] Capture inference accuracy metrics and reporting pipeline in `packages/server/src/telemetry/inferenceAccuracy.ts`
-- [ ] T060 Curate AST-backed benchmark repos (starting with C and at least one additional language) under `tests/integration/benchmarks/ast-fixtures/`
+- [x] T060 Curate AST-backed benchmark repos (starting with C and at least one additional language) under `tests/integration/benchmarks/ast-fixtures/`
 - [x] T061 Implement AST comparison harness in `tests/integration/benchmarks/astAccuracy.test.ts` that reconciles inferred graphs with canonical ASTs
 - [ ] T062 Integrate dual-mode benchmark selection (AST vs self-similarity) into CI via root `package.json` scripts and `npm run ci-check`
 - [x] T073 [P] Author SlopCop markdown audit CLI docs in `.mdmd/layer-4/tooling/slopcopMarkdownLinks.mdmd.md`
@@ -166,6 +166,13 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T076 Implement SlopCop symbol CLI (`scripts/slopcop/check-symbols.ts`) with fixture-backed regression test in `packages/shared/src/tooling/slopcopSymbolsCli.test.ts`
 - [x] T077 Update safe-to-commit, README, and MDMD docs to cover asset + symbol audits and their configuration gates
 - [x] T078 [P] Wire the local Ollama bridge (shared helper, CLI fallback, harness defaults) across `packages/extension`, `packages/shared`, `scripts/ollama`, and integration docs
+- [ ] T087 Curate external TypeScript benchmark snapshot from `sindresorhus/ky` and integrate it under `tests/integration/benchmarks/fixtures/typescript/ky` with accompanying manifest entry and documentation links.
+- [ ] T088 Curate external C benchmark snapshot from `libuv/libuv`, trimming to a deterministic subsystem (e.g., filesystem or TCP loop) and landing it under `tests/integration/benchmarks/fixtures/c/libuv` with updated AST expectations.
+- [ ] T089 Curate external Python benchmark snapshot from `psf/requests`, capturing the session/adapter layering under `tests/integration/benchmarks/fixtures/python/requests` and documenting dynamic import considerations.
+- [ ] T090 Curate external Rust benchmark snapshot from `rust-lang/log`, representing macro and trait usage under `tests/integration/benchmarks/fixtures/rust/log` with macro-expansion notes.
+- [ ] T091 Curate external Java benchmark snapshot from `square/okhttp`, focusing on the core client and interceptors under `tests/integration/benchmarks/fixtures/java/okhttp` with builder pattern coverage in the manifest.
+- [ ] T092 Curate external Ruby benchmark snapshot from `ruby-grape/grape`, preserving the DSL-heavy router under `tests/integration/benchmarks/fixtures/ruby/grape` and annotating runtime DSL edges.
+- [ ] T093 Curate external Java benchmark snapshot from `apache/commons-lang`, selecting representative utility modules under `tests/integration/benchmarks/fixtures/java/commons-lang` and documenting scope exclusions.
 
 ---
 

@@ -4,8 +4,17 @@
       "id": "ts-basic",
       "label": "TypeScript module graph smoke sample",
       "language": "typescript",
-      "path": "ts-basic",
+      "path": "typescript/basic",
       "modes": ["self-similarity", "ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "ts-layered",
+      "label": "TypeScript layered reporting service",
+      "language": "typescript",
+      "path": "typescript/layered",
+      "modes": ["ast"],
       "expected": "expected.json",
       "inferred": "inferred.json"
     },
@@ -13,7 +22,16 @@
       "id": "c-basics",
       "label": "C translation unit with header inclusion",
       "language": "c",
-      "path": "c-basics",
+      "path": "c/basics",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "c-modular",
+      "label": "C pipeline spanning multiple headers",
+      "language": "c",
+      "path": "c/modular",
       "modes": ["ast"],
       "expected": "expected.json",
       "inferred": "inferred.json"
@@ -22,7 +40,16 @@
       "id": "python-basics",
       "label": "Python module imports and validation",
       "language": "python",
-      "path": "python-basics",
+      "path": "python/basics",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "python-pipeline",
+      "label": "Python reporting pipeline with validators",
+      "language": "python",
+      "path": "python/pipeline",
       "modes": ["ast"],
       "expected": "expected.json",
       "inferred": "inferred.json"
@@ -31,7 +58,52 @@
       "id": "rust-basics",
       "label": "Rust crate with helper modules",
       "language": "rust",
-      "path": "rust-basics",
+      "path": "rust/basics",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "rust-analytics",
+      "label": "Rust analytics crate with IO and metrics",
+      "language": "rust",
+      "path": "rust/analytics",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "java-basic",
+      "label": "Java reporting application",
+      "language": "java",
+      "path": "java/basic",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "java-service",
+      "label": "Java analytics service with layered modules",
+      "language": "java",
+      "path": "java/service",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "ruby-basic",
+      "label": "Ruby module graph for summary reporting",
+      "language": "ruby",
+      "path": "ruby/basic",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "ruby-cli",
+      "label": "Ruby CLI with layered services",
+      "language": "ruby",
+      "path": "ruby/cli",
       "modes": ["ast"],
       "expected": "expected.json",
       "inferred": "inferred.json"

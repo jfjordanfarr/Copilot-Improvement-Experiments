@@ -16,7 +16,7 @@ Persist structured benchmark results to a deterministic location so the verifica
 
 ## Interactions
 - [`rebuildStability.test.ts`](../../../../tests/integration/benchmarks/rebuildStability.test.ts) records the results of each snapshot iteration for later graph comparison and regression detection.
-- Future benchmark suites (AST accuracy, latency dashboards) can share the utility to emit machine-readable outputs consumed by `docs/test-report.md` once that report writer lands.
+- Future benchmark suites (AST accuracy, latency dashboards) can share the utility to emit machine-readable outputs consumed by `reports/test-report.md` once that report writer lands.
 
 ## Evidence
 - Invoked by the rebuild stability benchmark during `npm run test:integration`, producing JSON fixtures under `AI-Agent-Workspace/tmp/benchmarks` that back the graph drift assertions.

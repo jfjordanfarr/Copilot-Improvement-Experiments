@@ -1,0 +1,9 @@
+[
+  { "source": "src/index.ts", "target": "src/services/reportService.ts", "relation": "imports" },
+  { "source": "src/services/reportService.ts", "target": "src/services/dataService.ts", "relation": "imports" },
+  { "source": "src/services/reportService.ts", "target": "src/utils/format.ts", "relation": "imports" },
+  { "source": "src/services/reportService.ts", "target": "src/models/widget.ts", "relation": "uses" },
+  { "source": "src/utils/format.ts", "target": "src/models/widget.ts", "relation": "imports" },
+  { "source": "src/utils/format.ts", "target": "src/repositories/storage.ts", "relation": "imports" },
+  { "source": "src/repositories/storage.ts", "target": "src/models/widget.ts", "relation": "imports" }
+]

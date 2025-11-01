@@ -1,0 +1,8 @@
+[
+  { "source": "src/main.rs", "target": "src/analytics.rs", "relation": "uses" },
+  { "source": "src/main.rs", "target": "src/io.rs", "relation": "imports" },
+  { "source": "src/analytics.rs", "target": "src/metrics.rs", "relation": "imports" },
+  { "source": "src/analytics.rs", "target": "src/models.rs", "relation": "uses" },
+  { "source": "src/metrics.rs", "target": "src/models.rs", "relation": "uses" },
+  { "source": "src/metrics.rs", "target": "src/io.rs", "relation": "imports" }
+]

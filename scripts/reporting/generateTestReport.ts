@@ -15,7 +15,7 @@ interface CliOptions {
   benchmarkDir: string;
 }
 
-const DEFAULT_OUTPUT = path.resolve(process.cwd(), "docs", "test-report.md");
+const DEFAULT_OUTPUT = path.resolve(process.cwd(), "reports", "test-report.md");
 const DEFAULT_BENCHMARK_DIR = path.resolve(process.cwd(), "AI-Agent-Workspace", "tmp", "benchmarks");
 
 async function main() {

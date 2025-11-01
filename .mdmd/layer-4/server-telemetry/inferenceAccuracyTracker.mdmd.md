@@ -19,7 +19,7 @@ Track how closely pseudocode AST inference aligns with ground-truth AST fixtures
 
 ## Interactions
 - Benchmarks (`astAccuracy.test.ts`) invoke `recordOutcome` APIs while comparing inferred edges against canonical AST fixtures.
-- Report generator requests `snapshot({ reset?: boolean })` to embed metrics into `docs/test-report.md`.
+- Report generator requests `snapshot({ reset?: boolean })` to embed metrics into `reports/test-report.md`.
 - CLI tooling can expose `linkDiagnostics.getInferenceAccuracy` (planned) mirroring latency telemetry for manual inspection.
 
 ## Evidence

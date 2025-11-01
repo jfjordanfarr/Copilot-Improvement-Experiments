@@ -8,7 +8,7 @@ The fixture verification harness keeps every sample workspace in a reproducible,
 
 - Command: `npm run fixtures:verify`
 - Implementation: [`scripts/fixture-tools/verify-fixtures.ts`](../../scripts/fixture-tools/verify-fixtures.ts)
-- Manifest: [`tests/integration/fixtures/fixtures.manifest.json`](../../tests/integration/fixtures/fixtures.manifest.json)
+- Manifest: [`tests/integration/benchmarks/fixtures/fixtures.manifest.json`](../../tests/integration/benchmarks/fixtures/fixtures.manifest.json)
 
 ## Workflow
 
