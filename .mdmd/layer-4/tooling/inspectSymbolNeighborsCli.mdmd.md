@@ -38,3 +38,4 @@ Renders traversal outcomes as JSON or grouped text, echoing hop depths and confi
 - Exit codes differentiate invalid args (1), missing DB (2), unresolved target (3), and unexpected errors (4) so scripts can react precisely.
 - `--list-kinds` prints recognised relationship kinds, helping contributors discover new graph edges during development.
 - When reading from `--file`, the CLI converts paths to `file://` URIs automatically; use `--uri` for remote artifacts emitted by future graph providers.
+- Future improvement: add optional hop-grouped output or relationship-kind filters so large traversals surface the most relevant neighbours without manual post-processing.

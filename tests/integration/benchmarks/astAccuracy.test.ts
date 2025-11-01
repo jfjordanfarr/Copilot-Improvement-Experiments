@@ -12,70 +12,179 @@ interface EdgeDefinition {
   relation?: string;
 }
 
+interface FixtureManifestEntry {
+  id: string;
+  label?: string;
+  language?: string;
+  path: string;
+  modes?: string[];
+  expected: string;
+  inferred: string;
+}
+
+interface FixtureManifest {
+  fixtures: FixtureManifestEntry[];
+}
+
+interface FixtureTotals {
+  truePositives: number;
+  falsePositives: number;
+  falseNegatives: number;
+  precision: number | null;
+  recall: number | null;
+  f1Score: number | null;
+}
+
+interface FixtureResult {
+  id: string;
+  label?: string;
+  language?: string;
+  totals: FixtureTotals;
+  truePositives: EdgeDefinition[];
+  falsePositives: EdgeDefinition[];
+  falseNegatives: EdgeDefinition[];
+}
+
 const REPO_ROOT = getRepoRoot(__dirname);
-const FIXTURE_ROOT = resolveRepoPath("tests", "integration", "benchmarks", "fixtures", "ts-basic");
+const FIXTURE_ROOT = resolveRepoPath("tests", "integration", "benchmarks", "fixtures");
+const MANIFEST_PATH = path.join(FIXTURE_ROOT, "fixtures.manifest.json");
 const PRECISION_THRESHOLD = Number(process.env.BENCHMARK_PRECISION_THRESHOLD ?? "0.6");
 const RECALL_THRESHOLD = Number(process.env.BENCHMARK_RECALL_THRESHOLD ?? "0.6");
+const BENCHMARK_MODE = (process.env.BENCHMARK_MODE ?? "self-similarity").toLowerCase();
 
 const requireModule = createRequire(__filename);
 
 suite("T061: AST accuracy benchmark", () => {
-  test("computes inference accuracy metrics against ground truth", async () => {
-    const expected = await loadEdges(path.join(FIXTURE_ROOT, "expected.json"));
-    const inferred = await loadEdges(path.join(FIXTURE_ROOT, "inferred.json"));
+  test("computes inference accuracy metrics against ground truth", async function () {
+    const manifest = await loadManifest(MANIFEST_PATH);
+    const fixtures = selectFixtures(manifest, BENCHMARK_MODE);
+
+    if (fixtures.length === 0) {
+      this.skip();
+      return;
+    }
 
     const tracker = new (getInferenceAccuracyTracker())();
-    const expectedMap = new Map<string, EdgeDefinition>();
-    const inferredSet = new Set<string>();
+    const fixtureResults: FixtureResult[] = [];
 
-    for (const edge of expected) {
-      const key = edgeKey(edge);
-      expectedMap.set(key, edge);
+    for (const fixture of fixtures) {
+      const comparison = await evaluateFixture(fixture, tracker);
+      fixtureResults.push(comparison);
     }
 
-    for (const edge of inferred) {
-      const key = edgeKey(edge);
-      inferredSet.add(key);
-    }
+    const snapshot = tracker.snapshot({ reset: true });
+    const totals = snapshot.totals;
 
-    const falseNegatives: EdgeDefinition[] = [];
-    const falsePositives: EdgeDefinition[] = [];
-    const truePositives: EdgeDefinition[] = [];
-
-    for (const edge of expected) {
-      const key = edgeKey(edge);
-      if (inferredSet.has(key)) {
-        tracker.recordOutcome({ benchmarkId: "ts-basic", outcome: "truePositive", artifactUri: edge.source, relation: edge.relation });
-        truePositives.push(edge);
-      } else {
-        tracker.recordOutcome({ benchmarkId: "ts-basic", outcome: "falseNegative", artifactUri: edge.source, relation: edge.relation });
-        falseNegatives.push(edge);
-      }
-    }
-
-    for (const edge of inferred) {
-      const key = edgeKey(edge);
-      if (!expectedMap.has(key)) {
-        tracker.recordOutcome({ benchmarkId: "ts-basic", outcome: "falsePositive", artifactUri: edge.source, relation: edge.relation });
-        falsePositives.push(edge);
-      }
-    }
-
-    const summary = tracker.snapshot({ reset: true });
-    const metrics = summary.totals;
-
-    assert.ok(metrics.precision !== null && metrics.precision >= PRECISION_THRESHOLD, `Precision ${metrics.precision ?? 0} fell below threshold ${PRECISION_THRESHOLD}`);
-    assert.ok(metrics.recall !== null && metrics.recall >= RECALL_THRESHOLD, `Recall ${metrics.recall ?? 0} fell below threshold ${RECALL_THRESHOLD}`);
+    assert.ok(
+      totals.precision !== null && totals.precision >= PRECISION_THRESHOLD,
+      `Precision ${totals.precision ?? 0} fell below threshold ${PRECISION_THRESHOLD}`
+    );
+    assert.ok(
+      totals.recall !== null && totals.recall >= RECALL_THRESHOLD,
+      `Recall ${totals.recall ?? 0} fell below threshold ${RECALL_THRESHOLD}`
+    );
 
     await writeBenchmarkResult("ast-accuracy", {
-      benchmarkId: "ts-basic",
-      totals: metrics,
-      truePositives,
-      falsePositives,
-      falseNegatives
+      mode: BENCHMARK_MODE,
+      thresholds: {
+        precision: PRECISION_THRESHOLD,
+        recall: RECALL_THRESHOLD
+      },
+      totals,
+      fixtures: fixtureResults
     });
   });
 });
+
+async function evaluateFixture(fixture: FixtureManifestEntry, tracker: TrackerInstance): Promise<FixtureResult> {
+  const root = path.join(FIXTURE_ROOT, fixture.path);
+  const expected = await loadEdges(path.join(root, fixture.expected));
+  const inferred = await loadEdges(path.join(root, fixture.inferred));
+
+  const expectedMap = new Map<string, EdgeDefinition>();
+  const inferredSet = new Set<string>();
+
+  for (const edge of expected) {
+    expectedMap.set(edgeKey(edge), edge);
+  }
+
+  for (const edge of inferred) {
+    inferredSet.add(edgeKey(edge));
+  }
+
+  const falseNegatives: EdgeDefinition[] = [];
+  const falsePositives: EdgeDefinition[] = [];
+  const truePositives: EdgeDefinition[] = [];
+
+  for (const edge of expected) {
+    const key = edgeKey(edge);
+    if (inferredSet.has(key)) {
+      tracker.recordOutcome({
+        benchmarkId: fixture.id,
+        outcome: "truePositive",
+        artifactUri: edge.source,
+        relation: edge.relation
+      });
+      truePositives.push(edge);
+    } else {
+      tracker.recordOutcome({
+        benchmarkId: fixture.id,
+        outcome: "falseNegative",
+        artifactUri: edge.source,
+        relation: edge.relation
+      });
+      falseNegatives.push(edge);
+    }
+  }
+
+  for (const edge of inferred) {
+    const key = edgeKey(edge);
+    if (!expectedMap.has(key)) {
+      tracker.recordOutcome({
+        benchmarkId: fixture.id,
+        outcome: "falsePositive",
+        artifactUri: edge.source,
+        relation: edge.relation
+      });
+      falsePositives.push(edge);
+    }
+  }
+
+  const totals: FixtureTotals = calculateTotals(truePositives.length, falsePositives.length, falseNegatives.length);
+
+  return {
+    id: fixture.id,
+    label: fixture.label,
+    language: fixture.language,
+    totals,
+    truePositives,
+    falsePositives,
+    falseNegatives
+  };
+}
+
+async function loadManifest(filePath: string): Promise<FixtureManifest> {
+  const raw = await fs.readFile(filePath, "utf8");
+  const parsed = JSON.parse(raw) as FixtureManifest;
+  if (!parsed || !Array.isArray(parsed.fixtures)) {
+    throw new Error(`Invalid AST benchmark manifest at ${filePath}`);
+  }
+  return parsed;
+}
+
+function selectFixtures(manifest: FixtureManifest, mode: string): FixtureManifestEntry[] {
+  if (mode === "all") {
+    return manifest.fixtures;
+  }
+
+  return manifest.fixtures.filter(entry => {
+    const modes = entry.modes?.map(candidate => candidate.toLowerCase()) ?? [];
+    if (mode === "self-similarity") {
+      return modes.length === 0 || modes.includes("self-similarity");
+    }
+    return modes.includes(mode);
+  });
+}
 
 async function loadEdges(filePath: string): Promise<EdgeDefinition[]> {
   const raw = await fs.readFile(filePath, "utf8");
@@ -103,6 +212,35 @@ function edgeKey(edge: EdgeDefinition): string {
 
 function normalizePath(candidate: string): string {
   return candidate.replace(/\\/g, "/");
+}
+
+function calculateTotals(truePositives: number, falsePositives: number, falseNegatives: number): FixtureTotals {
+  const precision = ratio(truePositives, truePositives + falsePositives);
+  const recall = ratio(truePositives, truePositives + falseNegatives);
+  const f1Score = computeF1(precision, recall);
+
+  return {
+    truePositives,
+    falsePositives,
+    falseNegatives,
+    precision,
+    recall,
+    f1Score
+  };
+}
+
+function ratio(numerator: number, denominator: number): number | null {
+  if (denominator === 0) {
+    return null;
+  }
+  return numerator / denominator;
+}
+
+function computeF1(precision: number | null, recall: number | null): number | null {
+  if (precision === null || recall === null || (precision + recall) === 0) {
+    return null;
+  }
+  return (2 * precision * recall) / (precision + recall);
 }
 
 type TrackerCtor = new (...args: any[]) => TrackerInstance;

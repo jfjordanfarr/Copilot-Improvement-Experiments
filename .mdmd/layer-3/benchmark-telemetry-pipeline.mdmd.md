@@ -14,10 +14,14 @@ Supports REQ-030 by producing reproducible performance and accuracy reports that
 ### Unified Reporting
 - Generate a durable artifact (`docs/test-report.md`) each verification run summarising integration outcomes, benchmark deltas, and telemetry snapshots.
 - Harmonise CLI tooling so `npm run verify -- --report` emits structured JSON consumed by the report renderer.
+- Leverage the shared formatter (`buildTestReportMarkdown`) so Markdown sections stay consistent across local development and CI runs.
 
 ### Benchmark Automation
 - Author reproducible workspaces under `tests/integration/benchmarks` that target graph rebuild stability (T057), inference accuracy (T061), and benchmark mode selection (T062).
 - Provide utilities (e.g., `benchmarkRecorder.ts`) that orchestrate fixtures and return comparable metrics.
+- Manage benchmark coverage through `fixtures.manifest.json`, allowing `BENCHMARK_MODE` toggles (`self-similarity`, `ast`, `all`) to gate which fixtures run during verification.
+- Record per-fixture precision/recall metrics so future regression reports can spotlight language-specific drift.
+- Expand fixture census across languages (TypeScript, C, Python, Rust, …) so accuracy metrics surface ecosystem-specific strengths and gaps without co-opting full integration workspaces.
 
 ### Telemetry Capture
 - Persist inference accuracy metrics alongside latency stats using shared telemetry modules.

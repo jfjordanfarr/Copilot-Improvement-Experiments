@@ -13,6 +13,7 @@ const TSCONFIG = resolveRepoPath("tsconfig.base.json");
 const SNAPSHOT_SCRIPT = resolveRepoPath("scripts", "graph-tools", "snapshot-workspace.ts");
 const FIXTURE_WORKSPACE = resolveRepoPath("tests", "integration", "fixtures", "simple-workspace");
 const FIXED_TIMESTAMP = "2025-01-01T00:00:00.000Z";
+const BENCHMARK_MODE = (process.env.BENCHMARK_MODE ?? "self-similarity").toLowerCase();
 
 interface SnapshotResult {
   durationMs: number;
@@ -40,6 +41,7 @@ suite("T057: Graph rebuild stability", () => {
     const maxDuration = Math.max(...durations);
 
     await writeBenchmarkResult("rebuild-stability", {
+      mode: BENCHMARK_MODE,
       workspace: path.basename(FIXTURE_WORKSPACE),
       iterations,
       durationsMs: durations,

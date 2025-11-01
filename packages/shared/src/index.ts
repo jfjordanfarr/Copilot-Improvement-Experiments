@@ -20,25 +20,26 @@ export * from "./tooling/ollamaClient";
 export * from "./tooling/ollamaMock";
 export * from "./telemetry/inferenceAccuracy";
 export * from "./uri/normalizeFileUri";
+export * from "./reporting/testReport";
 export {
-	RelationshipExtractor,
-	RelationshipExtractorError,
-	type RelationshipExtractorLogger,
-	type RelationshipExtractionBatch,
-	type RelationshipExtractionPrompt,
-	type RelationshipExtractionRequest,
-	type RawRelationshipCandidate,
-	type ModelInvocationRequest,
-	type ModelInvocationResult,
-	type ModelInvoker,
-	type ModelUsage
+  RelationshipExtractor,
+  RelationshipExtractorError,
+  type RelationshipExtractorLogger,
+  type RelationshipExtractionBatch,
+  type RelationshipExtractionPrompt,
+  type RelationshipExtractionRequest,
+  type RawRelationshipCandidate,
+  type ModelInvocationRequest,
+  type ModelInvocationResult,
+  type ModelInvoker,
+  type ModelUsage
 } from "./inference/llm/relationshipExtractor";
 
 export {
-	calibrateConfidence,
-	type CalibratedRelationship,
-	type ConfidenceTier as LlmConfidenceTier,
-	type CalibrationContext
+  calibrateConfidence,
+  type CalibratedRelationship,
+  type ConfidenceTier as LlmConfidenceTier,
+  type CalibrationContext
 } from "./inference/llm/confidenceCalibrator";
 export * from "./rules/relationshipRuleEngine";
 export * from "./rules/relationshipRuleProvider";

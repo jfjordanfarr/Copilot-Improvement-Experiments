@@ -1,0 +1,40 @@
+{
+  "fixtures": [
+    {
+      "id": "ts-basic",
+      "label": "TypeScript module graph smoke sample",
+      "language": "typescript",
+      "path": "ts-basic",
+      "modes": ["self-similarity", "ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "c-basics",
+      "label": "C translation unit with header inclusion",
+      "language": "c",
+      "path": "c-basics",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "python-basics",
+      "label": "Python module imports and validation",
+      "language": "python",
+      "path": "python-basics",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
+      "id": "rust-basics",
+      "label": "Rust crate with helper modules",
+      "language": "rust",
+      "path": "rust-basics",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    }
+  ]
+}

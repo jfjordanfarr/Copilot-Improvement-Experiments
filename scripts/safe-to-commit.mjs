@@ -19,13 +19,15 @@ function runStep(label, command, args, options = {}) {
 function runNpmScript(label, args) {
   const npmArgs = Array.isArray(args) ? args : [args];
   const npmExecPath = process.env.npm_execpath;
+  const options = {
+    env: { ...process.env },
+    shell: process.platform === 'win32'
+  };
 
   if (npmExecPath && npmExecPath.endsWith('.js')) {
-    runStep(label, process.execPath, [npmExecPath, ...npmArgs]);
+    runStep(label, process.execPath, [npmExecPath, ...npmArgs], options);
   } else {
-    runStep(label, npmCommand, npmArgs, {
-      shell: process.platform === 'win32'
-    });
+    runStep(label, npmCommand, npmArgs, options);
   }
 }
 
@@ -33,7 +35,18 @@ function runSafeCommitCheck() {
   const flags = parseFlags(process.argv.slice(2));
 
   try {
-    runNpmScript('Verify (lint + unit + integration)', ['run', 'verify']);
+    const verifyArgs = ['run', 'verify'];
+    if (flags.mode || flags.generateReport) {
+      verifyArgs.push('--');
+      if (flags.mode) {
+        verifyArgs.push('--mode', flags.mode);
+      }
+      if (flags.generateReport) {
+        verifyArgs.push('--report');
+      }
+    }
+
+    runNpmScript('Verify (lint + unit + integration)', verifyArgs);
     runNpmScript('Graph snapshot', ['run', 'graph:snapshot', '--', '--quiet']);
     runNpmScript('Graph coverage audit', ['run', 'graph:audit']);
     runNpmScript('Fixture workspace verification', ['run', 'fixtures:verify']);
@@ -79,23 +92,106 @@ function runSafeCommitCheck() {
 runSafeCommitCheck();
 
 function parseFlags(argv) {
-  let skipGitStatus = false;
+  let skipGitStatus = coerceBoolean(process.env.npm_config_skip_git_status) ?? false;
+  let mode = normalizeMode(process.env.BENCHMARK_MODE ?? process.env.npm_config_mode);
+  let generateReport = coerceBoolean(process.env.npm_config_report) ?? false;
 
-  for (const token of argv) {
-    switch (token) {
-      case '--skip-git-status':
-      case '--ci':
-        skipGitStatus = true;
-        break;
-      default:
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+
+    if (token === '--skip-git-status' || token === '--ci') {
+      skipGitStatus = true;
+      continue;
+    }
+
+    if (token === '--no-skip-git-status') {
+      skipGitStatus = false;
+      continue;
+    }
+
+    if (token === '--mode') {
+      const value = argv[index + 1];
+      if (!value) {
+        console.error('--mode requires a value');
+        process.exit(1);
+      }
+      const resolved = normalizeMode(value);
+      if (!resolved) {
+        console.error(`Invalid mode: ${value}`);
+        process.exit(1);
+      }
+      mode = resolved;
+      index += 1;
+      continue;
+    }
+
+    if (token.startsWith('--mode=')) {
+      const [, value] = token.split('=', 2);
+      if (!value) {
+        console.error('--mode requires a value');
+        process.exit(1);
+      }
+      const resolved = normalizeMode(value);
+      if (!resolved) {
+        console.error(`Invalid mode: ${value}`);
+        process.exit(1);
+      }
+      mode = resolved;
+      continue;
+    }
+
+    if (token === '--report') {
+      generateReport = true;
+      continue;
+    }
+
+    if (token === '--no-report') {
+      generateReport = false;
+      continue;
+    }
+
+    if (!token.startsWith('-')) {
+      const resolved = normalizeMode(token);
+      if (!resolved) {
         console.error(`Unknown argument: ${token}`);
         process.exit(1);
+      }
+      mode = resolved;
+      continue;
     }
+
+    console.error(`Unknown argument: ${token}`);
+    process.exit(1);
   }
 
   if (!skipGitStatus && process.env.CI === 'true') {
     skipGitStatus = true;
   }
 
-  return { skipGitStatus };
+  return { skipGitStatus, mode, generateReport };
+}
+
+function normalizeMode(candidate) {
+  if (!candidate) {
+    return undefined;
+  }
+  const normalized = String(candidate).toLowerCase();
+  if (['self-similarity', 'ast', 'all'].includes(normalized)) {
+    return normalized;
+  }
+  return undefined;
+}
+
+function coerceBoolean(value) {
+  if (value === undefined) {
+    return undefined;
+  }
+  const normalized = String(value).toLowerCase();
+  if (['1', 'true', 'yes', 'on', ''].includes(normalized)) {
+    return true;
+  }
+  if (['0', 'false', 'no', 'off'].includes(normalized)) {
+    return false;
+  }
+  return undefined;
 }

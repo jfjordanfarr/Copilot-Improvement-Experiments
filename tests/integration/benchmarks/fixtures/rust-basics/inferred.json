@@ -1,0 +1,5 @@
+[
+  { "source": "src/main.rs", "target": "src/math.rs", "relation": "uses" },
+  { "source": "src/math.rs", "target": "src/utils.rs", "relation": "uses" },
+  { "source": "src/main.rs", "target": "src/config.rs", "relation": "uses" }
+]
