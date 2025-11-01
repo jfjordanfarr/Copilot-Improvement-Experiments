@@ -19,6 +19,15 @@
       "inferred": "inferred.json"
     },
     {
+      "id": "ts-ky",
+      "label": "Ky HTTP client snapshot",
+      "language": "typescript",
+      "path": "typescript/ky",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json"
+    },
+    {
       "id": "c-basics",
       "label": "C translation unit with header inclusion",
       "language": "c",

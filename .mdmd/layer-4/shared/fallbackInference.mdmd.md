@@ -52,6 +52,7 @@ Executes the fallback pipeline, merging heuristics, hints, and optional LLM sugg
 ## Key Concepts
 - **ArtifactSeed**: Minimal description of workspace files provided by watchers and providers; may include inline content.
 - **Heuristic passes**: Markdown links, wiki links, import statements, and `@link` directives produce candidate relationships.
+- **Comment-aware import parsing**: Module specifiers detected by the import heuristic are ignored when they originate inside block or line comments (for example, documentation code samples), preventing fixtures like Ky from reporting phantom dependencies.
 - **LLM bridge**: Optional `FallbackLLMBridge` augments heuristics with model-driven suggestions when content volume justifies the cost.
 - **Inference traces**: Every generated link records origin (heuristic, llm, or hint) plus rationale for debugging and audit.
 

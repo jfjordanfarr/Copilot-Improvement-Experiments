@@ -10,6 +10,17 @@
         ".specify/scripts/bash/": true,
         ".specify/scripts/powershell/": true
     },
-    "github.copilot.chat.byok.ollamaModel": "qwen3-coder:30b"
+    "github.copilot.chat.byok.ollamaModel": "qwen3-coder:30b",
+    "typescript.tsserver.watchOptions": {
+        "excludeDirectories": [
+            "**/tests/integration/benchmarks/fixtures"
+        ]
+    },
+    "java.project.import.exclusions": [
+        "**/tests/integration/benchmarks/fixtures/java/**"
+    ],
+    "problems.exclude": {
+        "**/tests/integration/benchmarks/fixtures/**": true
+    }
 }
 

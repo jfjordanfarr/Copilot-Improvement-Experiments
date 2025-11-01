@@ -15,5 +15,8 @@
     "types": ["node", "mocha"]
   },
   "include": ["./**/*.ts"],
-  "exclude": ["./dist"]
+  "exclude": [
+    "./dist",
+    "./benchmarks/fixtures/**/*"
+  ]
 }

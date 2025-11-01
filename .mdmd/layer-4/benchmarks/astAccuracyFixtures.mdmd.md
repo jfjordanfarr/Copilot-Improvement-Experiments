@@ -6,6 +6,7 @@
 - Code Paths:
   - [`tests/integration/benchmarks/fixtures/typescript/basic`](../../../tests/integration/benchmarks/fixtures/typescript/basic)
   - [`tests/integration/benchmarks/fixtures/typescript/layered`](../../../tests/integration/benchmarks/fixtures/typescript/layered)
+  - [`tests/integration/benchmarks/fixtures/typescript/ky`](../../../tests/integration/benchmarks/fixtures/typescript/ky)
   - [`tests/integration/benchmarks/fixtures/c/basics`](../../../tests/integration/benchmarks/fixtures/c/basics)
   - [`tests/integration/benchmarks/fixtures/c/modular`](../../../tests/integration/benchmarks/fixtures/c/modular)
   - [`tests/integration/benchmarks/fixtures/python/basics`](../../../tests/integration/benchmarks/fixtures/python/basics)
@@ -33,6 +34,17 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Scope: TypeScript reporting service with layered services, repositories, and shared models.
 - Source Files: [`src/index.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/index.ts), [`src/services/reportService.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/services/reportService.ts), [`src/services/dataService.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/services/dataService.ts), [`src/utils/format.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/utils/format.ts), [`src/models/widget.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/models/widget.ts), [`src/repositories/storage.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/repositories/storage.ts)
 - Benchmark Intent: Stress graph reconstruction across a deeper TypeScript stack that mixes helper usage, repository imports, and shared domain models.
+
+-### `ts-ky`
+- Scope: Vendorized snapshot of the Ky HTTP client preserving its core, error, type, and utility modules.
+- Source Files:
+  - Core: [`src/core/Ky.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/core/Ky.ts), [`src/core/constants.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/core/constants.ts)
+  - Errors: [`src/errors/HTTPError.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/errors/HTTPError.ts), [`src/errors/NonError.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/errors/NonError.ts), [`src/errors/TimeoutError.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/errors/TimeoutError.ts)
+  - Entry: [`src/index.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/index.ts)
+  - Types: [`src/types/common.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/common.ts), [`src/types/hooks.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/hooks.ts), [`src/types/ky.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/ky.ts), [`src/types/options.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/options.ts), [`src/types/request.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/request.ts), [`src/types/response.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/response.ts), [`src/types/ResponsePromise.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/ResponsePromise.ts), [`src/types/retry.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/retry.ts)
+  - Utilities: [`src/utils/body.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/body.ts), [`src/utils/delay.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/delay.ts), [`src/utils/is.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/is.ts), [`src/utils/merge.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/merge.ts), [`src/utils/normalize.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/normalize.ts), [`src/utils/options.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/options.ts), [`src/utils/timeout.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/timeout.ts), [`src/utils/type-guards.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/type-guards.ts), [`src/utils/types.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/types.ts)
+- Benchmark Intent: Measure inference accuracy against a real-world TypeScript codebase that relies on ESM-style `.js` import specifiers, layered re-exports, and helper utilities beyond our self-authored fixtures.
+- Notes: Comment-aware import heuristics now filter documentation-only snippets (for example, `import ky from 'ky'` inside JSDoc), eliminating the earlier nine-missing/six-extra drift; `expected.json` and `inferred.json` currently align with 56 edges after deduplication.
 
 -### `c-basics`
 - Scope: Single translation unit calling into a companion implementation and header pair.
@@ -88,7 +100,7 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Fixture metadata is centralised in [`fixtures.manifest.json`](../../../tests/integration/benchmarks/fixtures/fixtures.manifest.json) and consumed by the benchmark harness to honour `BENCHMARK_MODE` filters.
 - Ground truth graphs live in each fixture’s `expected.json`; the `inferred.json` captures current system behaviour so we can assert precision/recall deltas and track regressions in `reports/test-report.md`.
 - New fixtures should remain deterministic, avoid external dependencies, and include a brief summary here so graph audits keep source coverage intact.
-- Each language now carries at least two fixtures (baseline + layered) so accuracy metrics capture behaviour across simple and moderately complex graphs without adopting heavyweight OSS codebases yet.
+- TypeScript now includes two synthetic fixtures and the Ky snapshot, while other languages maintain paired baseline/layered scenarios so accuracy metrics span simple through moderately complex graphs without immediately adopting heavyweight OSS codebases.
 
 ## Shared Reporting Types
 

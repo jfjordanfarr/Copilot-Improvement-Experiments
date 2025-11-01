@@ -166,7 +166,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T076 Implement SlopCop symbol CLI (`scripts/slopcop/check-symbols.ts`) with fixture-backed regression test in `packages/shared/src/tooling/slopcopSymbolsCli.test.ts`
 - [x] T077 Update safe-to-commit, README, and MDMD docs to cover asset + symbol audits and their configuration gates
 - [x] T078 [P] Wire the local Ollama bridge (shared helper, CLI fallback, harness defaults) across `packages/extension`, `packages/shared`, `scripts/ollama`, and integration docs
-- [ ] T087 Curate external TypeScript benchmark snapshot from `sindresorhus/ky` and integrate it under `tests/integration/benchmarks/fixtures/typescript/ky` with accompanying manifest entry and documentation links.
+- [x] T087 Curate external TypeScript benchmark snapshot from `sindresorhus/ky` and integrate it under `tests/integration/benchmarks/fixtures/typescript/ky` with accompanying manifest entry and documentation links.
 - [ ] T088 Curate external C benchmark snapshot from `libuv/libuv`, trimming to a deterministic subsystem (e.g., filesystem or TCP loop) and landing it under `tests/integration/benchmarks/fixtures/c/libuv` with updated AST expectations.
 - [ ] T089 Curate external Python benchmark snapshot from `psf/requests`, capturing the session/adapter layering under `tests/integration/benchmarks/fixtures/python/requests` and documenting dynamic import considerations.
 - [ ] T090 Curate external Rust benchmark snapshot from `rust-lang/log`, representing macro and trait usage under `tests/integration/benchmarks/fixtures/rust/log` with macro-expansion notes.

@@ -1,7 +1,7 @@
 # Test Report
 
-- **Generated:** 2025-11-01T17:48:35.026Z
-- **Git commit:** a8537930f601cbc2ba161005a35dca2a05496107
+- **Generated:** 2025-11-01T21:29:58.110Z
+- **Git commit:** fdc22a98759b304e564788632fa861959c057410
 - **Git branch:** main
 
 ## Benchmarks
@@ -14,7 +14,7 @@
 
 | TP | FP | FN | Precision | Recall | F1 |
 | - | - | - | - | - | - |
-| 59 | 12 | 12 | 83.1% | 83.1% | 83.1% |
+| 115 | 12 | 12 | 90.6% | 90.6% | 90.6% |
 
 - **Fixtures:**
 
@@ -22,6 +22,7 @@
 | - | - | - | - | - | - | - | - |
 | TypeScript module graph smoke sample | typescript | 2 | 1 | 1 | 66.7% | 66.7% | 66.7% |
 | TypeScript layered reporting service | typescript | 6 | 1 | 1 | 85.7% | 85.7% | 85.7% |
+| Ky HTTP client snapshot | typescript | 56 | 0 | 0 | 100.0% | 100.0% | 100.0% |
 | C translation unit with header inclusion | c | 2 | 1 | 1 | 66.7% | 66.7% | 66.7% |
 | C pipeline spanning multiple headers | c | 8 | 1 | 1 | 88.9% | 88.9% | 88.9% |
 | Python module imports and validation | python | 2 | 1 | 1 | 66.7% | 66.7% | 66.7% |
@@ -39,18 +40,19 @@
 - **Mode:** self-similarity
 - **Workspace:** simple-workspace
 - **Iterations:** 3
-- **Durations:** 661 ms, 642 ms, 645 ms
-- **Average duration:** 649.33 ms
-- **Max duration:** 661.00 ms
+- **Durations:** 1296 ms, 1181 ms, 1198 ms
+- **Average duration:** 1225.00 ms
+- **Max duration:** 1296.00 ms
 - **Drift detected:** No
 
 ## Environment Summary
 
 - **arch:** x64
-- **nodeVersion:** v22.14.0
+- **nodeVersion:** v22.14.0, v22.19.0
 - **platform:** win32
+- **providerMode:** local-only
 
 ## Benchmark Artifacts
 
-- ast-accuracy — recorded 2025-11-01T17:14:31.896Z (AI-Agent-Workspace\tmp\benchmarks\ast-accuracy.json)
-- rebuild-stability — recorded 2025-11-01T17:14:43.309Z (AI-Agent-Workspace\tmp\benchmarks\rebuild-stability.json)
+- ast-accuracy — recorded 2025-11-01T21:29:50.807Z (AI-Agent-Workspace\tmp\benchmarks\ast-accuracy.json)
+- rebuild-stability — recorded 2025-11-01T18:13:51.291Z (AI-Agent-Workspace\tmp\benchmarks\rebuild-stability.json)

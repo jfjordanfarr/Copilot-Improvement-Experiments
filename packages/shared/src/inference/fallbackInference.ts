@@ -107,7 +107,7 @@ const DEFAULT_MIN_CONTENT_FOR_LLM = 64;
 const MARKDOWN_LINK = /\[[^\]]+\]\(([^)]+)\)/g;
 const MARKDOWN_WIKI_LINK = /\[\[([^\]]+)\]\]/g;
 const LINK_DIRECTIVE = /@link\s+([^\s]+)/g;
-const IMPORT_STATEMENT = /(?:import\s+[^"'`]*?["'`]([^"'`]+)["'`]|require\(\s*["'`]([^"'`]+)["'`]\s*\))/g;
+const MODULE_REFERENCE = /(?:(?:import|export)\s+[^"'`]*?["'`]([^"'`]+)["'`]|require\(\s*["'`]([^"'`]+)["'`]\s*\))/g;
 
 export async function inferFallbackGraph(
   input: FallbackInferenceInput,
@@ -264,8 +264,16 @@ function applyImportHeuristics(
   }
 
   let match: RegExpExecArray | null;
-  while ((match = IMPORT_STATEMENT.exec(source.content ?? "")) !== null) {
-    const reference = cleanupReference(match[1] ?? match[2]);
+  const content = source.content ?? "";
+
+  while ((match = MODULE_REFERENCE.exec(content)) !== null) {
+    const rawReference = match[1] ?? match[2] ?? "";
+    const referenceStart = computeReferenceStart(match, rawReference);
+    if (referenceStart !== null && isWithinComment(content, referenceStart)) {
+      continue;
+    }
+
+    const reference = cleanupReference(rawReference);
     if (!reference) {
       continue;
     }
@@ -276,7 +284,7 @@ function applyImportHeuristics(
     }
   }
 
-  IMPORT_STATEMENT.lastIndex = 0;
+  MODULE_REFERENCE.lastIndex = 0;
 }
 
 function applyDirectiveHeuristics(
@@ -499,6 +507,21 @@ function buildReferenceVariants(reference: string, sourceDir: string): string[] 
 
   variants.add(toComparablePath(cleaned));
 
+  const extension = path.extname(cleaned).toLowerCase();
+  if ([".js", ".mjs", ".cjs"].includes(extension)) {
+    const replacements = extension === ".mjs"
+      ? [".mts", ".ts"]
+      : extension === ".cjs"
+        ? [".cts", ".ts"]
+        : [".ts", ".tsx"];
+
+    for (const replacement of replacements) {
+      const swapped = cleaned.slice(0, -extension.length) + replacement;
+      variants.add(toComparablePath(swapped));
+      variants.add(toComparablePath(path.join(sourceDir, swapped)));
+    }
+  }
+
   if (cleaned.startsWith(".")) {
     variants.add(toComparablePath(path.join(sourceDir, cleaned)));
   }
@@ -565,6 +588,58 @@ function stem(value: string): string {
   const basename = path.basename(value).toLowerCase();
   const extension = path.extname(basename);
   return extension ? basename.slice(0, basename.length - extension.length) : basename;
+}
+
+function computeReferenceStart(match: RegExpExecArray, rawReference: string): number | null {
+  if (!match[0]) {
+    return null;
+  }
+
+  const offset = match[0].indexOf(rawReference);
+  if (offset < 0) {
+    return match.index ?? null;
+  }
+
+  return (match.index ?? 0) + offset;
+}
+
+function isWithinComment(content: string, index: number): boolean {
+  let inBlockComment = false;
+  let inLineComment = false;
+
+  for (let i = 0; i < index; i++) {
+    const char = content[i];
+    const next = content[i + 1];
+
+    if (inLineComment) {
+      if (char === "\n") {
+        inLineComment = false;
+      }
+      continue;
+    }
+
+    if (inBlockComment) {
+      if (char === "*" && next === "/") {
+        inBlockComment = false;
+        i++;
+      }
+      continue;
+    }
+
+    if (char === "/" && next === "*") {
+      inBlockComment = true;
+      i++;
+      continue;
+    }
+
+    if (char === "/" && next === "/") {
+      inLineComment = true;
+      i++;
+      continue;
+    }
+  }
+
+  return inBlockComment || inLineComment;
 }
 
 function clampConfidence(confidence: number): number {
