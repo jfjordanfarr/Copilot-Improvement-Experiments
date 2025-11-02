@@ -148,7 +148,7 @@ export const RELATIONSHIP_RESPONSE_SCHEMA = {
           targetId: { type: "string", minLength: 1 },
           relationship: {
             type: "string",
-            enum: ["documents", "implements", "depends_on", "references"]
+            enum: ["documents", "implements", "depends_on", "references", "includes"]
           },
           confidence: {
             type: "number",

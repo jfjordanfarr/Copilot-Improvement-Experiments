@@ -21,6 +21,7 @@ describe("buildOpenActionTitle", () => {
     expect(buildOpenActionTitle("documents")).toBe("Open linked documentation");
     expect(buildOpenActionTitle("implements")).toBe("Open linked implementation");
     expect(buildOpenActionTitle("references")).toBe("Open linked reference");
+    expect(buildOpenActionTitle("includes")).toBe("Open included file");
   });
 
   it("falls back to the default title for unknown kinds", () => {

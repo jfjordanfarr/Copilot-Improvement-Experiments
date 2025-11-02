@@ -13,6 +13,7 @@ Quantify how accurately the pseudocode AST matches ground-truth language-specifi
 
 ## Behaviour
 - Loads pre-generated AST fixtures for each benchmark workspace and compares them against inferred relationships generated or provided during the test run (initially fixture-provided inference outputs).
+- Blends workspace-authored fixtures with vendored repositories cloned into per-run staging directories (Ky, libuv, …) so accuracy metrics cover real-world include/import patterns without sacrificing determinism.
 - Records true/false positive/negative counts per artifact and relationship kind via the `InferenceAccuracyTracker`.
 - Produces aggregate metrics (precision, recall, F1) and detailed miss lists, exporting both JSON summaries and Markdown tables.
 - Supports mode switching (`--mode ast` vs `--mode self-similarity`) controlled by Task T062 so CI can focus on the most relevant benchmarks.

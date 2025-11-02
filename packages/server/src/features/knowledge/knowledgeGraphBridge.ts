@@ -306,7 +306,7 @@ const ARTIFACT_LAYER_VALUES = new Set([
   "code"
 ]);
 
-const LINK_KIND_VALUES = new Set(["documents", "implements", "depends_on", "references"]);
+const LINK_KIND_VALUES = new Set(["documents", "implements", "depends_on", "references", "includes"]);
 
 function createStaticFeedConfiguration(
   descriptor: StaticFeedDescriptor,

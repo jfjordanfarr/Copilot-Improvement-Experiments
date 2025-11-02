@@ -167,12 +167,12 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T077 Update safe-to-commit, README, and MDMD docs to cover asset + symbol audits and their configuration gates
 - [x] T078 [P] Wire the local Ollama bridge (shared helper, CLI fallback, harness defaults) across `packages/extension`, `packages/shared`, `scripts/ollama`, and integration docs
 - [x] T087 Curate external TypeScript benchmark snapshot from `sindresorhus/ky` and integrate it under `tests/integration/benchmarks/fixtures/typescript/ky` with accompanying manifest entry and documentation links.
-- [ ] T088 Curate external C benchmark snapshot from `libuv/libuv`, trimming to a deterministic subsystem (e.g., filesystem or TCP loop) and landing it under `tests/integration/benchmarks/fixtures/c/libuv` with updated AST expectations.
-- [ ] T089 Curate external Python benchmark snapshot from `psf/requests`, capturing the session/adapter layering under `tests/integration/benchmarks/fixtures/python/requests` and documenting dynamic import considerations.
-- [ ] T090 Curate external Rust benchmark snapshot from `rust-lang/log`, representing macro and trait usage under `tests/integration/benchmarks/fixtures/rust/log` with macro-expansion notes.
-- [ ] T091 Curate external Java benchmark snapshot from `square/okhttp`, focusing on the core client and interceptors under `tests/integration/benchmarks/fixtures/java/okhttp` with builder pattern coverage in the manifest.
-- [ ] T092 Curate external Ruby benchmark snapshot from `ruby-grape/grape`, preserving the DSL-heavy router under `tests/integration/benchmarks/fixtures/ruby/grape` and annotating runtime DSL edges.
-- [ ] T093 Curate external Java benchmark snapshot from `apache/commons-lang`, selecting representative utility modules under `tests/integration/benchmarks/fixtures/java/commons-lang` and documenting scope exclusions.
+- [ ] T088 Materialise the full `libuv/libuv` repository via the benchmark manifest (clone → glob include/exclude) and refresh AST expectations against the staging workspace.
+- [ ] T089 Materialise the full `psf/requests` repository via the benchmark manifest (clone → glob include/exclude) and document dynamic import considerations surfaced by full-project analysis.
+- [ ] T090 Materialise the full `rust-lang/log` repository via the benchmark manifest (clone → glob include/exclude) and capture macro-expansion notes from full-project analysis.
+- [ ] T091 Materialise the full `square/okhttp` repository via the benchmark manifest (clone → glob include/exclude) and map builder pattern coverage.
+- [ ] T092 Materialise the full `ruby-grape/grape` repository via the benchmark manifest (clone → glob include/exclude) and annotate runtime DSL edges discovered by whole-project analysis.
+- [ ] T093 Materialise the full `apache/commons-lang` repository via the benchmark manifest (clone → glob include/exclude) and document scope exclusions revealed by whole-project analysis.
 
 ---
 

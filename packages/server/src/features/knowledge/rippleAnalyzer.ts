@@ -54,7 +54,8 @@ const DEFAULT_ALLOWED_KINDS: LinkRelationshipKind[] = [
   "depends_on",
   "implements",
   "documents",
-  "references"
+  "references",
+  "includes"
 ];
 const DEPTH_PENALTY = 0.18;
 const MIN_CONFIDENCE = 0.1;
@@ -64,7 +65,8 @@ const KIND_BASE_CONFIDENCE: Record<LinkRelationshipKind, number> = {
   depends_on: 0.9,
   implements: 0.85,
   documents: 0.8,
-  references: 0.65
+  references: 0.65,
+  includes: 0.88
 };
 
 export class RippleAnalyzer {

@@ -9,6 +9,7 @@
   - [`tests/integration/benchmarks/fixtures/typescript/ky`](../../../tests/integration/benchmarks/fixtures/typescript/ky)
   - [`tests/integration/benchmarks/fixtures/c/basics`](../../../tests/integration/benchmarks/fixtures/c/basics)
   - [`tests/integration/benchmarks/fixtures/c/modular`](../../../tests/integration/benchmarks/fixtures/c/modular)
+  - [`tests/integration/benchmarks/fixtures/c/libuv`](../../../tests/integration/benchmarks/fixtures/c/libuv)
   - [`tests/integration/benchmarks/fixtures/python/basics`](../../../tests/integration/benchmarks/fixtures/python/basics)
   - [`tests/integration/benchmarks/fixtures/python/pipeline`](../../../tests/integration/benchmarks/fixtures/python/pipeline)
   - [`tests/integration/benchmarks/fixtures/rust/basics`](../../../tests/integration/benchmarks/fixtures/rust/basics)
@@ -25,6 +26,22 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 
 ## Fixture Inventory
 
+### Vendored Fixture Integrity (auto-generated)
+
+<!-- benchmark-vendor-inventory:start -->
+#### `ts-ky` (Ky HTTP client repository)
+
+- **Source**: `sindresorhus/ky` @ `5d3684ed0e27c1a89f9d13f09523367d86cbabfe` — MIT
+- **Integrity**: `sha256` root `2c49edba6c5393bad18daf38d76375b014d9706d573193307ccc779bde9099a8` (43 files)
+- **File Selection**: include `**/*.ts`, `**/*.tsx`; exclude `**/*.d.ts`, `**/__tests__/**`, `**/*.test.ts`, `**/*.spec.ts` (resolved 43 files)
+
+#### `c-libuv` (libuv repository)
+
+- **Source**: `libuv/libuv` @ `12d1ed1380c59c5ec27503cf149833de6f0e6bb0` — MIT
+- **Integrity**: `sha256` root `f057cbccf2b7939e4ffa78e7ab98d4ac2aee56cc7fff23d2c9fbbbaa83920f8c` (118 files)
+- **File Selection**: include `src/**/*.c`, `src/**/*.h`, `include/**/*.h`; exclude `test/**`, `docs/**`, `cmake/**`, `samples/**` (resolved 118 files)
+<!-- benchmark-vendor-inventory:end -->
+
 -### `ts-basic`
 - Scope: Minimal TypeScript module graph with helpers split across multiple files.
 - Source Files: [`src/index.ts`](../../../tests/integration/benchmarks/fixtures/typescript/basic/src/index.ts), [`src/models.ts`](../../../tests/integration/benchmarks/fixtures/typescript/basic/src/models.ts), [`src/util.ts`](../../../tests/integration/benchmarks/fixtures/typescript/basic/src/util.ts), [`src/types.ts`](../../../tests/integration/benchmarks/fixtures/typescript/basic/src/types.ts), [`src/helpers.ts`](../../../tests/integration/benchmarks/fixtures/typescript/basic/src/helpers.ts)
@@ -35,16 +52,11 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Source Files: [`src/index.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/index.ts), [`src/services/reportService.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/services/reportService.ts), [`src/services/dataService.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/services/dataService.ts), [`src/utils/format.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/utils/format.ts), [`src/models/widget.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/models/widget.ts), [`src/repositories/storage.ts`](../../../tests/integration/benchmarks/fixtures/typescript/layered/src/repositories/storage.ts)
 - Benchmark Intent: Stress graph reconstruction across a deeper TypeScript stack that mixes helper usage, repository imports, and shared domain models.
 
--### `ts-ky`
-- Scope: Vendorized snapshot of the Ky HTTP client preserving its core, error, type, and utility modules.
-- Source Files:
-  - Core: [`src/core/Ky.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/core/Ky.ts), [`src/core/constants.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/core/constants.ts)
-  - Errors: [`src/errors/HTTPError.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/errors/HTTPError.ts), [`src/errors/NonError.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/errors/NonError.ts), [`src/errors/TimeoutError.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/errors/TimeoutError.ts)
-  - Entry: [`src/index.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/index.ts)
-  - Types: [`src/types/common.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/common.ts), [`src/types/hooks.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/hooks.ts), [`src/types/ky.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/ky.ts), [`src/types/options.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/options.ts), [`src/types/request.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/request.ts), [`src/types/response.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/response.ts), [`src/types/ResponsePromise.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/ResponsePromise.ts), [`src/types/retry.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/types/retry.ts)
-  - Utilities: [`src/utils/body.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/body.ts), [`src/utils/delay.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/delay.ts), [`src/utils/is.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/is.ts), [`src/utils/merge.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/merge.ts), [`src/utils/normalize.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/normalize.ts), [`src/utils/options.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/options.ts), [`src/utils/timeout.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/timeout.ts), [`src/utils/type-guards.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/type-guards.ts), [`src/utils/types.ts`](../../../tests/integration/benchmarks/fixtures/typescript/ky/src/utils/types.ts)
+### `ts-ky`
+- Scope: Full repository clone of `sindresorhus/ky` at the pinned commit; staging pulls the entire tree into a temporary workspace before analysis.
+- File Selection: Manifest glob rules include `**/*.ts` / `**/*.tsx` while excluding `.d.ts` and test fixtures so integrity hashing reflects the real production surface without folding in generated assets.
 - Benchmark Intent: Measure inference accuracy against a real-world TypeScript codebase that relies on ESM-style `.js` import specifiers, layered re-exports, and helper utilities beyond our self-authored fixtures.
-- Notes: Comment-aware import heuristics now filter documentation-only snippets (for example, `import ky from 'ky'` inside JSDoc), eliminating the earlier nine-missing/six-extra drift; `expected.json` and `inferred.json` currently align with 56 edges after deduplication.
+- Notes: Comment-aware import heuristics now filter documentation-only snippets (for example, `import ky from 'ky'` inside JSDoc), eliminating the earlier nine-missing/six-extra drift; precision/recall is evaluated against the staging clone rather than a manually vendored subset.
 
 -### `c-basics`
 - Scope: Single translation unit calling into a companion implementation and header pair.
@@ -55,6 +67,12 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Scope: Multi-file C pipeline coordinating metrics, logging, and orchestration helpers.
 - Source Files: [`src/main.c`](../../../tests/integration/benchmarks/fixtures/c/modular/src/main.c), [`src/pipeline.c`](../../../tests/integration/benchmarks/fixtures/c/modular/src/pipeline.c), [`src/pipeline.h`](../../../tests/integration/benchmarks/fixtures/c/modular/src/pipeline.h), [`src/metrics.c`](../../../tests/integration/benchmarks/fixtures/c/modular/src/metrics.c), [`src/metrics.h`](../../../tests/integration/benchmarks/fixtures/c/modular/src/metrics.h), [`src/logger.c`](../../../tests/integration/benchmarks/fixtures/c/modular/src/logger.c), [`src/logger.h`](../../../tests/integration/benchmarks/fixtures/c/modular/src/logger.h)
 - Benchmark Intent: Capture layered include chains, static helpers, and call-site coverage representative of a modest C service boundary.
+
+### `c-libuv`
+- Scope: Entire `libuv/libuv` repository cloned into a staging workspace; glob filters include all `src/**/*.c`, `src/**/*.h`, and `include/**/*.h` artifacts so platform-specific layers participate in the benchmark without manual pruning.
+- File Selection: Deterministic glob expansion excludes upstream benchmarks, docs, and build artefacts (e.g., `test/`, `docs/`, `cmake/`) while hashing the production portability core.
+- Benchmark Intent: Measure include fan-out across a production portability layer with deep platform-specific headers while remaining deterministic for benchmarking.
+- Provenance: Materialized from [`libuv/libuv`](https://github.com/libuv/libuv) (`12d1ed1380c59c5ec27503cf149833de6f0e6bb0`); the integrity pipeline pins the commit and refetches it for every verification run.
 
 -### `python-basics`
 - Scope: Python package entry point validating argument seeds and aggregating metrics.

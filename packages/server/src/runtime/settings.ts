@@ -17,7 +17,13 @@ function isNoiseSuppressionLevel(value: unknown): value is "low" | "medium" | "h
 }
 
 function isLinkRelationshipKind(value: unknown): value is LinkRelationshipKind {
-  return value === "depends_on" || value === "implements" || value === "documents" || value === "references";
+  return (
+    value === "depends_on" ||
+    value === "implements" ||
+    value === "documents" ||
+    value === "references" ||
+    value === "includes"
+  );
 }
 
 function extractNoiseSuppressionSettings(

@@ -5,6 +5,14 @@ import * as os from "node:os";
 import * as path from "node:path";
 import process from "node:process";
 
+import { extractVendorInventory, renderVendorInventory } from "./benchmark-doc";
+import {
+  BenchmarkFixtureDefinition,
+  computeIntegrityDigest,
+  loadBenchmarkManifest
+} from "./benchmark-manifest";
+import { materializeFixture } from "./fixtureMaterializer";
+
 type SlopcopSuite = "markdown" | "assets" | "symbols";
 
 interface FixtureDefinition {
@@ -36,10 +44,16 @@ async function main(): Promise<void> {
   const manifest = await loadManifest(repoRoot);
   const contexts = manifest.map(definition => toContext(repoRoot, definition));
 
+  const benchmarkFixtures = await loadBenchmarkManifest(repoRoot);
+  const resolveWorkspace = createWorkspaceResolver(repoRoot);
+
   for (const context of contexts) {
     console.log(`\n=== Fixture: ${context.definition.label} (${context.definition.id}) ===`);
     await verifyFixture(repoRoot, context);
   }
+
+  await verifyBenchmarkIntegrity(repoRoot, benchmarkFixtures, resolveWorkspace);
+  await ensureVendorDocsAligned(repoRoot, benchmarkFixtures);
 
   console.log("\nAll fixture audits completed successfully.");
 }
@@ -191,6 +205,76 @@ async function runSlopcopSuites(repoRoot: string, context: FixtureContext): Prom
       context.absolutePath
     );
   }
+}
+
+type WorkspaceResolver = (fixture: BenchmarkFixtureDefinition) => Promise<string>;
+
+async function verifyBenchmarkIntegrity(
+  repoRoot: string,
+  fixtures: BenchmarkFixtureDefinition[],
+  resolveWorkspace: WorkspaceResolver
+): Promise<void> {
+  const candidates = fixtures.filter(fixture => fixture.integrity);
+  if (candidates.length === 0) {
+    return;
+  }
+
+  console.log("\n=== Benchmark Fixture Integrity ===");
+  for (const fixture of candidates) {
+    const workspaceRoot = await resolveWorkspace(fixture);
+    const digest = await computeIntegrityDigest(repoRoot, fixture, workspaceRoot);
+    const expected = fixture.integrity!;
+    if (digest.rootHash !== expected.rootHash) {
+      throw new Error(
+        `Integrity mismatch for fixture ${fixture.id}. Expected root ${expected.rootHash} but computed ${digest.rootHash}.`
+      );
+    }
+    console.log(`→ integrity:${fixture.id} (${digest.fileCount} files)`);
+  }
+}
+
+function createWorkspaceResolver(repoRoot: string): WorkspaceResolver {
+  const cache = new Map<string, string>();
+
+  return async fixture => {
+    const cached = cache.get(fixture.id);
+    if (cached) {
+      return cached;
+    }
+
+    const { workspaceRoot } = await materializeFixture(repoRoot, fixture);
+    cache.set(fixture.id, workspaceRoot);
+    return workspaceRoot;
+  };
+}
+
+async function ensureVendorDocsAligned(
+  repoRoot: string,
+  fixtures: BenchmarkFixtureDefinition[]
+): Promise<void> {
+  const docPath = path.join(
+    repoRoot,
+    ".mdmd",
+    "layer-4",
+    "benchmarks",
+    "astAccuracyFixtures.mdmd.md"
+  );
+
+  const vendorBlock = renderVendorInventory(fixtures, { repoRoot, docPath }).trim();
+  const docContent = await fs.readFile(docPath, "utf8");
+  const currentBlock = extractVendorInventory(docContent).trim();
+
+  if (normalizeNewlines(vendorBlock) !== normalizeNewlines(currentBlock)) {
+    throw new Error(
+      "Vendored AST fixture inventory is out of sync with manifest integrity metadata. Run `npm run fixtures:sync-docs`."
+    );
+  }
+
+  console.log("→ docs:vendor-inventory");
+}
+
+function normalizeNewlines(candidate: string): string {
+  return candidate.replace(/\r\n/g, "\n");
 }
 
 async function runProcess(

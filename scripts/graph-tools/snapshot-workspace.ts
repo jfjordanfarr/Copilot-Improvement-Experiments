@@ -384,7 +384,7 @@ export async function main(): Promise<void> {
   const outputPath = path.resolve(workspaceRoot, args.outputPath ?? DEFAULT_OUTPUT);
 
   const orchestrationTargets = {
-    implementation: ["packages", "tests", "scripts", "src", "lib", "examples"],
+    implementation: ["packages", "tests", "scripts", "src", "lib", "examples", "include"],
     documentation: [
       ".mdmd",
       "specs",

@@ -1,18 +1,26 @@
-import { strict as assert } from "node:assert";
+﻿import { strict as assert } from "node:assert";
 import { existsSync, promises as fs } from "node:fs";
 import { createRequire } from "node:module";
 import * as path from "node:path";
 
 import { writeBenchmarkResult } from "./utils/benchmarkRecorder";
 import { getRepoRoot, resolveRepoPath } from "./utils/repoPaths";
+type FixtureMaterialization =
+  | { kind: "workspace"; workspacePath?: string }
+  | {
+      kind: "git";
+      repository: string;
+      remote?: string;
+      ref?: string;
+      commit: string;
+      subdirectory?: string;
+      sparsePaths?: string[];
+      include: string[];
+      exclude?: string[];
+      entryPoints?: string[];
+    };
 
-interface EdgeDefinition {
-  source: string;
-  target: string;
-  relation?: string;
-}
-
-interface FixtureManifestEntry {
+interface BenchmarkFixtureDefinition {
   id: string;
   label?: string;
   language?: string;
@@ -20,10 +28,19 @@ interface FixtureManifestEntry {
   modes?: string[];
   expected: string;
   inferred: string;
+  materialization?: FixtureMaterialization;
 }
 
-interface FixtureManifest {
-  fixtures: FixtureManifestEntry[];
+interface MaterializeResult {
+  workspaceRoot: string;
+  materialization: FixtureMaterialization | undefined;
+  dispose?: () => Promise<void>;
+}
+
+interface EdgeDefinition {
+  source: string;
+  target: string;
+  relation?: string;
 }
 
 interface FixtureTotals {
@@ -47,16 +64,30 @@ interface FixtureResult {
 
 const REPO_ROOT = getRepoRoot(__dirname);
 const FIXTURE_ROOT = resolveRepoPath("tests", "integration", "benchmarks", "fixtures");
-const MANIFEST_PATH = path.join(FIXTURE_ROOT, "fixtures.manifest.json");
 const PRECISION_THRESHOLD = Number(process.env.BENCHMARK_PRECISION_THRESHOLD ?? "0.6");
 const RECALL_THRESHOLD = Number(process.env.BENCHMARK_RECALL_THRESHOLD ?? "0.6");
 const BENCHMARK_MODE = (process.env.BENCHMARK_MODE ?? "self-similarity").toLowerCase();
-
 const requireModule = createRequire(__filename);
+const benchmarkManifestModule = requireModule(
+  path.join(REPO_ROOT, "scripts", "fixture-tools", "benchmark-manifest.js")
+) as {
+  loadBenchmarkManifest(repoRoot: string): Promise<BenchmarkFixtureDefinition[]>;
+};
+const fixtureMaterializerModule = requireModule(
+  path.join(REPO_ROOT, "scripts", "fixture-tools", "fixtureMaterializer.js")
+) as {
+  materializeFixture(
+    repoRoot: string,
+    fixture: BenchmarkFixtureDefinition,
+    options?: { workspaceMode?: "persistent" | "ephemeral" }
+  ): Promise<MaterializeResult>;
+};
+const { loadBenchmarkManifest } = benchmarkManifestModule;
+const { materializeFixture } = fixtureMaterializerModule;
 
 suite("T061: AST accuracy benchmark", () => {
   test("computes inference accuracy metrics against ground truth", async function () {
-    const manifest = await loadManifest(MANIFEST_PATH);
+    const manifest = await loadBenchmarkManifest(REPO_ROOT);
     const fixtures = selectFixtures(manifest, BENCHMARK_MODE);
 
     if (fixtures.length === 0) {
@@ -64,12 +95,23 @@ suite("T061: AST accuracy benchmark", () => {
       return;
     }
 
-    const tracker = new (getInferenceAccuracyTracker())();
+    const trackerCtor = getInferenceAccuracyTracker();
+    const tracker = new trackerCtor();
     const fixtureResults: FixtureResult[] = [];
 
     for (const fixture of fixtures) {
-      const comparison = await evaluateFixture(fixture, tracker);
-      fixtureResults.push(comparison);
+      const { dispose } = await materializeFixture(REPO_ROOT, fixture, {
+        workspaceMode: "ephemeral"
+      });
+
+      try {
+        const comparison = await evaluateFixture(fixture, tracker);
+        fixtureResults.push(comparison);
+      } finally {
+        if (dispose) {
+          await dispose();
+        }
+      }
     }
 
     const snapshot = tracker.snapshot({ reset: true });
@@ -96,7 +138,10 @@ suite("T061: AST accuracy benchmark", () => {
   });
 });
 
-async function evaluateFixture(fixture: FixtureManifestEntry, tracker: TrackerInstance): Promise<FixtureResult> {
+async function evaluateFixture(
+  fixture: BenchmarkFixtureDefinition,
+  tracker: TrackerInstance
+): Promise<FixtureResult> {
   const root = path.join(FIXTURE_ROOT, fixture.path);
   const expected = await loadEdges(path.join(root, fixture.expected));
   const inferred = await loadEdges(path.join(root, fixture.inferred));
@@ -150,7 +195,11 @@ async function evaluateFixture(fixture: FixtureManifestEntry, tracker: TrackerIn
     }
   }
 
-  const totals: FixtureTotals = calculateTotals(truePositives.length, falsePositives.length, falseNegatives.length);
+  const totals = calculateTotals(
+    truePositives.length,
+    falsePositives.length,
+    falseNegatives.length
+  );
 
   return {
     id: fixture.id,
@@ -163,21 +212,15 @@ async function evaluateFixture(fixture: FixtureManifestEntry, tracker: TrackerIn
   };
 }
 
-async function loadManifest(filePath: string): Promise<FixtureManifest> {
-  const raw = await fs.readFile(filePath, "utf8");
-  const parsed = JSON.parse(raw) as FixtureManifest;
-  if (!parsed || !Array.isArray(parsed.fixtures)) {
-    throw new Error(`Invalid AST benchmark manifest at ${filePath}`);
-  }
-  return parsed;
-}
-
-function selectFixtures(manifest: FixtureManifest, mode: string): FixtureManifestEntry[] {
+function selectFixtures(
+  manifest: BenchmarkFixtureDefinition[],
+  mode: string
+): BenchmarkFixtureDefinition[] {
   if (mode === "all") {
-    return manifest.fixtures;
+    return manifest;
   }
 
-  return manifest.fixtures.filter(entry => {
+  return manifest.filter(entry => {
     const modes = entry.modes?.map(candidate => candidate.toLowerCase()) ?? [];
     if (mode === "self-similarity") {
       return modes.length === 0 || modes.includes("self-similarity");
@@ -214,7 +257,11 @@ function normalizePath(candidate: string): string {
   return candidate.replace(/\\/g, "/");
 }
 
-function calculateTotals(truePositives: number, falsePositives: number, falseNegatives: number): FixtureTotals {
+function calculateTotals(
+  truePositives: number,
+  falsePositives: number,
+  falseNegatives: number
+): FixtureTotals {
   const precision = ratio(truePositives, truePositives + falsePositives);
   const recall = ratio(truePositives, truePositives + falseNegatives);
   const f1Score = computeF1(precision, recall);
@@ -237,7 +284,7 @@ function ratio(numerator: number, denominator: number): number | null {
 }
 
 function computeF1(precision: number | null, recall: number | null): number | null {
-  if (precision === null || recall === null || (precision + recall) === 0) {
+  if (precision === null || recall === null || precision + recall === 0) {
     return null;
   }
   return (2 * precision * recall) / (precision + recall);
@@ -270,7 +317,9 @@ function getInferenceAccuracyTracker(): TrackerCtor {
 
   const modulePath = path.join(REPO_ROOT, "packages", "shared", "dist", "telemetry", "inferenceAccuracy.js");
   if (!existsSync(modulePath)) {
-    throw new Error(`Expected inference accuracy tracker at ${modulePath}. Run npm run build before integration benchmarks.`);
+    throw new Error(
+      `Expected inference accuracy tracker at ${modulePath}. Run npm run build before integration benchmarks.`
+    );
   }
 
   const trackerModule = requireModule(modulePath) as { InferenceAccuracyTracker?: TrackerCtor };

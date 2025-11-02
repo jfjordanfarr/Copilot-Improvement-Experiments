@@ -27,7 +27,8 @@ export const LinkRelationshipKindSchema = z.enum([
   "documents",
   "implements",
   "depends_on",
-  "references"
+  "references",
+  "includes"
 ]);
 
 export type LinkRelationshipKind = z.infer<typeof LinkRelationshipKindSchema>;

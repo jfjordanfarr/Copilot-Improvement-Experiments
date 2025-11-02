@@ -20,12 +20,51 @@
     },
     {
       "id": "ts-ky",
-      "label": "Ky HTTP client snapshot",
+      "label": "Ky HTTP client repository",
       "language": "typescript",
       "path": "typescript/ky",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "provenance": {
+        "kind": "vendor",
+        "repository": "sindresorhus/ky",
+        "commit": "5d3684ed0e27c1a89f9d13f09523367d86cbabfe",
+        "license": "MIT"
+      },
+      "materialization": {
+        "kind": "git",
+        "repository": "sindresorhus/ky",
+        "commit": "5d3684ed0e27c1a89f9d13f09523367d86cbabfe",
+        "include": [
+          "**/*.ts",
+          "**/*.tsx"
+        ],
+        "exclude": [
+          "**/*.d.ts",
+          "**/__tests__/**",
+          "**/*.test.ts",
+          "**/*.spec.ts"
+        ]
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "generatedAt": "2025-11-01T00:00:00.000Z",
+        "fileSet": {
+          "include": [
+            "**/*.ts",
+            "**/*.tsx"
+          ],
+          "exclude": [
+            "**/*.d.ts",
+            "**/__tests__/**",
+            "**/*.test.ts",
+            "**/*.spec.ts"
+          ]
+        },
+        "rootHash": "2c49edba6c5393bad18daf38d76375b014d9706d573193307ccc779bde9099a8",
+        "fileCount": 43
+      }
     },
     {
       "id": "c-basics",
@@ -44,6 +83,56 @@
       "modes": ["ast"],
       "expected": "expected.json",
       "inferred": "inferred.json"
+    },
+    {
+      "id": "c-libuv",
+      "label": "libuv repository",
+      "language": "c",
+      "path": "c/libuv",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json",
+      "provenance": {
+        "kind": "vendor",
+        "repository": "libuv/libuv",
+        "commit": "12d1ed1380c59c5ec27503cf149833de6f0e6bb0",
+        "license": "MIT"
+      },
+      "materialization": {
+        "kind": "git",
+        "repository": "libuv/libuv",
+        "commit": "12d1ed1380c59c5ec27503cf149833de6f0e6bb0",
+        "include": [
+          "src/**/*.c",
+          "src/**/*.h",
+          "include/**/*.h"
+        ],
+        "exclude": [
+          "test/**",
+          "docs/**",
+          "cmake/**",
+          "samples/**"
+        ]
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "generatedAt": "2025-11-01T00:00:00.000Z",
+        "fileSet": {
+          "include": [
+            "src/**/*.c",
+            "src/**/*.h",
+            "include/**/*.h"
+          ],
+          "exclude": [
+            "test/**",
+            "docs/**",
+            "cmake/**",
+            "samples/**"
+          ]
+        },
+        "rootHash": "f057cbccf2b7939e4ffa78e7ab98d4ac2aee56cc7fff23d2c9fbbbaa83920f8c",
+        "fileCount": 118
+      }
     },
     {
       "id": "python-basics",

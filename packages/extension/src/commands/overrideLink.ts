@@ -32,7 +32,8 @@ const RELATIONSHIP_OPTIONS: LinkRelationshipKind[] = [
   "documents",
   "implements",
   "depends_on",
-  "references"
+  "references",
+  "includes"
 ];
 
 export function registerOverrideLinkCommand(client: LanguageClient): vscode.Disposable {

@@ -29,7 +29,9 @@ export const DEFAULT_CODE_EXTENSIONS = new Set([
   ".mjs",
   ".cts",
   ".mts",
-  ".cs"
+  ".cs",
+  ".c",
+  ".h"
 ]);
 export const DEFAULT_DOC_EXTENSIONS = new Set([".md", ".mdx", ".markdown", ".txt", ".yaml", ".yml"]);
 
@@ -311,6 +313,9 @@ function inferLanguage(filePath: string): string | undefined {
       return "javascript";
     case ".cs":
       return "csharp";
+    case ".c":
+    case ".h":
+      return "c";
     default:
       return undefined;
   }
@@ -549,6 +554,10 @@ function extractExportedSymbols(filePath: string, content: string): ExportedSymb
   }
 
   const scriptKind = inferScriptKind(extension);
+  if (scriptKind === ts.ScriptKind.Unknown) {
+    return [];
+  }
+
   const sourceFile = ts.createSourceFile(filePath, content, ts.ScriptTarget.Latest, true, scriptKind);
   const collected = new Map<string, ExportedSymbolMetadata>();
 

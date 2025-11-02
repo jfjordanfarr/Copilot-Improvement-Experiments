@@ -175,4 +175,55 @@ describe("fallback inference", () => {
     expect(hasLinkTo(fooArtifact?.id)).toBe(false);
     expect(hasLinkTo(barArtifact?.id)).toBe(false);
   });
+
+  it("detects local includes in C sources", async () => {
+    const result = await inferFallbackGraph({
+      seeds: [
+        {
+          uri: "file:///repo/src/main.c",
+          layer: "code",
+          content: [
+            "#include \"util.h\"",
+            "#include <stdio.h>",
+            "int main(void) {",
+            "  return add(1, 2);",
+            "}\n"
+          ].join("\n")
+        },
+        {
+          uri: "file:///repo/src/util.h",
+          layer: "code",
+          content: "int add(int left, int right);\n"
+        },
+        {
+          uri: "file:///repo/src/util.c",
+          layer: "code",
+          content: [
+            "#include \"util.h\"",
+            "int add(int left, int right) {",
+            "  return left + right;",
+            "}\n"
+          ].join("\n")
+        }
+      ]
+    });
+
+    const mainArtifact = result.artifacts.find(artifact => artifact.uri.endsWith("main.c"));
+    const headerArtifact = result.artifacts.find(artifact => artifact.uri.endsWith("util.h"));
+
+    expect(mainArtifact).toBeDefined();
+    expect(headerArtifact).toBeDefined();
+
+    const includeEdge = result.links.find(
+      link => link.sourceId === mainArtifact?.id && link.targetId === headerArtifact?.id && link.kind === "includes"
+    );
+
+    expect(includeEdge).toBeDefined();
+
+    const systemIncludeEdge = result.links.find(
+      link => link.kind === "includes" && link.targetId !== headerArtifact?.id
+    );
+
+    expect(systemIncludeEdge).toBeUndefined();
+  });
 });

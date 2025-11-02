@@ -21,7 +21,9 @@ Supports REQ-030 by producing reproducible performance and accuracy reports that
 - Provide utilities (e.g., `benchmarkRecorder.ts`) that orchestrate fixtures and return comparable metrics.
 - Manage benchmark coverage through `fixtures.manifest.json`, allowing `BENCHMARK_MODE` toggles (`self-similarity`, `ast`, `all`) to gate which fixtures run during verification.
 - Record per-fixture precision/recall metrics so future regression reports can spotlight language-specific drift.
-- Expand fixture census across languages (TypeScript, C, Python, Rust, …) so accuracy metrics surface ecosystem-specific strengths and gaps without co-opting full integration workspaces.
+- Materialise every vendored benchmark by cloning its source repository into an ephemeral staging workspace (under `AI-Agent-Workspace/tmp/benchmarks/<fixture-id>`), pinning the commit declared in the manifest before snapshots or analyzers execute.
+- Express file selection through manifest glob rules (`include` / `exclude`) so the integrity pipeline expands, hashes, and documents the resolved set automatically—no manually curated file lists.
+- Capture repository provenance (repo, ref, commit, license) in manifest metadata so documentation and staging directories stay reproducible and traceable.
 - Expand fixture census across languages (TypeScript, C, Python, Rust, Ruby, Java) with paired baseline and layered scenarios so accuracy metrics surface ecosystem-specific strengths and gaps without co-opting full integration workspaces.
 
 ### Telemetry Capture

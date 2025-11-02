@@ -48,9 +48,9 @@ export const DEFAULT_RUNTIME_SETTINGS: RuntimeSettings = {
   ripple: {
     maxDepth: 3,
     maxResults: 50,
-    allowedKinds: ["depends_on", "implements", "documents", "references"],
-    documentKinds: ["depends_on", "implements", "documents", "references"],
-    codeKinds: ["depends_on", "implements", "references"]
+    allowedKinds: ["depends_on", "implements", "documents", "references", "includes"],
+    documentKinds: ["depends_on", "implements", "documents", "references", "includes"],
+    codeKinds: ["depends_on", "implements", "references", "includes"]
   }
 };
 
@@ -96,7 +96,8 @@ const LINK_KIND_VALUES = new Set<LinkRelationshipKind>([
   "depends_on",
   "implements",
   "documents",
-  "references"
+  "references",
+  "includes"
 ]);
 
 function clampConfidence(value: number): number {

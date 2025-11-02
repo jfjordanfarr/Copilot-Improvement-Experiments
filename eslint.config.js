@@ -13,6 +13,7 @@ module.exports = tseslint.config(
       ".vscode-test/**",
   "tests/integration/dist/**",
   "tests/integration/benchmarks/fixtures/**",
+  "scripts/fixture-tools/*.js",
       "node_modules/**",
       "**/*.d.ts",
       "eslint.config.js",

@@ -271,6 +271,8 @@ export function buildOpenActionTitle(kind: string | undefined): string {
       return "Open linked dependency";
     case "references":
       return "Open linked reference";
+    case "includes":
+      return "Open included file";
     default:
       return DEFAULT_ACTION_TITLE;
   }

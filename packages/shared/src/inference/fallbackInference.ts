@@ -98,7 +98,7 @@ interface MatchCandidate {
   context: MatchContext;
 }
 
-type MatchContext = "text" | "import" | "directive" | "hint";
+type MatchContext = "text" | "import" | "include" | "directive" | "hint";
 
 const FALLBACK_HEURISTIC_AUTHOR = "fallback-heuristic";
 const FALLBACK_HINT_AUTHOR = "fallback-hint";
@@ -108,6 +108,7 @@ const MARKDOWN_LINK = /\[[^\]]+\]\(([^)]+)\)/g;
 const MARKDOWN_WIKI_LINK = /\[\[([^\]]+)\]\]/g;
 const LINK_DIRECTIVE = /@link\s+([^\s]+)/g;
 const MODULE_REFERENCE = /(?:(?:import|export)\s+[^"'`]*?["'`]([^"'`]+)["'`]|require\(\s*["'`]([^"'`]+)["'`]\s*\))/g;
+const INCLUDE_DIRECTIVE = /#\s*include\s*(?:"([^"\n]+)"|<([^>\n]+)>)/g;
 
 export async function inferFallbackGraph(
   input: FallbackInferenceInput,
@@ -130,6 +131,10 @@ export async function inferFallbackGraph(
     });
 
     applyImportHeuristics(source, enrichedArtifacts, (match) => {
+      addLink(match, source, linkAccumulator, traces, nowFactory, "heuristic", FALLBACK_HEURISTIC_AUTHOR);
+    });
+
+    applyIncludeHeuristics(source, enrichedArtifacts, (match) => {
       addLink(match, source, linkAccumulator, traces, nowFactory, "heuristic", FALLBACK_HEURISTIC_AUTHOR);
     });
 
@@ -287,6 +292,38 @@ function applyImportHeuristics(
   MODULE_REFERENCE.lastIndex = 0;
 }
 
+function applyIncludeHeuristics(
+  source: EnrichedArtifact,
+  candidates: EnrichedArtifact[],
+  register: (match: MatchCandidate) => void
+): void {
+  if (!isImplementationLayer(source.artifact.layer)) {
+    return;
+  }
+
+  let match: RegExpExecArray | null;
+  const content = source.content ?? "";
+
+  while ((match = INCLUDE_DIRECTIVE.exec(content)) !== null) {
+    const localReference = match[1];
+    if (!localReference) {
+      continue;
+    }
+
+    const referenceStart = computeReferenceStart(match, localReference);
+    if (referenceStart !== null && isWithinComment(content, referenceStart)) {
+      continue;
+    }
+
+    const candidate = resolveIncludeReference(localReference, source, candidates);
+    if (candidate) {
+      register(candidate);
+    }
+  }
+
+  INCLUDE_DIRECTIVE.lastIndex = 0;
+}
+
 function applyDirectiveHeuristics(
   source: EnrichedArtifact,
   candidates: EnrichedArtifact[],
@@ -423,6 +460,32 @@ function addLink(
     confidence: normalizedConfidence,
     rationale: candidate.rationale
   });
+}
+
+function resolveIncludeReference(
+  reference: string,
+  source: EnrichedArtifact,
+  candidates: EnrichedArtifact[]
+): MatchCandidate | null {
+  const cleaned = cleanupReference(reference);
+  if (!cleaned) {
+    return null;
+  }
+
+  const sourceDir = path.dirname(source.comparablePath);
+  const relativeTarget = toComparablePath(path.join(sourceDir, cleaned));
+  const directMatch = candidates.find(candidate => candidate.comparablePath === relativeTarget);
+
+  if (directMatch) {
+    return {
+      target: directMatch,
+      confidence: 0.85,
+      rationale: `#include ${cleaned} → relative include match`,
+      context: "include"
+    };
+  }
+
+  return resolveReference(cleaned, source, candidates, "include", `#include ${cleaned}`);
 }
 
 function resolveReference(
@@ -654,6 +717,10 @@ function inferLinkKind(
   targetLayer: ArtifactLayer,
   context: MatchContext
 ): LinkRelationshipKind {
+  if (context === "include" && isImplementationLayer(sourceLayer) && isImplementationLayer(targetLayer)) {
+    return "includes";
+  }
+
   if (context === "import" && isImplementationLayer(sourceLayer) && isImplementationLayer(targetLayer)) {
     return "depends_on";
   }

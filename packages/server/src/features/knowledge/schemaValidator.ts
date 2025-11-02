@@ -26,7 +26,13 @@ const ALLOWED_LAYERS: ArtifactLayer[] = [
   "code"
 ];
 
-const ALLOWED_LINK_KINDS: LinkRelationshipKind[] = ["documents", "implements", "depends_on", "references"];
+const ALLOWED_LINK_KINDS: LinkRelationshipKind[] = [
+  "documents",
+  "implements",
+  "depends_on",
+  "references",
+  "includes"
+];
 
 const ALLOWED_STREAM_KINDS: StreamEventKind[] = [
   "artifact-upsert",

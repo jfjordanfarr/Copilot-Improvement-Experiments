@@ -82,7 +82,13 @@ export function createSymbolBridgeProvider(options: SymbolBridgeProviderOptions)
 }
 
 const ArtifactLayerSchema = z.enum(["vision", "requirements", "architecture", "implementation", "code"]);
-const LinkRelationshipKindSchema = z.enum(["documents", "implements", "depends_on", "references"]);
+const LinkRelationshipKindSchema = z.enum([
+  "documents",
+  "implements",
+  "depends_on",
+  "references",
+  "includes"
+]);
 
 const ArtifactSeedSchema = z.object({
   id: z.string().optional(),

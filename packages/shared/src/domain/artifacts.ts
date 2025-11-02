@@ -20,7 +20,8 @@ export type LinkRelationshipKind =
   | "documents"
   | "implements"
   | "depends_on"
-  | "references";
+  | "references"
+  | "includes";
 
 export interface LinkRelationship {
   id: string;

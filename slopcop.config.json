@@ -29,7 +29,8 @@
     ],
     "ignoreGlobs": [
       "tests/integration/fixtures/slopcop-symbols/workspace/**",
-      "tests/integration/fixtures/simple-workspace/**"
+      "tests/integration/fixtures/simple-workspace/**",
+      "AI-Agent-Workspace/tmp/**"
     ],
     "ignoreTargets": []
   }

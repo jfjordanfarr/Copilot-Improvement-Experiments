@@ -15,7 +15,7 @@ Seed the knowledge graph with local code and documentation artifacts without rel
 ## Public Symbols
 
 ### DEFAULT_CODE_EXTENSIONS
-Array of file extensions (ts/tsx/js/jsx/mjs/cts/mts) used to filter implementation directories when collecting code artifacts.
+Set of file extensions (ts/tsx/js/jsx/mjs/cts/mts/c/h) used to filter implementation directories when collecting code artifacts.
 
 ### DEFAULT_DOC_EXTENSIONS
 Set of documentation-oriented extensions (md/mdx/markdown/txt/yaml/yml) used to harvest Layer 2/3 MDMD files into the requirements layer.
