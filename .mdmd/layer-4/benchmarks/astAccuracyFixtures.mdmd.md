@@ -12,6 +12,7 @@
   - [`tests/integration/benchmarks/fixtures/c/libuv`](../../../tests/integration/benchmarks/fixtures/c/libuv)
   - [`tests/integration/benchmarks/fixtures/python/basics`](../../../tests/integration/benchmarks/fixtures/python/basics)
   - [`tests/integration/benchmarks/fixtures/python/pipeline`](../../../tests/integration/benchmarks/fixtures/python/pipeline)
+  - [`tests/integration/benchmarks/fixtures/python/requests`](../../../tests/integration/benchmarks/fixtures/python/requests)
   - [`tests/integration/benchmarks/fixtures/rust/basics`](../../../tests/integration/benchmarks/fixtures/rust/basics)
   - [`tests/integration/benchmarks/fixtures/rust/analytics`](../../../tests/integration/benchmarks/fixtures/rust/analytics)
   - [`tests/integration/benchmarks/fixtures/java/basic`](../../../tests/integration/benchmarks/fixtures/java/basic)
@@ -40,6 +41,12 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - **Source**: `libuv/libuv` @ `12d1ed1380c59c5ec27503cf149833de6f0e6bb0` — MIT
 - **Integrity**: `sha256` root `f057cbccf2b7939e4ffa78e7ab98d4ac2aee56cc7fff23d2c9fbbbaa83920f8c` (118 files)
 - **File Selection**: include `src/**/*.c`, `src/**/*.h`, `include/**/*.h`; exclude `test/**`, `docs/**`, `cmake/**`, `samples/**` (resolved 118 files)
+
+#### `python-requests` (Requests HTTP client repository)
+
+- **Source**: `psf/requests` @ `61e2240f283f15780ac2d0e2cfefb0fd6fdab627` — Apache-2.0
+- **Integrity**: `sha256` root `15a1472f5b939c3180740202cdc7b92a519a28297318864c16d75d87554345b6` (18 files)
+- **File Selection**: include `src/requests/**/*.py`; exclude `src/requests/__pycache__/**` (resolved 18 files)
 <!-- benchmark-vendor-inventory:end -->
 
 -### `ts-basic`
@@ -83,6 +90,12 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Scope: Python reporting workflow with repositories, validators, and dataclass-backed summaries.
 - Source Files: [`src/main.py`](../../../tests/integration/benchmarks/fixtures/python/pipeline/src/main.py), [`src/pipeline.py`](../../../tests/integration/benchmarks/fixtures/python/pipeline/src/pipeline.py), [`src/repositories.py`](../../../tests/integration/benchmarks/fixtures/python/pipeline/src/repositories.py), [`src/metrics.py`](../../../tests/integration/benchmarks/fixtures/python/pipeline/src/metrics.py), [`src/validators.py`](../../../tests/integration/benchmarks/fixtures/python/pipeline/src/validators.py)
 - Benchmark Intent: Exercise chained imports and validation helpers in a multi-module Python package to surface control-flow heavy graphs.
+
+### `python-requests`
+- Scope: Real-world `psf/requests` 2.32.3 client stack surfaced through the manifest’s git materializer while trimming tests and docs to focus on the runtime surface.
+- File Selection: Integrates all `src/requests/**/*.py` modules (18 files) with integrity pinning so optional vendored dependencies remain externally supplied.
+- Benchmark Intent: Stress our Python import reconstruction against a production package that mixes module-level constants, compatibility helpers, and session orchestration.
+- Dynamic Import Notes: `requests.compat` relies on `importlib.import_module` to resolve either `chardet` or `charset_normalizer`, while `requests.packages` rewrites `sys.modules` to expose vendored namespaces (`requests.packages.urllib3.*` and conditional `chardet`). These behaviours inform why the expected graph focuses on intra-package imports—the dynamic aliases are noted here for manual review even though they do not surface as static edges.
 
 ### `rust-basics`
 - Scope: Small Rust crate with helper modules for math and utility routines.

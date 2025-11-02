@@ -153,6 +153,46 @@
       "inferred": "inferred.json"
     },
     {
+      "id": "python-requests",
+      "label": "Requests HTTP client repository",
+      "language": "python",
+      "path": "python/requests",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json",
+      "provenance": {
+        "kind": "vendor",
+        "repository": "psf/requests",
+        "commit": "61e2240f283f15780ac2d0e2cfefb0fd6fdab627",
+        "license": "Apache-2.0"
+      },
+      "materialization": {
+        "kind": "git",
+        "repository": "psf/requests",
+        "commit": "61e2240f283f15780ac2d0e2cfefb0fd6fdab627",
+        "include": [
+          "src/requests/**/*.py"
+        ],
+        "exclude": [
+          "src/requests/__pycache__/**"
+        ]
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "generatedAt": "2025-11-02T00:00:00.000Z",
+        "fileSet": {
+          "include": [
+            "src/requests/**/*.py"
+          ],
+          "exclude": [
+            "src/requests/__pycache__/**"
+          ]
+        },
+        "rootHash": "15a1472f5b939c3180740202cdc7b92a519a28297318864c16d75d87554345b6",
+        "fileCount": 18
+      }
+    },
+    {
       "id": "rust-basics",
       "label": "Rust crate with helper modules",
       "language": "rust",

@@ -167,8 +167,8 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T077 Update safe-to-commit, README, and MDMD docs to cover asset + symbol audits and their configuration gates
 - [x] T078 [P] Wire the local Ollama bridge (shared helper, CLI fallback, harness defaults) across `packages/extension`, `packages/shared`, `scripts/ollama`, and integration docs
 - [x] T087 Curate external TypeScript benchmark snapshot from `sindresorhus/ky` and integrate it under `tests/integration/benchmarks/fixtures/typescript/ky` with accompanying manifest entry and documentation links.
-- [ ] T088 Materialise the full `libuv/libuv` repository via the benchmark manifest (clone → glob include/exclude) and refresh AST expectations against the staging workspace.
-- [ ] T089 Materialise the full `psf/requests` repository via the benchmark manifest (clone → glob include/exclude) and document dynamic import considerations surfaced by full-project analysis.
+- [x] T088 Materialise the full `libuv/libuv` repository via the benchmark manifest (clone → glob include/exclude) and refresh AST expectations against the staging workspace.
+- [x] T089 Materialise the full `psf/requests` repository via the benchmark manifest (clone → glob include/exclude) and document dynamic import considerations surfaced by full-project analysis.
 - [ ] T090 Materialise the full `rust-lang/log` repository via the benchmark manifest (clone → glob include/exclude) and capture macro-expansion notes from full-project analysis.
 - [ ] T091 Materialise the full `square/okhttp` repository via the benchmark manifest (clone → glob include/exclude) and map builder pattern coverage.
 - [ ] T092 Materialise the full `ruby-grape/grape` repository via the benchmark manifest (clone → glob include/exclude) and annotate runtime DSL edges discovered by whole-project analysis.
