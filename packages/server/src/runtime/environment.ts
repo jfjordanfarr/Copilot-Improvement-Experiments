@@ -1,3 +1,4 @@
+// Live Documentation: .mdmd/layer-4/language-server-runtime/languageServerRuntime.mdmd.md#source-breadcrumbs
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";

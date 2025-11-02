@@ -72,8 +72,9 @@ When files are deleted or moved, the client raises a rebind prompt (`linkDiagnos
 | `npm run lint` | ESLint across all packages (TypeScript Project Service enabled). |
 | `npm run test:unit` | Vitest suite with coverage. Automatically rebuilds `better-sqlite3` for Node (respects `SKIP_BETTER_SQLITE3_REBUILD=1`). |
 | `npm run test:integration` | VS Code integration harness. Always rebuilds `better-sqlite3` for the current Electron runtime and exercises all user stories. |
-| `npm run verify` | End-to-end gate: lint → force Node rebuild → unit tests → integration tests. This is the script CI and pre-commit hooks should use. |
-| `npm run safe:commit` | Composite gate: verify → graph snapshot → graph audit → SlopCop lint (markdown, assets, symbols) → git status summary. Pass `--skip-git-status` in CI. |
+| `npm run verify` | End-to-end gate: lint → force Node rebuild → unit tests → integration tests → documentation link enforcement. This is the script CI and pre-commit hooks should use. |
+| `npm run docs:links:enforce` | Enforces `// Live Documentation: …` comments (or configured labels) in commentable code files and validates that documentation sections link back. Use `-- --fix` to autofix. |
+| `npm run safe:commit` | Composite gate: verify → graph snapshot → graph audit → fixture verification → documentation link enforcement → SlopCop lint (markdown, assets, symbols) → git status summary. Pass `--skip-git-status` in CI. |
 | `npm run ci-check` | Runs the safe-to-commit pipeline in CI-friendly mode (`--skip-git-status`). |
 | `npm run slopcop:markdown` | Markdown/MDMD link audit (use `-- --json` for machine output). |
 | `npm run slopcop:assets` | HTML/CSS asset reference audit (use `-- --json` for machine output). |

@@ -1,3 +1,4 @@
+// Live Documentation: .mdmd/layer-4/server-diagnostics/diagnosticPublisher.mdmd.md#source-breadcrumbs
 import { DocumentDiagnosticReportKind } from "vscode-languageserver/node";
 import type {
   Connection,

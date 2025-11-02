@@ -1,3 +1,4 @@
+// Live Documentation: .mdmd/layer-4/language-server-runtime/languageServerRuntime.mdmd.md#source-breadcrumbs
 import * as path from "node:path";
 import {
   Connection,

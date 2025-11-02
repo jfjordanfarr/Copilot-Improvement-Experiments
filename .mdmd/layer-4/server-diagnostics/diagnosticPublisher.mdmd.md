@@ -1,7 +1,14 @@
 # DiagnosticPublisher (Layer 4)
 
-## Source Mapping
-- Implementation: [`packages/server/src/features/diagnostics/diagnosticPublisher.ts`](../../../packages/server/src/features/diagnostics/diagnosticPublisher.ts)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-111
+- Code Path: [`packages/server/src/features/diagnostics/diagnosticPublisher.ts`](../../../packages/server/src/features/diagnostics/diagnosticPublisher.ts)
+- Exports: DiagnosticPublisher
+
+## Source Breadcrumbs
+<!-- mdmd:code packages/server/src/features/diagnostics/diagnosticPublisher.ts -->
+- [`packages/server/src/features/diagnostics/diagnosticPublisher.ts`](../../../packages/server/src/features/diagnostics/diagnosticPublisher.ts) implements the language server diagnostic sender.
 - Consumers:
   - [`packages/server/src/main.ts`](../../../packages/server/src/main.ts) attaches the publisher to the LSP connection and diagnostic pull handler.
   - [`packages/server/src/features/diagnostics/diagnosticUtils.ts`](../../../packages/server/src/features/diagnostics/diagnosticUtils.ts) defines the `DiagnosticSender` contract satisfied here.

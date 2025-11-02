@@ -88,6 +88,7 @@ HTML comment sentinels that mark the bounds of the vendor inventory block; expos
 ## Collaborators
 - [`scripts/fixture-tools/verify-fixtures.ts`](../../../scripts/fixture-tools/verify-fixtures.ts) orchestrates snapshotting, graph audits, and integrity checks using the exported manifest/materialiser APIs.
 - [`tests/integration/benchmarks/astAccuracy.test.ts`](../../../tests/integration/benchmarks/astAccuracy.test.ts) materialises fixtures in ephemeral workspaces before asserting precision/recall metrics.
+- [`scripts/doc-tools/enforce-documentation-links.ts`](../../../scripts/doc-tools/enforce-documentation-links.ts) ensures fixture tooling sources and their Layer 4 docs remain mutually discoverable wherever documentation link enforcement participates in verification pipelines.
 
 ## Linked Components
 - `.mdmd/layer-4/benchmarks/astAccuracyFixtures.mdmd.md` records the curated fixture inventory and relies on the documentation helpers to stay synchronised.

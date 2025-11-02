@@ -1,3 +1,4 @@
+﻿// Live Documentation: .mdmd/layer-4/extension-commands/latencySummary.mdmd.md#source-breadcrumbs
 import * as vscode from "vscode";
 import { LanguageClient } from "vscode-languageclient/node";
 

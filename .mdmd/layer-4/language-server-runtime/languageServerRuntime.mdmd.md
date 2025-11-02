@@ -1,16 +1,26 @@
 # Language Server Runtime Bootstrap (Layer 4)
 
-## Source Mapping
-- Implementation: [`packages/server/src/main.ts`](../../../packages/server/src/main.ts)
-- Supporting modules:
-  - [`packages/server/src/runtime/changeProcessor.ts`](../../../packages/server/src/runtime/changeProcessor.ts)
-  - [`packages/server/src/runtime/environment.ts`](../../../packages/server/src/runtime/environment.ts)
-  - [`packages/server/src/runtime/knowledgeFeeds.ts`](../../../packages/server/src/runtime/knowledgeFeeds.ts)
-  - [`packages/server/src/runtime/settings.ts`](../../../packages/server/src/runtime/settings.ts)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-100
+- Code Path: [`packages/server/src/main.ts`](../../../packages/server/src/main.ts)
+- Exports: (entrypoint)
+
+## Source Breadcrumbs
+<!-- mdmd:code packages/server/src/main.ts -->
+- [`packages/server/src/main.ts`](../../../packages/server/src/main.ts) boots the language server connection and wires runtime collaborators.
+<!-- mdmd:code packages/server/src/runtime/changeProcessor.ts -->
+- [`packages/server/src/runtime/changeProcessor.ts`](../../../packages/server/src/runtime/changeProcessor.ts) orchestrates inference and persistence for document saves.
+<!-- mdmd:code packages/server/src/runtime/environment.ts -->
+- [`packages/server/src/runtime/environment.ts`](../../../packages/server/src/runtime/environment.ts) resolves workspace paths and shared runtime configuration.
+<!-- mdmd:code packages/server/src/runtime/knowledgeFeeds.ts -->
+- [`packages/server/src/runtime/knowledgeFeeds.ts`](../../../packages/server/src/runtime/knowledgeFeeds.ts) manages knowledge feed lifecycle bindings to the runtime context.
+<!-- mdmd:code packages/server/src/runtime/settings.ts -->
+- [`packages/server/src/runtime/settings.ts`](../../../packages/server/src/runtime/settings.ts) derives runtime settings from provider metadata and extension configuration.
 - Parent design: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
 - Spec references: [FR-002](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-003](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-008](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-012](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements), [FR-015](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
 
-## Responsibility
+## Purpose
 Owns the language server bootstrap loop: wiring LSP lifecycle events, projecting workspace settings into runtime configuration, coordinating change ingestion through `ArtifactWatcher`, and delegating diagnostics/knowledge-feed orchestration to dedicated services. The module guarantees that downstream processors always see a coherent context (graph store, runtime throttles, noisy feed signals) before responding to client requests.
 
 ## Key Concepts

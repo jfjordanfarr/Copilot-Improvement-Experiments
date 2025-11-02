@@ -1,7 +1,14 @@
 # Latency Summary Commands (Layer 4)
 
-## Source Mapping
-- Implementation: [`packages/extension/src/commands/latencySummary.ts`](../../../packages/extension/src/commands/latencySummary.ts)
+## Metadata
+- Layer: 4
+- Implementation ID: IMP-113
+- Code Path: [`packages/extension/src/commands/latencySummary.ts`](../../../packages/extension/src/commands/latencySummary.ts)
+- Exports: registerLatencyTelemetryCommands, LATENCY_SUMMARY_COMMAND, GET_LATENCY_SUMMARY_INTERNAL_COMMAND
+
+## Source Breadcrumbs
+<!-- mdmd:code packages/extension/src/commands/latencySummary.ts -->
+- [`packages/extension/src/commands/latencySummary.ts`](../../../packages/extension/src/commands/latencySummary.ts) registers the user-facing and internal telemetry commands.
 - Command contributions: [`packages/extension/package.json`](../../../packages/extension/package.json)
 - Telemetry contracts: [`packages/shared/src/contracts/telemetry.ts`](../../../packages/shared/src/contracts/telemetry.ts)
 - Parent design: [Extension Surfaces](../../layer-3/extension-surfaces.mdmd.md)

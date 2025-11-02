@@ -1,3 +1,4 @@
+// Live Documentation: .mdmd/layer-4/language-server-runtime/languageServerRuntime.mdmd.md#source-breadcrumbs
 import type { Connection } from "vscode-languageserver/node";
 
 import type { GraphStore, KnowledgeArtifact } from "@copilot-improvement/shared";

@@ -62,7 +62,10 @@ function runSafeCommitCheck() {
     }
     runNpmScript('Graph snapshot', ['run', 'graph:snapshot', '--', '--quiet']);
     runNpmScript('Graph coverage audit', ['run', 'graph:audit']);
-    runNpmScript('Fixture workspace verification', ['run', 'fixtures:verify']);
+    runNpmScript('Fixture workspace verification', ['run', 'fixtures:verify'], {
+      FIXTURES_VERIFY_QUIET: '1'
+    });
+    runNpmScript('Documentation link enforcement', ['run', 'docs:links:enforce']);
     runNpmScript('SlopCop markdown audit', ['run', 'slopcop:markdown']);
     runNpmScript('SlopCop asset audit', ['run', 'slopcop:assets']);
     runNpmScript('SlopCop symbol audit', ['run', 'slopcop:symbols']);

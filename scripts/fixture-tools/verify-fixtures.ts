@@ -37,6 +37,10 @@ const REPO_ROOT = path.resolve(path.join(__dirname, "..", ".."));
 const FIXTURE_TIMESTAMP = "2025-01-01T00:00:00.000Z";
 const TSX_CLI = path.join(REPO_ROOT, "node_modules", "tsx", "dist", "cli.mjs");
 const DEFAULT_SLOPCOP_SUITES: readonly SlopcopSuite[] = ["markdown", "assets", "symbols"];
+const QUIET_MODE =
+  resolveBool(process.env.FIXTURES_VERIFY_QUIET) ??
+  resolveBool(process.env.npm_config_quiet) ??
+  false;
 
 async function main(): Promise<void> {
   const repoRoot = REPO_ROOT;
@@ -165,12 +169,22 @@ async function runAudit(repoRoot: string, dbPath: string, workspaceRoot: string)
   const tsconfig = path.join(repoRoot, "tsconfig.base.json");
   const scriptPath = path.join(repoRoot, "scripts", "graph-tools", "audit-doc-coverage.ts");
 
-  await runProcess(
-    "graph:audit",
-    process.execPath,
-    [tsxCli, "--tsconfig", tsconfig, scriptPath, "--db", dbPath, "--workspace", workspaceRoot, "--json"],
+  const args = [
+    tsxCli,
+    "--tsconfig",
+    tsconfig,
+    scriptPath,
+    "--db",
+    dbPath,
+    "--workspace",
     workspaceRoot
-  );
+  ];
+
+  if (!QUIET_MODE) {
+    args.push("--json");
+  }
+
+  await runProcess("graph:audit", process.execPath, args, workspaceRoot);
 }
 
 async function runSlopcopSuites(repoRoot: string, context: FixtureContext): Promise<void> {
@@ -188,22 +202,22 @@ async function runSlopcopSuites(repoRoot: string, context: FixtureContext): Prom
   } as const;
 
   for (const suite of context.slopcopSuites) {
-    await runProcess(
-      `slopcop:${suite}`,
-      process.execPath,
-      [
-        tsxCli,
-        "--tsconfig",
-        tsconfig,
-        suiteScripts[suite],
-        "--workspace",
-        context.absolutePath,
-        "--config",
-        context.slopcopConfigPath,
-        "--json"
-      ],
-      context.absolutePath
-    );
+    const args = [
+      tsxCli,
+      "--tsconfig",
+      tsconfig,
+      suiteScripts[suite],
+      "--workspace",
+      context.absolutePath,
+      "--config",
+      context.slopcopConfigPath
+    ];
+
+    if (!QUIET_MODE) {
+      args.push("--json");
+    }
+
+    await runProcess(`slopcop:${suite}`, process.execPath, args, context.absolutePath);
   }
 }
 
@@ -275,6 +289,20 @@ async function ensureVendorDocsAligned(
 
 function normalizeNewlines(candidate: string): string {
   return candidate.replace(/\r\n/g, "\n");
+}
+
+function resolveBool(value: string | undefined): boolean | undefined {
+  if (value === undefined) {
+    return undefined;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (["", "1", "true", "yes", "on"].includes(normalized)) {
+    return true;
+  }
+  if (["0", "false", "no", "off"].includes(normalized)) {
+    return false;
+  }
+  return undefined;
 }
 
 async function runProcess(

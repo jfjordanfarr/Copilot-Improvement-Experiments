@@ -3,7 +3,9 @@
     "AI-Agent-Workspace/ChatHistory/**"
   ],
   "markdown": {
-    "ignoreTargets": []
+    "ignoreTargets": [
+      "packages/shared/src/tooling/__fixtures__/documentation-links/sample-tool.mdmd.md"
+    ]
   },
   "assets": {
     "includeGlobs": [
