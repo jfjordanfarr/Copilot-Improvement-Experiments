@@ -128,20 +128,25 @@ function runVerify() {
     runNpmScript("Documentation link enforcement", ["run", "docs:links:enforce"], benchmarkEnv);
 
     if (generateReport) {
-      runStep(
-        "Generate test report",
-        process.platform === "win32" ? "npx.cmd" : "npx",
-        [
-          "tsx",
-          "--tsconfig",
-          "./tsconfig.base.json",
-          "./scripts/reporting/generateTestReport.ts"
-        ],
-        {
-          env: { ...process.env, ...benchmarkEnv },
-          shell: process.platform === "win32"
-        }
-      );
+      const reportModes = resolveReportModes(mode);
+      for (const reportMode of reportModes) {
+        runStep(
+          `Generate test report (${reportMode})`,
+          process.platform === "win32" ? "npx.cmd" : "npx",
+          [
+            "tsx",
+            "--tsconfig",
+            "./tsconfig.base.json",
+            "./scripts/reporting/generateTestReport.ts",
+            "--mode",
+            reportMode
+          ],
+          {
+            env: { ...process.env, ...benchmarkEnv },
+            shell: process.platform === "win32"
+          }
+        );
+      }
     }
   } catch (error) {
     console.error("\nVerification failed.");
@@ -153,3 +158,16 @@ function runVerify() {
 }
 
 runVerify();
+
+function resolveReportModes(mode) {
+  if (!mode || mode === "self-similarity") {
+    return ["self-similarity"];
+  }
+  if (mode === "ast") {
+    return ["ast"];
+  }
+  if (mode === "all") {
+    return ["self-similarity", "ast"];
+  }
+  return [mode];
+}

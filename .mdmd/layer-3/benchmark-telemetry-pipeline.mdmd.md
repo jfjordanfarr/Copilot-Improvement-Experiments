@@ -12,7 +12,7 @@ Supports REQ-030 by producing reproducible performance and accuracy reports that
 ## Responsibilities
 
 ### Unified Reporting
-- Generate a durable artifact (`reports/test-report.md`) each verification run summarising integration outcomes, benchmark deltas, and telemetry snapshots.
+- Generate durable per-mode artifacts (for example, `reports/test-report.self-similarity.md`, `reports/test-report.ast.md`) each verification run summarising integration outcomes, benchmark deltas, and telemetry snapshots.
 - Harmonise CLI tooling so `npm run verify -- --report` emits structured JSON consumed by the report renderer.
 - Leverage the shared formatter (`buildTestReportMarkdown`) so Markdown sections stay consistent across local development and CI runs.
 
@@ -37,7 +37,7 @@ Supports REQ-030 by producing reproducible performance and accuracy reports that
 - Shared telemetry collectors invoked by benchmarks and the regression report generator.
 
 ### Outbound Interfaces
-- Markdown/JSON report persisted to `reports/test-report.md`.
+- Markdown/JSON reports persisted to `reports/test-report.<mode>.md` alongside versioned JSON under `reports/benchmarks/<mode>/`.
 - Telemetry updates stored in SQLite (`packages/server/src/telemetry`) for subsequent audits.
 
 ## Linked Implementations

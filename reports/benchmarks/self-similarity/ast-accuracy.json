@@ -1,0 +1,70 @@
+{
+  "benchmark": "ast-accuracy",
+  "mode": "self-similarity",
+  "recordedAt": "2025-11-03T19:27:49.442Z",
+  "environment": {
+    "nodeVersion": "v22.14.0",
+    "platform": "win32",
+    "arch": "x64",
+    "providerMode": null,
+    "ollamaModel": null,
+    "ollamaEndpoint": null
+  },
+  "data": {
+    "mode": "self-similarity",
+    "thresholds": {
+      "precision": 0.6,
+      "recall": 0.6
+    },
+    "totals": {
+      "totalEvaluated": 4,
+      "truePositives": 2,
+      "falsePositives": 1,
+      "falseNegatives": 1,
+      "precision": 0.6666666666666666,
+      "recall": 0.6666666666666666,
+      "f1Score": 0.6666666666666666
+    },
+    "fixtures": [
+      {
+        "id": "ts-basic",
+        "label": "TypeScript module graph smoke sample",
+        "language": "typescript",
+        "totals": {
+          "truePositives": 2,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1Score": 0.6666666666666666
+        },
+        "truePositives": [
+          {
+            "source": "src/index.ts",
+            "target": "src/util.ts",
+            "relation": "imports"
+          },
+          {
+            "source": "src/index.ts",
+            "target": "src/models.ts",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/index.ts",
+            "target": "src/helpers.ts",
+            "relation": "imports"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/models.ts",
+            "target": "src/types.ts",
+            "relation": "imports"
+          }
+        ]
+      }
+    ]
+  }
+}

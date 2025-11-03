@@ -1,0 +1,26 @@
+{
+  "benchmark": "rebuild-stability",
+  "mode": "self-similarity",
+  "recordedAt": "2025-11-03T19:27:51.873Z",
+  "environment": {
+    "nodeVersion": "v22.14.0",
+    "platform": "win32",
+    "arch": "x64",
+    "providerMode": null,
+    "ollamaModel": null,
+    "ollamaEndpoint": null
+  },
+  "data": {
+    "mode": "self-similarity",
+    "workspace": "simple-workspace",
+    "iterations": 3,
+    "durationsMs": [
+      816,
+      795,
+      808
+    ],
+    "averageDurationMs": 806.3333333333334,
+    "maxDurationMs": 816,
+    "driftDetected": false
+  }
+}

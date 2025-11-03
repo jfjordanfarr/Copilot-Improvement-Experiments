@@ -23,5 +23,5 @@ Measure how deterministically the workspace graph reconstructs across repeated r
 - Leverages telemetry trackers (latency + inference) to enrich the stability metrics when available.
 
 ## Evidence
-- Integration run logs (captured in `reports/test-report.md`) will include drift tables and rebuild timing benchmarks.
+- Integration run logs (captured in `reports/test-report.self-similarity.md`) will include drift tables and rebuild timing benchmarks.
 - Follow-up unit helpers (`tests/integration/benchmarks/utils/rebuildComparison.test.ts`, planned) cover diffing logic independently.

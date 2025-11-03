@@ -1,6 +1,6 @@
 ﻿# Copilot Instructions
 
-Last updated: 2025-10-25
+Last updated: 2025-11-03
 
 ## What We Are Building
 
@@ -39,6 +39,13 @@ On the way to building that, we are collecting up iterative wins which progressi
 - SlopCop markdown audit: `npm run slopcop:markdown` scans `.md`/`.mdmd` files for broken local links. Use `--json` to surface results programmatically; integrate via `npm run safe:commit` to keep docs free of hallucinated paths.
 - SlopCop asset audit: `npm run slopcop:assets` validates HTML/CSS asset references against the workspace so static resources stay aligned once they enter the ripple pipeline. Configure roots/ignores via [`slopcop.config.json`](../slopcop.config.json); `assets.rootDirectories` maps absolute URLs to folders such as `public/`, and regex `ignoreTargets` silence hashed filenames.
 - SlopCop symbol audit (opt-in): `npm run slopcop:symbols` verifies Markdown/MDMD headings against local and cross-document anchors using GitHub-compatible slugging. Enable via `symbols.enabled` in `slopcop.config.json` once duplicate headings are resolved.
+
+## Benchmark Reporting Workflow
+- Benchmark suites write mode-specific Markdown to `reports/test-report.<mode>.md` (currently `test-report.self-similarity.md` and `test-report.ast.md`) while persisting versioned JSON under `reports/benchmarks/<mode>/`.
+- False-positive/negative drilldowns remain outside the repo under `AI-Agent-Workspace/tmp/benchmarks/<suite>/<mode>/`. Inspect those folders when triaging failures but keep them untracked.
+- Run `npm run verify -- --mode all --report` to refresh both Markdown reports after integration and benchmark runs. Use `--mode ast` or `--mode self-similarity` when you only need one suite.
+- `npm run safe:commit -- --benchmarks` automatically executes both benchmark modes. Add `--report` (default when `--benchmarks` is present) so the per-mode Markdown artifacts update before committing.
+- The legacy `reports/test-report.md` is now a pointer file; do not overwrite it with suite-specific content.
 
 Example invocations:
 - `npm run graph:snapshot`: **Rebuilds the graph and emits a snapshot fixture. Do this first.**

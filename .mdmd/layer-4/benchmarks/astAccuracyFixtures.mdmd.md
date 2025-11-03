@@ -15,6 +15,7 @@
   - [`tests/integration/benchmarks/fixtures/python/requests`](../../../tests/integration/benchmarks/fixtures/python/requests)
   - [`tests/integration/benchmarks/fixtures/rust/basics`](../../../tests/integration/benchmarks/fixtures/rust/basics)
   - [`tests/integration/benchmarks/fixtures/rust/analytics`](../../../tests/integration/benchmarks/fixtures/rust/analytics)
+  - [`tests/integration/benchmarks/fixtures/rust/log`](../../../tests/integration/benchmarks/fixtures/rust/log)
   - [`tests/integration/benchmarks/fixtures/java/basic`](../../../tests/integration/benchmarks/fixtures/java/basic)
   - [`tests/integration/benchmarks/fixtures/java/service`](../../../tests/integration/benchmarks/fixtures/java/service)
   - [`tests/integration/benchmarks/fixtures/ruby/basic`](../../../tests/integration/benchmarks/fixtures/ruby/basic)
@@ -47,6 +48,12 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - **Source**: `psf/requests` @ `61e2240f283f15780ac2d0e2cfefb0fd6fdab627` — Apache-2.0
 - **Integrity**: `sha256` root `15a1472f5b939c3180740202cdc7b92a519a28297318864c16d75d87554345b6` (18 files)
 - **File Selection**: include `src/requests/**/*.py`; exclude `src/requests/__pycache__/**` (resolved 18 files)
+
+#### `rust-log` (Rust logging facade (rust-lang/log))
+
+- **Source**: `rust-lang/log` @ `6e1735597bb21c5d979a077395df85e1d633e077` — Apache-2.0 OR MIT
+- **Integrity**: `sha256` root `28f475a305a4226ed660b7c5cccb193715970a30e66d12fc55c7705b2e01700c` (10 files)
+- **File Selection**: include `src/**/*.rs`, `Cargo.toml`; exclude `tests/**`, `benches/**`, `examples/**`, `rfcs/**` (resolved 10 files)
 <!-- benchmark-vendor-inventory:end -->
 
 -### `ts-basic`
@@ -107,6 +114,11 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Source Files: [`src/main.rs`](../../../tests/integration/benchmarks/fixtures/rust/analytics/src/main.rs), [`src/analytics.rs`](../../../tests/integration/benchmarks/fixtures/rust/analytics/src/analytics.rs), [`src/io.rs`](../../../tests/integration/benchmarks/fixtures/rust/analytics/src/io.rs), [`src/metrics.rs`](../../../tests/integration/benchmarks/fixtures/rust/analytics/src/metrics.rs), [`src/models.rs`](../../../tests/integration/benchmarks/fixtures/rust/analytics/src/models.rs)
 - Benchmark Intent: Observe how module graphs behave once Vec-backed IO, struct-heavy models, and multi-stage analysis logic interplay.
 
+### `rust-log`
+- Scope: Vendored `rust-lang/log` v0.4.28 staged through the manifest materializer, trimmed to `src/**/*.rs` plus `Cargo.toml` so the crate’s macro exports, private API, and `kv` support remain intact without shipping benches or tests.
+- File Selection: Manifest glob rules resolve 10 files covering `lib.rs`, `macros.rs`, `__private_api.rs`, and the complete `kv` tree, matching the integrity digest used by the benchmark pipeline.
+- Benchmark Intent: Ensure the inference engine captures macro-driven edges (`macro_use` → `__private_api`), reciprocal module wiring, and feature-gated helpers that surface only when `kv` features are enabled—providing a production Rust facade to complement our synthetic crates.
+
 ### `java-basic`
 - Scope: Java reporting application with a reader, catalog, and formatter stack.
 - Source Files: [`src/com/example/app/App.java`](../../../tests/integration/benchmarks/fixtures/java/basic/src/com/example/app/App.java), [`src/com/example/data/Reader.java`](../../../tests/integration/benchmarks/fixtures/java/basic/src/com/example/data/Reader.java), [`src/com/example/data/Catalog.java`](../../../tests/integration/benchmarks/fixtures/java/basic/src/com/example/data/Catalog.java), [`src/com/example/format/ReportWriter.java`](../../../tests/integration/benchmarks/fixtures/java/basic/src/com/example/format/ReportWriter.java), [`src/com/example/model/Record.java`](../../../tests/integration/benchmarks/fixtures/java/basic/src/com/example/model/Record.java)
@@ -129,7 +141,7 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 
 ## Operational Notes
 - Fixture metadata is centralised in [`fixtures.manifest.json`](../../../tests/integration/benchmarks/fixtures/fixtures.manifest.json) and consumed by the benchmark harness to honour `BENCHMARK_MODE` filters.
-- Ground truth graphs live in each fixture’s `expected.json`; the `inferred.json` captures current system behaviour so we can assert precision/recall deltas and track regressions in `reports/test-report.md`.
+- Ground truth graphs live in each fixture’s `expected.json`; the `inferred.json` captures current system behaviour so we can assert precision/recall deltas and track regressions in `reports/test-report.ast.md`.
 - New fixtures should remain deterministic, avoid external dependencies, and include a brief summary here so graph audits keep source coverage intact.
 - TypeScript now includes two synthetic fixtures and the Ky snapshot, while other languages maintain paired baseline/layered scenarios so accuracy metrics span simple through moderately complex graphs without immediately adopting heavyweight OSS codebases.
 

@@ -193,6 +193,54 @@
       }
     },
     {
+      "id": "rust-log",
+      "label": "Rust logging facade (rust-lang/log)",
+      "language": "rust",
+      "path": "rust/log",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json",
+      "provenance": {
+        "kind": "vendor",
+        "repository": "rust-lang/log",
+        "commit": "6e1735597bb21c5d979a077395df85e1d633e077",
+        "license": "Apache-2.0 OR MIT"
+      },
+      "materialization": {
+        "kind": "git",
+        "repository": "rust-lang/log",
+        "commit": "6e1735597bb21c5d979a077395df85e1d633e077",
+        "include": [
+          "src/**/*.rs",
+          "Cargo.toml"
+        ],
+        "exclude": [
+          "tests/**",
+          "benches/**",
+          "examples/**",
+          "rfcs/**"
+        ]
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "generatedAt": "2025-11-03T00:00:00.000Z",
+        "fileSet": {
+          "include": [
+            "src/**/*.rs",
+            "Cargo.toml"
+          ],
+          "exclude": [
+            "tests/**",
+            "benches/**",
+            "examples/**",
+            "rfcs/**"
+          ]
+        },
+        "rootHash": "28f475a305a4226ed660b7c5cccb193715970a30e66d12fc55c7705b2e01700c",
+        "fileCount": 10
+      }
+    },
+    {
       "id": "rust-basics",
       "label": "Rust crate with helper modules",
       "language": "rust",

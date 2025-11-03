@@ -10,6 +10,7 @@ export interface BenchmarkEnvironment {
 
 export interface BenchmarkRecord<TData = unknown> {
   benchmark: string;
+  mode?: string | null;
   recordedAt: string;
   environment: BenchmarkEnvironment;
   data: TData;
@@ -113,7 +114,8 @@ export function buildTestReportMarkdown(
     lines.push("");
     for (const record of benchmarks) {
       const suffix = record.sourcePath ? ` (${record.sourcePath})` : "";
-      lines.push(`- ${record.benchmark} — recorded ${record.recordedAt}${suffix}`);
+        const modeTag = record.mode ? ` [mode: ${record.mode}]` : "";
+        lines.push(`- ${record.benchmark}${modeTag} — recorded ${record.recordedAt}${suffix}`);
     }
     lines.push("");
   }

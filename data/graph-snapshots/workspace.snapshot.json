@@ -3,7 +3,7 @@
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
   "totals": {
     "artifacts": 407,
-    "links": 1550
+    "links": 1551
   },
   "artifacts": [
     {
@@ -9929,7 +9929,24 @@
       "metadata": {
         "exportedSymbols": [
           {
+            "name": "EdgeRecord",
+            "kind": "interface"
+          },
+          {
+            "name": "FixtureTotalsSummary",
+            "kind": "interface"
+          },
+          {
+            "name": "FixtureDiffReport",
+            "kind": "interface"
+          },
+          {
             "name": "writeBenchmarkResult",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "writeBenchmarkFixtureReport",
             "kind": "function",
             "isDefault": false
           }
@@ -15546,20 +15563,20 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-400d703a",
+      "sourceId": "fallback-artifact-5d4a3f587f5c",
+      "targetId": "fallback-artifact-21d41fecb392",
+      "kind": "depends_on",
+      "confidence": 0.6,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-7fe28558",
       "sourceId": "fallback-artifact-5d4a3f587f5c",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
       "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
-    },
-    {
-      "id": "orchestrated-link-fb23ca1d",
-      "sourceId": "fallback-artifact-5d4a3f587f5c",
-      "targetId": "fallback-artifact-6d0b95522a34",
-      "kind": "depends_on",
-      "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
     },
@@ -17268,6 +17285,15 @@
       "id": "orchestrated-link-bdc60c2a",
       "sourceId": "fallback-artifact-812ccbb7ab1f",
       "targetId": "fallback-artifact-9d1cc9ab4d5c",
+      "kind": "references",
+      "confidence": 0.75,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
+      "id": "orchestrated-link-87b3abf9",
+      "sourceId": "fallback-artifact-812ccbb7ab1f",
+      "targetId": "fallback-artifact-cd5d211d76ce",
       "kind": "references",
       "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -20658,9 +20684,9 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-d4dc6ba7",
+      "id": "orchestrated-link-19c611c4",
       "sourceId": "fallback-artifact-c52f01c5b12c",
-      "targetId": "fallback-artifact-6d0b95522a34",
+      "targetId": "fallback-artifact-21d41fecb392",
       "kind": "depends_on",
       "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -24281,7 +24307,7 @@
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
       "seedCount": 432,
-      "hintCount": 163,
+      "hintCount": 169,
       "evidenceCount": 0
     },
     {

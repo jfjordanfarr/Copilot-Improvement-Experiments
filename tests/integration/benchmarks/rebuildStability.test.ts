@@ -40,15 +40,21 @@ suite("T057: Graph rebuild stability", () => {
     const averageDuration = durations.reduce((sum, value) => sum + value, 0) / durations.length;
     const maxDuration = Math.max(...durations);
 
-    await writeBenchmarkResult("rebuild-stability", {
-      mode: BENCHMARK_MODE,
-      workspace: path.basename(FIXTURE_WORKSPACE),
-      iterations,
-      durationsMs: durations,
-      averageDurationMs: averageDuration,
-      maxDurationMs: maxDuration,
-      driftDetected: false
-    });
+    await writeBenchmarkResult(
+      "rebuild-stability",
+      {
+        mode: BENCHMARK_MODE,
+        workspace: path.basename(FIXTURE_WORKSPACE),
+        iterations,
+        durationsMs: durations,
+        averageDurationMs: averageDuration,
+        maxDurationMs: maxDuration,
+        driftDetected: false
+      },
+      {
+        mode: BENCHMARK_MODE
+      }
+    );
   });
 });
 

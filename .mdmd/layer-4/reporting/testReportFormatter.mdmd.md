@@ -7,7 +7,7 @@
 - Exports: BenchmarkRecord, BenchmarkEnvironment, TestReportContext, ReportSection, buildTestReportMarkdown, RebuildStabilityData, AstAccuracyData, AstAccuracyFixture, AstAccuracyTotals
 
 ## Purpose
-Convert structured benchmark outputs into Markdown so verification tasks can persist evidence in `reports/test-report.md` and downstream tooling can diff run-to-run coverage.
+Convert structured benchmark outputs into Markdown so verification tasks can persist evidence in per-mode artifacts (for example, `reports/test-report.self-similarity.md`, `reports/test-report.ast.md`) and downstream tooling can diff run-to-run coverage.
 
 ## Public Symbols
 
@@ -41,8 +41,8 @@ Counts and derived precision/recall/F1 metrics shared by both aggregate and per-
 ## Collaborators
 - [`tests/integration/benchmarks/astAccuracy.test.ts`](../../../tests/integration/benchmarks/astAccuracy.test.ts) emits the AST accuracy payload consumed here.
 - [`tests/integration/benchmarks/rebuildStability.test.ts`](../../../tests/integration/benchmarks/rebuildStability.test.ts) produces the rebuild stability JSON consumed here.
-- [`scripts/reporting/generateTestReport.ts`](../../../scripts/reporting/generateTestReport.ts) invokes the formatter and writes `reports/test-report.md`.
+- [`scripts/reporting/generateTestReport.ts`](../../../scripts/reporting/generateTestReport.ts) invokes the formatter and writes `reports/test-report.<mode>.md` outputs (e.g., `reports/test-report.self-similarity.md`, `reports/test-report.ast.md`).
 
 ## Evidence
 - Unit coverage: [`packages/shared/src/reporting/testReport.test.ts`](../../../packages/shared/src/reporting/testReport.test.ts) exercises Markdown generation for known benchmark shapes and the environment summary logic.
-- Manual verification: invoking `npm run verify -- --report` writes `reports/test-report.md`, demonstrating end-to-end serialization.
+- Manual verification: invoking `npm run verify -- --report` writes the mode-specific artifacts (defaulting to `reports/test-report.self-similarity.md` and `reports/test-report.ast.md`), demonstrating end-to-end serialization.

@@ -3,7 +3,13 @@ import { existsSync, promises as fs } from "node:fs";
 import { createRequire } from "node:module";
 import * as path from "node:path";
 
-import { writeBenchmarkResult } from "./utils/benchmarkRecorder";
+import {
+  writeBenchmarkFixtureReport,
+  writeBenchmarkResult,
+  type EdgeRecord,
+  type FixtureDiffReport,
+  type FixtureTotalsSummary
+} from "./utils/benchmarkRecorder";
 import { getRepoRoot, resolveRepoPath } from "./utils/repoPaths";
 type FixtureMaterialization =
   | { kind: "workspace"; workspacePath?: string }
@@ -35,31 +41,6 @@ interface MaterializeResult {
   workspaceRoot: string;
   materialization: FixtureMaterialization | undefined;
   dispose?: () => Promise<void>;
-}
-
-interface EdgeDefinition {
-  source: string;
-  target: string;
-  relation?: string;
-}
-
-interface FixtureTotals {
-  truePositives: number;
-  falsePositives: number;
-  falseNegatives: number;
-  precision: number | null;
-  recall: number | null;
-  f1Score: number | null;
-}
-
-interface FixtureResult {
-  id: string;
-  label?: string;
-  language?: string;
-  totals: FixtureTotals;
-  truePositives: EdgeDefinition[];
-  falsePositives: EdgeDefinition[];
-  falseNegatives: EdgeDefinition[];
 }
 
 const REPO_ROOT = getRepoRoot(__dirname);
@@ -97,7 +78,7 @@ suite("T061: AST accuracy benchmark", () => {
 
     const trackerCtor = getInferenceAccuracyTracker();
     const tracker = new trackerCtor();
-    const fixtureResults: FixtureResult[] = [];
+  const fixtureResults: FixtureDiffReport[] = [];
 
     for (const fixture of fixtures) {
       const { dispose } = await materializeFixture(REPO_ROOT, fixture, {
@@ -126,27 +107,37 @@ suite("T061: AST accuracy benchmark", () => {
       `Recall ${totals.recall ?? 0} fell below threshold ${RECALL_THRESHOLD}`
     );
 
-    await writeBenchmarkResult("ast-accuracy", {
-      mode: BENCHMARK_MODE,
-      thresholds: {
-        precision: PRECISION_THRESHOLD,
-        recall: RECALL_THRESHOLD
-      },
-      totals,
-      fixtures: fixtureResults
+    await writeBenchmarkFixtureReport("ast-accuracy", fixtureResults, {
+      mode: BENCHMARK_MODE
     });
+
+    await writeBenchmarkResult(
+      "ast-accuracy",
+      {
+        mode: BENCHMARK_MODE,
+        thresholds: {
+          precision: PRECISION_THRESHOLD,
+          recall: RECALL_THRESHOLD
+        },
+        totals,
+        fixtures: fixtureResults
+      },
+      {
+        mode: BENCHMARK_MODE
+      }
+    );
   });
 });
 
 async function evaluateFixture(
   fixture: BenchmarkFixtureDefinition,
   tracker: TrackerInstance
-): Promise<FixtureResult> {
+): Promise<FixtureDiffReport> {
   const root = path.join(FIXTURE_ROOT, fixture.path);
   const expected = await loadEdges(path.join(root, fixture.expected));
   const inferred = await loadEdges(path.join(root, fixture.inferred));
 
-  const expectedMap = new Map<string, EdgeDefinition>();
+  const expectedMap = new Map<string, EdgeRecord>();
   const inferredSet = new Set<string>();
 
   for (const edge of expected) {
@@ -157,9 +148,9 @@ async function evaluateFixture(
     inferredSet.add(edgeKey(edge));
   }
 
-  const falseNegatives: EdgeDefinition[] = [];
-  const falsePositives: EdgeDefinition[] = [];
-  const truePositives: EdgeDefinition[] = [];
+  const falseNegatives: EdgeRecord[] = [];
+  const falsePositives: EdgeRecord[] = [];
+  const truePositives: EdgeRecord[] = [];
 
   for (const edge of expected) {
     const key = edgeKey(edge);
@@ -229,7 +220,7 @@ function selectFixtures(
   });
 }
 
-async function loadEdges(filePath: string): Promise<EdgeDefinition[]> {
+async function loadEdges(filePath: string): Promise<EdgeRecord[]> {
   const raw = await fs.readFile(filePath, "utf8");
   const parsed = JSON.parse(raw);
   if (!Array.isArray(parsed)) {
@@ -238,7 +229,7 @@ async function loadEdges(filePath: string): Promise<EdgeDefinition[]> {
   return parsed.map(entry => normalizeEdge(entry));
 }
 
-function normalizeEdge(entry: EdgeDefinition): EdgeDefinition {
+function normalizeEdge(entry: EdgeRecord): EdgeRecord {
   if (!entry || typeof entry.source !== "string" || typeof entry.target !== "string") {
     throw new Error("Edge entries must include 'source' and 'target'");
   }
@@ -249,7 +240,7 @@ function normalizeEdge(entry: EdgeDefinition): EdgeDefinition {
   };
 }
 
-function edgeKey(edge: EdgeDefinition): string {
+function edgeKey(edge: EdgeRecord): string {
   return `${edge.source}→${edge.target}#${edge.relation ?? "default"}`;
 }
 
@@ -261,7 +252,7 @@ function calculateTotals(
   truePositives: number,
   falsePositives: number,
   falseNegatives: number
-): FixtureTotals {
+): FixtureTotalsSummary {
   const precision = ratio(truePositives, truePositives + falsePositives);
   const recall = ratio(truePositives, truePositives + falseNegatives);
   const f1Score = computeF1(precision, recall);

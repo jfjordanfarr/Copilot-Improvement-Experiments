@@ -19,12 +19,13 @@ describe("buildTestReportMarkdown", () => {
 
     const rebuildRecord: BenchmarkRecord<RebuildStabilityData> = {
       benchmark: "rebuild-stability",
+      mode: "self-similarity",
       recordedAt: "2025-10-31T10:01:00.000Z",
       environment: {
         nodeVersion: "v22.0.0",
         platform: "win32"
       },
-      sourcePath: "AI-Agent-Workspace/tmp/benchmarks/rebuild-stability.json",
+      sourcePath: "AI-Agent-Workspace/tmp/benchmarks/rebuild-stability.self-similarity.json",
       data: {
         mode: "self-similarity",
         workspace: "simple-workspace",
@@ -38,12 +39,13 @@ describe("buildTestReportMarkdown", () => {
 
     const astRecord: BenchmarkRecord<AstAccuracyData> = {
       benchmark: "ast-accuracy",
+      mode: "self-similarity",
       recordedAt: "2025-10-31T10:02:00.000Z",
       environment: {
         nodeVersion: "v22.0.0",
         platform: "win32"
       },
-      sourcePath: "AI-Agent-Workspace/tmp/benchmarks/ast-accuracy.json",
+      sourcePath: "AI-Agent-Workspace/tmp/benchmarks/ast-accuracy.self-similarity.json",
       data: {
         mode: "self-similarity",
         thresholds: {
@@ -88,6 +90,7 @@ describe("buildTestReportMarkdown", () => {
     expect(markdown).toContain("## Environment Summary");
     expect(markdown).toContain("nodeVersion");
     expect(markdown).toContain("## Benchmark Artifacts");
+  expect(markdown).toContain("[mode: self-similarity]");
   });
 
   it("falls back to JSON for unknown benchmark types", () => {

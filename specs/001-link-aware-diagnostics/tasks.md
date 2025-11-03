@@ -152,7 +152,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T048 Update walkthrough with delete/rebind workflow and settings table in `specs/001-link-aware-diagnostics/quickstart.md`
 - [x] T049 [P] Add CI script `ci-check` to root `package.json` invoking headless validation
 - [x] T050 [P] Document constitution alignment, consent controls, and configuration guidance in `README.md`
-- [ ] T051 Execute full regression suite via `tests/integration/` runner and record results in `reports/test-report.md`
+- [ ] T051 Execute full regression suite via `tests/integration/` runner and record results in `reports/test-report.self-similarity.md` and `reports/test-report.ast.md`
 - [x] T052 Instrument diagnostic latency telemetry in `packages/server/src/telemetry/latencyTracker.ts`
 - [x] T053 [P] Add performance validation test `tests/integration/perf/diagnosticLatency.test.ts`
 - [x] T057 Establish benchmark workspace automation in `tests/integration/benchmarks/rebuildStability.test.ts` measuring link graph reproducibility
@@ -169,7 +169,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T087 Curate external TypeScript benchmark snapshot from `sindresorhus/ky` and integrate it under `tests/integration/benchmarks/fixtures/typescript/ky` with accompanying manifest entry and documentation links.
 - [x] T088 Materialise the full `libuv/libuv` repository via the benchmark manifest (clone → glob include/exclude) and refresh AST expectations against the staging workspace.
 - [x] T089 Materialise the full `psf/requests` repository via the benchmark manifest (clone → glob include/exclude) and document dynamic import considerations surfaced by full-project analysis.
-- [ ] T090 Materialise the full `rust-lang/log` repository via the benchmark manifest (clone → glob include/exclude) and capture macro-expansion notes from full-project analysis.
+- [x] T090 Materialise the full `rust-lang/log` repository via the benchmark manifest (clone → glob include/exclude) and capture macro-expansion notes from full-project analysis.
 - [ ] T091 Materialise the full `square/okhttp` repository via the benchmark manifest (clone → glob include/exclude) and map builder pattern coverage.
 - [ ] T092 Materialise the full `ruby-grape/grape` repository via the benchmark manifest (clone → glob include/exclude) and annotate runtime DSL edges discovered by whole-project analysis.
 - [ ] T093 Materialise the full `apache/commons-lang` repository via the benchmark manifest (clone → glob include/exclude) and document scope exclusions revealed by whole-project analysis.

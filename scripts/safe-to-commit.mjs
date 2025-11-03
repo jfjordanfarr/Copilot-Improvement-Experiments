@@ -59,6 +59,17 @@ function runSafeCommitCheck() {
         benchmarkEnv.BENCHMARK_MODE = flags.mode;
       }
       runNpmScript('Benchmarks', benchmarkArgs, benchmarkEnv);
+
+      if (
+        flags.benchmarkArgs.length === 0 &&
+        (!flags.mode || flags.mode === 'self-similarity')
+      ) {
+        runNpmScript(
+          'Benchmarks (AST mode)',
+          ['run', 'test:benchmarks', '--', '--suite', 'ast'],
+          { BENCHMARK_MODE: 'ast' }
+        );
+      }
     }
     runNpmScript('Graph snapshot', ['run', 'graph:snapshot', '--', '--quiet']);
     runNpmScript('Graph coverage audit', ['run', 'graph:audit']);
@@ -69,6 +80,32 @@ function runSafeCommitCheck() {
     runNpmScript('SlopCop markdown audit', ['run', 'slopcop:markdown']);
     runNpmScript('SlopCop asset audit', ['run', 'slopcop:assets']);
     runNpmScript('SlopCop symbol audit', ['run', 'slopcop:symbols']);
+
+    if (flags.generateReport) {
+      const reportModes = resolveReportModes(flags.mode);
+      for (const reportMode of reportModes) {
+        const reportEnv = { ...process.env };
+        if (flags.mode) {
+          reportEnv.BENCHMARK_MODE = flags.mode;
+        }
+        runStep(
+          `Generate test report (${reportMode})`,
+          process.platform === 'win32' ? 'npx.cmd' : 'npx',
+          [
+            'tsx',
+            '--tsconfig',
+            './tsconfig.base.json',
+            './scripts/reporting/generateTestReport.ts',
+            '--mode',
+            reportMode
+          ],
+          {
+            env: reportEnv,
+            shell: process.platform === 'win32'
+          }
+        );
+      }
+    }
   } catch (error) {
     console.error('\nSafe to commit check failed.');
     if (error instanceof Error) {
@@ -109,10 +146,13 @@ runSafeCommitCheck();
 
 function parseFlags(argv) {
   let skipGitStatus = coerceBoolean(process.env.npm_config_skip_git_status) ?? false;
-  let mode = normalizeMode(process.env.BENCHMARK_MODE ?? process.env.npm_config_mode);
+  let mode =
+    normalizeMode(process.env.BENCHMARK_MODE ?? process.env.npm_config_mode) ??
+    'self-similarity';
   let generateReport = coerceBoolean(process.env.npm_config_report) ?? false;
   let includeBenchmarks = coerceBoolean(process.env.npm_config_benchmarks) ?? false;
   const benchmarkArgs = [];
+  let reportPreference = 'default';
 
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
@@ -160,11 +200,13 @@ function parseFlags(argv) {
 
     if (token === '--report') {
       generateReport = true;
+      reportPreference = 'force';
       continue;
     }
 
     if (token === '--no-report') {
       generateReport = false;
+      reportPreference = 'skip';
       continue;
     }
 
@@ -209,7 +251,11 @@ function parseFlags(argv) {
     skipGitStatus = true;
   }
 
-  return { skipGitStatus, mode, generateReport, includeBenchmarks, benchmarkArgs };
+  if (includeBenchmarks && reportPreference !== 'skip') {
+    generateReport = true;
+  }
+
+  return { skipGitStatus, mode, generateReport, includeBenchmarks, benchmarkArgs, reportPreference };
 }
 
 function normalizeMode(candidate) {
@@ -221,6 +267,19 @@ function normalizeMode(candidate) {
     return normalized;
   }
   return undefined;
+}
+
+function resolveReportModes(mode) {
+  if (!mode || mode === 'self-similarity') {
+    return ['self-similarity'];
+  }
+  if (mode === 'ast') {
+    return ['ast'];
+  }
+  if (mode === 'all') {
+    return ['self-similarity', 'ast'];
+  }
+  return [mode];
 }
 
 function coerceBoolean(value) {

@@ -1,0 +1,1472 @@
+{
+  "benchmark": "ast-accuracy",
+  "mode": "ast",
+  "recordedAt": "2025-11-03T19:28:08.343Z",
+  "environment": {
+    "nodeVersion": "v22.14.0",
+    "platform": "win32",
+    "arch": "x64",
+    "providerMode": null,
+    "ollamaModel": null,
+    "ollamaEndpoint": null
+  },
+  "data": {
+    "mode": "ast",
+    "thresholds": {
+      "precision": 0.6,
+      "recall": 0.6
+    },
+    "totals": {
+      "totalEvaluated": 229,
+      "truePositives": 205,
+      "falsePositives": 12,
+      "falseNegatives": 12,
+      "precision": 0.9447004608294931,
+      "recall": 0.9447004608294931,
+      "f1Score": 0.944700460829493
+    },
+    "fixtures": [
+      {
+        "id": "ts-basic",
+        "label": "TypeScript module graph smoke sample",
+        "language": "typescript",
+        "totals": {
+          "truePositives": 2,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1Score": 0.6666666666666666
+        },
+        "truePositives": [
+          {
+            "source": "src/index.ts",
+            "target": "src/util.ts",
+            "relation": "imports"
+          },
+          {
+            "source": "src/index.ts",
+            "target": "src/models.ts",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/index.ts",
+            "target": "src/helpers.ts",
+            "relation": "imports"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/models.ts",
+            "target": "src/types.ts",
+            "relation": "imports"
+          }
+        ]
+      },
+      {
+        "id": "ts-layered",
+        "label": "TypeScript layered reporting service",
+        "language": "typescript",
+        "totals": {
+          "truePositives": 6,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.8571428571428571,
+          "recall": 0.8571428571428571,
+          "f1Score": 0.8571428571428571
+        },
+        "truePositives": [
+          {
+            "source": "src/index.ts",
+            "target": "src/services/reportService.ts",
+            "relation": "imports"
+          },
+          {
+            "source": "src/services/reportService.ts",
+            "target": "src/services/dataService.ts",
+            "relation": "imports"
+          },
+          {
+            "source": "src/services/reportService.ts",
+            "target": "src/utils/format.ts",
+            "relation": "imports"
+          },
+          {
+            "source": "src/services/reportService.ts",
+            "target": "src/models/widget.ts",
+            "relation": "uses"
+          },
+          {
+            "source": "src/utils/format.ts",
+            "target": "src/models/widget.ts",
+            "relation": "imports"
+          },
+          {
+            "source": "src/repositories/storage.ts",
+            "target": "src/models/widget.ts",
+            "relation": "imports"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/utils/format.ts",
+            "target": "src/repositories/storage.ts",
+            "relation": "imports"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/services/dataService.ts",
+            "target": "src/repositories/storage.ts",
+            "relation": "imports"
+          }
+        ]
+      },
+      {
+        "id": "ts-ky",
+        "label": "Ky HTTP client repository",
+        "language": "typescript",
+        "totals": {
+          "truePositives": 56,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
+        },
+        "truePositives": [
+          {
+            "source": "core/constants.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "core/constants.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "errors/HTTPError.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "errors/NonError.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "types/ResponsePromise.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "utils/body.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "utils/delay.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "utils/merge.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "utils/normalize.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "utils/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "utils/timeout.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "utils/type-guards.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "core/Ky.ts",
+            "target": "utils/types.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "errors/HTTPError.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "errors/HTTPError.ts",
+            "target": "types/request.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "errors/HTTPError.ts",
+            "target": "types/response.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "errors/TimeoutError.ts",
+            "target": "types/request.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "core/constants.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "core/Ky.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "errors/HTTPError.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "errors/TimeoutError.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "types/hooks.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "types/ky.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "types/request.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "types/response.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "types/ResponsePromise.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "utils/merge.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "utils/type-guards.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "index.ts",
+            "target": "utils/types.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/hooks.ts",
+            "target": "core/constants.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/hooks.ts",
+            "target": "index.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/hooks.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/ky.ts",
+            "target": "core/constants.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/ky.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/ky.ts",
+            "target": "types/ResponsePromise.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/options.ts",
+            "target": "types/common.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/options.ts",
+            "target": "types/hooks.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/options.ts",
+            "target": "types/retry.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "types/ResponsePromise.ts",
+            "target": "types/response.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/body.ts",
+            "target": "core/constants.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/body.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/delay.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/merge.ts",
+            "target": "core/constants.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/merge.ts",
+            "target": "types/hooks.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/merge.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/merge.ts",
+            "target": "utils/is.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/normalize.ts",
+            "target": "core/constants.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/normalize.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/normalize.ts",
+            "target": "types/retry.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/options.ts",
+            "target": "core/constants.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/options.ts",
+            "target": "types/options.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/timeout.ts",
+            "target": "errors/TimeoutError.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/type-guards.ts",
+            "target": "errors/HTTPError.ts",
+            "relation": "depends_on"
+          },
+          {
+            "source": "utils/type-guards.ts",
+            "target": "errors/TimeoutError.ts",
+            "relation": "depends_on"
+          }
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
+      },
+      {
+        "id": "c-basics",
+        "label": "C translation unit with header inclusion",
+        "language": "c",
+        "totals": {
+          "truePositives": 2,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1Score": 0.6666666666666666
+        },
+        "truePositives": [
+          {
+            "source": "src/main.c",
+            "target": "src/util.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/util.c",
+            "target": "src/util.h",
+            "relation": "includes"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/main.c",
+            "target": "src/helpers.h",
+            "relation": "includes"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/main.c",
+            "target": "src/util.c",
+            "relation": "calls"
+          }
+        ]
+      },
+      {
+        "id": "c-modular",
+        "label": "C pipeline spanning multiple headers",
+        "language": "c",
+        "totals": {
+          "truePositives": 8,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.8888888888888888,
+          "recall": 0.8888888888888888,
+          "f1Score": 0.8888888888888888
+        },
+        "truePositives": [
+          {
+            "source": "src/main.c",
+            "target": "src/pipeline.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/main.c",
+            "target": "src/logger.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/main.c",
+            "target": "src/pipeline.c",
+            "relation": "calls"
+          },
+          {
+            "source": "src/pipeline.c",
+            "target": "src/pipeline.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/pipeline.c",
+            "target": "src/metrics.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/pipeline.c",
+            "target": "src/logger.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/logger.c",
+            "target": "src/logger.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/metrics.c",
+            "target": "src/metrics.h",
+            "relation": "includes"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/logger.c",
+            "target": "src/pipeline.h",
+            "relation": "includes"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/pipeline.c",
+            "target": "src/metrics.c",
+            "relation": "calls"
+          }
+        ]
+      },
+      {
+        "id": "c-libuv",
+        "label": "libuv repository",
+        "language": "c",
+        "totals": {
+          "truePositives": 22,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
+        },
+        "truePositives": [
+          {
+            "source": "src/strscpy.c",
+            "target": "src/strscpy.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/strscpy.h",
+            "target": "src/uv.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv-common.c",
+            "target": "src/uv.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv-common.c",
+            "target": "src/uv-common.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv-common.h",
+            "target": "src/uv.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv-common.h",
+            "target": "src/uv/tree.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv-common.h",
+            "target": "src/queue.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv-common.h",
+            "target": "src/strscpy.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv.h",
+            "target": "src/uv/errno.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv.h",
+            "target": "src/uv/version.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv.h",
+            "target": "src/uv/win.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv.h",
+            "target": "src/uv/unix.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/win.h",
+            "target": "src/uv/tree.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/win.h",
+            "target": "src/uv/threadpool.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/unix.h",
+            "target": "src/uv/threadpool.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/unix.h",
+            "target": "src/uv/linux.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/unix.h",
+            "target": "src/uv/os390.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/unix.h",
+            "target": "src/uv/posix.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/unix.h",
+            "target": "src/uv/aix.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/unix.h",
+            "target": "src/uv/sunos.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/unix.h",
+            "target": "src/uv/darwin.h",
+            "relation": "includes"
+          },
+          {
+            "source": "src/uv/unix.h",
+            "target": "src/uv/bsd.h",
+            "relation": "includes"
+          }
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
+      },
+      {
+        "id": "python-basics",
+        "label": "Python module imports and validation",
+        "language": "python",
+        "totals": {
+          "truePositives": 2,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1Score": 0.6666666666666666
+        },
+        "truePositives": [
+          {
+            "source": "src/main.py",
+            "target": "src/util.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/util.py",
+            "target": "src/helpers.py",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/main.py",
+            "target": "src/data.py",
+            "relation": "imports"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/main.py",
+            "target": "src/helpers.py",
+            "relation": "uses"
+          }
+        ]
+      },
+      {
+        "id": "python-pipeline",
+        "label": "Python reporting pipeline with validators",
+        "language": "python",
+        "totals": {
+          "truePositives": 6,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.8571428571428571,
+          "recall": 0.8571428571428571,
+          "f1Score": 0.8571428571428571
+        },
+        "truePositives": [
+          {
+            "source": "src/main.py",
+            "target": "src/pipeline.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/main.py",
+            "target": "src/validators.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/pipeline.py",
+            "target": "src/repositories.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/pipeline.py",
+            "target": "src/metrics.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/pipeline.py",
+            "target": "src/validators.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/metrics.py",
+            "target": "src/validators.py",
+            "relation": "imports"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/metrics.py",
+            "target": "src/repositories.py",
+            "relation": "imports"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/repositories.py",
+            "target": "src/validators.py",
+            "relation": "imports"
+          }
+        ]
+      },
+      {
+        "id": "python-requests",
+        "label": "Requests HTTP client repository",
+        "language": "python",
+        "totals": {
+          "truePositives": 55,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
+        },
+        "truePositives": [
+          {
+            "source": "src/requests/__init__.py",
+            "target": "src/requests/__version__.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/__init__.py",
+            "target": "src/requests/api.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/__init__.py",
+            "target": "src/requests/exceptions.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/__init__.py",
+            "target": "src/requests/models.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/__init__.py",
+            "target": "src/requests/packages.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/__init__.py",
+            "target": "src/requests/sessions.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/__init__.py",
+            "target": "src/requests/status_codes.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/__init__.py",
+            "target": "src/requests/utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/_internal_utils.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/adapters.py",
+            "target": "src/requests/auth.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/adapters.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/adapters.py",
+            "target": "src/requests/cookies.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/adapters.py",
+            "target": "src/requests/exceptions.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/adapters.py",
+            "target": "src/requests/models.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/adapters.py",
+            "target": "src/requests/structures.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/adapters.py",
+            "target": "src/requests/utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/api.py",
+            "target": "src/requests/sessions.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/auth.py",
+            "target": "src/requests/_internal_utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/auth.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/auth.py",
+            "target": "src/requests/cookies.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/auth.py",
+            "target": "src/requests/utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/cookies.py",
+            "target": "src/requests/_internal_utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/cookies.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/exceptions.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/help.py",
+            "target": "src/requests/__version__.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/_internal_utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/auth.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/cookies.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/exceptions.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/hooks.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/status_codes.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/structures.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/models.py",
+            "target": "src/requests/utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/packages.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/_internal_utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/adapters.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/auth.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/cookies.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/exceptions.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/hooks.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/models.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/status_codes.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/structures.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/sessions.py",
+            "target": "src/requests/utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/status_codes.py",
+            "target": "src/requests/structures.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/structures.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/utils.py",
+            "target": "src/requests/__version__.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/utils.py",
+            "target": "src/requests/_internal_utils.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/utils.py",
+            "target": "src/requests/certs.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/utils.py",
+            "target": "src/requests/compat.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/utils.py",
+            "target": "src/requests/cookies.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/utils.py",
+            "target": "src/requests/exceptions.py",
+            "relation": "imports"
+          },
+          {
+            "source": "src/requests/utils.py",
+            "target": "src/requests/structures.py",
+            "relation": "imports"
+          }
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
+      },
+      {
+        "id": "rust-log",
+        "label": "Rust logging facade (rust-lang/log)",
+        "language": "rust",
+        "totals": {
+          "truePositives": 13,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
+        },
+        "truePositives": [
+          {
+            "source": "src/lib.rs",
+            "target": "src/macros.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/lib.rs",
+            "target": "src/serde.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/lib.rs",
+            "target": "src/kv/mod.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/lib.rs",
+            "target": "src/__private_api.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/macros.rs",
+            "target": "src/__private_api.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/__private_api.rs",
+            "target": "src/lib.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/__private_api.rs",
+            "target": "src/kv/mod.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/kv/mod.rs",
+            "target": "src/kv/error.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/kv/mod.rs",
+            "target": "src/kv/key.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/kv/mod.rs",
+            "target": "src/kv/source.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/kv/mod.rs",
+            "target": "src/kv/value.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/serde.rs",
+            "target": "src/lib.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/kv/value.rs",
+            "target": "src/kv/error.rs",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
+      },
+      {
+        "id": "rust-basics",
+        "label": "Rust crate with helper modules",
+        "language": "rust",
+        "totals": {
+          "truePositives": 2,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.6666666666666666,
+          "recall": 0.6666666666666666,
+          "f1Score": 0.6666666666666666
+        },
+        "truePositives": [
+          {
+            "source": "src/main.rs",
+            "target": "src/math.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/math.rs",
+            "target": "src/utils.rs",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/main.rs",
+            "target": "src/config.rs",
+            "relation": "uses"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/main.rs",
+            "target": "src/utils.rs",
+            "relation": "uses"
+          }
+        ]
+      },
+      {
+        "id": "rust-analytics",
+        "label": "Rust analytics crate with IO and metrics",
+        "language": "rust",
+        "totals": {
+          "truePositives": 5,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "f1Score": 0.8333333333333334
+        },
+        "truePositives": [
+          {
+            "source": "src/main.rs",
+            "target": "src/analytics.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/main.rs",
+            "target": "src/io.rs",
+            "relation": "imports"
+          },
+          {
+            "source": "src/analytics.rs",
+            "target": "src/metrics.rs",
+            "relation": "imports"
+          },
+          {
+            "source": "src/analytics.rs",
+            "target": "src/models.rs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/metrics.rs",
+            "target": "src/models.rs",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/metrics.rs",
+            "target": "src/io.rs",
+            "relation": "imports"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/io.rs",
+            "target": "src/models.rs",
+            "relation": "uses"
+          }
+        ]
+      },
+      {
+        "id": "java-basic",
+        "label": "Java reporting application",
+        "language": "java",
+        "totals": {
+          "truePositives": 5,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "f1Score": 0.8333333333333334
+        },
+        "truePositives": [
+          {
+            "source": "src/com/example/app/App.java",
+            "target": "src/com/example/data/Reader.java",
+            "relation": "imports"
+          },
+          {
+            "source": "src/com/example/app/App.java",
+            "target": "src/com/example/format/ReportWriter.java",
+            "relation": "imports"
+          },
+          {
+            "source": "src/com/example/app/App.java",
+            "target": "src/com/example/model/Record.java",
+            "relation": "uses"
+          },
+          {
+            "source": "src/com/example/data/Reader.java",
+            "target": "src/com/example/model/Record.java",
+            "relation": "uses"
+          },
+          {
+            "source": "src/com/example/format/ReportWriter.java",
+            "target": "src/com/example/model/Record.java",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/com/example/data/Catalog.java",
+            "target": "src/com/example/model/Record.java",
+            "relation": "uses"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/com/example/format/ReportWriter.java",
+            "target": "src/com/example/data/Catalog.java",
+            "relation": "imports"
+          }
+        ]
+      },
+      {
+        "id": "java-service",
+        "label": "Java analytics service with layered modules",
+        "language": "java",
+        "totals": {
+          "truePositives": 11,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.9166666666666666,
+          "recall": 0.9166666666666666,
+          "f1Score": 0.9166666666666666
+        },
+        "truePositives": [
+          {
+            "source": "src/com/example/service/AppService.java",
+            "target": "src/com/example/service/analytics/Analyzer.java",
+            "relation": "imports"
+          },
+          {
+            "source": "src/com/example/service/AppService.java",
+            "target": "src/com/example/service/data/Repository.java",
+            "relation": "imports"
+          },
+          {
+            "source": "src/com/example/service/AppService.java",
+            "target": "src/com/example/service/model/Summary.java",
+            "relation": "uses"
+          },
+          {
+            "source": "src/com/example/service/analytics/Analyzer.java",
+            "target": "src/com/example/service/metrics/SummaryBuilder.java",
+            "relation": "imports"
+          },
+          {
+            "source": "src/com/example/service/analytics/Analyzer.java",
+            "target": "src/com/example/service/model/Sample.java",
+            "relation": "uses"
+          },
+          {
+            "source": "src/com/example/service/analytics/Analyzer.java",
+            "target": "src/com/example/service/model/Summary.java",
+            "relation": "uses"
+          },
+          {
+            "source": "src/com/example/service/analytics/Analyzer.java",
+            "target": "src/com/example/service/util/Logger.java",
+            "relation": "imports"
+          },
+          {
+            "source": "src/com/example/service/data/Repository.java",
+            "target": "src/com/example/service/data/SourceRegistry.java",
+            "relation": "imports"
+          },
+          {
+            "source": "src/com/example/service/data/Repository.java",
+            "target": "src/com/example/service/model/Sample.java",
+            "relation": "uses"
+          },
+          {
+            "source": "src/com/example/service/metrics/SummaryBuilder.java",
+            "target": "src/com/example/service/model/Sample.java",
+            "relation": "uses"
+          },
+          {
+            "source": "src/com/example/service/metrics/SummaryBuilder.java",
+            "target": "src/com/example/service/model/Summary.java",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "src/com/example/service/util/Logger.java",
+            "target": "src/com/example/service/model/Summary.java",
+            "relation": "uses"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "src/com/example/service/data/Repository.java",
+            "target": "src/com/example/service/util/Logger.java",
+            "relation": "imports"
+          }
+        ]
+      },
+      {
+        "id": "ruby-basic",
+        "label": "Ruby module graph for summary reporting",
+        "language": "ruby",
+        "totals": {
+          "truePositives": 4,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.8,
+          "recall": 0.8,
+          "f1Score": 0.8000000000000002
+        },
+        "truePositives": [
+          {
+            "source": "lib/main.rb",
+            "target": "lib/data_store.rb",
+            "relation": "requires"
+          },
+          {
+            "source": "lib/main.rb",
+            "target": "lib/reporter.rb",
+            "relation": "requires"
+          },
+          {
+            "source": "lib/reporter.rb",
+            "target": "lib/formatter.rb",
+            "relation": "requires"
+          },
+          {
+            "source": "lib/formatter.rb",
+            "target": "lib/templates.rb",
+            "relation": "requires"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "lib/templates.rb",
+            "target": "lib/data_store.rb",
+            "relation": "requires"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "lib/reporter.rb",
+            "target": "lib/data_store.rb",
+            "relation": "requires"
+          }
+        ]
+      },
+      {
+        "id": "ruby-cli",
+        "label": "Ruby CLI with layered services",
+        "language": "ruby",
+        "totals": {
+          "truePositives": 6,
+          "falsePositives": 1,
+          "falseNegatives": 1,
+          "precision": 0.8571428571428571,
+          "recall": 0.8571428571428571,
+          "f1Score": 0.8571428571428571
+        },
+        "truePositives": [
+          {
+            "source": "lib/cli.rb",
+            "target": "lib/commands/report.rb",
+            "relation": "requires"
+          },
+          {
+            "source": "lib/cli.rb",
+            "target": "lib/support/logger.rb",
+            "relation": "requires"
+          },
+          {
+            "source": "lib/commands/report.rb",
+            "target": "lib/services/analyzer.rb",
+            "relation": "requires"
+          },
+          {
+            "source": "lib/commands/report.rb",
+            "target": "lib/services/data_loader.rb",
+            "relation": "requires"
+          },
+          {
+            "source": "lib/services/analyzer.rb",
+            "target": "lib/services/cache.rb",
+            "relation": "requires"
+          },
+          {
+            "source": "lib/services/data_loader.rb",
+            "target": "lib/support/logger.rb",
+            "relation": "requires"
+          }
+        ],
+        "falsePositives": [
+          {
+            "source": "lib/services/cache.rb",
+            "target": "lib/services/data_loader.rb",
+            "relation": "requires"
+          }
+        ],
+        "falseNegatives": [
+          {
+            "source": "lib/services/analyzer.rb",
+            "target": "lib/support/logger.rb",
+            "relation": "requires"
+          }
+        ]
+      }
+    ]
+  }
+}
