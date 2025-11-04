@@ -151,7 +151,15 @@
       "path": "python/basics",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "python",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json",
+        "include": ["src/**/*.py"],
+        "exclude": ["**/__pycache__/**"],
+        "packageRoots": ["src"]
+      }
     },
     {
       "id": "python-pipeline",
@@ -160,7 +168,15 @@
       "path": "python/pipeline",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "python",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json",
+        "include": ["src/**/*.py"],
+        "exclude": ["**/__pycache__/**"],
+        "packageRoots": ["src"]
+      }
     },
     {
       "id": "python-requests",
@@ -170,6 +186,15 @@
       "modes": ["ast"],
       "expected": "expected.json",
       "inferred": "inferred.json",
+      "oracle": {
+        "kind": "python",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json",
+        "include": ["src/requests/**/*.py"],
+        "exclude": ["**/__pycache__/**"],
+        "packageRoots": ["src"],
+        "entryPackages": ["requests"]
+      },
       "provenance": {
         "kind": "vendor",
         "repository": "psf/requests",

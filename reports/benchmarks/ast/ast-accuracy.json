@@ -1,7 +1,7 @@
 {
   "benchmark": "ast-accuracy",
   "mode": "ast",
-  "recordedAt": "2025-11-04T03:01:18.351Z",
+  "recordedAt": "2025-11-04T20:34:33.389Z",
   "environment": {
     "nodeVersion": "v22.14.0",
     "platform": "win32",
@@ -17,13 +17,13 @@
       "recall": 0.6
     },
     "totals": {
-      "totalEvaluated": 229,
-      "truePositives": 209,
-      "falsePositives": 10,
-      "falseNegatives": 10,
-      "precision": 0.954337899543379,
-      "recall": 0.954337899543379,
-      "f1Score": 0.954337899543379
+      "totalEvaluated": 226,
+      "truePositives": 210,
+      "falsePositives": 8,
+      "falseNegatives": 8,
+      "precision": 0.963302752293578,
+      "recall": 0.963302752293578,
+      "f1Score": 0.963302752293578
     },
     "fixtures": [
       {
@@ -658,11 +658,11 @@
         "language": "python",
         "totals": {
           "truePositives": 2,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.6666666666666666,
-          "recall": 0.6666666666666666,
-          "f1Score": 0.6666666666666666
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
           {
@@ -671,37 +671,25 @@
             "relation": "imports"
           },
           {
-            "source": "src/util.py",
-            "target": "src/helpers.py",
-            "relation": "uses"
-          }
-        ],
-        "falsePositives": [
-          {
             "source": "src/main.py",
-            "target": "src/data.py",
+            "target": "src/helpers.py",
             "relation": "imports"
           }
         ],
-        "falseNegatives": [
-          {
-            "source": "src/main.py",
-            "target": "src/helpers.py",
-            "relation": "uses"
-          }
-        ]
+        "falsePositives": [],
+        "falseNegatives": []
       },
       {
         "id": "python-pipeline",
         "label": "Python reporting pipeline with validators",
         "language": "python",
         "totals": {
-          "truePositives": 6,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.8571428571428571,
-          "recall": 0.8571428571428571,
-          "f1Score": 0.8571428571428571
+          "truePositives": 7,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
           {
@@ -730,25 +718,18 @@
             "relation": "imports"
           },
           {
-            "source": "src/metrics.py",
-            "target": "src/validators.py",
-            "relation": "imports"
-          }
-        ],
-        "falsePositives": [
-          {
-            "source": "src/metrics.py",
-            "target": "src/repositories.py",
-            "relation": "imports"
-          }
-        ],
-        "falseNegatives": [
-          {
             "source": "src/repositories.py",
             "target": "src/validators.py",
             "relation": "imports"
+          },
+          {
+            "source": "src/metrics.py",
+            "target": "src/validators.py",
+            "relation": "imports"
           }
-        ]
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
       },
       {
         "id": "python-requests",

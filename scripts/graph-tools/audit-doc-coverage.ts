@@ -18,6 +18,7 @@ import {
   type RelationshipRuleWarning
 } from "@copilot-improvement/shared";
 
+import { snapshotWorkspace, DEFAULT_DB, DEFAULT_OUTPUT } from "./snapshot-workspace";
 import {
   generateSymbolCorrectnessDiagnostics,
   type SymbolCorrectnessReport
@@ -132,6 +133,19 @@ interface AuditOptions {
 const EMPTY_AUDIT_OPTIONS: AuditOptions = {
   symbolIgnorePatterns: []
 };
+
+async function ensureFreshSnapshot(parsed: ParsedArgs): Promise<void> {
+  const workspaceRoot = parsed.workspace ? path.resolve(parsed.workspace) : process.cwd();
+  const dbPath = path.resolve(workspaceRoot, parsed.dbPath ?? DEFAULT_DB);
+  const outputPath = path.resolve(workspaceRoot, DEFAULT_OUTPUT);
+
+  await snapshotWorkspace({
+    workspaceRoot,
+    dbPath,
+    outputPath,
+    quiet: true
+  });
+}
 
 export function parseArgs(argv: string[]): ParsedArgs {
   const parsed: ParsedArgs = {
@@ -627,6 +641,19 @@ export async function main(): Promise<void> {
   if (parsed.helpRequested) {
     console.log(usage());
     process.exit(EXIT_SUCCESS);
+    return;
+  }
+
+  try {
+    await ensureFreshSnapshot(parsed);
+  } catch (error) {
+    console.error("Failed to refresh workspace graph snapshot before auditing coverage.");
+    if (error instanceof Error) {
+      console.error(error.stack ?? error.message);
+    } else {
+      console.error(String(error));
+    }
+    process.exit(EXIT_UNCAUGHT_ERROR);
     return;
   }
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { promises as fs } from "node:fs";
-import * as path from "node:path";
+import path from "node:path";
 import process from "node:process";
 
 import {
@@ -10,26 +10,51 @@ import {
 import type { BenchmarkFixtureDefinition as ManifestFixtureDefinition } from "./benchmark-manifest";
 import { materializeFixture } from "./fixtureMaterializer";
 import {
+  generatePythonFixtureGraph,
+  mergePythonOracleEdges,
+  serializePythonOracleEdges,
+  type PythonFixtureOracleOptions,
+  type PythonOracleEdgeRecord,
+  type PythonOracleOverrideConfig
+} from "../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle";
+import {
   generateTypeScriptFixtureGraph,
-  mergeOracleEdges,
-  serializeOracleEdges,
-  type OracleEdgeRecord,
-  type OracleOverrideConfig
+  mergeOracleEdges as mergeTypeScriptOracleEdges,
+  serializeOracleEdges as serializeTypeScriptOracleEdges,
+  type OracleEdgeRecord as TypeScriptEdgeRecord,
+  type OracleOverrideConfig as TypeScriptOverrideConfig
 } from "../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle";
+
+type OracleKind = "typescript" | "python";
 
 type OracleFixtureDefinition = ManifestFixtureDefinition & {
   oracle?: OracleFixtureConfig;
 };
 
-interface OracleFixtureConfig {
+type OracleFixtureConfig = TypeScriptOracleConfig | PythonOracleConfig;
+
+interface TypeScriptOracleConfig {
   kind: "typescript";
   root?: string;
   manualOverrides?: string;
+  include?: string[];
+}
+
+interface PythonOracleConfig {
+  kind: "python";
+  root?: string;
+  manualOverrides?: string;
+  include?: string[];
+  exclude?: string[];
+  packageRoots?: string[];
+  entryPackages?: string[];
+  interpreter?: string;
+  env?: Record<string, string>;
 }
 
 interface CliOptions {
   fixtureIds: Set<string>;
-  suite?: string;
+  languages: Set<OracleKind>;
   helpRequested?: boolean;
 }
 
@@ -43,6 +68,13 @@ const REPO_ROOT = path.resolve(path.join(__dirname, "..", ".."));
 const FIXTURE_ROOT = path.join(REPO_ROOT, ...BENCHMARK_MANIFEST_SEGMENTS.slice(0, -1));
 const OUTPUT_ROOT = path.join(REPO_ROOT, "AI-Agent-Workspace", "tmp", "fixture-regeneration");
 
+const LANGUAGE_ALIASES = new Map<string, OracleKind>([
+  ["ts", "typescript"],
+  ["typescript", "typescript"],
+  ["py", "python"],
+  ["python", "python"]
+]);
+
 export async function runRegenerationCli(argv: string[]): Promise<void> {
   const options = parseArgs(argv);
   if (options.helpRequested) {
@@ -51,9 +83,9 @@ export async function runRegenerationCli(argv: string[]): Promise<void> {
   }
 
   const manifest = (await loadBenchmarkManifest(REPO_ROOT)) as OracleFixtureDefinition[];
-  const candidates = manifest.filter(entry => entry.oracle?.kind === "typescript");
+  const candidates = manifest.filter(entry => entry.oracle);
   if (candidates.length === 0) {
-    console.log("No TypeScript fixtures declare an oracle configuration.");
+    console.log("No fixtures declare oracle configurations.");
     return;
   }
 
@@ -62,33 +94,11 @@ export async function runRegenerationCli(argv: string[]): Promise<void> {
     fixtureMap.set(entry.id, entry);
   }
 
-  let targets: OracleFixtureDefinition[];
-  if (options.fixtureIds.size > 0) {
-    const missing: string[] = [];
-    targets = [];
-    for (const id of options.fixtureIds) {
-      const fixture = fixtureMap.get(id);
-      if (fixture) {
-        targets.push(fixture);
-      } else {
-        missing.push(id);
-      }
-    }
+  const filteredByLanguage = options.languages.size > 0
+    ? candidates.filter(entry => entry.oracle && options.languages.has(entry.oracle.kind))
+    : candidates;
 
-    if (missing.length > 0) {
-      throw new Error(`Unknown fixture ids requested: ${missing.join(", ")}`);
-    }
-  } else if (options.suite) {
-    const normalizedSuite = options.suite.toLowerCase();
-    if (["ts", "typescript"].includes(normalizedSuite)) {
-      targets = candidates;
-    } else {
-      throw new Error(`Unsupported suite '${options.suite}'. Try '--suite ts'.`);
-    }
-  } else {
-    targets = candidates;
-  }
-
+  const targets = resolveTargetFixtures(filteredByLanguage, fixtureMap, options.fixtureIds);
   if (targets.length === 0) {
     console.log("No fixtures matched the requested filters.");
     return;
@@ -97,7 +107,8 @@ export async function runRegenerationCli(argv: string[]): Promise<void> {
   await fs.mkdir(OUTPUT_ROOT, { recursive: true });
 
   for (const fixture of targets) {
-    console.log(`\n=== ${fixture.id} (${fixture.label ?? fixture.id}) ===`);
+    const label = fixture.label ? `${fixture.id} (${fixture.label})` : fixture.id;
+    console.log(`\n=== ${label} ===`);
     await regenerateFixture(fixture).catch(error => {
       throw contextualizeError(fixture.id, error);
     });
@@ -108,15 +119,17 @@ export async function runRegenerationCli(argv: string[]): Promise<void> {
 
 function parseArgs(argv: string[]): CliOptions {
   const fixtureIds = new Set<string>();
-  let suite: string | undefined;
+  const languages = new Set<OracleKind>();
   let helpRequested = false;
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
+
     if (arg === "--help" || arg === "-h") {
       helpRequested = true;
       continue;
     }
+
     if (arg === "--fixture" || arg === "-f") {
       const value = argv[index + 1];
       if (!value) {
@@ -126,21 +139,28 @@ function parseArgs(argv: string[]): CliOptions {
       index += 1;
       continue;
     }
+
     if (arg.startsWith("--fixture=")) {
       fixtureIds.add(arg.slice("--fixture=".length));
       continue;
     }
-    if (arg === "--suite" || arg === "-s") {
+
+    if (arg === "--lang" || arg === "-l" || arg === "--suite" || arg === "-s") {
       const value = argv[index + 1];
       if (!value) {
-        throw new Error("--suite requires a value");
+        throw new Error(`${arg} requires a value`);
       }
-      suite = value;
+      addLanguage(languages, value);
       index += 1;
       continue;
     }
-    if (arg.startsWith("--suite=")) {
-      suite = arg.slice("--suite=".length);
+
+    if (arg.startsWith("--lang=") || arg.startsWith("--suite=")) {
+      const [, value] = arg.split("=", 2);
+      if (!value) {
+        throw new Error(`${arg.split("=")[0]} requires a value`);
+      }
+      addLanguage(languages, value);
       continue;
     }
 
@@ -148,34 +168,79 @@ function parseArgs(argv: string[]): CliOptions {
       throw new Error(`Unrecognized argument '${arg}'. Use --help for usage.`);
     }
 
+    const languageAlias = LANGUAGE_ALIASES.get(arg.toLowerCase());
+    if (languageAlias) {
+      languages.add(languageAlias);
+      continue;
+    }
+
     fixtureIds.add(arg);
   }
 
-  return { fixtureIds, suite, helpRequested };
+  return { fixtureIds, languages, helpRequested };
+}
+
+function addLanguage(languages: Set<OracleKind>, raw: string): void {
+  const normalized = raw.toLowerCase();
+  const resolved = LANGUAGE_ALIASES.get(normalized);
+  if (!resolved) {
+    throw new Error(`Unsupported language '${raw}'. Supported values: ts, python.`);
+  }
+  languages.add(resolved);
 }
 
 function printHelp(): void {
-  console.log(`Usage: npm run fixtures:regenerate -- [options] [fixtureIds...]\n\n` +
-    `Options:\n` +
-    `  --suite ts          Regenerate all TypeScript fixtures with compiler oracles\n` +
-    `  --fixture <id>      Regenerate a specific fixture (can repeat)\n` +
-    `  -h, --help          Show this help message\n`);
+  console.log(
+    `Usage: npm run fixtures:regenerate -- [options] [fixtureIds...]\n\n` +
+      `Options:\n` +
+      `  --lang <name>       Regenerate fixtures for a language (ts, python). Can repeat.\n` +
+      `  --suite <name>      Alias for --lang (ts, python).\n` +
+      `  --fixture <id>      Regenerate a specific fixture (can repeat).\n` +
+      `  -h, --help          Show this help message.\n`
+  );
+}
+
+function resolveTargetFixtures(
+  candidates: OracleFixtureDefinition[],
+  fixtureMap: Map<string, OracleFixtureDefinition>,
+  requestedIds: Set<string>
+): OracleFixtureDefinition[] {
+  if (requestedIds.size === 0) {
+    return candidates;
+  }
+
+  const targets: OracleFixtureDefinition[] = [];
+  const missing: string[] = [];
+
+  for (const id of requestedIds) {
+    const entry = fixtureMap.get(id);
+    if (entry) {
+      targets.push(entry);
+    } else {
+      missing.push(id);
+    }
+  }
+
+  if (missing.length > 0) {
+    throw new Error(`Unknown fixture ids requested: ${missing.join(", ")}`);
+  }
+
+  return targets;
 }
 
 async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void> {
-  const oracleConfig = fixture.oracle as OracleFixtureConfig;
-  if (!oracleConfig || oracleConfig.kind !== "typescript") {
-    throw new Error(`Fixture ${fixture.id} is missing TypeScript oracle configuration.`);
+  const oracle = fixture.oracle;
+  if (!oracle) {
+    throw new Error(`Fixture ${fixture.id} does not declare an oracle configuration.`);
   }
 
   const fixtureRoot = path.join(FIXTURE_ROOT, fixture.path);
   const expectedPath = path.join(fixtureRoot, fixture.expected);
   const overridesPath = path.join(
     fixtureRoot,
-    oracleConfig.manualOverrides ?? "oracle.overrides.json"
+    oracle.manualOverrides ?? "oracle.overrides.json"
   );
 
-  const overrides = await readOverrideConfig(overridesPath);
   const expectedEdges = await loadEdgeRecords(expectedPath);
 
   const { workspaceRoot, dispose } = await materializeFixture(REPO_ROOT, fixture, {
@@ -183,50 +248,25 @@ async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void
   });
 
   try {
-    const oracleRoot = path.resolve(workspaceRoot, oracleConfig.root ?? ".");
-    const autoEdges = generateTypeScriptFixtureGraph({ fixtureRoot: oracleRoot });
-    const merge = mergeOracleEdges(autoEdges, overrides);
-
-    const additions = computeEdgeDifferences(merge.mergedRecords, expectedEdges);
-    const removals = computeEdgeDifferences(expectedEdges, merge.mergedRecords);
-
-    const outputRoot = path.join(OUTPUT_ROOT, fixture.id);
-    await fs.mkdir(outputRoot, { recursive: true });
-
-    await fs.writeFile(
-      path.join(outputRoot, "oracle.json"),
-      serializeOracleEdges(autoEdges),
-      "utf8"
-    );
-
-    await fs.writeFile(
-      path.join(outputRoot, "merged.json"),
-      JSON.stringify(merge.mergedRecords, null, 2) + "\n",
-      "utf8"
-    );
-
-    const diffReport = renderDiffReport({
-      fixture,
-      expectedEdges,
-      merge,
-      overridesPath,
-      additions,
-      removals
-    });
-
-    await fs.writeFile(path.join(outputRoot, "diff.md"), diffReport, "utf8");
-
-    console.log(`→ oracle edges: ${merge.autoRecords.length}`);
-    console.log(`→ manual overrides: ${merge.manualRecords.length}`);
-    console.log(`→ merged edges: ${merge.mergedRecords.length}`);
-    console.log(`→ additions vs expected: ${additions.length}`);
-    console.log(`→ removals vs expected: ${removals.length}`);
-    if (merge.missingManualEntries.length > 0) {
-      console.log(
-        `→ missing manual overrides: ${merge.missingManualEntries.length} (see diff.md)`
-      );
+    if (oracle.kind === "typescript") {
+      await regenerateTypeScriptFixture({
+        fixture,
+        oracle,
+        workspaceRoot,
+        overridesPath,
+        expectedEdges
+      });
+    } else if (oracle.kind === "python") {
+      await regeneratePythonFixture({
+        fixture,
+        oracle,
+        workspaceRoot,
+        overridesPath,
+        expectedEdges
+      });
+    } else {
+      throw new Error(`Unsupported oracle kind '${(oracle as { kind: string }).kind}'`);
     }
-    console.log(`Artifacts written to ${outputRoot}`);
   } finally {
     if (typeof dispose === "function") {
       await dispose();
@@ -234,15 +274,158 @@ async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void
   }
 }
 
-async function readOverrideConfig(filePath: string): Promise<OracleOverrideConfig | undefined> {
+async function regenerateTypeScriptFixture(input: {
+  fixture: OracleFixtureDefinition;
+  oracle: TypeScriptOracleConfig;
+  workspaceRoot: string;
+  overridesPath: string;
+  expectedEdges: EdgeRecord[];
+}): Promise<void> {
+  const { fixture, oracle, workspaceRoot, overridesPath, expectedEdges } = input;
+
+  const overrides = await readOverrideConfig<TypeScriptOverrideConfig>(overridesPath);
+  const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
+  const autoEdges = generateTypeScriptFixtureGraph({
+    fixtureRoot: oracleRoot,
+    include: oracle.include
+  });
+  const merge = mergeTypeScriptOracleEdges(autoEdges, overrides);
+
+  const autoRecords = merge.autoRecords.map(toEdgeRecordFromTypeScript);
+  const manualRecords = merge.manualRecords.map(toEdgeRecordFromTypeScript);
+  const mergedRecords = merge.mergedRecords.map(toEdgeRecordFromTypeScript);
+  const matchedManualRecords = merge.matchedManualRecords.map(toEdgeRecordFromTypeScript);
+
+  const additions = computeEdgeDifferences(mergedRecords, expectedEdges);
+  const removals = computeEdgeDifferences(expectedEdges, mergedRecords);
+
+  await writeOracleArtifacts({
+    fixture,
+    oracleFileContents: serializeTypeScriptOracleEdges(autoEdges),
+    mergedRecords,
+    expectedEdges,
+    overridesPath,
+    additions,
+    removals,
+    summary: {
+      autoRecords,
+      manualRecords,
+      matchedManualRecords,
+      missingManualEntries: merge.missingManualEntries
+    }
+  });
+}
+
+async function regeneratePythonFixture(input: {
+  fixture: OracleFixtureDefinition;
+  oracle: PythonOracleConfig;
+  workspaceRoot: string;
+  overridesPath: string;
+  expectedEdges: EdgeRecord[];
+}): Promise<void> {
+  const { fixture, oracle, workspaceRoot, overridesPath, expectedEdges } = input;
+
+  const overrides = await readOverrideConfig<PythonOracleOverrideConfig>(overridesPath);
+  const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
+
+  const oracleOptions: PythonFixtureOracleOptions = {
+    fixtureRoot: oracleRoot,
+    include: oracle.include,
+    exclude: oracle.exclude,
+    packageRoots: oracle.packageRoots,
+    entryPackages: oracle.entryPackages,
+    interpreter: oracle.interpreter,
+    env: oracle.env
+  };
+
+  const autoEdges = await generatePythonFixtureGraph(oracleOptions);
+  const merge = mergePythonOracleEdges(autoEdges, overrides);
+
+  const autoRecords = merge.autoRecords.map(toEdgeRecordFromPython);
+  const manualRecords = merge.manualRecords.map(toEdgeRecordFromPython);
+  const mergedRecords = merge.mergedRecords.map(toEdgeRecordFromPython);
+  const matchedManualRecords = merge.matchedManualRecords.map(toEdgeRecordFromPython);
+
+  const additions = computeEdgeDifferences(mergedRecords, expectedEdges);
+  const removals = computeEdgeDifferences(expectedEdges, mergedRecords);
+
+  await writeOracleArtifacts({
+    fixture,
+    oracleFileContents: serializePythonOracleEdges(autoEdges),
+    mergedRecords,
+    expectedEdges,
+    overridesPath,
+    additions,
+    removals,
+    summary: {
+      autoRecords,
+      manualRecords,
+      matchedManualRecords,
+      missingManualEntries: merge.missingManualEntries
+    }
+  });
+}
+
+async function writeOracleArtifacts(input: {
+  fixture: OracleFixtureDefinition;
+  oracleFileContents: string;
+  mergedRecords: EdgeRecord[];
+  expectedEdges: EdgeRecord[];
+  overridesPath: string;
+  additions: EdgeRecord[];
+  removals: EdgeRecord[];
+  summary: {
+    autoRecords: EdgeRecord[];
+    manualRecords: EdgeRecord[];
+    matchedManualRecords: EdgeRecord[];
+    missingManualEntries: Array<{ source: string; target: string; relation: string }>;
+  };
+}): Promise<void> {
+  const { fixture, oracleFileContents, mergedRecords, expectedEdges, overridesPath, additions, removals, summary } = input;
+
+  const outputRoot = path.join(OUTPUT_ROOT, fixture.id);
+  await fs.mkdir(outputRoot, { recursive: true });
+
+  await fs.writeFile(path.join(outputRoot, "oracle.json"), oracleFileContents, "utf8");
+
+  await fs.writeFile(
+    path.join(outputRoot, "merged.json"),
+    JSON.stringify(mergedRecords, null, 2) + "\n",
+    "utf8"
+  );
+
+  const diffReport = renderDiffReport({
+    fixture,
+    expectedEdges,
+    overridesPath,
+    additions,
+    removals,
+    mergedCount: mergedRecords.length,
+    summary
+  });
+
+  await fs.writeFile(path.join(outputRoot, "diff.md"), diffReport, "utf8");
+
+  console.log(`→ oracle edges: ${summary.autoRecords.length}`);
+  console.log(`→ manual overrides: ${summary.manualRecords.length}`);
+  console.log(`→ merged edges: ${mergedRecords.length}`);
+  console.log(`→ additions vs expected: ${additions.length}`);
+  console.log(`→ removals vs expected: ${removals.length}`);
+  if (summary.missingManualEntries.length > 0) {
+    console.log(
+      `→ missing manual overrides: ${summary.missingManualEntries.length} (see diff.md)`
+    );
+  }
+  console.log(`Artifacts written to ${outputRoot}`);
+}
+
+async function readOverrideConfig<T>(filePath: string): Promise<T | undefined> {
   const exists = await fileExists(filePath);
   if (!exists) {
     return undefined;
   }
-
   const raw = await fs.readFile(filePath, "utf8");
-  const parsed = JSON.parse(raw);
-  return parsed as OracleOverrideConfig;
+  return JSON.parse(raw) as T;
 }
 
 async function fileExists(candidate: string): Promise<boolean> {
@@ -260,7 +443,6 @@ async function loadEdgeRecords(filePath: string): Promise<EdgeRecord[]> {
   if (!Array.isArray(parsed)) {
     throw new Error(`Edge fixture must be an array: ${filePath}`);
   }
-
   const records = parsed.map(normalizeEdgeRecord);
   return sortRecords(dedupeRecords(records));
 }
@@ -282,7 +464,7 @@ function normalizeEdgeRecord(entry: unknown): EdgeRecord {
       typeof candidate.relation === "string" && candidate.relation.length > 0
         ? candidate.relation
         : "default"
-  };
+  } satisfies EdgeRecord;
 }
 
 function normalizePath(candidate: string): string {
@@ -292,7 +474,7 @@ function normalizePath(candidate: string): string {
 function dedupeRecords(records: EdgeRecord[]): EdgeRecord[] {
   const map = new Map<string, EdgeRecord>();
   for (const record of records) {
-    map.set(edgeKey(record), record);
+    map.set(edgeKey(record.source, record.target, record.relation), record);
   }
   return Array.from(map.values());
 }
@@ -310,23 +492,45 @@ function sortRecords(records: EdgeRecord[]): EdgeRecord[] {
 }
 
 function computeEdgeDifferences(left: EdgeRecord[], right: EdgeRecord[]): EdgeRecord[] {
-  const rightKeys = new Set(right.map(edgeKey));
-  return left.filter(record => !rightKeys.has(edgeKey(record)));
+  const rightKeys = new Set(right.map(record => edgeKey(record.source, record.target, record.relation)));
+  return left.filter(record => !rightKeys.has(edgeKey(record.source, record.target, record.relation)));
 }
 
-function edgeKey(record: EdgeRecord | OracleEdgeRecord): string {
-  return `${record.source}→${record.target}#${record.relation}`;
+function edgeKey(source: string, target: string, relation: string): string {
+  return `${source}→${target}#${relation}`;
+}
+
+function toEdgeRecordFromTypeScript(record: TypeScriptEdgeRecord): EdgeRecord {
+  return {
+    source: record.source,
+    target: record.target,
+    relation: record.relation
+  } satisfies EdgeRecord;
+}
+
+function toEdgeRecordFromPython(record: PythonOracleEdgeRecord): EdgeRecord {
+  return {
+    source: record.source,
+    target: record.target,
+    relation: record.relation
+  } satisfies EdgeRecord;
 }
 
 function renderDiffReport(input: {
   fixture: OracleFixtureDefinition;
   expectedEdges: EdgeRecord[];
-  merge: ReturnType<typeof mergeOracleEdges>;
   overridesPath: string;
   additions: EdgeRecord[];
   removals: EdgeRecord[];
+  mergedCount: number;
+  summary: {
+    autoRecords: EdgeRecord[];
+    manualRecords: EdgeRecord[];
+    matchedManualRecords: EdgeRecord[];
+    missingManualEntries: Array<{ source: string; target: string; relation: string }>;
+  };
 }): string {
-  const { fixture, expectedEdges, merge, overridesPath, additions, removals } = input;
+  const { fixture, expectedEdges, overridesPath, additions, removals, mergedCount, summary } = input;
   const lines: string[] = [];
   const label = fixture.label ? `${fixture.id} – ${fixture.label}` : fixture.id;
 
@@ -334,11 +538,13 @@ function renderDiffReport(input: {
   lines.push("");
   lines.push("## Summary");
   lines.push(`- expected edges: ${expectedEdges.length}`);
-  lines.push(`- oracle edges: ${merge.autoRecords.length}`);
-  lines.push(`- manual overrides (${path.relative(REPO_ROOT, overridesPath)}): ${merge.manualRecords.length}`);
-  lines.push(`  - matched manual overrides: ${merge.matchedManualRecords.length}`);
-  lines.push(`  - missing manual overrides: ${merge.missingManualEntries.length}`);
-  lines.push(`- merged edges: ${merge.mergedRecords.length}`);
+  lines.push(`- oracle edges: ${summary.autoRecords.length}`);
+  lines.push(
+    `- manual overrides (${path.relative(REPO_ROOT, overridesPath)}): ${summary.manualRecords.length}`
+  );
+  lines.push(`  - matched manual overrides: ${summary.matchedManualRecords.length}`);
+  lines.push(`  - missing manual overrides: ${summary.missingManualEntries.length}`);
+  lines.push(`- merged edges: ${mergedCount}`);
   lines.push(`- additions vs expected: ${additions.length}`);
   lines.push(`- removals vs expected: ${removals.length}`);
   lines.push("");
@@ -359,9 +565,9 @@ function renderDiffReport(input: {
     lines.push("");
   }
 
-  if (merge.missingManualEntries.length > 0) {
+  if (summary.missingManualEntries.length > 0) {
     lines.push("## Missing Manual Overrides");
-    for (const entry of merge.missingManualEntries) {
+    for (const entry of summary.missingManualEntries) {
       lines.push(`- ${entry.source} → ${entry.target} (#${entry.relation})`);
     }
     lines.push("");
@@ -376,7 +582,7 @@ function renderDiffReport(input: {
   return lines.join("\n");
 }
 
-function formatRecord(record: EdgeRecord | OracleEdgeRecord): string {
+function formatRecord(record: EdgeRecord): string {
   return `${record.source} → ${record.target} (#${record.relation})`;
 }
 
@@ -388,7 +594,7 @@ function contextualizeError(fixtureId: string, error: unknown): Error {
 }
 
 void runRegenerationCli(process.argv.slice(2)).catch(error => {
-  console.error("TypeScript benchmark regeneration failed.");
+  console.error("Benchmark oracle regeneration failed.");
   if (error instanceof Error) {
     console.error(error.message);
   } else {

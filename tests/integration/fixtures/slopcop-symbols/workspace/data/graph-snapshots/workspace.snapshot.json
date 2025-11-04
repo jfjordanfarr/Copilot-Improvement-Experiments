@@ -1,0 +1,107 @@
+{
+  "generatedAt": "2025-01-01T00:00:00.000Z",
+  "workspace": "D:\\Projects\\Copilot-Improvement-Experiments\\tests\\integration\\fixtures\\slopcop-symbols\\workspace",
+  "totals": {
+    "artifacts": 4,
+    "links": 5
+  },
+  "artifacts": [
+    {
+      "id": "fallback-artifact-978fdffa2c97",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/slopcop-symbols/workspace/docs/index.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-7fce978fa864",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/slopcop-symbols/workspace/docs/overview.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-323100b9e7ef",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/slopcop-symbols/workspace/docs/symbol-map.md",
+      "layer": "requirements",
+      "language": "markdown"
+    },
+    {
+      "id": "fallback-artifact-a371588be0b7",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/slopcop-symbols/workspace/src/component.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "placeholder",
+            "kind": "function",
+            "isDefault": false
+          }
+        ]
+      }
+    }
+  ],
+  "links": [
+    {
+      "id": "orchestrated-link-932c584a",
+      "sourceId": "fallback-artifact-323100b9e7ef",
+      "targetId": "fallback-artifact-a371588be0b7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8c9deb5f",
+      "sourceId": "fallback-artifact-7fce978fa864",
+      "targetId": "fallback-artifact-a371588be0b7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-57cf5747",
+      "sourceId": "fallback-artifact-978fdffa2c97",
+      "targetId": "fallback-artifact-323100b9e7ef",
+      "kind": "documents",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-061912d2",
+      "sourceId": "fallback-artifact-978fdffa2c97",
+      "targetId": "fallback-artifact-7fce978fa864",
+      "kind": "documents",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-faae3839",
+      "sourceId": "fallback-artifact-978fdffa2c97",
+      "targetId": "fallback-artifact-a371588be0b7",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    }
+  ],
+  "providerSummaries": [
+    {
+      "id": "workspace-index",
+      "label": "Workspace Implementation Index",
+      "seedCount": 4,
+      "hintCount": 0,
+      "evidenceCount": 0
+    },
+    {
+      "id": "relationship-rules",
+      "label": "Relationship Rule Engine",
+      "seedCount": 0,
+      "hintCount": 0,
+      "evidenceCount": 0
+    }
+  ],
+  "errors": []
+}

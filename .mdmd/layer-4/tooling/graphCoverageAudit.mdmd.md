@@ -25,6 +25,7 @@ Formats audit results to stdout as either human-readable tables or JSON dependin
 
 ## Responsibilities
 - Discover the workspace graph cache (or custom `--db`) and load symbol-ignore configuration from `symbol-coverage.ignore.json`.
+- Rebuild the workspace snapshot ahead of auditing so coverage checks never operate on stale caches.
 - Enumerate artifacts via `GraphStore`, separating code vs. documentation layers and tracking exported symbol coverage.
 - Emit missing documentation lists, orphan documents, and symbol gaps, promoting them to fatal errors when `--strict-symbols` is set.
 - Support JSON output for downstream tooling so `safe:commit` and CI can diff or store regression fixtures.
@@ -40,7 +41,7 @@ Formats audit results to stdout as either human-readable tables or JSON dependin
 - [COMP-004 – SlopCop Tooling](../../layer-3/slopcop.mdmd.md)
 
 ## Evidence
-- Manual execution: `npm run graph:snapshot` followed by `npm run graph:audit -- --workspace .` (exit 3 on gaps, 5 when symbol enforcement fails).
+- Manual execution: `npm run graph:audit -- --workspace .` (exit 3 on gaps, 5 when symbol enforcement fails). The CLI now refreshes the snapshot automatically, eliminating stale-cache false positives.
 - Integrated into `npm run safe:commit`, which halts on non-zero exit codes—see AI-Agent workspace logs (2025-10-30) for recent failures.
 - Planned regression fixtures (`tests/integration/graph-tools`) will capture golden JSON outputs once the profile validator lands.
 

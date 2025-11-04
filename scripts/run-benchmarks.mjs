@@ -166,6 +166,12 @@ function parseArgs(argv) {
       continue;
     }
 
+    const positionalSuite = token.toLowerCase();
+    if (SUITES.has(positionalSuite)) {
+      suites = addSuite(suites, positionalSuite);
+      continue;
+    }
+
     if (token === "--") {
       break;
     }

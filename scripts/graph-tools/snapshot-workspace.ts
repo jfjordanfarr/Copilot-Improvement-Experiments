@@ -69,8 +69,25 @@ interface WriteDatabaseOptions {
 }
 
 const DEFAULT_TIMESTAMP = "2025-01-01T00:00:00.000Z";
-const DEFAULT_DB = path.join(".link-aware-diagnostics", "link-aware-diagnostics.db");
-const DEFAULT_OUTPUT = path.join("data", "graph-snapshots", "workspace.snapshot.json");
+export const DEFAULT_DB = path.join(".link-aware-diagnostics", "link-aware-diagnostics.db");
+export const DEFAULT_OUTPUT = path.join("data", "graph-snapshots", "workspace.snapshot.json");
+
+export interface SnapshotWorkspaceOptions {
+  workspaceRoot: string;
+  timestamp?: string;
+  dbPath?: string;
+  outputPath?: string;
+  skipDb?: boolean;
+  quiet?: boolean;
+}
+
+export interface SnapshotWorkspaceResult {
+  artifacts: NormalizedArtifact[];
+  links: NormalizedLink[];
+  snapshot: ExternalSnapshot;
+  dbPath?: string;
+  outputPath: string;
+}
 
 export function parseArgs(argv: string[]): ParsedArgs {
   const parsed: ParsedArgs = {
@@ -352,36 +369,16 @@ async function verifyWorkspaceRoot(workspace: string): Promise<void> {
   }
 }
 
-export async function main(): Promise<void> {
-  let args: ParsedArgs;
-  try {
-    args = parseArgs(process.argv.slice(2));
-  } catch (error) {
-    console.error((error as Error).message);
-    console.error(usage());
-    process.exit(1);
-    return;
-  }
+export async function snapshotWorkspace(options: SnapshotWorkspaceOptions): Promise<SnapshotWorkspaceResult> {
+  const workspaceRoot = path.resolve(options.workspaceRoot);
+  await verifyWorkspaceRoot(workspaceRoot);
 
-  if (args.helpRequested) {
-    console.log(usage());
-    return;
-  }
-
-  const workspaceRoot = path.resolve(args.workspace ?? process.cwd());
-  try {
-    await verifyWorkspaceRoot(workspaceRoot);
-  } catch (error) {
-    console.error((error as Error).message);
-    process.exit(1);
-    return;
-  }
-
-  const timestamp = normalizeTimestamp(args.timestamp);
-  const dbPath = args.skipDb
+  const timestamp = normalizeTimestamp(options.timestamp);
+  const quiet = options.quiet ?? false;
+  const dbPath = options.skipDb
     ? undefined
-    : path.resolve(workspaceRoot, args.dbPath ?? DEFAULT_DB);
-  const outputPath = path.resolve(workspaceRoot, args.outputPath ?? DEFAULT_OUTPUT);
+    : path.resolve(workspaceRoot, options.dbPath ?? DEFAULT_DB);
+  const outputPath = path.resolve(workspaceRoot, options.outputPath ?? DEFAULT_OUTPUT);
 
   const orchestrationTargets = {
     implementation: ["packages", "tests", "scripts", "src", "lib", "examples", "include"],
@@ -397,8 +394,8 @@ export async function main(): Promise<void> {
   };
 
   const orchestrator = new LinkInferenceOrchestrator();
-  const logInfo = args.quiet ? undefined : (message: string) => console.log(message);
-  const logWarn = args.quiet ? undefined : (message: string) => console.warn(message);
+  const logInfo = quiet ? undefined : (message: string) => console.log(message);
+  const logWarn = quiet ? undefined : (message: string) => console.warn(message);
 
   const workspaceProvider = createWorkspaceIndexProvider({
     rootPath: workspaceRoot,
@@ -423,7 +420,7 @@ export async function main(): Promise<void> {
         : undefined
   });
 
-  if (!args.quiet) {
+  if (!quiet) {
     console.log(`Scanning workspace: ${workspaceRoot}`);
   }
 
@@ -441,9 +438,9 @@ export async function main(): Promise<void> {
   if (dbPath) {
     await writeDatabaseWithRecovery(dbPath, snapshot, {
       workspaceRoot,
-      quiet: args.quiet
+      quiet
     });
-    if (!args.quiet) {
+    if (!quiet) {
       console.log(`Graph database written to ${dbPath}`);
     }
   }
@@ -462,20 +459,62 @@ export async function main(): Promise<void> {
   };
 
   await writeFixture(outputPath, fixturePayload);
-  if (!args.quiet) {
+  if (!quiet) {
     console.log(`Snapshot fixture written to ${outputPath}`);
     console.log(
       `Artifacts: ${artifacts.length}, Links: ${links.length}, Providers: ${result.providerSummaries.length}`
     );
   }
+
+  return {
+    artifacts,
+    links,
+    snapshot,
+    dbPath,
+    outputPath
+  };
 }
 
-main().catch(error => {
-  console.error("Failed to snapshot workspace graph.");
-  if (error instanceof Error) {
-    console.error(error.stack ?? error.message);
-  } else {
-    console.error(String(error));
+export async function main(): Promise<void> {
+  let args: ParsedArgs;
+  try {
+    args = parseArgs(process.argv.slice(2));
+  } catch (error) {
+    console.error((error as Error).message);
+    console.error(usage());
+    process.exit(1);
+    return;
   }
-  process.exit(1);
-});
+
+  if (args.helpRequested) {
+    console.log(usage());
+    return;
+  }
+
+  try {
+    await snapshotWorkspace({
+      workspaceRoot: path.resolve(args.workspace ?? process.cwd()),
+      timestamp: args.timestamp,
+      dbPath: args.dbPath,
+      outputPath: args.outputPath,
+      skipDb: args.skipDb,
+      quiet: args.quiet
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(message);
+    process.exit(1);
+  }
+}
+
+if (require.main === module) {
+  main().catch(error => {
+    console.error("Failed to snapshot workspace graph.");
+    if (error instanceof Error) {
+      console.error(error.stack ?? error.message);
+    } else {
+      console.error(String(error));
+    }
+    process.exit(1);
+  });
+}

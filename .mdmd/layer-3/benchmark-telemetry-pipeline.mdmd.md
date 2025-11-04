@@ -32,6 +32,8 @@ Supports REQ-030 by producing reproducible performance and accuracy reports that
 - Preserve curated, cross-language expectations by layering immutable manual segments atop oracle-generated sections during regeneration.
 - Expose regeneration tooling (CLI and scripts) that writes oracle output to review artefacts, highlights drift versus committed baselines, and feeds precision/recall deltas back into benchmark reports.
 - Record oracle coverage metrics and unresolved overrides so roadmap stakeholders can triage remaining manual expectations.
+- Extend the oracle framework to Python by shelling out to workspace interpreters, harvesting import graphs via `modulefinder` and `importlib.metadata`, and regenerating fixtures such as `psf/requests` without bundling compilers inside the shipped extension.
+- Unify manifest- and CLI-level integration so language-specific oracles (TypeScript, Python, forthcoming Rust/C) share interpreter detection, diff artefact handling, and override semantics.
 
 ### Telemetry Capture
 - Persist inference accuracy metrics alongside latency stats using shared telemetry modules.

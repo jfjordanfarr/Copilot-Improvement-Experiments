@@ -529,6 +529,18 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L1657-L1939` — Requires every Layer-4 heading to mention its exported symbol in backticks, rerun the audit, and restore 100% coverage before prepping the commit.
 - `L3016-L3101` — Questions unnecessary doc formatting edits, authorizes finishing the symbol lint fix, and requests commit preparation once coverage stays green.
 
+## 2025-11-03 (Dev Day 12)
+- `2025-11-03.md:L78-L170` — Continue summarizing the 11/02 chat in ~1200-line pitons with commit correlation, then narrate the project’s development story to prep for the next benchmark onboarding.
+- `L391-L470` — Split benchmark reporting into per-mode Markdown artifacts with non-committed verbose failure logs so divergences stay inspectable.
+- `L716-L820` — Update `copilot-instructions.md` and related docs to document the reporting workflow, then investigate benchmark divergences across AST and self-similarity suites.
+- `L944-L1015` — Resume TypeScript precision/recall remediation (toy fixtures first), tracking hypotheses about fallback overreach versus real-world fixture success.
+- `L2144-L2155` — After autosummarization, rehydrate from the specified slice of chat history and bias logging so failures appear before successes to protect context budget.
+- `L2727-L2760` — Follow the four-step recovery checklist (rehydrate, review benchmark results, fix TypeScript fixture mismatches, ignore negative-control exports) before proceeding.
+- `L3448-L3560` — Design and implement a compiler-backed TypeScript oracle via Code Like Clay: document scope, prototype generator, compare against committed expectations, and retain manual graph overlays for cross-language edges (see MAJOR NOTE).
+- `L3622-L3645` — Operate with high agency, escalate blockers, and ground decisions in empirically provable workspace graph correctness.
+- `L3705-L3710` — On subsequent autosummarization, rehydrate over `#file:2025-11-03.md:2840-3703` before resuming analysis.
+- `L5146-L5208` — Address every automated VS Code code-review comment, confirming or rejecting suggestions with rationale.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

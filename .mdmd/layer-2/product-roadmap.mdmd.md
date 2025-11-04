@@ -47,6 +47,8 @@ Supports CAP-004 and CAP-005 by giving teams a staged adoption path plus tooling
 - Ship a fixture regeneration CLI that writes oracle-derived edges to temp artefacts, compares them against curated baselines, and emits review-ready diffs instead of mutating manual expectations.
 - Capture oracle coverage and drift metrics in benchmark reports so compiler upgrades or analyzer regressions fail loudly and surface rationale inside `reports/benchmarks/*`.
 - Document override semantics so authored expectations (for example, cross-runtime ripple edges) persist unchanged during automated regeneration.
+- Extend the benchmarking pipeline with a Python import oracle that shells out to workspace interpreters, regenerates fixtures such as `psf/requests`, and records provenance without bundling compilers in the extension.
+- Update manifest tooling and regeneration CLIs so language-specific oracles (TypeScript, Python, upcoming Rust/C) share a common interface, interpreter detection, and diff artefact workflow.
 
 #### Adoption Programme *(Observe → Sustain)*
 - Stage 0 Observe: extension defaults to read-only insight—graph diagnostics, ASCII or markdown narratives, and audit CLIs scoped by path.
@@ -171,6 +173,9 @@ Supports REQ-040. [Symbol Correctness Profiles](../layer-4/tooling/symbolCorrect
 
 ### IMP-481 Symbol Correctness Validator
 Supports REQ-040. [Symbol Correctness Validator](../layer-4/server-diagnostics/symbolCorrectnessValidator.mdmd.md)
+
+### IMP-510 Python Fixture Oracle
+Supports REQ-030. [Python Fixture Oracle](../layer-4/testing/benchmarks/pythonFixtureOracle.mdmd.md)
 
 ## Evidence
 

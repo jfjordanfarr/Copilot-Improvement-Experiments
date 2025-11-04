@@ -2,8 +2,8 @@
   "generatedAt": "2025-01-01T00:00:00.000Z",
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
   "totals": {
-    "artifacts": 415,
-    "links": 1587
+    "artifacts": 418,
+    "links": 1600
   },
   "artifacts": [
     {
@@ -123,7 +123,8 @@
             "IMP-403",
             "IMP-404",
             "IMP-480",
-            "IMP-481"
+            "IMP-481",
+            "IMP-510"
           ]
         }
       }
@@ -4141,6 +4142,108 @@
       "language": "markdown"
     },
     {
+      "id": "fallback-artifact-6a7719860280",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/testing/benchmarks/pythonFixtureOracle.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "PythonOracleEdgeRelation",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "PythonOracleEdge",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "PythonOracleProvenance",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "PythonFixtureOracleOptions",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "PythonOracleOverrideEntry",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "PythonOracleOverrideConfig",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "PythonOracleEdgeRecord",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "PythonOracleSegmentPartition",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "PythonOracleMergeResult",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "partitionPythonOracleSegments",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "generatePythonFixtureGraph",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "mergePythonOracleEdges",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "serializePythonOracleEdges",
+            "context": "metadata-export"
+          }
+        ],
+        "mdmd": {
+          "layer": "4",
+          "identifier": "IMP-510",
+          "identifiers": [
+            "IMP-510"
+          ],
+          "codePaths": [
+            "../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts"
+          ],
+          "exports": [
+            "PythonOracleEdgeRelation",
+            "PythonOracleEdge",
+            "PythonOracleProvenance",
+            "PythonFixtureOracleOptions",
+            "PythonOracleOverrideEntry",
+            "PythonOracleOverrideConfig",
+            "PythonOracleEdgeRecord",
+            "PythonOracleSegmentPartition",
+            "PythonOracleMergeResult",
+            "partitionPythonOracleSegments",
+            "generatePythonFixtureGraph",
+            "mergePythonOracleEdges",
+            "serializePythonOracleEdges"
+          ],
+          "sectionSymbols": [
+            "PythonOracleEdgeRelation",
+            "PythonOracleEdge",
+            "PythonOracleProvenance",
+            "PythonFixtureOracleOptions",
+            "PythonOracleOverrideEntry",
+            "PythonOracleOverrideConfig",
+            "PythonOracleEdgeRecord",
+            "PythonOracleSegmentPartition",
+            "PythonOracleMergeResult",
+            "partitionPythonOracleSegments",
+            "generatePythonFixtureGraph",
+            "mergePythonOracleEdges",
+            "serializePythonOracleEdges"
+          ]
+        }
+      }
+    },
+    {
       "id": "fallback-artifact-bc7136306870",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/testing/benchmarks/rebuildStabilitySuite.mdmd.md",
       "layer": "requirements",
@@ -5876,6 +5979,26 @@
           {
             "symbol": "writeDatabaseWithRecovery",
             "context": "metadata-export"
+          },
+          {
+            "symbol": "snapshotWorkspace",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "SnapshotWorkspaceOptions",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "DEFAULT_DB",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "SnapshotWorkspaceResult",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "DEFAULT_OUTPUT",
+            "context": "metadata-export"
           }
         ],
         "mdmd": {
@@ -5890,12 +6013,20 @@
           "exports": [
             "main",
             "parseArgs",
-            "writeDatabaseWithRecovery"
+            "writeDatabaseWithRecovery",
+            "snapshotWorkspace",
+            "SnapshotWorkspaceOptions",
+            "SnapshotWorkspaceResult",
+            "DEFAULT_DB",
+            "DEFAULT_OUTPUT"
           ],
           "sectionSymbols": [
             "main",
             "parseArgs",
-            "writeDatabaseWithRecovery"
+            "writeDatabaseWithRecovery",
+            "snapshotWorkspace",
+            "SnapshotWorkspaceOptions",
+            "DEFAULT_DB"
           ]
         }
       }
@@ -9025,6 +9156,78 @@
       }
     },
     {
+      "id": "fallback-artifact-171431df05d1",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-7d2a4760484b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "PythonOracleEdgeRelation",
+            "kind": "type"
+          },
+          {
+            "name": "PythonOracleProvenance",
+            "kind": "type"
+          },
+          {
+            "name": "PythonOracleEdge",
+            "kind": "interface"
+          },
+          {
+            "name": "PythonOracleEdgeRecord",
+            "kind": "interface"
+          },
+          {
+            "name": "PythonFixtureOracleOptions",
+            "kind": "interface"
+          },
+          {
+            "name": "PythonOracleOverrideEntry",
+            "kind": "interface"
+          },
+          {
+            "name": "PythonOracleOverrideConfig",
+            "kind": "interface"
+          },
+          {
+            "name": "PythonOracleSegmentPartition",
+            "kind": "interface"
+          },
+          {
+            "name": "PythonOracleMergeResult",
+            "kind": "interface"
+          },
+          {
+            "name": "generatePythonFixtureGraph",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "serializePythonOracleEdges",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "partitionPythonOracleSegments",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "mergePythonOracleEdges",
+            "kind": "function",
+            "isDefault": false
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-cebc32c55be0",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.test.ts",
       "layer": "code",
@@ -9801,12 +10004,33 @@
       "metadata": {
         "exportedSymbols": [
           {
+            "name": "DEFAULT_DB",
+            "kind": "variable"
+          },
+          {
+            "name": "DEFAULT_OUTPUT",
+            "kind": "variable"
+          },
+          {
+            "name": "SnapshotWorkspaceOptions",
+            "kind": "interface"
+          },
+          {
+            "name": "SnapshotWorkspaceResult",
+            "kind": "interface"
+          },
+          {
             "name": "parseArgs",
             "kind": "function",
             "isDefault": false
           },
           {
             "name": "writeDatabaseWithRecovery",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "snapshotWorkspace",
             "kind": "function",
             "isDefault": false
           },
@@ -11063,6 +11287,15 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-19891632",
+      "sourceId": "fallback-artifact-04d7e946b4f2",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.75,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
       "id": "orchestrated-link-cf2bca49",
       "sourceId": "fallback-artifact-04d7e946b4f2",
       "targetId": "fallback-artifact-46a0783c4e09",
@@ -11093,6 +11326,15 @@
       "id": "orchestrated-link-cc07f715",
       "sourceId": "fallback-artifact-04d7e946b4f2",
       "targetId": "fallback-artifact-685a40dd3342",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e07ba618",
+      "sourceId": "fallback-artifact-04d7e946b4f2",
+      "targetId": "fallback-artifact-6a7719860280",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -11756,6 +11998,15 @@
       "createdBy": "relationship-rules"
     },
     {
+      "id": "orchestrated-link-9a9744c3",
+      "sourceId": "fallback-artifact-12069c4f39e6",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.75,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
       "id": "orchestrated-link-9dd1b39c",
       "sourceId": "fallback-artifact-12069c4f39e6",
       "targetId": "fallback-artifact-42632d5c7ed9",
@@ -11925,6 +12176,15 @@
       "confidence": 0.7,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e45dd747",
+      "sourceId": "fallback-artifact-171431df05d1",
+      "targetId": "fallback-artifact-7d2a4760484b",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7f7c1471",
@@ -13388,6 +13648,15 @@
       "id": "orchestrated-link-5c6b8359",
       "sourceId": "fallback-artifact-2ed14456e594",
       "targetId": "fallback-artifact-192ef7563ee3",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-9e569e37",
+      "sourceId": "fallback-artifact-2ed14456e594",
+      "targetId": "fallback-artifact-7d2a4760484b",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -15194,6 +15463,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-cf5799d7",
+      "sourceId": "fallback-artifact-4b2886477078",
+      "targetId": "fallback-artifact-637117183905",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-143f1730",
       "sourceId": "fallback-artifact-4c49d155edc0",
       "targetId": "fallback-artifact-e1dff91b023d",
@@ -16859,6 +17137,60 @@
       "createdBy": "fallback-hint"
     },
     {
+      "id": "orchestrated-link-f5eaaf27",
+      "sourceId": "fallback-artifact-6a7719860280",
+      "targetId": "fallback-artifact-12069c4f39e6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-2026e468",
+      "sourceId": "fallback-artifact-6a7719860280",
+      "targetId": "fallback-artifact-171431df05d1",
+      "kind": "documents",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-d85c93ba",
+      "sourceId": "fallback-artifact-6a7719860280",
+      "targetId": "fallback-artifact-192ef7563ee3",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-8cb256f2",
+      "sourceId": "fallback-artifact-6a7719860280",
+      "targetId": "fallback-artifact-3b9f8b9d91ea",
+      "kind": "documents",
+      "confidence": 0.75,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
+      "id": "orchestrated-link-1a47ae98",
+      "sourceId": "fallback-artifact-6a7719860280",
+      "targetId": "fallback-artifact-7d2a4760484b",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
+      "id": "orchestrated-link-cc5280af",
+      "sourceId": "fallback-artifact-6a7719860280",
+      "targetId": "fallback-artifact-8289b8e2b84b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-3a894b73",
       "sourceId": "fallback-artifact-6abfdfea6f4b",
       "targetId": "fallback-artifact-22ab6043d495",
@@ -17861,6 +18193,15 @@
       "id": "orchestrated-link-2484e3fa",
       "sourceId": "fallback-artifact-8289b8e2b84b",
       "targetId": "fallback-artifact-22c6615ad3c9",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-81ee978e",
+      "sourceId": "fallback-artifact-8289b8e2b84b",
+      "targetId": "fallback-artifact-7d2a4760484b",
       "kind": "depends_on",
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -24954,9 +25295,9 @@
     {
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
-      "seedCount": 441,
-      "hintCount": 173,
-      "evidenceCount": 340
+      "seedCount": 444,
+      "hintCount": 178,
+      "evidenceCount": 345
     },
     {
       "id": "relationship-rules",

@@ -115,6 +115,8 @@ const MARKDOWN_LINK = /\[[^\]]+\]\(([^)]+)\)/g;
 const MARKDOWN_WIKI_LINK = /\[\[([^\]]+)\]\]/g;
 const LINK_DIRECTIVE = /@link\s+([^\s]+)/g;
 const MODULE_REFERENCE = /(?:(?:import|export)\s+[^"'`]*?["'`]([^"'`]+)["'`]|require\(\s*["'`]([^"'`]+)["'`]\s*\))/g;
+const PYTHON_IMPORT_PATTERN = /^\s*import\s+(.+)$/gm;
+const PYTHON_FROM_IMPORT_PATTERN = /^\s*from\s+([.\w]+)\s+import\s+(.+)$/gm;
 const INCLUDE_DIRECTIVE = /#\s*include\s*(?:"([^"\n]+)"|<([^>\n]+)>)/g;
 const TYPESCRIPT_EXTENSIONS = new Set([".ts", ".tsx", ".mts", ".cts"]);
 
@@ -276,8 +278,14 @@ function applyImportHeuristics(
     return;
   }
 
-  let match: RegExpExecArray | null;
   const content = source.content ?? "";
+  const extension = path.extname(source.comparablePath).toLowerCase();
+
+  if (extension === ".py") {
+    applyPythonImportHeuristics(source, candidates, register);
+  }
+
+  let match: RegExpExecArray | null;
   const typeScriptRuntimeInfo = buildTypeScriptImportRuntimeInfo(source);
 
   while ((match = MODULE_REFERENCE.exec(content)) !== null) {
@@ -307,6 +315,163 @@ function applyImportHeuristics(
   }
 
   MODULE_REFERENCE.lastIndex = 0;
+}
+
+function applyPythonImportHeuristics(
+  source: EnrichedArtifact,
+  candidates: EnrichedArtifact[],
+  register: (match: MatchCandidate) => void
+): void {
+  const content = source.content ?? "";
+  if (!content.trim()) {
+    return;
+  }
+
+  const seen = new Set<string>();
+
+  const recordReferences = (references: string[], rationale: string): void => {
+    for (const reference of references) {
+      if (!reference || seen.has(reference)) {
+        continue;
+      }
+
+      const candidate = resolveReference(reference, source, candidates, "import", rationale);
+      if (candidate) {
+        register(candidate);
+        seen.add(reference);
+      }
+    }
+  };
+
+  let fromMatch: RegExpExecArray | null;
+  while ((fromMatch = PYTHON_FROM_IMPORT_PATTERN.exec(content)) !== null) {
+    const modulePart = stripPythonInlineComment(fromMatch[1]);
+    const importSpec = stripPythonInlineComment(fromMatch[2]);
+    const importedNames = splitPythonImportList(importSpec);
+    const references = collectPythonReferenceCandidates(modulePart, importedNames, source);
+    recordReferences(references, `python from import ${modulePart || "."}`);
+  }
+  PYTHON_FROM_IMPORT_PATTERN.lastIndex = 0;
+
+  let importMatch: RegExpExecArray | null;
+  while ((importMatch = PYTHON_IMPORT_PATTERN.exec(content)) !== null) {
+    const modulesSpec = stripPythonInlineComment(importMatch[1]);
+    const modules = splitPythonImportList(modulesSpec);
+    for (const moduleSpecifier of modules) {
+      const references = collectPythonReferenceCandidates(moduleSpecifier, [], source);
+      recordReferences(references, `python import ${moduleSpecifier}`);
+    }
+  }
+  PYTHON_IMPORT_PATTERN.lastIndex = 0;
+}
+
+function stripPythonInlineComment(segment: string | undefined): string {
+  if (!segment) {
+    return "";
+  }
+  const [withoutComment] = segment.split("#", 1);
+  return withoutComment.replace(/[()]/g, " ").trim();
+}
+
+function splitPythonImportList(segment: string): string[] {
+  if (!segment) {
+    return [];
+  }
+
+  return segment
+    .split(",")
+    .map(entry => entry.trim())
+    .filter(entry => entry.length > 0)
+    .map(entry => entry.replace(/\s+as\s+[\w.]+$/i, ""));
+}
+
+function collectPythonReferenceCandidates(
+  moduleSpecifier: string | undefined,
+  importedNames: string[],
+  _source: EnrichedArtifact
+): string[] {
+  const references = new Set<string>();
+  const resolution = resolvePythonModule(moduleSpecifier);
+
+  const push = (value: string): void => {
+    if (value.trim().length > 0) {
+      references.add(value);
+    }
+  };
+
+  const modulePath = resolution.pathSegments.length > 0 ? resolution.pathSegments.join("/") : "";
+
+  if (modulePath) {
+    push(`${resolution.prefix}${modulePath}`);
+    push(modulePath);
+    push(`${resolution.prefix}${modulePath}.py`);
+    push(`${resolution.prefix}${modulePath}/__init__`);
+  }
+
+  const sanitizedNames = importedNames
+    .map(name => name.replace(/[()]/g, "").trim())
+    .filter(name => name.length > 0 && name !== "*")
+    .map(name => name.replace(/\./g, "/"));
+
+  if (!modulePath && sanitizedNames.length === 0) {
+    push(resolution.prefix);
+  }
+
+  for (const name of sanitizedNames) {
+    if (modulePath) {
+      push(`${resolution.prefix}${modulePath}/${name}`);
+      push(`${modulePath}/${name}`);
+    } else {
+      push(`${resolution.prefix}${name}`);
+      push(name);
+    }
+  }
+
+  return Array.from(references);
+}
+
+function resolvePythonModule(moduleSpecifier: string | undefined): {
+  prefix: string;
+  pathSegments: string[];
+} {
+  if (!moduleSpecifier) {
+    return { prefix: "./", pathSegments: [] };
+  }
+
+  const trimmed = moduleSpecifier.trim();
+  if (!trimmed) {
+    return { prefix: "./", pathSegments: [] };
+  }
+
+  let leadingDots = 0;
+  while (leadingDots < trimmed.length && trimmed[leadingDots] === ".") {
+    leadingDots += 1;
+  }
+
+  const remainder = trimmed.slice(leadingDots).replace(/^\.+/, "");
+  const pathSegments = remainder
+    .split(".")
+    .map(segment => segment.trim())
+    .filter(segment => segment.length > 0);
+
+  if (leadingDots === 0) {
+    return {
+      prefix: "./",
+      pathSegments
+    };
+  }
+
+  if (leadingDots === 1) {
+    return {
+      prefix: "./",
+      pathSegments
+    };
+  }
+
+  return {
+    prefix: "../".repeat(leadingDots - 1),
+    pathSegments
+  };
 }
 
 function applyIncludeHeuristics(
@@ -711,7 +876,7 @@ function buildReferenceVariants(reference: string, sourceDir: string): string[] 
   }
 
   if (!path.extname(cleaned)) {
-    const popularExtensions = [".md", ".mdx", ".markdown", ".ts", ".tsx", ".js", ".jsx", ".json"];
+    const popularExtensions = [".md", ".mdx", ".markdown", ".ts", ".tsx", ".js", ".jsx", ".json", ".py"];
     for (const extension of popularExtensions) {
       variants.add(toComparablePath(`${cleaned}${extension}`));
       variants.add(toComparablePath(path.join(sourceDir, `${cleaned}${extension}`)));
