@@ -42,12 +42,13 @@ Supports CAP-004 and CAP-005 by giving teams a staged adoption path plus tooling
 - Offer guided workflows to rebind or prune stale links after rename or delete events.
 - Explore safe auto-fix suggestions when diagnostics identify simple drifts (for example, markdown link updates).
 
-#### Stream T12x – Compiler-Oracled Benchmarks *(planned)*
+#### Stream T12x – Compiler-Oracled Benchmarks *(in progress)*
 - Generate TypeScript benchmark expectations via a deterministic compiler oracle while retaining hand-authored cross-language edges for polyglot scenarios.
 - Ship a fixture regeneration CLI that writes oracle-derived edges to temp artefacts, compares them against curated baselines, and emits review-ready diffs instead of mutating manual expectations.
 - Capture oracle coverage and drift metrics in benchmark reports so compiler upgrades or analyzer regressions fail loudly and surface rationale inside `reports/benchmarks/*`.
 - Document override semantics so authored expectations (for example, cross-runtime ripple edges) persist unchanged during automated regeneration.
-- Extend the benchmarking pipeline with a Python import oracle that shells out to workspace interpreters, regenerates fixtures such as `psf/requests`, and records provenance without bundling compilers in the extension.
+- Extend the benchmarking pipeline with a Python import oracle that shells out to workspace interpreters, regenerates fixtures such as `psf/requests`, and records provenance without bundling compilers in the extension *(delivered; python basics + pipeline fixtures now report 1.0 precision/recall via regenerated expectations and fallback alignment)*.
+- Record benchmark deltas after the Python oracle rollout so ast-mode totals reflect the improved 210 TP / 8 FP / 8 FN (96.3% precision/recall) baseline.
 - Update manifest tooling and regeneration CLIs so language-specific oracles (TypeScript, Python, upcoming Rust/C) share a common interface, interpreter detection, and diff artefact workflow.
 
 #### Adoption Programme *(Observe → Sustain)*

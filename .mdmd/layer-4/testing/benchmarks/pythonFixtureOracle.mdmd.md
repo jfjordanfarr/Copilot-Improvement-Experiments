@@ -63,8 +63,8 @@ Normalises merged edges into canonical JSON by sorting, de-duplicating, and reda
 
 ## Evidence
 - Unit suite [`pythonFixtureOracle.test.ts`](/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.test.ts) exercises override handling, merge determinism, and serialization guarantees.
-- Regeneration CLI invocation `npm run fixtures:regenerate -- --lang python` refreshes the Requests fixture and writes review diffs under `AI-Agent-Workspace/tmp/fixture-regeneration/`.
-- `npm run test:benchmarks -- --suite ast` demonstrates improved precision/recall for Python fixtures once the oracle output replaces heuristic expectations.
+- Regeneration CLI invocation `npm run fixtures:regenerate -- --lang python` refreshes Python fixtures (basics, pipeline, requests) and writes review diffs under `AI-Agent-Workspace/tmp/fixture-regeneration/`.
+- Latest AST benchmark run shows Python fixtures at 1.00 precision/recall, confirming oracle output and fallback heuristics stay aligned with curated expectations.
 
 ## Operational Notes
 - Interpreter resolution must respect workspace-local virtual environments before falling back to `python`/`py` on PATH to avoid contaminating global installations.

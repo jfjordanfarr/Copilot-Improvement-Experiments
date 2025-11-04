@@ -152,7 +152,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T048 Update walkthrough with delete/rebind workflow and settings table in `specs/001-link-aware-diagnostics/quickstart.md`
 - [x] T049 [P] Add CI script `ci-check` to root `package.json` invoking headless validation
 - [x] T050 [P] Document constitution alignment, consent controls, and configuration guidance in `README.md`
-- [ ] T051 Execute full regression suite via `tests/integration/` runner and record results in `reports/test-report.self-similarity.md` and `reports/test-report.ast.md`
+- [x] T051 Execute full regression suite via `tests/integration/` runner and record results in `reports/test-report.self-similarity.md` and `reports/test-report.ast.md`
 - [x] T052 Instrument diagnostic latency telemetry in `packages/server/src/telemetry/latencyTracker.ts`
 - [x] T053 [P] Add performance validation test `tests/integration/perf/diagnosticLatency.test.ts`
 - [x] T057 Establish benchmark workspace automation in `tests/integration/benchmarks/rebuildStability.test.ts` measuring link graph reproducibility
@@ -174,8 +174,8 @@ description: "Task list for Link-Aware Diagnostics"
 - [ ] T092 Materialise the full `ruby-grape/grape` repository via the benchmark manifest (clone → glob include/exclude) and annotate runtime DSL edges discovered by whole-project analysis.
 - [ ] T093 Materialise the full `apache/commons-lang` repository via the benchmark manifest (clone → glob include/exclude) and document scope exclusions revealed by whole-project analysis.
 - [x] T094 [P] Document Python oracle scope by updating `.mdmd/layer-2/product-roadmap.mdmd.md` and `.mdmd/layer-3/benchmark-telemetry-pipeline.mdmd.md`, and introduce Layer 4 implementation notes in `.mdmd/layer-4/testing/benchmarks/pythonFixtureOracle.mdmd.md`.
-- [ ] T095 Implement Python fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts` with unit coverage mirroring the TypeScript oracle API.
-- [ ] T096 Build regeneration CLI `scripts/fixture-tools/regenerate-py-benchmarks.ts`, integrate interpreter detection in `scripts/fixture-tools/benchmark-manifest.ts`, and extend `run-benchmarks.mjs` to accept `--lang python`.
+- [x] T095 Implement Python fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts` with unit coverage mirroring the TypeScript oracle API.
+- [x] T096 Extend the regeneration CLI to support Python fixtures (interpreter detection, manifest integration) and plumb `--lang python` through `scripts/fixture-tools/regenerate-ts-benchmarks.ts` and `scripts/run-benchmarks.mjs`.
 - [ ] T097 Regenerate the `psf/requests` benchmark using the Python oracle, persist updated expectations under `tests/integration/benchmarks/fixtures/python/requests/`, and refresh AST accuracy reports.
 
 ---

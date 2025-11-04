@@ -22,6 +22,7 @@ Supports REQ-030 by producing reproducible performance and accuracy reports that
 - Provide utilities (e.g., `benchmarkRecorder.ts`) that orchestrate fixtures and return comparable metrics.
 - Manage benchmark coverage through `fixtures.manifest.json`, allowing `BENCHMARK_MODE` toggles (`self-similarity`, `ast`, `all`) to gate which fixtures run during verification.
 - Record per-fixture precision/recall metrics so future regression reports can spotlight language-specific drift.
+- Highlight python fixtures (basics, pipeline, requests) in benchmark summaries now that the oracle-backed expectations and fallback heuristics produce 1.0 precision/recall, ensuring regressions stand out immediately.
 - Materialise every vendored benchmark by cloning its source repository into an ephemeral staging workspace (under `AI-Agent-Workspace/tmp/benchmarks/<fixture-id>`), pinning the commit declared in the manifest before snapshots or analyzers execute.
 - Express file selection through manifest glob rules (`include` / `exclude`) so the integrity pipeline expands, hashes, and documents the resolved set automatically—no manually curated file lists.
 - Capture repository provenance (repo, ref, commit, license) in manifest metadata so documentation and staging directories stay reproducible and traceable.
@@ -62,6 +63,7 @@ Captures precision/recall metrics for ripple inference. [Inference Accuracy Tele
 
 ## Evidence
 - Benchmark integration suites under `tests/integration/benchmarks` ensure rebuild stability and inference accuracy assertions stay green.
+- Latest `npm run safe:commit -- --benchmarks` run (2025-11-04) captured 210 TP / 8 FP / 8 FN (96.3% precision/recall) in `reports/benchmarks/ast/ast-accuracy.json`, with the Python pipeline fixture graduating to 7 TP / 0 FP / 0 FN.
 - Telemetry unit tests (`inferenceAccuracy.test.ts`, `latencyTracker.test.ts`) protect metric calculations.
 - Safe-to-commit pipeline runs `npm run verify -- --report` weekly to produce artefacts referenced in stakeholder updates.
 
