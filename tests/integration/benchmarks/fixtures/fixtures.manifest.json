@@ -7,7 +7,12 @@
       "path": "typescript/basic",
       "modes": ["self-similarity", "ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "typescript",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "ts-layered",
@@ -16,7 +21,12 @@
       "path": "typescript/layered",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "typescript",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "ts-ky",

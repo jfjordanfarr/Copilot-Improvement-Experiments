@@ -1,7 +1,7 @@
 {
   "benchmark": "ast-accuracy",
   "mode": "ast",
-  "recordedAt": "2025-11-03T19:28:08.343Z",
+  "recordedAt": "2025-11-04T03:01:18.351Z",
   "environment": {
     "nodeVersion": "v22.14.0",
     "platform": "win32",
@@ -18,12 +18,12 @@
     },
     "totals": {
       "totalEvaluated": 229,
-      "truePositives": 205,
-      "falsePositives": 12,
-      "falseNegatives": 12,
-      "precision": 0.9447004608294931,
-      "recall": 0.9447004608294931,
-      "f1Score": 0.944700460829493
+      "truePositives": 209,
+      "falsePositives": 10,
+      "falseNegatives": 10,
+      "precision": 0.954337899543379,
+      "recall": 0.954337899543379,
+      "f1Score": 0.954337899543379
     },
     "fixtures": [
       {
@@ -31,57 +31,60 @@
         "label": "TypeScript module graph smoke sample",
         "language": "typescript",
         "totals": {
-          "truePositives": 2,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.6666666666666666,
-          "recall": 0.6666666666666666,
-          "f1Score": 0.6666666666666666
+          "truePositives": 4,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
+          {
+            "source": "src/index.ts",
+            "target": "src/models.ts",
+            "relation": "imports"
+          },
           {
             "source": "src/index.ts",
             "target": "src/util.ts",
             "relation": "imports"
           },
           {
-            "source": "src/index.ts",
-            "target": "src/models.ts",
-            "relation": "uses"
-          }
-        ],
-        "falsePositives": [
-          {
-            "source": "src/index.ts",
-            "target": "src/helpers.ts",
-            "relation": "imports"
-          }
-        ],
-        "falseNegatives": [
-          {
             "source": "src/models.ts",
             "target": "src/types.ts",
             "relation": "imports"
+          },
+          {
+            "source": "src/util.ts",
+            "target": "src/types.ts",
+            "relation": "uses"
           }
-        ]
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
       },
       {
         "id": "ts-layered",
         "label": "TypeScript layered reporting service",
         "language": "typescript",
         "totals": {
-          "truePositives": 6,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.8571428571428571,
-          "recall": 0.8571428571428571,
-          "f1Score": 0.8571428571428571
+          "truePositives": 8,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
           {
             "source": "src/index.ts",
             "target": "src/services/reportService.ts",
             "relation": "imports"
+          },
+          {
+            "source": "src/index.ts",
+            "target": "src/models/widget.ts",
+            "relation": "uses"
           },
           {
             "source": "src/services/reportService.ts",
@@ -99,30 +102,23 @@
             "relation": "uses"
           },
           {
+            "source": "src/services/dataService.ts",
+            "target": "src/repositories/storage.ts",
+            "relation": "imports"
+          },
+          {
             "source": "src/utils/format.ts",
             "target": "src/models/widget.ts",
-            "relation": "imports"
+            "relation": "uses"
           },
           {
             "source": "src/repositories/storage.ts",
             "target": "src/models/widget.ts",
-            "relation": "imports"
+            "relation": "uses"
           }
         ],
-        "falsePositives": [
-          {
-            "source": "src/utils/format.ts",
-            "target": "src/repositories/storage.ts",
-            "relation": "imports"
-          }
-        ],
-        "falseNegatives": [
-          {
-            "source": "src/services/dataService.ts",
-            "target": "src/repositories/storage.ts",
-            "relation": "imports"
-          }
-        ]
+        "falsePositives": [],
+        "falseNegatives": []
       },
       {
         "id": "ts-ky",

@@ -12,6 +12,7 @@ export * from "./contracts/telemetry";
 export * from "./knowledge/knowledgeGraphBridge";
 export * from "./inference/fallbackInference";
 export * from "./inference/linkInference";
+export * from "./language/typeScriptAstUtils";
 export * from "./tooling/markdownLinks";
 export * from "./tooling/assetPaths";
 export * from "./tooling/symbolReferences";

@@ -1,7 +1,7 @@
 {
   "benchmark": "ast-accuracy",
   "mode": "self-similarity",
-  "recordedAt": "2025-11-03T19:27:49.442Z",
+  "recordedAt": "2025-11-04T03:01:03.359Z",
   "environment": {
     "nodeVersion": "v22.14.0",
     "platform": "win32",
@@ -18,12 +18,12 @@
     },
     "totals": {
       "totalEvaluated": 4,
-      "truePositives": 2,
-      "falsePositives": 1,
-      "falseNegatives": 1,
-      "precision": 0.6666666666666666,
-      "recall": 0.6666666666666666,
-      "f1Score": 0.6666666666666666
+      "truePositives": 4,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1Score": 1
     },
     "fixtures": [
       {
@@ -31,39 +31,37 @@
         "label": "TypeScript module graph smoke sample",
         "language": "typescript",
         "totals": {
-          "truePositives": 2,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.6666666666666666,
-          "recall": 0.6666666666666666,
-          "f1Score": 0.6666666666666666
+          "truePositives": 4,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
+          {
+            "source": "src/index.ts",
+            "target": "src/models.ts",
+            "relation": "imports"
+          },
           {
             "source": "src/index.ts",
             "target": "src/util.ts",
             "relation": "imports"
           },
           {
-            "source": "src/index.ts",
-            "target": "src/models.ts",
-            "relation": "uses"
-          }
-        ],
-        "falsePositives": [
-          {
-            "source": "src/index.ts",
-            "target": "src/helpers.ts",
-            "relation": "imports"
-          }
-        ],
-        "falseNegatives": [
-          {
             "source": "src/models.ts",
             "target": "src/types.ts",
             "relation": "imports"
+          },
+          {
+            "source": "src/util.ts",
+            "target": "src/types.ts",
+            "relation": "uses"
           }
-        ]
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
       }
     ]
   }

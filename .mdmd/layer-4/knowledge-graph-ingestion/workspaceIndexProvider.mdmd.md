@@ -43,6 +43,7 @@ Factory that returns a workspace provider, scanning configured roots, extracting
 ## Evidence
 - Providers exercised via `npm run graph:snapshot`, which invokes the indexer and verifies deterministic seed counts through snapshot fixtures.
 - Fallback inference unit tests cover exported symbol harvesting by asserting `ExportedSymbolMetadata` contents for sample files.
+- [`packages/server/src/features/knowledge/workspaceIndexProvider.test.ts`](../../../packages/server/src/features/knowledge/workspaceIndexProvider.test.ts) validates TypeScript import evidences by ensuring real module edges (e.g. `models.ts → types.ts`) are emitted while unused helpers stay unlinked.
 - Manual smoke: running `npm run graph:audit` produces `[workspace-index]` logs summarising collected seeds, confirming directory scanning coverage.
 
 ## Operational Notes

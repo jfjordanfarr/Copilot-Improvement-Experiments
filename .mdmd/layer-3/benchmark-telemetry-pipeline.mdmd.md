@@ -6,6 +6,7 @@
 
 ## Components
 
+<a id="comp007-diagnostics-benchmarking"></a>
 ### COMP-007 Diagnostics Benchmarking
 Supports REQ-030 by producing reproducible performance and accuracy reports that prove ripple pipelines stay fast, deterministic, and trustworthy as adoption scales.
 
@@ -25,6 +26,12 @@ Supports REQ-030 by producing reproducible performance and accuracy reports that
 - Express file selection through manifest glob rules (`include` / `exclude`) so the integrity pipeline expands, hashes, and documents the resolved set automatically—no manually curated file lists.
 - Capture repository provenance (repo, ref, commit, license) in manifest metadata so documentation and staging directories stay reproducible and traceable.
 - Expand fixture census across languages (TypeScript, C, Python, Rust, Ruby, Java) with paired baseline and layered scenarios so accuracy metrics surface ecosystem-specific strengths and gaps without co-opting full integration workspaces.
+
+### Compiler-Derived Ground Truth
+- Build deterministic TypeScript edge oracles that consume `ts.Program` metadata, classify runtime versus type-only bindings, and emit fixture graphs consistent with ripple semantics.
+- Preserve curated, cross-language expectations by layering immutable manual segments atop oracle-generated sections during regeneration.
+- Expose regeneration tooling (CLI and scripts) that writes oracle output to review artefacts, highlights drift versus committed baselines, and feeds precision/recall deltas back into benchmark reports.
+- Record oracle coverage metrics and unresolved overrides so roadmap stakeholders can triage remaining manual expectations.
 
 ### Telemetry Capture
 - Persist inference accuracy metrics alongside latency stats using shared telemetry modules.

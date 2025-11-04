@@ -1,5 +1,6 @@
 [
+  { "source": "src/index.ts", "target": "src/models.ts", "relation": "imports" },
   { "source": "src/index.ts", "target": "src/util.ts", "relation": "imports" },
-  { "source": "src/index.ts", "target": "src/models.ts", "relation": "uses" },
-  { "source": "src/index.ts", "target": "src/helpers.ts", "relation": "imports" }
+  { "source": "src/models.ts", "target": "src/types.ts", "relation": "imports" },
+  { "source": "src/util.ts", "target": "src/types.ts", "relation": "uses" }
 ]

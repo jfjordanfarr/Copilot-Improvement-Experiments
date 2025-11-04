@@ -193,6 +193,18 @@ Graph projections, override manifests, and drift history live under the workspac
 - Q: What default behavior should apply when selecting an LLM provider for drift analysis? → A: Force selection on first run and keep diagnostics disabled until the user chooses a provider.
 - Q: How are links between markdown and code artifacts declared? → A: Default to automatic inference from language-server data and knowledge-graph feeds, with an override command available to pin or adjust relationships when necessary.
 
+## Upcoming Work Items
+
+### WI-071 – TypeScript Compiler Oracle for Benchmarks
+- Implement a deterministic generator that walks `ts.Program` metadata for curated fixtures, classifies runtime versus type-only edges, and emits ripple-aligned relationships.
+- Produce a regeneration CLI that writes oracle output to review artefacts, preserving manually authored cross-language expectations untouched.
+- Add unit coverage for the oracle and integrate regeneration checks into `npm run test:benchmarks`, failing fast when compiler upgrades or analyzer regressions diverge from the oracle.
+
+### WI-072 – Manual Override Ledger for Polyglot Fixtures
+- Design a manifest format that marks expectation segments as human-authored so the regeneration pipeline spares them during compiler-backed refreshes.
+- Document override semantics in Layer 4 MDMD and benchmark READMEs so contributors understand how to add or review manual edges across languages.
+- Extend benchmark reports to surface remaining manual segments, tracking progress toward compiler-backed coverage.
+
 
 ## Implementation Traceability
 - [`packages/server/src/main.ts`](../../packages/server/src/main.ts) and [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) execute the end-to-end flow outlined in the functional requirements.

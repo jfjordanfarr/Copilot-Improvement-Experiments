@@ -42,6 +42,12 @@ Supports CAP-004 and CAP-005 by giving teams a staged adoption path plus tooling
 - Offer guided workflows to rebind or prune stale links after rename or delete events.
 - Explore safe auto-fix suggestions when diagnostics identify simple drifts (for example, markdown link updates).
 
+#### Stream T12x – Compiler-Oracled Benchmarks *(planned)*
+- Generate TypeScript benchmark expectations via a deterministic compiler oracle while retaining hand-authored cross-language edges for polyglot scenarios.
+- Ship a fixture regeneration CLI that writes oracle-derived edges to temp artefacts, compares them against curated baselines, and emits review-ready diffs instead of mutating manual expectations.
+- Capture oracle coverage and drift metrics in benchmark reports so compiler upgrades or analyzer regressions fail loudly and surface rationale inside `reports/benchmarks/*`.
+- Document override semantics so authored expectations (for example, cross-runtime ripple edges) persist unchanged during automated regeneration.
+
 #### Adoption Programme *(Observe → Sustain)*
 - Stage 0 Observe: extension defaults to read-only insight—graph diagnostics, ASCII or markdown narratives, and audit CLIs scoped by path.
 - Stage 1 Guard: workspaces declare profiles binding code and doc globs to lint or audit suites; findings stay informational until the enforce flag flips.

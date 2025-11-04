@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import ts from "typescript";
 
 import {
   ArtifactLayer,
@@ -8,6 +9,12 @@ import {
   LinkRelationship,
   LinkRelationshipKind
 } from "../domain/artifacts";
+import {
+  collectIdentifierUsage,
+  extractLocalImportNames,
+  hasRuntimeUsage,
+  isLikelyTypeDefinitionSpecifier
+} from "../language/typeScriptAstUtils";
 
 export interface ArtifactSeed {
   id?: string;
@@ -109,6 +116,7 @@ const MARKDOWN_WIKI_LINK = /\[\[([^\]]+)\]\]/g;
 const LINK_DIRECTIVE = /@link\s+([^\s]+)/g;
 const MODULE_REFERENCE = /(?:(?:import|export)\s+[^"'`]*?["'`]([^"'`]+)["'`]|require\(\s*["'`]([^"'`]+)["'`]\s*\))/g;
 const INCLUDE_DIRECTIVE = /#\s*include\s*(?:"([^"\n]+)"|<([^>\n]+)>)/g;
+const TYPESCRIPT_EXTENSIONS = new Set([".ts", ".tsx", ".mts", ".cts"]);
 
 export async function inferFallbackGraph(
   input: FallbackInferenceInput,
@@ -270,6 +278,7 @@ function applyImportHeuristics(
 
   let match: RegExpExecArray | null;
   const content = source.content ?? "";
+  const typeScriptRuntimeInfo = buildTypeScriptImportRuntimeInfo(source);
 
   while ((match = MODULE_REFERENCE.exec(content)) !== null) {
     const rawReference = match[1] ?? match[2] ?? "";
@@ -281,6 +290,14 @@ function applyImportHeuristics(
     const reference = cleanupReference(rawReference);
     if (!reference) {
       continue;
+    }
+
+    const isImportOrExportMatch = Boolean(match[1]);
+    if (isImportOrExportMatch && typeScriptRuntimeInfo) {
+      const runtimeInfo = typeScriptRuntimeInfo.get(reference);
+      if (runtimeInfo && (!runtimeInfo.hasRuntimeUsage || runtimeInfo.isTypeOnly)) {
+        continue;
+      }
     }
 
     const candidate = resolveReference(reference, source, candidates, "import", `import ${reference}`);
@@ -558,6 +575,110 @@ function evaluateVariantMatch(
   }
 
   return null;
+}
+
+interface TypeScriptImportRuntimeInfo {
+  hasRuntimeUsage: boolean;
+  isTypeOnly: boolean;
+}
+
+function buildTypeScriptImportRuntimeInfo(
+  source: EnrichedArtifact
+): Map<string, TypeScriptImportRuntimeInfo> | null {
+  if (!source.content) {
+    return null;
+  }
+
+  const extension = path.extname(source.comparablePath);
+  if (!TYPESCRIPT_EXTENSIONS.has(extension)) {
+    return null;
+  }
+
+  const scriptKind = inferTypeScriptScriptKind(extension);
+  if (scriptKind === ts.ScriptKind.Unknown) {
+    return null;
+  }
+
+  const sourceFile = ts.createSourceFile(
+    source.comparablePath,
+    source.content,
+    ts.ScriptTarget.Latest,
+    true,
+    scriptKind
+  );
+
+  const identifierUsage = collectIdentifierUsage(sourceFile);
+  const runtimeInfo = new Map<string, TypeScriptImportRuntimeInfo>();
+
+  const register = (specifier: string, localNames: string[], typeOnly: boolean): void => {
+    if (!specifier) {
+      return;
+    }
+
+    const existing = runtimeInfo.get(specifier) ?? { hasRuntimeUsage: false, isTypeOnly: true };
+    const treatAsTypeOnly = typeOnly || isLikelyTypeDefinitionSpecifier(specifier);
+
+    if (treatAsTypeOnly) {
+      runtimeInfo.set(specifier, existing);
+      return;
+    }
+
+    const hasRuntimeBinding = hasRuntimeUsage(identifierUsage, localNames);
+    if (hasRuntimeBinding) {
+      existing.hasRuntimeUsage = true;
+      existing.isTypeOnly = false;
+    }
+
+    runtimeInfo.set(specifier, existing);
+  };
+
+  const visit = (node: ts.Node): void => {
+    if (ts.isImportDeclaration(node) && ts.isStringLiteral(node.moduleSpecifier)) {
+      const localNames = extractLocalImportNames(node.importClause);
+      const isTypeOnly = node.importClause?.isTypeOnly ?? false;
+      register(node.moduleSpecifier.text, localNames, isTypeOnly);
+      return;
+    }
+
+    if (
+      ts.isImportEqualsDeclaration(node) &&
+      ts.isExternalModuleReference(node.moduleReference) &&
+      node.moduleReference.expression &&
+      ts.isStringLiteral(node.moduleReference.expression)
+    ) {
+      register(node.moduleReference.expression.text, [node.name.text], node.isTypeOnly ?? false);
+      return;
+    }
+
+    if (ts.isExportDeclaration(node) && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
+      const specifier = node.moduleSpecifier.text;
+      const isTypeOnly = Boolean(node.isTypeOnly) ||
+        (!!node.exportClause &&
+          ts.isNamedExports(node.exportClause) &&
+          node.exportClause.elements.length > 0 &&
+          node.exportClause.elements.every(element => element.isTypeOnly));
+      register(specifier, [], isTypeOnly);
+      return;
+    }
+
+    ts.forEachChild(node, visit);
+  };
+
+  ts.forEachChild(sourceFile, visit);
+  return runtimeInfo.size ? runtimeInfo : null;
+}
+
+function inferTypeScriptScriptKind(extension: string): ts.ScriptKind {
+  switch (extension) {
+    case ".ts":
+    case ".mts":
+    case ".cts":
+      return ts.ScriptKind.TS;
+    case ".tsx":
+      return ts.ScriptKind.TSX;
+    default:
+      return ts.ScriptKind.Unknown;
+  }
 }
 
 function buildReferenceVariants(reference: string, sourceDir: string): string[] {

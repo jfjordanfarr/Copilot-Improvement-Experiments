@@ -23,6 +23,19 @@ def load_gitignore_patterns(gitignore_path):
         return [line for line in f.read().splitlines() if line and not line.strip().startswith('#')]
 
 def build_tree(directory, spec, gitignore_root, dirs_only=False, prefix=''):
+    """Generate a tree-like listing of ``directory`` while honoring ``.gitignore`` rules.
+    The function walks ``directory`` recursively, skipping any files or folders whose
+    relative paths match the provided ``spec``. Each entry is streamed to standard output
+    with characters that resemble the layout produced by ``tree(1)`` in a terminal.
+    Args:
+        directory: Filesystem location to traverse.
+        spec: Compiled ``pathspec`` instance used to filter ignored paths.
+        gitignore_root: Base directory from which ignore patterns are evaluated.
+        dirs_only: If ``True``, omit files and display directories only.
+        prefix: Visual prefix carried forward to nested levels of the tree.
+    Returns:
+        None: The directory structure is printed directly to standard output.
+    """
     """Recursively build the directory tree string."""
     current_dir_path = Path(directory).resolve()
     try:

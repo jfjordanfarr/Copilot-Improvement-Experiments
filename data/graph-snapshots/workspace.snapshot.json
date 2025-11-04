@@ -2,8 +2,8 @@
   "generatedAt": "2025-01-01T00:00:00.000Z",
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
   "totals": {
-    "artifacts": 407,
-    "links": 1551
+    "artifacts": 415,
+    "links": 1587
   },
   "artifacts": [
     {
@@ -3938,6 +3938,66 @@
       "language": "markdown"
     },
     {
+      "id": "fallback-artifact-86d081217bbd",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/shared/typeScriptAstUtils.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "IdentifierUsage",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "collectIdentifierUsage",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "extractLocalImportNames",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "hasRuntimeUsage",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "hasTypeUsage",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "isLikelyTypeDefinitionSpecifier",
+            "context": "metadata-export"
+          }
+        ],
+        "mdmd": {
+          "layer": "4",
+          "identifier": "IMP-349",
+          "identifiers": [
+            "IMP-349"
+          ],
+          "codePaths": [
+            "../../../packages/shared/src/language/typeScriptAstUtils.ts"
+          ],
+          "exports": [
+            "IdentifierUsage",
+            "collectIdentifierUsage",
+            "extractLocalImportNames",
+            "hasRuntimeUsage",
+            "hasTypeUsage",
+            "isLikelyTypeDefinitionSpecifier"
+          ],
+          "sectionSymbols": [
+            "IdentifierUsage",
+            "collectIdentifierUsage",
+            "extractLocalImportNames",
+            "hasRuntimeUsage",
+            "hasTypeUsage",
+            "isLikelyTypeDefinitionSpecifier"
+          ]
+        }
+      }
+    },
+    {
       "id": "fallback-artifact-a6deb72e0aff",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/telemetry/driftHistoryStore.mdmd.md",
       "layer": "requirements",
@@ -4120,6 +4180,108 @@
       "language": "markdown"
     },
     {
+      "id": "fallback-artifact-556ac5ad44c9",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/testing/benchmarks/typeScriptFixtureOracle.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "OracleEdgeRelation",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "OracleEdgeProvenance",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "OracleEdge",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "OracleEdgeRecord",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "TypeScriptFixtureOracleOptions",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "OracleOverrideEntry",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "OracleOverrideConfig",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "OracleSegmentPartition",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "OracleMergeResult",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "generateTypeScriptFixtureGraph",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "serializeOracleEdges",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "partitionOracleSegments",
+            "context": "metadata-export"
+          },
+          {
+            "symbol": "mergeOracleEdges",
+            "context": "metadata-export"
+          }
+        ],
+        "mdmd": {
+          "layer": "4",
+          "identifier": "IMP-509",
+          "identifiers": [
+            "IMP-509"
+          ],
+          "codePaths": [
+            "../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts"
+          ],
+          "exports": [
+            "OracleEdgeRelation",
+            "OracleEdgeProvenance",
+            "OracleEdge",
+            "OracleEdgeRecord",
+            "TypeScriptFixtureOracleOptions",
+            "OracleOverrideEntry",
+            "OracleOverrideConfig",
+            "OracleSegmentPartition",
+            "OracleMergeResult",
+            "generateTypeScriptFixtureGraph",
+            "serializeOracleEdges",
+            "partitionOracleSegments",
+            "mergeOracleEdges"
+          ],
+          "sectionSymbols": [
+            "OracleEdgeRelation",
+            "OracleEdgeProvenance",
+            "OracleEdge",
+            "OracleEdgeRecord",
+            "TypeScriptFixtureOracleOptions",
+            "OracleOverrideEntry",
+            "OracleOverrideConfig",
+            "OracleSegmentPartition",
+            "OracleMergeResult",
+            "generateTypeScriptFixtureGraph",
+            "serializeOracleEdges",
+            "partitionOracleSegments",
+            "mergeOracleEdges"
+          ]
+        }
+      }
+    },
+    {
       "id": "fallback-artifact-23cacc2e659e",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/testing/extensionTestHooks.mdmd.md",
       "layer": "requirements",
@@ -4263,6 +4425,36 @@
             "AssetReferenceIssue",
             "AssetAuditOptions",
             "findBrokenAssetReferences"
+          ]
+        }
+      }
+    },
+    {
+      "id": "fallback-artifact-2ed14456e594",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.mdmd/layer-4/tooling/benchmarkFixtureRegenerator.mdmd.md",
+      "layer": "requirements",
+      "language": "markdown",
+      "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "runRegenerationCli",
+            "context": "metadata-export"
+          }
+        ],
+        "mdmd": {
+          "layer": "4",
+          "identifier": "IMP-510",
+          "identifiers": [
+            "IMP-510"
+          ],
+          "codePaths": [
+            "../../../scripts/fixture-tools/regenerate-ts-benchmarks.ts"
+          ],
+          "exports": [
+            "runRegenerationCli"
+          ],
+          "sectionSymbols": [
+            "runRegenerationCli"
           ]
         }
       }
@@ -7119,6 +7311,12 @@
       }
     },
     {
+      "id": "fallback-artifact-8dbc8cca3eed",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/workspaceIndexProvider.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
       "id": "fallback-artifact-dd515e3b4c50",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/knowledge/workspaceIndexProvider.ts",
       "layer": "code",
@@ -8429,6 +8627,45 @@
       }
     },
     {
+      "id": "fallback-artifact-b006caceb87f",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/language/typeScriptAstUtils.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "IdentifierUsage",
+            "kind": "interface"
+          },
+          {
+            "name": "extractLocalImportNames",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "collectIdentifierUsage",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "hasRuntimeUsage",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "hasTypeUsage",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "isLikelyTypeDefinitionSpecifier",
+            "kind": "function",
+            "isDefault": false
+          }
+        ]
+      }
+    },
+    {
       "id": "fallback-artifact-e2e253d8d464",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/reporting/testReport.test.ts",
       "layer": "code",
@@ -8782,6 +9019,78 @@
           {
             "name": "InferenceAccuracyTracker",
             "kind": "class",
+            "isDefault": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-cebc32c55be0",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "fallback-artifact-192ef7563ee3",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "OracleEdgeRelation",
+            "kind": "type"
+          },
+          {
+            "name": "OracleEdgeProvenance",
+            "kind": "type"
+          },
+          {
+            "name": "OracleEdge",
+            "kind": "interface"
+          },
+          {
+            "name": "OracleEdgeRecord",
+            "kind": "interface"
+          },
+          {
+            "name": "TypeScriptFixtureOracleOptions",
+            "kind": "interface"
+          },
+          {
+            "name": "OracleOverrideEntry",
+            "kind": "interface"
+          },
+          {
+            "name": "OracleOverrideConfig",
+            "kind": "interface"
+          },
+          {
+            "name": "OracleSegmentPartition",
+            "kind": "interface"
+          },
+          {
+            "name": "OracleMergeResult",
+            "kind": "interface"
+          },
+          {
+            "name": "generateTypeScriptFixtureGraph",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "serializeOracleEdges",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "partitionOracleSegments",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "mergeOracleEdges",
+            "kind": "function",
             "isDefault": false
           }
         ]
@@ -9389,6 +9698,21 @@
           {
             "name": "MaterializeOptions",
             "kind": "interface"
+          }
+        ]
+      }
+    },
+    {
+      "id": "fallback-artifact-8289b8e2b84b",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/scripts/fixture-tools/regenerate-ts-benchmarks.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "runRegenerationCli",
+            "kind": "function",
+            "isDefault": false
           }
         ]
       }
@@ -10347,9 +10671,9 @@
       "sourceId": "fallback-artifact-00c4979947f5",
       "targetId": "fallback-artifact-316d830577fd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-2a4ccd23",
@@ -10397,22 +10721,22 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-5ca7cdde",
+      "id": "orchestrated-link-b0bf7ecf",
       "sourceId": "fallback-artifact-01408a065df4",
       "targetId": "fallback-artifact-3461b35df282",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1da42129",
       "sourceId": "fallback-artifact-01408a065df4",
       "targetId": "fallback-artifact-99a8f23023b8",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e749b514",
@@ -10473,18 +10797,18 @@
       "sourceId": "fallback-artifact-01fce9cee18b",
       "targetId": "fallback-artifact-316d830577fd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-190ee311",
       "sourceId": "fallback-artifact-01fce9cee18b",
       "targetId": "fallback-artifact-9dbf5171b6b9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7331a504",
@@ -10590,18 +10914,18 @@
       "sourceId": "fallback-artifact-02e88360dc60",
       "targetId": "fallback-artifact-e9577547d589",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-ed623bae",
       "sourceId": "fallback-artifact-0362c8812821",
       "targetId": "fallback-artifact-37c34d9ffa6e",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b6b8d774",
@@ -10905,9 +11229,9 @@
       "sourceId": "fallback-artifact-05ebf9c1f3f6",
       "targetId": "fallback-artifact-7880aaaa06a5",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-69563de8",
@@ -10986,27 +11310,27 @@
       "sourceId": "fallback-artifact-06a86c8dcc87",
       "targetId": "fallback-artifact-9dbf5171b6b9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-8576f615",
+      "id": "orchestrated-link-d98ea706",
       "sourceId": "fallback-artifact-06a86c8dcc87",
       "targetId": "fallback-artifact-fa57e07f5676",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-73b2d472",
       "sourceId": "fallback-artifact-073e2c89ea22",
       "targetId": "fallback-artifact-9088e217bd33",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-338dd209",
@@ -11063,13 +11387,13 @@
       "createdBy": "relationship-rules"
     },
     {
-      "id": "orchestrated-link-75ab75b0",
+      "id": "orchestrated-link-c9c326a1",
       "sourceId": "fallback-artifact-077a82321c75",
       "targetId": "fallback-artifact-bc9631ac6702",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-52d42ace",
@@ -11256,9 +11580,9 @@
       "sourceId": "fallback-artifact-0b03337952d7",
       "targetId": "fallback-artifact-1ecf3b8e854f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-6780d1dd",
@@ -11274,9 +11598,9 @@
       "sourceId": "fallback-artifact-0b03337952d7",
       "targetId": "fallback-artifact-6ce6889a55aa",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-bece6479",
@@ -11346,18 +11670,18 @@
       "sourceId": "fallback-artifact-0ff7c8f18636",
       "targetId": "fallback-artifact-12ecc88a206f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-2488975d",
       "sourceId": "fallback-artifact-0ff7c8f18636",
       "targetId": "fallback-artifact-1ecf3b8e854f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-c103d4fd",
@@ -11387,22 +11711,22 @@
       "createdBy": "fallback-hint"
     },
     {
-      "id": "orchestrated-link-1c7edbaf",
+      "id": "orchestrated-link-70968ca0",
       "sourceId": "fallback-artifact-11089fd4d185",
       "targetId": "fallback-artifact-62a576590554",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-d9112a20",
+      "id": "orchestrated-link-2d28db11",
       "sourceId": "fallback-artifact-11089fd4d185",
       "targetId": "fallback-artifact-cfe19da2dafd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-14a61d10",
@@ -11810,6 +12134,15 @@
       "createdBy": "relationship-rules"
     },
     {
+      "id": "orchestrated-link-65fe68cb",
+      "sourceId": "fallback-artifact-192ef7563ee3",
+      "targetId": "fallback-artifact-b006caceb87f",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-7ce6a88b",
       "sourceId": "fallback-artifact-1be88e217a0d",
       "targetId": "fallback-artifact-00c4979947f5",
@@ -11904,9 +12237,9 @@
       "sourceId": "fallback-artifact-1c98334ff278",
       "targetId": "fallback-artifact-c4f617af3555",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4bf7e59e",
@@ -12156,9 +12489,9 @@
       "sourceId": "fallback-artifact-2150d1388e01",
       "targetId": "fallback-artifact-6f40f29263ff",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-84f357f1",
@@ -12422,22 +12755,22 @@
       "createdBy": "relationship-rules"
     },
     {
-      "id": "orchestrated-link-ac566747",
+      "id": "orchestrated-link-006e1838",
       "sourceId": "fallback-artifact-22c6615ad3c9",
       "targetId": "fallback-artifact-bc1cd5038d51",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-573f161b",
       "sourceId": "fallback-artifact-230ed35fa0c8",
       "targetId": "fallback-artifact-7e81896a79ab",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e12ac26a",
@@ -12480,72 +12813,72 @@
       "sourceId": "fallback-artifact-2695877249f0",
       "targetId": "fallback-artifact-11089fd4d185",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1f633b84",
       "sourceId": "fallback-artifact-2695877249f0",
       "targetId": "fallback-artifact-2cb1eb52b53b",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-de8da137",
+      "id": "orchestrated-link-32a55228",
       "sourceId": "fallback-artifact-2695877249f0",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-760b8469",
+      "id": "orchestrated-link-ca23355a",
       "sourceId": "fallback-artifact-2695877249f0",
       "targetId": "fallback-artifact-62a576590554",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-3095d871",
       "sourceId": "fallback-artifact-2695877249f0",
       "targetId": "fallback-artifact-bf7951fb52e9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-329dd2da",
+      "id": "orchestrated-link-86b583cb",
       "sourceId": "fallback-artifact-2695877249f0",
       "targetId": "fallback-artifact-cfe19da2dafd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-0a634138",
+      "id": "orchestrated-link-5e7af229",
       "sourceId": "fallback-artifact-2695877249f0",
       "targetId": "fallback-artifact-d4f771bb8c02",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-98e59e32",
       "sourceId": "fallback-artifact-26ed99822685",
       "targetId": "fallback-artifact-ef1874b57c43",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-450ebba7",
@@ -12723,45 +13056,45 @@
       "sourceId": "fallback-artifact-28e887aa3173",
       "targetId": "fallback-artifact-22c6615ad3c9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a1eab590",
       "sourceId": "fallback-artifact-28e887aa3173",
       "targetId": "fallback-artifact-47aae5930749",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-189065da",
       "sourceId": "fallback-artifact-28e887aa3173",
       "targetId": "fallback-artifact-bc1cd5038d51",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-388f6d53",
       "sourceId": "fallback-artifact-28fab25b5ed0",
       "targetId": "fallback-artifact-594406941b19",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-afc2269a",
+      "id": "orchestrated-link-03d9d78b",
       "sourceId": "fallback-artifact-28fab25b5ed0",
       "targetId": "fallback-artifact-fa57e07f5676",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-32ab86c0",
@@ -12836,31 +13169,31 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-7ea8d604",
+      "id": "orchestrated-link-d2c086f5",
       "sourceId": "fallback-artifact-2a0d70502226",
       "targetId": "fallback-artifact-508d16669979",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-f7cb8c59",
+      "id": "orchestrated-link-4be33d4a",
       "sourceId": "fallback-artifact-2a0d70502226",
       "targetId": "fallback-artifact-c4586934c11d",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7d1b3425",
       "sourceId": "fallback-artifact-2a0d70502226",
       "targetId": "fallback-artifact-d6ce98aac27b",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-3dc0bad6",
@@ -12912,27 +13245,27 @@
       "sourceId": "fallback-artifact-2cbb3d0224d3",
       "targetId": "fallback-artifact-48f1e8780ef1",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-3e4dc2de",
       "sourceId": "fallback-artifact-2cbb3d0224d3",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4e43467d",
       "sourceId": "fallback-artifact-2cdedb89a3c1",
       "targetId": "fallback-artifact-12ecc88a206f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-6deb17ec",
@@ -12993,7 +13326,16 @@
       "sourceId": "fallback-artifact-2ea13bca9e75",
       "targetId": "fallback-artifact-508d16669979",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-7fc80ad0",
+      "sourceId": "fallback-artifact-2ea13bca9e75",
+      "targetId": "fallback-artifact-bc9631ac6702",
+      "kind": "depends_on",
+      "confidence": 0.7,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
     },
@@ -13011,24 +13353,69 @@
       "sourceId": "fallback-artifact-2ebb91c0c0ca",
       "targetId": "fallback-artifact-99196a7c4dd7",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-80623d8d",
+      "id": "orchestrated-link-d479ee7e",
       "sourceId": "fallback-artifact-2ebb91c0c0ca",
       "targetId": "fallback-artifact-d6ce98aac27b",
-      "kind": "depends_on",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-8ef91f54",
+      "sourceId": "fallback-artifact-2ebb91c0c0ca",
+      "targetId": "fallback-artifact-fa57e07f5676",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-79f99ec6",
+      "sourceId": "fallback-artifact-2ed14456e594",
+      "targetId": "fallback-artifact-12069c4f39e6",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-3ae16e63",
-      "sourceId": "fallback-artifact-2ebb91c0c0ca",
-      "targetId": "fallback-artifact-fa57e07f5676",
-      "kind": "depends_on",
+      "id": "orchestrated-link-5c6b8359",
+      "sourceId": "fallback-artifact-2ed14456e594",
+      "targetId": "fallback-artifact-192ef7563ee3",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5061704e",
+      "sourceId": "fallback-artifact-2ed14456e594",
+      "targetId": "fallback-artifact-8289b8e2b84b",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
+      "id": "orchestrated-link-e9fc56fb",
+      "sourceId": "fallback-artifact-2ed14456e594",
+      "targetId": "fallback-artifact-bc1cd5038d51",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b836c971",
+      "sourceId": "fallback-artifact-2ed14456e594",
+      "targetId": "fallback-artifact-e1dff91b023d",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -13182,27 +13569,27 @@
       "sourceId": "fallback-artifact-316d830577fd",
       "targetId": "fallback-artifact-594406941b19",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-2d4538d1",
       "sourceId": "fallback-artifact-316d830577fd",
       "targetId": "fallback-artifact-9dbf5171b6b9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9bf8a6bf",
       "sourceId": "fallback-artifact-316d830577fd",
       "targetId": "fallback-artifact-b42ec5e87bd1",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-932c584a",
@@ -13304,139 +13691,139 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-5c6bfd1e",
+      "id": "orchestrated-link-b083ae0f",
       "sourceId": "fallback-artifact-33ded94c3922",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-42474cb2",
       "sourceId": "fallback-artifact-33ded94c3922",
       "targetId": "fallback-artifact-9dbf5171b6b9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-95c44e7f",
+      "id": "orchestrated-link-e9dbff70",
       "sourceId": "fallback-artifact-33ded94c3922",
       "targetId": "fallback-artifact-ef1874b57c43",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-87bf362b",
+      "id": "orchestrated-link-dbd6e71c",
       "sourceId": "fallback-artifact-33ded94c3922",
       "targetId": "fallback-artifact-fa57e07f5676",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-59c4532d",
+      "id": "orchestrated-link-addc041e",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-2cb1eb52b53b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-89b3c7f7",
+      "id": "orchestrated-link-ddcb78e8",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-36891531f4ca",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-18eeb8e0",
+      "id": "orchestrated-link-6d0669d1",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a6615894",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-5296db465ad3",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-a54a6ac2",
+      "id": "orchestrated-link-f9621bb3",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-5995fae386dd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-5bdfc784",
+      "id": "orchestrated-link-aff77875",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-5a0991d4b81c",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-2898a000",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-5a3e7f904515",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-2277031a",
+      "id": "orchestrated-link-768eb40b",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-5d4a3f587f5c",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1e0aba7b",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-b06c9c12",
+      "id": "orchestrated-link-04844d03",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-62a576590554",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-1941eca2",
+      "id": "orchestrated-link-6d599d93",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-6a982ebd0129",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-286862cb",
@@ -13452,54 +13839,54 @@
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-b9043c401911",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-6af6f01a",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-bf7951fb52e9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-6cfeea83",
+      "id": "orchestrated-link-c1169b74",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-cfe19da2dafd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-44c458e1",
+      "id": "orchestrated-link-98dc09d2",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-d4f771bb8c02",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-ff9ad60a",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-e1451c8c67e9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-f3969a2f",
       "sourceId": "fallback-artifact-343671a89842",
       "targetId": "fallback-artifact-ef6185b9ea5c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-43d28ced",
@@ -13628,31 +14015,31 @@
       "createdBy": "fallback-hint"
     },
     {
-      "id": "orchestrated-link-36db086e",
+      "id": "orchestrated-link-8af2b95f",
       "sourceId": "fallback-artifact-354277347204",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-c44da822",
       "sourceId": "fallback-artifact-354277347204",
       "targetId": "fallback-artifact-5296db465ad3",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4eae5a8b",
       "sourceId": "fallback-artifact-354277347204",
       "targetId": "fallback-artifact-9088e217bd33",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-c45a5e03",
@@ -13673,31 +14060,31 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-f18971e4",
+      "id": "orchestrated-link-45a122d5",
       "sourceId": "fallback-artifact-36891531f4ca",
       "targetId": "fallback-artifact-5a0991d4b81c",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-f3174429",
+      "id": "orchestrated-link-472ef51a",
       "sourceId": "fallback-artifact-36891531f4ca",
       "targetId": "fallback-artifact-9c9dd85007c8",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4b11a704",
       "sourceId": "fallback-artifact-37c34d9ffa6e",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-80395f9e",
@@ -13803,9 +14190,9 @@
       "sourceId": "fallback-artifact-3b2a42aa8949",
       "targetId": "fallback-artifact-b42ec5e87bd1",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7d494ebc",
@@ -13920,36 +14307,36 @@
       "sourceId": "fallback-artifact-3bebb62ba0de",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e0307761",
       "sourceId": "fallback-artifact-3bebb62ba0de",
       "targetId": "fallback-artifact-a8642de63298",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-0c89e1c6",
+      "id": "orchestrated-link-60a192b7",
       "sourceId": "fallback-artifact-3bebb62ba0de",
       "targetId": "fallback-artifact-b9b550747c14",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-175e5c58",
+      "id": "orchestrated-link-6b760d49",
       "sourceId": "fallback-artifact-3bebb62ba0de",
       "targetId": "fallback-artifact-bb7fb7409dd8",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9570be65",
@@ -14006,13 +14393,13 @@
       "createdBy": "fallback-hint"
     },
     {
-      "id": "orchestrated-link-9f84b972",
+      "id": "orchestrated-link-f39c6a63",
       "sourceId": "fallback-artifact-3f52174b9fd2",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7ba4c67b",
@@ -14046,45 +14433,45 @@
       "sourceId": "fallback-artifact-40726b617159",
       "targetId": "fallback-artifact-839a3502a455",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-44a1cb66",
+      "id": "orchestrated-link-98b97c57",
       "sourceId": "fallback-artifact-4136c531f163",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-544bb286",
       "sourceId": "fallback-artifact-4136c531f163",
       "targetId": "fallback-artifact-5a3e7f904515",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-44f4ff28",
+      "id": "orchestrated-link-990cb019",
       "sourceId": "fallback-artifact-4136c531f163",
       "targetId": "fallback-artifact-6a982ebd0129",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5dd77831",
       "sourceId": "fallback-artifact-42632d5c7ed9",
       "targetId": "fallback-artifact-5d6d320f131a",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-40cf49e6",
@@ -14235,18 +14622,18 @@
       "sourceId": "fallback-artifact-44f1f953b8b5",
       "targetId": "fallback-artifact-5995fae386dd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-93360d2e",
       "sourceId": "fallback-artifact-44f1f953b8b5",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-320d4cce",
@@ -14298,9 +14685,9 @@
       "sourceId": "fallback-artifact-457db1a68d0d",
       "targetId": "fallback-artifact-6ce6889a55aa",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1a413751",
@@ -14586,27 +14973,27 @@
       "sourceId": "fallback-artifact-479159be8a7f",
       "targetId": "fallback-artifact-11089fd4d185",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-11286c1a",
+      "id": "orchestrated-link-65401d0b",
       "sourceId": "fallback-artifact-479159be8a7f",
       "targetId": "fallback-artifact-62a576590554",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-cdbaba8b",
+      "id": "orchestrated-link-21d26b7c",
       "sourceId": "fallback-artifact-479159be8a7f",
       "targetId": "fallback-artifact-cfe19da2dafd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e2bbff99",
@@ -14663,13 +15050,13 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-bbb62381",
+      "id": "orchestrated-link-0fcdd472",
       "sourceId": "fallback-artifact-47aae5930749",
       "targetId": "fallback-artifact-bc1cd5038d51",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-0de31be1",
@@ -14748,9 +15135,9 @@
       "sourceId": "fallback-artifact-48c92132896f",
       "targetId": "fallback-artifact-48f1e8780ef1",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-516b0412",
@@ -14766,27 +15153,27 @@
       "sourceId": "fallback-artifact-48c92132896f",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-e83cc8f9",
+      "id": "orchestrated-link-3c5479ea",
       "sourceId": "fallback-artifact-48c92132896f",
       "targetId": "fallback-artifact-6a982ebd0129",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-017a082c",
       "sourceId": "fallback-artifact-48f1e8780ef1",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7b50efa5",
@@ -14802,9 +15189,9 @@
       "sourceId": "fallback-artifact-4b2886477078",
       "targetId": "fallback-artifact-2e51593aa586",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-143f1730",
@@ -14879,49 +15266,58 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-f0922f47",
+      "id": "orchestrated-link-44a9e038",
       "sourceId": "fallback-artifact-4d51cad01413",
       "targetId": "fallback-artifact-40398f6fed5a",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-6b260d0c",
+      "id": "orchestrated-link-46283465",
+      "sourceId": "fallback-artifact-4d7e8d5f1ae1",
+      "targetId": "fallback-artifact-01408a065df4",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-bf3dbdfd",
       "sourceId": "fallback-artifact-4d7e8d5f1ae1",
       "targetId": "fallback-artifact-3461b35df282",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-2c226057",
+      "id": "orchestrated-link-803a1148",
       "sourceId": "fallback-artifact-4d7e8d5f1ae1",
       "targetId": "fallback-artifact-99a8f23023b8",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-34f51cf9",
+      "id": "orchestrated-link-890ccdea",
       "sourceId": "fallback-artifact-4f1eb7b97f4f",
       "targetId": "fallback-artifact-8890738e46f5",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-cfdcda4f",
       "sourceId": "fallback-artifact-4fbda2c3837a",
       "targetId": "fallback-artifact-1ecf3b8e854f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a1e6a890",
@@ -14946,9 +15342,9 @@
       "sourceId": "fallback-artifact-4fbda2c3837a",
       "targetId": "fallback-artifact-7880aaaa06a5",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-c6af0f85",
@@ -15000,18 +15396,27 @@
       "sourceId": "fallback-artifact-4ff7ee36515f",
       "targetId": "fallback-artifact-349366ee3320",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-da164bc1",
+      "id": "orchestrated-link-2e2dfcb2",
       "sourceId": "fallback-artifact-508d16669979",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-f73fd6ac",
+      "sourceId": "fallback-artifact-508d16669979",
+      "targetId": "fallback-artifact-b006caceb87f",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-d73cd73d",
@@ -15059,10 +15464,64 @@
       "createdBy": "fallback-hint"
     },
     {
-      "id": "orchestrated-link-28c10da7",
+      "id": "orchestrated-link-7cd8be98",
       "sourceId": "fallback-artifact-5296db465ad3",
       "targetId": "fallback-artifact-5a0991d4b81c",
-      "kind": "depends_on",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-c4690d9c",
+      "sourceId": "fallback-artifact-556ac5ad44c9",
+      "targetId": "fallback-artifact-12069c4f39e6",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-a6daf22f",
+      "sourceId": "fallback-artifact-556ac5ad44c9",
+      "targetId": "fallback-artifact-192ef7563ee3",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
+      "id": "orchestrated-link-9ad0df24",
+      "sourceId": "fallback-artifact-556ac5ad44c9",
+      "targetId": "fallback-artifact-8289b8e2b84b",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-95c47ece",
+      "sourceId": "fallback-artifact-556ac5ad44c9",
+      "targetId": "fallback-artifact-cebc32c55be0",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e380caa7",
+      "sourceId": "fallback-artifact-556ac5ad44c9",
+      "targetId": "fallback-artifact-dd515e3b4c50",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-02a63847",
+      "sourceId": "fallback-artifact-556ac5ad44c9",
+      "targetId": "fallback-artifact-e1dff91b023d",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -15107,6 +15566,15 @@
       "id": "orchestrated-link-6187a22d",
       "sourceId": "fallback-artifact-562d2ddc374e",
       "targetId": "fallback-artifact-508d16669979",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "relationship-rules"
+    },
+    {
+      "id": "orchestrated-link-1b0daa26",
+      "sourceId": "fallback-artifact-562d2ddc374e",
+      "targetId": "fallback-artifact-8dbc8cca3eed",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -15203,229 +15671,229 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-b2caca17",
+      "id": "orchestrated-link-06e27b08",
       "sourceId": "fallback-artifact-5a3e7f904515",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b7e6cbb2",
       "sourceId": "fallback-artifact-5a3e7f904515",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-2adbfdac",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-242c8c102351",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9d8204aa",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-2cb1eb52b53b",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-bbf757d4",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-343671a89842",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9d9a4206",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-354277347204",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-cd717974",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-36891531f4ca",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-008e186b",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-37c34d9ffa6e",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-fb084f81",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-44f1f953b8b5",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5cac6a5d",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-48c92132896f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-ea1f0a11",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-5296db465ad3",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9f9d7901",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-5a0991d4b81c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-6634b497",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-5d4a3f587f5c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5cff9e1f",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-6a982ebd0129",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b46ba484",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-71bdc1e57bda",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8a24c451",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-7bdeeb2f90cd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a608399f",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-7f7d08497a1e",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a12b4b46",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-9c9dd85007c8",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-dc4539b2",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-b297240b179e",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-01c9e4a7",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-be1990ad75fb",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9c65b080",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-cd63fb58825d",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b0bc9c00",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-cfe19da2dafd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9f1f3a78",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-d0c2b85a6fbc",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-88820a5e",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-d4f771bb8c02",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9f5e99a1",
       "sourceId": "fallback-artifact-5b9f460ca88a",
       "targetId": "fallback-artifact-dd515e3b4c50",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7a20216e",
@@ -15563,20 +16031,20 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-400d703a",
-      "sourceId": "fallback-artifact-5d4a3f587f5c",
-      "targetId": "fallback-artifact-21d41fecb392",
-      "kind": "depends_on",
-      "confidence": 0.6,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
-    },
-    {
       "id": "orchestrated-link-7fe28558",
       "sourceId": "fallback-artifact-5d4a3f587f5c",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-fb23ca1d",
+      "sourceId": "fallback-artifact-5d4a3f587f5c",
+      "targetId": "fallback-artifact-6d0b95522a34",
+      "kind": "depends_on",
+      "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
     },
@@ -15810,18 +16278,18 @@
       "sourceId": "fallback-artifact-637117183905",
       "targetId": "fallback-artifact-dd515e3b4c50",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-6deca372",
+      "id": "orchestrated-link-c2045463",
       "sourceId": "fallback-artifact-6519ba5a74f6",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-781e2a77",
@@ -16359,9 +16827,9 @@
       "sourceId": "fallback-artifact-69cd22c85f1c",
       "targetId": "fallback-artifact-ab82bcd6c066",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-d393620d",
@@ -16467,9 +16935,9 @@
       "sourceId": "fallback-artifact-6c1f62fe0ae1",
       "targetId": "fallback-artifact-fd26e5602292",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5d3ce326",
@@ -16575,9 +17043,9 @@
       "sourceId": "fallback-artifact-6ce6889a55aa",
       "targetId": "fallback-artifact-594406941b19",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-331b01c8",
@@ -16733,13 +17201,13 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-c5fdfdeb",
+      "id": "orchestrated-link-1a15aedc",
       "sourceId": "fallback-artifact-6f40f29263ff",
       "targetId": "fallback-artifact-839a3502a455",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-ed0bd18a",
@@ -16818,9 +17286,9 @@
       "sourceId": "fallback-artifact-7407759cbbcb",
       "targetId": "fallback-artifact-37c34d9ffa6e",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a5df40f6",
@@ -16899,9 +17367,9 @@
       "sourceId": "fallback-artifact-76b5b656c743",
       "targetId": "fallback-artifact-5d4a3f587f5c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-03a63ec1",
@@ -16917,81 +17385,81 @@
       "sourceId": "fallback-artifact-76dc24f91bf3",
       "targetId": "fallback-artifact-bc9631ac6702",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-2e991eac",
       "sourceId": "fallback-artifact-771c77faddab",
       "targetId": "fallback-artifact-47aae5930749",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a53ecef6",
       "sourceId": "fallback-artifact-771c77faddab",
       "targetId": "fallback-artifact-bc1cd5038d51",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-3128376c",
       "sourceId": "fallback-artifact-7880aaaa06a5",
       "targetId": "fallback-artifact-594406941b19",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-d1967528",
       "sourceId": "fallback-artifact-7880aaaa06a5",
       "targetId": "fallback-artifact-b42ec5e87bd1",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1a5a022d",
       "sourceId": "fallback-artifact-796cff3fabc9",
       "targetId": "fallback-artifact-2ebb91c0c0ca",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-6305cd22",
+      "id": "orchestrated-link-b71d7e13",
       "sourceId": "fallback-artifact-796cff3fabc9",
       "targetId": "fallback-artifact-508d16669979",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-12e16fce",
       "sourceId": "fallback-artifact-796cff3fabc9",
       "targetId": "fallback-artifact-99196a7c4dd7",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-d67f72a0",
       "sourceId": "fallback-artifact-796cff3fabc9",
       "targetId": "fallback-artifact-9dbf5171b6b9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5b6a0262",
@@ -17003,22 +17471,22 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-6f10fe94",
+      "id": "orchestrated-link-c328af85",
       "sourceId": "fallback-artifact-79f856289517",
       "targetId": "fallback-artifact-3bebb62ba0de",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-3d29eed5",
+      "id": "orchestrated-link-91419fc6",
       "sourceId": "fallback-artifact-79f856289517",
       "targetId": "fallback-artifact-bb7fb7409dd8",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-68ebed5a",
@@ -17075,40 +17543,40 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-09296718",
+      "id": "orchestrated-link-5d411809",
       "sourceId": "fallback-artifact-7bb1f7be810f",
       "targetId": "fallback-artifact-2cb1eb52b53b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-11af9c0d",
       "sourceId": "fallback-artifact-7bb1f7be810f",
       "targetId": "fallback-artifact-7f7d08497a1e",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1c63fe6e",
       "sourceId": "fallback-artifact-7bb1f7be810f",
       "targetId": "fallback-artifact-cfe19da2dafd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-f4296ccc",
       "sourceId": "fallback-artifact-7bb1f7be810f",
       "targetId": "fallback-artifact-d4f771bb8c02",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-abace767",
@@ -17381,6 +17849,33 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-867656ac",
+      "sourceId": "fallback-artifact-8289b8e2b84b",
+      "targetId": "fallback-artifact-192ef7563ee3",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-2484e3fa",
+      "sourceId": "fallback-artifact-8289b8e2b84b",
+      "targetId": "fallback-artifact-22c6615ad3c9",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-aafff74a",
+      "sourceId": "fallback-artifact-8289b8e2b84b",
+      "targetId": "fallback-artifact-bc1cd5038d51",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-5586a34c",
       "sourceId": "fallback-artifact-835622c5f2f9",
       "targetId": "fallback-artifact-21d41fecb392",
@@ -17408,13 +17903,13 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-c11d31cd",
+      "id": "orchestrated-link-1534e2be",
       "sourceId": "fallback-artifact-839a3502a455",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8dc4d61a",
@@ -17466,9 +17961,9 @@
       "sourceId": "fallback-artifact-86bae24a7a84",
       "targetId": "fallback-artifact-7e81896a79ab",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5bc2423f",
@@ -17484,6 +17979,69 @@
       "sourceId": "fallback-artifact-86bae24a7a84",
       "targetId": "fallback-artifact-f2dc2606292d",
       "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-bd0409c3",
+      "sourceId": "fallback-artifact-86d081217bbd",
+      "targetId": "fallback-artifact-2ea13bca9e75",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c5297177",
+      "sourceId": "fallback-artifact-86d081217bbd",
+      "targetId": "fallback-artifact-508d16669979",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7eaf7970",
+      "sourceId": "fallback-artifact-86d081217bbd",
+      "targetId": "fallback-artifact-8dbc8cca3eed",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ba27a202",
+      "sourceId": "fallback-artifact-86d081217bbd",
+      "targetId": "fallback-artifact-b006caceb87f",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
+      "id": "orchestrated-link-39456aa1",
+      "sourceId": "fallback-artifact-86d081217bbd",
+      "targetId": "fallback-artifact-be43b051b493",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-7226180e",
+      "sourceId": "fallback-artifact-86d081217bbd",
+      "targetId": "fallback-artifact-dd515e3b4c50",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-0e0c9242",
+      "sourceId": "fallback-artifact-86d081217bbd",
+      "targetId": "fallback-artifact-f868ca4fafe5",
+      "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
@@ -17516,13 +18074,13 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-f56da08a",
+      "id": "orchestrated-link-4985517b",
       "sourceId": "fallback-artifact-8ad604dbe621",
       "targetId": "fallback-artifact-839a3502a455",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-c0f57590",
@@ -17565,18 +18123,18 @@
       "sourceId": "fallback-artifact-8b9166ab1e2a",
       "targetId": "fallback-artifact-6c1f62fe0ae1",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-acf1e658",
       "sourceId": "fallback-artifact-8b9166ab1e2a",
       "targetId": "fallback-artifact-fd26e5602292",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-d5053430",
@@ -17669,6 +18227,33 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-bbc9e90d",
+      "sourceId": "fallback-artifact-8dbc8cca3eed",
+      "targetId": "fallback-artifact-76dc24f91bf3",
+      "kind": "depends_on",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6ac1867d",
+      "sourceId": "fallback-artifact-8dbc8cca3eed",
+      "targetId": "fallback-artifact-bc9631ac6702",
+      "kind": "depends_on",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ad900619",
+      "sourceId": "fallback-artifact-8dbc8cca3eed",
+      "targetId": "fallback-artifact-dd515e3b4c50",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-5563c6cc",
       "sourceId": "fallback-artifact-8f8c68122731",
       "targetId": "fallback-artifact-4a3017d370fa",
@@ -17736,45 +18321,45 @@
       "sourceId": "fallback-artifact-9088e217bd33",
       "targetId": "fallback-artifact-3bebb62ba0de",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-13b87be6",
       "sourceId": "fallback-artifact-9088e217bd33",
       "targetId": "fallback-artifact-79f856289517",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7d238526",
       "sourceId": "fallback-artifact-9088e217bd33",
       "targetId": "fallback-artifact-86bae24a7a84",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-dd70e872",
       "sourceId": "fallback-artifact-9088e217bd33",
       "targetId": "fallback-artifact-b9b550747c14",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e8456304",
       "sourceId": "fallback-artifact-9088e217bd33",
       "targetId": "fallback-artifact-bb7fb7409dd8",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-0081c403",
@@ -18204,27 +18789,27 @@
       "sourceId": "fallback-artifact-95c288989ffa",
       "targetId": "fallback-artifact-3bebb62ba0de",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-0be2f458",
       "sourceId": "fallback-artifact-95c288989ffa",
       "targetId": "fallback-artifact-b9b550747c14",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-16b76eea",
       "sourceId": "fallback-artifact-95c288989ffa",
       "targetId": "fallback-artifact-bb7fb7409dd8",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-30c251ff",
@@ -18420,45 +19005,45 @@
       "sourceId": "fallback-artifact-99196a7c4dd7",
       "targetId": "fallback-artifact-28fab25b5ed0",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-6a12fdab",
+      "id": "orchestrated-link-be2aae9c",
       "sourceId": "fallback-artifact-99196a7c4dd7",
       "targetId": "fallback-artifact-508d16669979",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-dd8ca329",
       "sourceId": "fallback-artifact-99196a7c4dd7",
       "targetId": "fallback-artifact-9dbf5171b6b9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-68855bcc",
+      "id": "orchestrated-link-bc9d0cbd",
       "sourceId": "fallback-artifact-99196a7c4dd7",
       "targetId": "fallback-artifact-d6ce98aac27b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-23048ca2",
+      "id": "orchestrated-link-771c3d93",
       "sourceId": "fallback-artifact-99196a7c4dd7",
       "targetId": "fallback-artifact-fa57e07f5676",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-fd1c5637",
@@ -18515,22 +19100,22 @@
       "createdBy": "relationship-rules"
     },
     {
-      "id": "orchestrated-link-0fc4a3ac",
+      "id": "orchestrated-link-63dc549d",
       "sourceId": "fallback-artifact-99a8f23023b8",
       "targetId": "fallback-artifact-3461b35df282",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-41696a41",
+      "id": "orchestrated-link-95811b32",
       "sourceId": "fallback-artifact-9a4edaef481d",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-6f3278c2",
@@ -18776,49 +19361,49 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-a1430886",
+      "id": "orchestrated-link-f55ab977",
       "sourceId": "fallback-artifact-9c94f0550d2b",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-13a4b29c",
+      "id": "orchestrated-link-67bc638d",
       "sourceId": "fallback-artifact-9c94f0550d2b",
       "targetId": "fallback-artifact-508d16669979",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-121710bd",
+      "id": "orchestrated-link-662ec1ae",
       "sourceId": "fallback-artifact-9c94f0550d2b",
       "targetId": "fallback-artifact-d6ce98aac27b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-0269e5d2",
+      "id": "orchestrated-link-568196c3",
       "sourceId": "fallback-artifact-9c9dd85007c8",
       "targetId": "fallback-artifact-5a0991d4b81c",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-404b0401",
       "sourceId": "fallback-artifact-9c9dd85007c8",
       "targetId": "fallback-artifact-73f8b67ab260",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-969689ee",
@@ -18888,9 +19473,18 @@
       "sourceId": "fallback-artifact-9f1159e6813b",
       "targetId": "fallback-artifact-cc95686a8cfe",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-86050b5f",
+      "sourceId": "fallback-artifact-9f1159e6813b",
+      "targetId": "fallback-artifact-cc95686a8cfe",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-33d29148",
@@ -18960,18 +19554,18 @@
       "sourceId": "fallback-artifact-a111041f060b",
       "targetId": "fallback-artifact-01fce9cee18b",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a6b5288e",
       "sourceId": "fallback-artifact-a111041f060b",
       "targetId": "fallback-artifact-316d830577fd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b6c5e2bb",
@@ -19113,9 +19707,9 @@
       "sourceId": "fallback-artifact-a66fc31574ac",
       "targetId": "fallback-artifact-f2dc2606292d",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-2eab476f",
@@ -19176,27 +19770,27 @@
       "sourceId": "fallback-artifact-a85c988c28e9",
       "targetId": "fallback-artifact-1c98334ff278",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-73a83795",
+      "id": "orchestrated-link-c7bfe886",
       "sourceId": "fallback-artifact-a85c988c28e9",
       "targetId": "fallback-artifact-40398f6fed5a",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8b5c3bc5",
       "sourceId": "fallback-artifact-a85c988c28e9",
       "targetId": "fallback-artifact-4d51cad01413",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-cdb4587d",
@@ -19221,9 +19815,9 @@
       "sourceId": "fallback-artifact-a8ba5170e3f6",
       "targetId": "fallback-artifact-8b74b0c0e0ea",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-fe5cd16e",
@@ -19334,6 +19928,15 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-b730e92a",
+      "sourceId": "fallback-artifact-ac0248747751",
+      "targetId": "fallback-artifact-c0556bcbd307",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-e4183e30",
       "sourceId": "fallback-artifact-addfaa2e3d0b",
       "targetId": "fallback-artifact-1f517c00f19d",
@@ -19415,13 +20018,13 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-ab989196",
+      "id": "orchestrated-link-ffb04287",
       "sourceId": "fallback-artifact-b1bddeb65d5c",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8e1280b1",
@@ -19473,9 +20076,9 @@
       "sourceId": "fallback-artifact-b42ec5e87bd1",
       "targetId": "fallback-artifact-1234f1da2bde",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-3385369c",
@@ -19557,6 +20160,15 @@
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-6a156fde",
+      "sourceId": "fallback-artifact-b656ee208512",
+      "targetId": "fallback-artifact-f0fb8bc903f8",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-49411c96",
@@ -19676,85 +20288,85 @@
       "createdBy": "relationship-rules"
     },
     {
-      "id": "orchestrated-link-2a3d83d9",
+      "id": "orchestrated-link-7e5534ca",
       "sourceId": "fallback-artifact-b880a020103d",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-10e9a103",
       "sourceId": "fallback-artifact-b880a020103d",
       "targetId": "fallback-artifact-e1451c8c67e9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-da215297",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-11089fd4d185",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-c4fd7f6a",
+      "id": "orchestrated-link-1915305b",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-2cb1eb52b53b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-8427e51d",
+      "id": "orchestrated-link-d83f960e",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-108396ff",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-5995fae386dd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-1ba5c84f",
+      "id": "orchestrated-link-6fbd7940",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-62a576590554",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-d83816c0",
+      "id": "orchestrated-link-2c4fc7b1",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-cfe19da2dafd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-affd851e",
+      "id": "orchestrated-link-0415360f",
       "sourceId": "fallback-artifact-b9043c401911",
       "targetId": "fallback-artifact-d4f771bb8c02",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8986329a",
@@ -19800,6 +20412,15 @@
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-bf14679b",
+      "sourceId": "fallback-artifact-b9d9a5732162",
+      "targetId": "fallback-artifact-4a3017d370fa",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-ba489c1c",
@@ -19865,13 +20486,13 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-c7eb038f",
+      "id": "orchestrated-link-1c02b480",
       "sourceId": "fallback-artifact-be1990ad75fb",
       "targetId": "fallback-artifact-5995fae386dd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1ec75192",
@@ -20081,6 +20702,15 @@
       "createdBy": "relationship-rules"
     },
     {
+      "id": "orchestrated-link-23df3807",
+      "sourceId": "fallback-artifact-be43b051b493",
+      "targetId": "fallback-artifact-8dbc8cca3eed",
+      "kind": "documents",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "relationship-rules"
+    },
+    {
       "id": "orchestrated-link-688874ac",
       "sourceId": "fallback-artifact-be43b051b493",
       "targetId": "fallback-artifact-9088e217bd33",
@@ -20283,63 +20913,63 @@
       "sourceId": "fallback-artifact-bf7951fb52e9",
       "targetId": "fallback-artifact-11089fd4d185",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-ce5e910a",
+      "id": "orchestrated-link-227641fb",
       "sourceId": "fallback-artifact-bf7951fb52e9",
       "targetId": "fallback-artifact-2cb1eb52b53b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-8d88f6bd",
+      "id": "orchestrated-link-e1a0a7ae",
       "sourceId": "fallback-artifact-bf7951fb52e9",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-19e4a89f",
       "sourceId": "fallback-artifact-bf7951fb52e9",
       "targetId": "fallback-artifact-5995fae386dd",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-2506d9ef",
+      "id": "orchestrated-link-791e8ae0",
       "sourceId": "fallback-artifact-bf7951fb52e9",
       "targetId": "fallback-artifact-62a576590554",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-e1992860",
+      "id": "orchestrated-link-35b0d951",
       "sourceId": "fallback-artifact-bf7951fb52e9",
       "targetId": "fallback-artifact-cfe19da2dafd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-b95e96be",
+      "id": "orchestrated-link-0d7647af",
       "sourceId": "fallback-artifact-bf7951fb52e9",
       "targetId": "fallback-artifact-d4f771bb8c02",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5ddee9ba",
@@ -20657,36 +21287,36 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-42220acc",
+      "id": "orchestrated-link-9639bbbd",
       "sourceId": "fallback-artifact-c4586934c11d",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-7b7a5c2d",
+      "id": "orchestrated-link-cf920d1e",
       "sourceId": "fallback-artifact-c4586934c11d",
       "targetId": "fallback-artifact-ef1874b57c43",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-373d1dda",
+      "id": "orchestrated-link-8b54cecb",
       "sourceId": "fallback-artifact-c4f617af3555",
       "targetId": "fallback-artifact-40398f6fed5a",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-19c611c4",
+      "id": "orchestrated-link-d4dc6ba7",
       "sourceId": "fallback-artifact-c52f01c5b12c",
-      "targetId": "fallback-artifact-21d41fecb392",
+      "targetId": "fallback-artifact-6d0b95522a34",
       "kind": "depends_on",
       "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -20697,9 +21327,9 @@
       "sourceId": "fallback-artifact-c52f01c5b12c",
       "targetId": "fallback-artifact-80434d56f488",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-50244d25",
@@ -20796,18 +21426,18 @@
       "sourceId": "fallback-artifact-c87c9ff3d3f3",
       "targetId": "fallback-artifact-71bdc1e57bda",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a575a81a",
       "sourceId": "fallback-artifact-c93a9c183c83",
       "targetId": "fallback-artifact-86bae24a7a84",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-920c7be8",
@@ -20976,18 +21606,18 @@
       "sourceId": "fallback-artifact-cc95686a8cfe",
       "targetId": "fallback-artifact-0e495ec902d1",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-107a5601",
       "sourceId": "fallback-artifact-cc95686a8cfe",
       "targetId": "fallback-artifact-8b74b0c0e0ea",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4da4089b",
@@ -21044,31 +21674,40 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-04115958",
+      "id": "orchestrated-link-58290a49",
       "sourceId": "fallback-artifact-cd63fb58825d",
       "targetId": "fallback-artifact-5a0991d4b81c",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-67262628",
       "sourceId": "fallback-artifact-ce55eea93ce5",
       "targetId": "fallback-artifact-a8ba5170e3f6",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-f83608a0",
       "sourceId": "fallback-artifact-ce6211f3180c",
       "targetId": "fallback-artifact-2cb1eb52b53b",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-8470ce56",
+      "sourceId": "fallback-artifact-cebc32c55be0",
+      "targetId": "fallback-artifact-192ef7563ee3",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-6a73c6d1",
@@ -21143,40 +21782,40 @@
       "createdBy": "relationship-rules"
     },
     {
-      "id": "orchestrated-link-47bcfdd8",
+      "id": "orchestrated-link-9bd4aec9",
       "sourceId": "fallback-artifact-cfe19da2dafd",
       "targetId": "fallback-artifact-5a0991d4b81c",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-12e026b5",
       "sourceId": "fallback-artifact-d050bd76f7de",
       "targetId": "fallback-artifact-69cd22c85f1c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-6d4f8357",
       "sourceId": "fallback-artifact-d0c2b85a6fbc",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-197a2cc8",
       "sourceId": "fallback-artifact-d0c2b85a6fbc",
       "targetId": "fallback-artifact-6fd7465e828f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1a1bad74",
@@ -21665,22 +22304,22 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-7265cf63",
+      "id": "orchestrated-link-c67d8054",
       "sourceId": "fallback-artifact-d4f771bb8c02",
       "targetId": "fallback-artifact-2cb1eb52b53b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-85a066b9",
+      "id": "orchestrated-link-d9b817aa",
       "sourceId": "fallback-artifact-d4f771bb8c02",
       "targetId": "fallback-artifact-cfe19da2dafd",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-041fc0f3",
@@ -21791,31 +22430,31 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-d3106980",
+      "id": "orchestrated-link-27281a71",
       "sourceId": "fallback-artifact-d6ce98aac27b",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-45721396",
       "sourceId": "fallback-artifact-d6ce98aac27b",
       "targetId": "fallback-artifact-508d16669979",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-be94c9eb",
+      "id": "orchestrated-link-12ac7adc",
       "sourceId": "fallback-artifact-d6ce98aac27b",
       "targetId": "fallback-artifact-c4586934c11d",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-f285bcdb",
@@ -21975,63 +22614,63 @@
       "sourceId": "fallback-artifact-d9ba6a0a1cb3",
       "targetId": "fallback-artifact-ef6185b9ea5c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-02db3161",
       "sourceId": "fallback-artifact-da5f34501c5c",
       "targetId": "fallback-artifact-3bebb62ba0de",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-fc673a84",
       "sourceId": "fallback-artifact-da5f34501c5c",
       "targetId": "fallback-artifact-79f856289517",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-c61fa710",
       "sourceId": "fallback-artifact-da5f34501c5c",
       "targetId": "fallback-artifact-b9b550747c14",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-d0f421a2",
       "sourceId": "fallback-artifact-da5f34501c5c",
       "targetId": "fallback-artifact-bb7fb7409dd8",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-d297a081",
       "sourceId": "fallback-artifact-dc2ccfbea05c",
       "targetId": "fallback-artifact-48c92132896f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-d2ead443",
+      "id": "orchestrated-link-27028534",
       "sourceId": "fallback-artifact-dc2ccfbea05c",
       "targetId": "fallback-artifact-6a982ebd0129",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e0e71b53",
@@ -22133,22 +22772,22 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-fae452cd",
+      "id": "orchestrated-link-4efc03be",
       "sourceId": "fallback-artifact-e1451c8c67e9",
       "targetId": "fallback-artifact-48c92132896f",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-00005468",
       "sourceId": "fallback-artifact-e1451c8c67e9",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-fbf4005f",
@@ -22218,18 +22857,18 @@
       "sourceId": "fallback-artifact-e1dff91b023d",
       "targetId": "fallback-artifact-6c1f62fe0ae1",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4e5a47d7",
       "sourceId": "fallback-artifact-e1dff91b023d",
       "targetId": "fallback-artifact-fd26e5602292",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5109db0b",
@@ -22272,27 +22911,27 @@
       "sourceId": "fallback-artifact-e2e253d8d464",
       "targetId": "fallback-artifact-6048defbc29a",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-1ee18a84",
+      "id": "orchestrated-link-72f93b75",
       "sourceId": "fallback-artifact-e30305204448",
       "targetId": "fallback-artifact-40398f6fed5a",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-bb92d826",
       "sourceId": "fallback-artifact-e30305204448",
       "targetId": "fallback-artifact-a85c988c28e9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-ceb58cb9",
@@ -22623,144 +23262,144 @@
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-01408a065df4",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-35f132f9",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-06b6f9817318",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-77d9f2c0",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-3461b35df282",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b7730429",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-349366ee3320",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9b454608",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-42fa4b1d6468",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b334328f",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-4a3017d370fa",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5994e346",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-69cd22c85f1c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4955ba5e",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-7ab3f9e61996",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-38d6460b",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-99a8f23023b8",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-216ca279",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-a8ba5170e3f6",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8c65c6c7",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-ab82bcd6c066",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-32670354",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-c0556bcbd307",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-ad0b07d0",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-c97e7ca43dca",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-7b80aacf",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-cc95686a8cfe",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8349243f",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-e93a3a665e25",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-9ceee723",
       "sourceId": "fallback-artifact-e77b56ad7b76",
       "targetId": "fallback-artifact-e9f278b71318",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-f535d3a0",
@@ -22857,18 +23496,18 @@
       "sourceId": "fallback-artifact-e93a3a665e25",
       "targetId": "fallback-artifact-ab82bcd6c066",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-fcb953b3",
       "sourceId": "fallback-artifact-e9514513622b",
       "targetId": "fallback-artifact-02e88360dc60",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-bb44895a",
@@ -22938,18 +23577,18 @@
       "sourceId": "fallback-artifact-e991d172a877",
       "targetId": "fallback-artifact-077a82321c75",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-032c4d31",
       "sourceId": "fallback-artifact-e991d172a877",
       "targetId": "fallback-artifact-76dc24f91bf3",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-78bd8355",
@@ -23024,22 +23663,22 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-455ddf94",
+      "id": "orchestrated-link-99759085",
       "sourceId": "fallback-artifact-e9f278b71318",
       "targetId": "fallback-artifact-3461b35df282",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e19de5f5",
       "sourceId": "fallback-artifact-ebe1c9a6a328",
       "targetId": "fallback-artifact-d0c2b85a6fbc",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-778f9a6f",
@@ -23105,22 +23744,22 @@
       "createdBy": "fallback-heuristic"
     },
     {
-      "id": "orchestrated-link-142d7b16",
+      "id": "orchestrated-link-68452c07",
       "sourceId": "fallback-artifact-ef1874b57c43",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-ec854ba3",
       "sourceId": "fallback-artifact-ef6185b9ea5c",
       "targetId": "fallback-artifact-5d7e4c772279",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-c40e5e59",
@@ -23226,288 +23865,297 @@
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-06a86c8dcc87",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-43c548a7",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-12ecc88a206f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-5eb353ce",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-16850a09747b",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-857c6598",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-28fab25b5ed0",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-886932ef",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-2ebb91c0c0ca",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4448bf95",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-30ebe30ee99e",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-34974427",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-33ded94c3922",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8cf9c253",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-3f52174b9fd2",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-a998d67f",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-4f1eb7b97f4f",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-d114fde4",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-508d16669979",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-3de0fb5f",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-5450cc9707d8",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-af6e77a0",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-6048defbc29a",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-06671853",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-6519ba5a74f6",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e45fceec",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-6ce6889a55aa",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-f570b544",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-6f40f29263ff",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-c5aaba9f",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-7880aaaa06a5",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-dae5f2bc",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-80434d56f488",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-aa95a958",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-839a3502a455",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b75a5101",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-8890738e46f5",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-cd42aa85",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-8ad604dbe621",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-80f0a090",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-99196a7c4dd7",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-974baf64",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-9a4edaef481d",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-85ce05bf",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-9c94f0550d2b",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-448ea362",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-9dbf5171b6b9",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-28b1a31d",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-af6195947e4d",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-7bdcdeb9",
+      "sourceId": "fallback-artifact-f0fb8bc903f8",
+      "targetId": "fallback-artifact-b006caceb87f",
+      "kind": "depends_on",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4f495eaf",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-b1bddeb65d5c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4a37b439",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-c4586934c11d",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-e1db2cd9",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-c52f01c5b12c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-cf875c05",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-d6ce98aac27b",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8dbd9d80",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-edd47ef60cd6",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-980ba52f",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-ef1874b57c43",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-8a068cdb",
       "sourceId": "fallback-artifact-f0fb8bc903f8",
       "targetId": "fallback-artifact-fa57e07f5676",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-68d43f34",
@@ -24090,18 +24738,18 @@
       "sourceId": "fallback-artifact-f9ee0654228e",
       "targetId": "fallback-artifact-5a0991d4b81c",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-50e73b5c",
       "sourceId": "fallback-artifact-f9ee0654228e",
       "targetId": "fallback-artifact-9c9dd85007c8",
       "kind": "depends_on",
-      "confidence": 0.8,
+      "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-4bbb41db",
@@ -24203,22 +24851,22 @@
       "createdBy": "relationship-rules"
     },
     {
-      "id": "orchestrated-link-6d009dea",
+      "id": "orchestrated-link-c1184edb",
       "sourceId": "fallback-artifact-fa57e07f5676",
       "targetId": "fallback-artifact-16850a09747b",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-df624800",
+      "id": "orchestrated-link-3379f8f1",
       "sourceId": "fallback-artifact-fa57e07f5676",
       "targetId": "fallback-artifact-508d16669979",
-      "kind": "depends_on",
-      "confidence": 0.8,
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-1bf1505b",
@@ -24306,16 +24954,16 @@
     {
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
-      "seedCount": 432,
-      "hintCount": 169,
-      "evidenceCount": 0
+      "seedCount": 441,
+      "hintCount": 173,
+      "evidenceCount": 340
     },
     {
       "id": "relationship-rules",
       "label": "Relationship Rule Engine",
       "seedCount": 0,
       "hintCount": 0,
-      "evidenceCount": 493
+      "evidenceCount": 495
     }
   ],
   "errors": []

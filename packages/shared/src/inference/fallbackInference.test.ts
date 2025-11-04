@@ -131,6 +131,36 @@ describe("fallback inference", () => {
     expect(hasEdge(utilArtifact)).toBe(true);
   });
 
+  it("skips TypeScript imports that are only used as types", async () => {
+    const result = await inferFallbackGraph({
+      seeds: [
+        {
+          uri: "file:///repo/src/controller.ts",
+          layer: "code",
+          content: [
+            "import { Widget } from './types';",
+            "type Handler = (value: Widget) => string;",
+            "export const run: Handler = value => value.kind;",
+            ""
+          ].join("\n")
+        },
+        {
+          uri: "file:///repo/src/types.ts",
+          layer: "code",
+          content: "export type Widget = { kind: string };\n"
+        }
+      ]
+    });
+
+    const controllerArtifact = result.artifacts.find((artifact) => artifact.uri.endsWith("controller.ts"));
+    const typesArtifact = result.artifacts.find((artifact) => artifact.uri.endsWith("types.ts"));
+
+    expect(controllerArtifact).toBeDefined();
+    expect(typesArtifact).toBeDefined();
+    expect(result.links).toHaveLength(0);
+    expect(result.traces).toHaveLength(0);
+  });
+
   it("ignores module references that only appear inside comments", async () => {
     const result = await inferFallbackGraph({
       seeds: [
