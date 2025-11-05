@@ -83,7 +83,12 @@
       "path": "c/basics",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "c",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "c-modular",
@@ -92,7 +97,12 @@
       "path": "c/modular",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "c",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "c-libuv",
@@ -123,6 +133,11 @@
           "cmake/**",
           "samples/**"
         ]
+      },
+      "oracle": {
+        "kind": "c",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
       },
       "integrity": {
         "algorithm": "sha256",
@@ -282,7 +297,12 @@
       "path": "rust/basics",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "rust",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "rust-analytics",
@@ -291,7 +311,12 @@
       "path": "rust/analytics",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "rust",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "java-basic",
@@ -300,7 +325,12 @@
       "path": "java/basic",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "java",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "java-service",
@@ -309,7 +339,12 @@
       "path": "java/service",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "java",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "ruby-basic",
@@ -318,7 +353,12 @@
       "path": "ruby/basic",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "ruby",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     },
     {
       "id": "ruby-cli",
@@ -327,7 +367,12 @@
       "path": "ruby/cli",
       "modes": ["ast"],
       "expected": "expected.json",
-      "inferred": "inferred.json"
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "ruby",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
     }
   ]
 }

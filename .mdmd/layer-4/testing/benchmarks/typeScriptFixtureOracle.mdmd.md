@@ -54,12 +54,13 @@ Splits oracle output into sections that may be regenerated (compiler-derived) ve
 Normalises compiler-derived edges alongside manual overrides, deduplicates by `(source,target,relation)`, and surfaces missing override entries so regeneration tooling and benchmark checks can operate on a single ordered list of ground-truth edges.
 
 ## Collaborators
-- [`scripts/fixture-tools/regenerate-ts-benchmarks.ts`](../../../../scripts/fixture-tools/regenerate-ts-benchmarks.ts) invokes the oracle when rebuilding fixture expectations and stages diff artefacts for review.
+- [`scripts/fixture-tools/regenerate-benchmarks.ts`](../../../../scripts/fixture-tools/regenerate-benchmarks.ts) invokes the oracle when rebuilding fixture expectations and stages diff artefacts for review.
 - [`tests/integration/benchmarks/astAccuracy.test.ts`](../../../../tests/integration/benchmarks/astAccuracy.test.ts) consumes the emitted JSON when comparing oracle output with curated expectations.
 - [`packages/server/src/features/knowledge/workspaceIndexProvider.ts`](../../../../packages/server/src/features/knowledge/workspaceIndexProvider.ts) remains the runtime implementation whose behaviour the oracle validates.
 
 ## Linked Components
 - [COMP-007 Diagnostics Benchmarking](../../../layer-3/benchmark-telemetry-pipeline.mdmd.md#comp007-diagnostics-benchmarking)
+- [COMP-013 Polyglot Fixture Oracles](../../../layer-3/polyglot-oracles-and-sampling.mdmd.md#comp-013-polyglot-fixture-oracles)
 
 ## Evidence
 - [`packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.test.ts`](../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.test.ts) exercises oracle edge generation across baseline and layered fixtures, ensuring parity with the knowledge workspace analyzer.

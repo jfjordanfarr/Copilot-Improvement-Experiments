@@ -25,7 +25,7 @@
     "graph:audit": "tsx --tsconfig ./tsconfig.base.json scripts/graph-tools/audit-doc-coverage.ts",
     "graph:snapshot": "tsx --tsconfig ./tsconfig.base.json scripts/graph-tools/snapshot-workspace.ts",
     "fixtures:verify": "tsx --tsconfig ./tsconfig.base.json scripts/fixture-tools/verify-fixtures.ts",
-    "fixtures:regenerate": "tsx --tsconfig ./tsconfig.base.json scripts/fixture-tools/regenerate-ts-benchmarks.ts",
+    "fixtures:regenerate": "tsx --tsconfig ./tsconfig.base.json scripts/fixture-tools/regenerate-benchmarks.ts",
     "fixtures:sync-docs": "tsx --tsconfig ./tsconfig.base.json scripts/fixture-tools/sync-ast-doc.ts",
     "docs:links:enforce": "tsx --tsconfig ./tsconfig.base.json scripts/doc-tools/enforce-documentation-links.ts",
     "slopcop:markdown": "tsx --tsconfig ./tsconfig.base.json scripts/slopcop/check-markdown-links.ts",

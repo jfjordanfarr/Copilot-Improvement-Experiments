@@ -50,6 +50,9 @@ Supports CAP-004 and CAP-005 by giving teams a staged adoption path plus tooling
 - Extend the benchmarking pipeline with a Python import oracle that shells out to workspace interpreters, regenerates fixtures such as `psf/requests`, and records provenance without bundling compilers in the extension *(delivered; python basics + pipeline fixtures now report 1.0 precision/recall via regenerated expectations and fallback alignment)*.
 - Record benchmark deltas after the Python oracle rollout so ast-mode totals reflect the improved 210 TP / 8 FP / 8 FN (96.3% precision/recall) baseline.
 - Update manifest tooling and regeneration CLIs so language-specific oracles (TypeScript, Python, upcoming Rust/C) share a common interface, interpreter detection, and diff artefact workflow.
+- Deliver deterministic fixture oracles for C, Rust, Java, and Ruby so curated benchmarks across ecosystems reach parity with the Python and TypeScript baselines before further LLM integration.
+- Refactor regeneration and benchmark CLIs into a language-agnostic surface that records per-language toolchain provenance, refreshes precision/recall snapshots, and surfaces drift without mutating manual overrides.
+- Introduce a confidence-gated LLM sampling harness layered atop deterministic oracles so optional cross-language predictions are measurable, reviewable, and never regress AST-grounded truth.
 
 #### Adoption Programme *(Observe → Sustain)*
 - Stage 0 Observe: extension defaults to read-only insight—graph diagnostics, ASCII or markdown narratives, and audit CLIs scoped by path.
@@ -128,6 +131,12 @@ Supports REQ-040. [Relationship Rule Engine Architecture](../layer-3/relationshi
 ### COMP-012 Symbol Correctness Profile Evaluator
 Supports REQ-040. [Relationship Rule Engine Architecture](../layer-3/relationship-rule-engine.mdmd.md#comp012-symbol-correctness-profile-evaluator)
 
+### COMP-013 Polyglot Fixture Oracles
+Supports REQ-030. [Polyglot Oracles & Sampling Architecture](../layer-3/polyglot-oracles-and-sampling.mdmd.md#comp-013-polyglot-fixture-oracles)
+
+### COMP-014 LLM Sampling Harness
+Supports REQ-020 and REQ-030. [Polyglot Oracles & Sampling Architecture](../layer-3/polyglot-oracles-and-sampling.mdmd.md#comp-014-llm-sampling-harness)
+
 ## Linked Implementations
 
 ### IMP-101 docDiagnosticProvider
@@ -177,6 +186,21 @@ Supports REQ-040. [Symbol Correctness Validator](../layer-4/server-diagnostics/s
 
 ### IMP-510 Python Fixture Oracle
 Supports REQ-030. [Python Fixture Oracle](../layer-4/testing/benchmarks/pythonFixtureOracle.mdmd.md)
+
+### IMP-521 C Fixture Oracle
+Supports REQ-030. [C Fixture Oracle](../layer-4/testing/benchmarks/cFixtureOracle.mdmd.md)
+
+### IMP-522 Rust Fixture Oracle
+Supports REQ-030. [Rust Fixture Oracle](../layer-4/testing/benchmarks/rustFixtureOracle.mdmd.md)
+
+### IMP-523 Java Fixture Oracle
+Supports REQ-030. [Java Fixture Oracle](../layer-4/testing/benchmarks/javaFixtureOracle.mdmd.md)
+
+### IMP-524 Ruby Fixture Oracle
+Supports REQ-030. [Ruby Fixture Oracle](../layer-4/testing/benchmarks/rubyFixtureOracle.mdmd.md)
+
+### IMP-530 LLM Sampling Harness
+Supports REQ-020 and REQ-030. [LLM Sampling Harness](../layer-4/shared/llmSampling.mdmd.md)
 
 ## Evidence
 

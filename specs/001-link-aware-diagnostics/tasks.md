@@ -175,12 +175,28 @@ description: "Task list for Link-Aware Diagnostics"
 - [ ] T093 Materialise the full `apache/commons-lang` repository via the benchmark manifest (clone → glob include/exclude) and document scope exclusions revealed by whole-project analysis.
 - [x] T094 [P] Document Python oracle scope by updating `.mdmd/layer-2/product-roadmap.mdmd.md` and `.mdmd/layer-3/benchmark-telemetry-pipeline.mdmd.md`, and introduce Layer 4 implementation notes in `.mdmd/layer-4/testing/benchmarks/pythonFixtureOracle.mdmd.md`.
 - [x] T095 Implement Python fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts` with unit coverage mirroring the TypeScript oracle API.
-- [x] T096 Extend the regeneration CLI to support Python fixtures (interpreter detection, manifest integration) and plumb `--lang python` through `scripts/fixture-tools/regenerate-ts-benchmarks.ts` and `scripts/run-benchmarks.mjs`.
+- [x] T096 Extend the regeneration CLI to support Python fixtures (interpreter detection, manifest integration) and plumb `--lang python` through `scripts/fixture-tools/regenerate-benchmarks.ts` and `scripts/run-benchmarks.mjs`.
 - [ ] T097 Regenerate the `psf/requests` benchmark using the Python oracle, persist updated expectations under `tests/integration/benchmarks/fixtures/python/requests/`, and refresh AST accuracy reports.
 
 ---
 
-## Phase 8: LLM Ingestion (Next Iteration)
+## Phase 8: Polyglot Oracles & Sampling Harness (Priority: P2)
+
+**Goal**: Deliver deterministic AST coverage for remaining benchmark languages while introducing an optional, confidence-gated LLM sampling pipeline for cross-language inference.
+
+- [x] T098 [P] Implement C fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts` (BYO compiler discovery, edge normalization, override handling) with unit coverage.
+- [x] T099 [P] Implement Rust fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts` leveraging `cargo metadata`/`rust-analyzer` outputs and add unit coverage.
+- [x] T100 [P] Implement Java fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts` using workspace `javac`/`jdeps` introspection and add unit coverage.
+- [x] T101 [P] Implement Ruby fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts` via interpreter-driven require graph harvesting with unit coverage.
+- [x] T102 Refactor `scripts/fixture-tools/regenerate-benchmarks.ts` into a language-agnostic CLI supporting `--lang c|rust|java|ruby|python|typescript`, per-language artifacts, and manifest-driven toolchain hints.
+- [ ] T103 Update `scripts/run-benchmarks.mjs` and `tests/integration/benchmarks/fixtures/fixtures.manifest.json` to surface polyglot oracle coverage, regenerate C/Rust/Java/Ruby fixtures, and refresh `reports/benchmarks/**/*` precision/recall snapshots.
+- [ ] T104 Add language-aware fallback heuristics (C calls, Rust use/mod, Java imports, Ruby require_relative) to `packages/shared/src/inference/fallbackInference.ts` with regression tests guaranteeing parity against oracle ground truth.
+- [ ] T105 Build LLM sampling harness in `packages/shared/src/inference/llmSampling.ts`, integrate configurable sampling into `packages/shared/src/inference/linkInference.ts`, and expose server/extension settings for sample counts and confidence thresholds.
+- [ ] T106 Extend telemetry (`packages/shared/src/telemetry/inferenceAccuracy.ts`, benchmark reporters) to record oracle coverage, sampling agreement scores, and flag divergent LLM edges for operator review.
+
+---
+
+## Phase 9: LLM Ingestion (Next Iteration)
 
 - [x] T068 Capture LLM ingestion architecture and confidence taxonomy in `.mdmd/layer-3/llm-ingestion-pipeline.mdmd.md`.
 - [x] T069 [P] Author reproducible prompt templates and schema contracts under `packages/server/src/prompts/llm-ingestion/` with accompanying dry-run fixtures.
@@ -190,7 +206,7 @@ description: "Task list for Link-Aware Diagnostics"
 
 ---
 
-## Phase 9: Documentation Bridges & LLM-Oriented Surfaces
+## Phase 10: Documentation Bridges & LLM-Oriented Surfaces
 
 - Focus: graduate workspaces from read-only observation to enforceable contracts by layering path-scoped profiles, docstring bridges, and ripple narratives that copilots and humans both trust.
 
@@ -218,6 +234,9 @@ description: "Task list for Link-Aware Diagnostics"
 - **Phase 2 → Phases 3-5**: Foundational tasks (including configuration, watcher plumbing, hysteresis scaffolding) block all user stories
 - **Phase 3 → Phase 4 → Phase 5**: Stories prioritized P1 → P2 → P3; later stories can start once foundational is done but should respect priority unless staffing allows parallel execution
 - **Phase 6**: Runs after desired user stories are complete
+- **Phase 7 → Phase 8**: Benchmark automation and reporting infrastructure must be stable before expanding deterministic coverage to additional languages.
+- **Phase 8 → Phase 9**: Polyglot oracles and fallback heuristics should land before enabling LLM ingestion to sample across languages.
+- **Phase 9 → Phase 10**: LLM-derived insights and telemetry inform the documentation bridges and ripple surfaces shipped in Phase 10.
 
 ### User Story Dependencies
 - **US1**: Depends only on Phase 2 completion
@@ -236,7 +255,7 @@ description: "Task list for Link-Aware Diagnostics"
 ---
 
 ## Parallel Opportunities
-- Marked `[P]` tasks across phases (e.g., T003, T004, T006, T008, T011, T013, T015, T017, T020, T024, T028, T032, T034, T036, T039, T044, T047, T049, T050, T053, T055, T058) can proceed concurrently once prerequisites finish
+- Marked `[P]` tasks across phases (e.g., T003, T004, T006, T008, T011, T013, T015, T017, T020, T024, T028, T032, T034, T036, T039, T044, T047, T049, T050, T053, T055, T058, T073, T075, T078, T079, T084, T098–T101) can proceed concurrently once prerequisites finish
 - Different user stories can be staffed in parallel after Phase 2, with coordination to avoid file conflicts
 - Within each story, tests (T022, T030, T036) can be drafted while implementation scaffolding proceeds
 
@@ -253,6 +272,8 @@ description: "Task list for Link-Aware Diagnostics"
 1. Extend MVP with Phase 4 (US2) diagnostics for developers
 2. Add Phase 5 (US3) management workflows when teams are ready for operational tracking
 3. Finish with Phase 6 polish before broader rollout, including telemetry and performance validation
+4. Harden benchmark coverage in Phase 8 so deterministic oracles exist for every curated language before sampling begins
+5. Layer in Phase 9 LLM ingestion followed by Phase 10 documentation bridges to close the loop between diagnostics and ripple narratives
 
 ### Parallel Team Strategy
 - Engineer A: Leads Phase 2 data store, configuration plumbing, and server backbone (T005–T021)
@@ -264,12 +285,12 @@ description: "Task list for Link-Aware Diagnostics"
 ---
 
 ## Summary
-- **Total Tasks**: 68
+- **Total Tasks**: 107
 - **User Story Task Counts**:
   - US1: 8 tasks (including T034 test)
   - US2: 8 tasks (including T026 test)
   - US3: 7 tasks (including T042 test)
 - US4: 5 tasks (including T063 test)
-- **Parallel Opportunities**: 24 tasks marked `[P]`
-- **Independent Tests**: T034 (US1), T026 (US2), T042 (US3), T063 (US4)
+- **Parallel Opportunities**: 40 tasks marked `[P]`
+- **Independent Tests**: T034 (US1), T026 (US2), T042 (US3), T063 (US4), TBD sampling reliability suite (Phase 8 polyglot sampling)
 - **Suggested MVP Scope**: Phases 1–3 (deliver code-change impact first)
