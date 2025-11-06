@@ -27,6 +27,8 @@ function isTruthyConfig(value) {
   return ["", "1", "true", "yes", "on"].includes(normalized);
 }
 
+const TSX_COMMAND = process.platform === "win32" ? "npx.cmd" : "npx";
+
 function printUsage() {
   console.log(`Usage: npm run test:benchmarks [-- <options>]
 
@@ -36,6 +38,7 @@ Options:
   --suite <name>          Run a named suite (ast, rebuild). Can be repeated.
   --mode <name>           Override BENCHMARK_MODE (ast, self-similarity, all).
   --all                   Run all benchmark suites (default).
+  --no-regenerate         Skip regenerating benchmark fixtures before running.
   --show-suites, --list   List available suites and exit.
   -h, --help              Show this help message.
 `);
@@ -53,6 +56,9 @@ function parseArgs(argv) {
   let suites = null;
   let showSuites = false;
   let help = false;
+  let shouldRegenerate = !isTruthyConfig(
+    process.env.BENCHMARK_SKIP_REGENERATE ?? process.env.npm_config_skip_regenerate
+  );
 
   if (isTruthyConfig(process.env.npm_config_ast_only)) {
     suites = new Set(["ast"]);
@@ -166,6 +172,16 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (token === "--no-regenerate") {
+      shouldRegenerate = false;
+      continue;
+    }
+
+    if (token === "--regenerate") {
+      shouldRegenerate = true;
+      continue;
+    }
+
     const positionalSuite = token.toLowerCase();
     if (SUITES.has(positionalSuite)) {
       suites = addSuite(suites, positionalSuite);
@@ -187,7 +203,7 @@ function parseArgs(argv) {
     throw new Error("No benchmark suites selected");
   }
 
-  return { mode, suites, showSuites, help };
+  return { mode, suites, showSuites, help, shouldRegenerate };
 }
 
 function addSuite(current, candidate) {
@@ -272,6 +288,21 @@ function main() {
   const env = { ...process.env, BENCHMARK_MODE: mode };
 
   try {
+    if (parsed.shouldRegenerate) {
+      runStep(
+        "Regenerate benchmark fixtures",
+        TSX_COMMAND,
+        [
+          "tsx",
+          "--tsconfig",
+          path.join(REPO_ROOT, "tsconfig.base.json"),
+          path.join(REPO_ROOT, "scripts", "fixture-tools", "regenerate-benchmarks.ts"),
+          "--write"
+        ],
+        { shell: process.platform === "win32" }
+      );
+    }
+
     runStep("Clean integration dist", process.execPath, [CLEAN_DIST]);
     runStep("Compile integration tests", process.execPath, [TSC_BIN, "-p", TSCONFIG]);
 

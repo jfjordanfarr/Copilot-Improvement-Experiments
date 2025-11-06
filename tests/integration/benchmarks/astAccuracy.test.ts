@@ -153,6 +153,25 @@ suite("T061: AST accuracy benchmark", () => {
       }
     }
 
+    const failingFixtures = fixtureResults.filter(result => {
+      const { precision, recall } = result.totals;
+      const precisionTooLow = precision !== null && precision < PRECISION_THRESHOLD;
+      const recallTooLow = recall !== null && recall < RECALL_THRESHOLD;
+      return precisionTooLow || recallTooLow;
+    });
+
+    if (failingFixtures.length > 0) {
+      const lines = failingFixtures.map(result => {
+        const { id, label, totals } = result;
+        const name = label ? `${id} (${label})` : id;
+        return `${name}: precision=${renderMetric(totals.precision)}, recall=${renderMetric(totals.recall)}`;
+      });
+      assert.fail(
+        `One or more fixtures fell below precision/recall thresholds ${PRECISION_THRESHOLD}/${RECALL_THRESHOLD}:
+${lines.join("\n")}`
+      );
+    }
+
     const snapshot = tracker.snapshot({ reset: true });
     const totals = snapshot.totals;
 
@@ -441,6 +460,13 @@ function computeF1(precision: number | null, recall: number | null): number | nu
     return null;
   }
   return (2 * precision * recall) / (precision + recall);
+}
+
+function renderMetric(value: number | null): string {
+  if (value === null) {
+    return "n/a";
+  }
+  return value.toFixed(3);
 }
 
 type TrackerCtor = new (...args: any[]) => TrackerInstance;

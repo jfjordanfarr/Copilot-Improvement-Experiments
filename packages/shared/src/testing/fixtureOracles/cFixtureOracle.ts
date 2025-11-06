@@ -1,3 +1,4 @@
+import { globSync } from "glob";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -22,6 +23,7 @@ export interface CFixtureOracleOptions {
   fixtureRoot: string;
   include?: string[];
   exclude?: string[];
+  relations?: COracleEdgeRelation[];
 }
 
 export interface COracleOverrideEntry {
@@ -80,16 +82,43 @@ const DEFAULT_IGNORE_DIRECTORIES = new Set([
 export function generateCFixtureGraph(options: CFixtureOracleOptions): COracleEdge[] {
   const fixtureRoot = path.resolve(options.fixtureRoot);
   const fileMap = collectSourceFiles(fixtureRoot, options.include, options.exclude);
+  const relativeIndex = new Map<string, string>();
+  const basenameIndex = new Map<string, string[]>();
+
+  for (const absolutePath of fileMap.keys()) {
+    const relativePath = toFixtureRelative(absolutePath, fixtureRoot);
+    relativeIndex.set(relativePath, absolutePath);
+    const baseName = path.posix.basename(relativePath);
+    const container = basenameIndex.get(baseName);
+    if (container) {
+      container.push(absolutePath);
+    } else {
+      basenameIndex.set(baseName, [absolutePath]);
+    }
+  }
+
+  const relationSet = new Set(options.relations ?? ["includes", "calls"]);
+  const shouldCollectIncludes = relationSet.has("includes");
+  const shouldCollectCalls = relationSet.has("calls");
   const functionIndex = buildFunctionIndex(fileMap, fixtureRoot);
 
   const edges = new Map<string, COracleEdge>();
 
   for (const [absolutePath, content] of fileMap) {
     const relativePath = toFixtureRelative(absolutePath, fixtureRoot);
-    const isTranslationUnit = absolutePath.endsWith(".c");
+    const extension = path.extname(absolutePath).toLowerCase();
+    const isTranslationUnit = extension === ".c";
+    const isHeaderFile = extension === ".h";
 
-    if (isTranslationUnit) {
-      for (const includeTarget of discoverIncludes(absolutePath, content, fixtureRoot)) {
+    if (shouldCollectIncludes && (isTranslationUnit || isHeaderFile)) {
+      for (const includeTarget of discoverIncludes(
+        absolutePath,
+        content,
+        fixtureRoot,
+        fileMap,
+        relativeIndex,
+        basenameIndex
+      )) {
         const key = edgeKey(relativePath, includeTarget, "includes");
         if (!edges.has(key)) {
           edges.set(key, {
@@ -102,7 +131,7 @@ export function generateCFixtureGraph(options: CFixtureOracleOptions): COracleEd
       }
     }
 
-    if (!isTranslationUnit) {
+    if (!shouldCollectCalls || !isTranslationUnit) {
       continue;
     }
 
@@ -203,43 +232,57 @@ function collectSourceFiles(
   exclude?: string[]
 ): Map<string, string> {
   const files = new Map<string, string>();
-  const includeSet = new Set((include ?? []).map(candidate => path.resolve(root, candidate)));
-  const excludeSet = new Set((exclude ?? []).map(candidate => path.resolve(root, candidate)));
+  const workspaceRoot = path.resolve(root);
+  const includePatterns = normalizePatterns(include, ["**/*.{c,h}"]);
+  const excludePatterns = normalizePatterns(exclude, []);
 
-  const visit = (current: string): void => {
-    const entries = fs.readdirSync(current, { withFileTypes: true });
-    for (const entry of entries) {
-      const resolved = path.join(current, entry.name);
-      if (entry.isDirectory()) {
-        if (!DEFAULT_IGNORE_DIRECTORIES.has(entry.name)) {
-          visit(resolved);
-        }
-        continue;
-      }
+  const defaultIgnore = Array.from(DEFAULT_IGNORE_DIRECTORIES).map(
+    directory => `${directory}/**`
+  );
+  const ignorePatterns = [...defaultIgnore, ...excludePatterns];
+  const seen = new Set<string>();
 
-      if (!entry.isFile()) {
-        continue;
-      }
+  for (const pattern of includePatterns) {
+    const matches = globSync(pattern, {
+      cwd: workspaceRoot,
+      ignore: ignorePatterns,
+      nodir: true,
+      dot: false,
+      windowsPathsNoEscape: true
+    });
 
-      const extension = path.extname(entry.name).toLowerCase();
+    for (const match of matches) {
+      const absolutePath = path.join(workspaceRoot, match);
+      const extension = path.extname(absolutePath).toLowerCase();
       if (!SOURCE_EXTENSIONS.has(extension)) {
         continue;
       }
-
-      if (includeSet.size > 0 && !includeSet.has(resolved)) {
+      if (seen.has(absolutePath)) {
         continue;
       }
-
-      if (excludeSet.has(resolved)) {
-        continue;
-      }
-
-      files.set(resolved, fs.readFileSync(resolved, "utf8"));
+      const content = fs.readFileSync(absolutePath, "utf8");
+      files.set(absolutePath, content);
+      seen.add(absolutePath);
     }
-  };
+  }
 
-  visit(root);
   return files;
+}
+
+function normalizePatterns(
+  patterns: string[] | undefined,
+  fallback: string[]
+): string[] {
+  const source = patterns && patterns.length > 0 ? patterns : fallback;
+  return source.map(pattern => normalizePattern(pattern));
+}
+
+function normalizePattern(candidate: string): string {
+  const normalized = candidate.replace(/\\/g, "/");
+  if (normalized.startsWith("./")) {
+    return normalized.slice(2);
+  }
+  return normalized;
 }
 
 interface FunctionDefinition {
@@ -264,21 +307,34 @@ function buildFunctionIndex(fileMap: Map<string, string>, root: string): Map<str
 function discoverIncludes(
   filePath: string,
   content: string,
-  root: string
+  root: string,
+  fileMap: Map<string, string>,
+  relativeIndex: Map<string, string>,
+  basenameIndex: Map<string, string[]>
 ): string[] {
   const includes: string[] = [];
   const directory = path.dirname(filePath);
   const stripped = stripComments(content);
-  const pattern = /#include\s+"([^"]+)"/g;
+    const pattern = /#\s*include\s+([<"])([^>"]+)[>"]/g;
   let match: RegExpExecArray | null;
 
   while ((match = pattern.exec(stripped))) {
-    const candidate = match[1];
-    const resolved = path.normalize(path.join(directory, candidate));
-    if (!resolved.startsWith(root)) {
+    const delimiter = match[1];
+    const candidate = match[2];
+    const isSystemInclude = delimiter === "<";
+    const resolved = resolveIncludeTarget(
+      directory,
+      candidate,
+      root,
+      fileMap,
+      relativeIndex,
+      basenameIndex,
+      isSystemInclude
+    );
+    if (!resolved) {
       continue;
     }
-    if (!fs.existsSync(resolved)) {
+    if (resolved === filePath) {
       continue;
     }
     const relative = toFixtureRelative(resolved, root);
@@ -286,6 +342,72 @@ function discoverIncludes(
   }
 
   return includes;
+}
+
+function resolveIncludeTarget(
+  directory: string,
+  candidate: string,
+  root: string,
+  fileMap: Map<string, string>,
+  relativeIndex: Map<string, string>,
+  basenameIndex: Map<string, string[]>,
+  isSystemInclude: boolean
+): string | null {
+  const normalizedCandidate = normalizeIncludePath(candidate);
+  const directAbsolute = path.resolve(directory, normalizedCandidate);
+
+  if (isWithinRoot(directAbsolute, root) && fileMap.has(directAbsolute)) {
+    return directAbsolute;
+  }
+
+  if (isSystemInclude) {
+    return null;
+  }
+
+  const relativeCandidate = normalizeIncludePath(
+    path.relative(root, directAbsolute)
+  );
+  const directRelativeMatch = relativeIndex.get(relativeCandidate);
+  if (directRelativeMatch) {
+    return directRelativeMatch;
+  }
+
+  const explicitMatch = relativeIndex.get(normalizedCandidate);
+  if (explicitMatch) {
+    return explicitMatch;
+  }
+
+  const suffixMatches: string[] = [];
+  for (const [relativePath, absolutePath] of relativeIndex.entries()) {
+    if (
+      relativePath === normalizedCandidate ||
+      relativePath.endsWith(`/${normalizedCandidate}`)
+    ) {
+      suffixMatches.push(absolutePath);
+    }
+  }
+
+  if (suffixMatches.length === 1) {
+    return suffixMatches[0];
+  }
+
+  const baseName = path.posix.basename(normalizedCandidate);
+  const basenameMatches = basenameIndex.get(baseName) ?? [];
+  if (basenameMatches.length === 1) {
+    return basenameMatches[0];
+  }
+
+  return null;
+}
+
+function normalizeIncludePath(candidate: string): string {
+  const normalized = candidate.replace(/\\/g, "/");
+  return normalized.replace(/^\.\//, "");
+}
+
+function isWithinRoot(candidate: string, root: string): boolean {
+  const relative = path.relative(root, candidate);
+  return !relative.startsWith("..");
 }
 
 function discoverCalls(

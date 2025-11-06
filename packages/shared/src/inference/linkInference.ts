@@ -32,6 +32,7 @@ export interface LinkInferenceTraceEntry {
   origin: LinkInferenceTraceOrigin;
   confidence: number;
   rationale: string;
+  context?: string;
 }
 
 export interface LinkEvidence {
@@ -342,7 +343,8 @@ function toLinkInferenceTraceEntries(traces: InferenceTraceEntry[]): LinkInferen
     kind: trace.kind,
     origin: trace.origin,
     confidence: trace.confidence,
-    rationale: trace.rationale
+    rationale: trace.rationale,
+    context: trace.context
   }));
 }
 

@@ -50,6 +50,19 @@ function runSafeCommitCheck() {
     runNpmScript('Verify (lint + unit + integration)', verifyArgs);
 
     if (flags.includeBenchmarks) {
+      runStep(
+        'Regenerate benchmark fixtures',
+        process.platform === 'win32' ? 'npx.cmd' : 'npx',
+        [
+          'tsx',
+          '--tsconfig',
+          './tsconfig.base.json',
+          './scripts/fixture-tools/regenerate-benchmarks.ts',
+          '--write'
+        ],
+        { shell: process.platform === 'win32' }
+      );
+
       const benchmarkArgs = ['run', 'test:benchmarks'];
       if (flags.benchmarkArgs.length > 0) {
         benchmarkArgs.push('--', ...flags.benchmarkArgs);

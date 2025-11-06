@@ -125,6 +125,12 @@ describe("C fixture oracle", () => {
         target: "src/pipeline.h",
         relation: "includes",
         provenance: "source-include"
+      },
+      {
+        source: "src/pipeline.h",
+        target: "src/metrics.h",
+        relation: "includes",
+        provenance: "source-include"
       }
     ]);
   });

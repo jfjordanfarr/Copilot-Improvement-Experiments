@@ -87,7 +87,11 @@
       "oracle": {
         "kind": "c",
         "root": ".",
-        "manualOverrides": "oracle.overrides.json"
+        "manualOverrides": "oracle.overrides.json",
+        "include": [
+          "src/**/*.c",
+          "src/**/*.h"
+        ]
       }
     },
     {
@@ -101,7 +105,11 @@
       "oracle": {
         "kind": "c",
         "root": ".",
-        "manualOverrides": "oracle.overrides.json"
+        "manualOverrides": "oracle.overrides.json",
+        "include": [
+          "src/**/*.c",
+          "src/**/*.h"
+        ]
       }
     },
     {
@@ -137,7 +145,22 @@
       "oracle": {
         "kind": "c",
         "root": ".",
-        "manualOverrides": "oracle.overrides.json"
+        "manualOverrides": "oracle.overrides.json",
+        "include": [
+          "src/**/*.c",
+          "src/**/*.h",
+          "include/**/*.h"
+        ],
+        "exclude": [
+          "docs/**",
+          "test/**",
+          "cmake/**",
+          "samples/**",
+          "deps/**"
+        ],
+        "relations": [
+          "includes"
+        ]
       },
       "integrity": {
         "algorithm": "sha256",

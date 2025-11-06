@@ -1,14 +1,62 @@
 [
-  { "source": "src/com/example/service/AppService.java", "target": "src/com/example/service/analytics/Analyzer.java", "relation": "imports" },
-  { "source": "src/com/example/service/AppService.java", "target": "src/com/example/service/data/Repository.java", "relation": "imports" },
-  { "source": "src/com/example/service/AppService.java", "target": "src/com/example/service/model/Summary.java", "relation": "uses" },
-  { "source": "src/com/example/service/analytics/Analyzer.java", "target": "src/com/example/service/metrics/SummaryBuilder.java", "relation": "imports" },
-  { "source": "src/com/example/service/analytics/Analyzer.java", "target": "src/com/example/service/model/Sample.java", "relation": "uses" },
-  { "source": "src/com/example/service/analytics/Analyzer.java", "target": "src/com/example/service/model/Summary.java", "relation": "uses" },
-  { "source": "src/com/example/service/analytics/Analyzer.java", "target": "src/com/example/service/util/Logger.java", "relation": "imports" },
-  { "source": "src/com/example/service/data/Repository.java", "target": "src/com/example/service/data/SourceRegistry.java", "relation": "imports" },
-  { "source": "src/com/example/service/data/Repository.java", "target": "src/com/example/service/model/Sample.java", "relation": "uses" },
-  { "source": "src/com/example/service/data/Repository.java", "target": "src/com/example/service/util/Logger.java", "relation": "imports" },
-  { "source": "src/com/example/service/metrics/SummaryBuilder.java", "target": "src/com/example/service/model/Sample.java", "relation": "uses" },
-  { "source": "src/com/example/service/metrics/SummaryBuilder.java", "target": "src/com/example/service/model/Summary.java", "relation": "uses" }
+  {
+    "source": "src/com/example/service/analytics/Analyzer.java",
+    "target": "src/com/example/service/metrics/SummaryBuilder.java",
+    "relation": "uses"
+  },
+  {
+    "source": "src/com/example/service/analytics/Analyzer.java",
+    "target": "src/com/example/service/model/Sample.java",
+    "relation": "uses"
+  },
+  {
+    "source": "src/com/example/service/analytics/Analyzer.java",
+    "target": "src/com/example/service/model/Summary.java",
+    "relation": "uses"
+  },
+  {
+    "source": "src/com/example/service/analytics/Analyzer.java",
+    "target": "src/com/example/service/util/Logger.java",
+    "relation": "imports"
+  },
+  {
+    "source": "src/com/example/service/AppService.java",
+    "target": "src/com/example/service/analytics/Analyzer.java",
+    "relation": "uses"
+  },
+  {
+    "source": "src/com/example/service/AppService.java",
+    "target": "src/com/example/service/data/Repository.java",
+    "relation": "uses"
+  },
+  {
+    "source": "src/com/example/service/AppService.java",
+    "target": "src/com/example/service/model/Summary.java",
+    "relation": "imports"
+  },
+  {
+    "source": "src/com/example/service/data/Repository.java",
+    "target": "src/com/example/service/model/Sample.java",
+    "relation": "uses"
+  },
+  {
+    "source": "src/com/example/service/data/Repository.java",
+    "target": "src/com/example/service/util/Logger.java",
+    "relation": "imports"
+  },
+  {
+    "source": "src/com/example/service/data/SourceRegistry.java",
+    "target": "src/com/example/service/model/Sample.java",
+    "relation": "uses"
+  },
+  {
+    "source": "src/com/example/service/metrics/SummaryBuilder.java",
+    "target": "src/com/example/service/model/Sample.java",
+    "relation": "uses"
+  },
+  {
+    "source": "src/com/example/service/metrics/SummaryBuilder.java",
+    "target": "src/com/example/service/model/Summary.java",
+    "relation": "uses"
+  }
 ]

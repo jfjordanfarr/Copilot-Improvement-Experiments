@@ -15,7 +15,8 @@ import {
   serializeCOracleEdges,
   type CFixtureOracleOptions,
   type COracleEdgeRecord,
-  type COracleOverrideConfig
+  type COracleOverrideConfig,
+  type COracleEdgeRelation
 } from "../../packages/shared/src/testing/fixtureOracles/cFixtureOracle";
 import {
   generateJavaFixtureGraph,
@@ -96,6 +97,7 @@ interface COracleConfig {
   manualOverrides?: string;
   include?: string[];
   exclude?: string[];
+  relations?: COracleEdgeRelation[];
 }
 
 interface RustOracleConfig {
@@ -126,6 +128,7 @@ interface CliOptions {
   fixtureIds: Set<string>;
   languages: Set<OracleKind>;
   helpRequested?: boolean;
+  writeMode: boolean;
 }
 
 interface EdgeRecord {
@@ -188,7 +191,7 @@ export async function runRegenerationCli(argv: string[]): Promise<void> {
   for (const fixture of targets) {
     const label = fixture.label ? `${fixture.id} (${fixture.label})` : fixture.id;
     console.log(`\n=== ${label} ===`);
-    await regenerateFixture(fixture).catch(error => {
+    await regenerateFixture(fixture, { writeExpected: options.writeMode }).catch(error => {
       throw contextualizeError(fixture.id, error);
     });
   }
@@ -199,6 +202,7 @@ export async function runRegenerationCli(argv: string[]): Promise<void> {
 function parseArgs(argv: string[]): CliOptions {
   const fixtureIds = new Set<string>();
   const languages = new Set<OracleKind>();
+  let writeMode = false;
   let helpRequested = false;
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -206,6 +210,11 @@ function parseArgs(argv: string[]): CliOptions {
 
     if (arg === "--help" || arg === "-h") {
       helpRequested = true;
+      continue;
+    }
+
+    if (arg === "--write" || arg === "--apply") {
+      writeMode = true;
       continue;
     }
 
@@ -256,7 +265,7 @@ function parseArgs(argv: string[]): CliOptions {
     fixtureIds.add(arg);
   }
 
-  return { fixtureIds, languages, helpRequested };
+  return { fixtureIds, languages, helpRequested, writeMode };
 }
 
 function addLanguage(languages: Set<OracleKind>, raw: string): void {
@@ -277,6 +286,7 @@ function printHelp(): void {
       `  --lang <name>       Regenerate fixtures for a language (ts, python, c, rust, java, ruby). Can repeat.\n` +
       `  --suite <name>      Alias for --lang (ts, python, c, rust, java, ruby).\n` +
       `  --fixture <id>      Regenerate a specific fixture (can repeat).\n` +
+      `  --write             Overwrite each fixture's expected.json with the merged oracle output.\n` +
       `  -h, --help          Show this help message.\n`
   );
 }
@@ -309,7 +319,14 @@ function resolveTargetFixtures(
   return targets;
 }
 
-async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void> {
+interface RegenerationOptions {
+  writeExpected: boolean;
+}
+
+async function regenerateFixture(
+  fixture: OracleFixtureDefinition,
+  options: RegenerationOptions
+): Promise<void> {
   const oracle = fixture.oracle;
   if (!oracle) {
     throw new Error(`Fixture ${fixture.id} does not declare an oracle configuration.`);
@@ -335,7 +352,9 @@ async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void
         oracle,
         workspaceRoot,
         overridesPath,
-        expectedEdges
+        expectedEdges,
+        expectedPath,
+        writeExpected: options.writeExpected
       });
     } else if (oracle.kind === "python") {
       await regeneratePythonFixture({
@@ -343,7 +362,9 @@ async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void
         oracle,
         workspaceRoot,
         overridesPath,
-        expectedEdges
+        expectedEdges,
+        expectedPath,
+        writeExpected: options.writeExpected
       });
     } else if (oracle.kind === "c") {
       await regenerateCFixture({
@@ -351,7 +372,9 @@ async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void
         oracle,
         workspaceRoot,
         overridesPath,
-        expectedEdges
+        expectedEdges,
+        expectedPath,
+        writeExpected: options.writeExpected
       });
     } else if (oracle.kind === "rust") {
       await regenerateRustFixture({
@@ -359,7 +382,9 @@ async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void
         oracle,
         workspaceRoot,
         overridesPath,
-        expectedEdges
+        expectedEdges,
+        expectedPath,
+        writeExpected: options.writeExpected
       });
     } else if (oracle.kind === "java") {
       await regenerateJavaFixture({
@@ -367,7 +392,9 @@ async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void
         oracle,
         workspaceRoot,
         overridesPath,
-        expectedEdges
+        expectedEdges,
+        expectedPath,
+        writeExpected: options.writeExpected
       });
     } else if (oracle.kind === "ruby") {
       await regenerateRubyFixture({
@@ -375,7 +402,9 @@ async function regenerateFixture(fixture: OracleFixtureDefinition): Promise<void
         oracle,
         workspaceRoot,
         overridesPath,
-        expectedEdges
+        expectedEdges,
+        expectedPath,
+        writeExpected: options.writeExpected
       });
     } else {
       throw new Error(`Unsupported oracle kind '${(oracle as { kind: string }).kind}'`);
@@ -393,15 +422,26 @@ async function regenerateCFixture(input: {
   workspaceRoot: string;
   overridesPath: string;
   expectedEdges: EdgeRecord[];
+  expectedPath: string;
+  writeExpected: boolean;
 }): Promise<void> {
-  const { fixture, oracle, workspaceRoot, overridesPath, expectedEdges } = input;
+  const {
+    fixture,
+    oracle,
+    workspaceRoot,
+    overridesPath,
+    expectedEdges,
+    expectedPath,
+    writeExpected
+  } = input;
 
   const overrides = await readOverrideConfig<COracleOverrideConfig>(overridesPath);
   const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
   const oracleOptions: CFixtureOracleOptions = {
     fixtureRoot: oracleRoot,
     include: oracle.include,
-    exclude: oracle.exclude
+    exclude: oracle.exclude,
+    relations: oracle.relations
   };
 
   const autoEdges = generateCFixtureGraph(oracleOptions);
@@ -421,8 +461,10 @@ async function regenerateCFixture(input: {
     mergedRecords,
     expectedEdges,
     overridesPath,
+    expectedPath,
     additions,
     removals,
+    writeExpected,
     summary: {
       autoRecords,
       manualRecords,
@@ -438,8 +480,18 @@ async function regenerateTypeScriptFixture(input: {
   workspaceRoot: string;
   overridesPath: string;
   expectedEdges: EdgeRecord[];
+  expectedPath: string;
+  writeExpected: boolean;
 }): Promise<void> {
-  const { fixture, oracle, workspaceRoot, overridesPath, expectedEdges } = input;
+  const {
+    fixture,
+    oracle,
+    workspaceRoot,
+    overridesPath,
+    expectedEdges,
+    expectedPath,
+    writeExpected
+  } = input;
 
   const overrides = await readOverrideConfig<TypeScriptOverrideConfig>(overridesPath);
   const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
@@ -463,8 +515,10 @@ async function regenerateTypeScriptFixture(input: {
     mergedRecords,
     expectedEdges,
     overridesPath,
+    expectedPath,
     additions,
     removals,
+    writeExpected,
     summary: {
       autoRecords,
       manualRecords,
@@ -480,8 +534,18 @@ async function regeneratePythonFixture(input: {
   workspaceRoot: string;
   overridesPath: string;
   expectedEdges: EdgeRecord[];
+  expectedPath: string;
+  writeExpected: boolean;
 }): Promise<void> {
-  const { fixture, oracle, workspaceRoot, overridesPath, expectedEdges } = input;
+  const {
+    fixture,
+    oracle,
+    workspaceRoot,
+    overridesPath,
+    expectedEdges,
+    expectedPath,
+    writeExpected
+  } = input;
 
   const overrides = await readOverrideConfig<PythonOracleOverrideConfig>(overridesPath);
   const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
@@ -513,8 +577,10 @@ async function regeneratePythonFixture(input: {
     mergedRecords,
     expectedEdges,
     overridesPath,
+    expectedPath,
     additions,
     removals,
+    writeExpected,
     summary: {
       autoRecords,
       manualRecords,
@@ -530,8 +596,18 @@ async function regenerateRustFixture(input: {
   workspaceRoot: string;
   overridesPath: string;
   expectedEdges: EdgeRecord[];
+  expectedPath: string;
+  writeExpected: boolean;
 }): Promise<void> {
-  const { fixture, oracle, workspaceRoot, overridesPath, expectedEdges } = input;
+  const {
+    fixture,
+    oracle,
+    workspaceRoot,
+    overridesPath,
+    expectedEdges,
+    expectedPath,
+    writeExpected
+  } = input;
 
   const overrides = await readOverrideConfig<RustOracleOverrideConfig>(overridesPath);
   const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
@@ -558,8 +634,10 @@ async function regenerateRustFixture(input: {
     mergedRecords,
     expectedEdges,
     overridesPath,
+    expectedPath,
     additions,
     removals,
+    writeExpected,
     summary: {
       autoRecords,
       manualRecords,
@@ -575,8 +653,18 @@ async function regenerateJavaFixture(input: {
   workspaceRoot: string;
   overridesPath: string;
   expectedEdges: EdgeRecord[];
+  expectedPath: string;
+  writeExpected: boolean;
 }): Promise<void> {
-  const { fixture, oracle, workspaceRoot, overridesPath, expectedEdges } = input;
+  const {
+    fixture,
+    oracle,
+    workspaceRoot,
+    overridesPath,
+    expectedEdges,
+    expectedPath,
+    writeExpected
+  } = input;
 
   const overrides = await readOverrideConfig<JavaOracleOverrideConfig>(overridesPath);
   const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
@@ -603,8 +691,10 @@ async function regenerateJavaFixture(input: {
     mergedRecords,
     expectedEdges,
     overridesPath,
+    expectedPath,
     additions,
     removals,
+    writeExpected,
     summary: {
       autoRecords,
       manualRecords,
@@ -620,8 +710,18 @@ async function regenerateRubyFixture(input: {
   workspaceRoot: string;
   overridesPath: string;
   expectedEdges: EdgeRecord[];
+  expectedPath: string;
+  writeExpected: boolean;
 }): Promise<void> {
-  const { fixture, oracle, workspaceRoot, overridesPath, expectedEdges } = input;
+  const {
+    fixture,
+    oracle,
+    workspaceRoot,
+    overridesPath,
+    expectedEdges,
+    expectedPath,
+    writeExpected
+  } = input;
 
   const overrides = await readOverrideConfig<RubyOracleOverrideConfig>(overridesPath);
   const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
@@ -648,8 +748,10 @@ async function regenerateRubyFixture(input: {
     mergedRecords,
     expectedEdges,
     overridesPath,
+    expectedPath,
     additions,
     removals,
+    writeExpected,
     summary: {
       autoRecords,
       manualRecords,
@@ -664,9 +766,11 @@ async function writeOracleArtifacts(input: {
   oracleFileContents: string;
   mergedRecords: EdgeRecord[];
   expectedEdges: EdgeRecord[];
+  expectedPath: string;
   overridesPath: string;
   additions: EdgeRecord[];
   removals: EdgeRecord[];
+  writeExpected: boolean;
   summary: {
     autoRecords: EdgeRecord[];
     manualRecords: EdgeRecord[];
@@ -674,7 +778,18 @@ async function writeOracleArtifacts(input: {
     missingManualEntries: Array<{ source: string; target: string; relation: string }>;
   };
 }): Promise<void> {
-  const { fixture, oracleFileContents, mergedRecords, expectedEdges, overridesPath, additions, removals, summary } = input;
+  const {
+    fixture,
+    oracleFileContents,
+    mergedRecords,
+    expectedEdges,
+    expectedPath,
+    overridesPath,
+    additions,
+    removals,
+    writeExpected,
+    summary
+  } = input;
 
   const outputRoot = path.join(OUTPUT_ROOT, fixture.id);
   await fs.mkdir(outputRoot, { recursive: true });
@@ -698,6 +813,17 @@ async function writeOracleArtifacts(input: {
   });
 
   await fs.writeFile(path.join(outputRoot, "diff.md"), diffReport, "utf8");
+
+  if (writeExpected) {
+    const hasChanges = additions.length > 0 || removals.length > 0;
+    if (hasChanges) {
+      const serialized = JSON.stringify(sortRecords(mergedRecords), null, 2) + "\n";
+      await fs.writeFile(expectedPath, serialized, "utf8");
+      console.log(`→ expected.json updated (${path.relative(REPO_ROOT, expectedPath)})`);
+    } else {
+      console.log("→ expected.json already aligned (no changes written)");
+    }
+  }
 
   console.log(`→ oracle edges: ${summary.autoRecords.length}`);
   console.log(`→ manual overrides: ${summary.manualRecords.length}`);

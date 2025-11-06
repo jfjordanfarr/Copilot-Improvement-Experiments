@@ -541,6 +541,14 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L3705-L3710` — On subsequent autosummarization, rehydrate over `#file:2025-11-03.md:2840-3703` before resuming analysis.
 - `L5146-L5208` — Address every automated VS Code code-review comment, confirming or rejecting suggestions with rationale.
 
+## 2025-11-04 (Dev Day 13)
+- `2025-11-04.md:L1-L110` — Begin the day by rehydrating dev-history context, producing the prior-day summary with commit correlations, and updating the intent census so future sessions stay auditably grounded.
+- `L204-L236` — Avoid duplicating compiler toolchains for customers; instead, consume the workspace’s existing compilers or language servers via thin CLI orchestration while keeping the extension itself lean.
+- `L248-L258` — Uphold the docs-first workflow by ensuring new oracle efforts are captured in SpecKit tasks and Layer‑2 MDMD entries before implementation proceeds.
+- `L3644-L3662` — Proactively fix outdated names (e.g., rename regeneration scripts) without waiting for explicit direction; treat clarity and professionalism as part of code health.
+- `L4296-L4332` — Do not insert manual `<a id>` anchors in MDMD; resolve SlopCop link issues by aligning headings and slugs, and drive the workspace to commit-ready state instead of papering over warnings.
+- `L4756-L4848` — Guard the integrity of Layer‑4 docs—if edits degrade canonical sections, repair them immediately rather than accepting reduced structure or intent capture.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

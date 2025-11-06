@@ -52,6 +52,7 @@ Supports CAP-004 and CAP-005 by giving teams a staged adoption path plus tooling
 - Update manifest tooling and regeneration CLIs so language-specific oracles (TypeScript, Python, upcoming Rust/C) share a common interface, interpreter detection, and diff artefact workflow.
 - Deliver deterministic fixture oracles for C, Rust, Java, and Ruby so curated benchmarks across ecosystems reach parity with the Python and TypeScript baselines before further LLM integration.
 - Refactor regeneration and benchmark CLIs into a language-agnostic surface that records per-language toolchain provenance, refreshes precision/recall snapshots, and surfaces drift without mutating manual overrides.
+- Ensure benchmark executions (`scripts/run-benchmarks.mjs`, `npm run safe:commit -- --benchmarks`) automatically rewrite `expected.json` from oracle regeneration before suites run, preserving manual overrides while eliminating manual copy steps. *(Delivered: regeneration CLI now runs at the top of every benchmark invocation with an opt-out guard for ad-hoc analysis.)*
 - Introduce a confidence-gated LLM sampling harness layered atop deterministic oracles so optional cross-language predictions are measurable, reviewable, and never regress AST-grounded truth.
 
 #### Adoption Programme *(Observe → Sustain)*
