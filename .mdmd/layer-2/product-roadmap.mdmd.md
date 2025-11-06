@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 2
-- Requirement IDs: REQ-001, REQ-020, REQ-030, REQ-040
+- Requirement IDs: REQ-001, REQ-020, REQ-030, REQ-040, REQ-050
 
 ## Requirements
 
@@ -86,6 +86,22 @@ Supports CAP-003 and CAP-004 by making documentation ↔ code traceability a con
 - Docstring bridge adapters emit drift diagnostics and ASCII or markdown narratives consumable by copilots.
 - LLM surfaces mirror workspace diagnostics without introducing external service dependencies.
 
+
+### REQ-050 C# Benchmark Coverage
+Supports CAP-001 and CAP-030 by extending deterministic AST ground truth and fallback accuracy telemetry to .NET workspaces.
+
+#### Stream T13x – C# Polyglot Benchmarks *(planned)*
+- [x] Deliver a C# fixture oracle that emits `imports`/`uses` relationships from file-scoped namespaces, partial classes, and common Roslyn idioms, exposed via `packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts` with unit coverage.
+- [x] Extend benchmark regeneration and fallback capture CLIs to accept `--lang csharp`, wiring `.cs` file globs, Roslyn-aware integrity metadata, and deterministic diff artefacts.
+- [x] Onboard a curated `csharp-basic` fixture under `tests/integration/benchmarks/fixtures/csharp/` that exercises repository/service/model wiring while remaining small enough for fast CI runs.
+- [ ] Materialise a Roslyn subset (compilers + shared layers) as the first third-party benchmark with sparse checkout, integrity digests, and document the rationale for the selected module slice.
+- [ ] Capture roadmap updates and Layer 4 documentation pointers whenever new C# fixtures land so downstream diagnostics and tooling stay traceable.
+
+### REQ-050 Acceptance Criteria
+- C# fixtures appear in `tests/integration/benchmarks/fixtures/fixtures.manifest.json` with oracle configurations and integrity digests that pass `npm run fixtures:regenerate -- --lang csharp --write`.
+- AST accuracy and fallback benchmarks report ≥0.6 precision/recall for `csharp-basic`, with Roslyn subset metrics called out in `reports/benchmarks/**/*`.
+- Layer 4 benchmark docs enumerate C# fixtures alongside regeneration instructions and fallback heuristics constraints.
+- Safe-to-commit pipeline (`npm run safe:commit -- --benchmarks`) executes without regressing due to C# fixture onboarding.
 ### REQ-030 Acceptance Criteria
 - Profiles record Observe → Sustain progress per path scope, with violations emitted as diagnostics when enforcement is active.
 - Auto-repair tooling produces actionable plans or safe auto-fixes for link drift.

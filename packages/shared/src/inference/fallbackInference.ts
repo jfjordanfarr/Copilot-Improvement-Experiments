@@ -160,6 +160,38 @@ const RUST_SEGMENT_TRIMMERS = new Set(["crate", "self", "super"]);
 const RUST_PATH_REFERENCE = /(?:\bcrate|\$crate|\bself|\bsuper)(?:::[A-Za-z_][A-Za-z0-9_]*!?)+/g;
 const JAVA_IMPORT_STATEMENT = /^\s*import\s+([^;]+);/gm;
 const RUBY_REQUIRE_RELATIVE_PATTERN = /require_relative\s+["']([^"'\s]+)["']/g;
+const CSHARP_USING_DIRECTIVE = /^\s*using\s+(static\s+)?([^=;]+);/gm;
+const CSHARP_NAMESPACE_DECLARATION = /\bnamespace\s+([A-Za-z_][A-Za-z0-9_.]*)\s*(?:;|\{)/;
+const CSHARP_TYPE_DECLARATION = /(partial\s+)?(class|struct|interface|record)\s+([A-Za-z_][A-Za-z0-9_]*)/g;
+const CSHARP_IDENTIFIER_PATTERN = /\b([A-Z][A-Za-z0-9_]*)\b/g;
+const CSHARP_BUILT_INS = new Set([
+  "Task",
+  "ValueTask",
+  "String",
+  "Int32",
+  "Boolean",
+  "Double",
+  "Decimal",
+  "DateTime",
+  "DateTimeOffset",
+  "TimeSpan",
+  "Guid",
+  "List",
+  "Dictionary",
+  "IDictionary",
+  "IEnumerable",
+  "IList",
+  "HashSet",
+  "Nullable",
+  "CultureInfo"
+]);
+
+const CONFIG_APPSETTINGS_PATTERN = /ConfigurationManager\.AppSettings\s*\[/g;
+const WEBFORMS_CONTROL_ID_PATTERN = /<asp:[^>]*\bID\s*=\s*"([^"]+)"/gi;
+const WEBFORMS_PAGE_DIRECTIVE_PATTERN = /<%@\s*Page\b[^%]*%>/i;
+const WEBFORMS_CODE_REFERENCE_PATTERN = /\bCodeBehind\s*=\s*"([^"]+)"|\bCodeFile\s*=\s*"([^"]+)"/gi;
+const WEBFORMS_SCRIPT_SRC_PATTERN = /<script[^>]+src\s*=\s*"([^"]+)"/gi;
+const DOCUMENT_GET_ELEMENT_BY_ID_PATTERN = /document\.getElementById\s*\(\s*['"]([^'"\s]+)['"]\s*\)/gi;
 
 export async function inferFallbackGraph(
   input: FallbackInferenceInput,
@@ -206,7 +238,15 @@ export async function inferFallbackGraph(
       addLink(match, source, linkAccumulator, traces, nowFactory, "heuristic", FALLBACK_HEURISTIC_AUTHOR);
     });
 
+    applyCSharpHeuristics(source, languageContexts.csharp, (match) => {
+      addLink(match, source, linkAccumulator, traces, nowFactory, "heuristic", FALLBACK_HEURISTIC_AUTHOR);
+    });
+
     applyRubyRequireHeuristics(source, enrichedArtifacts, (match) => {
+      addLink(match, source, linkAccumulator, traces, nowFactory, "heuristic", FALLBACK_HEURISTIC_AUTHOR);
+    });
+
+    applyWebFormsHeuristics(source, enrichedArtifacts, languageContexts.webforms, (match) => {
       addLink(match, source, linkAccumulator, traces, nowFactory, "heuristic", FALLBACK_HEURISTIC_AUTHOR);
     });
 
@@ -275,6 +315,8 @@ interface LanguageContexts {
   c: CContext;
   rust: RustContext;
   java: JavaContext;
+  csharp: CSharpContext;
+  webforms: WebFormsContext;
 }
 
 interface CContext {
@@ -289,6 +331,31 @@ interface JavaContext {
   packageIndex: Map<string, EnrichedArtifact>;
 }
 
+interface CSharpContext {
+  fileMetadata: Map<string, CSharpFileMetadata>;
+  typesBySimpleName: Map<string, CSharpTypeDefinition[]>;
+  partialTypesByFullName: Map<string, CSharpTypeDefinition[]>;
+}
+
+interface CSharpFileMetadata {
+  namespaceName: string | null;
+  definedTypes: CSharpTypeDefinition[];
+  importedNamespaces: Set<string>;
+}
+
+interface CSharpTypeDefinition {
+  simpleName: string;
+  fullName: string;
+  namespaceName: string | null;
+  isPartial: boolean;
+  artifact: EnrichedArtifact;
+}
+
+interface WebFormsContext {
+  configFiles: EnrichedArtifact[];
+  controlsById: Map<string, EnrichedArtifact[]>;
+}
+
 interface RustUseTarget {
   moduleName: string;
   origin: "base" | "type";
@@ -298,7 +365,9 @@ function buildLanguageContexts(artifacts: EnrichedArtifact[]): LanguageContexts 
   return {
     c: buildCContext(artifacts),
     rust: buildRustContext(artifacts),
-    java: buildJavaContext(artifacts)
+    java: buildJavaContext(artifacts),
+    csharp: buildCSharpContext(artifacts),
+    webforms: buildWebFormsContext(artifacts)
   } satisfies LanguageContexts;
 }
 
@@ -1101,6 +1170,156 @@ function buildJavaContext(artifacts: EnrichedArtifact[]): JavaContext {
   return { packageIndex } satisfies JavaContext;
 }
 
+function buildCSharpContext(artifacts: EnrichedArtifact[]): CSharpContext {
+  const fileMetadata = new Map<string, CSharpFileMetadata>();
+  const typesBySimpleName = new Map<string, CSharpTypeDefinition[]>();
+  const partialTypesByFullName = new Map<string, CSharpTypeDefinition[]>();
+
+  for (const artifact of artifacts) {
+    if (!artifact.content || !artifact.comparablePath.endsWith(".cs")) {
+      continue;
+    }
+
+    const metadata = extractCSharpFileMetadata(artifact);
+    fileMetadata.set(artifact.artifact.id, metadata);
+
+    for (const definition of metadata.definedTypes) {
+      const key = definition.simpleName.toLowerCase();
+      const group = typesBySimpleName.get(key) ?? [];
+      group.push(definition);
+      typesBySimpleName.set(key, group);
+
+      if (definition.isPartial) {
+        const fullKey = definition.fullName.toLowerCase();
+        const partialGroup = partialTypesByFullName.get(fullKey) ?? [];
+        partialGroup.push(definition);
+        partialTypesByFullName.set(fullKey, partialGroup);
+      }
+    }
+  }
+
+  return { fileMetadata, typesBySimpleName, partialTypesByFullName } satisfies CSharpContext;
+}
+
+function buildWebFormsContext(artifacts: EnrichedArtifact[]): WebFormsContext {
+  const configFiles: EnrichedArtifact[] = [];
+  const controlsById = new Map<string, EnrichedArtifact[]>();
+
+  for (const artifact of artifacts) {
+    if (!artifact.content) {
+      continue;
+    }
+
+    if (artifact.basename === "web.config") {
+      configFiles.push(artifact);
+    }
+
+    if (!artifact.comparablePath.endsWith(".aspx")) {
+      continue;
+    }
+
+    let match: RegExpExecArray | null;
+    while ((match = WEBFORMS_CONTROL_ID_PATTERN.exec(artifact.content)) !== null) {
+      const controlId = match[1]?.trim();
+      if (!controlId) {
+        continue;
+      }
+
+      const key = controlId.toLowerCase();
+      const group = controlsById.get(key) ?? [];
+      if (!group.includes(artifact)) {
+        group.push(artifact);
+        controlsById.set(key, group);
+      }
+    }
+
+    WEBFORMS_CONTROL_ID_PATTERN.lastIndex = 0;
+  }
+
+  return { configFiles, controlsById } satisfies WebFormsContext;
+}
+
+function extractCSharpFileMetadata(artifact: EnrichedArtifact): CSharpFileMetadata {
+  const namespaceName = extractCSharpNamespace(artifact.content ?? "");
+  const definedTypes = extractCSharpTypeDefinitions(artifact, namespaceName);
+  const importedNamespaces = extractCSharpUsingNamespaces(artifact.content ?? "");
+
+  return {
+    namespaceName,
+    definedTypes,
+    importedNamespaces
+  } satisfies CSharpFileMetadata;
+}
+
+function extractCSharpNamespace(content: string): string | null {
+  const match = CSHARP_NAMESPACE_DECLARATION.exec(content);
+  CSHARP_NAMESPACE_DECLARATION.lastIndex = 0;
+  return match ? match[1].trim() : null;
+}
+
+function extractCSharpTypeDefinitions(
+  artifact: EnrichedArtifact,
+  namespaceName: string | null
+): CSharpTypeDefinition[] {
+  if (!artifact.content) {
+    return [];
+  }
+
+  const definitions: CSharpTypeDefinition[] = [];
+  let match: RegExpExecArray | null;
+
+  while ((match = CSHARP_TYPE_DECLARATION.exec(artifact.content)) !== null) {
+    const simpleName = match[3];
+    if (!simpleName) {
+      continue;
+    }
+
+    const isPartial = Boolean(match[1]);
+    const fullName = namespaceName ? `${namespaceName}.${simpleName}` : simpleName;
+    definitions.push({
+      simpleName,
+      namespaceName,
+      fullName,
+      isPartial,
+      artifact
+    });
+  }
+
+  CSHARP_TYPE_DECLARATION.lastIndex = 0;
+  return definitions;
+}
+
+function extractCSharpUsingNamespaces(content: string): Set<string> {
+  const namespaces = new Set<string>();
+  let match: RegExpExecArray | null;
+
+  while ((match = CSHARP_USING_DIRECTIVE.exec(content)) !== null) {
+    const directive = match[2]?.trim();
+    if (!directive) {
+      continue;
+    }
+
+    if (directive.includes("=")) {
+      continue;
+    }
+
+    if (directive.startsWith("System.")) {
+      continue;
+    }
+
+    const normalized = directive.replace(/\s+/g, "").toLowerCase();
+    namespaces.add(normalized);
+
+    const segments = normalized.split(".");
+    if (segments.length > 1) {
+      namespaces.add(segments.slice(0, -1).join("."));
+    }
+  }
+
+  CSHARP_USING_DIRECTIVE.lastIndex = 0;
+  return namespaces;
+}
+
 function extractJavaPackage(content: string): string | null {
   const match = content.match(/\bpackage\s+([^;]+);/);
   return match ? match[1].trim() : null;
@@ -1156,6 +1375,143 @@ function applyJavaImportHeuristics(
   }
 
   JAVA_IMPORT_STATEMENT.lastIndex = 0;
+}
+
+function applyCSharpHeuristics(
+  source: EnrichedArtifact,
+  context: CSharpContext,
+  register: (match: MatchCandidate) => void
+): void {
+  if (!isImplementationLayer(source.artifact.layer)) {
+    return;
+  }
+  if (!source.content || !source.comparablePath.endsWith(".cs")) {
+    return;
+  }
+
+  const metadata = context.fileMetadata.get(source.artifact.id);
+  if (!metadata) {
+    return;
+  }
+
+  const definedNames = new Set(metadata.definedTypes.map(definition => definition.simpleName));
+  const usingNamespaces = metadata.importedNamespaces;
+  const namespaceName = metadata.namespaceName?.toLowerCase() ?? null;
+  const seenTargets = new Set<string>();
+  let match: RegExpExecArray | null;
+
+  while ((match = CSHARP_IDENTIFIER_PATTERN.exec(source.content)) !== null) {
+    const symbol = match[1];
+    if (!symbol || definedNames.has(symbol) || CSHARP_BUILT_INS.has(symbol)) {
+      continue;
+    }
+
+    const candidates = context.typesBySimpleName.get(symbol.toLowerCase());
+    if (!candidates || candidates.length === 0) {
+      continue;
+    }
+
+    const target = disambiguateCSharpType(candidates, namespaceName, usingNamespaces);
+    if (!target || target.artifact.artifact.id === source.artifact.id) {
+      continue;
+    }
+
+    if (seenTargets.has(target.artifact.artifact.id)) {
+      continue;
+    }
+
+    seenTargets.add(target.artifact.artifact.id);
+    const relation = classifyCSharpRelation(symbol, source.content);
+    const rationale = relation === "uses" ? `csharp usage ${symbol}` : `csharp import ${symbol}`;
+    const confidence = relation === "uses" ? 0.8 : 0.65;
+
+    register({
+      target: target.artifact,
+      confidence,
+      rationale,
+      context: relation === "uses" ? "use" : "import"
+    });
+  }
+
+  CSHARP_IDENTIFIER_PATTERN.lastIndex = 0;
+
+  if (!source.comparablePath.endsWith(".designer.cs")) {
+    const partialTargets = new Set<string>();
+    for (const definition of metadata.definedTypes) {
+      if (!definition.isPartial) {
+        continue;
+      }
+
+      const group = context.partialTypesByFullName.get(definition.fullName.toLowerCase());
+      if (!group) {
+        continue;
+      }
+
+      for (const peer of group) {
+        const peerId = peer.artifact.artifact.id;
+        if (peerId === source.artifact.id || partialTargets.has(peerId)) {
+          continue;
+        }
+
+        partialTargets.add(peerId);
+        register({
+          target: peer.artifact,
+          confidence: 0.7,
+          rationale: `csharp partial type ${definition.simpleName}`,
+          context: "use"
+        });
+      }
+    }
+  }
+}
+
+function disambiguateCSharpType(
+  candidates: CSharpTypeDefinition[],
+  namespaceName: string | null,
+  usingNamespaces: Set<string>
+): CSharpTypeDefinition | undefined {
+  if (candidates.length === 1) {
+    return candidates[0];
+  }
+
+  const sameNamespace = namespaceName
+    ? candidates.filter(candidate => candidate.namespaceName?.toLowerCase() === namespaceName)
+    : [];
+  if (sameNamespace.length === 1) {
+    return sameNamespace[0];
+  }
+
+  const importedMatches = candidates.filter(candidate => {
+    if (!candidate.namespaceName) {
+      return false;
+    }
+    return usingNamespaces.has(candidate.namespaceName.toLowerCase());
+  });
+
+  if (importedMatches.length === 1) {
+    return importedMatches[0];
+  }
+
+  return undefined;
+}
+
+function classifyCSharpRelation(symbol: string, content: string): "imports" | "uses" {
+  const escaped = symbol.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const constructorPattern = new RegExp(`new\\s+${escaped}\\b`);
+  const declarationPattern = new RegExp(`\\b${escaped}\\s+[A-Za-z_][A-Za-z0-9_]*\\s*(=|;|,|\\))`);
+  const genericPattern = new RegExp(`<\\s*${escaped}\\b`);
+  const staticPattern = new RegExp(`\\b${escaped}\\s*\\.`);
+
+  if (
+    constructorPattern.test(content) ||
+    declarationPattern.test(content) ||
+    genericPattern.test(content) ||
+    staticPattern.test(content)
+  ) {
+    return "uses";
+  }
+
+  return "imports";
 }
 
 function classifyJavaRelation(symbol: string, content: string): "imports" | "uses" {
@@ -1219,6 +1575,194 @@ function applyRubyRequireHeuristics(
   }
 
   RUBY_REQUIRE_RELATIVE_PATTERN.lastIndex = 0;
+}
+
+function applyWebFormsHeuristics(
+  source: EnrichedArtifact,
+  candidates: EnrichedArtifact[],
+  context: WebFormsContext,
+  register: (match: MatchCandidate) => void
+): void {
+  if (!isImplementationLayer(source.artifact.layer) || !source.content) {
+    return;
+  }
+
+  if (source.comparablePath.endsWith(".cs")) {
+    if (CONFIG_APPSETTINGS_PATTERN.test(source.content)) {
+      for (const target of context.configFiles) {
+        register({
+          target,
+          confidence: 0.65,
+          rationale: "webforms config appsettings",
+          context: "use"
+        });
+      }
+    }
+
+    CONFIG_APPSETTINGS_PATTERN.lastIndex = 0;
+    return;
+  }
+
+  if (source.comparablePath.endsWith(".aspx")) {
+    const directiveMatch = WEBFORMS_PAGE_DIRECTIVE_PATTERN.exec(source.content);
+    if (directiveMatch) {
+      const directive = directiveMatch[0];
+      let codeMatch: RegExpExecArray | null;
+      const directiveSeen = new Set<string>();
+
+      while ((codeMatch = WEBFORMS_CODE_REFERENCE_PATTERN.exec(directive)) !== null) {
+        const reference = (codeMatch[1] ?? codeMatch[2])?.trim();
+        if (!reference || directiveSeen.has(reference)) {
+          continue;
+        }
+
+        directiveSeen.add(reference);
+        const target = resolveWebFormsReference(source, reference, candidates);
+        if (!target) {
+          continue;
+        }
+
+        register({
+          target,
+          confidence: 0.75,
+          rationale: `webforms codebehind ${reference}`,
+          context: "use"
+        });
+      }
+
+      WEBFORMS_CODE_REFERENCE_PATTERN.lastIndex = 0;
+    }
+
+    WEBFORMS_PAGE_DIRECTIVE_PATTERN.lastIndex = 0;
+
+    const scriptSeen = new Set<string>();
+    let scriptMatch: RegExpExecArray | null;
+    while ((scriptMatch = WEBFORMS_SCRIPT_SRC_PATTERN.exec(source.content)) !== null) {
+      const reference = scriptMatch[1]?.trim();
+      if (!reference) {
+        continue;
+      }
+
+      const normalized = reference.split("?")[0];
+      if (scriptSeen.has(normalized)) {
+        continue;
+      }
+
+      scriptSeen.add(normalized);
+      const target = resolveWebFormsReference(source, normalized, candidates);
+      if (!target) {
+        continue;
+      }
+
+      register({
+        target,
+        confidence: 0.6,
+        rationale: `webforms script ${normalized}`,
+        context: "import"
+      });
+    }
+
+    WEBFORMS_SCRIPT_SRC_PATTERN.lastIndex = 0;
+    return;
+  }
+
+  if (source.comparablePath.endsWith(".js")) {
+    const linked = new Set<string>();
+    let match: RegExpExecArray | null;
+    while ((match = DOCUMENT_GET_ELEMENT_BY_ID_PATTERN.exec(source.content)) !== null) {
+      const controlId = match[1]?.trim();
+      if (!controlId) {
+        continue;
+      }
+
+      const targets = context.controlsById.get(controlId.toLowerCase());
+      if (!targets) {
+        continue;
+      }
+
+      for (const target of targets) {
+        const targetId = target.artifact.id;
+        if (linked.has(targetId)) {
+          continue;
+        }
+
+        linked.add(targetId);
+        register({
+          target,
+          confidence: 0.65,
+          rationale: `webforms control ${controlId}`,
+          context: "use"
+        });
+      }
+    }
+
+    DOCUMENT_GET_ELEMENT_BY_ID_PATTERN.lastIndex = 0;
+
+    const lowerContent = source.content.toLowerCase();
+    if (!lowerContent.includes("document.getelementbyid")) {
+      return;
+    }
+
+    for (const [controlId, targets] of context.controlsById.entries()) {
+      if (
+        !lowerContent.includes(`'${controlId}'`) &&
+        !lowerContent.includes(`"${controlId}"`)
+      ) {
+        continue;
+      }
+
+      for (const target of targets) {
+        const targetId = target.artifact.id;
+        if (linked.has(targetId)) {
+          continue;
+        }
+
+        linked.add(targetId);
+        register({
+          target,
+          confidence: 0.6,
+          rationale: `webforms control ${controlId}`,
+          context: "use"
+        });
+      }
+    }
+  }
+}
+
+function resolveWebFormsReference(
+  source: EnrichedArtifact,
+  reference: string,
+  candidates: EnrichedArtifact[]
+): EnrichedArtifact | undefined {
+  const trimmed = reference.trim();
+  if (!trimmed || isExternalLink(trimmed)) {
+    return undefined;
+  }
+
+  const withoutFragment = trimmed.split("#")[0];
+  const withoutQuery = withoutFragment.split("?")[0];
+  let relative = withoutQuery;
+
+  if (relative.startsWith("~/")) {
+    relative = relative.slice(2);
+  }
+
+  if (relative.startsWith("/")) {
+    relative = relative.slice(1);
+  }
+
+  const sourceDir = path.dirname(source.comparablePath);
+  const candidatePaths = new Set<string>();
+  candidatePaths.add(normalizePath(path.join(sourceDir, relative)));
+  candidatePaths.add(normalizePath(relative));
+
+  for (const candidate of candidates) {
+    if (candidatePaths.has(candidate.comparablePath)) {
+      return candidate;
+    }
+  }
+
+  return undefined;
 }
 
 function appendRubyExtension(reference: string): string {

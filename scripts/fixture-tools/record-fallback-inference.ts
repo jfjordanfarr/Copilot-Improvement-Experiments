@@ -48,7 +48,10 @@ const LANGUAGE_ALIASES = new Map<string, string>([
   ["java", "java"],
   ["javac", "java"],
   ["rb", "ruby"],
-  ["ruby", "ruby"]
+  ["ruby", "ruby"],
+  ["cs", "csharp"],
+  ["csharp", "csharp"],
+  ["dotnet", "csharp"]
 ]);
 
 const LANGUAGE_DEFAULT_GLOBS = new Map<string, string[]>([
@@ -57,8 +60,11 @@ const LANGUAGE_DEFAULT_GLOBS = new Map<string, string[]>([
   ["c", ["**/*.c", "**/*.h"]],
   ["rust", ["**/*.rs"]],
   ["java", ["**/*.java"]],
-  ["ruby", ["**/*.rb"]]
+  ["ruby", ["**/*.rb"]],
+  ["csharp", ["**/*.cs"]]
 ]);
+
+const SUPPORTED_LANGUAGES = Array.from(new Set(LANGUAGE_ALIASES.values())).sort();
 
 const CONTEXT_PRIORITY = new Map<string | undefined, number>([
   ["call", 5],
@@ -84,7 +90,8 @@ const EXTENSION_LANGUAGE_HINT = new Map<string, string>([
   [".h", "c"],
   [".rs", "rust"],
   [".java", "java"],
-  [".rb", "ruby"]
+  [".rb", "ruby"],
+  [".cs", "csharp"]
 ]);
 
 export async function runCli(argv: string[]): Promise<void> {
@@ -199,7 +206,7 @@ function addLanguage(target: Set<string>, raw: string): void {
   const resolved = LANGUAGE_ALIASES.get(raw.toLowerCase());
   if (!resolved) {
     throw new Error(
-      `Unsupported language '${raw}'. Supported values: ts, python, c, rust, java, ruby.`
+      `Unsupported language '${raw}'. Supported values: ${SUPPORTED_LANGUAGES.join(", ")}.`
     );
   }
   target.add(resolved);
@@ -210,7 +217,7 @@ function printHelp(): void {
     `Usage: npm run fixtures:record-fallback -- [options] [fixtureIds...]\n\n` +
       `Options:\n` +
       `  --fixture <id>      Capture fallback edges for a specific fixture (can repeat).\n` +
-      `  --lang <name>       Filter fixtures by language (ts, python, c, rust, java, ruby).\n` +
+      `  --lang <name>       Filter fixtures by language (${SUPPORTED_LANGUAGES.join(", ")}).\n` +
       `  --write             Overwrite tests/.../inferred.json instead of writing to AI-Agent-Workspace.\n` +
       `  -h, --help          Show this help message.\n`
   );

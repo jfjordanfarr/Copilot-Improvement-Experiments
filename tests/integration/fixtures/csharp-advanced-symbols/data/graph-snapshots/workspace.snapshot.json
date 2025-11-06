@@ -3,7 +3,7 @@
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments\\tests\\integration\\fixtures\\csharp-advanced-symbols",
   "totals": {
     "artifacts": 12,
-    "links": 17
+    "links": 29
   },
   "artifacts": [
     {
@@ -81,6 +81,24 @@
   ],
   "links": [
     {
+      "id": "orchestrated-link-5d07a3dc",
+      "sourceId": "fallback-artifact-21447ffb7b0c",
+      "targetId": "fallback-artifact-7dd859812e2d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-c41ab13b",
+      "sourceId": "fallback-artifact-21447ffb7b0c",
+      "targetId": "fallback-artifact-cd66c203972e",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-57d8d046",
       "sourceId": "fallback-artifact-2f53304718ff",
       "targetId": "fallback-artifact-47a2e587adde",
@@ -104,6 +122,15 @@
       "targetId": "fallback-artifact-d6917031c0fc",
       "kind": "documents",
       "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-5e412537",
+      "sourceId": "fallback-artifact-35d327bb899f",
+      "targetId": "fallback-artifact-cd66c203972e",
+      "kind": "depends_on",
+      "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
     },
@@ -171,6 +198,51 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-894814d4",
+      "sourceId": "fallback-artifact-bcc2a21c46d4",
+      "targetId": "fallback-artifact-21447ffb7b0c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-b24c5ad3",
+      "sourceId": "fallback-artifact-c2945c2637bf",
+      "targetId": "fallback-artifact-21447ffb7b0c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-e1bb0598",
+      "sourceId": "fallback-artifact-c2945c2637bf",
+      "targetId": "fallback-artifact-7dd859812e2d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-590e2595",
+      "sourceId": "fallback-artifact-cc668e9fca5c",
+      "targetId": "fallback-artifact-21447ffb7b0c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-887cd05a",
+      "sourceId": "fallback-artifact-cc668e9fca5c",
+      "targetId": "fallback-artifact-7dd859812e2d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-59940b95",
       "sourceId": "fallback-artifact-d6917031c0fc",
       "targetId": "fallback-artifact-21447ffb7b0c",
@@ -229,6 +301,42 @@
       "sourceId": "fallback-artifact-d6917031c0fc",
       "targetId": "fallback-artifact-f317d1f916a5",
       "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-43055816",
+      "sourceId": "fallback-artifact-e68f09cafc26",
+      "targetId": "fallback-artifact-21447ffb7b0c",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-727402db",
+      "sourceId": "fallback-artifact-e68f09cafc26",
+      "targetId": "fallback-artifact-7dd859812e2d",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-ca9053fb",
+      "sourceId": "fallback-artifact-f317d1f916a5",
+      "targetId": "fallback-artifact-21447ffb7b0c",
+      "kind": "depends_on",
+      "confidence": 0.65,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
+      "id": "orchestrated-link-f9fefec0",
+      "sourceId": "fallback-artifact-f317d1f916a5",
+      "targetId": "fallback-artifact-7dd859812e2d",
+      "kind": "depends_on",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"

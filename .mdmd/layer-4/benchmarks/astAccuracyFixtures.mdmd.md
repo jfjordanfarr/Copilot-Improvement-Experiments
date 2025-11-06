@@ -21,6 +21,8 @@
   - [`tests/integration/benchmarks/fixtures/java/okhttp`](../../../tests/integration/benchmarks/fixtures/java/okhttp)
   - [`tests/integration/benchmarks/fixtures/ruby/basic`](../../../tests/integration/benchmarks/fixtures/ruby/basic)
   - [`tests/integration/benchmarks/fixtures/ruby/cli`](../../../tests/integration/benchmarks/fixtures/ruby/cli)
+  - [`tests/integration/benchmarks/fixtures/csharp/basic`](../../../tests/integration/benchmarks/fixtures/csharp/basic)
+  - [`tests/integration/benchmarks/fixtures/csharp/webforms`](../../../tests/integration/benchmarks/fixtures/csharp/webforms)
   - [`tests/integration/benchmarks/fixtures/fixtures.manifest.json`](../../../tests/integration/benchmarks/fixtures/fixtures.manifest.json)
 - Related Tests: [`tests/integration/benchmarks/astAccuracy.test.ts`](../../../tests/integration/benchmarks/astAccuracy.test.ts)
 
@@ -140,6 +142,15 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Scope: Vendored OkHttp 3.14.9 modules spanning the core client, DNS-over-HTTPS, SSE, TLS, URLConnection shims, logging interceptors, and the mock web server so the benchmark samples inter-package edges within a production-grade HTTP stack.
 - File Selection: Manifest sparse checkout limits the workspace to `src/main/java` trees for ten modules (151 Java files) and excludes tests and samples while hashing the vendored sources for integrity checks.
 - Benchmark Intent: Stress inference on a real Java ecosystem that mixes public API façades, internal helpers, and cross-module orchestration—surfacing import graphs that go well beyond our synthetic fixtures and exercising the fallback engine’s Java heuristics at scale.
+
+- Scope: C# diagnostics service with layered repository, service, and formatter components under a shared namespace to mirror the markdown drift workflow.
+- Source Files: [`src/Diagnostics/App.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/App.cs), [`src/Diagnostics/Data/Repository.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Data/Repository.cs), [`src/Diagnostics/Services/ReportService.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Services/ReportService.cs), [`src/Diagnostics/Models/Record.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Record.cs), [`src/Diagnostics/Models/Formatter.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Formatter.cs), [`src/Diagnostics/Models/FormattedReport.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/FormattedReport.cs).
+- Benchmark Intent: Validate namespace resolution, partial class usage, and intra-assembly dependencies uncovered by the C# fixture oracle before the pipeline merges manual overrides.
+
+### `csharp-webforms`
+- Scope: ASP.NET Web Forms sample with shared code-behind (`App_Code/Globals.cs`) and page assets (`Pages/Default.aspx`, `Default.aspx.cs`, `Default.aspx.designer.cs`, `Scripts/appConfig.js`).
+- Source Files: [`src/App_Code/Globals.cs`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/App_Code/Globals.cs), [`src/Pages/Default.aspx`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx), [`src/Pages/Default.aspx.cs`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.cs), [`src/Pages/Default.aspx.designer.cs`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs), [`src/Scripts/appConfig.js`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Scripts/appConfig.js), [`oracle.overrides.json`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/oracle.overrides.json).
+- Benchmark Intent: Exercise fallback heuristics across mixed markup/code-behind assets plus manual overrides for Web Forms designer files so the AST accuracy suite covers UI-driven C# projects.
 
 ### `ruby-basic`
 - Scope: Ruby module namespace coordinating a data store, formatter, and reporter.

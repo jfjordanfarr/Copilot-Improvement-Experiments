@@ -19,6 +19,14 @@ import {
   type COracleEdgeRelation
 } from "../../packages/shared/src/testing/fixtureOracles/cFixtureOracle";
 import {
+  generateCSharpFixtureGraph,
+  mergeCSharpOracleEdges,
+  serializeCSharpOracleEdges,
+  type CSharpFixtureOracleOptions,
+  type CSharpOracleEdgeRecord,
+  type CSharpOracleOverrideConfig
+} from "../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle";
+import {
   generateJavaFixtureGraph,
   mergeJavaOracleEdges,
   serializeJavaOracleEdges,
@@ -58,7 +66,7 @@ import {
   type OracleOverrideConfig as TypeScriptOverrideConfig
 } from "../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle";
 
-type OracleKind = "typescript" | "python" | "c" | "rust" | "java" | "ruby";
+type OracleKind = "typescript" | "python" | "c" | "rust" | "java" | "ruby" | "csharp";
 
 type OracleFixtureDefinition = ManifestFixtureDefinition & {
   oracle?: OracleFixtureConfig;
@@ -70,7 +78,8 @@ type OracleFixtureConfig =
   | COracleConfig
   | RustOracleConfig
   | JavaOracleConfig
-  | RubyOracleConfig;
+  | RubyOracleConfig
+  | CSharpOracleConfig;
 
 interface TypeScriptOracleConfig {
   kind: "typescript";
@@ -124,6 +133,14 @@ interface RubyOracleConfig {
   exclude?: string[];
 }
 
+interface CSharpOracleConfig {
+  kind: "csharp";
+  root?: string;
+  manualOverrides?: string;
+  include?: string[];
+  exclude?: string[];
+}
+
 interface CliOptions {
   fixtureIds: Set<string>;
   languages: Set<OracleKind>;
@@ -154,8 +171,13 @@ const LANGUAGE_ALIASES = new Map<string, OracleKind>([
   ["java", "java"],
   ["javac", "java"],
   ["rb", "ruby"],
-  ["ruby", "ruby"]
+  ["ruby", "ruby"],
+  ["cs", "csharp"],
+  ["csharp", "csharp"],
+  ["dotnet", "csharp"]
 ]);
+
+const SUPPORTED_LANGUAGES = Array.from(new Set(LANGUAGE_ALIASES.values())).sort();
 
 export async function runRegenerationCli(argv: string[]): Promise<void> {
   const options = parseArgs(argv);
@@ -273,7 +295,7 @@ function addLanguage(languages: Set<OracleKind>, raw: string): void {
   const resolved = LANGUAGE_ALIASES.get(normalized);
   if (!resolved) {
     throw new Error(
-      `Unsupported language '${raw}'. Supported values: ts, python, c, rust, java, ruby.`
+      `Unsupported language '${raw}'. Supported values: ${SUPPORTED_LANGUAGES.join(", ")}.`
     );
   }
   languages.add(resolved);
@@ -283,8 +305,8 @@ function printHelp(): void {
   console.log(
     `Usage: npm run fixtures:regenerate -- [options] [fixtureIds...]\n\n` +
       `Options:\n` +
-      `  --lang <name>       Regenerate fixtures for a language (ts, python, c, rust, java, ruby). Can repeat.\n` +
-      `  --suite <name>      Alias for --lang (ts, python, c, rust, java, ruby).\n` +
+      `  --lang <name>       Regenerate fixtures for a language (${SUPPORTED_LANGUAGES.join(", ")}). Can repeat.\n` +
+      `  --suite <name>      Alias for --lang (${SUPPORTED_LANGUAGES.join(", ")}).\n` +
       `  --fixture <id>      Regenerate a specific fixture (can repeat).\n` +
       `  --write             Overwrite each fixture's expected.json with the merged oracle output.\n` +
       `  -h, --help          Show this help message.\n`
@@ -388,6 +410,16 @@ async function regenerateFixture(
       });
     } else if (oracle.kind === "java") {
       await regenerateJavaFixture({
+        fixture,
+        oracle,
+        workspaceRoot,
+        overridesPath,
+        expectedEdges,
+        expectedPath,
+        writeExpected: options.writeExpected
+      });
+    } else if (oracle.kind === "csharp") {
+      await regenerateCSharpFixture({
         fixture,
         oracle,
         workspaceRoot,
@@ -704,6 +736,63 @@ async function regenerateJavaFixture(input: {
   });
 }
 
+async function regenerateCSharpFixture(input: {
+  fixture: OracleFixtureDefinition;
+  oracle: CSharpOracleConfig;
+  workspaceRoot: string;
+  overridesPath: string;
+  expectedEdges: EdgeRecord[];
+  expectedPath: string;
+  writeExpected: boolean;
+}): Promise<void> {
+  const {
+    fixture,
+    oracle,
+    workspaceRoot,
+    overridesPath,
+    expectedEdges,
+    expectedPath,
+    writeExpected
+  } = input;
+
+  const overrides = await readOverrideConfig<CSharpOracleOverrideConfig>(overridesPath);
+  const oracleRoot = path.resolve(workspaceRoot, oracle.root ?? ".");
+  const oracleOptions: CSharpFixtureOracleOptions = {
+    fixtureRoot: oracleRoot,
+    include: oracle.include,
+    exclude: oracle.exclude
+  };
+
+  const autoEdges = generateCSharpFixtureGraph(oracleOptions);
+  const merge = mergeCSharpOracleEdges(autoEdges, overrides);
+
+  const autoRecords = merge.autoRecords.map(toEdgeRecordFromCSharp);
+  const manualRecords = merge.manualRecords.map(toEdgeRecordFromCSharp);
+  const mergedRecords = merge.mergedRecords.map(toEdgeRecordFromCSharp);
+  const matchedManualRecords = merge.matchedManualRecords.map(toEdgeRecordFromCSharp);
+
+  const additions = computeEdgeDifferences(mergedRecords, expectedEdges);
+  const removals = computeEdgeDifferences(expectedEdges, mergedRecords);
+
+  await writeOracleArtifacts({
+    fixture,
+    oracleFileContents: serializeCSharpOracleEdges(autoEdges),
+    mergedRecords,
+    expectedEdges,
+    overridesPath,
+    expectedPath,
+    additions,
+    removals,
+    writeExpected,
+    summary: {
+      autoRecords,
+      manualRecords,
+      matchedManualRecords,
+      missingManualEntries: merge.missingManualEntries
+    }
+  });
+}
+
 async function regenerateRubyFixture(input: {
   fixture: OracleFixtureDefinition;
   oracle: RubyOracleConfig;
@@ -952,6 +1041,14 @@ function toEdgeRecordFromRust(record: RustOracleEdgeRecord): EdgeRecord {
 }
 
 function toEdgeRecordFromJava(record: JavaOracleEdgeRecord): EdgeRecord {
+  return {
+    source: record.source,
+    target: record.target,
+    relation: record.relation
+  } satisfies EdgeRecord;
+}
+
+function toEdgeRecordFromCSharp(record: CSharpOracleEdgeRecord): EdgeRecord {
   return {
     source: record.source,
     target: record.target,

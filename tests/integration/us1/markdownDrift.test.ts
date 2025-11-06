@@ -33,7 +33,12 @@ suite("US1: Writers get drift alerts", () => {
     markdownUri = vscode.Uri.joinPath(testWorkspaceUri, "docs", "architecture.md");
     implementationUri = vscode.Uri.joinPath(testWorkspaceUri, "src", "core.ts");
 
-    // Ensure extension is activated
+    const config = vscode.workspace.getConfiguration("linkAwareDiagnostics");
+    await config.update("enableDiagnostics", true, vscode.ConfigurationTarget.Workspace);
+    await config.update("llmProviderMode", "local-only", vscode.ConfigurationTarget.Workspace);
+    await config.update("debounce.ms", 2500, vscode.ConfigurationTarget.Workspace);
+
+    // Ensure extension is activated with provider consent already configured
     const extension = vscode.extensions.getExtension("copilot-improvement.link-aware-diagnostics");
     assert.ok(extension, "Extension must be installed");
 
@@ -42,10 +47,6 @@ suite("US1: Writers get drift alerts", () => {
     }
 
     await extension.activate();
-
-    const config = vscode.workspace.getConfiguration("linkAwareDiagnostics");
-    await config.update("enableDiagnostics", true, vscode.ConfigurationTarget.Workspace);
-    await config.update("llmProviderMode", "local-only", vscode.ConfigurationTarget.Workspace);
 
     // Wait for language server ready signal
     await waitForLanguageServerReady();

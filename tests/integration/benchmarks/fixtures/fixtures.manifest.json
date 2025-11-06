@@ -370,6 +370,48 @@
       }
     },
     {
+      "id": "csharp-basic",
+      "label": "C# diagnostics reporting sample",
+      "language": "csharp",
+      "path": "csharp/basic",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json",
+      "oracle": {
+        "kind": "csharp",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
+    },
+    {
+      "id": "csharp-webforms",
+      "label": "C# WebForms hidden field propagation sample",
+      "language": "csharp",
+      "path": "csharp/webforms",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json",
+      "integrity": {
+        "algorithm": "sha256",
+        "generatedAt": "2025-11-06T00:00:00.000Z",
+        "fileSet": {
+          "include": [
+            "src/**/*.cs",
+            "src/**/*.aspx",
+            "src/**/*.js",
+            "src/**/*.config"
+          ]
+        },
+        "rootHash": "aaa9ae8c1312409ddcbbe051cd9090acc22a8bb93239c60dfb56f2e4ce8bd6b4",
+        "fileCount": 6
+      },
+      "oracle": {
+        "kind": "csharp",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
+    },
+    {
       "id": "java-okhttp",
       "label": "OkHttp client repository",
       "language": "java",

@@ -1,7 +1,7 @@
 {
   "benchmark": "ast-accuracy",
   "mode": "ast",
-  "recordedAt": "2025-11-06T18:07:49.527Z",
+  "recordedAt": "2025-11-06T22:08:36.970Z",
   "environment": {
     "nodeVersion": "v22.14.0",
     "platform": "win32",
@@ -17,8 +17,8 @@
       "recall": 0.6
     },
     "totals": {
-      "totalEvaluated": 847,
-      "truePositives": 847,
+      "totalEvaluated": 866,
+      "truePositives": 866,
       "falsePositives": 0,
       "falseNegatives": 0,
       "precision": 1,
@@ -2488,6 +2488,135 @@
           {
             "source": "src/com/example/service/metrics/SummaryBuilder.java",
             "target": "src/com/example/service/model/Summary.java",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
+      },
+      {
+        "id": "csharp-basic",
+        "label": "C# diagnostics reporting sample",
+        "language": "csharp",
+        "totals": {
+          "truePositives": 13,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
+        },
+        "truePositives": [
+          {
+            "source": "src/Diagnostics/App.cs",
+            "target": "src/Diagnostics/Data/Repository.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/App.cs",
+            "target": "src/Diagnostics/Models/FormattedReport.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/App.cs",
+            "target": "src/Diagnostics/Models/Formatter.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/App.cs",
+            "target": "src/Diagnostics/Models/Record.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/App.cs",
+            "target": "src/Diagnostics/Services/ReportService.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/Data/Repository.cs",
+            "target": "src/Diagnostics/Models/Record.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/Models/FormattedReport.cs",
+            "target": "src/Diagnostics/Models/Record.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/Models/Formatter.cs",
+            "target": "src/Diagnostics/Models/FormattedReport.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/Models/Formatter.cs",
+            "target": "src/Diagnostics/Models/Record.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/Services/ReportService.cs",
+            "target": "src/Diagnostics/Data/Repository.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/Services/ReportService.cs",
+            "target": "src/Diagnostics/Models/FormattedReport.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/Services/ReportService.cs",
+            "target": "src/Diagnostics/Models/Formatter.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Diagnostics/Services/ReportService.cs",
+            "target": "src/Diagnostics/Models/Record.cs",
+            "relation": "uses"
+          }
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
+      },
+      {
+        "id": "csharp-webforms",
+        "label": "C# WebForms hidden field propagation sample",
+        "language": "csharp",
+        "totals": {
+          "truePositives": 6,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
+        },
+        "truePositives": [
+          {
+            "source": "src/App_Code/Globals.cs",
+            "target": "src/Web.config",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Pages/Default.aspx",
+            "target": "src/Pages/Default.aspx.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Pages/Default.aspx",
+            "target": "src/Scripts/appConfig.js",
+            "relation": "imports"
+          },
+          {
+            "source": "src/Pages/Default.aspx.cs",
+            "target": "src/App_Code/Globals.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Pages/Default.aspx.cs",
+            "target": "src/Pages/Default.aspx.designer.cs",
+            "relation": "uses"
+          },
+          {
+            "source": "src/Scripts/appConfig.js",
+            "target": "src/Pages/Default.aspx",
             "relation": "uses"
           }
         ],
