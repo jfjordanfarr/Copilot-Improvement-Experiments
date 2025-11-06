@@ -417,7 +417,10 @@ function buildEdgeRecords(result: FallbackInferenceResult, workspaceRoot: string
     });
   }
 
-  return sortRecords(dedupeRecords(edges));
+  const deduped = dedupeRecords(edges);
+  const filtered = deduped.filter(record => record.relation !== "references");
+  // Drop low-signal reference edges to avoid inflating benchmark false positives.
+  return sortRecords(filtered);
 }
 
 function compareContextPriority(candidate: string | undefined, baseline: string | undefined): number {

@@ -124,6 +124,16 @@ const MARKDOWN_LINK = /\[[^\]]+\]\(([^)]+)\)/g;
 const MARKDOWN_WIKI_LINK = /\[\[([^\]]+)\]\]/g;
 const LINK_DIRECTIVE = /@link\s+([^\s]+)/g;
 const MODULE_REFERENCE = /(?:(?:import|export)\s+[^"'`]*?["'`]([^"'`]+)["'`]|require\(\s*["'`]([^"'`]+)["'`]\s*\))/g;
+const MODULE_REFERENCE_EXTENSIONS = new Set([
+  ".ts",
+  ".tsx",
+  ".mts",
+  ".cts",
+  ".js",
+  ".jsx",
+  ".mjs",
+  ".cjs"
+]);
 const PYTHON_IMPORT_PATTERN = /^\s*import\s+(.+)$/gm;
 const PYTHON_FROM_IMPORT_PATTERN = /^\s*from\s+([.\w]+)\s+import\s+(.+)$/gm;
 const INCLUDE_DIRECTIVE = /#\s*include\s*(?:"([^"\n]+)"|<([^>\n]+)>)/g;
@@ -362,6 +372,10 @@ function applyImportHeuristics(
 
   if (extension === ".py") {
     applyPythonImportHeuristics(source, candidates, register);
+  }
+
+  if (!MODULE_REFERENCE_EXTENSIONS.has(extension)) {
+    return;
   }
 
   let match: RegExpExecArray | null;

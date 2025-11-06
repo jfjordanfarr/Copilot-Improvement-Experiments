@@ -1,8 +1,12 @@
 {
   "ignoreGlobs": [
-    "AI-Agent-Workspace/ChatHistory/**"
+    "AI-Agent-Workspace/ChatHistory/**",
+    "AI-Agent-Workspace/tmp/**"
   ],
   "markdown": {
+    "ignoreGlobs": [
+      "AI-Agent-Workspace/tmp/**"
+    ],
     "ignoreTargets": [
       "packages/shared/src/tooling/__fixtures__/documentation-links/sample-tool.mdmd.md"
     ]

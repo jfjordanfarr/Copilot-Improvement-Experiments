@@ -18,6 +18,7 @@
   - [`tests/integration/benchmarks/fixtures/rust/log`](../../../tests/integration/benchmarks/fixtures/rust/log)
   - [`tests/integration/benchmarks/fixtures/java/basic`](../../../tests/integration/benchmarks/fixtures/java/basic)
   - [`tests/integration/benchmarks/fixtures/java/service`](../../../tests/integration/benchmarks/fixtures/java/service)
+  - [`tests/integration/benchmarks/fixtures/java/okhttp`](../../../tests/integration/benchmarks/fixtures/java/okhttp)
   - [`tests/integration/benchmarks/fixtures/ruby/basic`](../../../tests/integration/benchmarks/fixtures/ruby/basic)
   - [`tests/integration/benchmarks/fixtures/ruby/cli`](../../../tests/integration/benchmarks/fixtures/ruby/cli)
   - [`tests/integration/benchmarks/fixtures/fixtures.manifest.json`](../../../tests/integration/benchmarks/fixtures/fixtures.manifest.json)
@@ -54,6 +55,12 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - **Source**: `rust-lang/log` @ `6e1735597bb21c5d979a077395df85e1d633e077` — Apache-2.0 OR MIT
 - **Integrity**: `sha256` root `28f475a305a4226ed660b7c5cccb193715970a30e66d12fc55c7705b2e01700c` (10 files)
 - **File Selection**: include `src/**/*.rs`, `Cargo.toml`; exclude `tests/**`, `benches/**`, `examples/**`, `rfcs/**` (resolved 10 files)
+
+#### `java-okhttp` (OkHttp client repository)
+
+- **Source**: `square/okhttp` @ `ad97bd3df34376eec85aa187dc8f45cfde8a2c01` — Apache-2.0
+- **Integrity**: `sha256` root `be90ccd6ebe51756c3a48287cd7249672be9d3eb3672215d4c33af9295881bad` (151 files)
+- **File Selection**: include `okhttp/src/main/java/**/*.java`, `mockwebserver/src/main/java/**/*.java`, `okcurl/src/main/java/**/*.java`, `okhttp-dnsoverhttps/src/main/java/**/*.java`, `okhttp-logging-interceptor/src/main/java/**/*.java`, `okhttp-sse/src/main/java/**/*.java`, `okhttp-testing-support/src/main/java/**/*.java`, `okhttp-tests/src/main/java/**/*.java`, `okhttp-tls/src/main/java/**/*.java`, `okhttp-urlconnection/src/main/java/**/*.java`; exclude `**/src/test/**`, `samples/**` (resolved 151 files)
 <!-- benchmark-vendor-inventory:end -->
 
 -### `ts-basic`
@@ -128,6 +135,11 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Scope: Java analytics service composed of repository, analyzer, metrics, and logging layers.
 - Source Files: [`src/com/example/service/AppService.java`](../../../tests/integration/benchmarks/fixtures/java/service/src/com/example/service/AppService.java), [`src/com/example/service/analytics/Analyzer.java`](../../../tests/integration/benchmarks/fixtures/java/service/src/com/example/service/analytics/Analyzer.java), [`src/com/example/service/data/Repository.java`](../../../tests/integration/benchmarks/fixtures/java/service/src/com/example/service/data/Repository.java), [`src/com/example/service/data/SourceRegistry.java`](../../../tests/integration/benchmarks/fixtures/java/service/src/com/example/service/data/SourceRegistry.java), [`src/com/example/service/metrics/SummaryBuilder.java`](../../../tests/integration/benchmarks/fixtures/java/service/src/com/example/service/metrics/SummaryBuilder.java), [`src/com/example/service/model/Sample.java`](../../../tests/integration/benchmarks/fixtures/java/service/src/com/example/service/model/Sample.java), [`src/com/example/service/model/Summary.java`](../../../tests/integration/benchmarks/fixtures/java/service/src/com/example/service/model/Summary.java), [`src/com/example/service/util/Logger.java`](../../../tests/integration/benchmarks/fixtures/java/service/src/com/example/service/util/Logger.java)
 - Benchmark Intent: Capture richer class graphs with constructor injection, layered analytics, and shared utility modules emblematic of enterprise Java services.
+
+### `java-okhttp`
+- Scope: Vendored OkHttp 3.14.9 modules spanning the core client, DNS-over-HTTPS, SSE, TLS, URLConnection shims, logging interceptors, and the mock web server so the benchmark samples inter-package edges within a production-grade HTTP stack.
+- File Selection: Manifest sparse checkout limits the workspace to `src/main/java` trees for ten modules (151 Java files) and excludes tests and samples while hashing the vendored sources for integrity checks.
+- Benchmark Intent: Stress inference on a real Java ecosystem that mixes public API façades, internal helpers, and cross-module orchestration—surfacing import graphs that go well beyond our synthetic fixtures and exercising the fallback engine’s Java heuristics at scale.
 
 ### `ruby-basic`
 - Scope: Ruby module namespace coordinating a data store, formatter, and reporter.

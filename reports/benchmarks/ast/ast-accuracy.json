@@ -1,7 +1,7 @@
 {
   "benchmark": "ast-accuracy",
   "mode": "ast",
-  "recordedAt": "2025-11-06T14:49:22.709Z",
+  "recordedAt": "2025-11-06T18:07:49.527Z",
   "environment": {
     "nodeVersion": "v22.14.0",
     "platform": "win32",
@@ -17,8 +17,8 @@
       "recall": 0.6
     },
     "totals": {
-      "totalEvaluated": 458,
-      "truePositives": 458,
+      "totalEvaluated": 847,
+      "truePositives": 847,
       "falsePositives": 0,
       "falseNegatives": 0,
       "precision": 1,
@@ -2489,6 +2489,1968 @@
             "source": "src/com/example/service/metrics/SummaryBuilder.java",
             "target": "src/com/example/service/model/Summary.java",
             "relation": "uses"
+          }
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
+      },
+      {
+        "id": "java-okhttp",
+        "label": "OkHttp client repository",
+        "language": "java",
+        "totals": {
+          "truePositives": 389,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
+        },
+        "truePositives": [
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/internal/duplex/MwsDuplexAccess.java",
+            "target": "mockwebserver/src/main/java/okhttp3/mockwebserver/internal/duplex/DuplexResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/internal/duplex/MwsDuplexAccess.java",
+            "target": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockResponse.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/internal/duplex/DuplexResponseBody.java",
+            "target": "mockwebserver/src/main/java/okhttp3/mockwebserver/RecordedRequest.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/internal/duplex/MockDuplexResponseBody.java",
+            "target": "mockwebserver/src/main/java/okhttp3/mockwebserver/RecordedRequest.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockResponse.java",
+            "target": "mockwebserver/src/main/java/okhttp3/mockwebserver/internal/duplex/DuplexResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockResponse.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockResponse.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Settings.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockResponse.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockResponse.java",
+            "target": "okhttp/src/main/java/okhttp3/WebSocketListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "mockwebserver/src/main/java/okhttp3/internal/duplex/MwsDuplexAccess.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "mockwebserver/src/main/java/okhttp3/mockwebserver/internal/duplex/DuplexResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpMethod.java",
+            "relation": "imports"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/ErrorCode.java",
+            "relation": "imports"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Header.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Http2Stream.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Settings.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/NamedRunnable.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/ws/WebSocketProtocol.java",
+            "relation": "imports"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/MockWebServer.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/PushPromise.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/RecordedRequest.java",
+            "target": "okhttp/src/main/java/okhttp3/Handshake.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/RecordedRequest.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/RecordedRequest.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "mockwebserver/src/main/java/okhttp3/mockwebserver/RecordedRequest.java",
+            "target": "okhttp/src/main/java/okhttp3/TlsVersion.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/StatusLine.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Http2.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/MediaType.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/RequestBody.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okcurl/src/main/java/okhttp3/curl/Main.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/BootstrapDns.java",
+            "target": "okhttp/src/main/java/okhttp3/Dns.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/CacheControl.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/Callback.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/Dns.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/publicsuffix/PublicSuffixDatabase.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/MediaType.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/RequestBody.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-dnsoverhttps/src/main/java/okhttp3/dnsoverhttps/DnsOverHttps.java",
+            "target": "okhttp/src/main/java/okhttp3/ResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Connection.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/MediaType.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/RequestBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/HttpLoggingInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/ResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "target": "okhttp/src/main/java/okhttp3/Connection.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "target": "okhttp/src/main/java/okhttp3/EventListener.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "target": "okhttp/src/main/java/okhttp3/Handshake.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-logging-interceptor/src/main/java/okhttp3/logging/LoggingEventListener.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp-sse/src/main/java/okhttp3/sse/EventSource.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp-sse/src/main/java/okhttp3/sse/EventSourceListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/Callback.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/EventListener.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/MediaType.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/ResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/sse/EventSource.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/sse/EventSourceListener.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/sse/EventSources.java",
+            "target": "okhttp-sse/src/main/java/okhttp3/internal/sse/RealEventSource.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/sse/EventSources.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-sse/src/main/java/okhttp3/sse/EventSources.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-testing-support/src/main/java/okhttp3/internal/duplex/AsyncRequestBody.java",
+            "target": "okhttp/src/main/java/okhttp3/MediaType.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-testing-support/src/main/java/okhttp3/internal/duplex/AsyncRequestBody.java",
+            "target": "okhttp/src/main/java/okhttp3/RequestBody.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-testing-support/src/main/java/okhttp3/TestUtil.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Header.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-tests/src/main/java/okhttp3/TestTls13Request.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-tls/src/main/java/okhttp3/tls/HandshakeCertificates.java",
+            "target": "okhttp/src/main/java/okhttp3/CertificatePinner.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-tls/src/main/java/okhttp3/tls/HandshakeCertificates.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-tls/src/main/java/okhttp3/tls/HandshakeCertificates.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-tls/src/main/java/okhttp3/tls/internal/TlsUtil.java",
+            "target": "okhttp-tls/src/main/java/okhttp3/tls/HandshakeCertificates.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-tls/src/main/java/okhttp3/tls/internal/TlsUtil.java",
+            "target": "okhttp-tls/src/main/java/okhttp3/tls/HeldCertificate.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp-urlconnection/src/main/java/okhttp3/JavaNetAuthenticator.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/annotations/EverythingIsNonNull.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-urlconnection/src/main/java/okhttp3/JavaNetCookieJar.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/annotations/EverythingIsNonNull.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp-urlconnection/src/main/java/okhttp3/JavaNetCookieJar.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Address.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/cache/CacheRequest.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/cache/DiskLruCache.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/cache/InternalCache.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpMethod.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/StatusLine.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/io/FileSystem.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/CacheControl.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/CertificatePinner.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/CertificateChainCleaner.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/RealConnectionPool.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/ConnectionSpec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cookie.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpDate.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cookie.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/publicsuffix/PublicSuffixDatabase.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Cookie.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Dispatcher.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/FormBody.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Handshake.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Headers.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpDate.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Headers.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/publicsuffix/PublicSuffixDatabase.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpMethod.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/RealResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "target": "okhttp/src/main/java/okhttp3/CacheControl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpDate.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/StatusLine.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/CacheStrategy.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/DiskLruCache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/io/FileSystem.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/DiskLruCache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/DiskLruCache.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/InternalCache.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/cache/InternalCache.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ConnectInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ConnectInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ConnectInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ConnectInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ConnectInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ConnectionSpecSelector.java",
+            "target": "okhttp/src/main/java/okhttp3/ConnectionSpec.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ConnectionSpecSelector.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/EventListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/RealResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "target": "okhttp/src/main/java/okhttp3/ResponseBody.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ExchangeFinder.java",
+            "target": "okhttp/src/main/java/okhttp3/Address.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ExchangeFinder.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ExchangeFinder.java",
+            "target": "okhttp/src/main/java/okhttp3/EventListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ExchangeFinder.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ExchangeFinder.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ExchangeFinder.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ExchangeFinder.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/ExchangeFinder.java",
+            "target": "okhttp/src/main/java/okhttp3/Route.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Address.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/CertificatePinner.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Connection.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/ConnectionSpec.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/EventListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Handshake.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/ConnectionShutdownException.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/ErrorCode.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Http2Stream.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/StreamResetException.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/OkHostnameVerifier.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "target": "okhttp/src/main/java/okhttp3/Route.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnectionPool.java",
+            "target": "okhttp/src/main/java/okhttp3/Address.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnectionPool.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnectionPool.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RealConnectionPool.java",
+            "target": "okhttp/src/main/java/okhttp3/Route.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RouteDatabase.java",
+            "target": "okhttp/src/main/java/okhttp3/Route.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RouteSelector.java",
+            "target": "okhttp/src/main/java/okhttp3/Address.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RouteSelector.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RouteSelector.java",
+            "target": "okhttp/src/main/java/okhttp3/EventListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RouteSelector.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RouteSelector.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/RouteSelector.java",
+            "target": "okhttp/src/main/java/okhttp3/Route.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/Address.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/CertificatePinner.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/Connection.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/EventListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Cookie.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/CookieJar.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/MediaType.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/RequestBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/CallServerInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/CallServerInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/CallServerInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/CallServerInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/CallServerInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "target": "okhttp/src/main/java/okhttp3/Challenge.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "target": "okhttp/src/main/java/okhttp3/Cookie.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "target": "okhttp/src/main/java/okhttp3/CookieJar.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "target": "okhttp/src/main/java/okhttp3/Connection.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealResponseBody.java",
+            "target": "okhttp/src/main/java/okhttp3/MediaType.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RealResponseBody.java",
+            "target": "okhttp/src/main/java/okhttp3/ResponseBody.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RequestLine.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RequestLine.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/RouteException.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/ConnectionShutdownException.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/RequestBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "target": "okhttp/src/main/java/okhttp3/Route.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/StatusLine.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http/StatusLine.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/RequestLine.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/StatusLine.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http1/Http1ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Header.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/NamedRunnable.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Interceptor.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/ExchangeCodec.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/RequestLine.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/StatusLine.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2ExchangeCodec.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2Stream.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/Http2Stream.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/http2/PushObserver.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/Address.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/ConnectionSpec.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/RealConnectionPool.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Android10Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/AndroidPlatform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/BasicTrustRootIndex.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/AndroidPlatform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/CertificateChainCleaner.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/AndroidPlatform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/TrustRootIndex.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/AndroidPlatform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/AndroidPlatform.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/ConscryptPlatform.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Jdk8WithJettyBootPlatform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Jdk8WithJettyBootPlatform.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Jdk9Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/BasicCertificateChainCleaner.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/BasicTrustRootIndex.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/CertificateChainCleaner.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/TrustRootIndex.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/publicsuffix/PublicSuffixDatabase.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/tls/CertificateChainCleaner.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "target": "okhttp/src/main/java/okhttp3/Headers.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "target": "okhttp/src/main/java/okhttp3/HttpUrl.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http2/Header.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "target": "okhttp/src/main/java/okhttp3/RequestBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "target": "okhttp/src/main/java/okhttp3/ResponseBody.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/Call.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/Callback.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/EventListener.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/Protocol.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/Request.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/Response.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/WebSocket.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "target": "okhttp/src/main/java/okhttp3/WebSocketListener.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/MultipartBody.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/cache/InternalCache.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/RealConnectionPool.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Internal.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/proxy/NullProxySelector.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/CertificateChainCleaner.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/tls/OkHostnameVerifier.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/OkHttpClient.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/ws/RealWebSocket.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/cache/CacheInterceptor.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/ConnectInterceptor.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Transmitter.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/BridgeInterceptor.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/CallServerInterceptor.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/RealInterceptorChain.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/RetryAndFollowUpInterceptor.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/NamedRunnable.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RealCall.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/platform/Platform.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Request.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpMethod.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Request.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/RequestBody.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Response.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/connection/Exchange.java",
+            "relation": "uses"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/Response.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/http/HttpHeaders.java",
+            "relation": "imports"
+          },
+          {
+            "source": "okhttp/src/main/java/okhttp3/ResponseBody.java",
+            "target": "okhttp/src/main/java/okhttp3/internal/Util.java",
+            "relation": "imports"
           }
         ],
         "falsePositives": [],

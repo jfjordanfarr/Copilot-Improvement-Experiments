@@ -370,6 +370,95 @@
       }
     },
     {
+      "id": "java-okhttp",
+      "label": "OkHttp client repository",
+      "language": "java",
+      "path": "java/okhttp",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json",
+      "provenance": {
+        "kind": "vendor",
+        "repository": "square/okhttp",
+        "commit": "ad97bd3df34376eec85aa187dc8f45cfde8a2c01",
+        "license": "Apache-2.0"
+      },
+      "materialization": {
+        "kind": "git",
+        "repository": "square/okhttp",
+        "commit": "ad97bd3df34376eec85aa187dc8f45cfde8a2c01",
+        "sparsePaths": [
+          "okhttp/src/main/java",
+          "mockwebserver/src/main/java",
+          "okcurl/src/main/java",
+          "okhttp-dnsoverhttps/src/main/java",
+          "okhttp-logging-interceptor/src/main/java",
+          "okhttp-sse/src/main/java",
+          "okhttp-testing-support/src/main/java",
+          "okhttp-tests/src/main/java",
+          "okhttp-tls/src/main/java",
+          "okhttp-urlconnection/src/main/java"
+        ],
+        "include": [
+          "okhttp/src/main/java/**/*.java",
+          "mockwebserver/src/main/java/**/*.java",
+          "okcurl/src/main/java/**/*.java",
+          "okhttp-dnsoverhttps/src/main/java/**/*.java",
+          "okhttp-logging-interceptor/src/main/java/**/*.java",
+          "okhttp-sse/src/main/java/**/*.java",
+          "okhttp-testing-support/src/main/java/**/*.java",
+          "okhttp-tests/src/main/java/**/*.java",
+          "okhttp-tls/src/main/java/**/*.java",
+          "okhttp-urlconnection/src/main/java/**/*.java"
+        ],
+        "exclude": [
+          "**/src/test/**",
+          "samples/**"
+        ]
+      },
+      "oracle": {
+        "kind": "java",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json",
+        "include": [
+          "okhttp/src/main/java",
+          "mockwebserver/src/main/java",
+          "okcurl/src/main/java",
+          "okhttp-dnsoverhttps/src/main/java",
+          "okhttp-logging-interceptor/src/main/java",
+          "okhttp-sse/src/main/java",
+          "okhttp-testing-support/src/main/java",
+          "okhttp-tests/src/main/java",
+          "okhttp-tls/src/main/java",
+          "okhttp-urlconnection/src/main/java"
+        ]
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "generatedAt": "2025-11-06T00:00:00.000Z",
+        "fileSet": {
+          "include": [
+            "okhttp/src/main/java/**/*.java",
+            "mockwebserver/src/main/java/**/*.java",
+            "okcurl/src/main/java/**/*.java",
+            "okhttp-dnsoverhttps/src/main/java/**/*.java",
+            "okhttp-logging-interceptor/src/main/java/**/*.java",
+            "okhttp-sse/src/main/java/**/*.java",
+            "okhttp-testing-support/src/main/java/**/*.java",
+            "okhttp-tests/src/main/java/**/*.java",
+            "okhttp-tls/src/main/java/**/*.java",
+            "okhttp-urlconnection/src/main/java/**/*.java"
+          ],
+          "exclude": [
+            "**/src/test/**",
+            "samples/**"
+          ]
+        },
+        "rootHash": "be90ccd6ebe51756c3a48287cd7249672be9d3eb3672215d4c33af9295881bad",
+        "fileCount": 151
+      }
+    },
+    {
       "id": "ruby-basic",
       "label": "Ruby module graph for summary reporting",
       "language": "ruby",
