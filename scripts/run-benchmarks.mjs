@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -18,6 +18,8 @@ const SUITES = new Map([
   ["ast", "benchmarks/astAccuracy.test.js"],
   ["rebuild", "benchmarks/rebuildStability.test.js"]
 ]);
+
+const MAX_FAILURES_PER_FIXTURE = 20;
 
 function isTruthyConfig(value) {
   if (value === undefined) {
@@ -318,6 +320,8 @@ function main() {
       [MOCHA_BIN, "--ui", "tdd", "--timeout", "180000", ...suitePaths],
       { env }
     );
+
+    surfaceBenchmarkFindings(mode, parsed.suites);
   } catch (error) {
     if (error instanceof Error) {
       console.error(`\nBenchmark execution failed: ${error.message}`);
@@ -327,3 +331,154 @@ function main() {
 }
 
 main();
+
+function surfaceBenchmarkFindings(mode, suites) {
+  try {
+    if (suites.has("ast")) {
+      reportAstFailures(mode);
+    }
+    if (suites.has("rebuild")) {
+      reportRebuildFindings(mode);
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.warn(`\n[benchmarks] Unable to summarize failures: ${error.message}`);
+    }
+  }
+}
+
+function reportAstFailures(mode) {
+  const slug = slugifyMode(mode);
+  const baseDir = path.join(
+    REPO_ROOT,
+    "AI-Agent-Workspace",
+    "tmp",
+    "benchmarks",
+    "ast-accuracy",
+    slug
+  );
+  const indexPath = path.join(baseDir, "index.json");
+  if (!existsSync(indexPath)) {
+    console.log(`\nAST accuracy: no fixture index found for mode "${slug}".`);
+    return;
+  }
+
+  const summary = readJson(indexPath);
+  const fixtures = Array.isArray(summary?.fixtures) ? summary.fixtures : [];
+  const failing = fixtures.filter(entry => {
+    const totals = entry?.totals ?? {};
+    return (totals.falsePositives ?? 0) > 0 || (totals.falseNegatives ?? 0) > 0;
+  });
+
+  if (failing.length === 0) {
+    console.log(`\nAST accuracy: all fixtures clean (mode "${slug}").`);
+    return;
+  }
+
+  console.log(`\nAST accuracy failures (mode "${slug}"):`);
+  for (const fixture of failing) {
+    const { id, label, language, totals, artifact } = fixture;
+    const detailPath = path.join(baseDir, artifact);
+    const detail = existsSync(detailPath) ? readJson(detailPath) : null;
+    const fpCount = totals?.falsePositives ?? 0;
+    const fnCount = totals?.falseNegatives ?? 0;
+    const nameParts = [id];
+    if (label) {
+      nameParts.push(`(${label})`);
+    }
+    if (language) {
+      nameParts.push(`[${language}]`);
+    }
+
+    console.log(
+      `  ${nameParts.join(" ")}: precision ${formatMetric(totals?.precision)}, recall ${formatMetric(
+        totals?.recall
+      )} | TP ${totals?.truePositives ?? 0} | FP ${fpCount} | FN ${fnCount}`
+    );
+
+    if (!detail) {
+      console.log("    (fixture detail missing)");
+      continue;
+    }
+
+    const failures = [
+      ...(Array.isArray(detail.falseNegatives)
+        ? detail.falseNegatives.map(edge => ({ type: "FN", edge }))
+        : []),
+      ...(Array.isArray(detail.falsePositives)
+        ? detail.falsePositives.map(edge => ({ type: "FP", edge }))
+        : [])
+    ];
+
+    const limited = failures.slice(0, MAX_FAILURES_PER_FIXTURE);
+    for (const entry of limited) {
+      const relationSuffix = entry.edge.relation ? ` (${entry.edge.relation})` : "";
+      console.log(`    ${entry.type} ${entry.edge.source} -> ${entry.edge.target}${relationSuffix}`);
+    }
+
+    const remaining = failures.length - limited.length;
+    if (remaining > 0) {
+      console.log(
+        `    ... ${remaining} more failures (remaining FP ${fpCount - countType(limited, "FP")}, FN ${
+          fnCount - countType(limited, "FN")
+        })`
+      );
+    }
+  }
+}
+
+function reportRebuildFindings(mode) {
+  const slug = slugifyMode(mode);
+  const reportPath = path.join(
+    REPO_ROOT,
+    "reports",
+    "benchmarks",
+    slug === "ast" ? "ast" : "self-similarity",
+    "rebuild-stability.json"
+  );
+  if (!existsSync(reportPath)) {
+    return;
+  }
+  const report = readJson(reportPath);
+  const drift = Boolean(report?.data?.driftDetected);
+  const averageDuration = report?.data?.averageDurationMs;
+  const maxDuration = report?.data?.maxDurationMs;
+  console.log(
+    `\nRebuild stability: drift ${drift ? "detected" : "not detected"}, avg ${formatDuration(
+      averageDuration
+    )}, max ${formatDuration(maxDuration)}`
+  );
+}
+
+function countType(entries, type) {
+  return entries.reduce((total, entry) => (entry.type === type ? total + 1 : total), 0);
+}
+
+function readJson(filePath) {
+  return JSON.parse(readFileSync(filePath, "utf8"));
+}
+
+function slugifyMode(mode) {
+  if (!mode) {
+    return "default";
+  }
+  const normalized = String(mode).trim().toLowerCase();
+  if (!normalized) {
+    return "default";
+  }
+  return normalized.replace(/[^a-z0-9]+/g, "-");
+}
+
+function formatMetric(value) {
+  if (value === null || value === undefined) {
+    return "n/a";
+  }
+  return Number.parseFloat(value).toFixed(3);
+}
+
+function formatDuration(value) {
+  if (value === null || value === undefined) {
+    return "n/a";
+  }
+  return `${value}ms`;
+}

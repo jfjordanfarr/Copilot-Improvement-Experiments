@@ -1,7 +1,7 @@
 {
   "benchmark": "ast-accuracy",
   "mode": "ast",
-  "recordedAt": "2025-11-06T04:55:04.587Z",
+  "recordedAt": "2025-11-06T14:49:22.709Z",
   "environment": {
     "nodeVersion": "v22.14.0",
     "platform": "win32",
@@ -17,13 +17,13 @@
       "recall": 0.6
     },
     "totals": {
-      "totalEvaluated": 462,
-      "truePositives": 454,
-      "falsePositives": 4,
-      "falseNegatives": 4,
-      "precision": 0.9912663755458515,
-      "recall": 0.9912663755458515,
-      "f1Score": 0.9912663755458515
+      "totalEvaluated": 458,
+      "truePositives": 458,
+      "falsePositives": 0,
+      "falseNegatives": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1Score": 1
     },
     "fixtures": [
       {
@@ -422,12 +422,12 @@
         "label": "C translation unit with header inclusion",
         "language": "c",
         "totals": {
-          "truePositives": 2,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.6666666666666666,
-          "recall": 0.6666666666666666,
-          "f1Score": 0.6666666666666666
+          "truePositives": 3,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
           {
@@ -436,25 +436,18 @@
             "relation": "includes"
           },
           {
+            "source": "src/main.c",
+            "target": "src/util.c",
+            "relation": "calls"
+          },
+          {
             "source": "src/util.c",
             "target": "src/util.h",
             "relation": "includes"
           }
         ],
-        "falsePositives": [
-          {
-            "source": "src/main.c",
-            "target": "src/helpers.h",
-            "relation": "includes"
-          }
-        ],
-        "falseNegatives": [
-          {
-            "source": "src/main.c",
-            "target": "src/util.c",
-            "relation": "calls"
-          }
-        ]
+        "falsePositives": [],
+        "falseNegatives": []
       },
       {
         "id": "c-modular",
@@ -2382,12 +2375,12 @@
         "label": "Java reporting application",
         "language": "java",
         "totals": {
-          "truePositives": 5,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.8333333333333334,
-          "recall": 0.8333333333333334,
-          "f1Score": 0.8333333333333334
+          "truePositives": 6,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
           {
@@ -2412,24 +2405,17 @@
           },
           {
             "source": "src/com/example/format/ReportWriter.java",
-            "target": "src/com/example/model/Record.java",
-            "relation": "uses"
-          }
-        ],
-        "falsePositives": [
-          {
-            "source": "src/com/example/data/Catalog.java",
-            "target": "src/com/example/model/Record.java",
-            "relation": "uses"
-          }
-        ],
-        "falseNegatives": [
-          {
-            "source": "src/com/example/format/ReportWriter.java",
             "target": "src/com/example/data/Catalog.java",
             "relation": "imports"
+          },
+          {
+            "source": "src/com/example/format/ReportWriter.java",
+            "target": "src/com/example/model/Record.java",
+            "relation": "uses"
           }
-        ]
+        ],
+        "falsePositives": [],
+        "falseNegatives": []
       },
       {
         "id": "java-service",
@@ -2513,12 +2499,12 @@
         "label": "Ruby module graph for summary reporting",
         "language": "ruby",
         "totals": {
-          "truePositives": 4,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.8,
-          "recall": 0.8,
-          "f1Score": 0.8000000000000002
+          "truePositives": 5,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
           {
@@ -2537,37 +2523,30 @@
             "relation": "requires"
           },
           {
+            "source": "lib/reporter.rb",
+            "target": "lib/data_store.rb",
+            "relation": "requires"
+          },
+          {
             "source": "lib/formatter.rb",
             "target": "lib/templates.rb",
             "relation": "requires"
           }
         ],
-        "falsePositives": [
-          {
-            "source": "lib/templates.rb",
-            "target": "lib/data_store.rb",
-            "relation": "requires"
-          }
-        ],
-        "falseNegatives": [
-          {
-            "source": "lib/reporter.rb",
-            "target": "lib/data_store.rb",
-            "relation": "requires"
-          }
-        ]
+        "falsePositives": [],
+        "falseNegatives": []
       },
       {
         "id": "ruby-cli",
         "label": "Ruby CLI with layered services",
         "language": "ruby",
         "totals": {
-          "truePositives": 6,
-          "falsePositives": 1,
-          "falseNegatives": 1,
-          "precision": 0.8571428571428571,
-          "recall": 0.8571428571428571,
-          "f1Score": 0.8571428571428571
+          "truePositives": 7,
+          "falsePositives": 0,
+          "falseNegatives": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1Score": 1
         },
         "truePositives": [
           {
@@ -2596,25 +2575,18 @@
             "relation": "requires"
           },
           {
+            "source": "lib/services/analyzer.rb",
+            "target": "lib/support/logger.rb",
+            "relation": "requires"
+          },
+          {
             "source": "lib/services/data_loader.rb",
             "target": "lib/support/logger.rb",
             "relation": "requires"
           }
         ],
-        "falsePositives": [
-          {
-            "source": "lib/services/cache.rb",
-            "target": "lib/services/data_loader.rb",
-            "relation": "requires"
-          }
-        ],
-        "falseNegatives": [
-          {
-            "source": "lib/services/analyzer.rb",
-            "target": "lib/support/logger.rb",
-            "relation": "requires"
-          }
-        ]
+        "falsePositives": [],
+        "falseNegatives": []
       }
     ]
   }

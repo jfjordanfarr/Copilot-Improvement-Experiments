@@ -67,7 +67,9 @@ function runSafeCommitCheck() {
       if (flags.benchmarkArgs.length > 0) {
         benchmarkArgs.push('--', ...flags.benchmarkArgs);
       }
-      const benchmarkEnv = {};
+      const benchmarkEnv = {
+        BENCHMARK_SKIP_REGENERATE: '1'
+      };
       if (flags.mode) {
         benchmarkEnv.BENCHMARK_MODE = flags.mode;
       }
@@ -80,7 +82,10 @@ function runSafeCommitCheck() {
         runNpmScript(
           'Benchmarks (AST mode)',
           ['run', 'test:benchmarks', '--', '--suite', 'ast'],
-          { BENCHMARK_MODE: 'ast' }
+          {
+            BENCHMARK_MODE: 'ast',
+            BENCHMARK_SKIP_REGENERATE: '1'
+          }
         );
       }
     }

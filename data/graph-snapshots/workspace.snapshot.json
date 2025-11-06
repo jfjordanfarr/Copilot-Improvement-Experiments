@@ -3,7 +3,7 @@
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
   "totals": {
     "artifacts": 436,
-    "links": 1699
+    "links": 1700
   },
   "artifacts": [
     {
@@ -17233,6 +17233,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-c3a20a3f",
+      "sourceId": "fallback-artifact-53762c901962",
+      "targetId": "fallback-artifact-133195a79526",
+      "kind": "references",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-hint"
+    },
+    {
       "id": "orchestrated-link-33bce7d3",
       "sourceId": "fallback-artifact-53762c901962",
       "targetId": "fallback-artifact-192ef7563ee3",
@@ -27156,7 +27165,7 @@
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
       "seedCount": 463,
-      "hintCount": 191,
+      "hintCount": 193,
       "evidenceCount": 366
     },
     {

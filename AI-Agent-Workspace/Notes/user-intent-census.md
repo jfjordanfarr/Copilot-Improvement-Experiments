@@ -549,6 +549,18 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L4296-L4332` — Do not insert manual `<a id>` anchors in MDMD; resolve SlopCop link issues by aligning headings and slugs, and drive the workspace to commit-ready state instead of papering over warnings.
 - `L4756-L4848` — Guard the integrity of Layer‑4 docs—if edits degrade canonical sections, repair them immediately rather than accepting reduced structure or intent capture.
 
+## 2025-11-05 (Dev Day 14)
+- `2025-11-05.md:L2511-L2536` — Regenerate each benchmark fixture’s `expected.json` from the pinned oracle snapshot (layer manual bridges via overrides when needed); avoid treating the files as sacrosanct hand edits because the AST output should stay recomputable.
+- `L2601-L2601` — If `npm run safe:commit --benchmarks` fails to refresh fixtures, fix the pipeline so the command always performs the full regeneration before benchmarks execute.
+- `L3483-L3488` — After safe-commit runs, compare benchmark precision/recall against the previous commit to surface regressions explicitly.
+- `L3519-L3528` — Investigate why libuv’s ground truth shrank to two curated edges and restore a reproducible baseline with minimal hardcoded relationships.
+- `L3539-L3540` — Ensure the C oracle scans header files; missing header coverage is unacceptable.
+- `L3646-L3654` — Treat any benchmark that dips below the 0.6 precision/recall gates as a failure requiring immediate investigation, prioritizing correctness over expedience—especially for full third-party fixtures that should cover as much code as practicable.
+- `L3940-L3953` — When autosummarization occurs, rehydrate from the specified chat range (e.g., `#file:2025-11-05.md:266-3934`) and restate context before continuing work.
+- `L3966-L3972` — Optionally author a `*.instructions.md` guard for benchmark `expected.json` files to remind future edits that regeneration is the canonical workflow.
+- `L4133-L4137` — Align MDMD tooling docs with actual exports (e.g., fix the `runCli` reference for the fallback inference recorder) so graph audits stay green.
+- `L4141-L4145` — Use the lightweight benchmark loop (`node scripts/run-benchmarks.mjs --suite ast`, Vitest focus runs, targeted fixture regeneration) to iterate on heuristics until all suites meet accuracy thresholds.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.
