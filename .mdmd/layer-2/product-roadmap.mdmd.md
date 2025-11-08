@@ -93,14 +93,14 @@ Supports CAP-001 and CAP-030 by extending deterministic AST ground truth and fal
 #### Stream T13x – C# Polyglot Benchmarks *(planned)*
 - [x] Deliver a C# fixture oracle that emits `imports`/`uses` relationships from file-scoped namespaces, partial classes, and common Roslyn idioms, exposed via `packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts` with unit coverage.
 - [x] Extend benchmark regeneration and fallback capture CLIs to accept `--lang csharp`, wiring `.cs` file globs, Roslyn-aware integrity metadata, and deterministic diff artefacts.
-- [x] Onboard a curated `csharp-basic` fixture under `tests/integration/benchmarks/fixtures/csharp/` that exercises repository/service/model wiring while remaining small enough for fast CI runs.
-- [ ] Materialise a Roslyn subset (compilers + shared layers) as the first third-party benchmark with sparse checkout, integrity digests, and document the rationale for the selected module slice.
-- [ ] Capture roadmap updates and Layer 4 documentation pointers whenever new C# fixtures land so downstream diagnostics and tooling stay traceable.
+- [x] Onboard curated fixtures (`csharp-basic`, `csharp-webforms`) under `tests/integration/benchmarks/fixtures/csharp/` with deterministic expectations, manual override coverage, and safe-to-commit integrity digests.
+- [x] Materialise a Roslyn flow-analysis slice (`csharp-roslyn-compilers`) as the first third-party benchmark with sparse checkout, integrity hashing (72 files), and documented rationale for the selected module slice.
+- [ ] Capture roadmap updates and Layer 4 documentation pointers whenever subsequent C# fixtures land; Roslyn coverage documented November 2025.
 
 ### REQ-050 Acceptance Criteria
 - C# fixtures appear in `tests/integration/benchmarks/fixtures/fixtures.manifest.json` with oracle configurations and integrity digests that pass `npm run fixtures:regenerate -- --lang csharp --write`.
-- AST accuracy and fallback benchmarks report ≥0.6 precision/recall for `csharp-basic`, with Roslyn subset metrics called out in `reports/benchmarks/**/*`.
-- Layer 4 benchmark docs enumerate C# fixtures alongside regeneration instructions and fallback heuristics constraints.
+- AST accuracy and fallback benchmarks report ≥0.6 precision/recall for `csharp-basic`, with Roslyn subset metrics recorded in `reports/benchmarks/**/*` once harvest runs complete.
+- Layer 4 benchmark docs enumerate C# fixtures (`csharp-basic`, `csharp-webforms`, `csharp-roslyn-compilers`) alongside regeneration instructions and fallback heuristics constraints.
 - Safe-to-commit pipeline (`npm run safe:commit -- --benchmarks`) executes without regressing due to C# fixture onboarding.
 ### REQ-030 Acceptance Criteria
 - Profiles record Observe → Sustain progress per path scope, with violations emitted as diagnostics when enforcement is active.
@@ -216,6 +216,9 @@ Supports REQ-030. [Java Fixture Oracle](../layer-4/testing/benchmarks/javaFixtur
 ### IMP-524 Ruby Fixture Oracle
 Supports REQ-030. [Ruby Fixture Oracle](../layer-4/testing/benchmarks/rubyFixtureOracle.mdmd.md)
 
+### IMP-541 C# Fixture Oracle
+Supports REQ-050. [CSharp Fixture Oracle](../layer-4/testing/benchmarks/csharpFixtureOracle.mdmd.md)
+
 ### IMP-530 LLM Sampling Harness
 Supports REQ-020 and REQ-030. [LLM Sampling Harness](../layer-4/shared/llmSampling.mdmd.md)
 
@@ -230,6 +233,11 @@ Supports REQ-020 and REQ-030. [LLM Sampling Harness](../layer-4/shared/llmSampli
 - SlopCop CLI test suites (`markdownLinks.test.ts`, `assetPaths.test.ts`, `slopcopSymbolsCli.test.ts`) pass and cover regression fixtures.
 - Prototype docstring bridge fixtures recorded in `tests/integration/fixtures/slopcop-symbols` stay synchronized with Layer 4 MDMD exports.
 - ASCII and markdown export commands produce up-to-date narratives stored under `coverage/extension/src`.
+
+### REQ-050 Evidence
+- `npm run fixtures:regenerate -- --fixture csharp-roslyn-compilers --lang csharp --write` records Roslyn flow-analysis expectations and emits integrity root `94cd0626228ea7140ce3ea6cac0f79f232480855a964c3490990dd404ff16df8` (72 files).
+- Safe-to-commit logs from 2025-11-06 demonstrate the Roslyn slice and curated C# fixtures clearing regeneration, fallback capture, and benchmark pipelines without manual intervention.
+- Layer 4 `astAccuracyFixtures.mdmd.md` enumerates all C# fixtures with regeneration guidance, satisfying documentation linkage requirements.
 
 ### REQ-030 Evidence
 - `npm run safe:commit` executes cleanly across recent commits, demonstrating staged enforcement.

@@ -196,8 +196,8 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T110 Implement C# fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts`, covering namespace, partial class, and alias edge cases with unit tests.
 - [x] T111 [P] Extend fixture regeneration and fallback capture CLIs to support `--lang csharp`, including `.cs` glob defaults and integrity digests.
 - [x] T112 Scaffold deterministic C# fixtures under `tests/integration/benchmarks/fixtures/csharp/` (starting with `csharp-basic`) with `expected.json`/`inferred.json` baselines and manifest wiring.
-- [ ] T113 Materialise a Roslyn subset benchmark (e.g., `dotnet/roslyn` compilers layer) with sparse checkout, integrity metadata, and regeneration scripts.
-- [ ] T114 Update `.mdmd/layer-2/product-roadmap.mdmd.md` and Layer 4 benchmark docs to document C# oracle coverage, regeneration workflow, and Roslyn onboarding checkpoints.
+- [x] T113 Materialise a Roslyn subset benchmark (e.g., `dotnet/roslyn` compilers layer) with sparse checkout, integrity metadata, and regeneration scripts.
+- [x] T114 Update `.mdmd/layer-2/product-roadmap.mdmd.md` and Layer 4 benchmark docs to document C# oracle coverage, regeneration workflow, and Roslyn onboarding checkpoints.
 
 ---
 

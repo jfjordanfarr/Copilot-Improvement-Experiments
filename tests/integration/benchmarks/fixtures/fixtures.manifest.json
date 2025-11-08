@@ -412,6 +412,59 @@
       }
     },
     {
+      "id": "csharp-roslyn-compilers",
+      "label": "Roslyn flow analysis slice",
+      "language": "csharp",
+      "path": "csharp/roslyn-compilers",
+      "modes": ["ast"],
+      "expected": "expected.json",
+      "inferred": "inferred.json",
+      "provenance": {
+        "kind": "vendor",
+        "repository": "dotnet/roslyn",
+        "commit": "fa2ab851c437a345b2302a85021b59fe3c0ce0db",
+        "license": "MIT"
+      },
+      "materialization": {
+        "kind": "git",
+        "repository": "dotnet/roslyn",
+        "commit": "fa2ab851c437a345b2302a85021b59fe3c0ce0db",
+        "sparsePaths": [
+          "src/Compilers/CSharp/Portable/FlowAnalysis",
+          "src/Compilers/CSharp/Portable/Utilities"
+        ],
+        "include": [
+          "src/Compilers/CSharp/Portable/FlowAnalysis/**/*.cs",
+          "src/Compilers/CSharp/Portable/Utilities/**/*.cs"
+        ],
+        "exclude": [
+          "**/*Tests.cs",
+          "**/*.Tests.cs"
+        ]
+      },
+      "integrity": {
+        "algorithm": "sha256",
+        "generatedAt": "2025-11-06T00:00:00.000Z",
+        "fileSet": {
+          "include": [
+            "src/Compilers/CSharp/Portable/FlowAnalysis/**/*.cs",
+            "src/Compilers/CSharp/Portable/Utilities/**/*.cs"
+          ],
+          "exclude": [
+            "**/*Tests.cs",
+            "**/*.Tests.cs"
+          ]
+        },
+        "rootHash": "94cd0626228ea7140ce3ea6cac0f79f232480855a964c3490990dd404ff16df8",
+        "fileCount": 72
+      },
+      "oracle": {
+        "kind": "csharp",
+        "root": ".",
+        "manualOverrides": "oracle.overrides.json"
+      }
+    },
+    {
       "id": "java-okhttp",
       "label": "OkHttp client repository",
       "language": "java",

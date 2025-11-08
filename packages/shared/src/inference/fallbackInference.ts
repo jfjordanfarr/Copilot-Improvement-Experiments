@@ -1435,7 +1435,7 @@ function applyCSharpHeuristics(
 
   CSHARP_IDENTIFIER_PATTERN.lastIndex = 0;
 
-  if (!source.comparablePath.endsWith(".designer.cs")) {
+  if (shouldLinkCSharpPartialPeers(source.comparablePath)) {
     const partialTargets = new Set<string>();
     for (const definition of metadata.definedTypes) {
       if (!definition.isPartial) {
@@ -1463,6 +1463,11 @@ function applyCSharpHeuristics(
       }
     }
   }
+}
+
+function shouldLinkCSharpPartialPeers(relativePath: string): boolean {
+  const lower = relativePath.toLowerCase();
+  return lower.endsWith(".designer.cs") || lower.endsWith(".g.cs");
 }
 
 function disambiguateCSharpType(

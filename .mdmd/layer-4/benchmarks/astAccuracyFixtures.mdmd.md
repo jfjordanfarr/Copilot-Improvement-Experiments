@@ -23,6 +23,7 @@
   - [`tests/integration/benchmarks/fixtures/ruby/cli`](../../../tests/integration/benchmarks/fixtures/ruby/cli)
   - [`tests/integration/benchmarks/fixtures/csharp/basic`](../../../tests/integration/benchmarks/fixtures/csharp/basic)
   - [`tests/integration/benchmarks/fixtures/csharp/webforms`](../../../tests/integration/benchmarks/fixtures/csharp/webforms)
+  - [`tests/integration/benchmarks/fixtures/csharp/roslyn-compilers`](../../../tests/integration/benchmarks/fixtures/csharp/roslyn-compilers)
   - [`tests/integration/benchmarks/fixtures/fixtures.manifest.json`](../../../tests/integration/benchmarks/fixtures/fixtures.manifest.json)
 - Related Tests: [`tests/integration/benchmarks/astAccuracy.test.ts`](../../../tests/integration/benchmarks/astAccuracy.test.ts)
 
@@ -57,6 +58,12 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - **Source**: `rust-lang/log` @ `6e1735597bb21c5d979a077395df85e1d633e077` — Apache-2.0 OR MIT
 - **Integrity**: `sha256` root `28f475a305a4226ed660b7c5cccb193715970a30e66d12fc55c7705b2e01700c` (10 files)
 - **File Selection**: include `src/**/*.rs`, `Cargo.toml`; exclude `tests/**`, `benches/**`, `examples/**`, `rfcs/**` (resolved 10 files)
+
+#### `csharp-roslyn-compilers` (Roslyn flow analysis slice)
+
+- **Source**: `dotnet/roslyn` @ `fa2ab851c437a345b2302a85021b59fe3c0ce0db` — MIT
+- **Integrity**: `sha256` root `94cd0626228ea7140ce3ea6cac0f79f232480855a964c3490990dd404ff16df8` (72 files)
+- **File Selection**: include `src/Compilers/CSharp/Portable/FlowAnalysis/**/*.cs`, `src/Compilers/CSharp/Portable/Utilities/**/*.cs`; exclude `**/*Tests.cs`, `**/*.Tests.cs` (resolved 72 files)
 
 #### `java-okhttp` (OkHttp client repository)
 
@@ -143,14 +150,20 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - File Selection: Manifest sparse checkout limits the workspace to `src/main/java` trees for ten modules (151 Java files) and excludes tests and samples while hashing the vendored sources for integrity checks.
 - Benchmark Intent: Stress inference on a real Java ecosystem that mixes public API façades, internal helpers, and cross-module orchestration—surfacing import graphs that go well beyond our synthetic fixtures and exercising the fallback engine’s Java heuristics at scale.
 
-- Scope: C# diagnostics service with layered repository, service, and formatter components under a shared namespace to mirror the markdown drift workflow.
-- Source Files: [`src/Diagnostics/App.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/App.cs), [`src/Diagnostics/Data/Repository.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Data/Repository.cs), [`src/Diagnostics/Services/ReportService.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Services/ReportService.cs), [`src/Diagnostics/Models/Record.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Record.cs), [`src/Diagnostics/Models/Formatter.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Formatter.cs), [`src/Diagnostics/Models/FormattedReport.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/FormattedReport.cs).
-- Benchmark Intent: Validate namespace resolution, partial class usage, and intra-assembly dependencies uncovered by the C# fixture oracle before the pipeline merges manual overrides.
+### `csharp-basic`
+- Scope: C# diagnostics sample layering an app entry point, repository, formatter, and reporting service.
+- Source Files: [`src/Diagnostics/App.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/App.cs), [`src/Diagnostics/Data/Repository.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Data/Repository.cs), [`src/Diagnostics/Models/Record.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Record.cs), [`src/Diagnostics/Models/Formatter.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Formatter.cs), [`src/Diagnostics/Models/FormattedReport.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/FormattedReport.cs), [`src/Diagnostics/Services/ReportService.cs`](../../../tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Services/ReportService.cs)
+- Benchmark Intent: Validate C# namespace and partial class reconstruction across service, DTO, and formatting helpers inside a compact application slice.
 
 ### `csharp-webforms`
 - Scope: ASP.NET Web Forms sample with shared code-behind (`App_Code/Globals.cs`) and page assets (`Pages/Default.aspx`, `Default.aspx.cs`, `Default.aspx.designer.cs`, `Scripts/appConfig.js`).
 - Source Files: [`src/App_Code/Globals.cs`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/App_Code/Globals.cs), [`src/Pages/Default.aspx`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx), [`src/Pages/Default.aspx.cs`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.cs), [`src/Pages/Default.aspx.designer.cs`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs), [`src/Scripts/appConfig.js`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Scripts/appConfig.js), [`oracle.overrides.json`](../../../tests/integration/benchmarks/fixtures/csharp/webforms/oracle.overrides.json).
 - Benchmark Intent: Exercise fallback heuristics across mixed markup/code-behind assets plus manual overrides for Web Forms designer files so the AST accuracy suite covers UI-driven C# projects.
+
+### `csharp-roslyn-compilers`
+- Scope: Sparse checkout of Roslyn’s flow-analysis and utility layers pinned to `fa2ab851c437a345b2302a85021b59fe3c0ce0db`, capturing 72 `.cs` files that model nullable analysis, region walkers, and value-set abstractions.
+- Source Files: Materialised via manifest glob rules targeting `src/Compilers/CSharp/Portable/FlowAnalysis/**/*.cs` and `src/Compilers/CSharp/Portable/Utilities/**/*.cs`; integrity digest `sha256` root `94cd0626228ea7140ce3ea6cac0f79f232480855a964c3490990dd404ff16df8` tracks the pinned slice.
+- Benchmark Intent: Establish a nontrivial OSS baseline that blends dataflow visitors, nullable analysis state machines, and Roslyn’s value-set utilities so the C# oracle and fallback heuristics are stress-tested against production compiler code.
 
 ### `ruby-basic`
 - Scope: Ruby module namespace coordinating a data store, formatter, and reporter.

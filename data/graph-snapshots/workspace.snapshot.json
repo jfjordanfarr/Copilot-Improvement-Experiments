@@ -132,6 +132,7 @@
             "IMP-522",
             "IMP-523",
             "IMP-524",
+            "IMP-541",
             "IMP-530"
           ]
         }
@@ -12586,6 +12587,15 @@
       "createdBy": "fallback-heuristic"
     },
     {
+      "id": "orchestrated-link-f3b3f652",
+      "sourceId": "fallback-artifact-04d7e946b4f2",
+      "targetId": "fallback-artifact-72914eeec56e",
+      "kind": "documents",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
+    },
+    {
       "id": "orchestrated-link-6ec6dbb5",
       "sourceId": "fallback-artifact-04d7e946b4f2",
       "targetId": "fallback-artifact-873d17e5cd45",
@@ -14967,15 +14977,6 @@
       "targetId": "fallback-artifact-70ab21bd0f47",
       "kind": "depends_on",
       "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
-    },
-    {
-      "id": "orchestrated-link-6beacc5b",
-      "sourceId": "fallback-artifact-286de93fe4dd",
-      "targetId": "fallback-artifact-f6d694be57bf",
-      "kind": "depends_on",
-      "confidence": 0.7,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "fallback-heuristic"
     },
@@ -25852,15 +25853,6 @@
       "createdBy": "relationship-rules"
     },
     {
-      "id": "orchestrated-link-d7454553",
-      "sourceId": "fallback-artifact-e5384e740555",
-      "targetId": "fallback-artifact-635940bd0cb3",
-      "kind": "documents",
-      "confidence": 0.7,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "fallback-heuristic"
-    },
-    {
       "id": "orchestrated-link-aeb4f97f",
       "sourceId": "fallback-artifact-e5384e740555",
       "targetId": "fallback-artifact-637117183905",
@@ -27128,6 +27120,15 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-413cadd3",
+      "sourceId": "fallback-artifact-f6d694be57bf",
+      "targetId": "fallback-artifact-286de93fe4dd",
+      "kind": "depends_on",
+      "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "fallback-heuristic"
     },
     {
       "id": "orchestrated-link-e3cf6f22",
