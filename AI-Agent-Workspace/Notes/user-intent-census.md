@@ -561,6 +561,17 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L4133-L4137` — Align MDMD tooling docs with actual exports (e.g., fix the `runCli` reference for the fallback inference recorder) so graph audits stay green.
 - `L4141-L4145` — Use the lightweight benchmark loop (`node scripts/run-benchmarks.mjs --suite ast`, Vitest focus runs, targeted fixture regeneration) to iterate on heuristics until all suites meet accuracy thresholds.
 
+## 2025-11-06 (Dev Day 15)
+- `2025-11-06.md:L1-L24` — Follow `devHistory.summarizeDay.prompt.md` for the 11/05 recap, correlate it to commit 536ff11b, and review that commit’s code changes once the summary lands.
+- `L92-L125` — After the summary and commit review finish, provide an explicit check-in and capture fresh directives in `user-intent-census.md` so the audit trail stays current.
+- `L195-L198` — Rehydrate `#file:001-link-aware-diagnostics` and `#file:layer-2` before planning; prioritize regenerating benchmark data and investigating any failures as the first action.
+- `L700-L756` — Fix `npm run safe:commit --benchmarks` so fixture regeneration runs only once per pipeline instead of repeating during subsequent benchmark steps.
+- `L1792-L2032` — Proceed with the OkHttp AST benchmark fixture and eliminate false positives by improving heuristics rather than introducing manual overrides.
+- `L3112-L3112` — Update the Layer-2 roadmap and SpecKit tasks with requirement checkboxes before implementing the C# oracle, supporting fixtures, and Roslyn slice.
+- `L3996-L4003` — Ensure T112 includes the WebForms chain (`Web.config` → `Globals.cs` → code-behind → ASPX hidden fields → client JS) so cross-language ripples stay observable.
+- `L5026-L5080` — Wait for integration runs to finish and review their logs before reporting success; do not rely on tooling that fires prior to test completion.
+- `L6684-L6684` — Drive the workspace back to “safe commit-ready” after the C#/Roslyn updates with lint, tests, benchmarks, graph audit, and SlopCop all passing.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

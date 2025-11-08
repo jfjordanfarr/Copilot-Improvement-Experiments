@@ -170,7 +170,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T088 Materialise the full `libuv/libuv` repository via the benchmark manifest (clone → glob include/exclude) and refresh AST expectations against the staging workspace.
 - [x] T089 Materialise the full `psf/requests` repository via the benchmark manifest (clone → glob include/exclude) and document dynamic import considerations surfaced by full-project analysis.
 - [x] T090 Materialise the full `rust-lang/log` repository via the benchmark manifest (clone → glob include/exclude) and capture macro-expansion notes from full-project analysis.
-- [ ] T091 Materialise the full `square/okhttp` repository via the benchmark manifest (clone → glob include/exclude) and map builder pattern coverage.
+- [x] T091 Materialise the full `square/okhttp` repository via the benchmark manifest (clone → glob include/exclude) and map builder pattern coverage.
 - [ ] T092 Materialise the full `ruby-grape/grape` repository via the benchmark manifest (clone → glob include/exclude) and annotate runtime DSL edges discovered by whole-project analysis.
 - [ ] T093 Materialise the full `apache/commons-lang` repository via the benchmark manifest (clone → glob include/exclude) and document scope exclusions revealed by whole-project analysis.
 - [x] T094 [P] Document Python oracle scope by updating `.mdmd/layer-2/product-roadmap.mdmd.md` and `.mdmd/layer-3/benchmark-telemetry-pipeline.mdmd.md`, and introduce Layer 4 implementation notes in `.mdmd/layer-4/testing/benchmarks/pythonFixtureOracle.mdmd.md`.
@@ -190,7 +190,7 @@ description: "Task list for Link-Aware Diagnostics"
 - [x] T101 [P] Implement Ruby fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts` via interpreter-driven require graph harvesting with unit coverage.
 - [x] T102 Refactor `scripts/fixture-tools/regenerate-benchmarks.ts` into a language-agnostic CLI supporting `--lang c|rust|java|ruby|python|typescript`, per-language artifacts, and manifest-driven toolchain hints.
 - [ ] T103 Update `scripts/run-benchmarks.mjs` and `tests/integration/benchmarks/fixtures/fixtures.manifest.json` to surface polyglot oracle coverage, regenerate C/Rust/Java/Ruby fixtures, and refresh `reports/benchmarks/**/*` precision/recall snapshots. *(Regeneration now fires automatically ahead of every benchmark run; manifest surfacing and cross-language refresh still outstanding.)*
-- [ ] T104 Add language-aware fallback heuristics (C calls, Rust use/mod, Java imports, Ruby require_relative) to `packages/shared/src/inference/fallbackInference.ts` with regression tests guaranteeing parity against oracle ground truth.
+- [x] T104 Add language-aware fallback heuristics (C calls, Rust use/mod, Java imports, Ruby require_relative) to `packages/shared/src/inference/fallbackInference.ts` with regression tests guaranteeing parity against oracle ground truth.
 - [ ] T105 Build LLM sampling harness in `packages/shared/src/inference/llmSampling.ts`, integrate configurable sampling into `packages/shared/src/inference/linkInference.ts`, and expose server/extension settings for sample counts and confidence thresholds.
 - [ ] T106 Extend telemetry (`packages/shared/src/telemetry/inferenceAccuracy.ts`, benchmark reporters) to record oracle coverage, sampling agreement scores, and flag divergent LLM edges for operator review.
 - [x] T110 Implement C# fixture oracle runtime in `packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts`, covering namespace, partial class, and alias edge cases with unit tests.

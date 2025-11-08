@@ -149,6 +149,7 @@ Curate language-specific fixtures that measure how accurately the inference pipe
 - Scope: Vendored OkHttp 3.14.9 modules spanning the core client, DNS-over-HTTPS, SSE, TLS, URLConnection shims, logging interceptors, and the mock web server so the benchmark samples inter-package edges within a production-grade HTTP stack.
 - File Selection: Manifest sparse checkout limits the workspace to `src/main/java` trees for ten modules (151 Java files) and excludes tests and samples while hashing the vendored sources for integrity checks.
 - Benchmark Intent: Stress inference on a real Java ecosystem that mixes public API façades, internal helpers, and cross-module orchestration—surfacing import graphs that go well beyond our synthetic fixtures and exercising the fallback engine’s Java heuristics at scale.
+- Builder Pattern Coverage: The expectations in [`tests/integration/benchmarks/fixtures/java/okhttp/expected.json`](../../../tests/integration/benchmarks/fixtures/java/okhttp/expected.json) capture how `OkHttpClient`’s nested `Builder` wires TLS, cache, and connection pool collaborators (`RealConnectionPool`, `CertificateChainCleaner`, `RetryAndFollowUpInterceptor`, etc.), giving the benchmark explicit evidence of builder-driven dependency propagation.
 
 ### `csharp-basic`
 - Scope: C# diagnostics sample layering an app entry point, repository, formatter, and reporting service.
