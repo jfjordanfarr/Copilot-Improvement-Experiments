@@ -1,7 +1,7 @@
 # Test Report
 
-- **Generated:** 2025-11-07T21:42:38.308Z
-- **Git commit:** dd7e107629b0e67dcdbc7a18c78a114b8f6e678a
+- **Generated:** 2025-11-10T03:10:34.639Z
+- **Git commit:** 6ab73ac99e7b5889976bbda5fd422a291fe6378c
 - **Git branch:** main
 - **Benchmark mode:** self-similarity
 
@@ -29,18 +29,19 @@
 - **Mode:** self-similarity
 - **Workspace:** simple-workspace
 - **Iterations:** 3
-- **Durations:** 1714 ms, 2053 ms, 1725 ms
-- **Average duration:** 1830.67 ms
-- **Max duration:** 2053.00 ms
+- **Durations:** 11807 ms, 6905 ms, 3984 ms
+- **Average duration:** 7565.33 ms
+- **Max duration:** 11807.00 ms
 - **Drift detected:** No
 
 ## Environment Summary
 
 - **arch:** x64
-- **nodeVersion:** v22.14.0
+- **nodeVersion:** v22.19.0
 - **platform:** win32
+- **providerMode:** local-only
 
 ## Benchmark Artifacts
 
-- ast-accuracy [mode: self-similarity] — recorded 2025-11-07T21:40:10.696Z (AI-Agent-Workspace\tmp\benchmarks\ast-accuracy.self-similarity.json)
-- rebuild-stability [mode: self-similarity] — recorded 2025-11-07T21:40:16.211Z (AI-Agent-Workspace\tmp\benchmarks\rebuild-stability.self-similarity.json)
+- ast-accuracy [mode: self-similarity] — recorded 2025-11-10T03:10:29.155Z (AI-Agent-Workspace\tmp\benchmarks\ast-accuracy.self-similarity.json)
+- rebuild-stability [mode: self-similarity] — recorded 2025-11-10T03:10:28.907Z (AI-Agent-Workspace\tmp\benchmarks\rebuild-stability.self-similarity.json)

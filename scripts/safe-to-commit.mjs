@@ -95,6 +95,10 @@ function runSafeCommitCheck() {
       FIXTURES_VERIFY_QUIET: '1'
     });
     runNpmScript('Documentation link enforcement', ['run', 'docs:links:enforce']);
+  runNpmScript('Live Docs targets manifest', ['run', 'live-docs:targets']);
+  runNpmScript('Live Docs generate', ['run', 'live-docs:generate']);
+  runNpmScript('Live Docs lint', ['run', 'live-docs:lint']);
+    runNpmScript('Live Docs precision report', ['run', 'live-docs:report']);
     runNpmScript('SlopCop markdown audit', ['run', 'slopcop:markdown']);
     runNpmScript('SlopCop asset audit', ['run', 'slopcop:assets']);
     runNpmScript('SlopCop symbol audit', ['run', 'slopcop:symbols']);

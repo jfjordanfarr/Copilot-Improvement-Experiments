@@ -7,30 +7,33 @@
 ## Components
 
 ### COMP-005 Knowledge Graph Ingestion
-Supports REQ-020 and REQ-F1/F3 by ingesting external graph feeds, validating schemas, and projecting links into the workspace knowledge base so ripple analysis reflects the broader ecosystem.
+Supports FR-LD3, FR-LD5, and REQ-L2 by ingesting external graph feeds, Live Documentation projections, and analyzer hints, validating schemas, and projecting links into the workspace knowledge base so ripple analysis reflects the broader ecosystem.
 
 ## Responsibilities
 
 ### Feed Coordination
 - Discover, configure, and lifecycle-manage snapshot and streaming feeds (LSIF, SCIP, bespoke JSON) through `KnowledgeFeedManager`.
 - Respect provider guard settings while keeping graph data ready for future enforcement stages.
+- Accept Live Doc Graph Projector snapshots as an internal feed so diagnostics, CLI, and Copilot surfaces share the same dependency edges.
 
 ### Schema Enforcement and Persistence
 - Validate payloads using `SchemaValidator`, `LSIFParser`, and `SCIPParser` before mutating the `GraphStore` via `KnowledgeGraphIngestor`.
 - Maintain checkpoints (`FeedCheckpointStore`) so ingestion can resume without replaying full snapshots.
+- Normalise Live Doc markdown links into canonical URIs (aligned with `normalizeFileUri`) before persisting edges.
 
 ### Runtime Availability and Diagnostics
 - Surface degraded feed states through `FeedDiagnosticsGateway` diagnostics/logging while allowing Workspace-only inference to continue.
-- Refresh knowledge feed descriptors consumed by `ArtifactWatcher` and the inference orchestrator once ingestion succeeds.
+- Refresh knowledge feed descriptors consumed by `ArtifactWatcher`, the Live Doc Generator, and the inference orchestrator once ingestion succeeds.
 
 ## Interfaces
 
 ### Inbound Interfaces
 - Feed configuration sources (workspace settings, future VS Code config) enumerating snapshot URLs, stream endpoints, and credentials.
 - Snapshot and streaming payloads delivered to the manager and parsers.
+- Live Doc Graph Projector snapshots treated as deterministic internal feeds.
 
 ### Outbound Interfaces
-- `KnowledgeFeed[]` descriptors provided to `ArtifactWatcher.setKnowledgeFeeds` for runtime inference.
+- `KnowledgeFeed[]` descriptors provided to `ArtifactWatcher.setKnowledgeFeeds` and Live Doc Generator services for runtime inference and regeneration heuristics.
 - Health diagnostics and structured logs emitted via `FeedDiagnosticsGateway` for extension surfaces and CLI audits.
 
 ## Linked Implementations
@@ -71,10 +74,14 @@ Normalises LSIF dumps into workspace snapshot artifacts and links. [LSIF Parser]
 ### IMP-215 symbolBridgeProvider
 Requests workspace symbol contributions from the extension to enrich ingestion seeds. [Symbol Bridge Provider](/.mdmd/layer-4/knowledge-graph-ingestion/symbolBridgeProvider.mdmd.md)
 
+### IMP-303 liveDocGraphProjector
+Projects staged Live Doc markdown into canonical graph edges. [Live Doc Graph Projector](/.mdmd/layer-4/live-docs/graphProjector.mdmd.md)
+
 ## Evidence
 - Unit suites: `knowledgeFeedManager.test.ts`, `knowledgeGraphIngestor.test.ts`, `schemaValidator.test.ts`, `feedCheckpointStore.test.ts` cover validation and persistence.
 - Integration fixtures under `tests/integration/fixtures/knowledge-feeds` exercise snapshot + stream ingestion paths.
 - Safe-to-commit pipeline runs `npm run graph:snapshot` and `npm run graph:audit` ensuring ingested edges remain deterministic.
+- Live Doc benchmark (`reports/benchmarks/live-docs/precision.json`) captured precision 100% / recall 98.62% for symbols and precision 100% / recall 99.90% for dependencies, validating that projected markdown links match analyzer expectations.
 
 ## Operational Notes
 - Failure handling distinguishes schema violations, transport errors, and checkpoint loss, each with targeted recovery strategies.

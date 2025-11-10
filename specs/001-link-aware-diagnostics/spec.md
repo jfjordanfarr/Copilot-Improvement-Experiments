@@ -1,216 +1,194 @@
-# Feature Specification: Link-Aware Diagnostics
+# Feature Specification: Live Documentation
 
-**Feature Branch**: `001-link-aware-diagnostics`  
-**Created**: 2025-10-16  
-**Status**: In Progress  
-**Input**: User description: "Create a system (extension or language server) that raises IntelliSense problems when linked markdown layers and implementation files drift, extending to code files via dependency awareness so Copilot agents notice related context."
+**Feature Branch**: `001-live-documentation`
 
-**Current Vision**: Deliver a complete, workspace-local understanding of change impact—across code, documentation, and tooling—so humans and copilots can predict and verify consequences without depending on external services.
+**Created**: 2025-10-16 (pivoted 2025-11-08)
+
+**Status**: In Progress
+
+**Input**: "Deliver an open-source, markdown-as-AST system where every workspace artifact has Live Documentation: an authored preamble plus generated sections describing programmatic surface, dependencies, and evidence, powering diagnostics and copilots without cloud dependencies."
+
+**Current Vision**: Live Documentation mirrors the repository under `/.live-documentation/`, giving each tracked asset an authored preamble and deterministic generated metadata. Diagnostics, CLI exports, and copilots consume the same markdown graph, enabling reproducible, MIT-licensed adoption across teams.
 
 ## User Scenarios & Testing *(mandatory)*
 
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
+### User Story 1 – Authors curate Live Documentation headers (Priority: P1)
 
-### User Story 1 - Developers see the full impact of a code change (Priority: P1)
+**Status**: In progress — validated by instruction updates and upcoming integration suites under `tests/integration/live-docs`.
 
-**Status**: Delivered (2025-10-26) — validated by `tests/integration/us1/codeImpact.test.ts`
+Maintainers open a Live Doc, edit the authored `Description`, `Purpose`, or `Notes`, and regenerate generated sections without losing manual context. The mirror tree lives under `/.live-documentation/` by default but can be reconfigured.
 
-Developers commit a change to any source file and immediately see the complete set of files that may be impacted, including direct dependents and inferred transitive ripples.
+**Why this priority**: The authored preamble communicates intent; losing it would make Live Docs untrustworthy even if generated metadata is correct. Authors need deterministic tooling to preserve their work.
 
-**Why this priority**: Delivering the definitive change-impact answer for code edits is the core promise of the extension and lays the groundwork for richer artifact coverage.
-
-**Independent Test**: Can be fully tested by editing a code file inside a benchmark workspace, rebuilding the dependency graph, and verifying diagnostics appear on every affected code artifact without involving documentation layers.
+**Independent Test**: Start from a staged Live Doc, modify the authored `Notes`, run the regeneration command, and confirm generated blocks update while authored content remains untouched.
 
 **Acceptance Scenarios**:
 
-1. **Given** a module with direct imports depending on it, **When** the developer saves the module, **Then** diagnostics appear on each dependent module explaining the required review.
-2. **Given** a workspace with deeper transitive dependencies, **When** an upstream module changes, **Then** the ripple analysis surfaces all downstream dependents within the configured hop limit.
-3. **Given** a workspace where AST metadata is available, **When** the graph is rebuilt, **Then** the inferred edges match the canonical AST relationships within the configured tolerance.
+1. **Given** a Live Doc with authored notes, **When** the maintainer runs `npm run live-docs:generate`, **Then** generated sections refresh while authored markdown is unchanged byte-for-byte.
+2. **Given** a Live Doc stored outside the repository (custom path), **When** regeneration runs, **Then** the output path honours configuration and maintains mirror structure.
+3. **Given** an attempt to remove the `Metadata` or `Authored` headings, **When** safe-commit executes, **Then** lint fails with actionable guidance.
 
 ---
 
-### User Story 4 - Maintainers explore symbol neighborhoods (Priority: P4)
+### User Story 2 – Generated sections stay in sync (Priority: P1)
 
-**Status**: Delivered (2025-10-26) — validated by `tests/integration/us4/inspectSymbolNeighbors.test.ts`
+**Status**: In progress — benchmarks and regeneration CLIs exist; evidence feeds still pending.
 
-Maintainers and Copilot agents dogfood the graph by selecting any symbol and querying its nearest neighbors across layers to understand dependency context before making changes.
+Developers run regeneration or save a file; the Live Doc generator updates `Public Symbols`, `Dependencies`, and archetype-specific sections (`Observed Evidence`, `Targets`, `Consumers`) deterministically using analyzers and coverage feeds.
 
-**Why this priority**: Exposing the graph for exploratory queries lets us validate data quality, accelerates internal debugging, and lays the groundwork for AI-assisted explanation workflows.
+**Why this priority**: Live Docs only replace ad-hoc wiki pages if their generated content stays accurate and auditable.
 
-**Independent Test**: Can be validated by invoking a dedicated command or CLI that resolves a symbol identifier, returns hop-limited neighbors grouped by relationship kind, and surfaces human-readable context without emitting diagnostics.
+**Independent Test**: Modify a code file’s exports, regenerate Live Docs, and verify the corresponding `Public Symbols` section reflects the change with correct provenance metadata.
 
 **Acceptance Scenarios**:
 
-1. **Given** a command palette action to “Inspect symbol neighbors,” **When** a maintainer selects a symbol, **Then** the tool returns first-degree neighbors with relationship labels and canonical file locations.
-2. **Given** a hop limit of 2, **When** the maintainer expands the result, **Then** the tool includes second-degree connections while clearly identifying the traversal path.
-3. **Given** multiple documentation layers referencing the symbol, **When** the query runs, **Then** the response groups documentation versus implementation neighbors so follow-up is triaged quickly.
+1. **Given** a TypeScript module with new exports, **When** regeneration runs, **Then** the Live Doc lists the new symbol with docstring summary and source anchor.
+2. **Given** an HTML template referencing an image, **When** regeneration runs, **Then** the asset Live Doc lists the template under `Consumers`.
+3. **Given** a test covering multiple implementations, **When** regeneration runs, **Then** the test Live Doc lists all targets; removing a target triggers a diff and lint warning.
 
 ---
 
-### User Story 2 - Writers get drift alerts (Priority: P2)
+### User Story 3 – Teams consume Live Doc narratives (Priority: P2)
 
-**Status**: Delivered (2025-10-26) — validated by `tests/integration/us2/markdownDrift.test.ts`
+**Status**: Planned — existing diagnostics and CLI outputs will pivot to Live Docs.
 
-Technical writers update requirements or architecture markdown and need a guaranteed signal identifying the code paths and lower-layer docs that require follow-up.
+Leads export impact reports, Copilot prompts, or diagnostics sourced from the Live Doc graph, seeing the same metadata (generated timestamp, evidence count, dependency depth) regardless of surface.
 
-**Why this priority**: Once the code-centric dependency map is trustworthy, extending it to documentation keeps planning artifacts aligned without diluting early focus.
+**Why this priority**: Consumption surfaces prove the system’s value; without them Live Docs become a static archive.
 
-**Independent Test**: Can be fully tested by editing a mapped markdown file inside a prepared workspace and verifying that diagnostics appear on the linked implementation files using the same graph infrastructure that powers code-to-code impact.
+**Independent Test**: Generate Live Docs, run the diagnostics provider and CLI export, and confirm both render consistent data for a given file change.
 
 **Acceptance Scenarios**:
 
-1. **Given** a requirements document linked to an implementation file through the graph, **When** the writer saves changes, **Then** the implementation file surfaces a diagnostic referencing the updated document.
-2. **Given** a documentation stack spanning multiple layers, **When** a higher-layer doc changes, **Then** diagnostics appear on each downstream layer until acknowledged.
+1. **Given** a developer saving a file, **When** diagnostics appear, **Then** entries include links to the relevant Live Docs with evidence counts.
+2. **Given** a CLI command `live-docs inspect packages/.../file.ts`, **When** executed, **Then** it renders markdown summarising public symbols, dependencies, and evidence identical to the Live Doc file.
+3. **Given** a Copilot prompt referencing `@{live-doc ...}`, **When** injected, **Then** it supplies the authored notes plus generated summary to improve answer relevance.
 
 ---
 
-### User Story 3 - Leads resolve alerts efficiently (Priority: P3)
+### User Story 4 – Evidence gaps trigger escalation (Priority: P3)
 
-**Status**: Delivered (2025-10-26) — validated by `tests/integration/us3/acknowledgeDiagnostics.test.ts`
+**Status**: Planned — depends on coverage ingestion.
 
-Engineering or documentation leads review outstanding drift diagnostics, assign follow-up, and mark items resolved once verification is complete.
+Teams rely on Live Docs to surface missing test coverage. When evidence sections are empty without waivers, lint and diagnostics escalate the gap.
 
-**Why this priority**: Ensures the system can be operationalized within team workflows, turning alerts into trackable actions and preventing alert fatigue.
+**Why this priority**: Evidence transforms Live Docs from documentation into an accountability tool.
 
-**Independent Test**: Can be fully tested by clearing diagnostics through the provided acknowledgement flow and confirming they remain cleared until new changes occur.
+**Independent Test**: Remove tests covering a module, regenerate Live Docs, and check that lint warnings and diagnostics point to the missing evidence.
 
 **Acceptance Scenarios**:
 
-1. **Given** outstanding drift diagnostics, **When** the lead acknowledges a diagnostic, **Then** it disappears from all linked artifacts and remains cleared until a new change is detected.
-2. **Given** multiple diagnostics, **When** the lead exports or views a consolidated list, **Then** they can prioritize remediation without opening each file manually.
+1. **Given** an implementation Live Doc without tests, **When** regeneration runs, **Then** the Evidence section reads `_No automated evidence found_` and safe-commit fails unless a waiver exists.
+2. **Given** a waiver comment, **When** lint runs, **Then** it passes while logging the waiver for dashboards.
+3. **Given** new tests added, **When** regeneration reruns, **Then** the Evidence section lists the tests and the warning clears automatically.
+
+---
+
+### User Story 5 – Legacy graph workflows remain accessible (Priority: P3)
+
+**Status**: Sunset planning — ensures current users retain value during migration.
+
+Early adopters using change-impact diagnostics and symbol neighborhood tooling continue to receive signals until Live Docs fully replace old surfaces.
+
+**Independent Test**: Run both the legacy diagnostics suite and Live Doc-backed suite in parallel, verifying consistency and measuring deltas.
+
+**Acceptance Scenarios**:
+
+1. **Given** a code edit, **When** both pipelines run, **Then** diagnostics produced from the graph and Live Docs agree on impacted artifacts.
+2. **Given** a symbol neighbourhood query, **When** executed, **Then** results include backlinks to Live Docs for each node.
+3. **Given** a regression in Live Doc generation, **When** safe-commit runs, **Then** the legacy pipeline remains available while regeneration issues are resolved.
 
 ---
 
 ### Edge Cases
 
-- A newly created file has no inferred relationships on first save; the graph must reconcile once sufficient signals exist.
-- A file within the graph is renamed or moved outside the workspace.
-- Two artifacts reference each other and change in quick succession (potential alert loops).
-- Bulk refactors modify dozens of files within seconds.
-- Documentation layers are incomplete (e.g., missing Layer 3) but edits still occur.
-- Broken-link documentation diagnostics invert the `triggerUri` (missing target) and `targetUri` (referencing document) so quick fixes open the file that needs attention.
-- If artifact A triggers a diagnostic on B, reciprocal diagnostics from B to A are suppressed until the first alert is acknowledged or a fresh change occurs after acknowledgement.
-- Deleted artifacts or renamed paths automatically prune or prompt re-binding of their relationships to avoid dangling edges.
-- External knowledge-graph feeds may become unreachable or provide stale/partial payloads; the system MUST surface a warning diagnostic, pause ingestion for the impacted feed, and fall back to local inference without mutating cached relationships until a valid payload is received.
-- Streaming feeds MUST resume gracefully after transient failures by replaying missed deltas, while on-demand snapshot imports MUST preserve the previously ingested snapshot until replacement data passes validation.
-- Benchmark workspaces without canonical ASTs MUST fall back to self-similarity accuracy checks and record that limitation alongside the results so pipelines remain informative without blocking on missing ground truth.
-- LLM-sourced relationships MUST record model provenance, prompt hash, and chunk identifiers so auditors can reproduce their derivation and revoke edges produced by a misbehaving prompt or provider.
+- Newly created files without exports still receive stub Live Docs; generated sections display `_No data available_` until analyzers detect symbols.
+- Live Docs remain stable when files move or are renamed; migration scripts update metadata and code path references automatically.
+- Rapid edits triggering regeneration multiple times must coalesce; generated blocks should only change when analyzer output differs.
+- Tests spanning many implementations should not bloat Implementation Live Docs; backlinks flow through the graph instead of duplicating content.
+- External feeds (GitLab Knowledge Graph, LSIF) failing mid-run must not overwrite existing generated sections; provenance markers flag stale data.
+- LLM augmentations must remain opt-in and clearly labeled to prevent unverifiable edges sneaking into generated content.
+- Safe-commit must continue to run offline; Live Doc regeneration cannot require cloud calls for deterministic builds.
 
-### Inference Inputs by Artifact Type
+### Live Doc Generation Lifecycle
 
-| Artifact Type | Baseline Signals | Enhanced Signals | External Feeds |
-|---------------|------------------|------------------|----------------|
-| Code artifacts | Heuristic/LLM parsing of imports/exports, call graphs, and file naming conventions (Tree-sitter fallbacks) | Language-server definition/reference graphs, symbol hierarchies, document highlights, and local AST metadata | External dependency graphs (LSIF/SCIP exports, GitLab Knowledge Graph edges) |
-| Markdown documentation (vision, requirements, architecture) | Heuristic/LLM semantic analysis of section headers, headings, inline references | Workspace symbol cross-references (e.g., `executeDocumentSymbolProvider`, `executeReferenceProvider`) that map prose anchors to code symbols | Knowledge graph edges that map documentation nodes to implementation assets |
-| Implementation markdown (implementation guides, runbooks) | Heuristic/LLM extraction of code blocks, configuration snippets, referenced module names | Diagnostics emitted by existing language servers when linked code changes | Knowledge graph projections describing implementation-to-code relationships |
-
-“Workspace index data” refers specifically to VS Code’s `execute*Provider` command family (symbols, references, definitions, implementations), `workspace.findFiles`, and live diagnostics streamed from active language servers. These APIs are treated as accelerators layered on top of the heuristic/LLM baseline so that inference remains functional when an index is missing.
-
-### Graph Rebuild Lifecycle
-
-1. **Initial startup**: On extension activation, the server checks for an existing graph cache; if absent, it rebuilds from scratch using the inference inputs above, then persists the snapshot to SQLite.
-2. **Cache deletion**: When users delete the cache directory or invoke a “Rebuild Diagnostics Graph” command, the server discards residual data, replays the inference pipeline, and rehydrates the database before diagnostics resume.
-3. **Staleness detection**: Background jobs monitor timestamp drift between artifacts and cached relationships; when mismatches exceed configured thresholds, the server schedules incremental refreshes that reconcile edges without blocking diagnostics.
-4. **External feed refresh**: Streaming feeds checkpoint their last successful event so they can resume after outages; snapshot imports run through schema validation before replacing existing data, and failures trigger alerts while preserving the prior snapshot.
+1. **Staging**: Regeneration writes output to `/.live-documentation/` (or configured path), preserving authored sections and updating generated blocks.
+2. **Validation**: Safe-commit runs structural lint, analyzer parity checks, and evidence completeness audits before allowing merges.
+3. **Promotion**: Once parity with existing MDMD Layer‑4 docs is proven, configuration flips to treat Live Docs as canonical; legacy docs become generated outputs as well.
+4. **Consumption**: Diagnostics, CLI, and Copilot exports read directly from Live Docs, ensuring all surfaces share identical data.
 
 ### Cache Retention & Privacy
 
-Graph projections, override manifests, and drift history live under the workspace storage directory declared in configuration (default: VS Code global storage). Users can redirect the location via `linkAwareDiagnostics.storagePath`. Retention policies follow a rolling window (default 90 days) to keep storage lightweight, and administrators can purge caches without data loss because the graph remains rebuildable. Sensitive metadata inherits VS Code workspace trust rules, and diagnostics stay suppressed until consented provider settings are applied.
+Live Docs live alongside the repository (versionable or ignored per configuration). Analyzer caches remain disposable; whenever they regenerate, markup updates deterministically. External adopters can regenerate from scratch without shipping proprietary data.
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: System MUST infer and maintain a workspace-wide dependency graph between code artifacts using a layered pipeline that defaults to heuristic/LLM-driven analysis and augments with workspace index data (symbol providers, reference graphs, diagnostics, AST metadata) when available. Manual overrides MUST take precedence over fresh inference until revoked and MUST leave an auditable trail.
-- **FR-002**: System MUST detect when any tracked artifact is saved within the workspace and record the change event with enough provenance to query ripples.
-- **FR-003**: System MUST answer the question “What files will be impacted by this change?” by raising diagnostics on every artifact reachable through the dependency graph within the configured scope, clearly naming the triggering file and required follow-up action.
-- **FR-004**: System MUST let users acknowledge or dismiss a diagnostic once review is complete, persisting that state until a subsequent change occurs.
-- **FR-005**: System MUST provide a consolidated view of outstanding diagnostics grouped by dependency cluster and documentation layer when applicable.
-- **FR-006**: System MUST highlight dependent code files (based on imports, call graphs, exports, or explicit references) when their upstream file changes, prompting compatibility checks.
-- **FR-007**: System MUST offer quick actions from a diagnostic to open any linked artifact in a separate editor tab.
-- **FR-008**: System MUST support configurable noise controls (e.g., ignore changes below a threshold, limit hop depth, batch related changes) to prevent alert fatigue.
-- **FR-009**: System MUST log historical change-impact events for reporting on how often ripple reviews are required.
-- **FR-010**: System MUST expose workspace and user settings for analysis, including noise suppression level, preferred LLM provider mode, diagnostics storage location, and hop depth, and MUST block diagnostics until the user selects an LLM provider or opts into an offline-only mode.
-- **FR-011**: System MUST implement hysteresis so reciprocal diagnostics between linked artifacts remain paused until the originating alert is acknowledged or superseded by new changes.
-- **FR-012**: System MUST support configurable debounce/batching for rapid change events to avoid redundant diagnostics during batched edits.
-- **FR-013**: System MUST offer workflows to repair or remove links when underlying artifacts are deleted or renamed.
-- **FR-014**: System MUST extend the dependency graph to documentation artifacts once code-to-code accuracy milestones are met, using the same inference pipeline and override mechanics.
-- **FR-015**: System MUST support knowledge-graph-backed monitoring between arbitrary artifacts (beyond code↔code pairs) using external feeds and LLM-assisted ripple analysis, handling both on-demand KnowledgeSnapshot imports and long-lived streaming feeds with consistent validation and storage semantics.
-- **FR-016**: System MUST define and enforce a minimal schema for ingesting external knowledge-graph data, including artifact identifiers, edge types, timestamps, and confidence metadata, and MUST validate incoming feeds against this contract before integrating them.
-- **FR-017**: Development-time verification MUST compare the inferred code dependency graph against canonical abstract syntax trees for curated benchmark workspaces when ground-truth ASTs are available, and MUST fall back to multi-run self-similarity benchmarks for workspaces lacking authoritative ASTs so accuracy remains measurable in both contexts.
-- **FR-018**: System MUST expose a developer-facing symbol neighborhood query (initially dogfooding-only) that, given a symbol or artifact identifier, returns hop-limited neighbors with relationship metadata and is pluggable into future LLM-assisted explanation tools.
-- **FR-019**: System MUST provide an LLM-driven ingestion pipeline that extracts relationship candidates from arbitrary workspace text via `vscode.lm`, annotates each candidate with a confidence tier (`High`, `Medium`, `Low`), persists provenance (model id, prompt hash, supporting chunk ids), and honours manual overrides by demoting conflicting edges. Diagnostics MAY only consume `High` edges automatically, while `Medium` and `Low` edges require corroboration or human promotion before surfacing.
-- **FR-020**: System MUST offer configurable, workspace-local documentation bridges that synchronise public symbol docstrings (or equivalent inline comments) with markdown sections, raise diagnostics when the two drift, and support presets for common ecosystems (MDMD, TSDoc, Sphinx, Rustdoc) without leaving the repository boundary.
-- **FR-021**: System MUST emit change-impact explanations in formats that are simultaneously human-readable and LLM-friendly—including structured JSON, Markdown tables, and ASCII relationship diagrams—and expose controls for workspace administrators to tune depth, breadth, and formatting of those outputs.
+- **FR-LD1**: Generator MUST create/refresh Live Docs under a configurable root (default `/.live-documentation/`), preserving authored sections and updating generated sections with deterministic output guarded by HTML markers.
+- **FR-LD2**: Generator MUST emit `Public Symbols`, `Dependencies`, and archetype-specific sections (Implementation: `Observed Evidence`; Test: `Targets`, `Supporting Fixtures`; Asset: `Consumers`) using analyzer output and coverage data.
+- **FR-LD3**: Regeneration MUST record provenance metadata (analyzer id, timestamp, benchmark hash) within generated blocks for auditability.
+- **FR-LD4**: Safe-commit pipeline MUST lint Live Docs for structural completeness, analyzer parity, and evidence presence, failing merges when violations occur unless explicit waivers are present.
+- **FR-LD5**: Diagnostics, CLI, and Copilot surfaces MUST consume Live Docs as their single source of truth, embedding links back to the originating documents.
+- **FR-LD6**: Docstring bridges MUST reconcile inline documentation with Live Doc summaries, raising drift diagnostics when mismatches persist beyond one regeneration cycle.
+- **FR-LD7**: Migration tooling MUST compare existing Layer‑4 MDMD docs to generated Live Docs, producing diff reports and updating references (Layer‑3/Layer‑1) once parity is confirmed.
+- **FR-LD8**: External feeds (LSIF, SCIP, GitLab Knowledge Graph) and optional LLM augmentations MUST tag generated sections with confidence tiers; low-confidence edges require manual promotion before appearing in diagnostics.
+- **FR-LD9**: Telemetry MUST report regeneration latency, evidence coverage rates, and waiver counts to evaluate adoption.
+- **FR-LD10**: Live Doc configuration MUST expose glob patterns, archetype overrides, and storage paths while remaining version-controlled and documented for adopters.
+- **FR-LD11**: Generated Live Docs MUST emit workspace-relative markdown links and enforce header slugs according to the configured dialect (GitHub default); violations require explicit waivers surfaced in lint.
 
 ### Key Entities *(include if feature involves data)*
 
-- **Knowledge Artifact**: Any markdown or code file participating in the link network; attributes include layer classification, owner, and last synchronized timestamp.
-- **Link Relationship**: Association between two or more knowledge artifacts (e.g., Requirement → Implementation file) including link type and direction.
-- **Change Event**: Recorded instance of a saved artifact change capturing triggering artifact, timestamp, summary, and affected relationships.
-- **Diagnostic Record**: User-facing alert referencing one or more artifacts, storing message text, severity, acknowledgement status, and audit history.
-- **Knowledge Snapshot**: Benchmark fixture representing a canonical workspace used to evaluate inference stability; captures expected nodes/edges for reproducibility tests.
+- **Live Doc Artifact**: Markdown file containing Metadata, Authored, and Generated sections for a single source asset; stores archetype, timestamps, and provenance summary.
+- **Analyzer Output**: Structured description of symbols, dependencies, and coverage emitted by tooling; includes hash for determinism checks.
+- **Evidence Item**: Test case, benchmark, or manual review that exercises or validates an implementation artifact; includes status, location, and waiver metadata.
+- **Waiver Record**: Justification for temporarily accepting missing evidence; references owning team, expiry date, and follow-up task id.
+- **Consumption Surface**: Diagnostics, CLI, Copilot prompt, or report derived from Live Docs; records render latency and Live Doc version used.
 
 ## Assumptions
 
-- Link relationships can be regenerated entirely from workspace indexes, diagnostic feeds, and external knowledge graphs; any persisted cache is treated as disposable projection data.
-- Heuristic/LLM inference is the baseline when rich language-server signals are unavailable; upstream provider data is a performance optimization, not a prerequisite.
-- Dependency analysis for code files can reuse existing project build metadata or simple static analysis without requiring full compilation.
-- Users operate within VS Code workspaces where both documentation and implementation artifacts are accessible.
-- Users accept a short debounce window (default 1s) before diagnostics fire during rapid edit sessions to balance responsiveness with signal quality.
-- External knowledge graphs (e.g., GitLab Knowledge Graph) expose read APIs secured by workspace-managed tokens, refresh at least every 15 minutes, and can be mirrored locally so ingestion remains resilient when remote services degrade.
-- Teams can adopt guarantees progressively through path-scoped profiles that start in read-only “observe” mode, advance to guarded linting, and only opt into bridges or enforcement once they are confident in the workspace conventions.
+- Existing MDMD Layer‑4 docs remain authoritative until Live Docs pass acceptance benchmarks; migrations occur file-by-file with human review.
+- Regeneration runs locally without requiring internet access; optional LLM enrichments stay opt-in.
+- Analyzer plugins can be authored in TypeScript and executed within the server; polyglot coverage is staged via CLI bridges until native analyzers land.
+- Teams tolerate short regeneration windows (≤30 s for 5k-file repo) during safe-commit; tooling will parallelise to stay within bounds.
+- Documentation writers will adopt the authored header schema once editors expose helpers or snippets.
+- External adopters expect MIT-licensed tooling and CLI-first workflows; Live Docs must regenerate without VS Code to broaden reach.
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: 95% of linked artifacts display relevant diagnostics within 5 seconds of saving a triggering file during user acceptance tests.
-- **SC-002**: Pilot teams report a 50% reduction in undocumented code changes (measured via weekly audit of merged pull requests) within two sprints of adoption.
-- **SC-003**: 90% of documentation updates are acknowledged and cleared through the system within two business days.
-- **SC-004**: 80% of surveyed users report that the diagnostics help them locate related context faster than manual search during retrospective interviews.
-- **SC-005**: In automated latency validation, diagnostics remain suppressed during acknowledgement windows with zero ricochet regressions recorded.
-- **SC-006**: On a canonical benchmark workspace, repeated graph rebuilds produce ≥95% identical link edges and flag deviations, ensuring inference reproducibility.
-- **SC-007**: On curated AST-backed benchmark workspaces, ≥90% of inferred edges match canonical AST relationships, and variance between runs stays within ±5% when ground-truth ASTs are unavailable, ensuring both validation modes surface actionable accuracy signals.
-- **SC-008**: Docstring-to-markdown bridges report zero unresolved drift diagnostics after `npm run safe:commit`, and automated ripple summaries render ASCII diagrams within the configured width for ≥90% of integration test scenarios.
+- **SC-LD1**: ≥95% of modified source files have Live Docs regenerated within a single `safe:commit` run; structural lint reports zero missing sections.
+- **SC-LD2**: Analyzer precision/recall stays ≥0.9 for exported symbols and ≥0.8 for dependencies across supported languages, as reported by benchmarks.
+- **SC-LD3**: 100% of implementation Live Docs list evidence or waivers; unresolved gaps trigger lint warnings within 24 hours.
+- **SC-LD4**: Diagnostics and CLI exports referencing Live Docs respond within ≤2 s for repositories under 10k files.
+- **SC-LD5**: External adopters regenerate Live Docs from scratch using documented commands, pass safe-commit, and report successful onboarding within one day.
+- **SC-LD6**: Docstring drift diagnostics resolve within one regeneration cycle during integration tests, with zero lingering violations after safe-commit.
+- **SC-LD7**: Relative-link lint reports zero violations after regeneration, and exported Live Docs render without broken anchors when served from a static wiki path.
 
 
 ## Clarifications
 
-### Session 2025-10-16
+### Session 2025-11-08
 
-- Q: What default behavior should apply when selecting an LLM provider for drift analysis? → A: Force selection on first run and keep diagnostics disabled until the user chooses a provider.
-- Q: How are links between markdown and code artifacts declared? → A: Default to automatic inference from language-server data and knowledge-graph feeds, with an override command available to pin or adjust relationships when necessary.
+- Q: How are authored sections protected during regeneration? → A: HTML markers wrap each generated block; the generator rewrites only the content between markers and fails if markers are missing.
+- Q: Where does evidence data originate? → A: Coverage ingestion pipeline scrapes test metadata (`vitest`, `pytest`, `dotnet test`) and manual audit manifests; missing data defaults to `_No automated evidence found_` with required waiver.
+- Q: How do legacy diagnostics coexist with Live Docs? → A: Safe-commit runs both pipelines until Live Docs achieve parity; feature flags determine the active surface per workspace.
 
 ## Upcoming Work Items
 
-### WI-071 – TypeScript Compiler Oracle for Benchmarks
-- Implement a deterministic generator that walks `ts.Program` metadata for curated fixtures, classifies runtime versus type-only edges, and emits ripple-aligned relationships.
-- Produce a regeneration CLI that writes oracle output to review artefacts, preserving manually authored cross-language expectations untouched.
-- Add unit coverage for the oracle and integrate regeneration checks into `npm run test:benchmarks`, failing fast when compiler upgrades or analyzer regressions diverge from the oracle.
-
-### WI-072 – Manual Override Ledger for Polyglot Fixtures
-- Design a manifest format that marks expectation segments as human-authored so the regeneration pipeline spares them during compiler-backed refreshes.
-- Document override semantics in Layer 4 MDMD and benchmark READMEs so contributors understand how to add or review manual edges across languages.
-- Extend benchmark reports to surface remaining manual segments, tracking progress toward compiler-backed coverage.
+- **WI-LD101** – Finish Live Doc generator CLI (diff views, dry run mode) and document adoption playbook.
+- **WI-LD102** – Implement coverage ingestion pipeline to populate `Observed Evidence` and ensure lint parity.
+- **WI-LD201** – Deliver docstring bridge adapters for TypeScript, Python, and C#, plus integration tests.
+- **WI-LD301** – Pivot diagnostics/CLI/export commands to consume Live Docs exclusively and retire legacy graph consumers.
+- **WI-LD401** – Package sample workspace and MIT-licensed release notes for public adoption.
 
 
 ## Implementation Traceability
-- [`packages/server/src/main.ts`](../../packages/server/src/main.ts) and [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) execute the end-to-end flow outlined in the functional requirements.
-- [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts), [`publishDocDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishDocDiagnostics.ts), and [`acknowledgementService.ts`](../../packages/server/src/features/diagnostics/acknowledgementService.ts) implement the diagnostic lifecycle and acknowledgement criteria.
-- [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](../../packages/server/src/features/knowledge/knowledgeFeedManager.ts), [`knowledgeGraphIngestor.ts`](../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts), and [`workspaceIndexProvider.ts`](../../packages/server/src/features/knowledge/workspaceIndexProvider.ts) realise the knowledge-feed and fallback inference requirements.
-- [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts), [`packages/extension/src/views/diagnosticsTree.ts`](../../packages/extension/src/views/diagnosticsTree.ts), and [`packages/extension/src/commands/exportDiagnostics.ts`](../../packages/extension/src/commands/exportDiagnostics.ts) deliver the UX commitments enumerated in the user scenarios.
-- [`tests/integration/us1/codeImpact.test.ts`](../../tests/integration/us1/codeImpact.test.ts), [`tests/integration/us3/markdownLinkDrift.test.ts`](../../tests/integration/us3/markdownLinkDrift.test.ts), and [`tests/integration/us5/transformRipple.test.ts`](../../tests/integration/us5/transformRipple.test.ts) enforce the falsifiability metrics and success criteria.
+- [`packages/server/src/main.ts`](../../packages/server/src/main.ts) and [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) orchestrate analyzer pipelines that feed Live Doc generation.
+- [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts) and [`publishDocDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishDocDiagnostics.ts) will emit Live Doc-backed diagnostics.
+- [`packages/extension/src/commands/exportDiagnostics.ts`](../../packages/extension/src/commands/exportDiagnostics.ts) and forthcoming Live Doc CLI utilities render consumption narratives.
+- [`packages/shared/src/testing/fixtureOracles`](../../packages/shared/src/testing/fixtureOracles) house polyglot analyzers underpinning generated sections.
+- Integration suites under `tests/integration/live-docs` (to be expanded) validate regeneration, evidence mapping, and docstring drift.
 
 

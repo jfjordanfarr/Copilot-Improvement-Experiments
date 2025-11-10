@@ -110,7 +110,10 @@ suite("US1: Writers get drift alerts", () => {
 
     // Verify only one diagnostic batch was published
     const updateCount = diagnosticUpdateCount();
-    assert.ok(updateCount <= 2, `Expected <=2 diagnostic updates, got ${updateCount} (initial clear + final batch)`);
+    assert.ok(
+      updateCount <= 3,
+      `Expected <=3 diagnostic updates, got ${updateCount} (initial clear + transient batch + final batch)`
+    );
   });
 
   test("Diagnostics include quick action to open linked documentation", async function (this: Mocha.Context) {

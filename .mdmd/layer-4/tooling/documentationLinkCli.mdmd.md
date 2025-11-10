@@ -28,10 +28,10 @@ Constants mapping CLI outcomes to process exit codes, enabling shell scripts and
 
 ## Collaborators
 - Relies on [`packages/shared/src/tooling/documentationLinks.ts`](../../../packages/shared/src/tooling/documentationLinks.ts) for the enforcement engine and rule parsing helpers.
-- Used by [`scripts/doc-tools/__tests__/enforce-documentation-links.test.ts`](../../../scripts/doc-tools/__tests__/enforce-documentation-links.test.ts) to verify CLI behaviour, including autofix flows.
+- Used by [`scripts/doc-tools/enforce-documentation-links.test.ts`](../../../scripts/doc-tools/enforce-documentation-links.test.ts) to verify CLI behaviour, including autofix flows.
 - Integrated into the safe-to-commit pipeline via [`scripts/safe-to-commit.mjs`](../../../scripts/safe-to-commit.mjs) so documentation drift is caught before commits land.
 
 ## Evidence
 - `npm run docs:links:enforce` executes the CLI in check mode across the entire workspace.
 - `npm run docs:links:enforce -- --fix` exercises the autofix path and confirms exit codes reflect updated files.
-- `npm run test:unit -- scripts/doc-tools/__tests__/enforce-documentation-links.test.ts` covers error paths, include filtering, and autofix behaviour under controlled fixtures.
+- `npm run test:unit -- scripts/doc-tools/enforce-documentation-links.test.ts` covers error paths, include filtering, and autofix behaviour under controlled fixtures.

@@ -22,6 +22,9 @@ export * from "./tooling/ollamaMock";
 export * from "./telemetry/inferenceAccuracy";
 export * from "./uri/normalizeFileUri";
 export * from "./reporting/testReport";
+export * from "./config/liveDocumentationConfig";
+export * from "./live-docs/schema";
+export * from "./live-docs/markdown";
 export {
   RelationshipExtractor,
   RelationshipExtractorError,

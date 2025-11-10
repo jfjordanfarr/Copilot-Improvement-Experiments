@@ -1,110 +1,108 @@
-# Quickstart
+# Quickstart: Live Documentation
+
+Live Documentation pairs every tracked workspace asset with a markdown artifact that combines an authored preamble (`Description`, `Purpose`, `Notes`) and generated sections (`Public Symbols`, `Dependencies`, archetype-specific evidence). This quickstart walks through staging those docs under `/.live-documentation/<baseLayer>/` (default `source/`), reviewing the output, and preparing for migration into Layer‑4 MDMD once parity is proven.
 
 ## Prerequisites
-- VS Code 1.91 or later with access to chat features.
+- VS Code 1.91+ with the Live Documentation extension loaded from this repository.
 - Node.js 22.x and npm.
-- SQLite 3 (bundled with Node via `better-sqlite3`; no external server needed).
-- Optional: Local LLM runtime (Ollama on `http://localhost:11434`) for on-device reasoning.
+- Git tooling capable of capturing large workspace diffs (for Live Doc reviews).
+- Optional: local LLM runtime (e.g., Ollama) for docstring summarisation once bridges are enabled.
 
-## Setup
-1. Clone the repository and install dependencies:
+## Bootstrap the Workspace
+1. Clone and install dependencies:
    ```powershell
    git clone https://github.com/jfjordanfarr/Copilot-Improvement-Experiments.git
    cd Copilot-Improvement-Experiments
    npm install
    ```
-2. Build the packages:
+2. Build the packages so shared utilities and extension bundles are in sync:
    ```powershell
    npm run build
    ```
-3. Open the workspace in VS Code and run the `Launch Extension` configuration to start the extension + language server in the Extension Development Host.
-4. When prompted, complete the “Select LLM Provider” onboarding to enable diagnostics (choose a local provider or opt to keep AI features disabled for now).
+3. Launch the extension in VS Code using the `Launch Extension` configuration. The language server exposes regeneration and lint services once the dev host is ready.
+4. Confirm `.live-documentation/` is ignored by git (see `.gitignore`). The generator will stage markdown there until the migration gate flips Layer‑4 MDMD to mirror the new tree.
 
-## Configuration
-- On first launch, complete the “Select LLM Provider” onboarding. Diagnostics remain disabled until you explicitly choose a provider or opt into `local-only`/`disabled` modes. While waiting, the client soft-waits for feed health but still falls back to workspace-derived evidence so tests stay deterministic.
-- Link inference blends heuristic analysis, language-server signals, and knowledge-feed content. Use “Link Diagnostics: Override Link” sparingly to pin relationships; overrides persist in SQLite and inform traceability metadata until revoked.
-- Configure knowledge feeds per workspace. Static snapshots provide frozen baselines; streaming feeds resume automatically after outages by replaying missed deltas. Validation failures emit info diagnostics, mark feeds unhealthy, and keep inference on local data until the stream recovers.
-- In language-server–absent workspaces, expect the first inference pass to rebuild slowly while fallback inference seeds context. Subsequent runs reuse cached evidence so diagnostics rehydrate quickly.
-### Settings reference
-| Setting key | Default | Description |
+## Configure Live Documentation
+Add the following settings to your workspace (e.g., `.vscode/settings.json`) to establish staging defaults:
+
+```json
+{
+  "liveDocumentation.root": ".live-documentation",
+  "liveDocumentation.baseLayer": "source",
+  "liveDocumentation.slugDialect": "github",
+  "liveDocumentation.requireRelativeLinks": true,
+  "liveDocumentation.glob": [
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.js",
+    "tests/**/*.ts"
+  ]
+}
+```
+
+**Key options**
+
+| Setting | Default | Purpose |
 | --- | --- | --- |
-| `linkAwareDiagnostics.llmProviderMode` | `prompt` | Consent gate for AI features. Choose `local-only` for deterministic tests or `disabled` to operate strictly on heuristics. |
-| `linkAwareDiagnostics.enableDiagnostics` | `false` until onboarding completes | Master toggle that becomes `true` after provider consent. Flip it off for read-only audits without tearing down the graph. |
-| `linkAwareDiagnostics.noiseSuppression.level` | `medium` | Tunes diagnostic filtering: `low` emits every ripple, `medium` balances churn, `high` suppresses lower-confidence hops. |
-| `linkAwareDiagnostics.noiseSuppression.minConfidence` | n/a | Optional floor (0-1) for ripple confidence. Raise it when the graph feels noisy; leave unset to use per-relationship defaults. |
-| `linkAwareDiagnostics.noiseSuppression.maxDepth` | n/a | Clamp ripple propagation to the specified hop count. Useful for large repos where third-degree signals overwhelm the Problems panel. |
-| `linkAwareDiagnostics.noiseSuppression.maxPerChange` | n/a | Hard limit on how many diagnostics a single change event can emit before throttling kicks in. |
-| `linkAwareDiagnostics.noiseSuppression.maxPerArtifact` | n/a | Prevents the same dependent artifact from surfacing more than N diagnostics per change. |
-| `linkAwareDiagnostics.debounce.ms` | `1000` | Batching window for change events. Increase when editing large files to reduce churn; decrease for eager feedback. |
-| `linkAwareDiagnostics.storagePath` | per-workspace global storage | Disk location for the SQLite knowledge store and acknowledgement ledger. Point to a repo-local path if you need portable caches. |
-| `linkAwareDiagnostics.experimental.feeds` | `[]` | Optional quick-start list of static or streaming feed descriptors. Useful for CI fixtures and air-gapped environments. |
+| `liveDocumentation.root` | `.live-documentation` | Filesystem root for staged docs. Can point outside the repo for private mirrors. |
+| `liveDocumentation.baseLayer` | `source` | Folder name that mirrors the source tree. Rename when layering additional Live Documentation (e.g., `architecture/`, `work-items/`). |
+| `liveDocumentation.slugDialect` | `github` | Header slug strategy. Supports `github`, `azure-devops`, and `gitlab`. |
+| `liveDocumentation.requireRelativeLinks` | `true` | Forces generated and authored markdown links to remain relative, enabling repo-backed wikis. |
+| `liveDocumentation.glob` | `[]` | Glob patterns defining which assets receive Live Docs. Honour the one-doc-per-source rule. |
+| `liveDocumentation.archetypeOverrides` | `{}` | Optional map for assigning non-default archetypes (e.g., treat `tests/**` as `test`). |
 
-### Scoping diagnostics by folder
-Use VS Code’s multi-root and per-folder settings to focus diagnostics on the parts of a monorepo that matter.
+## Stage 0 – Observe
+1. **Run the generator (dry-run first):**
+   ```powershell
+   npm run live-docs:generate -- --dry-run
+   ```
+   Inspect the diff summary to ensure authored blocks remain untouched. When satisfied, repeat without `--dry-run` to materialise markdown under `/.live-documentation/source/`.
+2. **Review placeholders:** The generator produces:
+   - `Metadata` front matter with `Live Doc ID`, archetype, source path, and provenance hash.
+   - Authored headings seeded from templates. Populate `Description`, `Purpose`, and `Notes` manually.
+   - Generated sections marked by HTML fences (`<!-- LIVE-DOC:BEGIN Public Symbols -->`). Editing inside these blocks raises lint failures.
+3. **Track regeneration latency:** After running `npm run safe:commit`, copy the Live Documentation timings from the log into `reports/benchmarks/live-docs/latency.md`. These numbers anchor performance budgets before promotion.
+4. **Prototype diff tooling:** Use the VS Code diff viewer or `git diff -- .live-documentation/source` to confirm generated sections change deterministically when source files update.
 
-1. Create a workspace file (for example `link-aware.code-workspace`) that lists each folder you want to analyze:
-    ```json
-    {
-       "folders": [
-          { "path": "." },
-          { "path": "packages/extension", "name": "extension" },
-          { "path": "docs", "name": "docs" }
-       ]
-    }
-    ```
-    Open this workspace in VS Code; every folder gets its own `.vscode/settings.json` scope.
-2. Inside folders that should emit fewer diagnostics, add `.vscode/settings.json` with stricter filters:
-    ```json
-    {
-       "linkAwareDiagnostics.noiseSuppression.level": "high",
-       "linkAwareDiagnostics.noiseSuppression.maxPerChange": 2,
-       "linkAwareDiagnostics.enableDiagnostics": true
-    }
-    ```
-    The parent workspace can use looser settings (for example `"level": "low"`) so implementation code still emits full ripple traces.
-3. To disable diagnostics entirely for generated artifacts, place a `.vscode/settings.json` at the folder root with:
-    ```json
-    {
-       "linkAwareDiagnostics.enableDiagnostics": false,
-       "files.watcherExclude": {
-          "**/*.generated.*": true,
-          "**/dist/**": true
-       }
-    }
-    ```
-    The extension’s file-system watcher respects `files.watcherExclude`, so the server never queues changes from these paths.
-4. Combine folder-level settings with `files.exclude` when you want the IDE to hide the same directories, keeping the explorer in sync with diagnostic coverage.
+## Stage 1 – Guard
+1. **Update authored headers:** Replace placeholder text in the staged docs with human-curated intent. Keep entries concise—LLMs ingest the authored block before generated sections.
+2. **Enable lint gates:**
+   ```powershell
+   npm run live-docs:lint
+   ```
+   The lint pass enforces relative links, generated-marker integrity, and evidence presence (unless a waiver HTML comment exists).
+3. **Wire safe-commit:** Add the Live Docs lint step to `scripts/safe-to-commit.mjs` (the repo already chains it) so every commit validates structure.
+4. **Adopt docstring bridges:** Toggle `liveDocumentation.enableDocstringBridge` in settings once the archetype instructions are satisfied. Regeneration will fail if docstrings drift beyond one cycle without waivers.
 
-### Pre-seeding or restricting targets
-- Place curated link fixtures under `data/knowledge-feeds/*.json` to bootstrap relationships for specific paths before the first inference pass. Only artifacts referenced in these files will be seeded, which is helpful for narrow doc-only worktrees.
-- When pairing selective feeds with the folder-level settings above, run `npm run graph:snapshot -- --workspace <path>` to confirm the graph contains only the expected artifacts before enabling diagnostics for the whole workspace.
-- You can revert to default coverage at any time by deleting the folder-specific settings files and reloading the window (`Developer: Reload Window`).
+## Stage 2 – Bridge
+1. **Connect coverage sources:** Configure language-specific adapters (Vitest, Pytest, dotnet test) so evidence sections populate automatically.
+2. **Inspect drift diagnostics:** Regeneration surfaces markdown/implementation mismatches via diagnostics and CLI output (`npm run live-docs:evidence -- path/to/file.ts`). Resolve or waive before migration.
+3. **Verify CLI/UI parity:** Ensure every Live Documentation insight has both an extension command and a CLI equivalent (inspect, evidence, docstring sync, migrate, report). This enables GitHub Copilot and headless tooling to exercise the same features.
 
-### Maintenance and rebind workflow
-1. The file-maintenance watcher raises `linkDiagnostics/maintenance/rebindRequired` whenever a linked artifact is deleted or renamed. The client surfaces a consent-aware toast summarizing impacted artifacts and offering **Rebind links** or **Dismiss**.
-2. Choose **Rebind links** to launch the override flow. If the rename carried workspace metadata, the prompt offers to reuse the detected `newUri`; otherwise it opens a file picker so you can point the graph at the successor artifact.
-3. The override command replays the affected relationships, preserving acknowledgement history and backfilling cached evidence. Progress updates report how many links were restored, and diagnostics resolve as each hop is rebound.
-4. Dismissing the prompt leaves drift diagnostics active so teams can manually curate replacements later. You can reopen the wizard by running `Link Diagnostics: Override Link` from the Command Palette; pass the replacement path to bulk-rebind without waiting for another notification.
-5. For catastrophic cache drift, run `Link Diagnostics: Clear All Diagnostics` first, then execute the rebind prompt. When feeds and workspace providers report `healthy`, the Problems panel repopulates using the rebuilt graph.
+## Stage 3 – Sustain
+1. **Dry-run migration:**
+   ```powershell
+   npm run live-docs:migrate -- --dry-run
+   ```
+   Compare the staged docs to `.mdmd/layer-4/` using the generated report.
+2. **Flip the canonical toggle:** When parity is proven, set `liveDocumentation.promoteLayer4` to `true`. The next regeneration writes directly into `.mdmd/layer-4/` while preserving the staging tree for audits.
+3. **Audit telemetry:** Check `reports/benchmarks/live-docs/*.json` and telemetry dashboards for regeneration latency, waiver counts, and evidence coverage. Document anomalies before closing the migration work item.
 
-## Typical Workflow
-1. **Let inference run**: Open the workspace; the language server rebuilds the link graph from indexed symbols and diagnostics. Inspect inferred relationships via the Problems panel or the upcoming diagnostics view.
-2. **Edit content**: When you save a linked file, the language server records a `ChangeEvent`, updates the graph, and publishes diagnostics to related artifacts.
-3. **Review alerts**: Diagnostics appear in the Problems panel and each affected document. Quick actions let you jump to linked files or open the consolidated panel. Broken-link `doc-drift` diagnostics intentionally invert `triggerUri`/`targetUri` so the missing resource is treated as the trigger and the referencing document receives the warning—keep that in mind when navigating.
-4. **Acknowledge**: Resolve or acknowledge items directly from the diagnostic code action or from the “Link Diagnostics” view. The system records an `AcknowledgementAction` and clears the alert until a new change occurs.
-5. **Optional LLM assist**: Trigger “Link Diagnostics: Analyze Impact with AI” to request a deeper reasoning pass using the configured model. This action is available only after a provider is selected and will respect the `llmProviderMode` guard. Results attach to the diagnostic’s `llmAssessment` field and display in the side panel.
-6. **Dogfood the graph**: Use “Link Diagnostics: Inspect Symbol Neighbors” or the companion CLI to explore first- and second-degree relationships before changing a file. Run `npm run graph:inspect -- --file path/to/file.ts` (after building the packages) to query the same traversal from the terminal; add `--json` for machine-readable output or `--max-depth`/`--kinds` to scope the results. Pair that with `npm run graph:audit -- --workspace .` to surface code artifacts missing Layer 4 documentation and MDMD docs that no longer point at code, and regenerate the deterministic cache via `npm run graph:snapshot` whenever the workspace topology shifts.
+## Maintenance Cheat-Sheet
+- **Regenerate after source edits:** `npm run live-docs:generate -- --changed` scopes regeneration to recently modified files (watch mode forthcoming).
+- **Inspect a doc:** `npm run live-docs:inspect -- packages/server/src/foo.ts` outputs the authored preamble plus generated metadata for quick reviews or prompt injection (`@{live-doc ...}`).
+- **Sync docstrings:** `npm run live-docs:sync-docstrings -- packages/server/src/foo.ts` reconciles inline comments with the Live Doc summary.
+- **Report coverage gaps:** `npm run live-docs:report -- --format markdown` produces dashboards summarising evidence waivers and dependency fan-out.
 
-## Testing
-- Run unit tests (shared modules): `npm run test:unit`
-- Run extension integration tests: `npm run test:integration`
-- Contract smoke tests for custom LSP messages: `npm run test:contracts`
-
-## CI Hooks
-- Headless validation executes the full verification pipeline (`npm run verify`), which lint-checks the repo, rebuilds SQLite binaries for Node and Electron, runs unit tests with coverage, and passes through the VS Code integration harness. Use the convenience alias `npm run ci-check` when wiring CI jobs.
+## Testing & CI Hooks
+- **Regeneration tests:** `npm run test:integration -- --filter live-docs` (coming soon) verifies authored preservation and deterministic output.
+- **Benchmarks:** `npm run run-benchmarks -- --mode live-docs` replays polyglot AST fixtures to guard symbol/dependency accuracy.
+- **Safe commit:** `npm run safe:commit` already chains Live Doc lint, regeneration dry-run, standard linting, unit tests, integration suites, and benchmark drift checks. Use `--benchmarks` to capture AST accuracy results before migration approvals.
 
 ## Implementation Traceability
-- [`packages/extension/src/onboarding/providerGate.ts`](../../packages/extension/src/onboarding/providerGate.ts) enforces the consent-driven diagnostics gating described in the setup and configuration sections.
-- [`packages/extension/src/diagnostics/docDiagnosticProvider.ts`](../../packages/extension/src/diagnostics/docDiagnosticProvider.ts) powers the Problems panel experience referenced throughout the workflow steps.
-- [`packages/server/src/features/diagnostics/acknowledgementService.ts`](../../packages/server/src/features/diagnostics/acknowledgementService.ts) and [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts) back the acknowledgement and ripple alert flows.
-- [`tests/integration/us3/acknowledgeDiagnostics.test.ts`](../../tests/integration/us3/acknowledgeDiagnostics.test.ts) and [`tests/integration/us4/scopeCollision.test.ts`](../../tests/integration/us4/scopeCollision.test.ts) provide end-to-end verification for the workflows called out in this quickstart.
+- [`packages/shared/src/live-docs/schema.ts`](../../packages/shared/src/live-docs/schema.ts) (planned) defines the metadata contract enforced across archetypes.
+- [`packages/server/src/features/live-docs/generator.ts`](../../packages/server/src/features/live-docs/generator.ts) will orchestrate regeneration, authored preservation, and provenance hashing.
+- [`scripts/live-docs/generate.ts`](../../scripts/live-docs/generate.ts) exposes the CLI entry used throughout this quickstart.
+- `.github/instructions/mdmd.layer4*.instructions.md` document the authored/generated schema and archetype-specific sections that the generator honours.
+
+Keep this guide close during the migration. Once Live Docs become canonical, Layer‑4 MDMD files emerge directly from the generator, giving both humans and copilots the same ground-truth view of the repository.

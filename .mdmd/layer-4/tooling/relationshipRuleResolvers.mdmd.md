@@ -22,5 +22,5 @@ Constructs the resolver registry, currently exposing the `markdown-links` resolv
 - [COMP-010 – Relationship Rule Engine](/.mdmd/layer-3/relationship-rule-engine.mdmd.md#comp010-relationship-rule-engine)
 
 ## Evidence
-- Pending unit coverage under `packages/shared/src/rules/__tests__/relationshipResolvers.test.ts` to capture resolver edge cases.
+- Pending unit coverage under `packages/shared/src/rules/relationshipResolvers.test.ts` to capture resolver edge cases.
 - Manual validation: `npm run graph:snapshot` should now produce `documents` edges for Layer 4 docs referencing code via metadata or inline links.

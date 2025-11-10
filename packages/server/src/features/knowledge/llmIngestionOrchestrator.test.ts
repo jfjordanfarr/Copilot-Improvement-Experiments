@@ -95,13 +95,13 @@ describe("LlmIngestionOrchestrator", () => {
 
     expect(results).toHaveLength(1);
     expect(results[0].stored).toBe(1);
-  expect(results[0].skipped).toBe(1);
+    expect(results[0].skipped).toBe(1);
 
     const link = (store as any).getLink(sourceArtifact.id, targetArtifact.id, "depends_on");
     expect(link).toBeDefined();
 
-  const skippedLink = (store as any).getLink(sourceArtifact.id, "missing", "depends_on");
-  expect(skippedLink).toBeUndefined();
+    const skippedLink = (store as any).getLink(sourceArtifact.id, "missing", "depends_on");
+    expect(skippedLink).toBeUndefined();
 
     const provenance = (store as any).getLlmEdgeProvenance(link!.id);
     expect(provenance).toBeDefined();

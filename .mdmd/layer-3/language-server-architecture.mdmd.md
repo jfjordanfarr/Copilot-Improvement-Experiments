@@ -7,38 +7,41 @@
 ## Components
 
 ### COMP-003 Language Server Runtime
-Supports REQ-001 and REQ-030 by orchestrating workspace change ingestion, inference, diagnostics, and knowledge feed health so ripple answers remain deterministic and actionable.
+Supports FR-LD1, FR-LD2, and FR-LD5 by orchestrating workspace change ingestion, Live Doc regeneration hooks, inference, diagnostics, and knowledge feed health so ripple answers remain deterministic and actionable.
 
 ## Responsibilities
 
 ### Runtime Initialisation
-- Resolve workspace configuration, storage locations, and provider guard settings via `main.ts` before wiring shared services.
-- Register LSP handlers for configuration updates, dependency and symbol inspections, file maintenance requests, and diagnostics publication.
+- Resolve workspace configuration, Live Documentation storage (`liveDocumentationConfig`), and provider guard settings via `main.ts` before wiring shared services.
+- Register LSP handlers for configuration updates, dependency and symbol inspections, file maintenance requests, Live Doc regeneration commands, and diagnostics publication.
 
 ### Change Intake and Persistence
-- Debounce and queue document/code saves through `ChangeQueue` and `ArtifactWatcher`, enriching events with content, category, and relationship hints.
-- Persist change metadata via `saveDocumentChange` / `saveCodeChange` so acknowledgement workflows and drift history stay durable.
+- Debounce and queue document/code saves through `ChangeQueue` and `ArtifactWatcher`, enriching events with content, category, relationship hints, and Live Doc ownership.
+- Notify the Live Doc Generator service when tracked artifacts change so staged markdown stays current before diagnostics fire.
+- Persist change metadata via `saveDocumentChange` / `saveCodeChange` so acknowledgement workflows, drift history, and regeneration provenance stay durable.
 
 ### Inference and Ripple Analysis
-- Merge inference results from workspace providers, knowledge feeds, and optional LLM fallbacks inside `changeProcessor`.
-- Drive `RippleAnalyzer` and dependency builders to compute downstream impacts ahead of diagnostic publication.
+- Merge inference results from workspace providers, Live Doc dependency snapshots, knowledge feeds, and optional LLM fallbacks inside `changeProcessor`.
+- Drive `RippleAnalyzer` and dependency builders to compute downstream impacts and annotate Live Doc projections before diagnostic publication.
 
 ### Knowledge Feed Stewardship
 - Bootstrap static JSON feeds and streaming sources using `KnowledgeGraphBridgeService` and `KnowledgeFeedManager`.
 - Validate feed health, persist refreshed edges, and expose degradation diagnostics back to the extension.
 
 ### Diagnostics Publication
-- Emit `code-ripple` and `doc-drift` diagnostics via publishers that respect hysteresis, noise suppression, acknowledgement suppression, and runtime budgets.
+- Emit `code-ripple` and `doc-drift` diagnostics via publishers that respect hysteresis, noise suppression, acknowledgement suppression, and runtime budgets while embedding Live Doc hyperlinks, evidence counts, and regeneration timestamps.
 
 ## Interfaces
 
 ### Inbound Interfaces
 - LSP requests/notifications: configuration changes, maintenance prompts, dependency/symbol inspections, and symbol harvesters.
 - Workspace save/rename/delete events transferred from the extension via the change queue and maintenance contracts.
+- Live Doc regeneration commands from CLI/extension surfaces (`liveDocs/generate`, `Live Docs: Regenerate File`).
 
 ### Outbound Interfaces
 - Diagnostics notifications to the extension, annotated with ripple metadata and acknowledgement state.
 - Dependency inspection responses (`InspectDependenciesResult`, symbol neighbour payloads) and feed health summaries for UI/CLI use.
+- Live Doc Generator queue events providing change hints, targeted artifact lists, and configuration snapshots.
 - Telemetry/logging hooks for suppression metrics, feed status, and change event persistence.
 
 ## Linked Implementations
@@ -80,6 +83,7 @@ Prepares workspace change events, loads content, and kicks off inference. [Artif
 - Unit tests cover change queue, provider guard, diagnostics publishers, and feed managers (`changeQueue.test.ts`, `providerGuard.test.ts`, `publishDocDiagnostics.test.ts`, `publishCodeDiagnostics.test.ts`, `knowledgeFeedManager.test.ts`).
 - Integration suites US1–US5 exercise the full language server loop from change intake to diagnostics emission.
 - Safe-to-commit orchestrations rebuild the graph snapshot and run feed audits to confirm deterministic persistence.
+- Planned Live Documentation suites (`tests/integration/live-docs/generation.test.ts`, `inspect-cli.test.ts`) ensure regeneration commands, CLI parity, and diagnostic enrichment stay wired through the runtime.
 
 ## Operational Notes
 - Drift history ledger (`DriftHistoryStore`) records emitted/acknowledged pairs for reporting (FR-009).

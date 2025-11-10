@@ -7,7 +7,7 @@
 ## Components
 
 ### COMP-006 LLM Ingestion Pipeline
-Supports REQ-020 and CAP-003 by transforming workspace artifacts into graph edges via an LLM-backed orchestrator while preserving deterministic fallbacks for local-only environments.
+Supports FR-LD8 and REQ-E1 by transforming workspace artifacts into optional LLM-enriched graph edges and Live Doc annotations while preserving deterministic fallbacks for local-only environments.
 
 ## Responsibilities
 
@@ -21,7 +21,8 @@ Supports REQ-020 and CAP-003 by transforming workspace artifacts into graph edge
 
 ### Confidence Calibration and Persistence
 - Calibrate raw confidences using `calibrateConfidence` so diagnostics only consume corroborated links.
-- Persist accepted edges and provenance (`templateId`, `promptHash`, rationale) via `KnowledgeGraphBridge` and `GraphStore.upsertLink`.
+- Persist accepted edges and provenance (`templateId`, `promptHash`, rationale) via `KnowledgeGraphBridge`, `GraphStore.upsertLink`, and Live Doc enrichers when configured.
+- Emit low-confidence edges as Live Doc enrichment hints (Phase 7) tagged for manual review before migration into generated sections.
 
 ### Reporting and Auditability
 - Emit orchestration summaries (stored, skipped, failed counts) to the connection console.
@@ -65,3 +66,4 @@ Provides deterministic local model responses when no provider is registered. [Lo
 ## Operational Notes
 - Upgrade path keeps local-only behaviour first-class; cloud providers will plug in via `ModelInvoker` without altering this architecture.
 - Upcoming work includes richer chunk metadata, telemetry surfaces for operator dashboards, and authentication flows for remote providers.
+- Live Doc enrichers consume approved LLM edges to annotate `Observed Evidence` or `Dependencies` when deterministic analyzers lack signal; waivers remain required for unverifiable output.

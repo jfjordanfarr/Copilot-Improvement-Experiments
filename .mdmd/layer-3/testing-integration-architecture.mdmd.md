@@ -7,7 +7,7 @@
 ## Components
 
 ### COMP-008 Integration Test Harness
-Supports REQ-001, REQ-030, and REQ-F1 to REQ-F5 by executing end-to-end scenarios that validate diagnostics accuracy, knowledge ingestion, and ripple behaviour across the built extension and server.
+Supports FR-LD1 through FR-LD6 plus REQ-F1 to REQ-F6 by executing end-to-end scenarios that validate Live Documentation regeneration, diagnostics accuracy, knowledge ingestion, and ripple behaviour across the built extension and server.
 
 ## Responsibilities
 
@@ -21,10 +21,11 @@ Supports REQ-001, REQ-030, and REQ-F1 to REQ-F5 by executing end-to-end scenario
 
 ### Scenario Coverage
 - Ensure suites `us1` through `us5` cover writer, developer, scope collision, acknowledgement, and transform ripple flows.
-- Keep suite responsibilities mapped back to runtime components (diagnostics pipeline, knowledge ingestion, LLM bridge) for traceability.
+- Add Live Documentation suites (`live-docs-generation`, `live-docs-evidence`, `live-docs-inspect-cli`, `live-docs-docstring-drift`) validating regeneration determinism, evidence population, CLI parity, and drift remediation.
+- Keep suite responsibilities mapped back to runtime components (Live Doc generator, diagnostics pipeline, knowledge ingestion, LLM bridge) for traceability.
 
 ### Artefact Capture
-- Persist run outputs (snapshot JSON, logs, provenance files) in per-suite temp directories for inspection and regression comparisons.
+- Persist run outputs (snapshot JSON, logs, Live Doc markdown fixtures, provenance files) in per-suite temp directories for inspection and regression comparisons.
 
 ## Interfaces
 
@@ -33,8 +34,8 @@ Supports REQ-001, REQ-030, and REQ-F1 to REQ-F5 by executing end-to-end scenario
 - Fixture configuration toggles controlling which suites execute, allowing targeted regression runs.
 
 ### Outbound Interfaces
-- Mocha logs and snapshot files stored under `tests/integration/.tmp` for debugging.
-- Report contributions consumed by the benchmark/reporting pipeline.
+- Mocha logs, snapshot files, and staged Live Doc mirrors stored under `tests/integration/.tmp` for debugging.
+- Report contributions consumed by the benchmark/reporting pipeline, including Live Doc precision/recall metrics.
 
 ## Linked Implementations
 
@@ -50,8 +51,21 @@ Scenario implementations verifying ripple, writer, developer, scope collision, a
 ### IMP-404 cleanDistUtility
 Removes stale bundles before integration runs. [Clean Dist Utility](/.mdmd/layer-4/testing/integration/cleanDistUtility.mdmd.md)
 
+### IMP-405 liveDocsGenerationSuite
+Exercises regeneration CLI, authored preservation, and deterministic output. [Live Docs Generation Suite](/.mdmd/layer-4/testing/integration/liveDocsGenerationSuite.mdmd.md)
+
+### IMP-406 liveDocsEvidenceSuite
+Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Live Docs Evidence Suite](/.mdmd/layer-4/testing/integration/liveDocsEvidenceSuite.mdmd.md)
+
+### IMP-407 liveDocsInspectCliSuite
+Confirms CLI/UI parity for Live Doc inspection commands. [Live Docs Inspect CLI Suite](/.mdmd/layer-4/testing/integration/liveDocsInspectCliSuite.mdmd.md)
+
+### IMP-408 liveDocsDocstringDriftSuite
+Ensures drift detection and remediation commands maintain provenance. [Live Docs Docstring Drift Suite](/.mdmd/layer-4/testing/integration/liveDocsDocstringDriftSuite.mdmd.md)
+
 ## Evidence
 - Integration suites US1–US5 run inside CI and `npm run test:integration`, asserting diagnostics accuracy, acknowledgement flows, and knowledge ingestion behaviour.
+- Planned Live Doc suites (`tests/integration/live-docs/*.test.ts`) will run alongside US suites to gate regeneration parity, evidence coverage, CLI parity, and drift remediation.
 - Harness unit tests (`runTests.test.ts`, planned) verify extension attachment and suite registration.
 - Safe-to-commit orchestration depends on integration success before passing.
 

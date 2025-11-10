@@ -46,5 +46,5 @@ Formatted diagnostic payload with rule ID, hop label, and message text that the 
 - [COMP-011 – Relationship Coverage Auditor](/.mdmd/layer-3/relationship-rule-engine.mdmd.md#comp011-relationship-coverage-auditor)
 
 ## Evidence
-- Pending unit suites under `packages/shared/src/rules/__tests__/relationshipRuleAudit.test.ts` verifying gap detection, hop reporting, and JSON serialisation of diagnostics.
+- Pending unit suites under `packages/shared/src/rules/relationshipRuleAudit.test.ts` verifying gap detection, hop reporting, and JSON serialisation of diagnostics.
 - Manual run: `npm run graph:audit -- --workspace . --json` should list rule IDs instead of generic “Layer 4 documents lacking code relationships” once this module is wired in.

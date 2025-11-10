@@ -32,5 +32,5 @@ Returned by `compileSymbolProfiles`, containing the filtered list of valid profi
 - [COMP-010 – Relationship Rule Engine](/.mdmd/layer-3/relationship-rule-engine.mdmd.md#comp010-relationship-rule-engine)
 
 ## Evidence
-- Upcoming unit tests in `packages/shared/src/rules/__tests__/symbolCorrectnessProfiles.test.ts` verifying config validation, glob compilation, and identifier pattern enforcement.
+- Upcoming unit tests in `packages/shared/src/rules/symbolCorrectnessProfiles.test.ts` verifying config validation, glob compilation, and identifier pattern enforcement.
 - Integration: `npm run graph:snapshot` followed by `npm run graph:audit -- --profiles` should enumerate each profile and report coverage status using the compiled profile cache.

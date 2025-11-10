@@ -7,7 +7,7 @@
 ## Components
 
 ### COMP010 Relationship Rule Engine
-Orchestrates declarative rule chains that describe how workspace artifacts must connect (for example, Layer 1 Capability → Layer 2 Requirement → Layer 3 Component → Layer 4 Implementation → code). Compiles the rule configuration, resolves file matches, and materialises inferred link evidence that the graph snapshot pipeline ingests.
+Orchestrates declarative rule chains that describe how workspace artifacts must connect (for example, Layer 1 Capability → Layer 2 Requirement → Layer 3 Component → Layer 4 Implementation → code/Live Doc). Compiles the rule configuration, resolves file matches, and materialises inferred link evidence that the graph snapshot pipeline and Live Doc generator ingest.
 
 ### COMP011 Relationship Coverage Auditor
 Consumes the same compiled rules during audit runs, verifies each rule has at least one satisfied chain per source artifact, and emits diagnostics that name the specific rule and broken hop when coverage is missing.
@@ -18,21 +18,21 @@ Evaluates profile contracts that declare the upstream and downstream guarantees 
 ## Responsibilities
 
 ### Declarative Rule Chains
-- Express rule chains in `link-relationship-rules.json` using ordered glob hops, resolver hints, and emitted relationship kinds. Each chain can target any combination of artifacts—MDMD layers, prompt files, conventional Markdown—making layering an opt-in convention.
+- Express rule chains in `link-relationship-rules.json` using ordered glob hops, resolver hints, and emitted relationship kinds. Each chain can target any combination of artifacts—MDMD layers, Live Docs, prompt files, conventional Markdown—making layering an opt-in convention.
 - Support hop-level filters (identifier prefixes, metadata keys, heading anchors) so workspaces can reuse the same chain across multiple documentation families without hard-coding behaviour.
+- Map Live Doc mirrors (Implementation/Test archetypes) into existing requirement → component contracts so symbol coverage extends to generated markdown.
 
 ### Config Compilation and Hot Reload
 - Normalise globs relative to the workspace root, validate resolver references, and produce reusable matcher objects for snapshot, server, and audit passes.
 - Rebuild the compiled cache whenever the configuration or resolver catalogue changes, surfacing human-readable diagnostics and JSON traces so editors can refresh in place.
 
 ### Rule Execution and Relationship Propagation
-- Evaluate rule chains during `npm run graph:snapshot`, producing `documents`, `implements`, or custom relationship evidences for every satisfied hop.
-- Materialise optional transitive edges (for example, inherit Layer 3 → code from Layer 3 → Layer 4 + Layer 4 → code) when a chain declares propagation targets.
-- Record execution traces so downstream tooling can explain why a link exists and how it satisfied the chain.
+- Evaluate rule chains during `npm run graph:snapshot`, producing `documents`, `implements`, Live Doc `documents-with-evidence`, or custom relationship evidences for every satisfied hop.
+- Materialise optional transitive edges (for example, inherit Layer 3 → code from Layer 3 → Layer 4 + Layer 4 → Live Doc + Live Doc → code) when a chain declares propagation targets.
+- Record execution traces so downstream tooling can explain why a link exists, how it satisfied the chain, and which Live Doc mirrored the implementation.
 
-### Symbol Correctness Profiles
-- Interpret profile definitions that map artifact globs to required chain IDs, identifier formats (CAP-###, REQ-###, COMP-###, IMP-###), and evidence expectations.
-- Aggregate rule execution results per profile, flagging missing upstream/downstream edges, mismatched identifiers, and absent evidence blocks in MDMD metadata.
+- Interpret profile definitions that map artifact globs to required chain IDs, identifier formats (CAP-###, REQ-###, COMP-###, IMP-###, LD-####), and evidence expectations.
+- Aggregate rule execution results per profile, flagging missing upstream/downstream edges, mismatched identifiers, absent Live Doc mirrors, and missing evidence blocks in MDMD metadata.
 
 ### Profile-Driven Coverage Auditing
 - During `npm run graph:audit`, resolve rule execution history against the persisted graph to confirm profile contracts are satisfied.
@@ -49,11 +49,13 @@ Evaluates profile contracts that declare the upstream and downstream guarantees 
 - `link-relationship-rules.json`: Workspace contract defining rule chains, propagation settings, and symbol correctness profiles.
 - Artifact seeds from `LinkInferenceOrchestrator` (documents, code, scripts) enriched with MDMD metadata, exported symbol lists, and resolver-specific attributes.
 - Resolver plugin registry exposing custom hop evaluators that the engine can dynamically load.
+- Live Doc metadata providers supplying generated section provenance and archetype annotations for chain evaluation.
 
 ### Outbound Interfaces
 - Link evidences emitted to the orchestrator so the snapshot pipeline persists edges that satisfy configured chains.
 - Profile coverage reports (JSON + markdown summaries) consumed by `graph:audit`, continuous integration, and the VS Code extension diagnostics provider.
 - Telemetry hooks that emit rule execution and profile coverage stats for observability dashboards.
+- Live Doc generator adapters that translate rule-engine findings into migration blockers when mirrors are missing or stale.
 
 ## Linked Implementations
 
@@ -101,3 +103,4 @@ Code: [`packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts`]
 - Snapshot + audit pipeline: `npm run graph:snapshot` followed by `npm run graph:audit -- --workspace . --profiles` exercises the engine, provider, and auditor end-to-end.
 - Unit suites: `relationshipRuleEngine.test.ts`, `relationshipRuleProvider.test.ts`, `relationshipRuleAudit.test.ts`, and `symbolCorrectnessValidator.test.ts` cover config parsing, resolver execution, diagnostics formatting, and profile evaluation.
 - Fixture coverage: integration fixtures under `tests/integration/slopcop` validate that documentation link rules propagate as expected and surface Problems panel diagnostics when coverage drifts.
+- Upcoming Live Doc migration suites (`tests/integration/live-docs/docstring-drift.test.ts`, `evidence.test.ts`) will assert that rule-engine coverage reports fail when mirrors or evidence sections are missing.

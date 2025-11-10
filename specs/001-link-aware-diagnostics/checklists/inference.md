@@ -1,41 +1,42 @@
-# Checklist: Inference & Knowledge Graph Requirements
+# Checklist: Live Documentation Generator & Graph Requirements
 
-**Purpose**: Self-check for author to validate requirements covering auto-inferred links, cache rebuilds, and knowledge-graph integration.
-**Created**: 2025-10-16
+**Purpose**: Self-check for authors to validate requirements covering Live Doc regeneration, analyzer provenance, evidence mapping, and markdown-as-AST graph consumption.
+**Created**: 2025-10-16 (pivoted 2025-11-08)
 
 ## Requirement Completeness
-- [x] CHK001 Are all inference data sources (language-server symbols, references, diagnostics, external graphs) explicitly enumerated for each artifact type? [Completeness, Spec §FR-001; Research §Link Establishment Strategy]
-- [x] CHK002 Is the full lifecycle for rebuilding the link graph (initial startup, cache deletion, stale data detection) described end-to-end? [Completeness, Research §Graph Rebuild & Freshness; Plan §Phase 2]
-- [x] CHK003 Do requirements specify how manual overrides coexist with auto-inferred relationships, including persistence and precedence rules? [Completeness, Spec §FR-001; Quickstart §Configuration]
+- [x] CHK-LD01 Are analyzer inputs for `Public Symbols`, `Dependencies`, and archetype metadata explicitly enumerated per language/archetype? [Spec §FR-LD2; Research §Analyzer Coverage]
+- [x] CHK-LD02 Is the full regeneration lifecycle described end-to-end (staging, lint, migration, rollback)? [Spec §Live Doc Generation Lifecycle; Plan §Adoption Strategy]
+- [x] CHK-LD03 Do requirements describe how waivers, placeholders, and evidence enforcement interact with lint/safe-commit gates? [Spec §User Story 4; Plan §Phase 3; Tasks §LD-302–LD-304]
 
 ## Requirement Clarity
-- [x] CHK004 Is the "workspace index data" term broken down into precise provider calls or API contracts so implementers know what must be queried? [Clarity, Spec §FR-001; Research §Symbol Ingestion Strategy]
-- [x] CHK005 Are knowledge-graph feeds defined with expected schema/format and scope (e.g., GitLab GKG vs. LSIF) to avoid ambiguity? [Clarity, Spec §FR-014; Plan §Phase 0]
-- [x] CHK006 Are override commands documented with user-facing naming, trigger conditions, and resulting state changes? [Clarity, Tasks §T027; Quickstart §Configuration]
+- [x] CHK-LD04 Are HTML markers, section ordering, and authored/generated boundaries explicitly defined? [Spec §Functional Requirements; Instructions `mdmd.layer4.*`]
+- [x] CHK-LD05 Is configuration (`liveDocumentation.root`, `baseLayer`, slug dialect, glob overrides) documented for both CLI and VS Code settings? [Spec §FR-LD10; Plan §Phase 0; Quickstart §Configure Live Documentation]
+- [x] CHK-LD06 Are CLI/LLM parity expectations named with concrete command references? [Spec §FR-LD5; Quickstart §Maintenance Cheat-Sheet; Tasks §LD-402–LD-403]
 
 ## Requirement Consistency
-- [x] CHK007 Do plan phases, tasks, and quickstart instructions all agree that link inference is automatic by default with optional overrides? [Consistency, Plan §Summary; Tasks §T028; Quickstart §Configuration]
-- [x] CHK008 Are consent gating requirements aligned so diagnostics remain disabled until provider selection, including when inference runs headless? [Consistency, Spec §FR-010; Plan §Phase 3; Tasks §T018–T019]
+- [x] CHK-LD07 Do spec, plan, tasks, and quickstart agree on staging under `/.live-documentation/<baseLayer>/` (default `source/`) before migration? [Spec §Lifecycle; Plan §Summary; Tasks §LD-204]
+- [x] CHK-LD08 Do all artifacts commit to workspace-relative links and configurable slug dialect enforcement? [Spec §FR-LD11; Quickstart §Configure Live Documentation; Instructions `mdmd.layer4.instructions.md`]
+- [x] CHK-LD09 Are evidence expectations mirrored across spec, plan deliverables, and falsifiability criteria? [Spec §User Story 4; Plan §Phase 3; Falsifiability §REQ-F3]
 
 ## Acceptance Criteria Quality
-- [x] CHK009 Do success criteria or metrics quantify inference accuracy or rebuild latency to prove SC-001/SC-005 are met? [Acceptance Criteria, Spec §Success Criteria]
+- [x] CHK-LD10 Do success metrics quantify regeneration latency, analyzer accuracy, and evidence coverage? [Spec §Success Criteria SC-LD1–SC-LD5]
+- [x] CHK-LD11 Does falsifiability enumerate deterministic checks (structure, analyzer parity, docstring drift) tied to CI gates? [Falsifiability §REQ-F1–REQ-F6]
 
 ## Scenario Coverage
-- [x] CHK011 Are workflows described for importing external knowledge-graph snapshots on-demand vs. streaming updates? [Coverage, Spec §FR-014; Plan §Phase 4]
-- [x] CHK012 Are failure behaviors defined when knowledge-graph feeds are unreachable, stale, or return partial data? [Edge Case, Spec §Edge Cases; Tasks §T040–T041]
-- [x] CHK013 Is there guidance on resolving conflicts between inferred links and manual overrides (e.g., tie-breakers, audit trail)? [Edge Case, Spec §FR-001; Tasks §T027]
+- [x] CHK-LD12 Are rename/move flows, multi-target tests, and optional asset docs treated in Edge Cases? [Spec §Edge Cases; Tasks §LD-300–LD-304]
+- [x] CHK-LD13 Do requirements cover offline/air-gapped regeneration and optional LLM enrichers with guardrails? [Spec §Assumptions; Plan §Constraints]
+- [x] CHK-LD14 Are migration failure/rollback scenarios documented? [Spec §FR-LD7; Plan §Phase 6]
 
 ## Non-Functional Requirements
-- [x] CHK014 Are performance targets for inference runs (e.g., debounce window, rebuild duration) measurable and tied to plan or success criteria? [Non-Functional, Spec §FR-012; Plan §Performance Goals]
+- [x] CHK-LD15 Are performance targets for regeneration and CLI latency defined and linked to enforcement? [Spec §Success Criteria SC-LD1, SC-LD4; Plan §Performance Goals]
 
 ## Dependencies & Assumptions
-- [x] CHK015 Are assumptions about external knowledge graphs (availability, authentication, update cadence) captured and validated? [Dependencies, Spec §Assumptions; Research §Workspace Indexing]
+- [x] CHK-LD16 Are analyzer/benchmark dependencies noted, including requirement to preserve existing polyglot suites? [Spec §Assumptions; Plan §Phase 2; Roadmap §REQ-L2]
 
 ## Ambiguities & Conflicts
-- [x] CHK016 Are there unresolved ambiguities around cache storage location, retention, or privacy that need clarification before implementation? [Ambiguity, Spec §FR-010; Quickstart §Configuration]
+- [x] CHK-LD17 Are open questions about churn metrics, Live Doc ID determinism, and asset coverage captured for follow-up? [Spec §Active Questions; Plan §Phase 7; Roadmap §Active Questions]
 
 ## Implementation Traceability
-- [`packages/server/src/runtime/changeProcessor.ts`](/packages/server/src/runtime/changeProcessor.ts) owns the inference merge pipeline referenced throughout this checklist.
-- [`packages/server/src/runtime/knowledgeFeeds.ts`](/packages/server/src/runtime/knowledgeFeeds.ts) wires knowledge-feed ingestion for snapshot and streaming scenarios.
-- [`packages/server/src/features/knowledge/knowledgeFeedManager.ts`](/packages/server/src/features/knowledge/knowledgeFeedManager.ts) and [`knowledgeGraphIngestor.ts`](/packages/server/src/features/knowledge/knowledgeGraphIngestor.ts) enforce the availability and validation requirements covered above.
-- [`tests/integration/us5/transformRipple.test.ts`](/tests/integration/us5/transformRipple.test.ts) proves the ripple inference behaviours this checklist guards.
+- [`packages/server/src/runtime/changeProcessor.ts`](/packages/server/src/runtime/changeProcessor.ts) orchestrates analyzer scheduling feeding Live Doc regeneration (LD2, LD3).
+- [`scripts/live-docs/generate.ts`](/scripts/live-docs/generate.ts) (to be implemented) will enforce CLI parity referenced across tasks/checklists.
+- Planned integration suites under `tests/integration/live-docs/` validate generation determinism, evidence mapping, and docstring drift referenced in falsifiability REQ-F2/REQ-F3/REQ-F6.

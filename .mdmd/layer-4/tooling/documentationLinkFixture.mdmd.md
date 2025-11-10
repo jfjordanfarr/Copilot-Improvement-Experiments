@@ -17,7 +17,7 @@ Provides a minimal code surface that exercises the documentation link enforcemen
 Returns a stable string so tests can verify that the enforcement CLI inserts the correct breadcrumb without mutating observable behaviour.
 
 ## Collaborators
-- Exercised by [`scripts/doc-tools/__tests__/enforce-documentation-links.test.ts`](../../../scripts/doc-tools/__tests__/enforce-documentation-links.test.ts) when validating the CLI `--fix` flow.
+- Exercised by [`scripts/doc-tools/enforce-documentation-links.test.ts`](../../../scripts/doc-tools/enforce-documentation-links.test.ts) when validating the CLI `--fix` flow.
 - Referenced by [`packages/shared/src/tooling/documentationLinks.test.ts`](../../../packages/shared/src/tooling/documentationLinks.test.ts) to confirm the shared enforcement helpers detect missing breadcrumbs and autofix them.
 
 ## Linked Components
@@ -26,4 +26,4 @@ Returns a stable string so tests can verify that the enforcement CLI inserts the
 
 ## Evidence
 - `npm run docs:links:enforce` now observes the breadcrumb on this fixture and reports a clean status after `--fix` flows.
-- `npm run test:unit -- scripts/doc-tools/__tests__/enforce-documentation-links.test.ts` inserts the breadcrumb via the CLI and asserts it succeeds with `EXIT_CODES.SUCCESS`.
+- `npm run test:unit -- scripts/doc-tools/enforce-documentation-links.test.ts` inserts the breadcrumb via the CLI and asserts it succeeds with `EXIT_CODES.SUCCESS`.

@@ -34,5 +34,5 @@ Wraps the generated evidences with the execution chains that justified them so d
 - [COMP-010 – Relationship Rule Engine](/.mdmd/layer-3/relationship-rule-engine.mdmd.md#comp010-relationship-rule-engine)
 
 ## Evidence
-- Unit tests planned for `packages/shared/src/rules/__tests__/relationshipRuleEngine.test.ts` covering config parsing, rule compilation, and execution happy-path/edge cases.
+- Unit tests planned for `packages/shared/src/rules/relationshipRuleEngine.test.ts` covering config parsing, rule compilation, and execution happy-path/edge cases.
 - Integration: running `npm run graph:snapshot` with the sample MDMD rule chain should produce `implements` links from Layer 3 docs to the code they govern.

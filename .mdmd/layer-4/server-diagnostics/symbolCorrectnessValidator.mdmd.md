@@ -36,5 +36,5 @@ Detailed diagnostic payload for a single profile requirement miss, naming the of
 - [COMP-011 – Relationship Coverage Auditor](/.mdmd/layer-3/relationship-rule-engine.mdmd.md#comp011-relationship-coverage-auditor)
 
 ## Evidence
-- Unit tests planned in `packages/server/src/features/diagnostics/__tests__/symbolCorrectnessValidator.test.ts` covering happy path, missing upstream hop, identifier mismatch, and evidence gap cases.
+- Unit tests planned in `packages/server/src/features/diagnostics/symbolCorrectnessValidator.test.ts` covering happy path, missing upstream hop, identifier mismatch, and evidence gap cases.
 - Integration: `npm run graph:audit -- --profiles --json` should emit combined audit + profile reports with zero findings after documentation harmonisation.

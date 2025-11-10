@@ -40,7 +40,15 @@ export function resolveWorkspaceRoot(params: InitializeParams): string | undefin
 export function fileUriToPath(candidate: string): string {
   try {
     if (candidate.startsWith("file://")) {
-      return fileURLToPath(candidate);
+      try {
+        return fileURLToPath(candidate);
+      } catch {
+        const parsed = new URL(candidate);
+        const pathname = decodeURIComponent(parsed.pathname ?? "");
+        if (pathname) {
+          return path.resolve(pathname);
+        }
+      }
     }
   } catch {
     // fall through to path resolution

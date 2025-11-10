@@ -45,3 +45,8 @@ AI-Agent-Workspace/ChatHistory/MDMD-Signals/
 # Ignore transient agent workspace scratch directories
 **/AI-Agent-Workspace/tmp/
 AI-Agent-Workspace/ollama-traces/
+
+# Live Documentation staging outputs
+coverage/live-docs/
+data/live-docs/
+reports/benchmarks/live-docs/

@@ -8,13 +8,14 @@
 ## Components
 
 ### COMP-003 – Heuristic Suite
-- Purpose: Encapsulate language and document heuristics behind a consistent contract so `fallbackInference.ts` remains an orchestration shell under 500 lines.
-- RequirementID: T104
+- Purpose: Encapsulate language and document heuristics behind a consistent contract so `fallbackInference.ts` remains an orchestration shell under 500 lines while feeding Live Documentation dependency generation.
+- RequirementID: FR-LD2
 
 ## Responsibilities
-- Preserve the historical heuristic evaluation order to maintain benchmark parity.
-- Keep per-language logic pure and index-driven so fixtures remain deterministic across runs.
-- Provide traceable identifiers and rationales for every emitted match to aid telemetry and debugging.
+- Preserve the historical heuristic evaluation order to maintain benchmark parity and Live Doc dependency precision.
+- Keep per-language logic pure and index-driven so fixtures remain deterministic across runs and compatible with Live Doc regeneration.
+- Provide traceable identifiers and rationales for every emitted match to aid telemetry, debugging, and provenance entries inside Live Docs.
+- Emit archetype-aware hints (implementation vs test) so the Live Doc generator can classify `Dependencies`, `Targets`, and `Supporting Fixtures` correctly.
 
 ## Interfaces
 
@@ -51,6 +52,7 @@
 - Helpers: [`cleanupReference`](../../packages/shared/src/inference/heuristics/shared.ts), [`normalizePath`](../../packages/shared/src/inference/heuristics/shared.ts), [`stem`](../../packages/shared/src/inference/heuristics/shared.ts), [`toComparablePath`](../../packages/shared/src/inference/heuristics/shared.ts).
 - Parsing guards: [`computeReferenceStart`](../../packages/shared/src/inference/heuristics/shared.ts), [`isWithinComment`](../../packages/shared/src/inference/heuristics/shared.ts).
 - Scoring utilities: [`buildReferenceVariants`](../../packages/shared/src/inference/heuristics/shared.ts), [`evaluateVariantMatch`](../../packages/shared/src/inference/heuristics/shared.ts), [`VariantMatchScore`](../../packages/shared/src/inference/heuristics/shared.ts), [`isExternalLink`](../../packages/shared/src/inference/heuristics/shared.ts).
+- Live Doc helpers: [`toLiveDocDependency`](../../packages/shared/src/inference/heuristics/shared.ts) (planned) will convert heuristic matches into generator-ready dependency descriptors.
 
 ## Linked Implementations
 
@@ -106,6 +108,7 @@
 - [`packages/shared/src/inference/fallbackInference.languages.test.ts`](../../packages/shared/src/inference/fallbackInference.languages.test.ts) locks regression coverage for Java, Rust, Ruby, and C flows.
 - [`packages/shared/src/inference/fallbackInference.test.ts`](../../packages/shared/src/inference/fallbackInference.test.ts) exercises orchestrator integration with the modular heuristics suite.
 - Benchmarks: `npm run test:benchmarks -- --suite ast` validates precision/recall stability across large fixtures (e.g., `java-okhttp`, `csharp-roslyn-compilers`).
+- Live Doc parity benchmark (`reports/benchmarks/live-docs/precision.json`) reports precision 100% and recall 99.90% for dependencies (symbols 100% / 98.62%), confirming heuristic-derived edges align with generated markdown `Dependencies` sections.
 
 ## Operational Notes
 - Heuristic ordering mirrors the pre-refactor monolith; changes require rerunning AST benchmarks to confirm parity.

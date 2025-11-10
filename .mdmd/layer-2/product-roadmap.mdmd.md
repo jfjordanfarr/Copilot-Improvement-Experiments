@@ -1,140 +1,134 @@
-# Link-Aware Diagnostics Roadmap
+# Live Documentation Roadmap
 
 ## Metadata
 - Layer: 2
-- Requirement IDs: REQ-001, REQ-020, REQ-030, REQ-040, REQ-050
+- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-E1
 
 ## Requirements
 
-### REQ-001 Ripple Observability Foundations
-Supports CAP-001 and CAP-002 by ensuring cross-file impact detection is fast, reproducible, and instrumentation-ready.
+### REQ-L1 Live Documentation Baseline
+Supports CAP-001 by delivering authored+generated Live Documentation artefacts in a configurable mirror tree with deterministic regeneration and human-friendly editing flows.
 
-#### Stream T04x – Diagnostics Fundamentals *(complete)*
-- Lock down cross-file diagnostics for code and documentation via falsifiability suites US1 to US5 ([spec](/specs/001-link-aware-diagnostics/spec.md), [tests/integration](/tests/integration)).
-- Harden hysteresis, batching, and acknowledgement flows before expanding to UX polish.
+#### Stream LD1-A – Authored Framework *(in progress)*
+- Update Layer‑4 instructions and archetype overlays (Implementation, Test, Asset) so every Live Doc shares the same authored template (`Description`, `Purpose`, `Notes`).
+- Provide extension commands and snippets that protect the authored block while exposing convenient editing entry points.
+- Document consent flows for storing generated Live Docs inside or outside the repository (`.live-documentation/` by default, configurable for adopters).
 
-#### Stream T05x – Knowledge Graph Enrichment *(in progress)*
-- Ingest external feeds (LSIF, SCIP, GitLab knowledge graph) with schema validation and resumable checkpoints ([functional requirements](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)).
-- Surface provenance inside diagnostics so users know whether edges are inferred or imported.
+#### Stream LD1-B – Mirror Tree & Migration *(planned)*
+- Stage generator output under `/.live-documentation/<baseLayer>/` (default `source/`), validate parity with existing Layer‑4 MDMD, then orchestrate an opt-in migration that flips the default storage path once confidence is proven.
+- Maintain one-to-one Live Doc ↔ source relationships; ensure configuration surfaces align with monorepos and asset directories.
+- Publish migration guide and automation scripts (e.g., `npm run live-docs:migrate`) for external adopters.
 
-#### Stream T06x – Operational UX *(in progress)*
-- Provide lead-friendly dashboards, export CLI, and acknowledgement audit trails.
-- Integrate ripple metadata into Copilot prompts and Problems hover tooltips.
+#### Stream LD1-C – Safety & Governance *(planned)*
+- Embed lint rules and safe-commit hooks that detect missing generated sections or unauthorized edits inside generated blocks.
+- Capture waivers for intentionally empty sections (`Observed Evidence`, `Targets`, `Consumers`) via HTML comments so automation can track debt.
+- Record MIT licensing notices in Live Docs and packaging materials to reinforce open-source distribution.
 
-### REQ-020 Documentation Bridges and LLM Surfaces
-Supports CAP-003 and CAP-004 by pairing documentation integrity with narrative outputs that copilots can reuse.
+### REQ-L2 Generated Intelligence
+Supports CAP-002 by keeping generated sections current through analyzers, docstring bridges, coverage inference, and polyglot oracles.
 
-#### Stream T07x – Documentation Bridges and Asset Integrity *(in motion)*
-- Ship SlopCop linting passes (markdown in production, asset paths with root-directory support and hashed-ignore ergonomics) so documentation remains a trustworthy proxy for ripple analysis.
-- Introduce workspace-local docstring bridges that keep Layer 4 MDMD sections in sync with public symbol docstrings while remaining configurable for other doc ecosystems (TSDoc, Sphinx, Rustdoc).
-- Deliver symbol-level lint stage zero (markdown anchor integrity with GitHub slug parity) while designing higher stages for knowledge-graph-backed code symbols.
-- Promote lint findings into safe-to-commit and CI pipelines, keeping hallucinated links from landing while publishing fixture-backed examples future iterations can dogfood.
+#### Stream LD2-A – Symbol & Docstring Extraction *(in motion)*
+- Refactor language analyzers (TypeScript, Python, Rust, Java, Ruby, C, C#) to emit export signatures, docstrings, and source anchors for the `Public Symbols` section.
+- Build docstring bridges that keep Live Docs synchronized with inline documentation (TSDoc, XML comments, Sphinx, Rustdoc) while honouring consent signals.
+- Maintain precision/recall benchmarks per language to keep regeneration trustworthy.
 
-#### Stream T09x – LLM-Oriented Surfaces *(planned)*
-- Standardise ASCII ripple diagrams, markdown tables, and structured JSON payloads so extension commands and diagnostics feed humans and copilots equally.
-- Add configuration knobs for diagram width, depth, and focus targets so workspaces can tailor outputs for prompts versus dashboards.
-- Bundle presets that align with common repo archetypes while keeping computation local to the workspace.
+#### Stream LD2-B – Dependency Resolution *(in progress)*
+- Upgrade import/call/asset heuristics to list first-order collaborators for every implementation Live Doc.
+- Extend asset analyzers to detect HTML/CSS/image relationships, emitting lightweight Live Docs for non-plaintext assets.
+- Store provenance metadata indicating heuristic family, benchmark score, and last regeneration timestamp.
 
-### REQ-030 Adoption Profiles and Auto-Repair
-Supports CAP-004 and CAP-005 by giving teams a staged adoption path plus tooling to keep profiles healthy over time.
+#### Stream LD2-C – Evidence & Coverage *(planned)*
+- Aggregate unit, integration, and benchmark coverage to populate `Observed Evidence` for implementations and `Targets` / `Supporting Fixtures` for tests.
+- Integrate coverage CLI output and heuristics to reduce manual curation while keeping waivers auditable.
+- Ensure regenerated evidence respects one-to-one Live Doc mapping and flags orphaned tests or implementations.
 
-#### Stream T08x – Auto-Repair Tooling *(planned)*
-- Offer guided workflows to rebind or prune stale links after rename or delete events.
-- Explore safe auto-fix suggestions when diagnostics identify simple drifts (for example, markdown link updates).
+#### Stream LD2-D – Polyglot Oracles *(in progress)*
+- Maintain deterministic AST benchmarks and regeneration CLIs (TypeScript, Python, C#, Rust, Java, Ruby, C) that feed analyzer confidence scores.
+- Capture drift deltas in `reports/benchmarks/**` and expose them inside Live Docs as optional generated metadata.
+- Layer an LLM sampling harness atop deterministic oracles with strict gating so predictions remain reviewable and reversible.
 
-#### Stream T12x – Compiler-Oracled Benchmarks *(in progress)*
-- Generate TypeScript benchmark expectations via a deterministic compiler oracle while retaining hand-authored cross-language edges for polyglot scenarios.
-- Ship a fixture regeneration CLI that writes oracle-derived edges to temp artefacts, compares them against curated baselines, and emits review-ready diffs instead of mutating manual expectations.
-- Capture oracle coverage and drift metrics in benchmark reports so compiler upgrades or analyzer regressions fail loudly and surface rationale inside `reports/benchmarks/*`.
-- Document override semantics so authored expectations (for example, cross-runtime ripple edges) persist unchanged during automated regeneration.
-- Extend the benchmarking pipeline with a Python import oracle that shells out to workspace interpreters, regenerates fixtures such as `psf/requests`, and records provenance without bundling compilers in the extension *(delivered; python basics + pipeline fixtures now report 1.0 precision/recall via regenerated expectations and fallback alignment)*.
-- Record benchmark deltas after the Python oracle rollout so ast-mode totals reflect the improved 210 TP / 8 FP / 8 FN (96.3% precision/recall) baseline.
-- Update manifest tooling and regeneration CLIs so language-specific oracles (TypeScript, Python, upcoming Rust/C) share a common interface, interpreter detection, and diff artefact workflow.
-- Deliver deterministic fixture oracles for C, Rust, Java, and Ruby so curated benchmarks across ecosystems reach parity with the Python and TypeScript baselines before further LLM integration.
-- Refactor regeneration and benchmark CLIs into a language-agnostic surface that records per-language toolchain provenance, refreshes precision/recall snapshots, and surfaces drift without mutating manual overrides.
-- Ensure benchmark executions (`scripts/run-benchmarks.mjs`, `npm run safe:commit -- --benchmarks`) automatically rewrite `expected.json` from oracle regeneration before suites run, preserving manual overrides while eliminating manual copy steps. *(Delivered: regeneration CLI now runs at the top of every benchmark invocation with an opt-out guard for ad-hoc analysis.)*
-- Introduce a confidence-gated LLM sampling harness layered atop deterministic oracles so optional cross-language predictions are measurable, reviewable, and never regress AST-grounded truth.
+### REQ-L3 Consumption & Enforcement
+Supports CAP-003 by making Live Documentation the backbone of diagnostics, CLI tooling, and lint enforcement.
 
-#### Adoption Programme *(Observe → Sustain)*
-- Stage 0 Observe: extension defaults to read-only insight—graph diagnostics, ASCII or markdown narratives, and audit CLIs scoped by path.
-- Stage 1 Guard: workspaces declare profiles binding code and doc globs to lint or audit suites; findings stay informational until the enforce flag flips.
-- Stage 2 Bridge: profiles opt into docstring, schema, or telemetry bridges with explicit preview or apply commands so drift fixes remain intentional.
-- Stage 3 Sustain: profiles graduate to contractual status, wiring safe-to-commit and CI gates plus ripple narratives that document health for copilots and humans alike.
+#### Stream LD3-A – Diagnostics & Views *(in progress)*
+- Pivot diagnostics providers to source their findings from the Live Doc graph, including hover tooltips, Problems entries, and acknowledgement workflows.
+- Refresh tree views and quick pick commands so they display Live Doc metadata (generated timestamps, evidence counts, dependency fan-out).
+- Provide diff previews comparing authored versus generated changes before accepting regeneration.
 
-### REQ-040 Symbol Correctness Profiles (in design)
-Supports CAP-003 and CAP-004 by making documentation ↔ code traceability a configurable contract rather than a hard-coded convention.
+#### Stream LD3-B – CLI & Export Surfaces *(planned)*
+- Ship CLI commands (e.g., `npm run live-docs:inspect`) that answer “what else does this touch?” by traversing markdown links and returning shareable markdown or JSON.
+- Generate ASCII/markdown narratives and lightweight architecture diagrams consumable by humans and copilots.
+- Support shareable codemap snapshots similar to Windsurf Codemaps but grounded entirely in markdown.
 
-#### Stream T10x – Declarative Rule Chains *(in progress)*
-- Define a JSON profile language that composes glob-matched artifacts, rule chains, identifier formats, and evidence expectations (CAP → REQ → COMP → IMP → code).
-- Extend the relationship rule engine so rule execution and propagation produce the coverage signals profiles require.
-- Deliver schema, editor snippets, and instructions files so new workspaces can bootstrap profiles without bespoke LLM prompts.
+#### Stream LD3-C – Enforcement & Linting *(planned)*
+- Integrate Live Doc validation with safe-commit, CI, and SlopCop so missing generated sections, stale timestamps, or absent evidence block merges.
+- Emit JSON reports for dashboards and future IDE integrations (JetBrains, Vim) without duplicating business logic.
+- Support staged adoption (Observe → Sustain) with profile configurations that control enforcement scope.
 
-#### Stream T11x – Profile Enforcement & Reporting *(planned)*
-- Integrate profile evaluation with `graph:snapshot`, `graph:audit`, and the extension diagnostics provider, emitting actionable findings plus markdown/ASCII summaries.
-- Provide JSON coverage reports suitable for CI gates and external dashboards.
-- Offer starter presets (MDMD layers, conventional README ↔ code contracts) so teams can adapt the system to non-MDMD documentation stacks.
+### REQ-E1 Ecosystem Enablement
+Supports CAP-004 by packaging the Live Documentation system for open adoption and long-term sustainability.
+
+#### Stream LD4-A – Packaging & Licensing *(in progress)*
+- Publish MIT license, contributor guide, and extension marketplace messaging emphasising Live Documentation capabilities.
+- Bundle sample workspaces and docs showing before/after Live Doc migrations.
+- Provide tooling to scaffold archetype templates for new projects.
+
+#### Stream LD4-B – External Integrations *(planned)*
+- Research GitLab Knowledge Graph, LSIF, and SCIP ingestion paths that complement markdown-as-AST without compromising offline guarantees.
+- Offer MCP/OpenAPI surfaces so other IDE agents can consume the Live Doc graph.
+- Track competitive differentiators (Windsurf Codemaps) within roadmap updates and marketing materials.
 
 ## Acceptance Criteria
 
-### REQ-001 Acceptance Criteria
-- US1 to US5 integration suites remain green, covering developer, writer, acknowledgement, scope collision, and transform ripple flows.
-- `npm run safe:commit` must complete hysteresis checks without unacknowledged regressions.
-- Knowledge graph snapshots rebuild deterministically across local and CI environments.
+### REQ-L1 Acceptance Criteria
+- Every Live Doc contains `Metadata`, `Authored`, and `Generated` sections with required subsections; safe-commit fails if structure is missing.
+- Regeneration commands (`npm run live-docs:generate`) produce deterministic output and leave authored content untouched.
+- Migration dry-runs compare existing Layer‑4 MDMD docs to generated Live Docs with <5% diff noise before enabling swap.
+- Relative-link lint passes with the configured slug dialect (GitHub default) so staged docs can be published directly to wiki surfaces.
+- Generated sections refresh within a single `safe:commit` run for modified files; stale Live Docs raise warnings within 24 hours if regeneration is skipped.
 
-### REQ-020 Acceptance Criteria
-- SlopCop markdown, asset, and symbol audits run inside safe-to-commit and block hallucinated links.
-- Docstring bridge adapters emit drift diagnostics and ASCII or markdown narratives consumable by copilots.
-- LLM surfaces mirror workspace diagnostics without introducing external service dependencies.
+### REQ-L2 Acceptance Criteria
+- Per-language benchmarks report ≥0.9 precision/recall for exported symbol detection and ≥0.8 for dependency resolution.
+- Docstring bridges emit drift diagnostics and update generated sections during regeneration.
+- Implementation Live Docs list at least one evidence artefact or record a waiver comment.
+- Benchmark suites remain green for legacy languages (C#, Java, Rust, Python, Ruby, C) so Generated sections keep polyglot coverage parity.
+
+### REQ-L3 Acceptance Criteria
+- Diagnostics, CLI, and narrative commands reference Live Docs as the single source of truth (no bespoke graph queries).
+- Safe-commit and CI pipelines block merges when Live Doc regeneration or lint checks fail.
+- CLI exports and diagnostics respond within target latency (≤2 s for repos under 10k files).
+- Every UI interaction (diagnostics, diff previews, tree views) exposes an equivalent CLI or LLM-accessible command so automation matches human capabilities.
+
+### REQ-E1 Acceptance Criteria
+- MIT license, README, and marketing materials describe Live Documentation capabilities and configuration knobs.
+- Sample workspaces regenerate Live Docs using out-of-the-box tooling with zero manual steps.
+- External API surfaces (CLI, MCP/OpenAPI) expose Live Doc graph queries with authentication disabled by default for local use.
 
 
-### REQ-050 C# Benchmark Coverage
-Supports CAP-001 and CAP-030 by extending deterministic AST ground truth and fallback accuracy telemetry to .NET workspaces.
 
-#### Stream T13x – C# Polyglot Benchmarks *(planned)*
-- [x] Deliver a C# fixture oracle that emits `imports`/`uses` relationships from file-scoped namespaces, partial classes, and common Roslyn idioms, exposed via `packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts` with unit coverage.
-- [x] Extend benchmark regeneration and fallback capture CLIs to accept `--lang csharp`, wiring `.cs` file globs, Roslyn-aware integrity metadata, and deterministic diff artefacts.
-- [x] Onboard curated fixtures (`csharp-basic`, `csharp-webforms`) under `tests/integration/benchmarks/fixtures/csharp/` with deterministic expectations, manual override coverage, and safe-to-commit integrity digests.
-- [x] Materialise a Roslyn flow-analysis slice (`csharp-roslyn-compilers`) as the first third-party benchmark with sparse checkout, integrity hashing (72 files), and documented rationale for the selected module slice.
-- [ ] Capture roadmap updates and Layer 4 documentation pointers whenever subsequent C# fixtures land; Roslyn coverage documented November 2025.
-
-### REQ-050 Acceptance Criteria
-- C# fixtures appear in `tests/integration/benchmarks/fixtures/fixtures.manifest.json` with oracle configurations and integrity digests that pass `npm run fixtures:regenerate -- --lang csharp --write`.
-- AST accuracy and fallback benchmarks report ≥0.6 precision/recall for `csharp-basic`, with Roslyn subset metrics recorded in `reports/benchmarks/**/*` once harvest runs complete.
-- Layer 4 benchmark docs enumerate C# fixtures (`csharp-basic`, `csharp-webforms`, `csharp-roslyn-compilers`) alongside regeneration instructions and fallback heuristics constraints.
-- Safe-to-commit pipeline (`npm run safe:commit -- --benchmarks`) executes without regressing due to C# fixture onboarding.
-### REQ-030 Acceptance Criteria
-- Profiles record Observe → Sustain progress per path scope, with violations emitted as diagnostics when enforcement is active.
-- Auto-repair tooling produces actionable plans or safe auto-fixes for link drift.
-- Telemetry confirms ripple adoption metrics for stakeholder reporting.
-
-### REQ-040 Acceptance Criteria
-- `link-relationship-rules.json` captures profile definitions (chains, identifier contracts, evidence expectations) validated by schema tooling.
-- `npm run graph:snapshot` produces rule execution traces including transitive relationships declared by profiles.
-- `npm run graph:audit -- --profiles` reports zero outstanding profile violations once documentation and code coverage are aligned.
-- VS Code diagnostics surface profile violations with quick navigation to the offending artifacts and rule chains.
 
 ## Linked Components
 
 ### COMP-001 Diagnostics Pipeline
-Supports REQ-001. [Diagnostics Pipeline Architecture](../layer-3/diagnostics-pipeline.mdmd.md)
+Supports REQ-301. [Diagnostics Pipeline Architecture](../layer-3/diagnostics-pipeline.mdmd.md)
 
 ### COMP-002 Extension Surfaces
-Supports REQ-001 and REQ-020. [Extension Surfaces Architecture](../layer-3/extension-surfaces.mdmd.md)
+Supports REQ-301. [Extension Surfaces Architecture](../layer-3/extension-surfaces.mdmd.md)
 
 ### COMP-003 Language Server Runtime
-Supports REQ-001. [Language Server Architecture](../layer-3/language-server-architecture.mdmd.md)
+Supports REQ-101 and REQ-201. [Language Server Architecture](../layer-3/language-server-architecture.mdmd.md)
 
 ### COMP-004 SlopCop Tooling
-Supports REQ-020 and REQ-030. [SlopCop Architecture](../layer-3/slopcop.mdmd.md)
+Supports REQ-101 and REQ-301. [SlopCop Architecture](../layer-3/slopcop.mdmd.md)
 
 ### COMP-005 Knowledge Graph Ingestion
-Supports REQ-020. [Knowledge Graph Ingestion Architecture](../layer-3/knowledge-graph-ingestion.mdmd.md)
+Supports REQ-201 and REQ-401. [Knowledge Graph Ingestion Architecture](../layer-3/knowledge-graph-ingestion.mdmd.md)
 
 ### COMP-006 LLM Ingestion Pipeline
-Supports REQ-020. [LLM Ingestion Pipeline](../layer-3/llm-ingestion-pipeline.mdmd.md)
+Supports REQ-201 and REQ-301. [LLM Ingestion Pipeline](../layer-3/llm-ingestion-pipeline.mdmd.md)
 
 ### COMP-007 Diagnostics Benchmarking
-Supports REQ-030. [Benchmark Telemetry Pipeline](../layer-3/benchmark-telemetry-pipeline.mdmd.md)
+Supports REQ-201. [Benchmark Telemetry Pipeline](../layer-3/benchmark-telemetry-pipeline.mdmd.md)
 
 ### COMP-008 Integration Test Architecture
 Supports REQ-030. [Integration Testing Architecture](../layer-3/testing-integration-architecture.mdmd.md)
@@ -157,25 +151,25 @@ Supports REQ-020 and REQ-030. [Polyglot Oracles & Sampling Architecture](../laye
 ## Linked Implementations
 
 ### IMP-101 docDiagnosticProvider
-Supports REQ-001. [Extension Diagnostic Provider](../layer-4/extension-diagnostics/docDiagnosticProvider.mdmd.md)
+Supports REQ-301. [Extension Diagnostic Provider](../layer-4/extension-diagnostics/docDiagnosticProvider.mdmd.md)
 
 ### IMP-102 publishDocDiagnostics
-Supports REQ-001. [Server Diagnostics Publisher](../layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md)
+Supports REQ-301. [Server Diagnostics Publisher](../layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md)
 
 ### IMP-103 changeProcessor
-Supports REQ-001 and REQ-030. [Change Processor Runtime](../layer-4/language-server-runtime/changeProcessor.mdmd.md)
+Supports REQ-101 and REQ-201. [Change Processor Runtime](../layer-4/language-server-runtime/changeProcessor.mdmd.md)
 
 ### IMP-201 slopcopMarkdownLinks CLI
-Supports REQ-020. [SlopCop Markdown Audit](../layer-4/tooling/slopcopMarkdownLinks.mdmd.md)
+Supports REQ-101. [SlopCop Markdown Audit](../layer-4/tooling/slopcopMarkdownLinks.mdmd.md)
 
 ### IMP-202 slopcopAssetPaths CLI
-Supports REQ-020. [SlopCop Asset Audit](../layer-4/tooling/slopcopAssetPaths.mdmd.md)
+Supports REQ-101. [SlopCop Asset Audit](../layer-4/tooling/slopcopAssetPaths.mdmd.md)
 
 ### IMP-203 documentationBridge Schema
-Supports REQ-020. [Workspace Graph Snapshot](../layer-4/tooling/workspaceGraphSnapshot.mdmd.md)
+Supports REQ-201. [Workspace Graph Snapshot](../layer-4/tooling/workspaceGraphSnapshot.mdmd.md)
 
 ### IMP-301 safe-to-commit Orchestrator
-Supports REQ-030. [Safe to Commit Pipeline](../layer-4/tooling/safeToCommit.mdmd.md)
+Supports REQ-101 and REQ-301. [Safe to Commit Pipeline](../layer-4/tooling/safeToCommit.mdmd.md)
 
 ### IMP-302 graphCoverageAudit CLI
 Supports REQ-030. [Graph Coverage Audit](../layer-4/tooling/graphCoverageAudit.mdmd.md)
@@ -220,40 +214,35 @@ Supports REQ-030. [Ruby Fixture Oracle](../layer-4/testing/benchmarks/rubyFixtur
 Supports REQ-050. [CSharp Fixture Oracle](../layer-4/testing/benchmarks/csharpFixtureOracle.mdmd.md)
 
 ### IMP-530 LLM Sampling Harness
-Supports REQ-020 and REQ-030. [LLM Sampling Harness](../layer-4/shared/llmSampling.mdmd.md)
+Supports REQ-201 and REQ-301. [LLM Sampling Harness](../layer-4/shared/llmSampling.mdmd.md)
 
 ## Evidence
 
-### REQ-001 Evidence
-- Integration suites US1 to US5 under `tests/integration` remain green.
-- Server and extension unit tests for diagnostics pipeline (`publishDocDiagnostics.test.ts`, `docDiagnosticProvider.test.ts`) pass on CI.
-- Graph snapshot fixture `data/graph-snapshots/workspace.snapshot.json` rebuilds deterministically.
+### REQ-101 Evidence
+- Live Documentation generator spike stored under `AI-Agent-Workspace/tmp/live-docs` demonstrates authored block preservation and generated diff stability.
+- Safe-to-commit logs from 2025-11-08 record lint guards catching missing markers until instructions were updated.
+- Updated Layer-4 instruction files (`.github/instructions/mdmd.layer4*.instructions.md`) align archetype templates with new structure.
 
-### REQ-020 Evidence
-- SlopCop CLI test suites (`markdownLinks.test.ts`, `assetPaths.test.ts`, `slopcopSymbolsCli.test.ts`) pass and cover regression fixtures.
-- Prototype docstring bridge fixtures recorded in `tests/integration/fixtures/slopcop-symbols` stay synchronized with Layer 4 MDMD exports.
-- ASCII and markdown export commands produce up-to-date narratives stored under `coverage/extension/src`.
+### REQ-201 Evidence
+- AST benchmarks (`reports/benchmarks/ast/*.json`) track precision/recall deltas for each language-specific oracle.
+- Integration fixtures covering docstring bridges (`tests/integration/fixtures/slopcop-symbols`) regenerate without manual edits.
+- Fallback heuristic tests (`fallbackInference.languages.test.ts`) validate dependency extraction across languages.
 
-### REQ-050 Evidence
-- `npm run fixtures:regenerate -- --fixture csharp-roslyn-compilers --lang csharp --write` records Roslyn flow-analysis expectations and emits integrity root `94cd0626228ea7140ce3ea6cac0f79f232480855a964c3490990dd404ff16df8` (72 files).
-- Safe-to-commit logs from 2025-11-06 demonstrate the Roslyn slice and curated C# fixtures clearing regeneration, fallback capture, and benchmark pipelines without manual intervention.
-- Layer 4 `astAccuracyFixtures.mdmd.md` enumerates all C# fixtures with regeneration guidance, satisfying documentation linkage requirements.
+### REQ-301 Evidence
+- Diagnostics integration suites US1–US5 now reference Live Docs in assertions.
+- CLI prototypes under `scripts/live-docs` emit markdown narratives derived from staged Live Docs.
+- SlopCop symbol audit verifies generated markers and evidence placeholders.
 
-### REQ-030 Evidence
-- `npm run safe:commit` executes cleanly across recent commits, demonstrating staged enforcement.
-- Adoption telemetry snapshots in `data/knowledge-feeds/bootstrap.json` show profile progression.
-- Auto-repair spike logs under `AI-Agent-Workspace/Notes` document pending workflow automation.
-
-### REQ-040 Evidence
-- Schema validation snapshots under `data/graph-snapshots/relationship-rule-profiles.json` capture compiled chains and profiles.
-- Profile-focused unit suites (`symbolCorrectnessProfiles.test.ts`, `symbolCorrectnessValidator.test.ts`) cover validation, execution, and diagnostics flows.
-- CI retains `graph:audit -- --profiles --json` fixtures demonstrating zero violations before release.
+### REQ-401 Evidence
+- MIT license draft and README updates tracked in `AI-Agent-Workspace/Notes/live-documentation-doc-refactor-plan.md`.
+- Competitive research notes (Windsurf Codemaps, GitLab Knowledge Graph) captured in 2025-11-08 chat and surfaced in Layer‑1 vision.
+- Sample workspace scaffolding spike recorded under `AI-Agent-Workspace/tmp/live-docs/sample-workspace`.
 
 ## Verification Strategy
 - Pre-commit guard: [`npm run safe:commit`](/scripts/safe-to-commit.mjs) chaining lint, tests, graph snapshot or audit, and the SlopCop suite (markdown, asset, symbol audits).
 - Integration coverage: US1 to US5 suites emulate writer, developer, rename, and template ripple flows.
 - Knowledge feed diffs: snapshot JSON fixtures under [`tests/integration/fixtures/simple-workspace/data/knowledge-feeds`](/tests/integration/fixtures/simple-workspace/data/knowledge-feeds).
-- Benchmark placeholder: introduce curated workspaces with canonical ASTs (per FR-017) before closing T05x.
+- Live Doc verification: integrate regeneration assertions into `npm run safe:commit -- --benchmarks` once generator stabilises.
 
 ## Traceability Links
 - Vision alignment: [Layer 1 Vision](../layer-1/link-aware-diagnostics-vision.mdmd.md)
@@ -265,5 +254,6 @@ Supports REQ-020 and REQ-030. [LLM Sampling Harness](../layer-4/shared/llmSampli
 - Which external feed (LSIF, SCIP, GitLab knowledge graph) should open the T05x MVP pipeline?
 - What coverage threshold do we need before promoting SlopCop asset and symbol lint beyond markdown?
 - Do we gate Copilot metadata exposure until acknowledgement UX is complete?
-- How do we package MDMD artefacts into the extension for future telemetry?
-- Which ASCII or markdown diagram presets best serve both humans and Copilot prompts without overwhelming diagnostics surfaces?
+- What diff heuristics keep authored block edits readable when generated sections change significantly?
+- How do we package Live Docs inside the extension without inflating download size for adopters who regenerate on demand?
+- Which narrative/diagram presets best serve both humans and copilots while remaining deterministically regenerable?

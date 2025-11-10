@@ -102,7 +102,7 @@ Configuration object accepted by `runDocumentationLinkEnforcement`, covering wor
 
 ## Evidence
 - Unit coverage introduced in [`packages/shared/src/tooling/documentationLinks.test.ts`](../../../packages/shared/src/tooling/documentationLinks.test.ts) exercises anchor parsing, slug generation, and comment formatting across supported languages.
-- CLI integration covered by end-to-end smoke assertions in [`scripts/doc-tools/__tests__/enforce-documentation-links.test.ts`](../../../scripts/doc-tools/__tests__/enforce-documentation-links.test.ts) verifying failure modes and `--fix` behavior.
+- CLI integration covered by end-to-end smoke assertions in [`scripts/doc-tools/enforce-documentation-links.test.ts`](../../../scripts/doc-tools/enforce-documentation-links.test.ts) verifying failure modes and `--fix` behavior.
 
 ## Follow-up
 - Extend the bridge to enforce docstring-level anchors once exported symbol comments adopt the same documentation link contract.

@@ -4,6 +4,11 @@
     "AI-Agent-Workspace/tmp/**"
   ],
   "markdown": {
+    "includeGlobs": [
+      "**/*.md",
+      "**/*.mdmd",
+      ".live-documentation/**/*.mdmd.md"
+    ],
     "ignoreGlobs": [
       "AI-Agent-Workspace/tmp/**"
     ],
@@ -24,7 +29,8 @@
     ],
     "rootDirectories": [
       "public",
-      "static"
+      "static",
+      ".live-documentation"
     ]
   },
   "symbols": {

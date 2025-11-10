@@ -572,6 +572,41 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L5026-L5080` — Wait for integration runs to finish and review their logs before reporting success; do not rely on tooling that fires prior to test completion.
 - `L6684-L6684` — Drive the workspace back to “safe commit-ready” after the C#/Roslyn updates with lint, tests, benchmarks, graph audit, and SlopCop all passing.
 
+## 2025-11-07 (Dev Day 16)
+- `2025-11-07.md:L1-L70` — Begin each day by following `devHistory.summarizeDay.prompt.md` to recap 11/06, explicitly tying the summary to commits dd7e1076, 80d58f7b, a49ac2e3, and ae4a33e2.
+- `L205-L240` — Ensure the summary contains a dedicated commit-correlation section for those changes and review the associated docs/code diffs before starting new work.
+- `L242-L270` — Refresh `user-intent-census.md` with signals from the 11/06 chat once the summary lands so the audit log stays current.
+- `L320-L360` — Revalidate tasks like T103/T104 by rerunning benchmarks, confirming completion before checking boxes, and investigate any outstanding OkHttp or Requests follow-ups.
+- `L413-L444` — Close out T104/T091 by adding regression tests for the new language heuristics, documenting OkHttp builder coverage, and keep `--benchmarks` execution opt-in for CI.
+- `L620-L676` — Refactor `fallbackInference.ts` into per-language heuristic modules mapped to their globs; the 2k-line monolith is unacceptable going forward.
+- `L700-L756` — Define shared TypeScript interfaces/pure helpers so each heuristic module is easily testable and new languages drop in with minimal friction.
+- `L824-L832` — Document the refactor plan in Layer‑3/Layer‑4 MDMD before migrating code.
+- `L1130-L1148` — After autosummarization events, rehydrate from the specified chat slice (e.g., `#file:2025-11-07.md:310-1135`) before resuming.
+- `L2680-L2720` — Resolve SlopCop anchor errors by matching the GitHub slug (e.g., `comp003--heuristic-suite`) rather than inserting manual anchors.
+- `L3005-L3055` — When safe-commit passes, craft a comprehensive commit message, tick the completed SpecKit tasks, and capture the test suite invoked.
+
+## 2025-11-08 (Dev Day 17)
+- `2025-11-08.md:L1-L120` — Begin the day by following `devHistory.summarizeDay.prompt.md` for the 11/7 recap; treat this as the standing opener for each dev day while maintaining the autosummarization guard rails.
+- `L72-L210` — Safeguard git history: fix malformed commit messages via cherry-pick/ammend choreography and keep Copilot responsible for surgical git operations when manual mistakes occur.
+- `L202-L240` — Refresh `user-intent-census.md` with every new dev-day signal so autosummarization-resistant context remains accurate.
+- `L268-L376` — Before proposing Live Documentation refactors, reread Layer‑1 vision, the entire Layer‑2 folder, every Layer‑3 doc, and the full `001-link-aware-diagnostics` spec set; no planning without full-context ingestion.
+- `L460-L522` — Create a temporary “live-documentation-doc-refactor-plan.md” checklist to persist intent across autosummarization, aiming for Layer‑4 docs generated under `/.live-documentation/` as the end state.
+- `L542-L576` — Keep “Evidence” in the generated portion when derivable from coverage; integration/acceptance tests must list their exercised implementation artifacts in a generated “Targets” section, with lint warnings when real code lacks evidence.
+- `L582-L909` — After every lossy autosummarization step, rehydrate the specified chat slice before responding, then execute the checklist with minimal chatter—only surface blockers or fork-in-the-road decisions.
+- `L608-L640` — Decide between a single layered instruction file versus archetype-specific globbed instructions, but ensure Layer‑4 guidance explicitly covers implementation/tests/assets.
+- `L622-L1274` — Work with “total agency,” letting documentation diffs speak for progress; pause only to escalate decisions, and keep instructions plus SpecKit artifacts synchronized with the evolving plan.
+- `L1149-L1314` — Focus the refactor on populating `/.live-documentation/`, consider the long-term migration away from `.mdmd/`, and stage outputs into a dedicated layer (e.g., `/.live-documentation/layer-4/`) for diff-driven review.
+- `L1432-L1600` — Maintain heads-down execution across large doc edits, rehydrating when prompted and keeping Copilot instructions up to date with new conventions.
+- `L1685-L2018` — Treat checklist items like LD-102/LD-105 as active requirements (schema definition, provenance capture, evidence waivers) and close them with concrete artifacts and tests.
+- `L2984-L3408` — Manage context pressure by throttling generator output (`npm run live-docs:generate` should emit a single summary line), ensure coverage manifests persist between test runs, and recognize that `coverage/` is gitignored.
+- `L3065-L3185` — Enforce H4 headings for each public symbol to keep markdown linkable; dependency entries must link to sibling Live Docs instead of raw TS paths.
+- `L3391-L3677` — Restore `live-docs` manifests after coverage wipes, hook `npm run live-docs:targets` into the pipeline post-tests, and extend manifest generation to cover transitive evidence consumers.
+- `L3811-L3830` — Clear remaining lint warnings by either expanding manifest entries, adding targeted tests, or introducing waivers—choose deliberately and document the choice after rehydrating from the provided chat span.
+- `L4105-L4635` — Keep the orchestrated `npm run livedocs` flow (targets → generate → lint), justify its ordering, and retain informative but concise terminal output.
+- `L4963-L5342` — Audit generated Live Docs for verbosity: require concise “Observed Evidence” groupings, mandate Live Doc links in Targets, and note that large untracked doc bursts are expected until git staging catches up.
+- `L5629-L6009` — Implement formatting simplifications: drop implementation-side “Observed Evidence” blocks, hide empty sections, slim authored templates, stabilize provenance timestamps, and plan lint coverage for orphan docs/symbols.
+- `L5841-L6017` — For test Live Docs (e.g., `fallbackInference.test.ts`), ensure Targets link to Live Docs—not raw sources—and iterate until integration configs accept workspace sources without `rootDir` rejections.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

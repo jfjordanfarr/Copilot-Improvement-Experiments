@@ -4,8 +4,8 @@ import path from "node:path";
 
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { runCli, EXIT_CODES } from "../enforce-documentation-links";
-import { DEFAULT_RULES } from "../../../packages/shared/src/tooling/documentationLinks";
+import { runCli, EXIT_CODES } from "./enforce-documentation-links";
+import { DEFAULT_RULES } from "../../packages/shared/src/tooling/documentationLinks";
 
 interface WorkspaceHandle {
   root: string;
@@ -64,7 +64,7 @@ function createWorkspace(): WorkspaceHandle {
   fs.mkdirSync(path.dirname(docAbsolute), { recursive: true });
   const sourceDoc = path.resolve(
     __dirname,
-    "../../../packages/shared/src/tooling/__fixtures__/documentation-links/sample-tool.mdmd.md"
+    "../../packages/shared/src/tooling/__fixtures__/documentation-links/sample-tool.mdmd.md"
   );
   fs.copyFileSync(sourceDoc, docAbsolute);
   const docSource = fs.readFileSync(docAbsolute, "utf8");

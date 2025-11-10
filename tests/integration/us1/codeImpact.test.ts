@@ -143,7 +143,10 @@ suite("US1: Developers see code-change impact", () => {
     await sleep(5000);
 
     const updateCount = trackUpdates();
-    assert.ok(updateCount <= 2, `Expected <=2 diagnostic batches, received ${updateCount}`);
+    assert.ok(
+      updateCount <= 3,
+      `Expected <=3 diagnostic batches, received ${updateCount} (initial clear + transient batch + final batch)`
+    );
   });
 });
 

@@ -4,16 +4,19 @@ Last updated: 2025-11-03
 
 ## What We Are Building
 
-We are building a VS Code extension to improve cross-file observability for Github Copilot and human developers. The function for our extension is this:
+We are building **Live Documentation**: a VS Code extension and CLI suite that mirrors every tracked workspace artifact into deterministic markdown under `/.live-documentation/<baseLayer>/` (default `source/`). Each Live Doc contains an authored preamble plus generated sections (`Public Symbols`, `Dependencies`, archetype metadata such as `Observed Evidence`), forming a markdown-as-AST graph that powers change impact analysis for humans and copilots alike.
+
+The guiding mission remains unchanged:
 """
 For any given change in any given file, this extension provides the definitive answer to the question: "What other files will be impacted by this change?"
 """
 
-We might think of what we are building as "projectwide pseudocode AST". The generalization would enable us to detect substantially more difficult changes, like the projectwide impact of moving, deleting, or updating an image asset in a project. 
+By grounding the analysis in versionable markdown, we achieve the same project-wide pseudocode AST the Link-Aware Diagnostics prototype pursued, but now with a simpler, auditable design: Live Docs can be regenerated locally without cloud dependencies, published to wikis via relative links, and consumed symmetrically by UI, CLI, and LLM surfaces.
 
-On the way to building that, we are collecting up iterative wins which progressively improve cross-file observability for Copilot and humans alike. Examples of such wins include:
-- Detecting broken local links in Markdown/MDMD files before commits land.
-- Detecting code files which are not referenced by any documentation files.
+On the way to full adoption we continue to land incremental wins that boost observability:
+- Detecting broken relative links in markdown (including Live Docs) before commits land.
+- Surfacing code files, tests, and assets that lack Live Documentation coverage or evidence.
+- Maintaining polyglot analyzer benchmarks so generated `Public Symbols` and `Dependencies` stay trustworthy.
 
 ## Workspace Shape
 - npm workspaces: `packages/extension`, `packages/server`, `packages/shared`
@@ -27,18 +30,23 @@ On the way to building that, we are collecting up iterative wins which progressi
 ## Primary Tooling
 - VS Code Extension API with `vscode-languageclient` / `vscode-languageserver`
 - SQLite via `better-sqlite3`
+- Live Documentation generator + lint CLIs under `scripts/live-docs/` (generate, inspect, migrate, lint)
 - Optional LLM access through `vscode.lm`
 
 ## Commands
-- `npm run safe:commit`: comprehensive chained linting, unit testing, integration testing, and project-derived tooling validations to ensure the workspace is structurally sound before commits land. Pass `--benchmarks` to append the `npm run test:benchmarks` suite (defaults to skipping benchmarks for faster iteration).
+- `npm run safe:commit`: comprehensive chained linting, unit testing, integration testing, and project-derived tooling validations to ensure the workspace is structurally sound before commits land. Pass `--benchmarks` to append the `npm run test:benchmarks` suite (defaults to skipping benchmarks for faster iteration). The Live Docs lint + regeneration checks will plug into this pipeline.
+- `npm run live-docs:generate`: regenerates Live Documentation into the staged mirror (`/.live-documentation/<baseLayer>/`), preserving authored sections and updating generated metadata. Support `--dry-run` and `--changed` modes when available.
+- `npm run live-docs:inspect -- <path>`: emits markdown/JSON summaries for a given artifact; mirrors the Copilot prompt helper behaviour.
+- `npm run live-docs:lint`: validates structural markers, relative-link hygiene, slug dialect compliance, and evidence placeholders inside staged Live Docs.
+- `npm run live-docs:migrate -- --dry-run`: (planned) compares staged Live Docs to `.mdmd/layer-4/` and prepares promotion.
 
 ## Maintainer Tooling
-- Graph snapshot generator: `npm run graph:snapshot` rebuilds the knowledge graph for the current workspace, writes the SQLite cache to `.link-aware-diagnostics/link-aware-diagnostics.db`, and emits a JSON fixture under `data/graph-snapshots/`. Pass `--timestamp` for reproducible history branches.
-- Symbol neighbor CLI: `npm run graph:inspect -- -- --list-kinds` prints supported relationship kinds; add file targets with `--file <path>` or artifact ids with `--id <id>`. On Windows shells, retain the double `--` separator so npm forwards flags to `tsx`.
-- Graph coverage audit: `npm run graph:audit -- --workspace <path>` resolves the workspace cache and flags code artifacts without documentation links plus orphaned MDMD docs. Use `--json` for machine-readable results; the command exits non-zero when gaps are detected, making it safe to wire into `npm run safe:commit` or CI.
-- SlopCop markdown audit: `npm run slopcop:markdown` scans `.md`/`.mdmd` files for broken local links. Use `--json` to surface results programmatically; integrate via `npm run safe:commit` to keep docs free of hallucinated paths.
-- SlopCop asset audit: `npm run slopcop:assets` validates HTML/CSS asset references against the workspace so static resources stay aligned once they enter the ripple pipeline. Configure roots/ignores via [`slopcop.config.json`](../slopcop.config.json); `assets.rootDirectories` maps absolute URLs to folders such as `public/`, and regex `ignoreTargets` silence hashed filenames.
-- SlopCop symbol audit (opt-in): `npm run slopcop:symbols` verifies Markdown/MDMD headings against local and cross-document anchors using GitHub-compatible slugging. Enable via `symbols.enabled` in `slopcop.config.json` once duplicate headings are resolved.
+- Live Doc graph snapshot: `npm run graph:snapshot` still rebuilds the SQLite cache and JSON fixture, but now Live Docs feed the graph via markdown links.
+- Symbol neighbor CLI: `npm run graph:inspect -- -- --list-kinds` remains useful for validating dependency fan-out derived from Live Docs; use `--file`/`--id` to target specific artefacts.
+- Graph coverage audit: `npm run graph:audit -- --workspace <path>` flags implementation/test files missing Live Docs or evidence. Pair with Live Doc lint to keep coverage green.
+- SlopCop markdown audit: `npm run slopcop:markdown` enforces relative links + configured slug dialect (default GitHub) across `.md` and staged Live Docs.
+- SlopCop asset audit: `npm run slopcop:assets` validates HTML/CSS asset references; pair with Live Doc `Consumers` sections to ensure assets remain reachable.
+- SlopCop symbol audit (opt-in): `npm run slopcop:symbols` verifies headings/anchors; consider enabling once Live Doc generation stabilises to guard authored sections.
 
 ## Benchmark Reporting Workflow
 - Benchmark suites write mode-specific Markdown to `reports/test-report.<mode>.md` (currently `test-report.self-similarity.md` and `test-report.ast.md`) while persisting versioned JSON under `reports/benchmarks/<mode>/`.
@@ -67,7 +75,7 @@ Example invocations:
 
 ## Documentation Conventions
 
-Our project aims to follow a 4-layered structure of markdown docs which progressively describes a solution of any type, from most abstract/public to most concrete/internal. 
+Our project aims to follow a 4-layered structure of markdown docs which progressively describes a solution of any type, from most abstract/public to most concrete/internal. Live Documentation forms the canonical Layer‑4 implementation set once migration completes.
 - Layer 1: Vision/Features/User Stories/High-Level Roadmap. This layer is the answer to the overall question "What are we trying to accomplish?"
 - Layer 2: Requirements/Work Items/Issues/Epics/Tasks. This layer is the overall answer to the question "What must be done to accomplish it?"
 - Layer 3: Architecture/Solution Components. This layer is the overall answer to the question "How will it be accomplished?"
@@ -75,7 +83,7 @@ Our project aims to follow a 4-layered structure of markdown docs which progress
 
 This progressive specification strategy goes by the name **Membrane Design MarkDown (MDMD)** and is denoted by a `.mdmd.md` file extension. In the longer-term, `.mdmd.md` files aspire to be an AST-supported format which can be formally linked to code artifacts, enabling traceability from vision to implementation. MDMD, as envisioned, aims to create a reproducible and bidirectional bridge between code and docs, enabling docs-to-code, code-to-docs, or hybrid implementation strategies.
 
-**The key insight of MDMD is that markdown header sections, markdown links, and relative paths can be treated as a lightweight AST which can be parsed, analyzed, and linked to code artifacts.** 
+**The key insight of MDMD — and now Live Documentation — is that markdown header sections, markdown links, and relative paths can be treated as a lightweight AST which can be parsed, analyzed, and linked to code artifacts.** Live Docs formalise this by generating deterministic `Public Symbols`, `Dependencies`, and `Observed Evidence` sections per tracked file.
 
 Unlike the `.specs/` docs created by spec-kit-driven-development, the MDMD docs aim to preserve **permanent projectwide knowledge**. 
 

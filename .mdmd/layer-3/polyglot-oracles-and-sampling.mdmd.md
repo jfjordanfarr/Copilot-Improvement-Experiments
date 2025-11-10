@@ -6,7 +6,7 @@
 
 ## Components
 ### COMP 013 Polyglot Fixture Oracles
-Orchestrates deterministic AST-grounded expectations for C, Rust, Java, Ruby, Python, and TypeScript fixtures so benchmark pipelines can quantify inference accuracy without relying on probabilistic models. Supports REQ-030 by guaranteeing every curated workspace exposes a compiler-verified baseline before telemetry rolls up into adoption reports.
+Orchestrates deterministic AST-grounded expectations for C, Rust, Java, Ruby, Python, and TypeScript fixtures so benchmark pipelines and the Live Doc generator can quantify inference accuracy without relying on probabilistic models. Supports FR-LD2 and REQ-030 by guaranteeing every curated workspace exposes a compiler-verified baseline before telemetry rolls up into adoption reports.
 
 ### COMP 014 LLM Sampling Harness
 Provides an optional, confidence-gated sampling layer that augments deterministic oracle data with LLM proposals while preserving provenance, reviewer control, and falsifiable telemetry. Supports REQ-020 and REQ-030 by ensuring any AI-derived relationship first passes through explicit consent, scoring, and drift reporting.
@@ -14,8 +14,9 @@ Provides an optional, confidence-gated sampling layer that augments deterministi
 ## Responsibilities
 ### Deterministic Coverage (COMP-013)
 - Discover project-local toolchains (compiler, interpreter, or build metadata) and normalise them into a consistent oracle interface.
-- Produce ordered, reproducible edge lists with provenance annotations and override hooks so fixture regeneration remains reviewable.
-- Surface per-language coverage metrics back to benchmark reporters and telemetry so gaps trigger operational alerts.
+- Produce ordered, reproducible edge lists with provenance annotations and override hooks so fixture regeneration and Live Doc generation remain reviewable.
+- Surface per-language coverage metrics back to benchmark reporters, Live Doc dependency accuracy dashboards, and telemetry so gaps trigger operational alerts.
+- Export symbol tables and dependency graphs consumable by the Live Doc generator when analyzer coverage lags behind oracle fidelity.
 
 ### Confidence-Gated Sampling (COMP-014)
 - Collect multiple LLM responses per prompt, score each proposal, and emit only edges meeting configured agreement thresholds.
@@ -26,7 +27,7 @@ Provides an optional, confidence-gated sampling layer that augments deterministi
 ### Fixture Oracle Registry
 - Exposes a registry keyed by language that loads implementations from `packages/shared/src/testing/fixtureOracles/*FixtureOracle.ts`.
 - Provides a shared options schema (paths, include/exclude globs, override manifests, toolchain hints) consumed by regeneration CLIs under `scripts/fixture-tools/`.
-- Emits structured results consumed by `tests/integration/benchmarks/astAccuracy.test.ts` and `reports/benchmarks/**/*`.
+- Emits structured results consumed by `tests/integration/benchmarks/astAccuracy.test.ts`, `reports/benchmarks/**/*`, and Live Doc generator adapters.
 
 ### Sampling Harness API
 - Defines `runSamplingSession(options)` within `packages/shared/src/inference/llmSampling.ts`, accepting prompt variants, seed edges, and stopping conditions.
@@ -50,6 +51,7 @@ Provides an optional, confidence-gated sampling layer that augments deterministi
 ## Evidence
 - `npm run test:benchmarks -- --suite ast` produces precision/recall figures per language, verifying deterministic oracle parity across curated fixtures.
 - `reports/benchmarks/ast/ast-accuracy.json` records oracle coverage deltas, highlighting gaps before new languages ship.
+- Live Documentation parity benchmark (`reports/benchmarks/live-docs/precision.json`) now records precision 100% with recall 98.62% for symbols and precision 100% with recall 99.90% for dependencies, comparing generated `Public Symbols`/`Dependencies` against oracle ground truth.
 - Upcoming sampling reliability suite (Phase 8) will capture agreement metrics between deterministic edges and LLM proposals, providing falsifiable evidence before enabling auto-suggest flows.
 
 ## Operational Notes
