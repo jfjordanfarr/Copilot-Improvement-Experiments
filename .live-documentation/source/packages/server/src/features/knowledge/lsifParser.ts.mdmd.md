@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/lsifParser.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-lsifparser-ts
-- Generated At: 2025-11-09T22:52:10.799Z
+- Generated At: 2025-11-10T22:24:00.311Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Transforms LSIF dumps into external knowledge snapshots so the ingestion pipelin
 - Exposes a convenience `parseLSIF` helper so other modules do not need to manage parser lifecycle.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.799Z","inputHash":"4e482fb53fe7ebf9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.311Z","inputHash":"4e482fb53fe7ebf9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LSIFParserOptions`

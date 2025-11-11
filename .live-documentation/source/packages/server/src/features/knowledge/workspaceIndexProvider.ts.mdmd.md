@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/workspaceIndexProvider.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-workspaceindexprovider-ts
-- Generated At: 2025-11-09T22:52:10.980Z
+- Generated At: 2025-11-10T22:24:00.403Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Indexes the repository on-demand to seed artifacts, hints, and evidences when ma
 - Analyses JavaScript/TypeScript imports to emit `depends_on` versus `references` evidences by inspecting runtime versus type usage.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.980Z","inputHash":"97b384732e7ca76f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.403Z","inputHash":"97b384732e7ca76f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `DEFAULT_CODE_EXTENSIONS`

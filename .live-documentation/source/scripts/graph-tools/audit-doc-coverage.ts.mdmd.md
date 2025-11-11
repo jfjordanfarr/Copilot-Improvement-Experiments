@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/graph-tools/audit-doc-coverage.ts
 - Live Doc ID: LD-implementation-scripts-graph-tools-audit-doc-coverage-ts
-- Generated At: 2025-11-09T22:52:13.648Z
+- Generated At: 2025-11-11T05:12:48.290Z
 
 ## Authored
 ### Purpose
@@ -15,24 +15,24 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.648Z","inputHash":"44e7c76048955869"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.290Z","inputHash":"83cbc5a8bdac90ec"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `parseArgs`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L150)
+- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L161)
 
 #### `auditCoverage`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L295)
+- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L306)
 
 #### `printReport`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L449)
+- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L492)
 
 #### `main`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L630)
+- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L673)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

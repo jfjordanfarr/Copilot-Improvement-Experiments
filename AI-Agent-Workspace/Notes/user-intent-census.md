@@ -607,6 +607,16 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L5629-L6009` — Implement formatting simplifications: drop implementation-side “Observed Evidence” blocks, hide empty sections, slim authored templates, stabilize provenance timestamps, and plan lint coverage for orphan docs/symbols.
 - `L5841-L6017` — For test Live Docs (e.g., `fallbackInference.test.ts`), ensure Targets link to Live Docs—not raw sources—and iterate until integration configs accept workspace sources without `rootDir` rejections.
 
+## 2025-11-09 (Dev Day 18)
+- `2025-11-09.md:L149-L233` — Reassess progress against the live-doc refactor plan before coding; “commit-ready” requires being more stable/capable than the prior commit while clearing wasteful artifacts and documenting the remaining checklist.
+- `L373-L395` — Keep the generated `Observed Evidence` block optional; surface it only when coverage or waivers add value, while lint should validate structure only when the section exists.
+- `L792-L804` — Quiet persistent lint by always emitting a `Supporting Fixtures` section for tests, even if it carries a temporary placeholder until smarter metadata lands.
+- `L1027-L1055` — Prioritise stability over premature optimisation: raise Windows latency tolerances (up to ~5 s and beyond) and allow downgrade-to-warning hooks when the host machine thrashes.
+- `L1111-L1162` — Define commit readiness as the point where Live Docs are regenerated, pipelines run clean, and the base layer has fully migrated into `.live-documentation/` without leftover `.mdmd` artifacts.
+- `L1210-L1214` — When porting docs, verify each Live Doc against the real source/test files instead of trusting legacy prose, ensuring Purpose/Notes remain truthful.
+- `L1236-L1240` — Drop the legacy `Description` header entirely—authored content should include only Purpose and Notes, with Stage 0 regeneration proving the slimmer template persists.
+- `L5079-L5087` — Detect orphaned Live Docs (e.g., stray `.mdmd.md` mirrors without code) so the Stage 0 mirror stays authoritative and free of dead artifacts.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

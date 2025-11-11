@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/documentationLinks.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-documentationlinks-ts
-- Generated At: 2025-11-09T22:52:13.172Z
+- Generated At: 2025-11-11T05:12:48.071Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Coordinates parsing of Base Layer Live Documentation anchors, resolves them into
 - Breadcrumb insertion happens ahead of the first non-comment statement; unsupported comment syntaxes raise a violation instead of mutating the file so future language adapters remain deliberate.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.172Z","inputHash":"4aeb75a07223e323"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.071Z","inputHash":"4f93f49b8640e728"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `DocumentationRule`
@@ -30,51 +30,51 @@ Coordinates parsing of Base Layer Live Documentation anchors, resolves them into
 
 #### `DocumentationAnchorSummary`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L34)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L37)
 
 #### `DocumentationDocumentAnchors`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L49)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L52)
 
 #### `ResolvedDocumentationTarget`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L53)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L56)
 
 #### `DocumentationTargetMap`
 - Type: type
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L63)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L66)
 
 #### `ParseDocumentationAnchorsOptions`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L65)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L68)
 
 #### `DocumentationLinkViolation`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L70)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L73)
 
 #### `DocumentationLinkEnforcementResult`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L87)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L90)
 
 #### `RunDocumentationLinkEnforcementOptions`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L94)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L97)
 
 #### `parseDocumentationAnchors`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L101)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L104)
 
 #### `resolveCodeToDocumentationMap`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L158)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L161)
 
 #### `formatDocumentationLinkComment`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L192)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L195)
 
 #### `runDocumentationLinkEnforcement`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L205)
+- Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L208)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

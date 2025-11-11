@@ -55,6 +55,80 @@
   - Tie benchmark telemetry doc to validating generated sections (precision/recall on symbols & dependencies).
   - LLM ingestion doc: position as optional enhancer for generated sections + narratives.
 - [x] Ensure cross-links reference new spec FR identifiers and roadmap streams.
+- [ ] Specify deterministic derivation rules for System Layer archetypes (component, interaction, data-model, workflow, integration, testing) using only Layer‑4 graph signals; capture expected outputs by cross-checking legacy `.mdmd/layer-3/**` docs as validation references.
+  - Available signals: Live Doc metadata (paths, archetype tags, provenance), generated `Public Symbols`, generated `Dependencies`, observed evidence links, file ownership (packages/extension/server/shared) – all sourced from deterministic workspace artefacts.
+  - Expected outputs: per-archetype System Layer docs with generated `Components` lists and Mermaid `Topology` derived solely from dependency/evidence data; authored `Purpose`/`Notes` drafted as a follow-up step.
+- [ ] Stand up the System Layer mirror under `/.live-documentation/system/` (configurable) with Stage‑0 skeleton docs preserving authored `Purpose`/`Notes` and generated `Components`/`Topology` markers.
+- [ ] Implement generator support that rolls Layer‑4 analyzers into System Layer docs (auto-populated `Components` lists and Mermaid `Topology` with `click` links).
+- [x] Extract shared Live Doc generation foundation (target discovery, authored block merge, provenance hashing, diff classification) so Layer‑4 and System Layer generators compose the same core pipeline. *(2025-11-10: factored into `packages/server/src/features/live-docs/generation/core.ts`; `generator.ts` now consumes the shared helpers.)*
+- [x] Stage-0 pruning safeguards ensure stale docs without authored content are deleted while preserving authored stubs; added regression test coverage in `packages/server/src/features/live-docs/generator.test.ts`. *(2025-11-10)*
+- [ ] Backfill authored `Purpose`/`Notes` across all migrated System Layer docs, ensuring references to upstream requirements stay within authored sections.
+- [ ] Add lint rules (live-docs:lint + SlopCop) verifying System Layer docs emit both generated sections and forbid direct Layer‑4 links outside `Components`.
+- [ ] Validate topology diagrams render and links resolve inside VS Code, CLI previews, and markdown exports before promotion.
+- [ ] Refine generated output: drop compiled artefacts from `Components`, dedupe overlapping interaction/workflow docs, add orchestrator stage edges, and aggregate testing graphs to highlight Live Docs suites.
+
+### System Layer Signal Catalog (draft)
+
+- **Global graph inputs**
+  - Layer‑4 Live Doc metadata (`Code Path`, `Archetype`, `Live Doc ID`, provenance timestamps).
+  - Generated `Public Symbols` (identify entry points, orchestration functions, schema exports).
+  - Generated `Dependencies` (import graph edges with symbol-level detail where available).
+  - Observed evidence / coverage relationships (tests referencing implementations, once `Targets` lands).
+  - Filesystem structure (`packages/extension/src/commands`, `scripts/live-docs`, `packages/shared/src/live-docs`, etc.).
+  - Intentionally exclude local git history (churn/co-change) to preserve reproducibility across contributors; rely on deterministic graph-derived analytics instead.
+
+- **Component archetype**
+  - Form strongly connected components or high-cohesion clusters within the dependency graph (closure over implementation docs sharing bidirectional edges).
+  - Prefer clusters whose `Code Path` share a common ancestor directory (e.g., `packages/server/src/features/live-docs/**`).
+  - Require minimum edge density / shared symbol usage to avoid trivial one-to-one docs.
+
+- **Interaction (API surface) archetype**
+  - Detect Layer‑4 docs located under `scripts/**`, `packages/extension/src/commands/**`, VS Code activation points, or files exporting CLI handlers.
+  - Confirm exports match known command signatures (e.g., `registerCommand`, `program.command`).
+  - Generated `Components` list references both the entry file and its primary collaborators (dependency fan-out directly beneath the surface).
+
+- **Data model archetype**
+  - Identify implementation docs under directories containing `schema`, `model`, `metadata`, or files exporting pure types/interfaces.
+  - Flag exports containing `schemaVersion`, `z.object`, or serialization helpers.
+  - Link downstream consumers by scanning dependency edges where data model files are imported.
+
+- **Workflow archetype**
+  - Target orchestrator files whose dependency set includes multiple distinct steps (e.g., `run-all.ts` imports manifest builder + generators).
+  - Recognise exports with verbs like `run`, `sync`, `process` and asynchronous control flow (presence of `await`, concurrency helpers) via symbol metadata.
+  - Build topology ordering from import sequence or explicit invocation order once call graph extraction is available.
+
+- **Integration archetype**
+  - Detect dependencies on external modules (`node:http`, `node:fs/promises`, third-party SDKs) or config providers referencing remote endpoints.
+  - Require presence of environment setting access (`process.env`, `workspace.getConfiguration`).
+  - Topology highlights boundary nodes and their internal adapters.
+
+- **Testing architecture archetype**
+  - Use observed evidence/coverage manifests to find tests that exercise multiple implementations or guard an entire subsystem.
+  - Prefer test files under `tests/integration/**` or `*.test.ts` that target >1 Live Doc; group by shared targets.
+  - Generated `Components` list pulls Target implementation docs; topology links test suites to covered components.
+
+- **Validation loop**
+  - Compare generated System Layer docs against legacy `.mdmd/layer-3/**` for coverage; discrepancies flagged for manual review rather than used as input.
+  - Record false positives/negatives in this plan to refine heuristics before promotion.
+
+#### System Layer signal validation (2025-11-10)
+
+- **Component** – `packages/shared/src/live-docs/{markdown,schema}.ts` + `packages/server/src/features/live-docs/generator.ts` share dense bidirectional dependency edges, confirming the SCC-based clustering will group the Live Docs pipeline correctly.  Need to set a minimum cluster size ≥2 to avoid generating singleton components for leaf utilities.
+- **Interaction** – `packages/extension/src/commands/exportDiagnostics.ts` and `scripts/live-docs/generate.ts` expose command constants or CLI entrypoints; path heuristics plus symbol names (`registerExportDiagnosticsCommand`, `generateLiveDocs`) are sufficient to flag interaction surfaces.  No additional runtime metadata required.
+- **Data model** – `packages/shared/src/live-docs/schema.ts` exports only types/interfaces and includes `schemaVersion` patterns; dependency fan-out lists downstream consumers, validating that import-based discovery covers this archetype.
+- **Workflow** – `scripts/live-docs/run-all.ts` orchestrates the pipeline but static dependency extraction misses stage relationships (strings inside `stages` array).  Action: extend the derivation pass to parse literal stage descriptors (label/script/args) via AST rather than relying solely on import edges.
+- **Integration** – `packages/server/src/runtime/environment.ts` imports `node:fs`, `node:url`, and VS Code config guards, confirming external boundary detection via dependency modules works.  Need to whitelist other boundary modules (`node:http`, fetch clients) as the dataset grows.
+- **Testing architecture** – Observed Evidence blocks already link regeneration tests to implementations (e.g., `generator.test.ts`, `renderPublicSymbolLines.test.ts`).  However, until `Targets` manifests land, coverage direction is one-sided; System Layer derivation must consume the forthcoming `coverage/live-docs/targets.json` (currently stubbed) to avoid false positives.
+- **Cross-cutting assumptions** – Stage‑0 metadata provides timestamps and Live Doc IDs for provenance; no additional fields required.  Git churn remains optional—omit from first pass to keep determinism simple.
+
+#### Generator refactor design notes
+
+- Split the existing generator into three layers:
+  1. **Core pipeline** – handles configuration normalization, target discovery, analyzer invocation, authored block preservation, provenance hashing, diff classification, and filesystem writes. Lives under `packages/server/src/features/live-docs/core/`.
+  2. **Layer‑specific adapters** – supply archetype rules and generated section emitters. One adapter for Implementation (Layer‑4), another for System Layer (Layer‑3). Future capability layers can plug in later.
+  3. **Entry scripts** – thin orchestrators in `scripts/live-docs/*.ts` that call the appropriate adapter.
+- Prepare unit seams: reuse `discoverTargetFiles`, `analyzeSourceFile`, and markdown rendering across both layers; expose TypeScript program reuse to avoid rebuilding ASTs per layer.
+- Ensure the refactor preserves current CLI behaviour (`npm run live-docs:generate`) by aliasing the Layer‑4 adapter as the default entrypoint until System Layer generation ships.
 
 ## 5. Layer 4 Implementation Docs
 - [ ] Move Layer 4 summaries toward per-file LD focus:
@@ -91,7 +165,7 @@
 - [ ] Document migration switch: once `/.live-documentation/` output is verified, flip configuration to point consumers (and eventually the default Layer‑4 tree) at the generated docs.
 - [ ] Guarantee feature parity between UI surfaces and CLI/LLM commands (diagnostics, diff previews, exports) so copilots can drive Live Documentation without the VS Code UI.
 - [ ] Design a deterministic `Live Doc ID` scheme (e.g., hash of archetype + normalized relative path) stored inside generated metadata.
-- [ ] Decide how optional churn metrics remain reproducible without remote git access; document guardrails or defer the metric if determinism cannot be guaranteed.
+- [ ] Document that churn metrics are out of scope for the core workspace intelligence; focus analytic enrichers on deterministic signals (co-activation, dependency centrality, evidence coverage).
 
 ## 8. Final Alignment & Cleanups
 - [ ] Ensure all references to "Link-Aware Diagnostics" either retire or become “Live Documentation” (document historical note where needed).

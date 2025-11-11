@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/services/localOllamaBridge.ts
 - Live Doc ID: LD-implementation-packages-extension-src-services-localollamabridge-ts
-- Generated At: 2025-11-09T22:52:09.728Z
+- Generated At: 2025-11-10T22:24:00.024Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Invokes a workspace-local Ollama endpoint when the primary LLM provider is unava
 - Logs actionable warnings for missing models so operators know to `ollama pull` or adjust configuration.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.728Z","inputHash":"3dae011413424993"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.024Z","inputHash":"3dae011413424993"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `invokeLocalOllamaBridge`

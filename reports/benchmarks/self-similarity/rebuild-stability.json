@@ -1,7 +1,7 @@
 {
   "benchmark": "rebuild-stability",
   "mode": "self-similarity",
-  "recordedAt": "2025-11-10T03:12:15.357Z",
+  "recordedAt": "2025-11-11T05:24:47.548Z",
   "environment": {
     "nodeVersion": "v22.14.0",
     "platform": "win32",
@@ -15,12 +15,12 @@
     "workspace": "simple-workspace",
     "iterations": 3,
     "durationsMs": [
-      2419,
-      1985,
-      2017
+      2257,
+      1829,
+      2048
     ],
-    "averageDurationMs": 2140.3333333333335,
-    "maxDurationMs": 2419,
+    "averageDurationMs": 2044.6666666666667,
+    "maxDurationMs": 2257,
     "driftDetected": false
   }
 }

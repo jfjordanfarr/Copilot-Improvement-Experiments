@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/live-docs/report-precision.ts
 - Live Doc ID: LD-implementation-scripts-live-docs-report-precision-ts
-- Generated At: 2025-11-09T22:52:13.746Z
+- Generated At: 2025-11-11T05:28:20.874Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.746Z","inputHash":"2d014180e5128aae"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:28:20.874Z","inputHash":"3ae4bdc0efe0a88d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,7 +23,7 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- `@copilot-improvement/shared/config/liveDocumentationConfig` - `DEFAULT_LIVE_DOCUMENTATION_CONFIG`, `normalizeLiveDocumentationConfig`
+- `@copilot-improvement/shared/config/liveDocumentationConfig` - `DEFAULT_LIVE_DOCUMENTATION_CONFIG`, `LiveDocumentationConfig`, `normalizeLiveDocumentationConfig`
 - `@copilot-improvement/shared/tooling/pathUtils` - `normalizeWorkspacePath`
 - `glob` - `glob`
 - `node:fs/promises` - `fs`

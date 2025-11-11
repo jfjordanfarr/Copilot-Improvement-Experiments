@@ -112,10 +112,21 @@ const KNOWN_ROOT_SEGMENTS = new Set([
   "tests",
   "scripts",
   ".mdmd",
+  ".live-documentation",
   "specs",
   "data",
   "AI-Agent-Workspace"
 ]);
+
+const CODE_ARTIFACT_IGNORE_PATTERNS: RegExp[] = [
+  /\/tests\/integration\/benchmarks\/fixtures\//,
+  /\/scripts\/fixture-tools\//
+];
+
+const DOCUMENT_ARTIFACT_IGNORE_PATTERNS: RegExp[] = [
+  /\/\.mdmd\//,
+  /\/\.live-documentation\/system\//
+];
 
 interface SymbolCoverageIgnoreConfig {
   artifactGlobs: string[];
@@ -255,7 +266,7 @@ function deriveGroupLabel(artifact: ArtifactSummary): string {
     return `${root}/${secondary}`;
   }
 
-  if (root === ".mdmd" && secondary) {
+  if ((root === ".mdmd" || root === ".live-documentation") && secondary) {
     return `${root}/${secondary}`;
   }
 
@@ -322,6 +333,10 @@ export function auditCoverage(
 
   for (const artifact of artifacts) {
     if (artifact.layer === "code") {
+      if (shouldIgnoreCodeArtifact(artifact.uri)) {
+        continue;
+      }
+
       codeCount += 1;
       const neighbors = getNeighbors(artifact.id);
       const hasDocLink = neighbors.some(neighbor => {
@@ -369,6 +384,10 @@ export function auditCoverage(
     }
 
     if (DOCUMENTATION_LAYERS.has(artifact.layer)) {
+      if (shouldIgnoreDocumentArtifact(artifact.uri)) {
+        continue;
+      }
+
       docCount += 1;
       const neighbors = getNeighbors(artifact.id);
       const touchesCode = neighbors.some(neighbor => {
@@ -436,6 +455,30 @@ export function auditCoverage(
     },
     orphanDocumentSymbols: docSymbolOrphans
   };
+}
+
+function shouldIgnoreCodeArtifact(uri: string): boolean {
+  return matchesAnyPattern(uri, CODE_ARTIFACT_IGNORE_PATTERNS);
+}
+
+function shouldIgnoreDocumentArtifact(uri: string): boolean {
+  return matchesAnyPattern(uri, DOCUMENT_ARTIFACT_IGNORE_PATTERNS);
+}
+
+function matchesAnyPattern(uri: string, patterns: RegExp[]): boolean {
+  if (!patterns.length) {
+    return false;
+  }
+  return patterns.some(pattern => pattern.test(uri));
+}
+
+function shouldIgnoreRelationshipDiagnostic(diagnostic: RelationshipCoverageDiagnostic): boolean {
+  const normalized = (diagnostic.source ?? "").replace(/\\/g, "/").toLowerCase();
+  return (
+    normalized.includes(".mdmd/") ||
+    normalized.includes("/.mdmd/") ||
+    normalized.includes(".live-documentation/system/")
+  );
 }
 
 function toSummary(artifact: KnowledgeArtifact): ArtifactSummary {
@@ -683,7 +726,9 @@ export async function main(): Promise<void> {
         compiled: compiledRules,
         workspaceRoot
       });
-      diagnostics = formatRelationshipDiagnostics(coverage, workspaceRoot);
+      diagnostics = formatRelationshipDiagnostics(coverage, workspaceRoot).filter(
+        diagnostic => !shouldIgnoreRelationshipDiagnostic(diagnostic)
+      );
     }
 
     report.relationshipRules = {

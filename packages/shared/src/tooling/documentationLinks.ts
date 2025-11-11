@@ -22,7 +22,10 @@ export interface DocumentationRule {
 export const DEFAULT_RULES: DocumentationRule[] = [
   {
     label: "Live Documentation",
-    docGlobs: [".mdmd/layer-4/**/*.mdmd.md"],
+    docGlobs: [
+      ".mdmd/layer-4/**/*.mdmd.md",
+      ".live-documentation/source/**/*.mdmd.md"
+    ],
     codeGlobs: [
       "packages/**/*.{ts,tsx,js,jsx,cts,mts,mjs,cjs}",
       "scripts/**/*.{ts,tsx,js,jsx,mjs,cjs}",

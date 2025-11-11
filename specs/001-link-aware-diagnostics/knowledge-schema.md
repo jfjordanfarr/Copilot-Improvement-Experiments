@@ -6,7 +6,7 @@ The Live Documentation system relies on a lightweight knowledge graph populated 
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `id` | string | Stable identifier for the artifact. Providers should prefer deterministic IDs (URI hash, database primary key) to limit churn. |
+| `id` | string | Stable identifier for the artifact. Providers should prefer deterministic IDs (URI hash, database primary key) to limit noise. |
 | `uri` | string | Canonical URI or file path. `file://` URIs are preferred for workspace files; absolute paths are acceptable when URIs are unavailable. |
 | `layer` | `release | work-item | architecture | implementation | live-doc` | Declares which stage of the delivery stack the artifact belongs to. `live-doc` is used for generated markdown artefacts that mirror source assets. |
 | `language` | string? | Programming or prose language hint (`typescript`, `markdown`, etc.). Optional. |
@@ -95,7 +95,7 @@ Events must be strictly ordered per provider and every payload must include eith
 - Generated Live Docs must populate `metadata.liveDocPath` (workspace-relative markdown path), `metadata.sourcePath` (workspace-relative path to the source asset), and `liveDocId` (deterministic hash or slug) so downstream tooling can reconcile artefacts.
 - Docstring bridges store anchors in `metadata.docstrings` with entries `{ "symbol": "Foo.bar", "source": "#L42", "status": "synced | drift" }`.
 - Coverage ingestion records evidence in `metadata.evidence` arrays with fields `{ "type": "unit|integration|benchmark", "target": "packages/.../foo.test.ts", "status": "present|waived" }`.
-- Optional enrichers (churn metrics, reference counts) must declare their source in `metadata.enrichers` with `{ "name": "churn", "period": "30d", "value": 3 }`.
+- Optional enrichers (deterministic analytics such as co-activation scores or reference counts) must declare their source in `metadata.enrichers` with payloads like `{ "name": "co-activation", "window": "layer4-deps", "value": 0.82 }`.
 
 ## Confidence and provenance guidelines
 

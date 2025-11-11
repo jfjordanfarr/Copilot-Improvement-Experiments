@@ -118,11 +118,24 @@ description: "Task list for Live Documentation"
 
 **Purpose**: Add optional enrichers, telemetry, and Layer‑2/Layer‑3 derivations.
 
-- [ ] LD-700 Add churn/reference enrichers to generator (`packages/shared/src/live-docs/enrichers/churnEnricher.ts`, `referenceEnricher.ts`)
+- [ ] LD-700 Add co-activation analytics enricher sourced from deterministic Stage-0 signals (`packages/shared/src/live-docs/enrichers/coActivationEnricher.ts`, `referenceEnricher.ts`)
 - [ ] LD-701 Extend telemetry to record regeneration latency, waiver counts, evidence coverage (updates in `packages/shared/src/telemetry/liveDocsTelemetry.ts`)
 - [ ] LD-702 [P] Implement low-confidence edge tagging for external feeds + LLM augmentations with promotion workflow
 - [ ] LD-703 Generate Layer‑2/Layer‑3 summaries from Live Docs (`scripts/live-docs/derive-roadmap.ts` producing `.mdmd/layer-2/` updates)
 - [ ] LD-704 Add audit dashboard export CLI (`scripts/live-docs/report.ts`) summarising SC-LD metrics
+- [ ] LD-705 Define deterministic derivation rules for System Layer archetypes using Layer‑4 graph data; document expected outputs in `AI-Agent-Workspace/Notes/live-documentation-doc-refactor-plan.md` (see System Layer Signal Catalog) with legacy `.mdmd/layer-3/**` docs serving only as validation references
+- [ ] LD-706 Stand up System Layer mirror under `/.live-documentation/system/` with seeded docs preserving authored `Purpose`/`Notes`
+- [ ] LD-707 Extend generator to populate System Layer `Components` lists and Mermaid `Topology` diagrams (with `click` links) from Layer‑4 dependency data
+- [ ] LD-708 Wire live-docs:lint/SlopCop rules enforcing System Layer structure (required generated sections, no direct Layer‑4 links outside `Components`)
+- [ ] LD-709 Validate System Layer renders across VS Code preview, CLI `live-docs inspect`, and markdown export, then schedule MDMD Layer‑3 retirement window
+- [ ] LD-710 Parse workflow orchestrators (e.g., `scripts/live-docs/run-all.ts`) to extract stage ordering when dependencies are expressed via string literals rather than imports
+- [ ] LD-711 Hook System Layer derivation into coverage manifests (`coverage/live-docs/targets.json`) once emitted so testing archetypes reflect bidirectional coverage data
+- [x] LD-712 Refactor `packages/server/src/features/live-docs/generator.ts` to extract shared core utilities (target discovery, analysis, merge/write pipeline) into a reusable module under `packages/server/src/features/live-docs/core`. *(Shared helpers emitted in `packages/server/src/features/live-docs/generation/core.ts`; `generator.ts` now consumes them.)*
+- [ ] LD-713 Create layer-specific generator entrypoints (`generator.layer4.ts`, `generator.system.ts`) that compose the shared core with layer rules while keeping existing CLI integrations functional
+- [ ] LD-714 Filter build artefacts (e.g., compiled `.js` siblings) out of System Layer `Components` while preserving canonical TypeScript sources.
+- [ ] LD-715 Merge duplicate System Layer interaction/workflow docs when they describe the same orchestrator; ensure topology reflects single-source ordering.
+- [ ] LD-716 Enrich System Layer topology with orchestrator stage edges emitted from LD-710 so CLI interaction docs show meaningful flow instead of isolated nodes.
+- [ ] LD-717 Prune and aggregate testing archetype topology to highlight Live Docs suites while avoiding unreadable graphs (e.g., collapse extension diagnostics tests).
 
 **Checkpoint**: Live Docs feed richer telemetry and derived docs without sacrificing determinism.
 
@@ -145,8 +158,9 @@ Tasks tagged `[P]` can run concurrently when dependencies agree (e.g., LD-202/20
 - Documentation updates land across `specs/001-link-aware-diagnostics/**` and `.mdmd/layer-*/`
 
 ## Summary Metrics
-- **Total Tasks**: 45 (12 closed, 33 open)
-- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (5 open), Phase6 (5 open), Phase7 (5 open)
+**Summary Metrics**
+- **Total Tasks**: 58 (13 closed, 45 open)
+- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (5 open), Phase6 (5 open), Phase7 (17 open)
 - **Independent Tests**: `generation.test.ts`, `evidence.test.ts`, `inspect-cli.test.ts`, `docstring-drift.test.ts`
-- **Primary Workstreams**: Generator foundations (WI-LD101), Evidence bridges (WI-LD102), Docstring drift (WI-LD201), Consumption parity (WI-LD301)
+- **Primary Workstreams**: Generator foundations (WI-LD101), Evidence bridges (WI-LD102), Docstring drift (WI-LD201), Consumption parity (WI-LD301), System Layer migration (WI-LD401)
 

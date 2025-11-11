@@ -11,6 +11,7 @@ import {
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
 
 import { generateLiveDocs } from "../../packages/server/src/features/live-docs/generator";
+import { generateSystemLiveDocs } from "../../packages/server/src/features/live-docs/system/generator";
 
 interface ParsedArgs {
   help: boolean;
@@ -193,7 +194,7 @@ async function main(): Promise<void> {
       return pattern;
     });
 
-  const result = await generateLiveDocs({
+  const layer4Result = await generateLiveDocs({
     workspaceRoot,
     config: normalizedConfig,
     dryRun: args.dryRun,
@@ -201,7 +202,7 @@ async function main(): Promise<void> {
     include: includePatterns
   });
 
-  const counts = result.files.reduce<ChangeCounts>(
+  const layer4Counts = layer4Result.files.reduce<ChangeCounts>(
     (acc, record) => {
       acc[record.change] += 1;
       return acc;
@@ -211,20 +212,70 @@ async function main(): Promise<void> {
 
   const dryRunSuffix = args.dryRun ? " (dry-run)" : "";
   console.log(
-    `[live-docs] Processed ${result.processed} file(s)${dryRunSuffix}: ${counts.created} created, ${counts.updated} updated, ${counts.unchanged} unchanged, ${counts.skipped} skipped.`
+    `[live-docs] Layer 4 processed ${layer4Result.processed} file(s)${dryRunSuffix}: ${layer4Counts.created} created, ${layer4Counts.updated} updated, ${layer4Counts.unchanged} unchanged, ${layer4Counts.skipped} skipped, ${layer4Result.deleted} deleted.`
   );
 
-  if (counts.created === 0) {
-    return;
+  const layer3Result = await generateSystemLiveDocs({
+    workspaceRoot,
+    config: normalizedConfig,
+    dryRun: args.dryRun
+  });
+
+  const layer3Counts = layer3Result.files.reduce<ChangeCounts>(
+    (acc, record) => {
+      acc[record.change] += 1;
+      return acc;
+    },
+    { created: 0, updated: 0, unchanged: 0, skipped: 0 }
+  );
+
+  if (layer3Result.processed > 0 || layer3Result.deleted > 0) {
+    console.log(
+      `[live-docs] Layer 3 processed ${layer3Result.processed} doc(s)${dryRunSuffix}: ${layer3Counts.created} created, ${layer3Counts.updated} updated, ${layer3Counts.unchanged} unchanged, ${layer3Counts.skipped} skipped, ${layer3Result.deleted} deleted.`
+    );
   }
 
-  const createdDocs = result.files.filter((record) => record.change === "created");
-  const verb = args.dryRun ? "Would create" : "Created";
+  const createdLayer4Docs = layer4Result.files.filter((record) => record.change === "created");
+  const createdLayer3Docs = layer3Result.files.filter((record) => record.change === "created");
+  const deletedLayer4Docs = layer4Result.deletedFiles;
+  const deletedLayer3Docs = layer3Result.deletedFiles;
+
   const MAX_LISTED = 10;
-  const listed = createdDocs.slice(0, MAX_LISTED).map((record) => record.docPath ?? record.sourcePath);
-  const remainder = createdDocs.length - listed.length;
-  const suffix = remainder > 0 ? `, +${remainder} more` : "";
-  console.log(`[live-docs] ${verb} ${createdDocs.length} Live Doc(s): ${listed.join(", ")}${suffix}`);
+  const verb = args.dryRun ? "Would create" : "Created";
+
+  if (createdLayer4Docs.length > 0) {
+    const listed = createdLayer4Docs
+      .slice(0, MAX_LISTED)
+      .map((record) => record.docPath ?? record.sourcePath);
+    const remainder = createdLayer4Docs.length - listed.length;
+    const suffix = remainder > 0 ? `, +${remainder} more` : "";
+    console.log(`[live-docs] ${verb} ${createdLayer4Docs.length} Layer 4 Live Doc(s): ${listed.join(", ")}${suffix}`);
+  }
+
+  if (createdLayer3Docs.length > 0) {
+    const listed = createdLayer3Docs
+      .slice(0, MAX_LISTED)
+      .map((record) => record.docPath);
+    const remainder = createdLayer3Docs.length - listed.length;
+    const suffix = remainder > 0 ? `, +${remainder} more` : "";
+    console.log(`[live-docs] ${verb} ${createdLayer3Docs.length} Layer 3 Live Doc(s): ${listed.join(", ")}${suffix}`);
+  }
+
+  if (deletedLayer4Docs.length > 0) {
+    const listed = deletedLayer4Docs.slice(0, MAX_LISTED);
+    const remainder = deletedLayer4Docs.length - listed.length;
+    const suffix = remainder > 0 ? `, +${remainder} more` : "";
+    const deleteVerb = args.dryRun ? "Would delete" : "Deleted";
+    console.log(`[live-docs] ${deleteVerb} ${deletedLayer4Docs.length} Layer 4 Live Doc(s): ${listed.join(", ")}${suffix}`);
+  }
+
+  if (deletedLayer3Docs.length > 0) {
+    const listed = deletedLayer3Docs.slice(0, MAX_LISTED);
+    const remainder = deletedLayer3Docs.length - listed.length;
+    const suffix = remainder > 0 ? `, +${remainder} more` : "";
+    const deleteVerb = args.dryRun ? "Would delete" : "Deleted";
+    console.log(`[live-docs] ${deleteVerb} ${deletedLayer3Docs.length} Layer 3 Live Doc(s): ${listed.join(", ")}${suffix}`);
+  }
 }
 
 main().catch((error) => {

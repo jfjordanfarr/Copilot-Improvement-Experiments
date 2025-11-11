@@ -34,7 +34,7 @@
 - [x] CHK-LD16 Are analyzer/benchmark dependencies noted, including requirement to preserve existing polyglot suites? [Spec §Assumptions; Plan §Phase 2; Roadmap §REQ-L2]
 
 ## Ambiguities & Conflicts
-- [x] CHK-LD17 Are open questions about churn metrics, Live Doc ID determinism, and asset coverage captured for follow-up? [Spec §Active Questions; Plan §Phase 7; Roadmap §Active Questions]
+- [x] CHK-LD17 Are decisions about excluding churn metrics, Live Doc ID determinism, and asset coverage documented with follow-up notes? [Spec §Active Questions; Plan §Phase 7; Roadmap §Active Questions]
 
 ## Implementation Traceability
 - [`packages/server/src/runtime/changeProcessor.ts`](/packages/server/src/runtime/changeProcessor.ts) orchestrates analyzer scheduling feeding Live Doc regeneration (LD2, LD3).

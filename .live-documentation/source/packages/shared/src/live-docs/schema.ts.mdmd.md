@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/schema.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-schema-ts
-- Generated At: 2025-11-09T22:52:12.544Z
+- Generated At: 2025-11-11T05:12:47.831Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Define the canonical metadata schema for Live Documentation files, including pro
 `normalizeLiveDocMetadata` trims and canonicalises paths, ids, and timestamps, defaulting to layer 4 while accepting richer archetype/enricher data from configuration. Provenance normalization discards malformed generator entries, harmonises optional docstring status records, and guarantees consumers never see empty structures—stabilising the JSON embedded alongside rendered markdown.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.544Z","inputHash":"5b8779a24542b657"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:47.831Z","inputHash":"5b8779a24542b657"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LiveDocLayer`
@@ -83,7 +83,9 @@ Define the canonical metadata schema for Live Documentation files, including pro
 - [rippleAnalyzer.test.ts](../../../server/src/features/knowledge/rippleAnalyzer.test.ts.mdmd.md)
 - [scipParser.test.ts](../../../server/src/features/knowledge/scipParser.test.ts.mdmd.md)
 - [workspaceIndexProvider.test.ts](../../../server/src/features/knowledge/workspaceIndexProvider.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
 - [artifactWatcher.test.ts](../../../server/src/features/watchers/artifactWatcher.test.ts.mdmd.md)
 - [pathReferenceDetector.test.ts](../../../server/src/features/watchers/pathReferenceDetector.test.ts.mdmd.md)
 - [environment.test.ts](../../../server/src/runtime/environment.test.ts.mdmd.md)

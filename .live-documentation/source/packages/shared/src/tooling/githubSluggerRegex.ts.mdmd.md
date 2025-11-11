@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/githubSluggerRegex.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-githubsluggerregex-ts
-- Generated At: 2025-11-09T22:52:13.229Z
+- Generated At: 2025-11-11T05:12:48.096Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exposes the precomputed character-stripping regex used by GitHub’s slugger so 
 - Shared by both the TypeScript and CommonJS slugger modules to avoid duplicating the massive literal.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.229Z","inputHash":"9b9f1a070c7cba2f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.096Z","inputHash":"9b9f1a070c7cba2f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `GITHUB_SLUG_REMOVE_PATTERN`
@@ -56,7 +56,9 @@ _No dependencies documented yet_
 - [rippleAnalyzer.test.ts](../../../server/src/features/knowledge/rippleAnalyzer.test.ts.mdmd.md)
 - [scipParser.test.ts](../../../server/src/features/knowledge/scipParser.test.ts.mdmd.md)
 - [workspaceIndexProvider.test.ts](../../../server/src/features/knowledge/workspaceIndexProvider.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
 - [artifactWatcher.test.ts](../../../server/src/features/watchers/artifactWatcher.test.ts.mdmd.md)
 - [pathReferenceDetector.test.ts](../../../server/src/features/watchers/pathReferenceDetector.test.ts.mdmd.md)
 - [environment.test.ts](../../../server/src/runtime/environment.test.ts.mdmd.md)

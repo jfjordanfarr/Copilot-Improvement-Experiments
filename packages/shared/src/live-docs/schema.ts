@@ -34,7 +34,7 @@ export interface LiveDocMetadata {
   generatedAt?: string;
   /** Optional provenance payload emitted by generators and bridges. */
   provenance?: LiveDocProvenance;
-  /** Arbitrary metadata produced by enrichers (e.g., churn metrics, reference counts). */
+  /** Arbitrary metadata produced by enrichers (e.g., co-activation scores, reference counts). */
   enrichers?: Record<string, unknown>;
 }
 

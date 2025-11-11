@@ -107,9 +107,13 @@ TBD — populate if future scope deviates from Constitution constraints.
 - Flip default configuration for repositories that opt in; document rollback strategy.
 
 ### Phase 7 – Metadata Enrichers & Future Layers
-- Add optional generated metadata (churn metrics, reference counts) guarded by deterministic inputs.
+- Add optional generated analytics (deterministic co-activation scores, reference counts) guarded by reproducible inputs.
 - Prototype Layer‑3/Layer‑2 Live Documentation derived from aggregated Layer‑4 data (release-level docs, work-item mapping) while preserving authored/generated pattern.
 - Explore visual exports (mermaid diagrams, shareable codemaps) grounded in the markdown graph.
+
+#### System Layer Migration Checklist
+- [ ] Iterate on first-pass System Layer output: filter build artefacts (e.g., `.js` siblings) from `Components`, collapse duplicate interaction/workflow docs, enrich topology edges for CLI orchestration, and trim coverage graphs to Live Docs suites.
+- [ ] Introduce layer-specific generators (`generator.layer4.ts`, `generator.system.ts`) that compose the shared foundation with archetype derivation rules, keeping the existing CLI entrypoints compatible.
 
 ## Implementation Traceability
 - [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) orchestrates analyzer execution feeding Live Doc regeneration.

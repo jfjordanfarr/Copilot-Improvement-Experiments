@@ -384,6 +384,9 @@ export async function snapshotWorkspace(options: SnapshotWorkspaceOptions): Prom
     implementation: ["packages", "tests", "scripts", "src", "lib", "examples", "include"],
     documentation: [
       ".mdmd",
+      ".live-documentation",
+      path.join(".live-documentation", "source"),
+      path.join(".live-documentation", "system"),
       "specs",
       "docs",
       path.join("tests", "integration", "fixtures", "simple-workspace", "docs"),

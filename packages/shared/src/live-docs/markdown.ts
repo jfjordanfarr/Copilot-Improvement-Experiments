@@ -125,7 +125,9 @@ function renderMetadata(output: string[], metadata: LiveDocMetadata): void {
   if (metadata.archetype) {
     output.push(`- Archetype: ${metadata.archetype}`);
   }
-  output.push(`- Code Path: ${metadata.sourcePath}`);
+  if (metadata.layer === 4) {
+    output.push(`- Code Path: ${metadata.sourcePath}`);
+  }
   output.push(`- Live Doc ID: ${metadata.liveDocId}`);
   if (metadata.generatedAt) {
     output.push(`- Generated At: ${metadata.generatedAt}`);

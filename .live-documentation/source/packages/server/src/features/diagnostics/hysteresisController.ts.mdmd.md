@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/hysteresisController.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-hysteresiscontroller-ts
-- Generated At: 2025-11-09T22:52:10.166Z
+- Generated At: 2025-11-10T22:24:00.155Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Tracks short-lived suppression windows between trigger/target artifact pairs so 
 - Exposes `reset` and `getActiveCount` for integration tests and observability hooks without leaking internal map structure.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.166Z","inputHash":"b19f1161635d333f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.155Z","inputHash":"b19f1161635d333f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `HysteresisControllerOptions`

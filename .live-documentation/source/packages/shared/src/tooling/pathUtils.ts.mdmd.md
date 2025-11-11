@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/pathUtils.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-pathutils-ts
-- Generated At: 2025-11-09T22:52:13.334Z
+- Generated At: 2025-11-11T05:12:48.143Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Normalises file paths between URI and workspace-relative formats so diagnostics 
 - `normalizeWorkspacePath` forces POSIX separators, ensuring Live Docs and markdown links stay stable in git diffs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.334Z","inputHash":"17427aed83a2c253"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.143Z","inputHash":"17427aed83a2c253"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `toWorkspaceRelativePath`
@@ -70,7 +70,9 @@ Returns undefined when the URI is outside the workspace or cannot be resolved.
 - [rippleAnalyzer.test.ts](../../../server/src/features/knowledge/rippleAnalyzer.test.ts.mdmd.md)
 - [scipParser.test.ts](../../../server/src/features/knowledge/scipParser.test.ts.mdmd.md)
 - [workspaceIndexProvider.test.ts](../../../server/src/features/knowledge/workspaceIndexProvider.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
 - [artifactWatcher.test.ts](../../../server/src/features/watchers/artifactWatcher.test.ts.mdmd.md)
 - [pathReferenceDetector.test.ts](../../../server/src/features/watchers/pathReferenceDetector.test.ts.mdmd.md)
 - [environment.test.ts](../../../server/src/runtime/environment.test.ts.mdmd.md)

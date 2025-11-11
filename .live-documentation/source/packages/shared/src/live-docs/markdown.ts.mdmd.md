@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/markdown.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-markdown-ts
-- Generated At: 2025-11-09T22:52:12.481Z
+- Generated At: 2025-11-11T05:12:47.815Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Render deterministic Live Documentation files by combining preserved authored pr
 Builds the full markdown document in memory, inserting metadata headers, authored content (or the default template when missing), and generator-supplied sections bounded by BEGIN/END comments for later diffing. Utility exports expose marker strings, provenance serialization, and helpers that compose workspace-relative Live Doc paths and ids using `normalizeWorkspacePath` so both CLI and extension produce identical layouts.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.481Z","inputHash":"e2d902c10a99cc0d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:47.815Z","inputHash":"3e673fbb7cc11a63"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LIVE_DOC_BEGIN_MARKER_PREFIX`
@@ -60,15 +60,15 @@ Builds the full markdown document in memory, inserting metadata headers, authore
 
 #### `defaultAuthoredTemplate`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L144)
+- Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L146)
 
 #### `composeLiveDocPath`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L148)
+- Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L150)
 
 #### `composeLiveDocId`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L159)
+- Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L161)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -106,7 +106,9 @@ Builds the full markdown document in memory, inserting metadata headers, authore
 - [rippleAnalyzer.test.ts](../../../server/src/features/knowledge/rippleAnalyzer.test.ts.mdmd.md)
 - [scipParser.test.ts](../../../server/src/features/knowledge/scipParser.test.ts.mdmd.md)
 - [workspaceIndexProvider.test.ts](../../../server/src/features/knowledge/workspaceIndexProvider.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
 - [artifactWatcher.test.ts](../../../server/src/features/watchers/artifactWatcher.test.ts.mdmd.md)
 - [pathReferenceDetector.test.ts](../../../server/src/features/watchers/pathReferenceDetector.test.ts.mdmd.md)
 - [environment.test.ts](../../../server/src/runtime/environment.test.ts.mdmd.md)

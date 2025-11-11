@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/lsif.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-lsif-ts
-- Generated At: 2025-11-09T22:52:11.614Z
+- Generated At: 2025-11-10T22:24:00.599Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Provides a type-safe mirror of the LSIF vertex and edge schema so both the serve
 - `ParsedLSIFIndex` models the staged maps the parsers build, enabling callers to thread strongly typed ranges/documents through analyzers instead of working with raw JSON.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.614Z","inputHash":"e9d3e745bc0d8862"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.599Z","inputHash":"e9d3e745bc0d8862"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LSIFVertexLabel`

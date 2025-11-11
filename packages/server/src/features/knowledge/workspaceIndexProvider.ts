@@ -88,7 +88,15 @@ export function createWorkspaceIndexProvider(options: WorkspaceIndexProviderOpti
       const hints: RelationshipHint[] = [];
       const evidences: LinkEvidence[] = [];
       const implTargets = options.implementationGlobs ?? ["src"];
-      const docTargets = options.documentationGlobs ?? ["docs", "specs", "templates", "config", ".mdmd", "README.md"];
+      const docTargets = options.documentationGlobs ?? [
+        "docs",
+        "specs",
+        "templates",
+        "config",
+        ".mdmd",
+        ".live-documentation",
+        "README.md"
+      ];
       const scriptTargets = options.scriptGlobs ?? ["scripts"];
 
       // Implementation/code
@@ -189,7 +197,7 @@ export function createWorkspaceIndexProvider(options: WorkspaceIndexProviderOpti
 
             seeds.push({
               uri,
-              layer: "requirements",
+              layer: inferDocumentLayer(mdmdDetails.layer, filePath),
               language: inferDocLanguage(filePath),
               content,
               metadata
@@ -514,8 +522,48 @@ function looksLikeDocsPath(filePath: string): boolean {
     normalized.includes("/templates/") ||
     normalized.includes("/config/") ||
     normalized.includes("/.mdmd/") ||
+    normalized.includes("/.live-documentation/") ||
     normalized.endsWith("readme.md")
   );
+}
+
+function inferDocumentLayer(metadataLayer: string | undefined, filePath: string): ArtifactSeed["layer"] {
+  if (metadataLayer) {
+    const normalized = metadataLayer.trim().toLowerCase();
+    if (normalized === "1" || normalized === "layer 1" || normalized === "vision") {
+      return "vision";
+    }
+    if (normalized === "2" || normalized === "layer 2" || normalized === "requirements") {
+      return "requirements";
+    }
+    if (normalized === "3" || normalized === "layer 3" || normalized === "architecture") {
+      return "architecture";
+    }
+    if (normalized === "4" || normalized === "layer 4" || normalized === "implementation") {
+      return "implementation";
+    }
+  }
+
+  const normalizedPath = filePath.replace(/\\/g, "/").toLowerCase();
+  if (normalizedPath.includes("/.mdmd/layer-1/")) {
+    return "vision";
+  }
+  if (normalizedPath.includes("/.mdmd/layer-2/")) {
+    return "requirements";
+  }
+  if (normalizedPath.includes("/.mdmd/layer-3/")) {
+    return "architecture";
+  }
+  if (normalizedPath.includes("/.mdmd/layer-4/")) {
+    return "implementation";
+  }
+  if (normalizedPath.includes("/.live-documentation/system/")) {
+    return "architecture";
+  }
+  if (normalizedPath.includes("/.live-documentation/source/")) {
+    return "implementation";
+  }
+  return "requirements";
 }
 
 async function extractPathFunctionHints(context: LinkHintContext): Promise<RelationshipHint[]> {

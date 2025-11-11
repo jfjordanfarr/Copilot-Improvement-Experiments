@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/graph-tools/snapshot-workspace.ts
 - Live Doc ID: LD-implementation-scripts-graph-tools-snapshot-workspace-ts
-- Generated At: 2025-11-09T22:52:13.675Z
+- Generated At: 2025-11-11T05:12:48.310Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.675Z","inputHash":"6cfadbe0f85a6a69"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.310Z","inputHash":"9f729b4168a39347"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `DEFAULT_DB`
@@ -48,7 +48,7 @@ _Pending notes_
 
 #### `main`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L478)
+- Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L481)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

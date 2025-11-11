@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/config/liveDocumentationConfig.ts
 - Live Doc ID: LD-implementation-packages-shared-src-config-livedocumentationconfig-ts
-- Generated At: 2025-11-09T22:52:11.583Z
+- Generated At: 2025-11-11T05:12:47.479Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines the canonical configuration shape for staged Live Documentation and norm
 - `normalizeLiveDocumentationConfig` deduplicates globs, trims string options, and merges evidence strictness while preserving any caller-provided overrides.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.583Z","inputHash":"0b45c5ad9da95063"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:47.479Z","inputHash":"ed91752fb5d74f10"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LiveDocumentationSlugDialect`
@@ -29,39 +29,39 @@ Defines the canonical configuration shape for staged Live Documentation and norm
 
 #### `LiveDocumentationEvidenceStrictMode`
 - Type: type
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L7)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L17)
 
 #### `LiveDocumentationEvidenceConfig`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L9)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L19)
 
 #### `LiveDocumentationConfig`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L13)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L23)
 
 #### `LiveDocumentationConfigInput`
 - Type: type
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L32)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L42)
 
 #### `LIVE_DOCUMENTATION_DEFAULT_ROOT`
 - Type: const
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L36)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L46)
 
 #### `LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER`
 - Type: const
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L37)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L47)
 
 #### `LIVE_DOCUMENTATION_DEFAULT_GLOBS`
 - Type: const
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L38)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L48)
 
 #### `DEFAULT_LIVE_DOCUMENTATION_CONFIG`
 - Type: const
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L52)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L62)
 
 #### `normalizeLiveDocumentationConfig`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L65)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L75)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -96,7 +96,9 @@ _No dependencies documented yet_
 - [rippleAnalyzer.test.ts](../../../server/src/features/knowledge/rippleAnalyzer.test.ts.mdmd.md)
 - [scipParser.test.ts](../../../server/src/features/knowledge/scipParser.test.ts.mdmd.md)
 - [workspaceIndexProvider.test.ts](../../../server/src/features/knowledge/workspaceIndexProvider.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
+- [generator.test.ts](../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
 - [artifactWatcher.test.ts](../../../server/src/features/watchers/artifactWatcher.test.ts.mdmd.md)
 - [pathReferenceDetector.test.ts](../../../server/src/features/watchers/pathReferenceDetector.test.ts.mdmd.md)
 - [environment.test.ts](../../../server/src/runtime/environment.test.ts.mdmd.md)

@@ -7,7 +7,8 @@ import ts from "typescript";
 
 import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-  normalizeLiveDocumentationConfig
+  normalizeLiveDocumentationConfig,
+  type LiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
 import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
 
@@ -83,7 +84,7 @@ async function main(): Promise<void> {
 
   for (const docAbsolutePath of docs) {
     const content = await fs.readFile(docAbsolutePath, "utf8");
-  const parsedDoc = parseLiveDoc(content, docAbsolutePath, workspaceRoot);
+    const parsedDoc = parseLiveDoc(content, docAbsolutePath, workspaceRoot, config);
     if (!parsedDoc) {
       skipped.push(relativize(workspaceRoot, docAbsolutePath));
       continue;
@@ -209,7 +210,8 @@ const SUPPORTED_EXTENSIONS = new Set([
 function parseLiveDoc(
   content: string,
   docAbsolutePath: string,
-  workspaceRoot: string
+  workspaceRoot: string,
+  config: LiveDocumentationConfig
 ): ParsedDoc | undefined {
   const metadataPathMatch = content.match(/-\s+Code Path:\s+(.+)/);
   if (!metadataPathMatch) {
@@ -228,7 +230,7 @@ function parseLiveDoc(
     metadataPath: metadataPathMatch[1].trim(),
     archetype,
     publicSymbols: parseSymbolSection(publicSymbolsSection),
-    dependencies: parseDependencySection(dependenciesSection, docDir, workspaceRoot)
+    dependencies: parseDependencySection(dependenciesSection, docDir, workspaceRoot, config)
   };
 }
 
@@ -253,7 +255,8 @@ function parseSymbolSection(section: string): Set<string> {
 function parseDependencySection(
   section: string,
   docDir: string,
-  workspaceRoot: string
+  workspaceRoot: string,
+  config: LiveDocumentationConfig
 ): Set<string> {
   const dependencies = new Set<string>();
   const lines = section.split(/\r?\n/);
@@ -267,19 +270,103 @@ function parseDependencySection(
       continue;
     }
 
+    const linkMatch = remainder.match(/^\[([^\]]+)\]\(([^)]+)\)/);
+    if (linkMatch) {
+      const [, label, target] = linkMatch;
+      const resolvedTarget = resolveDependencyTarget(target, docDir, workspaceRoot, config);
+      if (resolvedTarget) {
+        dependencies.add(resolvedTarget);
+        continue;
+      }
+
+      const sanitizedLabel = stripInlineCode(label);
+      if (sanitizedLabel) {
+        dependencies.add(sanitizedLabel);
+      }
+      continue;
+    }
+
     const [firstToken] = remainder.split(/\s+/);
     if (!firstToken) {
       continue;
     }
 
-    if (firstToken.startsWith(".")) {
-      const candidate = path.resolve(docDir, firstToken);
-      dependencies.add(normalizeWorkspacePath(path.relative(workspaceRoot, candidate)));
-    } else {
-      dependencies.add(firstToken);
+    const sanitizedToken = stripInlineCode(firstToken);
+    if (!sanitizedToken) {
+      continue;
     }
+
+    if (sanitizedToken.startsWith(".")) {
+      const resolved = resolveDependencyTarget(sanitizedToken, docDir, workspaceRoot, config);
+      if (resolved) {
+        dependencies.add(resolved);
+      }
+      continue;
+    }
+
+    dependencies.add(sanitizedToken);
   }
   return dependencies;
+}
+
+function stripInlineCode(token: string): string {
+  let value = token.trim();
+  while (value.startsWith("`")) {
+    value = value.slice(1);
+  }
+  while (value.endsWith("`")) {
+    value = value.slice(0, -1);
+  }
+  return value.trim();
+}
+
+function resolveDependencyTarget(
+  rawTarget: string,
+  docDir: string,
+  workspaceRoot: string,
+  config: LiveDocumentationConfig
+): string | undefined {
+  const target = rawTarget.trim();
+  if (!target || /^[a-z]+:\/\//i.test(target)) {
+    return undefined;
+  }
+
+  const pathComponent = target.split("#", 1)[0];
+  if (!pathComponent) {
+    return undefined;
+  }
+
+  const absolute = path.resolve(docDir, pathComponent);
+  const workspaceResolved = path.resolve(workspaceRoot);
+  const absoluteResolved = path.resolve(absolute);
+  if (
+    absoluteResolved !== workspaceResolved &&
+    !absoluteResolved.startsWith(`${workspaceResolved}${path.sep}`)
+  ) {
+    return undefined;
+  }
+
+  const relative = path.relative(workspaceRoot, absoluteResolved);
+  if (!relative) {
+    return undefined;
+  }
+
+  const normalizedRelative = normalizeWorkspacePath(relative);
+  const liveDocsPrefix = normalizeWorkspacePath(path.join(config.root, config.baseLayer));
+
+  if (normalizedRelative === liveDocsPrefix) {
+    return undefined;
+  }
+
+  if (normalizedRelative.startsWith(`${liveDocsPrefix}/`)) {
+    const withoutPrefix = normalizedRelative.slice(liveDocsPrefix.length + 1);
+    if (!withoutPrefix.endsWith(".mdmd.md")) {
+      return undefined;
+    }
+    return withoutPrefix.slice(0, -".mdmd.md".length);
+  }
+
+  return normalizedRelative;
 }
 
 function initializeMetrics(): ComparisonMetrics {

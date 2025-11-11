@@ -29,7 +29,7 @@ describe("normalizeLiveDocMetadata", () => {
         }
       },
       enrichers: {
-        churn: 5
+        "co-activation": 0.82
       }
     });
 
@@ -47,7 +47,7 @@ describe("normalizeLiveDocMetadata", () => {
       status: "in-sync",
       lastComparedAt: "2025-11-08T12:00:00.000Z"
     });
-    expect(metadata.enrichers).toEqual({ churn: 5 });
+    expect(metadata.enrichers).toEqual({ "co-activation": 0.82 });
   });
 
   it("throws when the source path is empty", () => {

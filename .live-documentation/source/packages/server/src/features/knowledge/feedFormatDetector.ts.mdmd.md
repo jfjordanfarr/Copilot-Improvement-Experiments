@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/feedFormatDetector.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-feedformatdetector-ts
-- Generated At: 2025-11-09T22:52:10.532Z
+- Generated At: 2025-11-10T22:24:00.238Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Infers the format of incoming knowledge feeds (LSIF, SCIP, markdown, etc.) so do
 - Falls back to configured defaults when detection fails, allowing operators to override heuristics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.532Z","inputHash":"a6c9c89cf2a745fa"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.238Z","inputHash":"a6c9c89cf2a745fa"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `FeedFormat`

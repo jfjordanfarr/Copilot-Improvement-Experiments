@@ -2,7 +2,17 @@
 
 export type LiveDocumentationSlugDialect = "github" | "azure-devops" | "gitlab";
 
-export type LiveDocumentationArchetype = "implementation" | "test" | "asset" | "stub";
+export type LiveDocumentationArchetype =
+  | "implementation"
+  | "test"
+  | "asset"
+  | "stub"
+  | "component"
+  | "interaction"
+  | "data-model"
+  | "workflow"
+  | "integration"
+  | "testing";
 
 export type LiveDocumentationEvidenceStrictMode = "off" | "warning" | "error";
 
