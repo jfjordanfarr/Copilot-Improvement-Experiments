@@ -14,6 +14,9 @@ Re-exports the shared inference-accuracy telemetry helpers so server modules can
 ### Notes
 - Keeps server-facing code decoupled from deep shared package paths, easing future refactors of telemetry utilities.
 
+#### InferenceAccuracyTracker
+Re-exported from [`@copilot-improvement/shared/telemetry/inferenceAccuracy`](../../../../packages/shared/src/telemetry/inferenceAccuracy.ts.mdmd.md#inferenceaccuracytracker) so server modules can reference the shared tracker through a local entry point.
+
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.510Z","inputHash":"d9a3bb7d21c1882f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->

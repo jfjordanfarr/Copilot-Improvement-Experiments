@@ -6,7 +6,7 @@
 - Change pipeline: [`packages/server/src/runtime/changeProcessor.ts`](../../../packages/server/src/runtime/changeProcessor.ts)
 - Telemetry contracts: [`packages/shared/src/contracts/telemetry.ts`](../../../packages/shared/src/contracts/telemetry.ts)
 - Parent design: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md)
-- Spec references: [T052](../../../specs/001-link-aware-diagnostics/tasks.md#phase-7-polish--crosscutting-concerns) • [FR-009](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
+- Spec references: [Task T052](../../../specs/001-link-aware-diagnostics/tasks.md) • [FR-009](../../../specs/001-link-aware-diagnostics/spec.md#functional-requirements)
 
 ## Purpose
 Track end-to-end latency for code and document changes processed by the language server so that downstream surfaces (extension commands, dashboards, alerts) can report on diagnostic responsiveness and regression risk.

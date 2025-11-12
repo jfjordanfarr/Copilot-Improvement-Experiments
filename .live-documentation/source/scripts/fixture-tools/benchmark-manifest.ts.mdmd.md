@@ -14,6 +14,9 @@ _Pending authored purpose_
 ### Notes
 _Pending notes_
 
+#### ManifestFixtureDefinition
+Legacy alias for [`BenchmarkFixtureDefinition`](#benchmarkfixturedefinition); retained so fixture tooling imports remain stable.
+
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.498Z","inputHash":"a7892006ea5055c3"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->

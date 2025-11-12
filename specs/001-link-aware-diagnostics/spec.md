@@ -8,7 +8,7 @@
 
 **Input**: "Deliver an open-source, markdown-as-AST system where every workspace artifact has Live Documentation: an authored preamble plus generated sections describing programmatic surface, dependencies, and evidence, powering diagnostics and copilots without cloud dependencies."
 
-**Current Vision**: Live Documentation mirrors the repository under `/.live-documentation/`, giving each tracked asset an authored preamble and deterministic generated metadata. Diagnostics, CLI exports, and copilots consume the same markdown graph, enabling reproducible, MIT-licensed adoption across teams.
+**Current Vision**: Live Documentation mirrors each tracked asset under `/.live-documentation/source/`, giving it an authored preamble plus deterministic generated metadata. Diagnostics, CLI exports, and copilots consume the same markdown graph, while System-level views (clusters, workflows, coverage rollups) are generated on demand instead of being committed to the repository, keeping the experience reproducible and ephemeral by design. Layer 1 capabilities publish to a static site (initially GitHub Pages), Layer 2 requirements reconcile with Spec-Kit and issue trackers, and the System CLI streams materialized views so no architecture markdown lingers in the repo.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -48,21 +48,21 @@ Developers run regeneration or save a file; the Live Doc generator updates `Publ
 
 ---
 
-### User Story 3 – Teams consume Live Doc narratives (Priority: P2)
+### User Story 3 – Teams consume Live Doc intelligence on demand (Priority: P2)
 
-**Status**: Planned — existing diagnostics and CLI outputs will pivot to Live Docs.
+**Status**: Planned — existing diagnostics and CLI outputs will pivot to Live Docs and stream System analytics without persisting new docs.
 
-Leads export impact reports, Copilot prompts, or diagnostics sourced from the Live Doc graph, seeing the same metadata (generated timestamp, evidence count, dependency depth) regardless of surface.
+Leads export impact reports, Copilot prompts, or diagnostics sourced from the Live Doc graph, seeing the same metadata (generated timestamp, evidence count, dependency depth) regardless of surface. System-level analytics (clusters, workflows, coverage gaps) remain ephemeral views that can be regenerated whenever needed.
 
 **Why this priority**: Consumption surfaces prove the system’s value; without them Live Docs become a static archive.
 
-**Independent Test**: Generate Live Docs, run the diagnostics provider and CLI export, and confirm both render consistent data for a given file change.
+**Independent Test**: Generate Live Docs, run the diagnostics provider and CLI export, and confirm both render consistent data for a given file change while leaving the workspace clean.
 
 **Acceptance Scenarios**:
 
 1. **Given** a developer saving a file, **When** diagnostics appear, **Then** entries include links to the relevant Live Docs with evidence counts.
 2. **Given** a CLI command `live-docs inspect packages/.../file.ts`, **When** executed, **Then** it renders markdown summarising public symbols, dependencies, and evidence identical to the Live Doc file.
-3. **Given** a Copilot prompt referencing `@{live-doc ...}`, **When** injected, **Then** it supplies the authored notes plus generated summary to improve answer relevance.
+3. **Given** a CLI command `live-docs system --cluster <id>`, **When** executed, **Then** it streams the analytics to stdout (or a temp file when requested) and leaves `.live-documentation/system/` unchanged.
 
 ---
 
@@ -100,6 +100,24 @@ Early adopters using change-impact diagnostics and symbol neighborhood tooling c
 
 ---
 
+### User Story 6 – Layer distribution surfaces (Priority: P2)
+
+**Status**: Planned — aligns public site publishing, requirement delegation, and on-demand analytics.
+
+Stakeholders expect Layer 1 vision pages to publish externally without manual cloning, Layer 2 requirements to reconcile with Spec-Kit or issue trackers, and System analytics to remain ephemeral CLI outputs that highlight debt without polluting the repo.
+
+**Why this priority**: The documentation stack only scales if each layer lives where people expect to consume it; failing to publish Layer 1 or to reconcile Layer 2 with execution tools would fragment the workflow.
+
+**Independent Test**: Run the static site build, Spec-Kit sync, and System CLI against a sample workspace; confirm the site renders cleanly, requirement checklists match external state, and the CLI surfaces architectural hotspots without leaving tracked files behind.
+
+**Acceptance Scenarios**:
+
+1. **Given** the Layer 1 markdown corpus, **When** the static site workflow runs, **Then** it publishes updated pages with no broken links or missing capabilities.
+2. **Given** a Layer 2 requirement linked to Spec-Kit tasks, **When** safe-commit executes, **Then** mismatches between markdown checkboxes and Spec-Kit state appear in the generated snapshot with actionable diffs.
+3. **Given** the `npm run live-docs:system` command, **When** it targets an intentionally messy fixture, **Then** the CLI output flags the architectural debt and the `.live-documentation/system/` directory remains empty unless a deliberate export flag is provided.
+
+---
+
 ### Edge Cases
 
 - Newly created files without exports still receive stub Live Docs; generated sections display `_No data available_` until analyzers detect symbols.
@@ -109,13 +127,15 @@ Early adopters using change-impact diagnostics and symbol neighborhood tooling c
 - External feeds (GitLab Knowledge Graph, LSIF) failing mid-run must not overwrite existing generated sections; provenance markers flag stale data.
 - LLM augmentations must remain opt-in and clearly labeled to prevent unverifiable edges sneaking into generated content.
 - Safe-commit must continue to run offline; Live Doc regeneration cannot require cloud calls for deterministic builds.
+- System analytics should never leave behind tracked files by default; generators must clean up temporary exports even when commands error.
+- Static site publishing and Spec-Kit syncing remain optional per workspace but default on for project-owned repos so stakeholders have a consistent entry point.
 
 ### Live Doc Generation Lifecycle
 
 1. **Staging**: Regeneration writes output to `/.live-documentation/` (or configured path), preserving authored sections and updating generated blocks.
 2. **Validation**: Safe-commit runs structural lint, analyzer parity checks, and evidence completeness audits before allowing merges.
 3. **Promotion**: Once parity with existing MDMD Layer‑4 docs is proven, configuration flips to treat Live Docs as canonical; legacy docs become generated outputs as well.
-4. **Consumption**: Diagnostics, CLI, and Copilot exports read directly from Live Docs, ensuring all surfaces share identical data.
+4. **Consumption**: Diagnostics, CLI, and Copilot exports read directly from Live Docs, while System analytics regenerate materialized views on demand (streamed to stdout or temp files) so no stale architecture docs linger in the repo.
 
 ### Cache Retention & Privacy
 
@@ -136,6 +156,8 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **FR-LD9**: Telemetry MUST report regeneration latency, evidence coverage rates, and waiver counts to evaluate adoption.
 - **FR-LD10**: Live Doc configuration MUST expose glob patterns, archetype overrides, and storage paths while remaining version-controlled and documented for adopters.
 - **FR-LD11**: Generated Live Docs MUST emit workspace-relative markdown links and enforce header slugs according to the configured dialect (GitHub default); violations require explicit waivers surfaced in lint.
+- **FR-LD12**: System analytics MUST default to ephemeral outputs (stdout or temporary directories) and require explicit user confirmation before writing tracked files; commands MUST tag persisted exports so lint can detect strays.
+- **FR-LD13**: Layer distribution tooling MUST publish Layer 1 capabilities via a scripted static site, reconcile Layer 2 requirement status with Spec-Kit/issue trackers, and keep System analytics as CLI materialized views that leave no tracked artefacts unless explicitly promoted.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -153,6 +175,8 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - Teams tolerate short regeneration windows (≤30 s for 5k-file repo) during safe-commit; tooling will parallelise to stay within bounds.
 - Documentation writers will adopt the authored header schema once editors expose helpers or snippets.
 - External adopters expect MIT-licensed tooling and CLI-first workflows; Live Docs must regenerate without VS Code to broaden reach.
+- System analytics remain ephemeral unless a user explicitly persists them; tooling should assume a clean workspace between runs.
+- Static site publishing and Spec-Kit syncing remain optional per workspace but default on for project-owned repos so stakeholders have a consistent entry point.
 
 ## Success Criteria *(mandatory)*
 
@@ -165,6 +189,8 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **SC-LD5**: External adopters regenerate Live Docs from scratch using documented commands, pass safe-commit, and report successful onboarding within one day.
 - **SC-LD6**: Docstring drift diagnostics resolve within one regeneration cycle during integration tests, with zero lingering violations after safe-commit.
 - **SC-LD7**: Relative-link lint reports zero violations after regeneration, and exported Live Docs render without broken anchors when served from a static wiki path.
+- **SC-LD8**: System analytics commands leave no tracked artefacts by default and finish within ≤2 s for repositories under 10k files when streaming to stdout.
+- **SC-LD9**: Static site builds publish Layer 1 capabilities without broken links, Layer 2 requirements stay in sync with Spec-Kit/issue trackers, and the System CLI surfaces architectural debt while keeping the tracked tree clean between runs.
 
 
 ## Clarifications
@@ -182,6 +208,8 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **WI-LD201** – Deliver docstring bridge adapters for TypeScript, Python, and C#, plus integration tests.
 - **WI-LD301** – Pivot diagnostics/CLI/export commands to consume Live Docs exclusively and retire legacy graph consumers.
 - **WI-LD401** – Package sample workspace and MIT-licensed release notes for public adoption.
+- **WI-LD501** – Build System analytics CLI (clusters, workflows, coverage) that defaults to streaming output and includes cleanup guarantees.
+- **WI-LD601** – Stand up the layer distribution surfaces (static site pipeline, Spec-Kit/issue tracker reconciliation, and the guardrailed `live-docs:system` CLI).
 
 
 ## Implementation Traceability

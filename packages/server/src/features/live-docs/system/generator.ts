@@ -6,10 +6,12 @@ import {
   type LiveDocumentationConfig,
   normalizeLiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import type {
+  CoActivationEdge,
+  CoActivationReport
+} from "@copilot-improvement/shared/live-docs/analysis/coActivation";
 import {
   extractAuthoredBlock,
-  renderBeginMarker,
-  renderEndMarker,
   renderLiveDocMarkdown,
   type LiveDocRenderSection
 } from "@copilot-improvement/shared/live-docs/markdown";
@@ -18,6 +20,7 @@ import {
   type LiveDocMetadata,
   type LiveDocProvenance
 } from "@copilot-improvement/shared/live-docs/schema";
+import type { Stage0Doc, Stage0Symbol, TargetManifest } from "@copilot-improvement/shared/live-docs/types";
 import { slug as githubSlug } from "@copilot-improvement/shared/tooling/githubSlugger";
 import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
 
@@ -27,6 +30,8 @@ import {
   formatRelativePathFromDoc,
   hasMeaningfulAuthoredContent
 } from "../generation/core";
+import { loadStage0Docs } from "../stage0/docLoader";
+import { loadTargetManifest } from "../targets/manifest";
 
 type Layer3Archetype =
   | "component"
@@ -42,12 +47,23 @@ export interface GenerateSystemLiveDocsOptions {
   dryRun?: boolean;
   logger?: SystemGeneratorLogger;
   now?: () => Date;
+  outputDir?: string;
+  cleanOutputDir?: boolean;
 }
 
 export interface SystemLiveDocWriteRecord {
   id: string;
   archetype: Layer3Archetype;
   docPath: string;
+  change: "created" | "updated" | "unchanged";
+}
+
+export interface GeneratedSystemDocument {
+  id: string;
+  archetype: Layer3Archetype;
+  relativePath: string;
+  absolutePath: string;
+  content: string;
   change: "created" | "updated" | "unchanged";
 }
 
@@ -58,6 +74,8 @@ export interface SystemLiveDocGeneratorResult {
   deleted: number;
   files: SystemLiveDocWriteRecord[];
   deletedFiles: string[];
+  documents: GeneratedSystemDocument[];
+  outputDir?: string;
 }
 
 interface SystemGeneratorLogger {
@@ -74,27 +92,14 @@ interface SystemDocPlan {
   componentPaths: string[];
   edgeTuples: Array<{ from: string; to: string }>;
   virtualNodes?: SystemVirtualNode[];
+  activation?: PlanActivationSummary;
+  nodeMetrics?: Record<string, NodeMetric>;
 }
 
 interface SystemVirtualNode {
   key: string;
   label: string;
   archetype: "test-summary";
-}
-
-interface Stage0Doc {
-  sourcePath: string;
-  docAbsolutePath: string;
-  docRelativePath: string;
-  archetype: string;
-  dependencies: string[];
-  externalModules: string[];
-  publicSymbols: Stage0Symbol[];
-}
-
-interface Stage0Symbol {
-  name: string;
-  type: string;
 }
 
 const DEFAULT_LOGGER: SystemGeneratorLogger = {
@@ -116,6 +121,7 @@ const SUPPORTED_LAYER3_ARCHETYPES: Layer3Archetype[] = [
   "component",
   "interaction",
   "workflow",
+  "integration",
   "testing"
 ];
 
@@ -124,6 +130,64 @@ const LIVE_DOCS_SEGMENT = "live-docs";
 const IMPLEMENTATION_ARCHETYPE = "implementation";
 const VIRTUAL_NODE_PREFIX = "virtual::";
 const RUN_ALL_SCRIPT_PATH = "scripts/live-docs/run-all.ts";
+const DEFAULT_CO_ACTIVATION_RELATIVE_PATH = path.join("data", "live-docs", "co-activation.json");
+const MAX_CLUSTER_COMPONENTS = 25;
+const MIN_CLUSTER_MEMBER_COUNT = 4;
+const MIN_CLUSTER_TOTAL_WEIGHT = 5;
+const MAX_TOPOLOGY_EDGES = 80;
+const MAX_ACTIVATION_TOP_EDGES = 12;
+const MAX_ACTIVATION_TOP_SOURCES = 10;
+const MAX_PUBLIC_SYMBOL_ENTRIES = 20;
+const MAX_PUBLIC_SYMBOLS_PER_ENTRY = 5;
+
+interface NodeMetric {
+  degree: number;
+  strength: number;
+  testCount: number;
+  zScore: number;
+}
+
+interface PlanActivationSourceSummary {
+  path: string;
+  count: number;
+}
+
+interface PlanActivationEdgeSummary {
+  source: string;
+  target: string;
+  weight: number;
+  testSources: string[];
+  dependencySources: string[];
+  sharedTestCount: number;
+  pValue: number | null;
+  qValue: number | null;
+}
+
+interface PlanActivationSignificanceSummary {
+  edgeAlpha: number;
+  clusterAlpha: number;
+  clusterPValue: number;
+  clusterQValue: number;
+  clusterDensity: number;
+  expectedEdgeCount: number;
+  observedEdgeCount: number;
+  selectedEdgeCount: number;
+}
+
+interface PlanActivationSummary {
+  clusterId: string;
+  memberCount: number;
+  coveredMembers: number;
+  coverageRatio: number;
+  totalWeight: number;
+  averageWeight: number;
+  edgeCount: number;
+  topComponents: Array<{ path: string; strength: number; degree: number; testCount: number; zScore: number }>;
+  topEdges: PlanActivationEdgeSummary[];
+  topTestSources: PlanActivationSourceSummary[];
+  topDependencySources: PlanActivationSourceSummary[];
+  significance?: PlanActivationSignificanceSummary;
+}
 
 export async function generateSystemLiveDocs(
   options: GenerateSystemLiveDocsOptions
@@ -132,9 +196,16 @@ export async function generateSystemLiveDocs(
   const normalizedConfig = normalizeLiveDocumentationConfig(options.config);
   const workspaceRoot = path.resolve(options.workspaceRoot);
   const now = options.now ?? (() => new Date());
+  const resolvedOutputDir = options.outputDir
+    ? resolveOutputDirectory(workspaceRoot, options.outputDir)
+    : undefined;
 
-  const stage0Docs = await loadStage0Docs({ workspaceRoot, config: normalizedConfig, logger });
-  if (stage0Docs.length === 0) {
+  if (resolvedOutputDir && options.cleanOutputDir && !options.dryRun) {
+    await fs.rm(resolvedOutputDir, { recursive: true, force: true });
+  }
+
+  const allStage0Docs = await loadStage0Docs({ workspaceRoot, config: normalizedConfig, logger });
+  if (allStage0Docs.length === 0) {
     logger.info("No Stage-0 Live Docs found; skipping System layer generation.");
     return {
       processed: 0,
@@ -142,29 +213,30 @@ export async function generateSystemLiveDocs(
       skipped: 0,
       deleted: 0,
       files: [],
-      deletedFiles: []
+      deletedFiles: [],
+      documents: [],
+      outputDir: resolvedOutputDir
     };
   }
 
-  const liveDocsDocs = stage0Docs.filter((doc) => doc.sourcePath.includes("live-docs"));
+  const liveDocsDocs = allStage0Docs.filter((doc) => doc.sourcePath.includes(LIVE_DOCS_SEGMENT));
   if (!liveDocsDocs.length) {
-    logger.info("No Live Docs stage documents detected; skipping System layer generation.");
-    return {
-      processed: 0,
-      written: 0,
-      skipped: 0,
-      deleted: 0,
-      files: [],
-      deletedFiles: []
-    };
+    logger.info("No Live Docs stage documents detected; relying on analytics-driven plans only.");
   }
 
   const manifest = await loadTargetManifest(workspaceRoot);
 
+  const coActivation = await loadCoActivationReport({
+    workspaceRoot,
+    logger
+  });
+
   const plans = await buildSystemDocPlans({
     stage0Docs: liveDocsDocs,
+    allStage0Docs,
     workspaceRoot,
-    manifest
+    manifest,
+    coActivation
   });
 
   if (!plans.length) {
@@ -175,13 +247,15 @@ export async function generateSystemLiveDocs(
       skipped: 0,
       deleted: 0,
       files: [],
-      deletedFiles: []
+      deletedFiles: [],
+      documents: [],
+      outputDir: resolvedOutputDir
     };
   }
 
   plans.sort((left, right) => left.id.localeCompare(right.id));
 
-  const docMap = new Map(stage0Docs.map((doc) => [doc.sourcePath, doc] as const));
+  const docMap = new Map(allStage0Docs.map((doc) => [doc.sourcePath, doc] as const));
 
   const referencedImplementationPaths = new Set<string>();
   for (const plan of plans) {
@@ -205,7 +279,8 @@ export async function generateSystemLiveDocs(
   }
 
   const results: SystemLiveDocWriteRecord[] = [];
-  const generatedDocPaths = new Set<string>();
+  const documents: GeneratedSystemDocument[] = [];
+  const generatedDocPaths = resolvedOutputDir ? undefined : new Set<string>();
   let written = 0;
   let skipped = 0;
 
@@ -214,9 +289,10 @@ export async function generateSystemLiveDocs(
       workspaceRoot,
       config: normalizedConfig,
       archetype: plan.archetype,
-      slug: plan.slug
+      slug: plan.slug,
+      outputRoot: resolvedOutputDir
     });
-    generatedDocPaths.add(docPaths.relative);
+    generatedDocPaths?.add(docPaths.relative);
 
     const existingContent = await readIfExists(docPaths.absolute);
     const authoredBlock = extractAuthoredBlock(existingContent);
@@ -232,8 +308,20 @@ export async function generateSystemLiveDocs(
       stage0Docs: docMap,
       docDir: path.dirname(docPaths.absolute)
     });
+    const activationSection = renderActivationSection({ plan });
+    const publicSymbolsSection = renderPublicSymbolsSection({
+      plan,
+      stage0Docs: docMap
+    });
 
-    const sections: LiveDocRenderSection[] = [componentsSection, topologySection];
+    const sections: LiveDocRenderSection[] = [componentsSection];
+    if (activationSection) {
+      sections.push(activationSection);
+    }
+    if (publicSymbolsSection) {
+      sections.push(publicSymbolsSection);
+    }
+    sections.push(topologySection);
 
     const title = `${plan.id} – ${plan.titleSuffix}`;
     const previousGeneratedAt = extractGeneratedAt(existingContent);
@@ -269,10 +357,20 @@ export async function generateSystemLiveDocs(
       change = classifyChange(existingContent, rendered);
     }
 
-    results.push({
+    const record: SystemLiveDocWriteRecord = {
       id: plan.id,
       archetype: plan.archetype,
       docPath: docPaths.relative,
+      change
+    };
+    results.push(record);
+
+    documents.push({
+      id: plan.id,
+      archetype: plan.archetype,
+      relativePath: docPaths.relative,
+      absolutePath: docPaths.absolute,
+      content: rendered,
       change
     });
 
@@ -291,13 +389,15 @@ export async function generateSystemLiveDocs(
     written += 1;
   }
 
-  const deletedFiles = await pruneStaleSystemDocs({
-    workspaceRoot,
-    config: normalizedConfig,
-    preservedDocPaths: generatedDocPaths,
-    dryRun: options.dryRun ?? false,
-    logger
-  });
+  const deletedFiles = resolvedOutputDir || options.dryRun
+    ? []
+    : await pruneStaleSystemDocs({
+      workspaceRoot,
+      config: normalizedConfig,
+      preservedDocPaths: generatedDocPaths ?? new Set<string>(),
+      dryRun: options.dryRun ?? false,
+      logger
+    });
 
   return {
     processed: plans.length,
@@ -305,7 +405,9 @@ export async function generateSystemLiveDocs(
     skipped,
     deleted: deletedFiles.length,
     files: results,
-    deletedFiles
+    deletedFiles,
+    documents,
+    outputDir: resolvedOutputDir
   };
 }
 
@@ -321,222 +423,57 @@ function buildProvenance(generatedAt: string): LiveDocProvenance {
   };
 }
 
-async function loadStage0Docs(args: {
+
+async function loadCoActivationReport(args: {
   workspaceRoot: string;
-  config: LiveDocumentationConfig;
   logger: SystemGeneratorLogger;
-}): Promise<Stage0Doc[]> {
-  const stage0Root = path.resolve(args.workspaceRoot, args.config.root, args.config.baseLayer);
-  const exists = await directoryExists(stage0Root);
-  if (!exists) {
-    return [];
-  }
+  reportPath?: string;
+}): Promise<CoActivationReport | undefined> {
+  const candidateInputs = [args.reportPath, process.env.LIVE_DOCS_CO_ACTIVATION_PATH, DEFAULT_CO_ACTIVATION_RELATIVE_PATH];
+  const seen = new Set<string>();
 
-  const files = await glob("**/*.mdmd.md", {
-    cwd: stage0Root,
-    absolute: true,
-    nodir: true,
-    dot: false,
-    windowsPathsNoEscape: true
-  });
-
-  files.sort();
-
-  const stage0Docs: Stage0Doc[] = [];
-  for (const absolute of files) {
-    const relative = normalizeWorkspacePath(path.relative(args.workspaceRoot, absolute));
-    const content = await fs.readFile(absolute, "utf8");
-    const parsed = parseStage0Doc({
-      content,
-      absolutePath: absolute,
-      relativeDocPath: relative,
-      stage0Root,
-      logger: args.logger
-    });
-    if (parsed) {
-      stage0Docs.push(parsed);
-    }
-  }
-
-  return stage0Docs;
-}
-
-function parseStage0Doc(args: {
-  content: string;
-  absolutePath: string;
-  relativeDocPath: string;
-  stage0Root: string;
-  logger: SystemGeneratorLogger;
-}): Stage0Doc | undefined {
-  const metadataBlock = extractSection(args.content, "Metadata");
-  if (!metadataBlock) {
-    args.logger.warn(`Missing metadata block in ${args.relativeDocPath}`);
-    return undefined;
-  }
-
-  const metadataEntries = parseMetadataLines(metadataBlock);
-  const sourcePath = metadataEntries.get("Code Path");
-  const archetype = metadataEntries.get("Archetype") ?? "implementation";
-
-  if (!sourcePath) {
-    args.logger.warn(`Stage-0 doc ${args.relativeDocPath} is missing Code Path metadata.`);
-    return undefined;
-  }
-
-  const normalizedSourcePath = normalizeWorkspacePath(sourcePath);
-
-  const dependenciesBlock = extractGeneratedSection(args.content, "Dependencies");
-  const dependencyPaths = dependenciesBlock
-    ? parseDependencyLinks({
-        block: dependenciesBlock,
-        docAbsolutePath: args.absolutePath,
-        stage0Root: args.stage0Root
-      })
-    : { stage0Paths: [], externalModules: [] };
-
-  const publicSymbolsBlock = extractGeneratedSection(args.content, "Public Symbols");
-  const publicSymbols = publicSymbolsBlock ? parsePublicSymbols(publicSymbolsBlock) : [];
-
-  return {
-    sourcePath: normalizedSourcePath,
-    docAbsolutePath: args.absolutePath,
-    docRelativePath: args.relativeDocPath,
-    archetype,
-    dependencies: dependencyPaths.stage0Paths,
-    externalModules: dependencyPaths.externalModules,
-    publicSymbols
-  };
-}
-
-function extractSection(content: string, heading: string): string | undefined {
-  const headingPattern = new RegExp(`^##\\s+${escapeRegExp(heading)}\\s*$`, "m");
-  const match = content.match(headingPattern);
-  if (!match || match.index === undefined) {
-    return undefined;
-  }
-
-  const start = match.index + match[0].length;
-  const rest = content.slice(start);
-  const nextHeading = rest.search(/^##\s+/m);
-  const endIndex = nextHeading === -1 ? content.length : start + nextHeading;
-  return content.slice(start, endIndex).trim();
-}
-
-function extractGeneratedSection(content: string, name: string): string | undefined {
-  const begin = renderBeginMarker(name);
-  const end = renderEndMarker(name);
-  const beginIndex = content.indexOf(begin);
-  if (beginIndex === -1) {
-    return undefined;
-  }
-  const start = beginIndex + begin.length;
-  const endIndex = content.indexOf(end, start);
-  if (endIndex === -1) {
-    return undefined;
-  }
-  return content.slice(start, endIndex).trim();
-}
-
-function parseMetadataLines(block: string): Map<string, string> {
-  const entries = new Map<string, string>();
-  const lines = block.split(/\r?\n/);
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed.startsWith("- ")) {
+  for (const candidate of candidateInputs) {
+    const normalized = candidate?.trim();
+    if (!normalized || seen.has(normalized)) {
       continue;
     }
-    const separatorIndex = trimmed.indexOf(":");
-    if (separatorIndex === -1) {
-      continue;
-    }
-    const key = trimmed.slice(2, separatorIndex).trim();
-    const value = trimmed.slice(separatorIndex + 1).trim();
-    if (key) {
-      entries.set(key, value);
-    }
-  }
-  return entries;
-}
+    seen.add(normalized);
 
-function parseDependencyLinks(args: {
-  block: string;
-  docAbsolutePath: string;
-  stage0Root: string;
-}): { stage0Paths: string[]; externalModules: string[] } {
-  const stage0Paths = new Set<string>();
-  const externalModules = new Set<string>();
+    const absolutePath = path.isAbsolute(normalized)
+      ? normalized
+      : path.resolve(args.workspaceRoot, normalized);
 
-  const lines = args.block.split(/\r?\n/);
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed.startsWith("-")) {
-      continue;
-    }
-
-    const linkMatch = trimmed.match(/\(([^)]+\.mdmd\.md)(#[^)]+)?\)/);
-    if (linkMatch) {
-      const reference = linkMatch[1];
-      const targetAbsolute = path.resolve(path.dirname(args.docAbsolutePath), reference);
-      if (targetAbsolute.startsWith(args.stage0Root)) {
-        const stage0Relative = targetAbsolute.slice(args.stage0Root.length + 1).replace(/\\/g, "/");
-        const sourcePath = stage0Relative.replace(/\.mdmd\.md$/i, "");
-        stage0Paths.add(normalizeWorkspacePath(sourcePath));
+    try {
+      const raw = await fs.readFile(absolutePath, "utf8");
+      const parsed = JSON.parse(raw) as CoActivationReport;
+      if (!Array.isArray(parsed.nodes) || !Array.isArray(parsed.edges) || !Array.isArray(parsed.clusters)) {
+        args.logger.warn(`Co-activation report at ${absolutePath} is missing expected collections; ignoring.`);
         continue;
       }
-    }
-
-    const codeMatch = trimmed.match(/`([^`]+)`/);
-    if (codeMatch) {
-      externalModules.add(codeMatch[1]);
-    }
-  }
-
-  return {
-    stage0Paths: Array.from(stage0Paths).sort(),
-    externalModules: Array.from(externalModules).sort()
-  };
-}
-
-function parsePublicSymbols(block: string): Stage0Symbol[] {
-  const symbols: Stage0Symbol[] = [];
-  const lines = block.split(/\r?\n/);
-  let current: Stage0Symbol | undefined;
-  for (const line of lines) {
-    if (line.startsWith("#### ")) {
-      if (current) {
-        symbols.push(current);
+      return parsed;
+    } catch (error) {
+      const nodeError = error as NodeJS.ErrnoException;
+      if (nodeError?.code === "ENOENT") {
+        continue;
       }
-      const nameMatch = line.match(/`([^`]+)`/);
-      current = {
-        name: nameMatch ? nameMatch[1] : line.slice(5).trim(),
-        type: "symbol"
-      };
-      continue;
-    }
-
-    if (!current) {
-      continue;
-    }
-
-    const typeMatch = line.match(/-\s+Type:\s+(.+)/);
-    if (typeMatch) {
-      current.type = typeMatch[1].trim();
+      const reason = nodeError?.message ?? String(error);
+      args.logger.warn(`Failed to load co-activation report at ${absolutePath}: ${reason}`);
     }
   }
 
-  if (current) {
-    symbols.push(current);
-  }
-
-  return symbols;
+  return undefined;
 }
+
 
 async function buildSystemDocPlans(args: {
   stage0Docs: Stage0Doc[];
+  allStage0Docs: Stage0Doc[];
   workspaceRoot: string;
   manifest?: TargetManifest;
+  coActivation?: CoActivationReport;
 }): Promise<SystemDocPlan[]> {
   const stage0PathSet = new Set(args.stage0Docs.map((doc) => doc.sourcePath));
+  const allStage0PathSet = new Set(args.allStage0Docs.map((doc) => doc.sourcePath));
   const stageDescriptors = await extractRunAllStageDescriptors(args.workspaceRoot);
   const stageSequence = buildStageSequence(stageDescriptors, stage0PathSet);
 
@@ -578,6 +515,13 @@ async function buildSystemDocPlans(args: {
     manifest: args.manifest
   });
   plans.push(...testingPlans);
+
+  const integrationPlans = buildCoActivationPlans({
+    stage0Docs: args.allStage0Docs,
+    stage0PathSet: allStage0PathSet,
+    coActivation: args.coActivation
+  });
+  plans.push(...integrationPlans);
 
   return plans.filter((plan) => SUPPORTED_LAYER3_ARCHETYPES.includes(plan.archetype));
 }
@@ -920,6 +864,315 @@ async function buildTestingPlans(args: {
   return [plan];
 }
 
+function buildCoActivationPlans(args: {
+  stage0Docs: Stage0Doc[];
+  stage0PathSet: Set<string>;
+  coActivation?: CoActivationReport;
+}): SystemDocPlan[] {
+  if (!args.coActivation) {
+    return [];
+  }
+
+  const docMap = new Map(args.stage0Docs.map((doc) => [doc.sourcePath, doc] as const));
+  const nodeMetricMap = new Map<string, NodeMetric>();
+  for (const node of args.coActivation.nodes ?? []) {
+    const normalizedId = normalizeWorkspacePath(node.id);
+    nodeMetricMap.set(normalizedId, {
+      degree: node.degree,
+      strength: node.strength,
+      testCount: node.testCount,
+      zScore: node.zScore
+    });
+  }
+
+  const plans: SystemDocPlan[] = [];
+
+  for (const cluster of args.coActivation.clusters ?? []) {
+    const normalizedMembers = cluster.members
+      .map((member) => normalizeWorkspacePath(member))
+      .filter((member) => args.stage0PathSet.has(member));
+
+    const uniqueMembers = Array.from(new Set(normalizedMembers));
+    if (uniqueMembers.length < MIN_CLUSTER_MEMBER_COUNT) {
+      continue;
+    }
+
+    const memberSet = new Set(uniqueMembers);
+
+    if (args.coActivation.metrics && !cluster.isSignificant) {
+      continue;
+    }
+
+    const clusterEdges: CoActivationEdge[] = [];
+    for (const edge of args.coActivation.edges ?? []) {
+      const source = normalizeWorkspacePath(edge.source);
+      const target = normalizeWorkspacePath(edge.target);
+      if (!memberSet.has(source) || !memberSet.has(target)) {
+        continue;
+      }
+      if (!edge.isSignificant) {
+        continue;
+      }
+      const dependencySources = [...edge.dependencySources]
+        .map((entry) => normalizeWorkspacePath(entry))
+        .sort();
+      const testSources = [...edge.testSources]
+        .map((entry) => normalizeWorkspacePath(entry))
+        .sort();
+      clusterEdges.push({
+        source,
+        target,
+        weight: edge.weight,
+        dependencySources,
+        testSources,
+        sharedTestCount: edge.sharedTestCount,
+        sourceTestCount: edge.sourceTestCount,
+        targetTestCount: edge.targetTestCount,
+        pValue: edge.pValue,
+        qValue: edge.qValue,
+        isSignificant: edge.isSignificant
+      });
+    }
+
+    if (!clusterEdges.length) {
+      continue;
+    }
+
+    const totalWeight = clusterEdges.reduce((sum, edge) => sum + edge.weight, 0);
+    if (totalWeight < MIN_CLUSTER_TOTAL_WEIGHT) {
+      continue;
+    }
+
+    const rankedMembers = [...uniqueMembers].sort((left, right) => {
+      const leftMetric =
+        nodeMetricMap.get(left) ?? {
+          degree: 0,
+          strength: 0,
+          testCount: 0,
+          zScore: 0
+        };
+      const rightMetric =
+        nodeMetricMap.get(right) ?? {
+          degree: 0,
+          strength: 0,
+          testCount: 0,
+          zScore: 0
+        };
+
+      if (leftMetric.zScore !== rightMetric.zScore) {
+        return rightMetric.zScore - leftMetric.zScore;
+      }
+      if (leftMetric.strength !== rightMetric.strength) {
+        return rightMetric.strength - leftMetric.strength;
+      }
+      if (leftMetric.degree !== rightMetric.degree) {
+        return rightMetric.degree - leftMetric.degree;
+      }
+      return left.localeCompare(right);
+    });
+
+    const selectedMembers = rankedMembers.slice(0, MAX_CLUSTER_COMPONENTS);
+    const componentSet = new Set(selectedMembers);
+
+    const nodeMetrics: Record<string, NodeMetric> = {};
+    for (const member of selectedMembers) {
+      nodeMetrics[member] =
+        nodeMetricMap.get(member) ?? {
+          degree: 0,
+          strength: 0,
+          testCount: 0,
+          zScore: 0
+        };
+    }
+
+    const relevantEdges = clusterEdges.filter((edge) => componentSet.has(edge.source) && componentSet.has(edge.target));
+    if (!relevantEdges.length) {
+      continue;
+    }
+
+    const sortedRelevantEdges = [...relevantEdges].sort((left, right) => {
+      if (left.weight === right.weight) {
+        if (left.source === right.source) {
+          return left.target.localeCompare(right.target);
+        }
+        return left.source.localeCompare(right.source);
+      }
+      return right.weight - left.weight;
+    });
+
+    const trimmedEdges = sortedRelevantEdges.slice(0, MAX_TOPOLOGY_EDGES);
+    const edgeTuples = trimmedEdges
+      .map((edge) => ({ from: edge.source, to: edge.target }))
+      .sort((left, right) => (left.from === right.from ? left.to.localeCompare(right.to) : left.from.localeCompare(right.from)));
+
+    const { slugBase, displayName } = deriveClusterIdentity(selectedMembers, nodeMetrics, cluster.id);
+    const slugSeed = `${cluster.id}-${slugBase}`;
+    const slug = layer3Slug(slugSeed);
+    const titleSuffix = `${displayName} Integration Cluster`;
+
+    const topComponents = rankedMembers
+      .slice(0, Math.min(rankedMembers.length, MAX_ACTIVATION_TOP_SOURCES))
+      .map((member) => {
+        const metric =
+          nodeMetricMap.get(member) ?? {
+            degree: 0,
+            strength: 0,
+            testCount: 0,
+            zScore: 0
+          };
+        return {
+          path: member,
+          strength: metric.strength,
+          degree: metric.degree,
+          testCount: metric.testCount,
+          zScore: metric.zScore
+        };
+      });
+
+    const topEdges = sortedRelevantEdges.slice(0, MAX_ACTIVATION_TOP_EDGES).map((edge) => ({
+      source: edge.source,
+      target: edge.target,
+      weight: edge.weight,
+      testSources: edge.testSources,
+      dependencySources: edge.dependencySources,
+      sharedTestCount: edge.sharedTestCount,
+      pValue: edge.pValue,
+      qValue: edge.qValue
+    }));
+
+    const topTestSources = collectTopSources(relevantEdges, "testSources");
+    const topDependencySources = collectTopSources(relevantEdges, "dependencySources");
+
+    const componentPaths = [...selectedMembers].sort();
+    const averageWeight = relevantEdges.length ? totalWeight / relevantEdges.length : 0;
+    const reportMetrics = args.coActivation.metrics;
+    const significance = reportMetrics
+      ? {
+          edgeAlpha: reportMetrics.edgeAlpha ?? 0.01,
+          clusterAlpha: reportMetrics.clusterAlpha ?? 0.01,
+          clusterPValue: cluster.pValue ?? Number.NaN,
+          clusterQValue: cluster.qValue ?? Number.NaN,
+          clusterDensity: cluster.density ?? 0,
+          expectedEdgeCount: cluster.expectedEdgeCount ?? 0,
+          observedEdgeCount: cluster.edgeCount ?? relevantEdges.length,
+          selectedEdgeCount: relevantEdges.length
+        }
+      : undefined;
+    const activation: PlanActivationSummary = {
+      clusterId: cluster.id,
+      memberCount: memberSet.size,
+      coveredMembers: selectedMembers.length,
+      coverageRatio: selectedMembers.length / memberSet.size,
+      totalWeight,
+      averageWeight,
+      edgeCount: relevantEdges.length,
+      topComponents,
+      topEdges,
+      topTestSources,
+      topDependencySources,
+      significance
+    };
+
+    const hasRenderableDocs = componentPaths.every((path) => docMap.has(path));
+    if (!hasRenderableDocs) {
+      continue;
+    }
+
+    plans.push({
+      id: `${LAYER3_PREFIX.integration}-${slug}`,
+      archetype: "integration",
+      slug,
+      titleSuffix,
+      componentPaths,
+      edgeTuples,
+      activation,
+      nodeMetrics
+    });
+  }
+
+  return plans;
+}
+
+function deriveClusterIdentity(
+  componentPaths: string[],
+  nodeMetrics: Record<string, NodeMetric>,
+  clusterId: string
+): { slugBase: string; displayName: string } {
+  if (!componentPaths.length) {
+    return {
+      slugBase: clusterId,
+      displayName: formatDisplayName(clusterId)
+    };
+  }
+
+  const weightByPrefix = new Map<string, number>();
+
+  for (const pathCandidate of componentPaths) {
+    const segments = pathCandidate.split("/").filter(Boolean);
+    if (!segments.length) {
+      continue;
+    }
+
+    const metric = nodeMetrics[pathCandidate];
+    const weight = metric?.strength && metric.strength > 0 ? metric.strength : 1;
+
+    const prefixes: string[] = [];
+    if (segments.length >= 2) {
+      prefixes.push(`${segments[0]}/${segments[1]}`);
+    }
+    prefixes.push(segments[0]);
+
+    for (const prefix of prefixes) {
+      weightByPrefix.set(prefix, (weightByPrefix.get(prefix) ?? 0) + weight);
+    }
+  }
+
+  if (!weightByPrefix.size) {
+    return {
+      slugBase: clusterId,
+      displayName: formatDisplayName(clusterId)
+    };
+  }
+
+  const [bestPrefix] = Array.from(weightByPrefix.entries()).sort((left, right) => {
+    if (left[1] === right[1]) {
+      return left[0].localeCompare(right[0]);
+    }
+    return right[1] - left[1];
+  })[0];
+
+  return {
+    slugBase: bestPrefix,
+    displayName: formatDisplayName(bestPrefix)
+  };
+}
+
+function collectTopSources(
+  edges: CoActivationEdge[],
+  key: "testSources" | "dependencySources"
+): PlanActivationSourceSummary[] {
+  const counts = new Map<string, number>();
+  for (const edge of edges) {
+    for (const source of edge[key]) {
+      if (!source) {
+        continue;
+      }
+      const normalized = normalizeWorkspacePath(source);
+      counts.set(normalized, (counts.get(normalized) ?? 0) + 1);
+    }
+  }
+
+  return Array.from(counts.entries())
+    .sort((left, right) => {
+      if (left[1] === right[1]) {
+        return left[0].localeCompare(right[0]);
+      }
+      return right[1] - left[1];
+    })
+    .slice(0, MAX_ACTIVATION_TOP_SOURCES)
+    .map(([path, count]) => ({ path, count }));
+}
+
 async function pruneStaleSystemDocs(args: {
   workspaceRoot: string;
   config: LiveDocumentationConfig;
@@ -1099,31 +1352,6 @@ function buildDocNodeLabels(paths: string[]): Map<string, string> {
   return labels;
 }
 
-interface TargetManifest {
-  suites?: Array<{
-    suite?: string;
-    kind?: string;
-    tests?: Array<{
-      path?: string;
-      targets?: string[];
-      fixtures?: string[];
-    }>;
-  }>;
-}
-
-async function loadTargetManifest(workspaceRoot: string): Promise<TargetManifest | undefined> {
-  const manifestPath = path.resolve(workspaceRoot, "data", "live-docs", "targets.json");
-  try {
-    const raw = await fs.readFile(manifestPath, "utf8");
-    return JSON.parse(raw) as TargetManifest;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
-      return undefined;
-    }
-    throw error;
-  }
-}
-
 function layer3Slug(input: string): string {
   const slug = githubSlug(input) || input.replace(/[^a-zA-Z0-9]+/g, "-").toLowerCase();
   return slug.replace(/^-+|-+$/g, "");
@@ -1153,7 +1381,24 @@ function renderComponentsSection(args: {
       args.docDir,
       stage0Doc.docAbsolutePath
     );
-    lines.push(`- [${sourcePath}](${relative})`);
+    const metrics = args.plan.nodeMetrics?.[sourcePath];
+    const summaryParts: string[] = [];
+    if (metrics) {
+      summaryParts.push(`strength ${formatNumber(metrics.strength)}`);
+      summaryParts.push(`degree ${metrics.degree}`);
+      if (metrics.testCount > 0) {
+        summaryParts.push(`${formatNumber(metrics.testCount)} tests`);
+      }
+      if (Math.abs(metrics.zScore) >= 0.05) {
+        summaryParts.push(`z ${formatMean(metrics.zScore, 2)}`);
+      }
+    }
+    const symbolCount = stage0Doc.publicSymbols?.length ?? 0;
+    if (symbolCount > 0) {
+      summaryParts.push(`${formatNumber(symbolCount)} symbols`);
+    }
+    const suffix = summaryParts.length ? ` — ${summaryParts.join(" · ")}` : "";
+    lines.push(`- [${sourcePath}](${relative})${suffix}`);
   }
 
   if (!lines.length) {
@@ -1269,19 +1514,219 @@ function renderTopologySection(args: {
   };
 }
 
+function renderActivationSection(args: { plan: SystemDocPlan }): LiveDocRenderSection | undefined {
+  const activation = args.plan.activation;
+  if (!activation) {
+    return undefined;
+  }
+
+  const lines: string[] = [];
+  lines.push(`- Cluster: ${activation.clusterId}`);
+  lines.push(
+    `- Coverage: ${activation.coveredMembers}/${activation.memberCount} (${formatPercent(activation.coverageRatio)})`
+  );
+  const trimmedSuffix =
+    activation.significance && activation.significance.observedEdgeCount > activation.edgeCount
+      ? ` (trimmed from ${formatNumber(activation.significance.observedEdgeCount)})`
+      : "";
+  lines.push(
+    `- Edges Considered: ${formatNumber(activation.edgeCount)}${trimmedSuffix} (avg weight ${formatMean(activation.averageWeight)})`
+  );
+  lines.push(`- Total Weight: ${formatNumber(activation.totalWeight)}`);
+
+  if (activation.significance) {
+    const significance = activation.significance;
+    lines.push(
+      `- Significance: p=${formatPValue(significance.clusterPValue)}, q=${formatPValue(significance.clusterQValue)} (cluster α=${formatMean(significance.clusterAlpha, 3)})`
+    );
+    lines.push(
+      `- Density: ${formatPercent(significance.clusterDensity)} (expected ${formatMean(significance.expectedEdgeCount, 1)} edges vs ${formatNumber(significance.observedEdgeCount)} observed; edge α=${formatMean(significance.edgeAlpha, 3)})`
+    );
+  }
+
+  if (activation.topComponents.length) {
+    lines.push("");
+    lines.push("**Top Components (by strength)**");
+    for (const component of activation.topComponents) {
+      const qualifiers = [
+        `strength ${formatNumber(component.strength)}`,
+        `degree ${component.degree}`
+      ];
+      if (component.testCount > 0) {
+        qualifiers.push(`${formatNumber(component.testCount)} tests`);
+      }
+      if (Math.abs(component.zScore) >= 0.05) {
+        qualifiers.push(`z ${formatMean(component.zScore, 2)}`);
+      }
+      lines.push(`- ${component.path} (${qualifiers.join(", ")})`);
+    }
+  }
+
+  if (activation.topEdges.length) {
+    lines.push("");
+    lines.push("**Top Cohesion Edges**");
+    for (const edge of activation.topEdges) {
+      const qualifiers: string[] = [`weight ${formatNumber(edge.weight)}`];
+      if (edge.testSources.length) {
+        qualifiers.push(`tests ${edge.testSources.length}`);
+      }
+      if (edge.sharedTestCount > 0) {
+        qualifiers.push(`shared hits ${formatNumber(edge.sharedTestCount)}`);
+      }
+      if (edge.dependencySources.length) {
+        qualifiers.push(`deps ${edge.dependencySources.length}`);
+      }
+      if (edge.pValue !== null) {
+        qualifiers.push(`p=${formatPValue(edge.pValue)}`);
+      }
+      if (edge.qValue !== null) {
+        qualifiers.push(`q=${formatPValue(edge.qValue)}`);
+      }
+      lines.push(`- ${edge.source} ↔ ${edge.target} (${qualifiers.join(", ")})`);
+    }
+  }
+
+  if (activation.topTestSources.length) {
+    lines.push("");
+    lines.push("**Top Test Sources**");
+    for (const entry of activation.topTestSources) {
+      lines.push(`- ${entry.path} (${formatNumber(entry.count)})`);
+    }
+  }
+
+  if (activation.topDependencySources.length) {
+    lines.push("");
+    lines.push("**Top Dependency Sources**");
+    for (const entry of activation.topDependencySources) {
+      lines.push(`- ${entry.path} (${formatNumber(entry.count)})`);
+    }
+  }
+
+  return {
+    name: "Activation Signals",
+    lines
+  };
+}
+
+function renderPublicSymbolsSection(args: {
+  plan: SystemDocPlan;
+  stage0Docs: Map<string, Stage0Doc>;
+}): LiveDocRenderSection | undefined {
+  const entries: Array<{ path: string; symbols: Stage0Symbol[] }> = [];
+  for (const sourcePath of args.plan.componentPaths) {
+    const doc = args.stage0Docs.get(sourcePath);
+    if (!doc?.publicSymbols?.length) {
+      continue;
+    }
+    entries.push({ path: sourcePath, symbols: doc.publicSymbols });
+  }
+
+  if (!entries.length) {
+    return undefined;
+  }
+
+  entries.sort((left, right) => {
+    if (left.symbols.length === right.symbols.length) {
+      return left.path.localeCompare(right.path);
+    }
+    return right.symbols.length - left.symbols.length;
+  });
+
+  const limited = entries.slice(0, MAX_PUBLIC_SYMBOL_ENTRIES);
+  const lines: string[] = [];
+
+  for (const entry of limited) {
+    const sample = entry.symbols
+      .slice(0, MAX_PUBLIC_SYMBOLS_PER_ENTRY)
+      .map((symbol) => symbol.name)
+      .join(", ");
+    const remainder = entry.symbols.length - Math.min(entry.symbols.length, MAX_PUBLIC_SYMBOLS_PER_ENTRY);
+    const suffix = remainder > 0 ? `, ... +${formatNumber(remainder)} more` : "";
+    lines.push(`- ${entry.path} (${formatNumber(entry.symbols.length)} symbols) – ${sample}${suffix}`);
+  }
+
+  if (entries.length > limited.length) {
+    lines.push(
+      `- ... ${formatNumber(entries.length - limited.length)} additional components with public symbols`
+    );
+  }
+
+  return {
+    name: "Public Surface",
+    lines
+  };
+}
+
+function formatNumber(value: number): string {
+  if (!Number.isFinite(value)) {
+    return "0";
+  }
+  return Math.round(value).toLocaleString("en-US");
+}
+
+function formatMean(value: number, digits = 1): string {
+  if (!Number.isFinite(value)) {
+    return "0.0";
+  }
+  return value.toFixed(digits);
+}
+
+function formatPercent(value: number, digits = 1): string {
+  if (!Number.isFinite(value)) {
+    return "0%";
+  }
+  return `${(value * 100).toFixed(digits)}%`;
+}
+
+function formatPValue(value: number | null): string {
+  if (value === null || !Number.isFinite(value)) {
+    return "n/a";
+  }
+  if (value === 0) {
+    return "<1e-12";
+  }
+  if (value < 1e-4) {
+    return value.toExponential(2);
+  }
+  if (value < 0.01) {
+    return trimTrailingZeros(value.toFixed(4));
+  }
+  return trimTrailingZeros(value.toFixed(3));
+}
+
+function trimTrailingZeros(candidate: string): string {
+  return candidate.replace(/0+$/u, "").replace(/\.$/u, "");
+}
+
+function resolveOutputDirectory(workspaceRoot: string, outputDir: string): string {
+  if (path.isAbsolute(outputDir)) {
+    return path.normalize(outputDir);
+  }
+
+  return path.resolve(workspaceRoot, outputDir);
+}
+
 function resolveSystemDocPaths(args: {
   workspaceRoot: string;
   config: LiveDocumentationConfig;
   archetype: Layer3Archetype;
   slug: string;
+  outputRoot?: string;
 }): { absolute: string; relative: string } {
-  const docRelative = normalizeWorkspacePath(
-    path.join(args.config.root, SYSTEM_LAYER_NAME, args.archetype, `${args.slug}.mdmd.md`)
+  const docRelativeFromConfig = path.join(
+    args.config.root,
+    SYSTEM_LAYER_NAME,
+    args.archetype,
+    `${args.slug}.mdmd.md`
   );
-  const absolute = path.resolve(args.workspaceRoot, docRelative);
+
+  const baseRoot = args.outputRoot ?? args.workspaceRoot;
+  const absolute = path.resolve(baseRoot, docRelativeFromConfig);
+  const relative = path.relative(baseRoot, absolute);
+
   return {
     absolute,
-    relative: docRelative
+    relative: normalizeWorkspacePath(relative)
   };
 }
 
@@ -1323,10 +1768,6 @@ async function readIfExists(filePath: string): Promise<string | undefined> {
     }
     throw error;
   }
-}
-
-function escapeRegExp(value: string): string {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 interface RunAllStageDescriptor {

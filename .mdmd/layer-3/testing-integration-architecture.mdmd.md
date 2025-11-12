@@ -52,16 +52,16 @@ Scenario implementations verifying ripple, writer, developer, scope collision, a
 Removes stale bundles before integration runs. [Clean Dist Utility](/.mdmd/layer-4/testing/integration/cleanDistUtility.mdmd.md)
 
 ### IMP-405 liveDocsGenerationSuite
-Exercises regeneration CLI, authored preservation, and deterministic output. [Live Docs Generation Suite](/.mdmd/layer-4/testing/integration/liveDocsGenerationSuite.mdmd.md)
+Exercises regeneration CLI, authored preservation, and deterministic output. [Stage‑0 Live Doc](../../.live-documentation/source/tests/integration/live-docs/generation.test.ts.mdmd.md)
 
 ### IMP-406 liveDocsEvidenceSuite
-Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Live Docs Evidence Suite](/.mdmd/layer-4/testing/integration/liveDocsEvidenceSuite.mdmd.md)
+Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Stage‑0 Live Doc](../../.live-documentation/source/tests/integration/live-docs/evidence.test.ts.mdmd.md)
 
 ### IMP-407 liveDocsInspectCliSuite
-Confirms CLI/UI parity for Live Doc inspection commands. [Live Docs Inspect CLI Suite](/.mdmd/layer-4/testing/integration/liveDocsInspectCliSuite.mdmd.md)
+CLI parity suite remains on the roadmap; capture its responsibility once the corresponding Stage-0 doc materialises.
 
 ### IMP-408 liveDocsDocstringDriftSuite
-Ensures drift detection and remediation commands maintain provenance. [Live Docs Docstring Drift Suite](/.mdmd/layer-4/testing/integration/liveDocsDocstringDriftSuite.mdmd.md)
+Drift remediation suite remains planned; update this entry after initial implementation lands in Stage-0 Live Docs.
 
 ## Evidence
 - Integration suites US1–US5 run inside CI and `npm run test:integration`, asserting diagnostics accuracy, acknowledgement flows, and knowledge ingestion behaviour.

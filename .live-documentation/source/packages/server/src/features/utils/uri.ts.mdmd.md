@@ -15,6 +15,9 @@ Provides the server feature layer with the canonical `normalizeFileUri` helper w
 - Acts purely as a re-export so feature modules can depend on a stable local module path.
 - Keeps future augmentation (e.g. additional URI helpers) colocated with the server’s feature utilities directory.
 
+#### normalizeFileUri
+Forwarded export of [`@copilot-improvement/shared/uri/normalizeFileUri`](../../../../shared/src/uri/normalizeFileUri.ts.mdmd.md#normalizefileuri) so server features can import from a local module path without reaching into shared internals.
+
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.145Z","inputHash":"0936dd7e48c57a5d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->

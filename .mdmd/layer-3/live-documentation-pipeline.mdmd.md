@@ -48,19 +48,19 @@ Supports FR-LD5, FR-LD7, and SC-LD4 by ingesting generated markdown links into t
 ## Linked Implementations
 
 ### IMP-301 liveDocsGenerateCli
-Scaffolds the generation CLI entry point. [Live Docs Generate CLI](/.mdmd/layer-4/live-docs/generateCli.mdmd.md)
+Scaffolds the generation CLI entry point. See `.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md` for the Stage-0 mirror and `npm run live-docs:generate -- --help` for usage.
 
 ### IMP-302 liveDocGenerator
-Coordinates analyzers, template parsing, and provenance capture. [Live Doc Generator](/.mdmd/layer-4/live-docs/generator.mdmd.md)
+Coordinates analyzers, template parsing, and provenance capture. Implementation detail resides in `.live-documentation/source/packages/server/src/features/live-docs/generator.ts.mdmd.md`.
 
 ### IMP-303 liveDocGraphProjector
-Projects markdown links into the workspace graph for diagnostics and CLI use. [Live Doc Graph Projector](/.mdmd/layer-4/live-docs/graphProjector.mdmd.md)
+Projects markdown links into the workspace graph for diagnostics and CLI use. The generated view is `.live-documentation/source/packages/server/src/features/live-docs/graphProjector.ts.mdmd.md`.
 
 ### IMP-304 liveDocDiffService
-Produces diff previews for dry-run and UI workflows. [Live Doc Diff Service](/.mdmd/layer-4/live-docs/diffService.mdmd.md)
+Produces diff previews for dry-run and UI workflows. The diff helper currently ships inside the generator CLI; standalone materialisation will be regenerated once the service is reinstated.
 
 ### IMP-305 liveDocMetadataStore
-Persists provenance metadata and archetype assignments. [Live Doc Metadata Store](/.mdmd/layer-4/live-docs/metadataStore.mdmd.md)
+Persists provenance metadata and archetype assignments. Metadata persistence now lives within `.live-documentation/source/packages/shared/src/live-docs/schema.ts.mdmd.md`; a dedicated store will resurface when promotion tooling requires it.
 
 ## Evidence
 - Planned integration suites (`tests/integration/live-docs/generation.test.ts`, `evidence.test.ts`, `inspect-cli.test.ts`) cover regeneration determinism, evidence emission, and CLI parity.

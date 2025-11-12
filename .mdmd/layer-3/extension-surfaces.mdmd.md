@@ -42,37 +42,37 @@ Supports FR-LD5, FR-LD7, and SC-LD4 by delivering the VS Code UX and CLI surface
 ## Linked Implementations
 
 ### IMP-101 docDiagnosticProvider
-Transforms diagnostics into Problems entries, hovers, and quick actions. [Extension Diagnostic Provider](/.mdmd/layer-4/extension-diagnostics/docDiagnosticProvider.mdmd.md)
+Transforms diagnostics into Problems entries, hovers, and quick actions. Refer to the generated Live Doc at `.live-documentation/source/packages/extension/src/diagnostics/docDiagnosticProvider.ts.mdmd.md` when deeper detail is required.
 
 ### IMP-107 dependencyQuickPick
-Bridges the inspection request into a Quick Pick UX. [Dependency Quick Pick](/.mdmd/layer-4/extension-diagnostics/dependencyQuickPick.mdmd.md)
+Bridges the inspection request into a Quick Pick UX. See `.live-documentation/source/packages/extension/src/diagnostics/dependencyQuickPick.ts.mdmd.md` for the implementation surface.
 
 ### IMP-108 analyzeWithAI Command
-Collects LLM assessments for outstanding diagnostics. [Analyze With AI Command](/.mdmd/layer-4/extension-commands/analyzeWithAI.mdmd.md)
+Collects LLM assessments for outstanding diagnostics. The command’s Live Doc lives at `.live-documentation/source/packages/extension/src/commands/analyzeWithAI.ts.mdmd.md`.
 
 ### IMP-109 fileMaintenance Watcher
-Debounces rename/delete events and alerts the server. [File Maintenance Watcher](/.mdmd/layer-4/watchers/fileMaintenanceWatcher.mdmd.md)
+Debounces rename/delete events and alerts the server. Consult `.live-documentation/source/packages/extension/src/watchers/fileMaintenance.ts.mdmd.md` for operational detail once generated.
 
 ### IMP-110 symbolBridge Service
-Supplies workspace symbols and references to inference pipelines. [Symbol Bridge Service](/.mdmd/layer-4/extension-services/symbolBridge.mdmd.md)
+Supplies workspace symbols and references to inference pipelines. Implementation intent is captured in `.live-documentation/source/packages/extension/src/services/symbolBridge.ts.mdmd.md`.
 
 ### IMP-111 liveDocsCommands
-Registers Live Doc regeneration, inspect, and diff commands. [Live Docs Commands](/.mdmd/layer-4/extension-commands/liveDocsCommands.mdmd.md)
+Registers Live Doc regeneration, inspect, and diff commands. The CLI parity is now expressed through `npm run live-docs:generate` and `npm run live-docs:system`; inspect `.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md` for the generated view.
 
 ### IMP-302 graphCoverageAudit CLI
-Headless audit ensuring code/docs linkage. [Graph Coverage Audit](/.mdmd/layer-4/tooling/graphCoverageAudit.mdmd.md)
+Headless audit ensuring code/docs linkage. Operational detail is sourced from `.live-documentation/source/scripts/graph-tools/audit-doc-coverage.ts.mdmd.md`.
 
 ### IMP-303 inspectSymbolNeighbors CLI
-CLI equivalent of dependency explorer. [Inspect Symbol Neighbors CLI](/.mdmd/layer-4/tooling/inspectSymbolNeighborsCli.mdmd.md)
+CLI equivalent of dependency explorer. Refer to `.live-documentation/source/scripts/graph-tools/inspect-symbol.ts.mdmd.md` for the materialised view.
 
 ### IMP-304 graphSnapshot CLI
-Deterministic rebuild of the workspace graph cache. [Workspace Graph Snapshot](/.mdmd/layer-4/tooling/workspaceGraphSnapshot.mdmd.md)
+Deterministic rebuild of the workspace graph cache. See `.live-documentation/source/scripts/graph-tools/snapshot-workspace.ts.mdmd.md`.
 
 ### IMP-305 liveDocsGenerateCli
-Command palette + CLI entry points for regeneration. [Live Docs Generate CLI](/.mdmd/layer-4/live-docs/generateCli.mdmd.md)
+Command palette + CLI entry points for regeneration. The generator surface is documented at `.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md`.
 
 ### IMP-306 liveDocsInspectCli
-Headless inspection of Live Doc metadata mirroring the UI. [Live Docs Inspect CLI](/.mdmd/layer-4/live-docs/inspectCli.mdmd.md)
+Headless inspection of Live Doc metadata mirroring the UI. Legacy references now point to on-demand System outputs (`npm run live-docs:system`); the dedicated inspect CLI will return once its materialised view pipeline stabilises.
 
 ## Evidence
 - Extension unit tests: `docDiagnosticProvider.test.ts`, `dependencyQuickPick.test.ts`, `analyzeWithAI.test.ts`, `fileMaintenance.test.ts` (pending rename once watcher tests land).

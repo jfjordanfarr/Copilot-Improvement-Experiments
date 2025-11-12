@@ -12,7 +12,7 @@
 - Command contributions: [`packages/extension/package.json`](../../../packages/extension/package.json)
 - Telemetry contracts: [`packages/shared/src/contracts/telemetry.ts`](../../../packages/shared/src/contracts/telemetry.ts)
 - Parent design: [Extension Surfaces](../../layer-3/extension-surfaces.mdmd.md)
-- Spec references: [T052](../../../specs/001-link-aware-diagnostics/tasks.md#phase-7-polish--crosscutting-concerns) • [T053](../../../specs/001-link-aware-diagnostics/tasks.md#phase-7-polish--crosscutting-concerns)
+- Spec references: [Tasks T052 & T053](../../../specs/001-link-aware-diagnostics/tasks.md)
 
 ## Purpose
 Expose latency telemetry gathered by the language server so operators can monitor responsiveness, optionally reset counters, and enable automated suites to assert latency service levels.

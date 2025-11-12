@@ -4,6 +4,8 @@ applyTo: ".mdmd/layer-4/**/*.mdmd.md"
 
 # Layer 4 Live Documentation Base Rules
 
+Default storage for generated Layer‑4 Live Docs is `/.live-documentation/source/`; adjust configuration only when adopters need a different mirror root.
+
 - Layer 4 files are **Live Documentation mirrors**: every markdown entry represents exactly one source asset (implementation, test, fixture, or asset) and preserves authored context while exposing generated program facts.
 - Canonical layout:
   1. `# <Title>` — use the source artifact name (for example, `packages/shared/src/live-docs/markdown.ts`).

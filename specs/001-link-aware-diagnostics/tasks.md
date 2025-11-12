@@ -136,8 +136,21 @@ description: "Task list for Live Documentation"
 - [ ] LD-715 Merge duplicate System Layer interaction/workflow docs when they describe the same orchestrator; ensure topology reflects single-source ordering.
 - [ ] LD-716 Enrich System Layer topology with orchestrator stage edges emitted from LD-710 so CLI interaction docs show meaningful flow instead of isolated nodes.
 - [ ] LD-717 Prune and aggregate testing archetype topology to highlight Live Docs suites while avoiding unreadable graphs (e.g., collapse extension diagnostics tests).
+- [ ] LD-718 Ship `npm run live-docs:system` CLI that emits System analytics as on-demand materialized views (stdout or caller-provided temp directory) with markdown/JSON format options.
+- [ ] LD-719 Remove the committed `.live-documentation/system/` mirror once the CLI is validated, updating lint/safe-commit rules to block future check-ins of materialized views.
+- [ ] LD-720 Author integration tests and fixture workspaces that exercise the System analytics CLI against known technical debt so failures surface without persisting docs.
 
 **Checkpoint**: Live Docs feed richer telemetry and derived docs without sacrificing determinism.
+
+## Stage 8 – Layer Distribution & External Surfaces
+
+**Purpose**: Place each MDMD layer with the platform best suited for it while Live Documentation focuses on Implementation + analytics.
+
+- [ ] LD-800 Scaffolding task: generate a GitHub Pages (or equivalent) site sourced from Layer‑1 vision content, including build script and publish workflow.
+- [ ] LD-801 Define integration pattern for Layer‑2 commitments via Spec-Kit and external issue trackers, adding cross-links from Live Docs to canonical work items.
+- [ ] LD-802 Update onboarding/quickstart docs to explain the layered artifact distribution and reference the System analytics CLI as the source of materialized views.
+
+**Checkpoint**: Documentation layers are mapped to their long-term homes, and Live Docs tooling references them accordingly.
 
 ## Stage Dependencies & Parallelism
 
@@ -159,8 +172,8 @@ Tasks tagged `[P]` can run concurrently when dependencies agree (e.g., LD-202/20
 
 ## Summary Metrics
 **Summary Metrics**
-- **Total Tasks**: 58 (13 closed, 45 open)
-- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (5 open), Phase6 (5 open), Phase7 (17 open)
+- **Total Tasks**: 64 (13 closed, 51 open)
+- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (5 open), Phase6 (5 open), Phase7 (20 open), Stage8 (3 open)
 - **Independent Tests**: `generation.test.ts`, `evidence.test.ts`, `inspect-cli.test.ts`, `docstring-drift.test.ts`
 - **Primary Workstreams**: Generator foundations (WI-LD101), Evidence bridges (WI-LD102), Docstring drift (WI-LD201), Consumption parity (WI-LD301), System Layer migration (WI-LD401)
 

@@ -25,6 +25,8 @@ export * from "./reporting/testReport";
 export * from "./config/liveDocumentationConfig";
 export * from "./live-docs/schema";
 export * from "./live-docs/markdown";
+export * from "./live-docs/types";
+export * from "./live-docs/analysis/coActivation";
 export {
   RelationshipExtractor,
   RelationshipExtractorError,

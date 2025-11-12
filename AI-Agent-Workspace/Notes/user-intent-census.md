@@ -617,6 +617,20 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L1236-L1240` — Drop the legacy `Description` header entirely—authored content should include only Purpose and Notes, with Stage 0 regeneration proving the slimmer template persists.
 - `L5079-L5087` — Detect orphaned Live Docs (e.g., stray `.mdmd.md` mirrors without code) so the Stage 0 mirror stays authoritative and free of dead artifacts.
 
+## 2025-11-10 (Dev Day 19)
+- `2025-11-10.md:L236-L340` — Compile a temporary MDMD layer content census by mining chat history so every proposal for Live Documentation layers, archetypes, and constraints is auditable in one place.
+- `L400-L512` — When logging census guidance, tag each directive with its capture date and align entries to the simplified base-layer template (authored Purpose/Notes; generated Public Symbols + Dependencies) to avoid mixing superseded rules.
+- `L728-L915` — Keep upper-layer automation simple: use authored checkboxes for Layer 2 requirements/acceptance criteria, reserve generated sections for adjacent rollups (Components, Topology, Completion snapshots), and preserve downward-only links.
+- `L1000-L1104` — Allow each Layer 2 doc to cite exactly one upstream capability/release so Layer 1 rollups remain deterministic even if that briefly violates the downward-only link rule for the curated layers.
+- `L1030-L1120` — Standardise the six System-layer archetypes (Component, Interaction/API, Data Model, Workflow, Integration, Testing) around shared `Purpose`/`Notes` authored sections and generated `Components`/`Topology` blocks so Layer 2 can mix and match them deterministically.
+- `L1124-L1185` — Treat Layers 3/4 as the deterministic spine and Layers 1/2 as curated intent: System docs stay machine-derived from Stage‑0 signals, while Capability/Commitment docs remain human-authored with lightweight generated tallies.
+- `L1222-L1245` — Retain numerical layer identifiers but adopt the alias names (Capability, Commitment, System, Implementation) to clarify the intent of each tier without renumbering.
+- `L1310-L1355` — Derive System-layer docs strictly from Stage‑0 (Implementation-layer) Live Docs; legacy Layer‑3 MDMD files may only be used for validation, not as scaffolding.
+- `L1344-L1505` — Gather deterministic signals (component SCCs, CLI surfaces, schemas, workflows, integrations, testing) and refactor the Live Docs generator into shared core + layer adapters so the System layer can reuse the pipeline safely.
+- `L1451-L1492` — Break out shared generation plumbing from the monolithic `generator.ts`, then introduce per-layer generators (starting with System) to keep files maintainable and layering explicit.
+- `L2188-L2205` — Retire churn-metric ideas tied to local git history; focus future analytics on deterministic co-activation signals sourced from workspace artifacts instead of developer-specific data.
+- `L2392-L2404` — Treat LLM assistance as optional for ambiguous System-doc archetype assignments (sample multiple times, log inputs), ensure every Implementation doc appears in at least one System doc, and resolve dynamic branches by replicating the manual reasoning process before automating it.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

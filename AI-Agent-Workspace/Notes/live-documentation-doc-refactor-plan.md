@@ -12,7 +12,7 @@
   - Copilot instructions & README/Quickstart references.
 - [x] Stage instruction harmonization: update `.github/instructions/mdmd.layer4.instructions.md` first with new authored/generated schema, archetype templates, and generated-section contracts, then cascade changes to other MDMD instruction files.
 - [x] Snapshot current state (`git status`, optional `npm run safe:commit -- --no-graph` dry run) so regressions are obvious. *(2025-11-09: git status captured after adding Live Docs ignore rules; safe-to-commit wired to new lint/report gates before next validation run.)*
-- [x] Treat `/.live-documentation/` as the staging output for generator experiments; place generated docs inside a dedicated subdirectory (e.g., `/.live-documentation/layer-4/`) and defer swapping the existing Layer‑4 tree until parity metrics and lint gates prove the new flow.
+- [x] Treat `/.live-documentation/` as the staging output for generator experiments; place generated docs inside a dedicated subdirectory (e.g., `/.live-documentation/source/`) and defer swapping the existing Layer‑4 tree until parity metrics and lint gates prove the new flow.
 
 ## 1. Reframe Top-Level Vision (Layer 1)
 - [x] Rewrite `link-aware-diagnostics-vision.mdmd.md`:
@@ -55,17 +55,20 @@
   - Tie benchmark telemetry doc to validating generated sections (precision/recall on symbols & dependencies).
   - LLM ingestion doc: position as optional enhancer for generated sections + narratives.
 - [x] Ensure cross-links reference new spec FR identifiers and roadmap streams.
-- [ ] Specify deterministic derivation rules for System Layer archetypes (component, interaction, data-model, workflow, integration, testing) using only Layer‑4 graph signals; capture expected outputs by cross-checking legacy `.mdmd/layer-3/**` docs as validation references.
+- [ ] Specify deterministic derivation rules for System analytics archetypes (component, interaction, data-model, workflow, integration, testing) using only Layer‑4 graph signals; capture expected outputs by cross-checking legacy `.mdmd/layer-3/**` docs as validation references.
   - Available signals: Live Doc metadata (paths, archetype tags, provenance), generated `Public Symbols`, generated `Dependencies`, observed evidence links, file ownership (packages/extension/server/shared) – all sourced from deterministic workspace artefacts.
-  - Expected outputs: per-archetype System Layer docs with generated `Components` lists and Mermaid `Topology` derived solely from dependency/evidence data; authored `Purpose`/`Notes` drafted as a follow-up step.
-- [ ] Stand up the System Layer mirror under `/.live-documentation/system/` (configurable) with Stage‑0 skeleton docs preserving authored `Purpose`/`Notes` and generated `Components`/`Topology` markers.
-- [ ] Implement generator support that rolls Layer‑4 analyzers into System Layer docs (auto-populated `Components` lists and Mermaid `Topology` with `click` links).
+  - Expected outputs: per-archetype System analytics views with generated `Components` lists and Mermaid `Topology` derived solely from dependency/evidence data; authored `Purpose`/`Notes` drafted as a follow-up step when snapshots are intentionally persisted.
+- [ ] Prototype an on-demand System analytics generator that writes to stdout or a caller-provided temp directory instead of committing artefacts by default.
+- [ ] Implement generator support that rolls Layer‑4 analyzers into System analytics outputs (auto-populated `Components` lists and Mermaid `Topology` with `click` links) while keeping persistence optional.
 - [x] Extract shared Live Doc generation foundation (target discovery, authored block merge, provenance hashing, diff classification) so Layer‑4 and System Layer generators compose the same core pipeline. *(2025-11-10: factored into `packages/server/src/features/live-docs/generation/core.ts`; `generator.ts` now consumes the shared helpers.)*
 - [x] Stage-0 pruning safeguards ensure stale docs without authored content are deleted while preserving authored stubs; added regression test coverage in `packages/server/src/features/live-docs/generator.test.ts`. *(2025-11-10)*
-- [ ] Backfill authored `Purpose`/`Notes` across all migrated System Layer docs, ensuring references to upstream requirements stay within authored sections.
-- [ ] Add lint rules (live-docs:lint + SlopCop) verifying System Layer docs emit both generated sections and forbid direct Layer‑4 links outside `Components`.
-- [ ] Validate topology diagrams render and links resolve inside VS Code, CLI previews, and markdown exports before promotion.
+- [x] Backfill authored `Purpose`/`Notes` across System analytics is no longer required; rely on Layer‑4 authored sections and generated narratives to contextualise on-demand views.
+- [ ] Add lint rules (live-docs:lint + SlopCop) verifying any persisted System exports carry explicit `live-docs:materialized` markers and forbidding stray files under `/.live-documentation/system/`.
+- [ ] Validate topology diagrams render and links resolve inside VS Code, CLI previews, and markdown exports before promotion; ensure ephemeral runs clean up temporary files automatically.
 - [ ] Refine generated output: drop compiled artefacts from `Components`, dedupe overlapping interaction/workflow docs, add orchestrator stage edges, and aggregate testing graphs to highlight Live Docs suites.
+- [ ] Design the "materialized view" workflow: default System analytics to on-demand CLI output (`npm run live-docs:system`) that streams markdown/JSON to stdout or a caller-provided temp directory; keep repo check-ins opt-in only.
+- [ ] Stage deletion plan for the current `.live-documentation/system/` mirror once the CLI lands, capturing rollback steps and lint updates that guard against accidentally committed views.
+- [ ] Author integration tests that run the System analytics CLI against intentionally messy fixtures to prove technical debt surfaces without persisting artefacts (pair with doc examples for developer education).
 
 ### System Layer Signal Catalog (draft)
 
@@ -166,6 +169,13 @@
 - [ ] Guarantee feature parity between UI surfaces and CLI/LLM commands (diagnostics, diff previews, exports) so copilots can drive Live Documentation without the VS Code UI.
 - [ ] Design a deterministic `Live Doc ID` scheme (e.g., hash of archetype + normalized relative path) stored inside generated metadata.
 - [ ] Document that churn metrics are out of scope for the core workspace intelligence; focus analytic enrichers on deterministic signals (co-activation, dependency centrality, evidence coverage).
+- [ ] Document the CLI surface area (generate, lint, inspect, co-activation, forthcoming system views) in a single reference so onboarding copilots know which commands exist and what format they emit.
+
+## 9. Layer Distribution Strategy
+- [ ] Define the long-term Layer ownership model: Capability stories delivered via a public site (GitHub Pages or similar), Commitment backlog tracked in Spec-Kit / issue trackers, System analytics emitted as materialized views, Implementation Layer rooted in `.live-documentation/source/`.
+- [ ] Add tasks/spec entries for scaffolding a GitHub Pages site sourced from Layer‑1 content, including build script, publish workflow, and live preview instructions.
+- [ ] Capture expectations for integrating external work-item systems (GitHub Issues/Azure DevOps) as the canonical Layer‑2 home while Live Docs reference them through generated links.
+- [ ] Update rollout comms (Layer‑1 vision, roadmap, quickstart) to describe the new distribution so contributors know where authored vs generated artifacts live.
 
 ## 8. Final Alignment & Cleanups
 - [ ] Ensure all references to "Link-Aware Diagnostics" either retire or become “Live Documentation” (document historical note where needed).

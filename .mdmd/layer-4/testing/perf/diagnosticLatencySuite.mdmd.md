@@ -5,7 +5,7 @@
 - Extension command under test: [`packages/extension/src/commands/latencySummary.ts`](../../../../packages/extension/src/commands/latencySummary.ts)
 - Telemetry tracker: [`packages/server/src/telemetry/latencyTracker.ts`](../../../../packages/server/src/telemetry/latencyTracker.ts)
 - Parent design: [Integration Testing Architecture](../../../layer-3/testing-integration-architecture.mdmd.md)
-- Spec references: [T053](../../../../specs/001-link-aware-diagnostics/tasks.md#phase-7-polish--crosscutting-concerns)
+- Spec references: [Task T053](../../../../specs/001-link-aware-diagnostics/tasks.md)
 
 ## Purpose
 Exercise the end-to-end latency telemetry pipeline in a realistic workspace so regressions in diagnostic turnaround time are caught before release.

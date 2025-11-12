@@ -4,7 +4,7 @@
 - Definitions: [`packages/shared/src/contracts/telemetry.ts`](../../../packages/shared/src/contracts/telemetry.ts)
 - Consumers: [`packages/server/src/main.ts`](../../../packages/server/src/main.ts), [`packages/extension/src/commands/latencySummary.ts`](../../../packages/extension/src/commands/latencySummary.ts)
 - Parent designs: [Language Server Architecture](../../layer-3/language-server-architecture.mdmd.md), [Extension Surfaces](../../layer-3/extension-surfaces.mdmd.md)
-- Spec references: [T052](../../../specs/001-link-aware-diagnostics/tasks.md#phase-7-polish--crosscutting-concerns)
+- Spec references: [Task T052](../../../specs/001-link-aware-diagnostics/tasks.md)
 
 ## Purpose
 Provide a shared, type-safe contract that describes latency telemetry requests and responses exchanged between the language server and VS Code extension.

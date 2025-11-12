@@ -16,6 +16,9 @@ Presents a quick pick that lists downstream artifacts dependent on the current f
 - Validates and formats the response into descriptive quick pick entries that capture relationship kind, traversal depth, and transitive paths.
 - Opens the selected dependent artifact in the editor while surfacing informative messages when data is missing or errors occur.
 
+#### ParsedEdge
+Type alias exported for test consumption and dependency formatting helpers. Mirrors the validator schema so callers can rely on strongly typed edge payloads.
+
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.544Z","inputHash":"a879191c1c7dc797"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->

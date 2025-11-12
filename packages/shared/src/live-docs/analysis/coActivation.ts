@@ -1,0 +1,554 @@
+import type { Stage0Doc, TargetManifest } from "../types";
+
+const DEFAULT_EDGE_ALPHA = 0.01;
+const DEFAULT_CLUSTER_ALPHA = 0.01;
+const EDGE_KEY_SEPARATOR = "|||";
+
+export interface CoActivationBuildArgs {
+  stage0Docs: Stage0Doc[];
+  manifest?: TargetManifest;
+  dependencyWeight?: number;
+  testWeight?: number;
+  minWeight?: number;
+  edgeAlpha?: number;
+  clusterAlpha?: number;
+}
+
+export interface CoActivationEdge {
+  source: string;
+  target: string;
+  weight: number;
+  dependencySources: string[];
+  testSources: string[];
+  sharedTestCount: number;
+  sourceTestCount: number;
+  targetTestCount: number;
+  pValue: number | null;
+  qValue: number | null;
+  isSignificant: boolean;
+}
+
+export interface CoActivationNode {
+  id: string;
+  docRelativePath: string;
+  archetype: string;
+  degree: number;
+  strength: number;
+  testCount: number;
+  zScore: number;
+}
+
+export interface CoActivationCluster {
+  id: string;
+  members: string[];
+  weight: number;
+  edgeCount: number;
+  expectedEdgeCount: number;
+  density: number;
+  pValue: number;
+  qValue: number;
+  isSignificant: boolean;
+}
+
+export interface CoActivationReport {
+  generatedAt: string;
+  metrics: {
+    nodeCount: number;
+    edgeCount: number;
+    significantEdgeCount: number;
+    clusterCount: number;
+    significantClusterCount: number;
+    dependencyWeight: number;
+    testWeight: number;
+    minWeight: number;
+    edgeAlpha: number;
+    clusterAlpha: number;
+    totalTests: number;
+  };
+  nodes: CoActivationNode[];
+  edges: CoActivationEdge[];
+  clusters: CoActivationCluster[];
+}
+
+interface EdgeAccumulator {
+  weight: number;
+  dependencySources: Set<string>;
+  testSources: Set<string>;
+}
+
+type EdgeReason =
+  | {
+      kind: "dependency";
+      source: string;
+      dependencyWeight: number;
+      testWeight: number;
+    }
+  | {
+      kind: "test";
+      source: string;
+      dependencyWeight: number;
+      testWeight: number;
+    };
+
+export function buildCoActivationReport(args: CoActivationBuildArgs & { now?: () => Date }): CoActivationReport {
+  const dependencyWeight = args.dependencyWeight ?? 1;
+  const testWeight = args.testWeight ?? 1;
+  const minWeight = args.minWeight ?? 0;
+  const edgeAlpha = args.edgeAlpha ?? DEFAULT_EDGE_ALPHA;
+  const clusterAlpha = args.clusterAlpha ?? DEFAULT_CLUSTER_ALPHA;
+  const now = args.now ?? (() => new Date());
+
+  const docMap = new Map<string, Stage0Doc>();
+  const docTestMap = new Map<string, Set<string>>();
+  for (const doc of args.stage0Docs) {
+    docMap.set(doc.sourcePath, doc);
+    docTestMap.set(doc.sourcePath, new Set());
+  }
+
+  const allTests = new Set<string>();
+  const edgeAccumulator = new Map<string, EdgeAccumulator>();
+
+  for (const doc of args.stage0Docs) {
+    if (!doc.dependencies?.length) {
+      continue;
+    }
+    for (const dependency of doc.dependencies) {
+      const targetDoc = docMap.get(dependency);
+      if (!targetDoc) {
+        continue;
+      }
+      addEdge(edgeAccumulator, doc.sourcePath, targetDoc.sourcePath, {
+        kind: "dependency",
+        source: doc.sourcePath,
+        dependencyWeight,
+        testWeight
+      });
+    }
+  }
+
+  if (args.manifest?.suites) {
+    for (const suite of args.manifest.suites) {
+      for (const test of suite.tests ?? []) {
+        const testPath = (test.path ?? "").replace(/\\/g, "/");
+        if (!testPath) {
+          continue;
+        }
+        allTests.add(testPath);
+
+        const targets = new Set<string>();
+        for (const rawTarget of test.targets ?? []) {
+          const normalized = rawTarget.replace(/\\/g, "/");
+          if (docMap.has(normalized)) {
+            targets.add(normalized);
+            docTestMap.get(normalized)?.add(testPath);
+          }
+        }
+
+        const orderedTargets = Array.from(targets).sort();
+        for (let left = 0; left < orderedTargets.length; left += 1) {
+          for (let right = left + 1; right < orderedTargets.length; right += 1) {
+            addEdge(edgeAccumulator, orderedTargets[left], orderedTargets[right], {
+              kind: "test",
+              source: testPath,
+              dependencyWeight,
+              testWeight
+            });
+          }
+        }
+      }
+    }
+  }
+
+  const edges: CoActivationEdge[] = [];
+  for (const [key, entry] of edgeAccumulator.entries()) {
+    if (entry.weight < minWeight) {
+      continue;
+    }
+    const [source, target] = key.split(EDGE_KEY_SEPARATOR);
+    const dependencySources = Array.from(entry.dependencySources).sort();
+    const testSources = Array.from(entry.testSources).sort();
+    edges.push({
+      source,
+      target,
+      weight: entry.weight,
+      dependencySources,
+      testSources,
+      sharedTestCount: testSources.length,
+      sourceTestCount: 0,
+      targetTestCount: 0,
+      pValue: null,
+      qValue: null,
+      isSignificant: dependencySources.length > 0
+    });
+  }
+
+  edges.sort((left, right) => {
+    if (left.source === right.source) {
+      return left.target.localeCompare(right.target);
+    }
+    return left.source.localeCompare(right.source);
+  });
+
+  const docTestCounts = new Map<string, number>();
+  for (const [docPath, tests] of docTestMap.entries()) {
+    docTestCounts.set(docPath, tests.size);
+  }
+
+  const totalTests = allTests.size;
+  const edgesForBh: Array<{ edge: CoActivationEdge; pValue: number }> = [];
+
+  for (const edge of edges) {
+    const sourceTestCount = docTestCounts.get(edge.source) ?? 0;
+    const targetTestCount = docTestCounts.get(edge.target) ?? 0;
+    edge.sourceTestCount = sourceTestCount;
+    edge.targetTestCount = targetTestCount;
+
+    if (edge.sharedTestCount > 0 && totalTests > 0 && sourceTestCount > 0 && targetTestCount > 0) {
+      const pValue = hypergeometricTail(totalTests, sourceTestCount, targetTestCount, edge.sharedTestCount);
+      edge.pValue = pValue;
+      edgesForBh.push({ edge, pValue });
+    }
+  }
+
+  applyBenjaminiHochberg(edgesForBh);
+
+  for (const { edge } of edgesForBh) {
+    if (edge.qValue !== null && edge.qValue <= edgeAlpha) {
+      edge.isSignificant = true;
+    }
+  }
+
+  const significantEdges = edges.filter((edge) => edge.isSignificant);
+  const adjacency = new Map<string, Set<string>>();
+  const nodeStats = new Map<string, { degree: number; strength: number }>();
+
+  for (const edge of significantEdges) {
+    if (!adjacency.has(edge.source)) {
+      adjacency.set(edge.source, new Set());
+    }
+    if (!adjacency.has(edge.target)) {
+      adjacency.set(edge.target, new Set());
+    }
+    adjacency.get(edge.source)!.add(edge.target);
+    adjacency.get(edge.target)!.add(edge.source);
+
+    const left = nodeStats.get(edge.source) ?? { degree: 0, strength: 0 };
+    left.degree += 1;
+    left.strength += edge.weight;
+    nodeStats.set(edge.source, left);
+
+    const right = nodeStats.get(edge.target) ?? { degree: 0, strength: 0 };
+    right.degree += 1;
+    right.strength += edge.weight;
+    nodeStats.set(edge.target, right);
+  }
+
+  const nodes: CoActivationNode[] = args.stage0Docs
+    .map((doc) => {
+      const stats = nodeStats.get(doc.sourcePath) ?? { degree: 0, strength: 0 };
+      return {
+        id: doc.sourcePath,
+        docRelativePath: doc.docRelativePath,
+        archetype: doc.archetype,
+        degree: stats.degree,
+        strength: stats.strength,
+        testCount: docTestCounts.get(doc.sourcePath) ?? 0,
+        zScore: 0
+      };
+    })
+    .sort((left, right) => left.id.localeCompare(right.id));
+
+  const meanStrength = nodes.reduce((sum, node) => sum + node.strength, 0) / Math.max(nodes.length, 1);
+  const variance =
+    nodes.reduce((sum, node) => sum + (node.strength - meanStrength) ** 2, 0) / Math.max(nodes.length, 1);
+  const stdDev = Math.sqrt(variance);
+  for (const node of nodes) {
+    node.zScore = stdDev > 0 ? (node.strength - meanStrength) / stdDev : 0;
+  }
+
+  const totalPossibleEdges = nodes.length <= 1 ? 0 : (nodes.length * (nodes.length - 1)) / 2;
+  const globalEdgeProbability =
+    totalPossibleEdges === 0 ? 0 : Math.min(1, significantEdges.length / totalPossibleEdges);
+
+  const clusters = buildClusters({
+    nodes,
+    edges: significantEdges,
+    adjacency,
+    globalEdgeProbability,
+    clusterAlpha
+  });
+
+  const significantClusterCount = clusters.filter((cluster) => cluster.isSignificant).length;
+
+  return {
+    generatedAt: now().toISOString(),
+    metrics: {
+      nodeCount: nodes.length,
+      edgeCount: edges.length,
+      significantEdgeCount: significantEdges.length,
+      clusterCount: clusters.length,
+      significantClusterCount,
+      dependencyWeight,
+      testWeight,
+      minWeight,
+      edgeAlpha,
+      clusterAlpha,
+      totalTests
+    },
+    nodes,
+    edges,
+    clusters
+  };
+}
+
+export function serializeCoActivationReport(report: CoActivationReport): string {
+  return `${JSON.stringify(report, null, 2)}\n`;
+}
+
+function addEdge(
+  accumulator: Map<string, EdgeAccumulator>,
+  left: string,
+  right: string,
+  reason: EdgeReason
+): void {
+  if (!left || !right || left === right) {
+    return;
+  }
+
+  const [source, target] = left <= right ? [left, right] : [right, left];
+  const key = `${source}${EDGE_KEY_SEPARATOR}${target}`;
+  let entry = accumulator.get(key);
+  if (!entry) {
+    entry = {
+      weight: 0,
+      dependencySources: new Set<string>(),
+      testSources: new Set<string>()
+    };
+    accumulator.set(key, entry);
+  }
+
+  if (reason.kind === "dependency") {
+    if (!reason.source) {
+      return;
+    }
+    if (!entry.dependencySources.has(reason.source)) {
+      entry.dependencySources.add(reason.source);
+      entry.weight += reason.dependencyWeight;
+    }
+    return;
+  }
+
+  if (!reason.source) {
+    return;
+  }
+  if (!entry.testSources.has(reason.source)) {
+    entry.testSources.add(reason.source);
+    entry.weight += reason.testWeight;
+  }
+}
+
+function applyBenjaminiHochberg(pairs: Array<{ edge: CoActivationEdge; pValue: number }>): void {
+  if (!pairs.length) {
+    return;
+  }
+
+  const sorted = [...pairs].sort((left, right) => left.pValue - right.pValue);
+  const total = sorted.length;
+  let minAdjusted = Infinity;
+
+  for (let index = total - 1; index >= 0; index -= 1) {
+    const rank = index + 1;
+    const p = sorted[index].pValue;
+    const adjusted = Math.min((p * total) / rank, minAdjusted);
+    const bounded = Math.min(adjusted, 1);
+    sorted[index].edge.qValue = bounded;
+    minAdjusted = bounded;
+  }
+}
+
+function hypergeometricTail(total: number, successA: number, successB: number, observed: number): number {
+  const upper = Math.min(successA, successB);
+  let logSum = Number.NEGATIVE_INFINITY;
+  for (let k = observed; k <= upper; k += 1) {
+    const logTerm =
+      logCombination(successA, k) +
+      logCombination(total - successA, successB - k) -
+      logCombination(total, successB);
+    logSum = logSumExp(logSum, logTerm);
+  }
+  return Math.min(1, Math.exp(logSum));
+}
+
+function logCombination(n: number, k: number): number {
+  if (k < 0 || k > n) {
+    return Number.NEGATIVE_INFINITY;
+  }
+  if (k === 0 || k === n) {
+    return 0;
+  }
+  const m = Math.min(k, n - k);
+  let result = 0;
+  for (let i = 1; i <= m; i += 1) {
+    result += Math.log((n - m + i) / i);
+  }
+  return result;
+}
+
+function logSumExp(a: number, b: number): number {
+  if (a === Number.NEGATIVE_INFINITY) {
+    return b;
+  }
+  if (b === Number.NEGATIVE_INFINITY) {
+    return a;
+  }
+  if (a < b) {
+    return b + Math.log1p(Math.exp(a - b));
+  }
+  return a + Math.log1p(Math.exp(b - a));
+}
+
+function buildClusters(args: {
+  nodes: CoActivationNode[];
+  edges: CoActivationEdge[];
+  adjacency: Map<string, Set<string>>;
+  globalEdgeProbability: number;
+  clusterAlpha: number;
+}): CoActivationCluster[] {
+  const { nodes, edges, adjacency, globalEdgeProbability, clusterAlpha } = args;
+  const clusters: CoActivationCluster[] = [];
+  const visited = new Set<string>();
+  const edgeIndex = new Map<string, CoActivationEdge>();
+
+  for (const edge of edges) {
+    edgeIndex.set(edgeKey(edge.source, edge.target), edge);
+  }
+
+  for (const node of nodes) {
+    if (visited.has(node.id)) {
+      continue;
+    }
+
+    if (!adjacency.has(node.id) || adjacency.get(node.id)!.size === 0) {
+      visited.add(node.id);
+      continue;
+    }
+
+    const members = new Set<string>();
+    const queue: string[] = [node.id];
+
+    while (queue.length > 0) {
+      const current = queue.shift()!;
+      if (visited.has(current)) {
+        continue;
+      }
+      visited.add(current);
+      members.add(current);
+
+      const neighbors = adjacency.get(current);
+      if (!neighbors) {
+        continue;
+      }
+
+      for (const neighbor of neighbors) {
+        if (!visited.has(neighbor)) {
+          queue.push(neighbor);
+        }
+      }
+    }
+
+    const memberList = Array.from(members).sort();
+    if (memberList.length < 2) {
+      continue;
+    }
+
+    const clusterEdges = collectClusterEdges(memberList, edgeIndex);
+    if (!clusterEdges.length) {
+      continue;
+    }
+
+    const totalWeight = clusterEdges.reduce((sum, edge) => sum + edge.weight, 0);
+    const possibleEdges = (memberList.length * (memberList.length - 1)) / 2;
+    const density = possibleEdges === 0 ? 0 : clusterEdges.length / possibleEdges;
+    const expectedEdges = possibleEdges * globalEdgeProbability;
+    const pValue = binomialTail(possibleEdges, globalEdgeProbability, clusterEdges.length);
+
+    clusters.push({
+      id: `cluster-${String(clusters.length + 1).padStart(3, "0")}`,
+      members: memberList,
+      weight: totalWeight,
+      edgeCount: clusterEdges.length,
+      expectedEdgeCount: expectedEdges,
+      density,
+      pValue,
+      qValue: pValue,
+      isSignificant: false
+    });
+  }
+
+  applyClusterBenjaminiHochberg(clusters);
+
+  for (const cluster of clusters) {
+    if (cluster.qValue <= clusterAlpha) {
+      cluster.isSignificant = true;
+    }
+  }
+
+  return clusters.sort((left, right) => left.id.localeCompare(right.id));
+}
+
+function edgeKey(left: string, right: string): string {
+  return left <= right ? `${left}${EDGE_KEY_SEPARATOR}${right}` : `${right}${EDGE_KEY_SEPARATOR}${left}`;
+}
+
+function collectClusterEdges(members: string[], edgeIndex: Map<string, CoActivationEdge>): CoActivationEdge[] {
+  const result: CoActivationEdge[] = [];
+  for (let i = 0; i < members.length; i += 1) {
+    for (let j = i + 1; j < members.length; j += 1) {
+      const edge = edgeIndex.get(edgeKey(members[i], members[j]));
+      if (edge) {
+        result.push(edge);
+      }
+    }
+  }
+  return result;
+}
+
+function binomialTail(trials: number, probability: number, observed: number): number {
+  if (trials <= 0) {
+    return 1;
+  }
+  if (probability <= 0) {
+    return observed === 0 ? 1 : 0;
+  }
+  if (probability >= 1) {
+    return observed === trials ? 1 : 0;
+  }
+
+  let logSum = Number.NEGATIVE_INFINITY;
+  for (let k = observed; k <= trials; k += 1) {
+    const logTerm =
+      logCombination(trials, k) +
+      k * Math.log(probability) +
+      (trials - k) * Math.log(1 - probability);
+    logSum = logSumExp(logSum, logTerm);
+  }
+  return Math.min(1, Math.exp(logSum));
+}
+
+function applyClusterBenjaminiHochberg(clusters: CoActivationCluster[]): void {
+  if (!clusters.length) {
+    return;
+  }
+  const sorted = [...clusters].sort((left, right) => left.pValue - right.pValue);
+  const total = sorted.length;
+  let minAdjusted = Infinity;
+
+  for (let index = total - 1; index >= 0; index -= 1) {
+    const rank = index + 1;
+    const p = sorted[index].pValue;
+    const adjusted = Math.min((p * total) / rank, minAdjusted);
+    const bounded = Math.min(adjusted, 1);
+    sorted[index].qValue = bounded;
+    minAdjusted = bounded;
+  }
+}

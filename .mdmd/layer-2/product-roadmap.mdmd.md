@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 2
-- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-E1
+- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-E1, REQ-D1
 
 ## Requirements
 
@@ -78,6 +78,24 @@ Supports CAP-004 by packaging the Live Documentation system for open adoption an
 - Offer MCP/OpenAPI surfaces so other IDE agents can consume the Live Doc graph.
 - Track competitive differentiators (Windsurf Codemaps) within roadmap updates and marketing materials.
 
+### REQ-D1 Layer Distribution Surfaces
+Supports CAP-005 by anchoring each MDMD layer to the surface where it excels: Layer 1 publishes via a static site, Layer 2 maps to Spec-Kit and issue trackers, and System analytics remain CLI materialized views grounded in Layer‑4 data.
+
+#### Stream LD8-A – Public Site Pipeline *(planned)*
+- Scaffold a GitHub Pages (or equivalent) site sourced from `.mdmd/layer-1` content, including build scripts, preview commands, and publish automation.
+- Document how Layer 1 capabilities map to site navigation and ensure the pipeline honours relative links.
+- Add lint/CI gates that fail when the site build detects broken links or missing capabilities.
+
+#### Stream LD8-B – Requirement Handoff *(planned)*
+- Integrate Spec-Kit exports (and future issue trackers) into Layer‑2 docs via generated snapshots so automation can reconcile external IDs with MDMD requirements.
+- Provide guidance for synchronising completion state between Spec-Kit checklists and Layer‑2 markdown, highlighting deltas during safe-commit.
+- Ensure roadmap docs link to a single source of truth for each requirement (MDMD summary) while referencing the execution system in `### Integration`.
+
+#### Stream LD8-C – Materialized View CLI *(planned)*
+- Ship `npm run live-docs:system` that streams System analytics (markdown/JSON) to stdout or a caller-provided temp directory without committing artefacts.
+- Remove the committed `.live-documentation/system/` mirror once the CLI is validated; update lint/safe-commit rules to block stray System files.
+- Author integration tests and fixture workspaces that prove messy repos surface debt via the CLI output alone.
+
 ## Acceptance Criteria
 
 ### REQ-L1 Acceptance Criteria
@@ -103,6 +121,12 @@ Supports CAP-004 by packaging the Live Documentation system for open adoption an
 - MIT license, README, and marketing materials describe Live Documentation capabilities and configuration knobs.
 - Sample workspaces regenerate Live Docs using out-of-the-box tooling with zero manual steps.
 - External API surfaces (CLI, MCP/OpenAPI) expose Live Doc graph queries with authentication disabled by default for local use.
+
+### REQ-D1 Acceptance Criteria
+- Static site build succeeds using Layer 1 markdown with zero broken links; publish workflow documents the GitHub Pages (or equivalent) flow.
+- Layer 2 docs reference Spec-Kit/issue tracker IDs in `### Integration`, and generated snapshots highlight mismatches during safe-commit.
+- `npm run live-docs:system` (or successor command) defaults to ephemeral output, cleans up temporary files, and lint fails when `.live-documentation/system/` contains untagged artefacts.
+- Integration fixtures capture “bad” workspaces and prove the CLI output surfaces architectural debt without persisting docs.
 
 
 
@@ -147,6 +171,9 @@ Supports REQ-030. [Polyglot Oracles & Sampling Architecture](../layer-3/polyglot
 
 ### COMP-014 LLM Sampling Harness
 Supports REQ-020 and REQ-030. [Polyglot Oracles & Sampling Architecture](../layer-3/polyglot-oracles-and-sampling.mdmd.md#comp-014-llm-sampling-harness)
+
+### COMP-020 Layer Distribution Pipeline
+Supports REQ-D1. [Live Documentation Pipeline](../layer-3/live-documentation-pipeline.mdmd.md)
 
 ## Linked Implementations
 
@@ -216,6 +243,9 @@ Supports REQ-050. [CSharp Fixture Oracle](../layer-4/testing/benchmarks/csharpFi
 ### IMP-530 LLM Sampling Harness
 Supports REQ-201 and REQ-301. [LLM Sampling Harness](../layer-4/shared/llmSampling.mdmd.md)
 
+### IMP-610 liveDocsSystemCli *(planned)*
+Supports REQ-D1. (CLI will be documented alongside the System analytics implementation.)
+
 ## Evidence
 
 ### REQ-101 Evidence
@@ -238,11 +268,18 @@ Supports REQ-201 and REQ-301. [LLM Sampling Harness](../layer-4/shared/llmSampli
 - Competitive research notes (Windsurf Codemaps, GitLab Knowledge Graph) captured in 2025-11-08 chat and surfaced in Layer‑1 vision.
 - Sample workspace scaffolding spike recorded under `AI-Agent-Workspace/tmp/live-docs/sample-workspace`.
 
+### REQ-D1 Evidence
+- Layer distribution strategy logged in `AI-Agent-Workspace/Notes/live-documentation-doc-refactor-plan.md`, including tasks for site scaffolding, requirement handoff, and CLI materialized views.
+- Stage 8 backlog items (`LD-800`–`LD-802`) in `specs/001-link-aware-diagnostics/tasks.md` track execution of the public site, requirement integration, and onboarding updates.
+- System analytics CLI fixtures (to be added) will validate that architectural debt surfaces without persisting docs.
+
 ## Verification Strategy
 - Pre-commit guard: [`npm run safe:commit`](/scripts/safe-to-commit.mjs) chaining lint, tests, graph snapshot or audit, and the SlopCop suite (markdown, asset, symbol audits).
 - Integration coverage: US1 to US5 suites emulate writer, developer, rename, and template ripple flows.
 - Knowledge feed diffs: snapshot JSON fixtures under [`tests/integration/fixtures/simple-workspace/data/knowledge-feeds`](/tests/integration/fixtures/simple-workspace/data/knowledge-feeds).
 - Live Doc verification: integrate regeneration assertions into `npm run safe:commit -- --benchmarks` once generator stabilises.
+- System analytics verification: targeted fixtures confirm `npm run live-docs:system` cleans up temporary exports, flags architectural debt, and leaves the repo unmodified.
+- Site pipeline verification: static site builds (GitHub Pages preview) run in CI, failing on broken links or missing Layer 1 capabilities.
 
 ## Traceability Links
 - Vision alignment: [Layer 1 Vision](../layer-1/link-aware-diagnostics-vision.mdmd.md)
@@ -257,3 +294,4 @@ Supports REQ-201 and REQ-301. [LLM Sampling Harness](../layer-4/shared/llmSampli
 - What diff heuristics keep authored block edits readable when generated sections change significantly?
 - How do we package Live Docs inside the extension without inflating download size for adopters who regenerate on demand?
 - Which narrative/diagram presets best serve both humans and copilots while remaining deterministically regenerable?
+- What rollout messaging best guides adopters through the public site pipeline and Spec-Kit integration handoff while keeping System analytics ephemeral?

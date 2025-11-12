@@ -8,9 +8,9 @@ applyTo: "**/*.mdmd.md"
 
 Our project follows a four-layer MDMD stack that moves from heavily-authored, public-facing knowledge down to deterministic, machine-generated implementation facts.  We refer to the outer layers as **concept layers** (authored-first) and the inner layers as **unit layers** (generated-first).
 
-- **Layer 1 – Vision / Capabilities (concept)**: answers “What promise are we making?” and is suitable to ship as public release notes.
-- **Layer 2 – Requirements / Work Items (unit)**: answers “What must be true for the promise to hold?” and tracks checklists, evidence, and upstream capability links.
-- **Layer 3 – Architecture / Solution Components (concept)**: answers “How do subsystems collaborate?” and clusters Layer 4 implementations into navigable topologies.
+- **Layer 1 – Vision / Capabilities (concept)**: answers “What promise are we making?” and now doubles as the source for the public-facing site (e.g., GitHub Pages). Keep Layer 1 docs ready for publication and note any build/publish workflow hooks in their metadata when relevant.
+- **Layer 2 – Requirements / Work Items (unit)**: answers “What must be true for the promise to hold?” Layer 2 MDMD files remain the canonical summary even when execution handoff lives in Spec-Kit tasks or external issue trackers; link those systems explicitly so generators can cross-reference them.
+- **Layer 3 – Architecture / Solution Components (concept)**: answers “How do subsystems collaborate?” and clusters Layer 4 implementations into navigable topologies. Treat `.mdmd/layer-3/**` as curated references and regard `.live-documentation/system/**` outputs as materialized views regenerated on demand—do not commit those unless explicitly promoted.
 - **Layer 4 – Implementation / Live Documentation Base (unit)**: answers “What exists today?” and mirrors every tracked source artifact.
 
 This progressive specification strategy—**Membrane Design MarkDown (MDMD)**—treats headings, anchors, and relative links as a lightweight AST that tools and humans can traverse together.  `.mdmd.md` files therefore combine authored intent with generated evidence so we can regenerate documentation deterministically while preserving narrative context.

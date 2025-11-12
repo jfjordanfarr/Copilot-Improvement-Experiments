@@ -6,45 +6,54 @@
 
 ## Capabilities
 
-### CAP-001 – LDG Backbone
-Deliver a repository-embedded corpus of Live Documentation where every tracked asset owns an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata) stored in a mirror tree under `/.live-documentation/layer-4/` (path configurable per workspace). The corpus must be reproducible from source artefacts without cloud dependencies ([AI-Agent-Workspace/ChatHistory/2025-11-08.md](../../AI-Agent-Workspace/ChatHistory/2025-11-08.md)).
+### CAP-001 – Layer‑4 Backbone
+Deliver a repository-embedded corpus of Live Documentation where every tracked asset owns an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata) stored in a mirror tree under `/.live-documentation/source/` (path configurable per workspace). Layer‑4 docs are the only durable artefacts the project promises to maintain; everything else must be derivable from this base ([AI-Agent-Workspace/ChatHistory/2025-11-08.md](../../AI-Agent-Workspace/ChatHistory/2025-11-08.md)).
 
-### CAP-002 – LDG Bridges
-Automate symbol extraction, docstring harvesting, asset stubs, and test evidence so the generated portion of each Live Doc stays current and lintable. The engine should reuse existing heuristics, benchmarks, and knowledge feeds while remaining transparent and auditable ([specs/001-link-aware-diagnostics/spec.md](../../specs/001-link-aware-diagnostics/spec.md)).
+### CAP-002 – Analysis Bridges
+Automate symbol extraction, docstring reconciliation, dependency inference, and evidence harvesting so generated sections stay current and lintable. The analysis stack powers deterministic regeneration, emits provenance, and exposes confidence so downstream consumers can trust on-demand views ([specs/001-link-aware-diagnostics/spec.md](../../specs/001-link-aware-diagnostics/spec.md)).
 
-### CAP-003 – LDG Surfaces
-Expose the Live Documentation graph through diagnostics, CLI queries, shareable exports, and LLM-ready narratives so humans and copilots consume the same authoritative context ([AI-Agent-Workspace/ChatHistory/2025-10-29.md](../../AI-Agent-Workspace/ChatHistory/2025-10-29.md)).
+### CAP-003 – On-Demand System Views
+Expose ephemeral system-level materialized views—clustered components, workflows, coverage rollups—through CLI commands, diagnostics, and APIs. These views are regenerated when requested and never treated as long-lived documents, allowing us to mix rigorous statistics, local history, and scenario-specific filters without risking doc rot ([AI-Agent-Workspace/ChatHistory/2025-10-29.md](../../AI-Agent-Workspace/ChatHistory/2025-10-29.md)).
 
-### CAP-004 – LDG Memory
-Keep stakeholder directives, MIT licensing posture, and competitive research (Windsurf Codemaps, GitLab Knowledge Graph) codified alongside Live Docs so future contributors inherit context without rummaging through chat histories ([AI-Agent-Workspace/Notes/user-intent-census.md](../../AI-Agent-Workspace/Notes/user-intent-census.md)).
+### CAP-004 – Governance & Memory
+Keep stakeholder directives, MIT licensing posture, and competitive research (Windsurf Codemaps, GitLab Knowledge Graph) codified alongside the Live Doc tooling while enforcing guardrails (SlopCop, safe-commit, waiver taxonomies) that make the whole system auditable ([AI-Agent-Workspace/Notes/user-intent-census.md](../../AI-Agent-Workspace/Notes/user-intent-census.md)).
+
+### CAP-005 – Layer Distribution Surfaces
+Publish vision + roadmap knowledge to a static site (initially GitHub Pages), delegate requirement execution traceability to Spec-Kit and issue trackers, and keep System intelligence as CLI-driven materialized views. This capability ensures each MDMD layer lives where it provides the most value while the Layer‑4 corpus remains the canonical source of truth for generated analytics ([AI-Agent-Workspace/Notes/live-documentation-doc-refactor-plan.md](../../AI-Agent-Workspace/Notes/live-documentation-doc-refactor-plan.md)).
 
 ## Desired Outcomes
-- Generated content for every Live Doc can be reproduced on demand and compared deterministically; authored content stays small, intentional, and easy to review.
-- Implementation Live Docs always list their public surface, dependencies, and observed evidence so ripple impact and test coverage are auditable in markdown alone.
+- Layer‑4 Live Docs regenerate deterministically; authored content stays small, intentional, and easy to review.
+- Implementation Live Docs list their public surface, dependencies, and observed evidence so ripple impact and test coverage are auditable in markdown alone.
 - Test and asset archetypes expose their relationships through generated sections (`Targets`, `Supporting Fixtures`, `Consumers`), enabling cross-language AST traversal without bespoke parsers.
-- Diagnostics, exports, and LLM prompts all rely on the same markdown-as-AST graph, shrinking the gap between human review workflows and autonomous copilots.
+- Ephemeral System views spin up from the Layer‑4 corpus on demand (markdown, JSON, graph exports) and can safely incorporate statistical analytics or local history without committing churn to the repo.
+- Layer‑1 capabilities replicate cleanly into a static site (GitHub Pages or equivalent) so stakeholders consume the same markdown we curate in-repo.
+- Layer‑2 requirement docs cross-link to Spec-Kit tasks or issue trackers while remaining the authoritative summaries for automation.
+- Diagnostics, exports, and LLM prompts rely on the same markdown-as-AST graph, shrinking the gap between human review workflows and autonomous copilots.
 - Markdown links stay relative (slug dialect configurable) so Live Docs double as wiki-friendly artefacts consumers can publish directly.
-- The Live Documentation corpus remains MIT-licensed, open, and portable so other teams can adopt the tooling without vendor lock-in.
+- Tooling, instructions, and licensing remain MIT-friendly so adopters can regenerate Layer‑4 docs locally and opt into System analytics when needed.
 
 ## Downstream Requirements
 
 ### REQ-101 – Live Documentation Baseline
-[Product roadmap – REQ-L1](../layer-2/product-roadmap.mdmd.md#req-l1-live-documentation-baseline) aligns authored templates, mirror directories, and consent workflows to CAP-001.
+[Product roadmap – Layer 2 baseline](../layer-2/product-roadmap.mdmd.md) aligns authored templates, mirror directories, and consent workflows to CAP-001.
 
 ### REQ-201 – Generated Intelligence
-[Product roadmap – REQ-L2](../layer-2/product-roadmap.mdmd.md#req-l2-generated-intelligence) and [spec Functional Requirements](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) cover symbol/docstring extraction, heuristics, and asset stubs for CAP-002.
+[Product roadmap – analysis & evidence](../layer-2/product-roadmap.mdmd.md) and [spec Functional Requirements](../../specs/001-link-aware-diagnostics/spec.md#functional-requirements) cover symbol/docstring extraction, heuristics, and asset stubs for CAP-002.
 
 ### REQ-301 – Consumption & Enforcement
-[Product roadmap – REQ-L3](../layer-2/product-roadmap.mdmd.md#req-l3-consumption--enforcement) and [spec tasks](../../specs/001-link-aware-diagnostics/tasks.md) drive diagnostics, CLI, and lint integrations supporting CAP-003.
+[Product roadmap – system intelligence surfaces](../layer-2/product-roadmap.mdmd.md) and [spec tasks](../../specs/001-link-aware-diagnostics/tasks.md) drive diagnostics, CLI, and lint integrations supporting CAP-003.
 
 ### REQ-401 – Ecosystem Enablement
-[Product roadmap – REQ-E1](../layer-2/product-roadmap.mdmd.md#req-e1-enablers) keeps competitive research, MIT licensing, and future feed integrations in view for CAP-004.
+[Product roadmap – governance & ecosystem](../layer-2/product-roadmap.mdmd.md) keeps competitive research, MIT licensing, and future feed integrations in view for CAP-004.
+
+### REQ-501 – Layer Distribution Surfaces
+[Product roadmap – layer distribution surfaces](../layer-2/product-roadmap.mdmd.md) captures the GitHub Pages scaffold, Spec-Kit integration, and on-demand System CLI expectations backing CAP-005.
 
 ## Success Signals
 - ≥95% of modified source files have Live Docs regenerated within the same verify run, and all generated sections hash-match local analyser output (SC-LD-001).
 - No Live Doc ships without observed evidence or an approved waiver, cutting undocumented implementations by 80% during pilot audits (SC-LD-002).
-- Copilot and CLI queries return Live Doc links for impact analysis within 2 seconds for repositories under 10k files (SC-LD-003).
-- External adopters can enable the Live Documentation extension, regenerate docs, and pass safe-commit checks on day one thanks to MIT licensing and deterministic pipelines (SC-LD-004).
+- On-demand System exports flag architectural hotspots (coverage gaps, cluster outliers) in ≤2 s for repositories under 10k files without writing permanent files (SC-LD-003).
+- External adopters can enable the Live Documentation extension, regenerate Layer‑4 docs, and run System analytics locally thanks to MIT licensing and deterministic pipelines (SC-LD-004).
 
 ## Evidence
 - US1–US5 integration suites validate ripple diagnostics for code, documentation, acknowledgement, scope collision, and transforms ([tests/integration](/tests/integration)).
@@ -59,13 +68,13 @@ Keep stakeholder directives, MIT licensing posture, and competitive research (Wi
 - **Leads and Reviewers**: reviewers pull Live Docs and CLI summaries to gauge blast radius and evidence before approving changes.
 
 ## Guiding Principles
-1. **Markdown as AST** – treat markdown links, headings, and sections as the canonical graph; code analyzers exist to refresh markdown, not replace it.
-2. **Workspace Local First** – run entirely on developer machines, keeping data private and reproducible; remote feeds are optional accelerators.
+1. **Markdown as AST** – treat Layer‑4 markdown links, headings, and sections as the canonical graph; analyzers refresh markdown, not bespoke caches.
+2. **Workspace Local First** – run entirely on developer machines, keeping data private and reproducible; remote feeds remain optional accelerators.
 3. **Generated Blocks are Sacred** – tooling owns generated sections; humans curate authored notes and waivers with discipline.
 4. **Evidence or Escalation** – every implementation must link to proof, or record a waiver explaining the gap.
 5. **Shareable by Default** – Live Docs, CLI exports, and MIT licensing keep artefacts portable across GitHub, Azure DevOps, and other wiki surfaces.
-7. **Layered Growth** – higher-layer Live Docs (releases, work items, architecture) inherit the same authored/generated contract so the roadmap, requirements, and architecture can be rebuilt from the base corpus.
-6. **Continuous Falsifiability** – benchmarks, integration suites, and SlopCop rules back every guarantee with repeatable tests.
+6. **System Views are Materialized** – architecture/topology views are regenerated when needed and never treated as permanent docs, freeing analytics to evolve without churn.
+7. **Continuous Falsifiability** – benchmarks, integration suites, and SlopCop rules back every guarantee with repeatable tests.
 
 ## Scope and Non Goals
 - **In scope**: Live Documentation VS Code extension, language server pipelines, markdown graph builder, docstring bridges, diagnostics and CLI exports, MIT license preparation.
@@ -75,6 +84,7 @@ Keep stakeholder directives, MIT licensing posture, and competitive research (Wi
 - **Live Doc Baseline (present)**: converge MDMD Layer‑4 docs onto authored/generated structure and stage generator output in `/.live-documentation/`.
 - **Docstring & Evidence Bridges (near term)**: wire analyzers and coverage tools so generated sections stay accurate across languages and test suites.
 - **Consumption Surfaces (near term)**: deliver CLI, diagnostics, and LLM exports backed by the Live Doc graph.
+- **Layer Distribution (mid term)**: stand up the public site pipeline, formalise Spec-Kit/issue tracker delegation for Layer 2, and ship the on-demand System CLI so no architecture docs linger in the repo.
 - **Metadata Enrichers (mid term)**: add churn metrics, reference counts, and change history as optional generated sections; experiment with higher-layer docs (releases, work items, architecture) generated from Layer‑4 facts.
 - **Ecosystem Expansion (long term)**: share MIT-licensed tooling, integrate alternative knowledge feeds, and explore IDE-agnostic adapters.
 
@@ -83,10 +93,12 @@ Keep stakeholder directives, MIT licensing posture, and competitive research (Wi
 - **Stage 1 – Guard**: enable lint warnings for missing evidence or stale generated sections; provide regeneration commands in safe-commit.
 - **Stage 2 – Bridge**: enforce docstring and coverage sync, introduce CLI/LLM exports, and activate diagnostics sourced from Live Docs.
 - **Stage 3 – Sustain**: require green Live Doc gates before merge; external adopters configure storage and regen workflows mirroring ours.
+- **Stage 4 – Distribute**: publish Layer 1 to the public site, keep Layer 2 synced with Spec-Kit/issue trackers, and rely on CLI materialized views for System intelligence.
 
 ## Open Questions
 - What UX affordances best expose ripple metadata without overwhelming users? (Tracked in T042 roadmap.)
 - How should we prioritise future feed integrations such as LSIF, SCIP, or GitLab knowledge graphs under the offline-first stance?
+- What rollout messaging best guides adopters through the public-site pipeline and Layer 2 integration handoff?
 - When Copilot suggests a change, how do we feed Live Doc awareness back into the suggestion pipeline without impacting latency?
 - What is the minimal metadata set required for binary assets so generated sections stay useful without bloating the repo?
 

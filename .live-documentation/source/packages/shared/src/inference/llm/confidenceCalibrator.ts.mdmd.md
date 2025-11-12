@@ -14,6 +14,9 @@ Convert raw LLM relationship candidates into `CalibratedRelationship` records wi
 ### Notes
 Maps optional string labels to canonical tiers first, then falls back to numeric confidences constrained by configurable thresholds (defaulting to 0.8/0.5). Corroborated or previously stored link keys promote medium-strength relationships to diagnostics eligibility, while existing high-confidence links can shadow weaker duplicates unless `promoteShadowed` is requested. Each calibrated item keeps the raw label, flags whether more evidence is required, and records simple promotion criteria for debugging dashboards.
 
+#### LlmConfidenceTier
+Alias exported via `packages/shared/src/index.ts` for downstream convenience; resolves to [`ConfidenceTier`](#confidencetier).
+
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.291Z","inputHash":"a628b395953e8970"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->

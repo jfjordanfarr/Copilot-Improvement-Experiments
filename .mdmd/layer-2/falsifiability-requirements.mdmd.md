@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 2
-- Requirement IDs: REQ-F1, REQ-F2, REQ-F3, REQ-F4, REQ-F5, REQ-F6
+- Requirement IDs: REQ-F1, REQ-F2, REQ-F3, REQ-F4, REQ-F5, REQ-F6, REQ-F7, REQ-F8
 
 ## Requirements
 
@@ -31,11 +31,12 @@ Guarantee CAP-002 and CAP-003: every implementation Live Doc references tests, b
 - Integration tests confirm evidence mapping for unit, integration, and benchmark flows.
 
 ### REQ-F4 Live Doc Diagnostics and Exports
-Guarantee CAP-003: diagnostics, tree views, CLI exports, and narratives source their data from the Live Doc graph.
+Guarantee CAP-003: diagnostics, tree views, CLI exports, and narratives source their data from the Live Doc graph while treating System analytics as on-demand materialized views.
 
 #### REQ-F4 Criteria
 - Diagnostics providers emit Live Doc links and metadata (generated timestamp, evidence count) in messages.
 - CLI exports rebuild narratives exclusively from Live Docs without reaching into bespoke caches.
+- System analytics commands stream results to stdout or temporary folders unless a caller explicitly opts into persistence.
 - Regression tests compare CLI/diagnostic output before and after regeneration to ensure parity.
 
 ### REQ-F5 Markdown & Asset Integrity Gate
@@ -49,6 +50,22 @@ Guarantee CAP-001 and CAP-004: SlopCop audits remain the first defense, ensuring
 
 ### REQ-F6 Docstring Bridge Drift Detection
 Guarantee CAP-002 and CAP-003: docstring bridges remain truthful by reconciling inline documentation with Live Doc generated summaries.
+
+### REQ-F7 System View Ephemerality
+Guarantee CAP-003: System-level analytics (clusters, workflows, coverage rollups) remain ephemeral outputs derived from Layer‑4 Live Docs and never accumulate as stale tracked artefacts.
+
+#### REQ-F7 Criteria
+- System view generators accept explicit output targets; the default mode writes to stdout or temporary directories managed by the CLI.
+- Lint and safe-commit fail when `.live-documentation/system/` contains files the generator did not mark as persisted artifacts.
+- Integration fixtures simulate “messy” workspaces and assert that System analytics highlight architectural debt without requiring repo commits.
+
+### REQ-F8 Layer Distribution Hygiene
+Guarantee CAP-005: Layer 1 capabilities, Layer 2 requirements, and System materialized views stay aligned with their target surfaces (static site, Spec-Kit/issue trackers, CLI outputs) without manual drift.
+
+#### REQ-F8 Criteria
+- Static site builds sourced from `.mdmd/layer-1` succeed with zero broken links; failures block safe-commit.
+- Layer 2 requirements document Spec-Kit/task IDs in `### Integration`, and automated snapshots flag mismatches between markdown checkboxes and external state.
+- System analytics CLI leaves `.live-documentation/system/` empty unless a persistence flag is passed, and lint catches stray materialized files lacking the `live-docs:materialized` marker.
 
 #### REQ-F6 Criteria
 - Docstring bridge CLI compares inline docstrings against generated `Public Symbols` entries and raises drift diagnostics within a single regen cycle.
@@ -69,9 +86,9 @@ Guarantee CAP-002 and CAP-003: docstring bridges remain truthful by reconciling 
 - Integration suites (`tests/integration/live-docs/evidenceMapping.test.ts`) validate Observed Evidence and Target sections across sample workspaces.
 - Coverage reports consumed by the generator (`coverage/extension/`) feed snapshot tests ensuring evidence attribution stays correct.
 
-### REQ-F4 Verification
 - Diagnostics integration suites (US1–US5) assert that messages include Live Doc links and metadata.
 - CLI snapshot tests (`scripts/live-docs/inspect.test.ts`) confirm narrative output matches Live Doc content.
+- System analytics smoke tests assert that temporary outputs are removed after command completion unless persistence is requested.
 
 ### REQ-F5 Verification
 - Safe-commit transcripts show markdown/asset/symbol lint failures blocking merges when Live Docs drift.
@@ -81,6 +98,16 @@ Guarantee CAP-002 and CAP-003: docstring bridges remain truthful by reconciling 
 - Docstring drift integration suites (`tests/integration/live-docs/docstringBridge.test.ts`) fail when Live Docs and inline comments diverge.
 - Unit tests for bridge adapters (TypeScript, Python, C#) assert mismatch detection thresholds and waiver handling.
 - Safe-commit run with `npm run live-docs:verify-docstrings` reports zero unchecked drifts before completion.
+
+### REQ-F7 Verification
+- CLI regression tests assert that running `npm run live-docs:system -- --output stdout` leaves the workspace clean and pipes analytics to the console.
+- Safe-commit detects unexpected files under `.live-documentation/system/` and blocks merges until they are removed or explicitly whitelisted.
+- Integration fixtures compare successive analytics runs to ensure outputs change only when underlying Layer‑4 docs change.
+
+### REQ-F8 Verification
+- Static site preview builds sourced from `.mdmd/layer-1` (local `npm run live-docs:site -- --check-links` and the GitHub Pages CI job) fail on broken links or missing required sections, preventing safe-commit completion until the issues are fixed.
+- Spec-Kit sync tests compare `.mdmd/layer-2` `### Integration` checkboxes against `specs/` and task tracker snapshots, flagging mismatches inside the falsifiability suite.
+- System analytics lint (`npm run live-docs:system -- --check-materialized`) ensures `.live-documentation/system/` stays empty unless a persistence flag is passed, and safe-commit treats stray artefacts without the `live-docs:materialized` marker as failures.
 
 ## Linked Components
 

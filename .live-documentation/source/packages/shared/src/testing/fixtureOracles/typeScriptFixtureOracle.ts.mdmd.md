@@ -16,6 +16,18 @@ Builds the TypeScript fixture dependency graph by parsing source files with the 
 - Leverages `typeScriptAstUtils` to capture identifier usage, detect type-only specifiers, coerce declaration resolutions to `type-import` provenance, and normalises POSIX paths for deterministic edges.
 - Module resolution wraps `typescript` host callbacks so only files inside the fixture root become targets, after which standard partition/merge routines deduplicate edges and expose unmatched overrides.
 
+#### TypeScriptEdgeRecord
+Legacy alias retained for CLI compatibility; see [`OracleEdgeRecord`](#oracleedgerecord).
+
+#### TypeScriptOverrideConfig
+Legacy alias resolving to [`OracleOverrideConfig`](#oracleoverrideconfig) to minimise downstream churn.
+
+#### mergeTypeScriptOracleEdges
+Alias preserved for [`mergeOracleEdges`](#mergeoracleedges) to support prior import paths.
+
+#### serializeTypeScriptOracleEdges
+Alias preserved for [`serializeOracleEdges`](#serializeoracleedges) so benchmark tooling retains stable references.
+
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.082Z","inputHash":"69bc8cb54d35ca13"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->

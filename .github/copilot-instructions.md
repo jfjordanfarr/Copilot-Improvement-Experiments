@@ -1,6 +1,6 @@
 ﻿# Copilot Instructions
 
-Last updated: 2025-11-03
+Last updated: 2025-11-12
 
 ## What We Are Building
 
@@ -35,10 +35,13 @@ On the way to full adoption we continue to land incremental wins that boost obse
 
 ## Commands
 - `npm run safe:commit`: comprehensive chained linting, unit testing, integration testing, and project-derived tooling validations to ensure the workspace is structurally sound before commits land. Pass `--benchmarks` to append the `npm run test:benchmarks` suite (defaults to skipping benchmarks for faster iteration). The Live Docs lint + regeneration checks will plug into this pipeline.
-- `npm run live-docs:generate`: regenerates Live Documentation into the staged mirror (`/.live-documentation/<baseLayer>/`), preserving authored sections and updating generated metadata. Support `--dry-run` and `--changed` modes when available.
+- `npm run live-docs:generate`: regenerates Live Documentation into the staged mirror (`/.live-documentation/<baseLayer>/`), preserving authored sections and updating generated metadata. Supports `--dry-run`, `--changed`, and System-layer materialisation via `--system`, `--system-output`, and `--system-clean`.
+- `npm run live-docs:system`: materialises System views on demand (default output `AI-Agent-Workspace/tmp/system-cli-output`); accepts `--output`, `--clean`, `--dry-run`, and `--config`.
 - `npm run live-docs:inspect -- <path>`: emits markdown/JSON summaries for a given artifact; mirrors the Copilot prompt helper behaviour.
 - `npm run live-docs:lint`: validates structural markers, relative-link hygiene, slug dialect compliance, and evidence placeholders inside staged Live Docs.
 - `npm run live-docs:migrate -- --dry-run`: (planned) compares staged Live Docs to `.mdmd/layer-4/` and prepares promotion.
+
+Full CLI catalogue (including graph, fixtures, and lint tooling) lives in `docs/tooling/cli-command-catalog.md`; keep that document updated whenever new npm scripts land.
 
 ## Maintainer Tooling
 - Live Doc graph snapshot: `npm run graph:snapshot` still rebuilds the SQLite cache and JSON fixture, but now Live Docs feed the graph via markdown links.

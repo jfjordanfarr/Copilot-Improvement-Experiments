@@ -15,6 +15,9 @@ Coordinates registration, scheduling, and monitoring of knowledge feeds, orchest
 - Maintains feed registry metadata (source URIs, schedule info) and hands off to orchestrators for parsing and storage.
 - Records run outcomes and emits telemetry via the diagnostics gateway so operators can track feed health.
 
+#### FeedDisposable
+Alias consumed by `KnowledgeGraphBridgeService` for readability; maps directly to the exported [`Disposable`](#disposable) interface.
+
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.581Z","inputHash":"53f8f254b73fcde9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->

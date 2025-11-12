@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-index-ts
-- Generated At: 2025-11-09T22:52:11.809Z
+- Generated At: 2025-11-12T00:39:23.981Z
 
 ## Authored
 ### Purpose
@@ -15,8 +15,26 @@ Aggregates the shared package surface so extension, server, and scripts can cons
 - Re-exports core graph/domain primitives, Live Documentation config, inference layers, telemetry trackers, and rule engines to avoid deep relative imports across packages.
 - Hoists selective named exports (e.g., relationship extractor types, confidence calibration helpers) alongside module-level re-exports to provide tree-shakable access for callers.
 
+#### LlmConfidenceTier
+Alias for [`ConfidenceTier`](./inference/llm/confidenceCalibrator.ts.mdmd.md#confidencetier), exposed so consumers can import LLM calibration tiers from the package root.
+
+#### OllamaChatUsage
+Re-export of [`OllamaChatUsage`](./tooling/ollamaClient.ts.mdmd.md#ollamachatusage) used by CLI and diagnostics telemetry when summarising token counts.
+
+#### OllamaInvocationError
+Funnels callers to [`OllamaInvocationError`](./tooling/ollamaClient.ts.mdmd.md#ollamainvocationerror) without requiring deep tooling paths.
+
+#### invokeOllamaChat
+Surface-level entry point for [`invokeOllamaChat`](./tooling/ollamaClient.ts.mdmd.md#invokeollamachat), enabling downstream scripts to import from `@copilot-improvement/shared` directly.
+
+#### createMockOllamaResponse
+Re-export of [`createMockOllamaResponse`](./tooling/ollamaMock.ts.mdmd.md#createmockollamaresponse) for deterministic demos when Ollama access is unavailable.
+
+#### resolveOllamaEndpoint
+Convenience alias for [`resolveOllamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#resolveollamaendpoint) so extension and server code reference a single package entry.
+
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.809Z","inputHash":"52e01b65cef597cf"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T00:39:23.981Z","inputHash":"9f7d2ead65fffa92"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -55,8 +73,10 @@ _No public symbols detected_
 - [`relationshipExtractor.RelationshipExtractorLogger`](./inference/llm/relationshipExtractor.ts.mdmd.md#relationshipextractorlogger) (re-export)
 - [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md) (re-export)
 - [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md) (re-export)
+- [`coActivation`](./live-docs/analysis/coActivation.ts.mdmd.md) (re-export)
 - [`markdown`](./live-docs/markdown.ts.mdmd.md) (re-export)
 - [`schema`](./live-docs/schema.ts.mdmd.md) (re-export)
+- [`types`](./live-docs/types.ts.mdmd.md) (re-export)
 - [`testReport`](./reporting/testReport.ts.mdmd.md) (re-export)
 - [`relationshipResolvers`](./rules/relationshipResolvers.ts.mdmd.md) (re-export)
 - [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md) (re-export)
