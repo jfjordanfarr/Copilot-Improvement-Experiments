@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/feedFormatDetector.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-feedformatdetector-ts
-- Generated At: 2025-11-10T22:24:00.238Z
+- Generated At: 2025-11-13T13:25:19.672Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Infers the format of incoming knowledge feeds (LSIF, SCIP, markdown, etc.) so do
 - Falls back to configured defaults when detection fails, allowing operators to override heuristics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.238Z","inputHash":"a6c9c89cf2a745fa"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.672Z","inputHash":"26f6981760acc1c8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `FeedFormat`
@@ -30,7 +30,9 @@ Infers the format of incoming knowledge feeds (LSIF, SCIP, markdown, etc.) so do
 #### `detectFormat`
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/feedFormatDetector.ts#L18)
-- Summary: Detect the format of a knowledge feed file by inspecting its content structure
+
+##### `detectFormat` — Summary
+Detect the format of a knowledge feed file by inspecting its content structure
 
 #### `ParseFeedFileOptions`
 - Type: interface
@@ -39,7 +41,9 @@ Infers the format of incoming knowledge feeds (LSIF, SCIP, markdown, etc.) so do
 #### `parseFeedFile`
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/feedFormatDetector.ts#L124)
-- Summary: Parse a knowledge feed file into ExternalSnapshot format,
+
+##### `parseFeedFile` — Summary
+Parse a knowledge feed file into ExternalSnapshot format,
 automatically detecting LSIF, SCIP, or native ExternalSnapshot formats
 <!-- LIVE-DOC:END Public Symbols -->
 

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/lsif.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-lsif-ts
-- Generated At: 2025-11-10T22:24:00.599Z
+- Generated At: 2025-11-13T13:25:19.827Z
 
 ## Authored
 ### Purpose
@@ -16,13 +16,15 @@ Provides a type-safe mirror of the LSIF vertex and edge schema so both the serve
 - `ParsedLSIFIndex` models the staged maps the parsers build, enabling callers to thread strongly typed ranges/documents through analyzers instead of working with raw JSON.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.599Z","inputHash":"e9d3e745bc0d8862"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.827Z","inputHash":"392f1eb5e96f696e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LSIFVertexLabel`
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L9)
-- Summary: TypeScript interfaces for LSIF (Language Server Index Format) data structures.
+
+##### `LSIFVertexLabel` — Summary
+TypeScript interfaces for LSIF (Language Server Index Format) data structures.
 LSIF is a graph-based index format for code intelligence that captures symbols,
 definitions, references, and their relationships.
 
@@ -95,7 +97,9 @@ Spec: https://microsoft.github.io/language-server-protocol/specifications/lsif/0
 #### `LSIFEntry`
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L128)
-- Summary: LSIF dump is a newline-delimited JSON stream where each line is a vertex or edge
+
+##### `LSIFEntry` — Summary
+LSIF dump is a newline-delimited JSON stream where each line is a vertex or edge
 
 #### `ParsedLSIFIndex`
 - Type: interface

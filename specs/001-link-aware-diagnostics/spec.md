@@ -42,9 +42,10 @@ Developers run regeneration or save a file; the Live Doc generator updates `Publ
 
 **Acceptance Scenarios**:
 
-1. **Given** a TypeScript module with new exports, **When** regeneration runs, **Then** the Live Doc lists the new symbol with docstring summary and source anchor.
+1. **Given** a TypeScript module with new exports, **When** regeneration runs, **Then** the Live Doc lists the new symbol with structured docstring fields (summary, remarks, parameters) rendered under deterministic `##### `Symbol` — Field` subheadings alongside the source anchor.
 2. **Given** an HTML template referencing an image, **When** regeneration runs, **Then** the asset Live Doc lists the template under `Consumers`.
 3. **Given** a test covering multiple implementations, **When** regeneration runs, **Then** the test Live Doc lists all targets; removing a target triggers a diff and lint warning.
+4. **Given** a C# member documented with `<summary>`, `<remarks>`, `<param>`, `<returns>`, and `<exception>` tags, **When** regeneration runs, **Then** the Live Doc emits one anchored subsection per tag with normalized text, `_Not documented_` placeholders for missing tags, and a provenance note for any unmapped XML.
 
 ---
 
@@ -129,6 +130,7 @@ Stakeholders expect Layer 1 vision pages to publish externally without manual 
 - Safe-commit must continue to run offline; Live Doc regeneration cannot require cloud calls for deterministic builds.
 - System analytics should never leave behind tracked files by default; generators must clean up temporary exports even when commands error.
 - Static site publishing and Spec-Kit syncing remain optional per workspace but default on for project-owned repos so stakeholders have a consistent entry point.
+- Docstring bridges must degrade gracefully when encountering unsupported tags (`<typeparam>`, `<include>`, custom extensions); provenance should capture raw XML and the Live Doc should display `_Not documented_` placeholders instead of silently dropping content.
 
 ### Live Doc Generation Lifecycle
 
@@ -150,7 +152,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **FR-LD3**: Regeneration MUST record provenance metadata (analyzer id, timestamp, benchmark hash) within generated blocks for auditability.
 - **FR-LD4**: Safe-commit pipeline MUST lint Live Docs for structural completeness, analyzer parity, and evidence presence, failing merges when violations occur unless explicit waivers are present.
 - **FR-LD5**: Diagnostics, CLI, and Copilot surfaces MUST consume Live Docs as their single source of truth, embedding links back to the originating documents.
-- **FR-LD6**: Docstring bridges MUST reconcile inline documentation with Live Doc summaries, raising drift diagnostics when mismatches persist beyond one regeneration cycle.
+- **FR-LD6**: Docstring bridges MUST reconcile inline documentation with Live Doc summaries, map multi-tag payloads into a canonical schema (`summary`, `remarks`, `parameters`, `typeParameters`, `returns`, `exceptions`, `examples`, `links`), render deterministic `##### `Symbol` — Field` subheadings with `_Not documented_` placeholders when data is missing, retain provenance for unmapped fragments, and raise drift diagnostics when mismatches persist beyond one regeneration cycle.
 - **FR-LD7**: Migration tooling MUST compare existing Layer‑4 MDMD docs to generated Live Docs, producing diff reports and updating references (Layer‑3/Layer‑1) once parity is confirmed.
 - **FR-LD8**: External feeds (LSIF, SCIP, GitLab Knowledge Graph) and optional LLM augmentations MUST tag generated sections with confidence tiers; low-confidence edges require manual promotion before appearing in diagnostics.
 - **FR-LD9**: Telemetry MUST report regeneration latency, evidence coverage rates, and waiver counts to evaluate adoption.
@@ -191,6 +193,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **SC-LD7**: Relative-link lint reports zero violations after regeneration, and exported Live Docs render without broken anchors when served from a static wiki path.
 - **SC-LD8**: System analytics commands leave no tracked artefacts by default and finish within ≤2 s for repositories under 10k files when streaming to stdout.
 - **SC-LD9**: Static site builds publish Layer 1 capabilities without broken links, Layer 2 requirements stay in sync with Spec-Kit/issue trackers, and the System CLI surfaces architectural debt while keeping the tracked tree clean between runs.
+- **SC-LD10**: Structured docstring bridges populate canonical subsections for ≥95% of documented public symbols in supported languages; unmapped tags surface in telemetry within one regeneration cycle.
 
 
 ## Clarifications
@@ -205,7 +208,8 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 
 - **WI-LD101** – Finish Live Doc generator CLI (diff views, dry run mode) and document adoption playbook.
 - **WI-LD102** – Implement coverage ingestion pipeline to populate `Observed Evidence` and ensure lint parity.
-- **WI-LD201** – Deliver docstring bridge adapters for TypeScript, Python, and C#, plus integration tests.
+- **WI-LD201** – Deliver docstring bridge adapters for TypeScript, Python, and C#, plus integration tests that validate canonical schema mapping and drift diagnostics across multi-tag docstrings.
+- **WI-LD202** – Extend Live Doc generation to repository-hosted polyglot fixtures (Python, C#, Java, Ruby, Rust, C), snapshotting regeneration output and wiring per-language benchmarks into safe-commit before piloting external repositories.
 - **WI-LD301** – Pivot diagnostics/CLI/export commands to consume Live Docs exclusively and retire legacy graph consumers.
 - **WI-LD401** – Package sample workspace and MIT-licensed release notes for public adoption.
 - **WI-LD501** – Build System analytics CLI (clusters, workflows, coverage) that defaults to streaming output and includes cleanup guarantees.

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/hysteresisController.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-hysteresiscontroller-ts
-- Generated At: 2025-11-10T22:24:00.155Z
+- Generated At: 2025-11-13T13:25:19.642Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Tracks short-lived suppression windows between trigger/target artifact pairs so 
 - Exposes `reset` and `getActiveCount` for integration tests and observability hooks without leaking internal map structure.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.155Z","inputHash":"b19f1161635d333f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.642Z","inputHash":"6124ffae3d61535d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `HysteresisControllerOptions`
@@ -27,7 +27,9 @@ Tracks short-lived suppression windows between trigger/target artifact pairs so 
 #### `HysteresisController`
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/hysteresisController.ts#L26)
-- Summary: Maintains short-lived suppression windows that prevent reciprocal diagnostics from ricocheting
+
+##### `HysteresisController` — Summary
+Maintains short-lived suppression windows that prevent reciprocal diagnostics from ricocheting
 between linked artifacts while an earlier alert is still active. The controller is intentionally
 lightweight and in-memory; acknowledgement workflows will clear entries explicitly once they
 land, and periodic pruning keeps the working set bounded.

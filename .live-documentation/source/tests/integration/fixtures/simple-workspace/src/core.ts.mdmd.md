@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/simple-workspace/src/core.ts
 - Live Doc ID: LD-asset-tests-integration-fixtures-simple-workspace-src-core-ts
-- Generated At: 2025-11-09T22:52:14.130Z
+- Generated At: 2025-11-13T13:25:20.080Z
 
 ## Authored
 ### Purpose
@@ -15,13 +15,18 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:14.130Z","inputHash":"69802d1a36596021"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:20.080Z","inputHash":"bc0a7fb7393f4f67"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `Request`
 - Type: interface
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/core.ts#L8)
-- Summary: Core business logic module
+
+##### `Request` — Summary
+Core business logic module
+
+##### `Request` — Links
+- `docs/architecture.md`
 
 #### `Response`
 - Type: interface

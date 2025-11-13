@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/scip.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-scip-ts
-- Generated At: 2025-11-10T22:24:00.608Z
+- Generated At: 2025-11-13T13:25:19.832Z
 
 ## Authored
 ### Purpose
@@ -16,13 +16,15 @@ Captures the TypeScript shape of SCIP indexes so our parsers and analyzers can r
 - `ParsedSCIPIndex` reflects the cached maps we populate after parsing, enabling efficient lookups of symbols and occurrences when reconciling diagnostics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.608Z","inputHash":"ea76ffe7c446890d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.832Z","inputHash":"b98d9967b7561238"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SCIPIndex`
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L8)
-- Summary: TypeScript interfaces for SCIP (SCIP Code Intelligence Protocol) data structures.
+
+##### `SCIPIndex` — Summary
+TypeScript interfaces for SCIP (SCIP Code Intelligence Protocol) data structures.
 SCIP is a language-agnostic protocol for indexing code and representing code intelligence data.
 
 Spec: https://github.com/sourcegraph/scip
@@ -62,12 +64,16 @@ Spec: https://github.com/sourcegraph/scip
 #### `SCIPSymbolRole`
 - Type: enum
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L76)
-- Summary: SCIP symbol roles (bitflags)
+
+##### `SCIPSymbolRole` — Summary
+SCIP symbol roles (bitflags)
 
 #### `SCIPSymbolKind`
 - Type: enum
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L90)
-- Summary: SCIP symbol kinds
+
+##### `SCIPSymbolKind` — Summary
+SCIP symbol kinds
 
 #### `ParsedSCIPIndex`
 - Type: interface

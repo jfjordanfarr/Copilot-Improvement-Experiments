@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/uri/normalizeFileUri.ts
 - Live Doc ID: LD-implementation-packages-shared-src-uri-normalizefileuri-ts
-- Generated At: 2025-11-10T22:24:01.007Z
+- Generated At: 2025-11-13T13:25:19.995Z
 
 ## Authored
 ### Purpose
@@ -17,13 +17,15 @@ Canonicalize `file://` URIs so cross-platform components compare and cache works
 - Catches decoding errors and leaves the original string in place, protecting telemetry and diagnostics flows from throwing when they encounter malformed URIs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:01.007Z","inputHash":"6eb22c46bdb087b0"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.995Z","inputHash":"14c28337ed504236"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `normalizeFileUri`
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/uri/normalizeFileUri.ts#L8)
-- Summary: Normalise a file URI so equivalent paths resolve to a consistent canonical representation.
+
+##### `normalizeFileUri` — Summary
+Normalise a file URI so equivalent paths resolve to a consistent canonical representation.
 Ensures Windows drive letters and percent-encoded segments are handled uniformly.
 <!-- LIVE-DOC:END Public Symbols -->
 

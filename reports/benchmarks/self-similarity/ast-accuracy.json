@@ -1,7 +1,7 @@
 {
   "benchmark": "ast-accuracy",
   "mode": "self-similarity",
-  "recordedAt": "2025-11-12T17:58:44.655Z",
+  "recordedAt": "2025-11-13T21:14:44.042Z",
   "environment": {
     "nodeVersion": "v22.14.0",
     "platform": "win32",

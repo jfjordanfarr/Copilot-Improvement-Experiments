@@ -21,7 +21,9 @@ Supports FR-LD5, FR-LD7, and SC-LD4 by ingesting generated markdown links into t
 
 ### Analyzer & Enricher Coordination (COMP-201)
 - Invoke language-specific analyzers (TypeScript, Python, Rust, C#, etc.) to resolve exported symbols and first-order dependencies per artifact.
+- Normalise docstring payloads across analyzer outputs into a canonical schema (`summary`, `remarks`, `parameters`, `returns`, `exceptions`, `examples`) before writing markdown so Live Docs surface consistent headings regardless of source language.
 - Merge coverage bridges and docstring adapters to populate `Observed Evidence`, `Targets`, and drift metadata when available.
+- Render docstring fields as deterministic `##### `Symbol` — Field` subsections, emit `_Not documented_` placeholders for empty entries, and persist raw fragments plus provenance for tags we do not yet model so adopters retain lossless payloads.
 - Collect provenance (`generator tool`, `version`, `benchmark hash`, `input hash`) and persist it inside Live Doc metadata for audit trails.
 
 ### Graph Projection & Indexing (COMP-202)

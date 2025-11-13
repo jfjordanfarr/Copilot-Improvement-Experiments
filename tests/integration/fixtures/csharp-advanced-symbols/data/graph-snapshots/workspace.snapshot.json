@@ -3,7 +3,7 @@
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments\\tests\\integration\\fixtures\\csharp-advanced-symbols",
   "totals": {
     "artifacts": 12,
-    "links": 29
+    "links": 30
   },
   "artifacts": [
     {
@@ -84,6 +84,15 @@
       "id": "orchestrated-link-92b9a659",
       "sourceId": "orchestrated-artifact-0f8fd198",
       "targetId": "orchestrated-artifact-77fe64c4",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
+    },
+    {
+      "id": "orchestrated-link-5328502d",
+      "sourceId": "orchestrated-artifact-0f8fd198",
+      "targetId": "orchestrated-artifact-795678b8",
       "kind": "depends_on",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",

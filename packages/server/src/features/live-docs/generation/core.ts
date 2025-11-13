@@ -8,6 +8,8 @@ import type { LiveDocumentationConfig, LiveDocumentationArchetype } from "@copil
 import { slug as githubSlug } from "@copilot-improvement/shared/tooling/githubSlugger";
 import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
 
+import { analyzeWithLanguageAdapters } from "./adapters";
+
 export interface SourceAnalysisResult {
   symbols: PublicSymbolEntry[];
   dependencies: DependencyEntry[];
@@ -19,7 +21,7 @@ export interface PublicSymbolEntry {
   isDefault?: boolean;
   isTypeOnly?: boolean;
   location?: LocationInfo;
-  documentation?: string;
+  documentation?: SymbolDocumentation;
 }
 
 export interface DependencyEntry {
@@ -33,6 +35,57 @@ export interface DependencyEntry {
 export interface LocationInfo {
   line: number;
   character: number;
+}
+
+export type SymbolDocumentationField =
+  | "summary"
+  | "remarks"
+  | "parameters"
+  | "typeParameters"
+  | "returns"
+  | "value"
+  | "exceptions"
+  | "examples"
+  | "links"
+  | "rawFragments";
+
+export interface SymbolDocumentationParameter {
+  name: string;
+  description?: string;
+}
+
+export interface SymbolDocumentationException {
+  type?: string;
+  description?: string;
+}
+
+export interface SymbolDocumentationExample {
+  description?: string;
+  code?: string;
+  language?: string;
+}
+
+export type SymbolDocumentationLinkKind = "cref" | "href" | "unknown";
+
+export interface SymbolDocumentationLink {
+  kind: SymbolDocumentationLinkKind;
+  target: string;
+  text?: string;
+}
+
+export interface SymbolDocumentation {
+  source?: string;
+  summary?: string;
+  remarks?: string;
+  parameters?: SymbolDocumentationParameter[];
+  typeParameters?: SymbolDocumentationParameter[];
+  returns?: string;
+  value?: string;
+  exceptions?: SymbolDocumentationException[];
+  examples?: SymbolDocumentationExample[];
+  links?: SymbolDocumentationLink[];
+  rawFragments?: string[];
+  unsupportedTags?: string[];
 }
 
 export const SUPPORTED_SCRIPT_EXTENSIONS = new Set([
@@ -57,6 +110,11 @@ export const MODULE_RESOLUTION_EXTENSIONS = [
   ".cjs",
   ".json"
 ];
+
+const EMPTY_ANALYSIS_RESULT: SourceAnalysisResult = {
+  symbols: [],
+  dependencies: []
+};
 
 interface DiscoverOptions {
   workspaceRoot: string;
@@ -184,8 +242,18 @@ export async function analyzeSourceFile(
   workspaceRoot: string
 ): Promise<SourceAnalysisResult> {
   const extension = path.extname(absolutePath).toLowerCase();
+
+  const adapterResult = await analyzeWithLanguageAdapters({
+    absolutePath,
+    workspaceRoot
+  });
+
+  if (adapterResult) {
+    return adapterResult;
+  }
+
   if (!SUPPORTED_SCRIPT_EXTENSIONS.has(extension)) {
-    return { symbols: [], dependencies: [] };
+    return EMPTY_ANALYSIS_RESULT;
   }
 
   const content = await fs.readFile(absolutePath, "utf8");
@@ -262,7 +330,7 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
         name,
         kind: "function",
         isDefault: name === "default",
-        documentation: extractJsDocComment(statement),
+        documentation: extractJsDocDocumentation(statement),
         location: getNodeLocation(statement.name ?? statement, sourceFile)
       });
       continue;
@@ -275,7 +343,7 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
         name,
         kind: "class",
         isDefault: name === "default",
-        documentation: extractJsDocComment(statement),
+        documentation: extractJsDocDocumentation(statement),
         location: getNodeLocation(statement.name ?? statement, sourceFile)
       });
       continue;
@@ -285,7 +353,7 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
       record({
         name: statement.name.text,
         kind: "interface",
-        documentation: extractJsDocComment(statement),
+        documentation: extractJsDocDocumentation(statement),
         location: getNodeLocation(statement.name, sourceFile)
       });
       continue;
@@ -295,7 +363,7 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
       record({
         name: statement.name.text,
         kind: "type",
-        documentation: extractJsDocComment(statement),
+        documentation: extractJsDocDocumentation(statement),
         location: getNodeLocation(statement.name, sourceFile)
       });
       continue;
@@ -305,7 +373,7 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
       record({
         name: statement.name.text,
         kind: "enum",
-        documentation: extractJsDocComment(statement),
+        documentation: extractJsDocDocumentation(statement),
         location: getNodeLocation(statement.name, sourceFile)
       });
       continue;
@@ -315,7 +383,7 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
       record({
         name: statement.name.getText(sourceFile),
         kind: "namespace",
-        documentation: extractJsDocComment(statement),
+        documentation: extractJsDocDocumentation(statement),
         location: getNodeLocation(statement.name, sourceFile)
       });
       continue;
@@ -329,7 +397,7 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
           record({
             name,
             kind,
-            documentation: extractJsDocComment(statement),
+            documentation: extractJsDocDocumentation(statement),
             location: getNodeLocation(declaration.name, sourceFile)
           });
         }
@@ -527,6 +595,35 @@ async function fileExists(candidate: string): Promise<boolean> {
   }
 }
 
+/**
+ * Renders the markdown lines that populate the `Public Symbols` section for a Live Doc.
+ *
+ * @remarks
+ * The output includes symbol metadata (type, location, qualifiers) followed by
+ * deterministic `#####` subsections per documented field (summary, remarks,
+ * parameters, returns, etc.). This structure keeps docstring bridges stable and
+ * individually addressable across languages.
+ *
+ * @param args.analysis - Analyzer output describing exported symbols and dependencies.
+ * @param args.docDir - Absolute directory path of the Live Doc being written.
+ * @param args.sourceAbsolute - Absolute path to the source file backing this Live Doc.
+ * @param args.workspaceRoot - Workspace root, used to resolve relative links.
+ * @param args.sourceRelativePath - Workspace-relative source path (unused here but
+ * preserved for parity with other render helpers).
+ *
+ * @returns An array of markdown lines ready to insert beneath the `Public Symbols` heading.
+ *
+ * @example
+ * ```ts
+ * const lines = renderPublicSymbolLines({
+ *   analysis,
+ *   docDir,
+ *   sourceAbsolute,
+ *   workspaceRoot,
+ *   sourceRelativePath
+ * });
+ * ```
+ */
 export function renderPublicSymbolLines(args: {
   analysis: SourceAnalysisResult;
   docDir: string;
@@ -535,11 +632,12 @@ export function renderPublicSymbolLines(args: {
   sourceRelativePath: string;
 }): string[] {
   const lines: string[] = [];
+
   for (const symbol of args.analysis.symbols) {
-    const displayKind = symbol.kind ? symbol.kind : "symbol";
     lines.push(`#### \`${symbol.name}\``);
 
     const detailLines: string[] = [];
+    const displayKind = symbol.kind ? symbol.kind : "symbol";
 
     const typeSuffixParts: string[] = [];
     if (symbol.isDefault) {
@@ -560,22 +658,170 @@ export function renderPublicSymbolLines(args: {
       detailLines.push(`- Source: [source](${location})`);
     }
 
-    if (symbol.documentation?.trim()) {
-      detailLines.push(`- Summary: ${symbol.documentation.trim()}`);
-    }
-
     if (detailLines.length > 0) {
       lines.push(...detailLines);
+    }
+
+    const documentationLines = renderSymbolDocumentationSections(symbol);
+    if (documentationLines.length > 0) {
+      lines.push("", ...documentationLines);
     }
 
     lines.push("");
   }
 
-  if (lines.length > 0 && lines[lines.length - 1] === "") {
+  while (lines.length > 0 && lines[lines.length - 1] === "") {
     lines.pop();
   }
 
   return lines;
+}
+
+function renderSymbolDocumentationSections(symbol: PublicSymbolEntry): string[] {
+  const documentation = symbol.documentation;
+  if (!documentation) {
+    return [];
+  }
+
+  const sections: Array<{ title: string; body: string[] }> = [];
+  const pushSection = (title: string, body: string[] | undefined): void => {
+    if (!body || body.length === 0) {
+      return;
+    }
+    sections.push({ title, body });
+  };
+
+  pushSection("Summary", normalizeDocText(documentation.summary));
+  pushSection("Remarks", normalizeDocText(documentation.remarks));
+
+  if (documentation.parameters && documentation.parameters.length > 0) {
+    const parameterLines = documentation.parameters.map((param) => {
+      const description = param.description?.trim()
+        ? param.description.trim()
+        : "_Not documented_";
+      return `- \`${param.name}\`: ${description}`;
+    });
+    pushSection("Parameters", parameterLines);
+  }
+
+  if (documentation.typeParameters && documentation.typeParameters.length > 0) {
+    const typeParameterLines = documentation.typeParameters.map((param) => {
+      const description = param.description?.trim()
+        ? param.description.trim()
+        : "_Not documented_";
+      return `- \`${param.name}\`: ${description}`;
+    });
+    pushSection("Type Parameters", typeParameterLines);
+  }
+
+  pushSection("Returns", normalizeDocText(documentation.returns));
+  pushSection("Value", normalizeDocText(documentation.value));
+
+  if (documentation.exceptions && documentation.exceptions.length > 0) {
+    const exceptionLines = documentation.exceptions.map((exception) => {
+      const head = exception.type ? `\`${exception.type}\`` : "_Unknown_";
+      if (exception.description?.trim()) {
+        return `- ${head}: ${exception.description.trim()}`;
+      }
+      return `- ${head}`;
+    });
+    pushSection("Exceptions", exceptionLines);
+  }
+
+  if (documentation.examples && documentation.examples.length > 0) {
+    const exampleLines: string[] = [];
+    documentation.examples.forEach((example, index) => {
+      if (index > 0) {
+        exampleLines.push("");
+      }
+      const descriptionLines = normalizeDocText(example.description);
+      if (descriptionLines) {
+        exampleLines.push(...descriptionLines);
+      }
+      if (example.code) {
+          if (exampleLines.length > 0 && exampleLines[exampleLines.length - 1] !== "") {
+            exampleLines.push("");
+          }
+        const fence = example.language ? `\`\`\`${example.language}` : "```";
+        exampleLines.push(fence);
+        exampleLines.push(example.code);
+        exampleLines.push("```");
+      }
+    });
+    pushSection("Examples", exampleLines);
+  }
+
+  if (documentation.links && documentation.links.length > 0) {
+    const linkLines = documentation.links.map((link) => {
+      switch (link.kind) {
+        case "href": {
+          const label = link.text?.trim() || link.target;
+          return `- [${label}](${link.target})`;
+        }
+        case "cref": {
+          const suffix = link.text?.trim() ? ` — ${link.text.trim()}` : "";
+          return `- \`${link.target}\`${suffix}`;
+        }
+        default: {
+          const suffix = link.text?.trim() ? ` — ${link.text.trim()}` : "";
+          return `- ${link.target}${suffix}`;
+        }
+      }
+    });
+    pushSection("Links", linkLines);
+  }
+
+  if (documentation.rawFragments && documentation.rawFragments.length > 0) {
+    const rawLines = documentation.rawFragments.map((fragment) => `- ${fragment}`);
+    pushSection("Additional Documentation", rawLines);
+  }
+
+  if (documentation.unsupportedTags && documentation.unsupportedTags.length > 0) {
+    const unsupportedLines = documentation.unsupportedTags.map((tag) => `- \`${tag}\``);
+    pushSection("Unsupported Doc Tags", unsupportedLines);
+  }
+
+  if (sections.length === 0) {
+    return [];
+  }
+
+  const headingPrefix = `##### \`${symbol.name}\` — `;
+  const lines: string[] = [];
+
+  for (const section of sections) {
+    lines.push(`${headingPrefix}${section.title}`);
+    lines.push(...section.body);
+    lines.push("");
+  }
+
+  while (lines.length > 0 && lines[lines.length - 1] === "") {
+    lines.pop();
+  }
+
+  return lines;
+}
+
+function normalizeDocText(value?: string): string[] | undefined {
+  if (!value) {
+    return undefined;
+  }
+
+  const lines = value
+    .replace(/\r\n/g, "\n")
+    .split("\n")
+    .map((line) => line.replace(/\s+$/u, ""));
+
+  let start = 0;
+  while (start < lines.length && lines[start].trim() === "") {
+    start += 1;
+  }
+  let end = lines.length - 1;
+  while (end >= start && lines[end].trim() === "") {
+    end -= 1;
+  }
+
+  const normalized = lines.slice(start, end + 1);
+  return normalized.length > 0 ? normalized : undefined;
 }
 
 export function renderDependencyLines(args: {
@@ -718,23 +964,278 @@ export function getNodeLocation(node: ts.Node, sourceFile: ts.SourceFile): Locat
   };
 }
 
-export function extractJsDocComment(node: ts.Node): string | undefined {
-  const doc = ts.getJSDocCommentsAndTags(node);
-  if (!doc.length) {
+export function extractJsDocDocumentation(node: ts.Node): SymbolDocumentation | undefined {
+  const docEntries = ts.getJSDocCommentsAndTags(node);
+  if (!docEntries.length) {
     return undefined;
   }
 
-  const summaries: string[] = [];
-  for (const entry of doc) {
-    if (ts.isJSDoc(entry)) {
-      if (typeof entry.comment === "string") {
-        summaries.push(entry.comment.trim());
+  const documentation: SymbolDocumentation = {
+    source: "tsdoc"
+  };
+
+  const parameterMap = new Map<string, string | undefined>();
+  const typeParameterMap = new Map<string, string | undefined>();
+  const examples: SymbolDocumentationExample[] = [];
+  const links: SymbolDocumentationLink[] = [];
+  const linkKeys = new Set<string>();
+  const exceptions: SymbolDocumentationException[] = [];
+  const rawFragments: string[] = [];
+
+  const appendBlock = (current: string | undefined, addition?: string): string | undefined => {
+    if (!addition) {
+      return current;
+    }
+    const trimmed = addition.trim();
+    if (!trimmed) {
+      return current;
+    }
+    if (!current) {
+      return trimmed;
+    }
+    return `${current}\n\n${trimmed}`;
+  };
+
+  const registerLink = (target: string, text?: string): void => {
+    if (!target) {
+      return;
+    }
+    const normalizedTarget = target.trim();
+    if (!normalizedTarget) {
+      return;
+    }
+    const kind: SymbolDocumentationLinkKind = /^https?:\/\//i.test(normalizedTarget)
+      ? "href"
+      : "cref";
+    const normalizedText = text?.trim();
+    const key = `${kind}|${normalizedTarget}|${normalizedText ?? ""}`;
+    if (linkKeys.has(key)) {
+      return;
+    }
+    linkKeys.add(key);
+    links.push({
+      kind,
+      target: normalizedTarget,
+      text: normalizedText && normalizedText !== normalizedTarget ? normalizedText : undefined
+    });
+  };
+
+  const registerExample = (comment?: string): void => {
+    if (!comment) {
+      return;
+    }
+    const trimmed = comment.trim();
+    if (!trimmed) {
+      return;
+    }
+    const fenceMatch = trimmed.match(/```(\w*)\s*([\s\S]*?)```/);
+    if (fenceMatch) {
+      const [, language, codeBlock] = fenceMatch;
+      const description = trimmed.replace(fenceMatch[0], "").trim();
+      examples.push({
+        description: description || undefined,
+        code: codeBlock.trimEnd(),
+        language: language || undefined
+      });
+      return;
+    }
+    examples.push({ description: trimmed });
+  };
+
+  const handleGenericTag = (tagName: string, commentText?: string): void => {
+    switch (tagName) {
+      case "remarks": {
+        documentation.remarks = appendBlock(documentation.remarks, commentText);
+        return;
       }
+      case "example": {
+        registerExample(commentText);
+        return;
+      }
+      case "see":
+      case "link": {
+        if (commentText) {
+          registerLink(commentText, commentText);
+        }
+        return;
+      }
+      case "deprecated": {
+        rawFragments.push(`@deprecated${commentText ? ` ${commentText.trim()}` : ""}`.trim());
+        return;
+      }
+      default: {
+        if (commentText?.trim()) {
+          rawFragments.push(`@${tagName} ${commentText.trim()}`.trim());
+        } else {
+          rawFragments.push(`@${tagName}`);
+        }
+      }
+    }
+  };
+
+  const handleTag = (tag: ts.JSDocTag): void => {
+    if (ts.isJSDocParameterTag(tag)) {
+      const name = tag.name.getText();
+      const commentText = coalesceJsDocComment(tag.comment);
+      parameterMap.set(name, commentText);
+      return;
+    }
+
+    if (ts.isJSDocReturnTag(tag)) {
+      documentation.returns = appendBlock(
+        documentation.returns,
+        coalesceJsDocComment(tag.comment)
+      );
+      return;
+    }
+
+    if (ts.isJSDocTemplateTag(tag)) {
+      const commentText = coalesceJsDocComment(tag.comment);
+      for (const typeParameter of tag.typeParameters) {
+        typeParameterMap.set(typeParameter.getText(), commentText);
+      }
+      return;
+    }
+
+    if (ts.isJSDocThrowsTag(tag)) {
+      const typeName = tag.typeExpression?.type.getText();
+      const description = coalesceJsDocComment(tag.comment);
+      exceptions.push({
+        type: typeName,
+        description: description?.trim() || undefined
+      });
+      return;
+    }
+
+    if (ts.isJSDocSeeTag(tag)) {
+      const name = tag.name ? tag.name.getText() : undefined;
+      const commentText = coalesceJsDocComment(tag.comment);
+      registerLink(name ?? commentText ?? "", commentText ?? name ?? undefined);
+      return;
+    }
+
+    const tagName = tag.tagName.text.toLowerCase();
+    const commentText = coalesceJsDocComment(tag.comment);
+    handleGenericTag(tagName, commentText);
+  };
+
+  for (const entry of docEntries) {
+    if (ts.isJSDoc(entry)) {
+      const summaryText = coalesceJsDocComment(entry.comment);
+      documentation.summary = appendBlock(documentation.summary, summaryText);
+      if (entry.tags) {
+        entry.tags.forEach(handleTag);
+      }
+      continue;
+    }
+
+    if (isJSDocTagNode(entry)) {
+      handleTag(entry);
     }
   }
 
-  const summary = summaries.join(" ").trim();
-  return summary || undefined;
+  if (parameterMap.size > 0) {
+    documentation.parameters = Array.from(parameterMap.entries())
+      .map(([name, description]) => ({ name, description: description?.trim() || undefined }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  if (typeParameterMap.size > 0) {
+    documentation.typeParameters = Array.from(typeParameterMap.entries())
+      .map(([name, description]) => ({ name, description: description?.trim() || undefined }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  if (examples.length > 0) {
+    documentation.examples = examples;
+  }
+
+  if (links.length > 0) {
+    documentation.links = links
+      .slice()
+      .sort((a, b) => {
+        const targetDiff = a.target.localeCompare(b.target);
+        if (targetDiff !== 0) {
+          return targetDiff;
+        }
+        const kindDiff = a.kind.localeCompare(b.kind);
+        if (kindDiff !== 0) {
+          return kindDiff;
+        }
+        return (a.text ?? "").localeCompare(b.text ?? "");
+      });
+  }
+
+  if (exceptions.length > 0) {
+    documentation.exceptions = exceptions
+      .slice()
+      .sort((a, b) => {
+        const aKey = a.type ?? "";
+        const bKey = b.type ?? "";
+        const typeDiff = aKey.localeCompare(bKey);
+        if (typeDiff !== 0) {
+          return typeDiff;
+        }
+        return (a.description ?? "").localeCompare(b.description ?? "");
+      });
+  }
+
+  if (rawFragments.length > 0) {
+    documentation.rawFragments = Array.from(new Set(rawFragments)).sort((a, b) => a.localeCompare(b));
+  }
+
+  return hasDocumentationContent(documentation) ? documentation : undefined;
+}
+
+function coalesceJsDocComment(
+  comment: string | ts.NodeArray<ts.JSDocComment> | undefined
+): string | undefined {
+  if (!comment) {
+    return undefined;
+  }
+  if (typeof comment === "string") {
+    return comment.trim() || undefined;
+  }
+
+  const parts: string[] = [];
+  for (const part of comment) {
+    if (typeof part === "string") {
+      parts.push(part);
+      continue;
+    }
+    const node = part as ts.Node;
+    if (isJSDocTextNode(node)) {
+      parts.push(node.text);
+      continue;
+    }
+    parts.push(node.getText());
+  }
+
+  const text = parts.join("").trim();
+  return text || undefined;
+}
+
+function isJSDocTagNode(entry: ts.JSDoc | ts.JSDocTag): entry is ts.JSDocTag {
+  return (entry as ts.JSDocTag).tagName !== undefined;
+}
+
+function isJSDocTextNode(node: ts.Node): node is ts.JSDocText {
+  return node.kind === ts.SyntaxKind.JSDocText;
+}
+
+function hasDocumentationContent(doc: SymbolDocumentation): boolean {
+  return Boolean(
+    doc.summary ||
+      doc.remarks ||
+      doc.returns ||
+      doc.value ||
+      (doc.parameters && doc.parameters.length > 0) ||
+      (doc.typeParameters && doc.typeParameters.length > 0) ||
+      (doc.exceptions && doc.exceptions.length > 0) ||
+      (doc.examples && doc.examples.length > 0) ||
+      (doc.links && doc.links.length > 0) ||
+      (doc.rawFragments && doc.rawFragments.length > 0)
+  );
 }
 
 export function displayDependencyKey(entry: DependencyEntry): string {

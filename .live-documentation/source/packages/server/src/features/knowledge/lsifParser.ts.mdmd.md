@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/lsifParser.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-lsifparser-ts
-- Generated At: 2025-11-10T22:24:00.311Z
+- Generated At: 2025-11-13T13:25:19.703Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Transforms LSIF dumps into external knowledge snapshots so the ingestion pipelin
 - Exposes a convenience `parseLSIF` helper so other modules do not need to manage parser lifecycle.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.311Z","inputHash":"4e482fb53fe7ebf9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.703Z","inputHash":"665d763ede8760bc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LSIFParserOptions`
@@ -27,15 +27,22 @@ Transforms LSIF dumps into external knowledge snapshots so the ingestion pipelin
 #### `LSIFParser`
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L27)
-- Summary: Parses LSIF (Language Server Index Format) dumps into ExternalSnapshot format.
+
+##### `LSIFParser` — Summary
+Parses LSIF (Language Server Index Format) dumps into ExternalSnapshot format.
 
 LSIF is a newline-delimited JSON format where each line is a vertex or edge.
 We extract documents as artifacts and definition/reference relationships as links.
 
+##### `LSIFParser` — Links
+- `https` — ://microsoft.github.io/language-server-protocol/specifications/lsif/0.6.0/specification/
+
 #### `parseLSIF`
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L283)
-- Summary: Parse LSIF content into an ExternalSnapshot
+
+##### `parseLSIF` — Summary
+Parse LSIF content into an ExternalSnapshot
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

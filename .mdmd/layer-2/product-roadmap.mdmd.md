@@ -30,6 +30,9 @@ Supports CAP-002 by keeping generated sections current through analyzers, docstr
 #### Stream LD2-A – Symbol & Docstring Extraction *(in motion)*
 - Refactor language analyzers (TypeScript, Python, Rust, Java, Ruby, C, C#) to emit export signatures, docstrings, and source anchors for the `Public Symbols` section.
 - Build docstring bridges that keep Live Docs synchronized with inline documentation (TSDoc, XML comments, Sphinx, Rustdoc) while honouring consent signals.
+- Canonicalise docstring payloads into a shared schema (`summary`, `remarks`, `parameters`, `returns`, `exceptions`, `examples`) so generated markdown renders consistent headings regardless of source language.
+- Render each populated field as a deterministic `##### `Symbol` — Field` subsection, retain unmapped fragments with provenance, and provide `_Not documented_` placeholders when analyzers report gaps.
+- Expand polyglot fixtures with docstring-heavy samples per language to validate schema coverage, inline references, and drift diagnostics before promoting adapters.
 - Maintain precision/recall benchmarks per language to keep regeneration trustworthy.
 
 #### Stream LD2-B – Dependency Resolution *(in progress)*
@@ -46,6 +49,11 @@ Supports CAP-002 by keeping generated sections current through analyzers, docstr
 - Maintain deterministic AST benchmarks and regeneration CLIs (TypeScript, Python, C#, Rust, Java, Ruby, C) that feed analyzer confidence scores.
 - Capture drift deltas in `reports/benchmarks/**` and expose them inside Live Docs as optional generated metadata.
 - Layer an LLM sampling harness atop deterministic oracles with strict gating so predictions remain reviewable and reversible.
+
+#### Stream LD2-E – Polyglot Live Doc Emitters *(planned)*
+- Adapt the Live Doc generator to call language-specific analyzers for repository-hosted fixture workspaces (TypeScript, Python, C#, Java, Ruby, Rust, C) so `Public Symbols` and `Dependencies` regenerate without manual intervention.
+- Snapshot generated markdown for each fixture under `tests/integration/live-docs/polyglot-fixtures.test.ts`, asserting deterministic output before targeting external repositories.
+- Promote polyglot regeneration metrics into `reports/benchmarks/live-docs/precision.json`, tracking per-language pass rates and highlighting regression thresholds in safe-commit.
 
 ### REQ-L3 Consumption & Enforcement
 Supports CAP-003 by making Live Documentation the backbone of diagnostics, CLI tooling, and lint enforcement.
@@ -100,14 +108,14 @@ Supports CAP-005 by anchoring each MDMD layer to the surface where it excels: La
 
 ### REQ-L1 Acceptance Criteria
 - Every Live Doc contains `Metadata`, `Authored`, and `Generated` sections with required subsections; safe-commit fails if structure is missing.
-- Regeneration commands (`npm run live-docs:generate`) produce deterministic output and leave authored content untouched.
+- Docstring bridges emit drift diagnostics, map multi-tag payloads into the shared schema, render deterministic subheadings per field, and update generated sections during regeneration with `_Not documented_` placeholders when data is missing.
 - Migration dry-runs compare existing Layer‑4 MDMD docs to generated Live Docs with <5% diff noise before enabling swap.
 - Relative-link lint passes with the configured slug dialect (GitHub default) so staged docs can be published directly to wiki surfaces.
 - Generated sections refresh within a single `safe:commit` run for modified files; stale Live Docs raise warnings within 24 hours if regeneration is skipped.
 
 ### REQ-L2 Acceptance Criteria
 - Per-language benchmarks report ≥0.9 precision/recall for exported symbol detection and ≥0.8 for dependency resolution.
-- Docstring bridges emit drift diagnostics and update generated sections during regeneration.
+- Docstring bridges emit drift diagnostics, map multi-tag payloads into the shared schema, and update generated sections during regeneration.
 - Implementation Live Docs list at least one evidence artefact or record a waiver comment.
 - Benchmark suites remain green for legacy languages (C#, Java, Rust, Python, Ruby, C) so Generated sections keep polyglot coverage parity.
 
@@ -280,6 +288,7 @@ Supports REQ-D1. (CLI will be documented alongside the System analytics implemen
 - Live Doc verification: integrate regeneration assertions into `npm run safe:commit -- --benchmarks` once generator stabilises.
 - System analytics verification: targeted fixtures confirm `npm run live-docs:system` cleans up temporary exports, flags architectural debt, and leaves the repo unmodified.
 - Site pipeline verification: static site builds (GitHub Pages preview) run in CI, failing on broken links or missing Layer 1 capabilities.
+- Docstring bridge verification: polyglot fixture suites exercise recommended tags per language, snapshot rendered subsections, and fail when unmapped fragments or missing placeholders slip through without provenance.
 
 ## Traceability Links
 - Vision alignment: [Layer 1 Vision](../layer-1/link-aware-diagnostics-vision.mdmd.md)

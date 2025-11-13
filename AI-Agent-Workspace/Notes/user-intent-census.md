@@ -631,6 +631,21 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L2188-L2205` — Retire churn-metric ideas tied to local git history; focus future analytics on deterministic co-activation signals sourced from workspace artifacts instead of developer-specific data.
 - `L2392-L2404` — Treat LLM assistance as optional for ambiguous System-doc archetype assignments (sample multiple times, log inputs), ensure every Implementation doc appears in at least one System doc, and resolve dynamic branches by replicating the manual reasoning process before automating it.
 
+## 2025-11-11 (Dev Day 20)
+- `2025-11-11.md:L1-L15` — Follow `devHistory.summarizeDay.prompt.md` for the 11/10 recap and tie the summary directly to commit `1da1b96e84bba2966469378ae13751817e7f7435`.
+- `L82-L120` — After any lossy autosummarisation, immediately rehydrate on the latest chat slice and capture the 11/10 directives in the census files before resuming work.
+- `L365-L378` — Operate with high agency while preserving the context window: rehydrate when summaries drop and keep chatter minimal so diffs narrate progress.
+- `L509-L518` — Own the codebase cleanliness; proactively fix technical debt or poor file organisation instead of working around it.
+- `L553-L560` — Avoid editing files once they exceed roughly 500 lines (1 000 at the absolute ceiling); refactor large modules into smaller units to keep LLM edits reliable.
+- `L577-L595` — Verify full-file reads after autosummarisation and escalate blockers only when necessary while maintaining low-noise status updates.
+- `L1130-L1164` — Manually review generated System docs to confirm they are useful and publication-worthy before keeping them in the repo.
+- `L1262-L1283` — Justify co-activation clusters with statistical evidence (hypergeometric/Fisher tests plus BH-controlled p- or e-values) instead of heuristic caps.
+- `L1530-L1558` — Treat System-layer docs as ephemeral materialised views that surface technical debt, leaving Layer 4 as the sole durable authored layer.
+- `L1563-L1600` — Harmonise Layer 1 vision, Layer 2 roadmap, specs, instructions, and the refactor plan to reflect the materialised-view strategy.
+- `L1878-L1895` — Schedule tasks to stand up a GitHub Pages-style Capability layer, let Spec-Kit assume Layer 2, and keep `copilot-instructions.md` current with layer aliases and CLI updates.
+- `L2208-L2245` — Document the planned transition to a formal `Live-Docs` repo (paths, cleanup, professional polish) before starting the static site work.
+- `L2470-L2485` — Maintain a canonical CLI command catalog and update documentation whenever new npm scripts or flags are introduced.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

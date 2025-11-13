@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/services/localOllamaBridge.ts
 - Live Doc ID: LD-implementation-packages-extension-src-services-localollamabridge-ts
-- Generated At: 2025-11-10T22:24:00.024Z
+- Generated At: 2025-11-13T13:25:19.593Z
 
 ## Authored
 ### Purpose
@@ -17,13 +17,15 @@ Invokes a workspace-local Ollama endpoint when the primary LLM provider is unava
 - Logs actionable warnings for missing models so operators know to `ollama pull` or adjust configuration.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.024Z","inputHash":"3dae011413424993"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.593Z","inputHash":"d1f11bdd85643867"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `invokeLocalOllamaBridge`
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/services/localOllamaBridge.ts#L22)
-- Summary: Attempt to call a workspace-local Ollama server. Falls back to a deterministic mock response when
+
+##### `invokeLocalOllamaBridge` — Summary
+Attempt to call a workspace-local Ollama server. Falls back to a deterministic mock response when
 the model is undefined or the request fails so integration tests stay reproducible.
 <!-- LIVE-DOC:END Public Symbols -->
 

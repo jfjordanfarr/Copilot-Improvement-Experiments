@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/pathUtils.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-pathutils-ts
-- Generated At: 2025-11-11T05:12:48.143Z
+- Generated At: 2025-11-13T13:25:19.988Z
 
 ## Authored
 ### Purpose
@@ -17,24 +17,30 @@ Normalises file paths between URI and workspace-relative formats so diagnostics 
 - `normalizeWorkspacePath` forces POSIX separators, ensuring Live Docs and markdown links stay stable in git diffs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.143Z","inputHash":"17427aed83a2c253"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.988Z","inputHash":"5e7f7b000ef4b0f7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `toWorkspaceRelativePath`
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/pathUtils.ts#L8)
-- Summary: Convert a file URI into a workspace-relative path using POSIX-style separators.
+
+##### `toWorkspaceRelativePath` — Summary
+Convert a file URI into a workspace-relative path using POSIX-style separators.
 Returns undefined when the URI is outside the workspace or cannot be resolved.
 
 #### `toWorkspaceFileUri`
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/pathUtils.ts#L31)
-- Summary: Resolve a workspace-relative path (or absolute path) to a file URI.
+
+##### `toWorkspaceFileUri` — Summary
+Resolve a workspace-relative path (or absolute path) to a file URI.
 
 #### `normalizeWorkspacePath`
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/pathUtils.ts#L41)
-- Summary: Normalise a path so directory separators are POSIX-style.
+
+##### `normalizeWorkspacePath` — Summary
+Normalise a path so directory separators are POSIX-style.
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

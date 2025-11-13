@@ -366,6 +366,7 @@ graph TD
 - Release-oriented view: Layer 1 Live Docs could map one-to-one to releases, enumerating capabilities and requirements that cascade into Layer 2 work items while staying workspace-local (no external API calls). (`2025-11-08.md:L1144-L1185`)
 - Capability terminology forms an explicit chain (CapabilityID → RequirementID → ComponentID → Implementation) to keep layers interoperable. (`2025-10-30.md:L420-L470`)
 - [2025-11-10] Keep numeric layer identifiers but present the user-facing aliases “Capability/Commitment/System/Implementation” so docs stay approachable without renumbering. (`2025-11-10.md:L1222-L1245`)
+- [2025-11-11] Target the Capability layer for public-facing surfaces (e.g., GitHub Pages) while keeping Implementation-layer docs durable and allowing System views to materialise on demand. (`2025-11-11.md:L1532-L1558`,`2025-11-11.md:L1878-L1895`)
 
 ## Layer 2 – Requirements / Work Items
 - Classified as a "unit" layer: each Layer 2 doc corresponds to a concrete work item and must cite acceptance criteria, evidence, and links to the architecture and implementation that fulfil it. (`2025-10-30.md:L420-L512`)
@@ -374,6 +375,7 @@ graph TD
 - Roadmap/plan rewrites on 2025-11-08 aligned Layer 2 terminology with the Live Documentation pivot to keep requirements synchronized with new generator behaviour. (`2025-11-09.md:L99-L130`)
 - [2025-11-10] Treat Layer 2 as human-authored checklists; generated sections should only tally adjacent completion (requirements and acceptance criteria) to keep automation simple. (`2025-11-10.md:L728-L915`)
 - [2025-11-10] Require each requirement doc to name a single upstream capability/release so Capability-layer rollups stay deterministic despite the deliberate upward link exception. (`2025-11-10.md:L1000-L1104`)
+- [2025-11-11] Delegate commitments to Spec-Kit or issue trackers so Layer 2 documentation references those sources rather than duplicating ownership in Live Docs. (`2025-11-11.md:L1878-L1895`)
 
 ## Layer 3 – Architecture / Solution Components
 - For complex subsystems, author Layer 3 architecture memos before implementation so future work can rely on documented data flow, failure handling, and dependencies. (`2025-10-20.md:L1676-L1744`)
@@ -385,6 +387,7 @@ graph TD
 - Standardise System-layer archetypes (Component, Interaction/API, Data Model, Workflow, Integration, Testing) around authored `Purpose`/`Notes` and generated `Components`/`Topology` sections so Layer 2 can consume them consistently. (`2025-11-10.md:L1030-L1120`)
 - [2025-11-10] Generate System-layer docs purely from Stage‑0 Live Docs—legacy `.mdmd` files serve only for validation—while deriving archetypes via deterministic signals (component clusters, CLI entry points, schema files, workflow stages, integration touchpoints, coverage manifests). (`2025-11-10.md:L1310-L1505`)
 - [2025-11-10] Guarantee every Implementation-layer doc appears in at least one System doc, summarise ancillary tests, allow optional multi-sampled LLM review for ambiguous archetype splits, and model dynamic branching by first replicating the manual reasoning path. (`2025-11-10.md:L2392-L2404`)
+- [2025-11-11] Treat System docs as ephemeral generative views: regenerate them via CLI, keep bad fixtures visible in tests until debt is cleared, and avoid tracking materialised copies in git. (`2025-11-11.md:L1532-L1558`)
 
 ## Layer 4 – Implementation / Live Documentation Base
 - [2025-11-08] Base Live Docs pair an authored `Purpose`/`Notes` block with generated `Public Symbols` and `Dependencies`, forming the markdown-as-AST backbone. (`2025-11-08.md:L268-L340`,`2025-11-08.md:L5603-L5618`)
@@ -414,6 +417,7 @@ graph TD
 - "Symbol Correctness Profiles" were proposed to encode the expected inbound/outbound references and section structure per layer. (`2025-10-30.md:L240-L512`)
 - Tooling updates (instructions, audits, validators) should enforce required section spines per layer (`Intent/Signals`, `Requirement/Acceptance/Evidence/Links`, `Purpose/Responsibilities/Interfaces/Failure Modes/Telemetry`, `Source Mapping/Exports/Collaborators/Evidence`). (`2025-10-30.md:L420-L470`)
 - [2025-11-10] Treat Layers 3/4 as the deterministic spine (machine-generated from Stage‑0 signals) and Layers 1/2 as curated intent documents with lightweight generated tallies so automation remains reproducible without suppressing stakeholder storytelling. (`2025-11-10.md:L1124-L1185`)
+- [2025-11-11] Plan for Capability-layer publishing (e.g., GitHub Pages) while tightening System-layer regeneration so users consume the latest view without stale artefacts. (`2025-11-11.md:L1532-L1558`)
 
 ## Emerging Ideas for Upper Layers
 - Potential Layer 1 Live Docs per release could track capabilities and requirements, forming the roadmap when aggregated. (`2025-11-08.md:L1144-L1162`)
@@ -426,6 +430,7 @@ graph TD
 - Orphan detection for Live Docs ensures the Stage 0 mirror stays aligned with actual source assets. (`2025-11-09.md:L5079-L5087`)
 - Maintaining lint/test pipelines (safe:commit, live-docs:lint) remains mandatory before promoting layer changes. (`2025-11-09.md:L1111-L1160`)
 - Authored content must avoid fragile frontmatter unless tooling explicitly supports it, keeping markdown simple for analysis. (`2025-10-30.md:L420-L470`)
+- [2025-11-11] Keep the CLI command catalog authoritative—update it whenever new scripts or behaviours ship so documentation and tooling stay in lockstep. (`2025-11-11.md:L2470-L2485`)
 
 ## Open Questions Captured in Chat
 - What statistical signals (co-change frequency derived from deterministic inputs) are reliable enough to promote Layer 3 clusters automatically. (`2025-11-08.md:L1144-L1185`)

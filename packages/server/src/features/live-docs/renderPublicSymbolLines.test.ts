@@ -22,7 +22,10 @@ describe("renderPublicSymbolLines", () => {
           name: "DependencyGraphEdge",
           kind: "interface",
           location: { line: 16, character: 1 },
-          documentation: "Represents a dependency edge."
+          documentation: {
+            summary: "Represents a dependency edge.",
+            source: "tsdoc"
+          }
         },
         {
           name: "INSPECT_DEPENDENCIES_REQUEST",
@@ -46,7 +49,10 @@ describe("renderPublicSymbolLines", () => {
     expect(lines).toContain(
       "- Source: [source](../../../../../../packages/shared/src/contracts/dependencies.ts#L16)"
     );
-    expect(lines).toContain("- Summary: Represents a dependency edge.");
+
+    const summaryHeadingIndex = lines.indexOf("##### `DependencyGraphEdge` — Summary");
+    expect(summaryHeadingIndex).toBeGreaterThan(0);
+    expect(lines[summaryHeadingIndex + 1]).toBe("Represents a dependency edge.");
 
     const dependencyHeadingIndex = lines.indexOf("#### `INSPECT_DEPENDENCIES_REQUEST`");
     expect(dependencyHeadingIndex).toBeGreaterThan(0);
@@ -55,6 +61,7 @@ describe("renderPublicSymbolLines", () => {
     expect(lines[dependencyHeadingIndex + 2]).toBe(
       "- Source: [source](../../../../../../packages/shared/src/contracts/dependencies.ts#L3)"
     );
+    expect(lines).not.toContain("##### `INSPECT_DEPENDENCIES_REQUEST` — Summary");
     expect(lines[lines.length - 1]).not.toBe("");
   });
 });

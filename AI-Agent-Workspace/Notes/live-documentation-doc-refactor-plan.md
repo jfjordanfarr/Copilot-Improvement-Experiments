@@ -141,6 +141,7 @@
   - [x] Implementation LD files own Description/Purpose/Notes + generated `Public Symbols`, `Dependencies`, optional `Observed Evidence` (tests inferred via graph); lint validates the block when present and enforces waiver comments if automated evidence is absent. *(live-docs:lint now enforces waiver comments and safe-to-commit executes the precision report gate)*
   - [ ] Test LD files mirror projects under a `Tests` template with authored rationale plus generated `Targets` (implementation artifacts exercised) and `Supporting Fixtures` when applicable; enforce CLI/LLM parity for querying the same metadata available in the UI.
   - [ ] Asset coverage: prefer validating markdown links from implementation/test LD files to binary assets; only generate standalone asset LD stubs if link auditing proves insufficient. Expand SlopCop/link tooling tasks if asset stubs are omitted.
+- [ ] Ship fixture-scoped polyglot emitters: extend the generator to hydrate `Public Symbols` and `Dependencies` for benchmark fixture languages (TypeScript, Python, C#, Java, Ruby, Rust, C) using repository-hosted analyzers before attempting external repositories.
 - [ ] Prepare for final state where Layer 4 docs themselves become Live Documentation outputs (authored preamble + generated metadata). Document interim state & migration plan.
 
 ## 6. Supporting Instructions & README

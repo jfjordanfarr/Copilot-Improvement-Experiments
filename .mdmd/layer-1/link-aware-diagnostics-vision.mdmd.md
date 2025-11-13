@@ -8,9 +8,10 @@
 
 ### CAP-001 – Layer‑4 Backbone
 Deliver a repository-embedded corpus of Live Documentation where every tracked asset owns an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata) stored in a mirror tree under `/.live-documentation/source/` (path configurable per workspace). Layer‑4 docs are the only durable artefacts the project promises to maintain; everything else must be derivable from this base ([AI-Agent-Workspace/ChatHistory/2025-11-08.md](../../AI-Agent-Workspace/ChatHistory/2025-11-08.md)).
+Drive parity across the languages we benchmark today by teaching the generator to emit the same sections for repository-hosted Python, C#, Java, Ruby, Rust, and C fixtures before onboarding external codebases, keeping “Layer‑4 everywhere” a falsifiable promise.
 
 ### CAP-002 – Analysis Bridges
-Automate symbol extraction, docstring reconciliation, dependency inference, and evidence harvesting so generated sections stay current and lintable. The analysis stack powers deterministic regeneration, emits provenance, and exposes confidence so downstream consumers can trust on-demand views ([specs/001-link-aware-diagnostics/spec.md](../../specs/001-link-aware-diagnostics/spec.md)).
+Automate symbol extraction, docstring reconciliation, dependency inference, and evidence harvesting so generated sections stay current and lintable. Normalise documentation across languages by projecting XML/TSDoc/Sphinx/Rustdoc tags into a canonical schema (`summary`, `remarks`, `parameters`, `typeParameters`, `returns`, `exceptions`, `examples`, `links`) rendered as deterministic `##### `Symbol` — Field` subsections. Preserve unmapped fragments with provenance so adapters can round-trip raw payloads while Live Docs stay structured. The analysis stack powers regeneration, emits provenance, and exposes confidence so downstream consumers can trust on-demand views ([specs/001-link-aware-diagnostics/spec.md](../../specs/001-link-aware-diagnostics/spec.md)).
 
 ### CAP-003 – On-Demand System Views
 Expose ephemeral system-level materialized views—clustered components, workflows, coverage rollups—through CLI commands, diagnostics, and APIs. These views are regenerated when requested and never treated as long-lived documents, allowing us to mix rigorous statistics, local history, and scenario-specific filters without risking doc rot ([AI-Agent-Workspace/ChatHistory/2025-10-29.md](../../AI-Agent-Workspace/ChatHistory/2025-10-29.md)).
@@ -23,7 +24,7 @@ Publish vision + roadmap knowledge to a static site (initially GitHub Pages), de
 
 ## Desired Outcomes
 - Layer‑4 Live Docs regenerate deterministically; authored content stays small, intentional, and easy to review.
-- Implementation Live Docs list their public surface, dependencies, and observed evidence so ripple impact and test coverage are auditable in markdown alone.
+- Implementation Live Docs list their public surface, structured docstring fields, dependencies, and observed evidence so ripple impact and test coverage are auditable in markdown alone.
 - Test and asset archetypes expose their relationships through generated sections (`Targets`, `Supporting Fixtures`, `Consumers`), enabling cross-language AST traversal without bespoke parsers.
 - Ephemeral System views spin up from the Layer‑4 corpus on demand (markdown, JSON, graph exports) and can safely incorporate statistical analytics or local history without committing churn to the repo.
 - Layer‑1 capabilities replicate cleanly into a static site (GitHub Pages or equivalent) so stakeholders consume the same markdown we curate in-repo.
@@ -31,6 +32,7 @@ Publish vision + roadmap knowledge to a static site (initially GitHub Pages), de
 - Diagnostics, exports, and LLM prompts rely on the same markdown-as-AST graph, shrinking the gap between human review workflows and autonomous copilots.
 - Markdown links stay relative (slug dialect configurable) so Live Docs double as wiki-friendly artefacts consumers can publish directly.
 - Tooling, instructions, and licensing remain MIT-friendly so adopters can regenerate Layer‑4 docs locally and opt into System analytics when needed.
+- Structured docstring subsections provide anchored headers per field so diagnostics, prompts, and writers can target summaries, parameters, remarks, or examples without scraping prose.
 
 ## Downstream Requirements
 
@@ -54,6 +56,7 @@ Publish vision + roadmap knowledge to a static site (initially GitHub Pages), de
 - No Live Doc ships without observed evidence or an approved waiver, cutting undocumented implementations by 80% during pilot audits (SC-LD-002).
 - On-demand System exports flag architectural hotspots (coverage gaps, cluster outliers) in ≤2 s for repositories under 10k files without writing permanent files (SC-LD-003).
 - External adopters can enable the Live Documentation extension, regenerate Layer‑4 docs, and run System analytics locally thanks to MIT licensing and deterministic pipelines (SC-LD-004).
+- Structured docstring bridges surface multi-tag payloads (summary, remarks, parameters, returns, exceptions) in ≥95% of regenerated Live Docs for supported languages, with unmapped tags logged for follow-up (SC-LD-005).
 
 ## Evidence
 - US1–US5 integration suites validate ripple diagnostics for code, documentation, acknowledgement, scope collision, and transforms ([tests/integration](/tests/integration)).
@@ -82,7 +85,7 @@ Publish vision + roadmap knowledge to a static site (initially GitHub Pages), de
 
 ## Evolution Path
 - **Live Doc Baseline (present)**: converge MDMD Layer‑4 docs onto authored/generated structure and stage generator output in `/.live-documentation/`.
-- **Docstring & Evidence Bridges (near term)**: wire analyzers and coverage tools so generated sections stay accurate across languages and test suites.
+- **Docstring & Evidence Bridges (near term)**: wire analyzers and coverage tools so generated sections stay accurate across languages and test suites. Canonicalise docstring tags into the shared schema, emit deterministic per-field subheadings, validate against curated polyglot fixtures, and surface drift diagnostics when inline documentation diverges from Live Doc narratives.
 - **Consumption Surfaces (near term)**: deliver CLI, diagnostics, and LLM exports backed by the Live Doc graph.
 - **Layer Distribution (mid term)**: stand up the public site pipeline, formalise Spec-Kit/issue tracker delegation for Layer 2, and ship the on-demand System CLI so no architecture docs linger in the repo.
 - **Metadata Enrichers (mid term)**: add churn metrics, reference counts, and change history as optional generated sections; experiment with higher-layer docs (releases, work items, architecture) generated from Layer‑4 facts.

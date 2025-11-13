@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/db/graphStore.ts
 - Live Doc ID: LD-implementation-packages-shared-src-db-graphstore-ts
-- Generated At: 2025-11-10T22:24:00.632Z
+- Generated At: 2025-11-13T13:25:19.841Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Wraps the project’s SQLite knowledge graph in a strongly typed DAO that owns s
 - Provides reporting helpers such as `summarizeDriftHistory` and `listLinkedArtifacts`, which power diagnostics surfaces, telemetry, and rule engines consuming the same store.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.632Z","inputHash":"8b92db4b3be7613a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.841Z","inputHash":"481f4e197797b27f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `GraphStoreOptions`
@@ -31,7 +31,9 @@ Wraps the project’s SQLite knowledge graph in a strongly typed DAO that owns s
 #### `GraphStore`
 - Type: class
 - Source: [source](../../../../../../packages/shared/src/db/graphStore.ts#L67)
-- Summary: Thin wrapper around better-sqlite3 that materialises our knowledge-graph projections. The
+
+##### `GraphStore` — Summary
+Thin wrapper around better-sqlite3 that materialises our knowledge-graph projections. The
 implementation deliberately keeps schema bootstrapping local so the store can be rebuilt after
 cache deletion without bespoke tooling.
 

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/live-docs/system/generator.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-live-docs-system-generator-test-ts
-- Generated At: 2025-11-12T15:22:22.495Z
+- Generated At: 2025-11-13T21:16:22.885Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.495Z","inputHash":"785e6488f6669d7b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T21:16:22.885Z","inputHash":"785e6488f6669d7b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -35,6 +35,7 @@ _No public symbols detected_
 ### Targets
 #### Vitest Unit Tests
 - packages/server/src/features/live-docs/generation: [core.ts](../generation/core.ts.mdmd.md)
+- packages/server/src/features/live-docs/generation/adapters: [adapters/index.ts](../generation/adapters/index.ts.mdmd.md), [csharp.ts](../generation/adapters/csharp.ts.mdmd.md)
 - packages/server/src/features/live-docs/stage0: [docLoader.ts](../stage0/docLoader.ts.mdmd.md)
 - packages/server/src/features/live-docs/system: [generator.ts](./generator.ts.mdmd.md)
 - packages/server/src/features/live-docs/targets: [manifest.ts](../targets/manifest.ts.mdmd.md)

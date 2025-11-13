@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/core.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-core-ts
-- Generated At: 2025-11-11T05:12:47.205Z
+- Generated At: 2025-11-13T18:09:54.479Z
 
 ## Authored
 ### Purpose
@@ -15,140 +15,199 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:47.205Z","inputHash":"110390f6aa654615"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T18:09:54.479Z","inputHash":"dc1438bd09bb9a5d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SourceAnalysisResult`
 - Type: interface
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L11)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L13)
 
 #### `PublicSymbolEntry`
 - Type: interface
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L16)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L18)
 
 #### `DependencyEntry`
 - Type: interface
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L25)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L27)
 
 #### `LocationInfo`
 - Type: interface
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L33)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L35)
+
+#### `SymbolDocumentationField`
+- Type: type
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L40)
+
+#### `SymbolDocumentationParameter`
+- Type: interface
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L52)
+
+#### `SymbolDocumentationException`
+- Type: interface
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L57)
+
+#### `SymbolDocumentationExample`
+- Type: interface
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L62)
+
+#### `SymbolDocumentationLinkKind`
+- Type: type
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L68)
+
+#### `SymbolDocumentationLink`
+- Type: interface
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L70)
+
+#### `SymbolDocumentation`
+- Type: interface
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L76)
 
 #### `SUPPORTED_SCRIPT_EXTENSIONS`
 - Type: const
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L38)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L91)
 
 #### `MODULE_RESOLUTION_EXTENSIONS`
 - Type: const
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L49)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L102)
 
 #### `discoverTargetFiles`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L68)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L126)
 
 #### `resolveArchetype`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L103)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L161)
 
 #### `hasMeaningfulAuthoredContent`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L125)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L183)
 
 #### `directoryExists`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L147)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L205)
 
 #### `cleanupEmptyParents`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L156)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L214)
 
 #### `analyzeSourceFile`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L182)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L240)
 
 #### `inferScriptKind`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L214)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L282)
 
 #### `collectExportedSymbols`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L233)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L301)
 
 #### `collectDependencies`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L402)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L470)
 
 #### `resolveDependency`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L477)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L545)
 
 #### `renderPublicSymbolLines`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L530)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L627)
+
+##### `renderPublicSymbolLines` — Summary
+Renders the markdown lines that populate the `Public Symbols` section for a Live Doc.
+
+##### `renderPublicSymbolLines` — Remarks
+The output includes symbol metadata (type, location, qualifiers) followed by
+deterministic `#####` subsections per documented field (summary, remarks,
+parameters, returns, etc.). This structure keeps docstring bridges stable and
+individually addressable across languages.
+
+##### `renderPublicSymbolLines` — Parameters
+- `args.analysis`: - Analyzer output describing exported symbols and dependencies.
+- `args.docDir`: - Absolute directory path of the Live Doc being written.
+- `args.sourceAbsolute`: - Absolute path to the source file backing this Live Doc.
+- `args.sourceRelativePath`: - Workspace-relative source path (unused here but
+preserved for parity with other render helpers).
+- `args.workspaceRoot`: - Workspace root, used to resolve relative links.
+
+##### `renderPublicSymbolLines` — Returns
+An array of markdown lines ready to insert beneath the `Public Symbols` heading.
+
+##### `renderPublicSymbolLines` — Examples
+```ts
+const lines = renderPublicSymbolLines({
+  analysis,
+  docDir,
+  sourceAbsolute,
+  workspaceRoot,
+  sourceRelativePath
+});
+```
 
 #### `renderDependencyLines`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L581)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L827)
 
 #### `formatSourceLink`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L643)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L889)
 
 #### `formatRelativePathFromDoc`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L648)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L894)
 
 #### `createSymbolSlug`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L656)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L902)
 
 #### `toModuleLabel`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L661)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L907)
 
 #### `formatInlineCode`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L667)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L913)
 
 #### `formatDependencyQualifier`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L672)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L918)
 
 #### `resolveExportAssignmentName`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L686)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L932)
 
 #### `hasExportModifier`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L696)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L942)
 
 #### `hasDefaultModifier`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L704)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L950)
 
 #### `getNodeLocation`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L712)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L958)
 
-#### `extractJsDocComment`
+#### `extractJsDocDocumentation`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L721)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L967)
 
 #### `displayDependencyKey`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L740)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L1241)
 
 #### `detectChangedFiles`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L744)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L1245)
 
 #### `parsePorcelainLine`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L766)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L1267)
 
 #### `execFileAsync`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L788)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/generation/core.ts#L1289)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -160,6 +219,7 @@ _Pending notes_
 - `node:child_process` - `execFile`
 - `node:fs/promises` - `fs`
 - `node:path` - `path`
+- [`index.analyzeWithLanguageAdapters`](./adapters/index.ts.mdmd.md#analyzewithlanguageadapters)
 - `typescript` - `ts`
 <!-- LIVE-DOC:END Dependencies -->
 

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/ollamaEndpoint.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-ollamaendpoint-ts
-- Generated At: 2025-11-10T22:24:00.983Z
+- Generated At: 2025-11-13T13:25:19.984Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Resolves which Ollama HTTP endpoint tooling should call, respecting env override
 - Falls back to caller-supplied defaults or the standard `http://localhost:11434`, keeping behaviour predictable for local dev.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.983Z","inputHash":"3161f565f9079752"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.984Z","inputHash":"6aa61b3917db452e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ResolveOllamaEndpointOptions`
@@ -31,7 +31,9 @@ Resolves which Ollama HTTP endpoint tooling should call, respecting env override
 #### `resolveOllamaEndpoint`
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaEndpoint.ts#L21)
-- Summary: Resolve the Ollama endpoint that Link-Aware Diagnostics should talk to.
+
+##### `resolveOllamaEndpoint` — Summary
+Resolve the Ollama endpoint that Link-Aware Diagnostics should talk to.
 Priority order:
 1. Explicit environment variables (`LINK_AWARE_OLLAMA_ENDPOINT`, `OLLAMA_ENDPOINT`).
 2. VS Code setting `github.copilot.chat.byok.ollamaEndpoint` (if configuration is provided).

@@ -20,6 +20,11 @@ Supports FR-LD1, FR-LD2, and FR-LD5 by orchestrating workspace change ingestion,
 - Notify the Live Doc Generator service when tracked artifacts change so staged markdown stays current before diagnostics fire.
 - Persist change metadata via `saveDocumentChange` / `saveCodeChange` so acknowledgement workflows, drift history, and regeneration provenance stay durable.
 
+### Docstring Bridge Stewardship
+- Coordinate docstring bridge adapters that lift XML/TSDoc/Sphinx/Rustdoc payloads into the canonical schema consumed by the Live Doc generator.
+- Detect drift between inline documentation and Live Doc narratives, surface diagnostics, and queue regeneration when discrepancies persist across saves.
+- Ensure adapters emit deterministic per-field headings (`##### `Symbol` — Summary`, etc.), report unsupported tags with provenance, and raise telemetry when placeholders or raw fragments exceed thresholds so product owners can prioritise new mappings.
+
 ### Inference and Ripple Analysis
 - Merge inference results from workspace providers, Live Doc dependency snapshots, knowledge feeds, and optional LLM fallbacks inside `changeProcessor`.
 - Drive `RippleAnalyzer` and dependency builders to compute downstream impacts and annotate Live Doc projections before diagnostic publication.

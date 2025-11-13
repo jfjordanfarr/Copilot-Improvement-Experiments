@@ -2,8 +2,8 @@
   "generatedAt": "2025-01-01T00:00:00.000Z",
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
   "totals": {
-    "artifacts": 811,
-    "links": 1828
+    "artifacts": 802,
+    "links": 1608
   },
   "artifacts": [
     {
@@ -1275,6 +1275,40 @@
           "identifiers": [],
           "codePaths": [
             "packages/server/src/features/live-docs/evidenceBridge.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-de6a7759",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/source/packages/server/src/features/live-docs/generation/adapters/csharp.ts.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "packages/server/src/features/live-docs/generation/adapters/csharp.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-89718c3a",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/source/packages/server/src/features/live-docs/generation/adapters/index.ts.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "packages/server/src/features/live-docs/generation/adapters/index.ts"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -4393,6 +4427,23 @@
       }
     },
     {
+      "id": "orchestrated-artifact-58c03e0d",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/source/tests/integration/live-docs/polyglot-fixtures.test.ts.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/live-docs/polyglot-fixtures.test.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-df21c74b",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/source/tests/integration/live-docs/system-output.test.ts.mdmd.md",
       "layer": "implementation",
@@ -4642,231 +4693,6 @@
           "codePaths": [
             "tests/integration/vscode/suite/index.ts"
           ],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-c64671d5",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/component/packagesserversrcfeatureslivedocs.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-57504b36",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/component/packagessharedsrclivedocs.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-93768512",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/component/packagessharedsrclivedocsanalysis.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-0eb7002c",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/component/scriptslivedocs.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-ed0d9502",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/integration/cluster001packages.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-3db77303",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/integration/cluster002packages.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-8e615104",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/integration/cluster003packages.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-a47f0bf9",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/integration/cluster006tests.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-683a9f37",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/integration/cluster008tests.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-53e01242",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/interaction/scriptslivedocscoactivationts.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-cb3f6975",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/interaction/scriptslivedocsgeneratets.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-6b88b683",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/interaction/scriptslivedocslintts.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-78417b5a",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/interaction/scriptslivedocsreportprecisionts.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-774f2d7b",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/testing/live-docs-coverage.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
-          "exports": [],
-          "sectionSymbols": []
-        }
-      }
-    },
-    {
-      "id": "orchestrated-artifact-87128e97",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/.live-documentation/system/workflow/scriptslivedocsrunallts.mdmd.md",
-      "layer": "architecture",
-      "language": "markdown",
-      "metadata": {
-        "mdmd": {
-          "layer": "3",
-          "identifiers": [],
-          "codePaths": [],
           "exports": [],
           "sectionSymbols": []
         }
@@ -13743,6 +13569,39 @@
       }
     },
     {
+      "id": "orchestrated-artifact-9d675640",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/live-docs/generation/adapters/csharp.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "csharpAdapter",
+            "kind": "variable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "orchestrated-artifact-96cee801",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/live-docs/generation/adapters/index.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "LanguageAdapter",
+            "kind": "interface"
+          },
+          {
+            "name": "analyzeWithLanguageAdapters",
+            "kind": "function",
+            "isDefault": false
+          }
+        ]
+      }
+    },
+    {
       "id": "orchestrated-artifact-d6099129",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/packages/server/src/features/live-docs/generation/core.ts",
       "layer": "code",
@@ -13763,6 +13622,34 @@
           },
           {
             "name": "LocationInfo",
+            "kind": "interface"
+          },
+          {
+            "name": "SymbolDocumentationField",
+            "kind": "type"
+          },
+          {
+            "name": "SymbolDocumentationParameter",
+            "kind": "interface"
+          },
+          {
+            "name": "SymbolDocumentationException",
+            "kind": "interface"
+          },
+          {
+            "name": "SymbolDocumentationExample",
+            "kind": "interface"
+          },
+          {
+            "name": "SymbolDocumentationLinkKind",
+            "kind": "type"
+          },
+          {
+            "name": "SymbolDocumentationLink",
+            "kind": "interface"
+          },
+          {
+            "name": "SymbolDocumentation",
             "kind": "interface"
           },
           {
@@ -13884,7 +13771,7 @@
             "isDefault": false
           },
           {
-            "name": "extractJsDocComment",
+            "name": "extractJsDocDocumentation",
             "kind": "function",
             "isDefault": false
           },
@@ -18511,6 +18398,12 @@
       "language": "typescript"
     },
     {
+      "id": "orchestrated-artifact-d03880d4",
+      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/live-docs/polyglot-fixtures.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
       "id": "orchestrated-artifact-b0002012",
       "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/live-docs/system-output.test.ts",
       "layer": "code",
@@ -18918,15 +18811,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-8858d36d",
-      "sourceId": "orchestrated-artifact-04193b23",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-9e7a1bd4",
       "sourceId": "orchestrated-artifact-042c9312",
       "targetId": "orchestrated-artifact-9e365e5b",
@@ -18977,15 +18861,6 @@
       "targetId": "orchestrated-artifact-5849b5d6",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-aa218517",
-      "sourceId": "orchestrated-artifact-056bb8ef",
-      "targetId": "orchestrated-artifact-a47f0bf9",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -19350,15 +19225,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-3ed306f2",
-      "sourceId": "orchestrated-artifact-0d05640d",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-13b92759",
       "sourceId": "orchestrated-artifact-0d05640d",
       "targetId": "orchestrated-artifact-6f975ef4",
@@ -19386,29 +19252,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-c48def09",
-      "sourceId": "orchestrated-artifact-0d5af63c",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-f3ac5f81",
       "sourceId": "orchestrated-artifact-0da419a7",
       "targetId": "orchestrated-artifact-0570126e",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-5ff2ea98",
-      "sourceId": "orchestrated-artifact-0da419a7",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -19521,33 +19369,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-44838c2a",
-      "sourceId": "orchestrated-artifact-0e6dfa54",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-dadd7ba3",
-      "sourceId": "orchestrated-artifact-0e6dfa54",
-      "targetId": "orchestrated-artifact-8e615104",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-f709e97b",
-      "sourceId": "orchestrated-artifact-0e6dfa54",
-      "targetId": "orchestrated-artifact-c64671d5",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-bbbf3783",
       "sourceId": "orchestrated-artifact-0e747868",
       "targetId": "orchestrated-artifact-622b024f",
@@ -19564,69 +19385,6 @@
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-09238f41",
-      "sourceId": "orchestrated-artifact-0eb7002c",
-      "targetId": "orchestrated-artifact-25ca3017",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-12972878",
-      "sourceId": "orchestrated-artifact-0eb7002c",
-      "targetId": "orchestrated-artifact-45c0456b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-38763bf7",
-      "sourceId": "orchestrated-artifact-0eb7002c",
-      "targetId": "orchestrated-artifact-465ddd09",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-54bf55d6",
-      "sourceId": "orchestrated-artifact-0eb7002c",
-      "targetId": "orchestrated-artifact-a4a258e7",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-5156417b",
-      "sourceId": "orchestrated-artifact-0eb7002c",
-      "targetId": "orchestrated-artifact-c0b628b9",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-945bad39",
-      "sourceId": "orchestrated-artifact-0eb7002c",
-      "targetId": "orchestrated-artifact-d469fb9f",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-b2387489",
-      "sourceId": "orchestrated-artifact-0eb7002c",
-      "targetId": "orchestrated-artifact-d895ed52",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-0bdf88ea",
@@ -19659,6 +19417,15 @@
       "id": "orchestrated-link-92b9a659",
       "sourceId": "orchestrated-artifact-0f8fd198",
       "targetId": "orchestrated-artifact-77fe64c4",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
+    },
+    {
+      "id": "orchestrated-link-5328502d",
+      "sourceId": "orchestrated-artifact-0f8fd198",
+      "targetId": "orchestrated-artifact-795678b8",
       "kind": "depends_on",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -19836,15 +19603,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-bad74f94",
-      "sourceId": "orchestrated-artifact-11fc49f9",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-1e7bfcfe",
       "sourceId": "orchestrated-artifact-120550eb",
       "targetId": "orchestrated-artifact-c2904c2a",
@@ -19989,38 +19747,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-6efe3586",
-      "sourceId": "orchestrated-artifact-15682162",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-c5fc3fef",
       "sourceId": "orchestrated-artifact-15682162",
       "targetId": "orchestrated-artifact-8375f7d2",
       "kind": "documents",
       "confidence": 0.7,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-055824ff",
-      "sourceId": "orchestrated-artifact-15682162",
-      "targetId": "orchestrated-artifact-8e615104",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-218492d7",
-      "sourceId": "orchestrated-artifact-15682162",
-      "targetId": "orchestrated-artifact-c64671d5",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -20709,15 +20440,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-a95eaa44",
-      "sourceId": "orchestrated-artifact-1d9415be",
-      "targetId": "orchestrated-artifact-683a9f37",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-c988b157",
       "sourceId": "orchestrated-artifact-1dea35c5",
       "targetId": "orchestrated-artifact-ff271c8c",
@@ -20799,24 +20521,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-b58d808c",
-      "sourceId": "orchestrated-artifact-1fb4c227",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-4be77005",
-      "sourceId": "orchestrated-artifact-1fb4c227",
-      "targetId": "orchestrated-artifact-8e615104",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-a7dcef9d",
       "sourceId": "orchestrated-artifact-206126ec",
       "targetId": "orchestrated-artifact-d9bd60d3",
@@ -20847,15 +20551,6 @@
       "id": "orchestrated-link-79aa5fd9",
       "sourceId": "orchestrated-artifact-207f17fc",
       "targetId": "orchestrated-artifact-ccdab776",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-c3b3649e",
-      "sourceId": "orchestrated-artifact-20e5c3ef",
-      "targetId": "orchestrated-artifact-3db77303",
       "kind": "documents",
       "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -21105,15 +20800,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-ab17144f",
-      "sourceId": "orchestrated-artifact-25ca3017",
-      "targetId": "orchestrated-artifact-0eb7002c",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-554244ba",
       "sourceId": "orchestrated-artifact-25ca3017",
       "targetId": "orchestrated-artifact-a833f4de",
@@ -21326,15 +21012,6 @@
       "targetId": "orchestrated-artifact-03ffa9f2",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-2d1b1d5c",
-      "sourceId": "orchestrated-artifact-2b53692b",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -21564,29 +21241,11 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-b2dc84a4",
-      "sourceId": "orchestrated-artifact-30fae96c",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-e42c0cbf",
       "sourceId": "orchestrated-artifact-30fae96c",
       "targetId": "orchestrated-artifact-5f3cab53",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-494068fd",
-      "sourceId": "orchestrated-artifact-3121dd58",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -21933,15 +21592,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-d2028d2c",
-      "sourceId": "orchestrated-artifact-379d2862",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-487b46e1",
       "sourceId": "orchestrated-artifact-379d2862",
       "targetId": "orchestrated-artifact-f7374449",
@@ -22104,24 +21754,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-a3b73379",
-      "sourceId": "orchestrated-artifact-398b2d4b",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-6b760890",
-      "sourceId": "orchestrated-artifact-398fb52b",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-b3271802",
       "sourceId": "orchestrated-artifact-398fb52b",
       "targetId": "orchestrated-artifact-a91eb612",
@@ -22165,231 +21797,6 @@
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-8c113a7e",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-0d05640d",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-eb28b398",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-0da419a7",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-ecf0e252",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-20e5c3ef",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-b62cc954",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-2b53692b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-374d2b0c",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-30fae96c",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-013aadd3",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-3121dd58",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-65681384",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-379d2862",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-0e395671",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-4106d29f",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-22154dcd",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-41513d3c",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-5366f32e",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-45561170",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-67c6b28f",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-50f438e3",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-67228232",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-6103c98c",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-fa5c979f",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-67567e73",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-26237947",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-77587c16",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-de15ef5b",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-780e5cae",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-77f319c8",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-826b52c5",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-d72457a7",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-ac40c845",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-c1fcc394",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-b010bab7",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-2f4df41f",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-bd4097c3",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-7107006f",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-c1cad7fc",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-d5220d98",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-cc846a20",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-f810af22",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-f0beb78e",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-4817db7a",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-f49ac114",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-6149b7a5",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-f8c563d5",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-0499da67",
-      "sourceId": "orchestrated-artifact-3db77303",
-      "targetId": "orchestrated-artifact-fc7aa493",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-ac12e691",
@@ -22446,15 +21853,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-d4342c9f",
-      "sourceId": "orchestrated-artifact-4106d29f",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-5d7a9acb",
       "sourceId": "orchestrated-artifact-4106d29f",
       "targetId": "orchestrated-artifact-b76b2b66",
@@ -22478,15 +21876,6 @@
       "targetId": "orchestrated-artifact-34370f03",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-83f049c3",
-      "sourceId": "orchestrated-artifact-41513d3c",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -22559,15 +21948,6 @@
       "targetId": "orchestrated-artifact-e75d2d1d",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-2e80b2c9",
-      "sourceId": "orchestrated-artifact-42129956",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -22725,38 +22105,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-385355c5",
-      "sourceId": "orchestrated-artifact-45279128",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-1bf23842",
-      "sourceId": "orchestrated-artifact-45561170",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-d4d2b78d",
       "sourceId": "orchestrated-artifact-45561170",
       "targetId": "orchestrated-artifact-a07b2f57",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-4bce1438",
-      "sourceId": "orchestrated-artifact-45c0456b",
-      "targetId": "orchestrated-artifact-0eb7002c",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -22770,42 +22123,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-44d4aeb8",
-      "sourceId": "orchestrated-artifact-45c0456b",
-      "targetId": "orchestrated-artifact-6b88b683",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-8a883472",
-      "sourceId": "orchestrated-artifact-45c0456b",
-      "targetId": "orchestrated-artifact-78417b5a",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-123e2828",
-      "sourceId": "orchestrated-artifact-45c0456b",
-      "targetId": "orchestrated-artifact-87128e97",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-ab8f5cd0",
-      "sourceId": "orchestrated-artifact-45c0456b",
-      "targetId": "orchestrated-artifact-cb3f6975",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-ad5085fc",
       "sourceId": "orchestrated-artifact-45eeeb78",
       "targetId": "orchestrated-artifact-83ae3d3f",
@@ -22815,65 +22132,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-504d2a6a",
-      "sourceId": "orchestrated-artifact-45eeeb78",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-4ebc50d9",
-      "sourceId": "orchestrated-artifact-465ddd09",
-      "targetId": "orchestrated-artifact-0eb7002c",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-47c2eb59",
-      "sourceId": "orchestrated-artifact-465ddd09",
-      "targetId": "orchestrated-artifact-6b88b683",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-4fe88840",
       "sourceId": "orchestrated-artifact-465ddd09",
       "targetId": "orchestrated-artifact-7162bbd0",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-8d767113",
-      "sourceId": "orchestrated-artifact-465ddd09",
-      "targetId": "orchestrated-artifact-78417b5a",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-152c64c9",
-      "sourceId": "orchestrated-artifact-465ddd09",
-      "targetId": "orchestrated-artifact-87128e97",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-858c9c66",
-      "sourceId": "orchestrated-artifact-465ddd09",
-      "targetId": "orchestrated-artifact-8e615104",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -23155,15 +22418,6 @@
       "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-395fe713",
-      "sourceId": "orchestrated-artifact-4d937bd5",
-      "targetId": "orchestrated-artifact-683a9f37",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-b5cbd08c",
@@ -23580,15 +22834,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-87a9b00b",
-      "sourceId": "orchestrated-artifact-4f8d4125",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-957f7a20",
       "sourceId": "orchestrated-artifact-4f91d6a1",
       "targetId": "orchestrated-artifact-18d32ef1",
@@ -23614,15 +22859,6 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
-    },
-    {
-      "id": "orchestrated-link-d5a2ccc1",
-      "sourceId": "orchestrated-artifact-50f438e3",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-f943543d",
@@ -23677,33 +22913,6 @@
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-d7a29589",
-      "sourceId": "orchestrated-artifact-53e01242",
-      "targetId": "orchestrated-artifact-a4a258e7",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-05586e72",
-      "sourceId": "orchestrated-artifact-53e01242",
-      "targetId": "orchestrated-artifact-b12d5446",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-bc9d2863",
-      "sourceId": "orchestrated-artifact-53e01242",
-      "targetId": "orchestrated-artifact-b4980178",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-2cbc6758",
@@ -23796,51 +23005,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-71f945c5",
-      "sourceId": "orchestrated-artifact-56193460",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-95b53d18",
-      "sourceId": "orchestrated-artifact-57504b36",
-      "targetId": "orchestrated-artifact-63c65ca1",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-5b78d7d7",
-      "sourceId": "orchestrated-artifact-57504b36",
-      "targetId": "orchestrated-artifact-b0002012",
-      "kind": "documents",
-      "confidence": 0.7,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-bf3306d2",
-      "sourceId": "orchestrated-artifact-57504b36",
-      "targetId": "orchestrated-artifact-b9ea9031",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-1b134eaf",
-      "sourceId": "orchestrated-artifact-57504b36",
-      "targetId": "orchestrated-artifact-e529a593",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-4fd943f5",
       "sourceId": "orchestrated-artifact-57ea4ff2",
       "targetId": "orchestrated-artifact-4d4e03d9",
@@ -23871,6 +23035,15 @@
       "id": "orchestrated-link-374eef3c",
       "sourceId": "orchestrated-artifact-5874edcf",
       "targetId": "orchestrated-artifact-2994b2b6",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-fddad35b",
+      "sourceId": "orchestrated-artifact-58c03e0d",
+      "targetId": "orchestrated-artifact-d03880d4",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -23992,24 +23165,6 @@
       "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-a6688ead",
-      "sourceId": "orchestrated-artifact-5a9c07fc",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-3cc27e26",
-      "sourceId": "orchestrated-artifact-5a9c07fc",
-      "targetId": "orchestrated-artifact-8e615104",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-6169da0b",
@@ -24147,15 +23302,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-07e0656a",
-      "sourceId": "orchestrated-artifact-5efca036",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-8621f42f",
       "sourceId": "orchestrated-artifact-5f3cab53",
       "targetId": "orchestrated-artifact-03948abc",
@@ -24242,15 +23388,6 @@
       "targetId": "orchestrated-artifact-1a36f329",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-6545c8be",
-      "sourceId": "orchestrated-artifact-6103c98c",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -24435,15 +23572,6 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-5f157957",
-      "sourceId": "orchestrated-artifact-627aac66",
-      "targetId": "orchestrated-artifact-a47f0bf9",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-e1993422",
       "sourceId": "orchestrated-artifact-627aac66",
       "targetId": "orchestrated-artifact-eaef582d",
@@ -24489,24 +23617,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-1e0fbad8",
-      "sourceId": "orchestrated-artifact-63c65ca1",
-      "targetId": "orchestrated-artifact-57504b36",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-8949d359",
-      "sourceId": "orchestrated-artifact-63c65ca1",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-abb186b5",
       "sourceId": "orchestrated-artifact-63c65ca1",
       "targetId": "orchestrated-artifact-790dd768",
@@ -24530,15 +23640,6 @@
       "targetId": "orchestrated-artifact-673035d2",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-9632074c",
-      "sourceId": "orchestrated-artifact-63dfc4eb",
-      "targetId": "orchestrated-artifact-683a9f37",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -24732,24 +23833,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-365ea62c",
-      "sourceId": "orchestrated-artifact-67408415",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-dc9445b1",
-      "sourceId": "orchestrated-artifact-67567e73",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-4a6aebde",
       "sourceId": "orchestrated-artifact-67567e73",
       "targetId": "orchestrated-artifact-5999575a",
@@ -24793,60 +23876,6 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
-    },
-    {
-      "id": "orchestrated-link-435a6a6c",
-      "sourceId": "orchestrated-artifact-683a9f37",
-      "targetId": "orchestrated-artifact-1d9415be",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-93f14b7d",
-      "sourceId": "orchestrated-artifact-683a9f37",
-      "targetId": "orchestrated-artifact-4d937bd5",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-a1408e64",
-      "sourceId": "orchestrated-artifact-683a9f37",
-      "targetId": "orchestrated-artifact-63dfc4eb",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-cb48603a",
-      "sourceId": "orchestrated-artifact-683a9f37",
-      "targetId": "orchestrated-artifact-93ee5b51",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-c2ce9a2a",
-      "sourceId": "orchestrated-artifact-683a9f37",
-      "targetId": "orchestrated-artifact-af5ed3f5",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-624d3104",
-      "sourceId": "orchestrated-artifact-683a9f37",
-      "targetId": "orchestrated-artifact-efe92170",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-cc94417e",
@@ -24901,33 +23930,6 @@
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-975d3df8",
-      "sourceId": "orchestrated-artifact-6b88b683",
-      "targetId": "orchestrated-artifact-45c0456b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-bd3c5177",
-      "sourceId": "orchestrated-artifact-6b88b683",
-      "targetId": "orchestrated-artifact-465ddd09",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-d61c56fb",
-      "sourceId": "orchestrated-artifact-6b88b683",
-      "targetId": "orchestrated-artifact-c0b628b9",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-6e1f0384",
@@ -25731,119 +24733,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-d8a6b1c6",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-0e6dfa54",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-4ff2c3ea",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-15682162",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-11c241a4",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-1fb4c227",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-e40baa20",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-398fb52b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-c068b3a3",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-5a9c07fc",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-69885477",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-63c65ca1",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-86c1ea23",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-940c63f5",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-dbee0e71",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-b5b42225",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-277a6275",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-de60430b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-eee6660e",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-e529a593",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-b80bb4a1",
-      "sourceId": "orchestrated-artifact-774f2d7b",
-      "targetId": "orchestrated-artifact-f48ca2c1",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-68beea3d",
       "sourceId": "orchestrated-artifact-77587c16",
       "targetId": "orchestrated-artifact-100b8bfd",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-7fdb2f09",
-      "sourceId": "orchestrated-artifact-77587c16",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -25866,15 +24760,6 @@
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-2adef675",
-      "sourceId": "orchestrated-artifact-780e5cae",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-4934c61b",
       "sourceId": "orchestrated-artifact-780e5cae",
       "targetId": "orchestrated-artifact-ba388c95",
@@ -25882,33 +24767,6 @@
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-5f8780fe",
-      "sourceId": "orchestrated-artifact-78417b5a",
-      "targetId": "orchestrated-artifact-45c0456b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-8566947d",
-      "sourceId": "orchestrated-artifact-78417b5a",
-      "targetId": "orchestrated-artifact-465ddd09",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-5d5b458b",
-      "sourceId": "orchestrated-artifact-78417b5a",
-      "targetId": "orchestrated-artifact-b5b42225",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-405f7cd7",
@@ -26051,15 +24909,6 @@
       "targetId": "orchestrated-artifact-4e20acf8",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-2e4e1412",
-      "sourceId": "orchestrated-artifact-7d726e11",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -26586,15 +25435,6 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-7c67be68",
-      "sourceId": "orchestrated-artifact-826b52c5",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-b576b296",
       "sourceId": "orchestrated-artifact-826b52c5",
       "targetId": "orchestrated-artifact-a75385ac",
@@ -26847,51 +25687,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-c0209688",
-      "sourceId": "orchestrated-artifact-87128e97",
-      "targetId": "orchestrated-artifact-45c0456b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-e5ffaa07",
-      "sourceId": "orchestrated-artifact-87128e97",
-      "targetId": "orchestrated-artifact-465ddd09",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-fedfaf8b",
-      "sourceId": "orchestrated-artifact-87128e97",
-      "targetId": "orchestrated-artifact-c0b628b9",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-41e51b49",
-      "sourceId": "orchestrated-artifact-87128e97",
-      "targetId": "orchestrated-artifact-d469fb9f",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-5fc1e299",
-      "sourceId": "orchestrated-artifact-87128e97",
-      "targetId": "orchestrated-artifact-d895ed52",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-b740b166",
       "sourceId": "orchestrated-artifact-8752bb12",
       "targetId": "orchestrated-artifact-fc40dad9",
@@ -27036,15 +25831,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-082640cb",
-      "sourceId": "orchestrated-artifact-88bdb707",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-905e23d1",
       "sourceId": "orchestrated-artifact-89712940",
       "targetId": "orchestrated-artifact-d8d6c37e",
@@ -27052,6 +25838,15 @@
       "confidence": 0.7,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
+    },
+    {
+      "id": "orchestrated-link-a75159d7",
+      "sourceId": "orchestrated-artifact-89718c3a",
+      "targetId": "orchestrated-artifact-96cee801",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-d28e4ba9",
@@ -27234,87 +26029,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-219d132d",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-0e6dfa54",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-98e92551",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-15682162",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-5ab8a30b",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-1fb4c227",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-4cefbeca",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-465ddd09",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-095f150a",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-5a9c07fc",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-24e46fd8",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-b5b42225",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-65cfc44e",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-c0b628b9",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-7070c3dc",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-de60430b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-01021608",
-      "sourceId": "orchestrated-artifact-8e615104",
-      "targetId": "orchestrated-artifact-f48ca2c1",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-a49f4023",
       "sourceId": "orchestrated-artifact-8e6c5d76",
       "targetId": "orchestrated-artifact-a75385ac",
@@ -27347,15 +26061,6 @@
       "targetId": "orchestrated-artifact-9e365e5b",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-9fdd6b88",
-      "sourceId": "orchestrated-artifact-8fbe0c74",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -27702,15 +26407,6 @@
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-2332fd8e",
-      "sourceId": "orchestrated-artifact-93768512",
-      "targetId": "orchestrated-artifact-d9938435",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-3d5d6c37",
       "sourceId": "orchestrated-artifact-93ee5b51",
       "targetId": "orchestrated-artifact-32169238",
@@ -27720,29 +26416,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-27c57ab6",
-      "sourceId": "orchestrated-artifact-93ee5b51",
-      "targetId": "orchestrated-artifact-683a9f37",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-1a6a2776",
       "sourceId": "orchestrated-artifact-940c63f5",
       "targetId": "orchestrated-artifact-427682bc",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-9a88882d",
-      "sourceId": "orchestrated-artifact-940c63f5",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -28049,6 +26727,24 @@
       "targetId": "orchestrated-artifact-2994b2b6",
       "kind": "depends_on",
       "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-3e2b3181",
+      "sourceId": "orchestrated-artifact-96cee801",
+      "targetId": "orchestrated-artifact-9d675640",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-1124b041",
+      "sourceId": "orchestrated-artifact-96cee801",
+      "targetId": "orchestrated-artifact-d6099129",
+      "kind": "references",
+      "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
     },
@@ -28584,6 +27280,24 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-b18fac1e",
+      "sourceId": "orchestrated-artifact-9d675640",
+      "targetId": "orchestrated-artifact-96cee801",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-e2112c77",
+      "sourceId": "orchestrated-artifact-9d675640",
+      "targetId": "orchestrated-artifact-d6099129",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-649548a4",
       "sourceId": "orchestrated-artifact-9da71b1c",
       "targetId": "orchestrated-artifact-aa640318",
@@ -28953,65 +27667,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-9cf24479",
-      "sourceId": "orchestrated-artifact-a47f0bf9",
-      "targetId": "orchestrated-artifact-056bb8ef",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-a7bbd839",
-      "sourceId": "orchestrated-artifact-a47f0bf9",
-      "targetId": "orchestrated-artifact-627aac66",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-c50d9936",
-      "sourceId": "orchestrated-artifact-a47f0bf9",
-      "targetId": "orchestrated-artifact-b534165a",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-ea1f8298",
-      "sourceId": "orchestrated-artifact-a47f0bf9",
-      "targetId": "orchestrated-artifact-fa4e94bb",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-4197bb1a",
-      "sourceId": "orchestrated-artifact-a4a258e7",
-      "targetId": "orchestrated-artifact-0eb7002c",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-b78c8890",
       "sourceId": "orchestrated-artifact-a4a258e7",
       "targetId": "orchestrated-artifact-281fe9ce",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-d57a65c7",
-      "sourceId": "orchestrated-artifact-a4a258e7",
-      "targetId": "orchestrated-artifact-53e01242",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -29475,15 +28135,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-61d5cf6b",
-      "sourceId": "orchestrated-artifact-abb70327",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-ee945754",
       "sourceId": "orchestrated-artifact-abc27fe7",
       "targetId": "orchestrated-artifact-f0ce7c73",
@@ -29520,15 +28171,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-985684a9",
-      "sourceId": "orchestrated-artifact-ac40c845",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-c48be37c",
       "sourceId": "orchestrated-artifact-ac449886",
       "targetId": "orchestrated-artifact-a5f8c04d",
@@ -29538,29 +28180,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-e9af318a",
-      "sourceId": "orchestrated-artifact-ac449886",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-0da4e3f0",
       "sourceId": "orchestrated-artifact-ac81a9c4",
       "targetId": "orchestrated-artifact-042d0cb5",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-2af402c6",
-      "sourceId": "orchestrated-artifact-af5ed3f5",
-      "targetId": "orchestrated-artifact-683a9f37",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -29626,15 +28250,6 @@
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "relationship-rules"
-    },
-    {
-      "id": "orchestrated-link-91dbdb1c",
-      "sourceId": "orchestrated-artifact-b010bab7",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-da8362fb",
@@ -29754,29 +28369,11 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-daf3afbe",
-      "sourceId": "orchestrated-artifact-b12d5446",
-      "targetId": "orchestrated-artifact-53e01242",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-5222555e",
       "sourceId": "orchestrated-artifact-b12d5446",
       "targetId": "orchestrated-artifact-b19d842d",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-9a0dbe76",
-      "sourceId": "orchestrated-artifact-b12d5446",
-      "targetId": "orchestrated-artifact-c64671d5",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -29907,56 +28504,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-4ec3f7ad",
-      "sourceId": "orchestrated-artifact-b4980178",
-      "targetId": "orchestrated-artifact-53e01242",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-0dde0665",
-      "sourceId": "orchestrated-artifact-b4980178",
-      "targetId": "orchestrated-artifact-c64671d5",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-5070043d",
       "sourceId": "orchestrated-artifact-b534165a",
       "targetId": "orchestrated-artifact-02756a21",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-9f3ad8ba",
-      "sourceId": "orchestrated-artifact-b534165a",
-      "targetId": "orchestrated-artifact-a47f0bf9",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-e78b5a1f",
-      "sourceId": "orchestrated-artifact-b5b42225",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-85cf1e45",
-      "sourceId": "orchestrated-artifact-b5b42225",
-      "targetId": "orchestrated-artifact-78417b5a",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -29982,33 +28534,6 @@
       "id": "orchestrated-link-9790890f",
       "sourceId": "orchestrated-artifact-b5b42225",
       "targetId": "orchestrated-artifact-883d31f6",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-7de54998",
-      "sourceId": "orchestrated-artifact-b5b42225",
-      "targetId": "orchestrated-artifact-8e615104",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-9a11b770",
-      "sourceId": "orchestrated-artifact-b5b42225",
-      "targetId": "orchestrated-artifact-c64671d5",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-a6d646a3",
-      "sourceId": "orchestrated-artifact-b5b42225",
-      "targetId": "orchestrated-artifact-cb3f6975",
       "kind": "documents",
       "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -30137,15 +28662,6 @@
       "targetId": "orchestrated-artifact-6890bafc",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-da2739de",
-      "sourceId": "orchestrated-artifact-b9ea9031",
-      "targetId": "orchestrated-artifact-57504b36",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -30348,15 +28864,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-fd2d0f68",
-      "sourceId": "orchestrated-artifact-bc30d4c6",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-f6bf7f13",
       "sourceId": "orchestrated-artifact-bc358765",
       "targetId": "orchestrated-artifact-49d59bda",
@@ -30436,15 +28943,6 @@
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "relationship-rules"
-    },
-    {
-      "id": "orchestrated-link-b8975931",
-      "sourceId": "orchestrated-artifact-bd4097c3",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-49e81e98",
@@ -30627,24 +29125,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-43fc9ad5",
-      "sourceId": "orchestrated-artifact-c0b628b9",
-      "targetId": "orchestrated-artifact-0eb7002c",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-3d033555",
-      "sourceId": "orchestrated-artifact-c0b628b9",
-      "targetId": "orchestrated-artifact-6b88b683",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-e8612bfd",
       "sourceId": "orchestrated-artifact-c0b628b9",
       "targetId": "orchestrated-artifact-781be006",
@@ -30663,27 +29143,9 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-0a6caec5",
-      "sourceId": "orchestrated-artifact-c0b628b9",
-      "targetId": "orchestrated-artifact-87128e97",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-947825d9",
       "sourceId": "orchestrated-artifact-c0b628b9",
       "targetId": "orchestrated-artifact-883d31f6",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-7acce662",
-      "sourceId": "orchestrated-artifact-c0b628b9",
-      "targetId": "orchestrated-artifact-8e615104",
       "kind": "documents",
       "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -30695,15 +29157,6 @@
       "targetId": "orchestrated-artifact-aa39a780",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-a3bde36d",
-      "sourceId": "orchestrated-artifact-c0b628b9",
-      "targetId": "orchestrated-artifact-cb3f6975",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -30760,15 +29213,6 @@
       "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-51d0c2e1",
-      "sourceId": "orchestrated-artifact-c1cad7fc",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-ca48d542",
@@ -31122,60 +29566,6 @@
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-f3d8ea55",
-      "sourceId": "orchestrated-artifact-c64671d5",
-      "targetId": "orchestrated-artifact-0e6dfa54",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-6b24fc79",
-      "sourceId": "orchestrated-artifact-c64671d5",
-      "targetId": "orchestrated-artifact-15682162",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-692a88ba",
-      "sourceId": "orchestrated-artifact-c64671d5",
-      "targetId": "orchestrated-artifact-b12d5446",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-206f42ab",
-      "sourceId": "orchestrated-artifact-c64671d5",
-      "targetId": "orchestrated-artifact-b4980178",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-f7204700",
-      "sourceId": "orchestrated-artifact-c64671d5",
-      "targetId": "orchestrated-artifact-b5b42225",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-d33ded30",
-      "sourceId": "orchestrated-artifact-c64671d5",
-      "targetId": "orchestrated-artifact-f48ca2c1",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-63c8bc09",
       "sourceId": "orchestrated-artifact-c68b35e3",
       "targetId": "orchestrated-artifact-869778ec",
@@ -31320,60 +29710,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-6952cce0",
-      "sourceId": "orchestrated-artifact-cb3f6975",
-      "targetId": "orchestrated-artifact-45c0456b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-6726916d",
-      "sourceId": "orchestrated-artifact-cb3f6975",
-      "targetId": "orchestrated-artifact-b5b42225",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-a811e5e3",
-      "sourceId": "orchestrated-artifact-cb3f6975",
-      "targetId": "orchestrated-artifact-c0b628b9",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-08f418f1",
-      "sourceId": "orchestrated-artifact-cb3f6975",
-      "targetId": "orchestrated-artifact-d895ed52",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-4344379d",
-      "sourceId": "orchestrated-artifact-cb3f6975",
-      "targetId": "orchestrated-artifact-f48ca2c1",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-6d4e5098",
-      "sourceId": "orchestrated-artifact-cc846a20",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-b0aaef9d",
       "sourceId": "orchestrated-artifact-cc846a20",
       "targetId": "orchestrated-artifact-7fa32407",
@@ -31442,6 +29778,24 @@
       "targetId": "orchestrated-artifact-e4b19a59",
       "kind": "documents",
       "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-93981fd0",
+      "sourceId": "orchestrated-artifact-d03880d4",
+      "targetId": "orchestrated-artifact-9706887d",
+      "kind": "documents",
+      "confidence": 0.75,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-aa9c0416",
+      "sourceId": "orchestrated-artifact-d03880d4",
+      "targetId": "orchestrated-artifact-fd5efc6b",
+      "kind": "documents",
+      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -31527,29 +29881,11 @@
       "createdBy": "relationship-rules"
     },
     {
-      "id": "orchestrated-link-1ed93757",
-      "sourceId": "orchestrated-artifact-d469fb9f",
-      "targetId": "orchestrated-artifact-0eb7002c",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-164d9dd4",
       "sourceId": "orchestrated-artifact-d469fb9f",
       "targetId": "orchestrated-artifact-8375f7d2",
       "kind": "documents",
       "confidence": 0.7,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-e5494b47",
-      "sourceId": "orchestrated-artifact-d469fb9f",
-      "targetId": "orchestrated-artifact-87128e97",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -31642,6 +29978,15 @@
       "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-04a0337e",
+      "sourceId": "orchestrated-artifact-d6099129",
+      "targetId": "orchestrated-artifact-96cee801",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
     },
     {
       "id": "orchestrated-link-b438be25",
@@ -31815,38 +30160,11 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-56378607",
-      "sourceId": "orchestrated-artifact-d895ed52",
-      "targetId": "orchestrated-artifact-0eb7002c",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-44d653ed",
       "sourceId": "orchestrated-artifact-d895ed52",
       "targetId": "orchestrated-artifact-4d020939",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-1ca799f7",
-      "sourceId": "orchestrated-artifact-d895ed52",
-      "targetId": "orchestrated-artifact-87128e97",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-b5f8ce9f",
-      "sourceId": "orchestrated-artifact-d895ed52",
-      "targetId": "orchestrated-artifact-cb3f6975",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -31930,15 +30248,6 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
-    },
-    {
-      "id": "orchestrated-link-c8c75562",
-      "sourceId": "orchestrated-artifact-d9938435",
-      "targetId": "orchestrated-artifact-93768512",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-d4d27caf",
@@ -32094,15 +30403,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-5127c9f7",
-      "sourceId": "orchestrated-artifact-db477f13",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-df275328",
       "sourceId": "orchestrated-artifact-db5cf28e",
       "targetId": "orchestrated-artifact-ce4ab4a5",
@@ -32139,29 +30439,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-a42a7fc3",
-      "sourceId": "orchestrated-artifact-dc559918",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-7f929871",
       "sourceId": "orchestrated-artifact-dddd55b3",
       "targetId": "orchestrated-artifact-af5f5a9a",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-c2aca198",
-      "sourceId": "orchestrated-artifact-dddd55b3",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -32175,15 +30457,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-2035859b",
-      "sourceId": "orchestrated-artifact-de60430b",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-77339004",
       "sourceId": "orchestrated-artifact-de60430b",
       "targetId": "orchestrated-artifact-8375f7d2",
@@ -32193,11 +30466,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-b68f7514",
-      "sourceId": "orchestrated-artifact-de60430b",
-      "targetId": "orchestrated-artifact-8e615104",
+      "id": "orchestrated-link-5fe691f1",
+      "sourceId": "orchestrated-artifact-de6a7759",
+      "targetId": "orchestrated-artifact-9d675640",
       "kind": "documents",
-      "confidence": 0.75,
+      "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -32436,15 +30709,6 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-3998dc59",
-      "sourceId": "orchestrated-artifact-e26efba9",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-a33bc795",
       "sourceId": "orchestrated-artifact-e26efba9",
       "targetId": "orchestrated-artifact-f5b6a270",
@@ -32549,24 +30813,6 @@
       "targetId": "orchestrated-artifact-f42ca6fc",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-f5a53661",
-      "sourceId": "orchestrated-artifact-e529a593",
-      "targetId": "orchestrated-artifact-57504b36",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-60df4ee2",
-      "sourceId": "orchestrated-artifact-e529a593",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -33255,222 +31501,6 @@
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-bf83a663",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-04193b23",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-632a8e47",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-0d5af63c",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-bf9dd31c",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-11fc49f9",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-903417d7",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-398b2d4b",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-a9714287",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-42129956",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-dce60f0b",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-45279128",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-920d7b06",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-45eeeb78",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-3a636585",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-4f8d4125",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-bc3e1f0b",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-56193460",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-3eb5a006",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-5efca036",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-78ccef84",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-67408415",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-536d265e",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-7d726e11",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-1765ecc5",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-88bdb707",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-482865a8",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-8fbe0c74",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-3b15b225",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-abb70327",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-2897d7e6",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-ac449886",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-2535bdc8",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-bc30d4c6",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-567bd919",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-db477f13",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-942baccd",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-dc559918",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-1cebb198",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-dddd55b3",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-901c0af7",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-e26efba9",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-cc40a5d8",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-f036ab14",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-2558e47a",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-f81bf138",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
-      "id": "orchestrated-link-6ad9d857",
-      "sourceId": "orchestrated-artifact-ed0d9502",
-      "targetId": "orchestrated-artifact-f95562de",
-      "kind": "documents",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-6cd7c2c8",
       "sourceId": "orchestrated-artifact-ed6f6493",
       "targetId": "orchestrated-artifact-bb385c47",
@@ -33867,15 +31897,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-5a3910ac",
-      "sourceId": "orchestrated-artifact-efe92170",
-      "targetId": "orchestrated-artifact-683a9f37",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-c95d83df",
       "sourceId": "orchestrated-artifact-eff59582",
       "targetId": "orchestrated-artifact-7193fa20",
@@ -33903,15 +31924,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-31c92558",
-      "sourceId": "orchestrated-artifact-f036ab14",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-89e650a9",
       "sourceId": "orchestrated-artifact-f06b919f",
       "targetId": "orchestrated-artifact-fb870a66",
@@ -33926,15 +31938,6 @@
       "targetId": "orchestrated-artifact-29ba8f55",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-2ecdfdce",
-      "sourceId": "orchestrated-artifact-f0beb78e",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -34043,51 +32046,6 @@
       "targetId": "orchestrated-artifact-0e247da8",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-9a44edef",
-      "sourceId": "orchestrated-artifact-f48ca2c1",
-      "targetId": "orchestrated-artifact-774f2d7b",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-309edd68",
-      "sourceId": "orchestrated-artifact-f48ca2c1",
-      "targetId": "orchestrated-artifact-8e615104",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-4ccb4b40",
-      "sourceId": "orchestrated-artifact-f48ca2c1",
-      "targetId": "orchestrated-artifact-c64671d5",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-598fda73",
-      "sourceId": "orchestrated-artifact-f48ca2c1",
-      "targetId": "orchestrated-artifact-cb3f6975",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-b9774676",
-      "sourceId": "orchestrated-artifact-f49ac114",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -34236,15 +32194,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-93b19276",
-      "sourceId": "orchestrated-artifact-f81bf138",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-a5c911c4",
       "sourceId": "orchestrated-artifact-f871081d",
       "targetId": "orchestrated-artifact-6b2d2a7d",
@@ -34272,29 +32221,11 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-1124a4eb",
-      "sourceId": "orchestrated-artifact-f8c563d5",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
       "id": "orchestrated-link-51d921e4",
       "sourceId": "orchestrated-artifact-f95562de",
       "targetId": "orchestrated-artifact-0c58b6c5",
       "kind": "documents",
       "confidence": 0.9,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-fc7962f9",
-      "sourceId": "orchestrated-artifact-f95562de",
-      "targetId": "orchestrated-artifact-ed0d9502",
-      "kind": "documents",
-      "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
     },
@@ -34351,15 +32282,6 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
-    },
-    {
-      "id": "orchestrated-link-24a44318",
-      "sourceId": "orchestrated-artifact-fa4e94bb",
-      "targetId": "orchestrated-artifact-a47f0bf9",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-127243e3",
@@ -34675,15 +32597,6 @@
       "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
-    },
-    {
-      "id": "orchestrated-link-a0e0a9e9",
-      "sourceId": "orchestrated-artifact-fc7aa493",
-      "targetId": "orchestrated-artifact-3db77303",
-      "kind": "documents",
-      "confidence": 0.75,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-5820313c",
@@ -35068,9 +32981,9 @@
     {
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
-      "seedCount": 1134,
-      "hintCount": 669,
-      "evidenceCount": 461
+      "seedCount": 1113,
+      "hintCount": 559,
+      "evidenceCount": 466
     },
     {
       "id": "relationship-rules",

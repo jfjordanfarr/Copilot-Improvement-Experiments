@@ -1,0 +1,705 @@
+import { promises as fs } from "node:fs";
+
+import type {
+  DependencyEntry,
+  PublicSymbolEntry,
+  SourceAnalysisResult,
+  SymbolDocumentation,
+  SymbolDocumentationException,
+  SymbolDocumentationExample,
+  SymbolDocumentationLink,
+  SymbolDocumentationLinkKind,
+  SymbolDocumentationParameter
+} from "../core";
+import type { LanguageAdapter } from "./index";
+
+interface CSharpTypeMatch {
+  kind: string;
+  name: string;
+  line: number;
+  documentation?: SymbolDocumentation;
+}
+
+const USING_DIRECTIVE_PATTERN = /^\s*using\s+(?:static\s+)?([^=;]+);/gm;
+const TYPE_DECLARATION_PATTERN = /^\s*(?:\b(?:public|internal|protected|private|abstract|sealed|static|partial|readonly|unsafe|ref|file|new)\s+)*(class|struct|interface|record|enum)(?:\s+(?:class|struct))?\s+([A-Za-z_][A-Za-z0-9_]*)/gm;
+const BUILT_IN_NAMESPACE_PREFIX = "System";
+const MEMBER_MODIFIER_FRAGMENT = "(?:static|virtual|override|sealed|abstract|async|readonly|unsafe|extern|partial|new)";
+const FIELD_MODIFIER_FRAGMENT = "(?:static|readonly|const|volatile|new)";
+const ACCESS_MODIFIER_FRAGMENT = "(?:public|protected|internal|protected\\s+internal|internal\\s+protected|private\\s+protected)";
+
+const METHOD_DECLARATION_PATTERN = new RegExp(
+  `^\\s*(?:${ACCESS_MODIFIER_FRAGMENT})\\s+(?:${MEMBER_MODIFIER_FRAGMENT}\\s+)*[\\w<>\\[\\],?.]+\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*\\(`
+);
+const CONSTRUCTOR_DECLARATION_PATTERN = new RegExp(
+  `^\\s*(?:${ACCESS_MODIFIER_FRAGMENT})\\s+(?:${MEMBER_MODIFIER_FRAGMENT}\\s+)*([A-Za-z_][A-Za-z0-9_]*)\\s*\\((?!.*=>)`
+);
+const EVENT_DECLARATION_PATTERN = new RegExp(
+  `^\\s*(?:${ACCESS_MODIFIER_FRAGMENT})\\s+(?:${MEMBER_MODIFIER_FRAGMENT}\\s+)*event\\s+[\\w<>\\[\\],?.]+\\s+([A-Za-z_][A-Za-z0-9_]*)`
+);
+const PROPERTY_DECLARATION_PATTERN = new RegExp(
+  `^\\s*(?:${ACCESS_MODIFIER_FRAGMENT})\\s+(?:${MEMBER_MODIFIER_FRAGMENT}\\s+)*[\\w<>\\[\\],?.]+\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*(?:=>|\\{\\s*(?:get|set))`
+);
+const FIELD_DECLARATION_PATTERN = new RegExp(
+  `^\\s*(?:${ACCESS_MODIFIER_FRAGMENT})\\s+(?:${FIELD_MODIFIER_FRAGMENT}\\s+)*[\\w<>\\[\\],?.]+\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*(?:=|;)`
+);
+
+export const csharpAdapter: LanguageAdapter = {
+  id: "csharp-basic",
+  extensions: [".cs"],
+  async analyze({ absolutePath, workspaceRoot: _workspaceRoot }): Promise<SourceAnalysisResult | null> {
+    const content = await fs.readFile(absolutePath, "utf8");
+    const symbols = extractSymbols(content);
+    const dependencies = extractDependencies(content);
+
+    if (symbols.length === 0 && dependencies.length === 0) {
+      return {
+        symbols: [],
+        dependencies: []
+      } as SourceAnalysisResult;
+    }
+
+    return {
+      symbols,
+      dependencies
+    } as SourceAnalysisResult;
+  }
+};
+
+function extractSymbols(content: string): PublicSymbolEntry[] {
+  const matches: CSharpTypeMatch[] = [];
+  let match: RegExpExecArray | null;
+
+  while ((match = TYPE_DECLARATION_PATTERN.exec(content)) !== null) {
+    const kind = match[1];
+    const name = match[2];
+    if (!kind || !name) {
+      continue;
+    }
+
+    const line = computeLineNumber(content, match.index);
+    const documentation = extractDocumentation(content, match.index);
+    matches.push({ kind, name, line, documentation });
+  }
+
+  TYPE_DECLARATION_PATTERN.lastIndex = 0;
+
+  const symbols = matches
+    .sort((a, b) => a.line - b.line || a.name.localeCompare(b.name))
+    .map((entry) => ({
+      name: entry.name,
+      kind: entry.kind,
+      location: {
+        line: entry.line,
+        character: 1
+      },
+      documentation: entry.documentation ?? undefined
+    })) as PublicSymbolEntry[];
+
+  const memberSymbols = extractMemberSymbols(content);
+  const combined = [...symbols, ...memberSymbols];
+
+  combined.sort((a, b) => {
+    const lineDiff = (a.location?.line ?? Number.MAX_SAFE_INTEGER) - (b.location?.line ?? Number.MAX_SAFE_INTEGER);
+    if (lineDiff !== 0) {
+      return lineDiff;
+    }
+    const charDiff = (a.location?.character ?? Number.MAX_SAFE_INTEGER) - (b.location?.character ?? Number.MAX_SAFE_INTEGER);
+    if (charDiff !== 0) {
+      return charDiff;
+    }
+    return a.name.localeCompare(b.name);
+  });
+
+  return combined;
+}
+
+function extractDependencies(content: string): DependencyEntry[] {
+  const namespaces = new Set<string>();
+  let match: RegExpExecArray | null;
+
+  while ((match = USING_DIRECTIVE_PATTERN.exec(content)) !== null) {
+    const directive = match[1]?.trim();
+    if (!directive || directive.includes("=")) {
+      continue;
+    }
+
+    const normalized = directive.replace(/\s+/g, "");
+    if (!normalized) {
+      continue;
+    }
+
+    if (
+      normalized === BUILT_IN_NAMESPACE_PREFIX ||
+      normalized.startsWith(`${BUILT_IN_NAMESPACE_PREFIX}.`)
+    ) {
+      continue;
+    }
+
+    namespaces.add(normalized);
+  }
+
+  USING_DIRECTIVE_PATTERN.lastIndex = 0;
+
+  const dependencies = Array.from(namespaces)
+    .sort((a, b) => a.localeCompare(b))
+    .map((specifier) => ({
+      specifier,
+      resolvedPath: undefined,
+      symbols: [],
+      kind: "import"
+    })) as DependencyEntry[];
+
+  return dependencies;
+}
+
+function computeLineNumber(content: string, index: number): number {
+  let line = 1;
+  for (let i = 0; i < index; i += 1) {
+    if (content[i] === "\n") {
+      line += 1;
+    }
+  }
+  return line;
+}
+
+function extractDocumentation(content: string, startIndex: number): SymbolDocumentation | undefined {
+  let cursor = startIndex;
+  const docLines: string[] = [];
+  let seenComment = false;
+
+  while (cursor > 0) {
+    const prevNewline = content.lastIndexOf("\n", cursor - 1);
+    const lineStart = prevNewline + 1;
+    const line = content.slice(lineStart, cursor).replace(/\r$/, "");
+
+    if (/^\s*$/.test(line)) {
+      if (seenComment) {
+        break;
+      }
+      cursor = prevNewline >= 0 ? prevNewline : 0;
+      continue;
+    }
+
+    if (/^\s*\/\/\//.test(line)) {
+      docLines.unshift(line);
+      seenComment = true;
+      cursor = prevNewline >= 0 ? prevNewline : 0;
+      continue;
+    }
+
+    break;
+  }
+
+  return buildDocumentationFromLines(docLines);
+}
+
+function extractMemberSymbols(content: string): PublicSymbolEntry[] {
+  const lines = content.split(/\r?\n/);
+  const results: PublicSymbolEntry[] = [];
+  let docBuffer: string[] = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const rawLine = lines[index];
+    const trimmed = rawLine.trim();
+
+    if (/^\s*\/\/\//.test(trimmed)) {
+      docBuffer.push(rawLine);
+      continue;
+    }
+
+    if (!trimmed) {
+      if (docBuffer.length > 0) {
+        continue;
+      }
+      continue;
+    }
+
+    if (docBuffer.length > 0 && /^\s*\[/.test(trimmed)) {
+      continue;
+    }
+
+    let documentation: SymbolDocumentation | undefined;
+    if (docBuffer.length > 0) {
+      documentation = buildDocumentationFromLines(docBuffer);
+      docBuffer = [];
+    }
+
+    let match: RegExpExecArray | null;
+
+    match = EVENT_DECLARATION_PATTERN.exec(rawLine);
+    if (match) {
+      results.push(createMemberEntry({
+        kind: "event",
+        name: match[1],
+        line: index + 1,
+        columnLine: rawLine,
+        documentation
+      }));
+      continue;
+    }
+
+    match = CONSTRUCTOR_DECLARATION_PATTERN.exec(rawLine);
+    if (match) {
+      results.push(createMemberEntry({
+        kind: "constructor",
+        name: match[1],
+        line: index + 1,
+        columnLine: rawLine,
+        documentation
+      }));
+      continue;
+    }
+
+    match = METHOD_DECLARATION_PATTERN.exec(rawLine);
+    if (match) {
+      results.push(createMemberEntry({
+        kind: "method",
+        name: match[1],
+        line: index + 1,
+        columnLine: rawLine,
+        documentation
+      }));
+      continue;
+    }
+
+    if (rawLine.includes("(")) {
+      continue;
+    }
+
+    match = PROPERTY_DECLARATION_PATTERN.exec(rawLine);
+    if (match) {
+      results.push(createMemberEntry({
+        kind: "property",
+        name: match[1],
+        line: index + 1,
+        columnLine: rawLine,
+        documentation
+      }));
+      continue;
+    }
+
+    if (rawLine.includes("=>") || rawLine.includes("{")) {
+      continue;
+    }
+
+    match = FIELD_DECLARATION_PATTERN.exec(rawLine);
+    if (match) {
+      results.push(createMemberEntry({
+        kind: "field",
+        name: match[1],
+        line: index + 1,
+        columnLine: rawLine,
+        documentation
+      }));
+    }
+  }
+
+  return results;
+}
+
+function createMemberEntry(args: {
+  kind: string;
+  name: string;
+  line: number;
+  columnLine: string;
+  documentation?: SymbolDocumentation;
+}): PublicSymbolEntry {
+  const column = args.columnLine.indexOf(args.name);
+  return {
+    name: args.name,
+    kind: args.kind,
+    location: {
+      line: args.line,
+      character: column >= 0 ? column + 1 : 1
+    },
+    documentation: args.documentation
+  } as PublicSymbolEntry;
+}
+
+function buildDocumentationFromLines(docLines: string[]): SymbolDocumentation | undefined {
+  if (docLines.length === 0) {
+    return undefined;
+  }
+
+  const rawBlock = docLines.map(stripDocCommentMarker).join("\n");
+  if (!rawBlock.trim()) {
+    return undefined;
+  }
+
+  const documentation: SymbolDocumentation = {
+    source: "csharp-xml"
+  };
+
+  const summary = extractSingleTagText(rawBlock, "summary");
+  if (summary) {
+    documentation.summary = summary;
+  }
+
+  const remarks = extractSingleTagText(rawBlock, "remarks");
+  if (remarks) {
+    documentation.remarks = remarks;
+  }
+
+  const returnsText = extractSingleTagText(rawBlock, "returns");
+  if (returnsText) {
+    documentation.returns = returnsText;
+  }
+
+  const valueText = extractSingleTagText(rawBlock, "value");
+  if (valueText) {
+    documentation.value = valueText;
+  }
+
+  const parameters = extractParameterTags(rawBlock, "param");
+  if (parameters.length > 0) {
+    documentation.parameters = parameters;
+  }
+
+  const typeParameters = extractParameterTags(rawBlock, "typeparam");
+  if (typeParameters.length > 0) {
+    documentation.typeParameters = typeParameters;
+  }
+
+  const exceptions = extractExceptionTags(rawBlock);
+  if (exceptions.length > 0) {
+    documentation.exceptions = exceptions;
+  }
+
+  const examples = extractExampleTags(rawBlock);
+  if (examples.length > 0) {
+    documentation.examples = examples;
+  }
+
+  const links = extractLinkTags(rawBlock);
+  if (links.length > 0) {
+    documentation.links = links;
+  }
+
+  const rawFragments = extractRawDocFragments(rawBlock);
+  if (rawFragments.length > 0) {
+    documentation.rawFragments = rawFragments;
+  }
+
+  const unsupportedTags = detectUnsupportedTags(rawBlock);
+  if (unsupportedTags.length > 0) {
+    documentation.unsupportedTags = unsupportedTags;
+  }
+
+  return hasStructuredContent(documentation) ? documentation : undefined;
+}
+
+function stripDocCommentMarker(line: string): string {
+  return line.replace(/^\s*\/\/\/\s?/, "");
+}
+
+function extractSingleTagText(block: string, tagName: string): string | undefined {
+  const regex = new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)</${tagName}>`, "gi");
+  const match = regex.exec(block);
+  if (!match) {
+    return undefined;
+  }
+  regex.lastIndex = 0;
+  const normalized = normalizeXmlText(match[1]);
+  return normalized || undefined;
+}
+
+function extractParameterTags(block: string, tagName: string): SymbolDocumentationParameter[] {
+  const regex = new RegExp(`<${tagName}\\s+name="([^"]+)"[^>]*>([\\s\\S]*?)</${tagName}>`, "gi");
+  const results: SymbolDocumentationParameter[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(block)) !== null) {
+    const name = match[1];
+    const raw = match[2];
+    const description = normalizeXmlText(raw);
+    results.push({
+      name,
+      description: description || undefined
+    });
+  }
+  regex.lastIndex = 0;
+  return results;
+}
+
+function extractExceptionTags(block: string): SymbolDocumentationException[] {
+  const regex = /<exception\s+cref="([^"]+)"[^>]*>([\s\S]*?)<\/exception>/gi;
+  const results: SymbolDocumentationException[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(block)) !== null) {
+    const type = match[1];
+    const description = normalizeXmlText(match[2]);
+    results.push({
+      type,
+      description: description || undefined
+    });
+  }
+  regex.lastIndex = 0;
+  results.sort((a, b) => {
+    const typeDiff = (a.type ?? "").localeCompare(b.type ?? "");
+    if (typeDiff !== 0) {
+      return typeDiff;
+    }
+    return (a.description ?? "").localeCompare(b.description ?? "");
+  });
+  return results;
+}
+
+function extractExampleTags(block: string): SymbolDocumentationExample[] {
+  const regex = /<example>([\s\S]*?)<\/example>/gi;
+  const examples: SymbolDocumentationExample[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(block)) !== null) {
+    const content = match[1];
+    const codeMatch = content.match(/<code(?:\s+lang="([^"]+)")?>([\s\S]*?)<\/code>/i);
+    let descriptionFragment = content;
+    let language: string | undefined;
+    let code: string | undefined;
+    if (codeMatch) {
+      language = codeMatch[1] ? decodeXmlEntities(codeMatch[1]) : undefined;
+      code = decodeXmlEntities(codeMatch[2]).trimEnd();
+      descriptionFragment = content.replace(codeMatch[0], "");
+    }
+    const description = normalizeXmlText(descriptionFragment);
+    if ((description && description.length > 0) || (code && code.length > 0)) {
+      examples.push({
+        description: description || undefined,
+        code,
+        language
+      });
+    }
+  }
+  regex.lastIndex = 0;
+  return examples;
+}
+
+function extractLinkTags(block: string): SymbolDocumentationLink[] {
+  const links: SymbolDocumentationLink[] = [];
+  const seen = new Set<string>();
+
+  const register = (target: string | undefined, text: string | undefined): void => {
+    if (!target) {
+      return;
+    }
+    const normalizedTarget = target.trim();
+    if (!normalizedTarget) {
+      return;
+    }
+    const kind: SymbolDocumentationLinkKind = /^https?:\/\//i.test(normalizedTarget)
+      ? "href"
+      : "cref";
+    const resolvedTarget = kind === "cref" ? normalizeCrefTarget(normalizedTarget) : normalizedTarget;
+    const normalizedText = text?.trim();
+    const key = `${kind}|${resolvedTarget}|${normalizedText ?? ""}`;
+    if (seen.has(key)) {
+      return;
+    }
+    seen.add(key);
+    links.push({
+      kind,
+      target: resolvedTarget,
+      text: normalizedText && normalizedText !== resolvedTarget ? normalizedText : undefined
+    });
+  };
+
+  const tagRegex = /<(see|seealso)\b([^>]*?)(?:\/>|>([\s\S]*?)<\/\1>)/gi;
+  let match: RegExpExecArray | null;
+  while ((match = tagRegex.exec(block)) !== null) {
+    const attrs = parseXmlAttributes(match[2] ?? "");
+    const body = match[3] ? normalizeXmlText(match[3]) : "";
+    const targetCandidate = attrs.href ?? attrs.cref ?? body;
+    register(targetCandidate, body || undefined);
+  }
+
+  links.sort((a, b) => {
+    const targetDiff = a.target.localeCompare(b.target);
+    if (targetDiff !== 0) {
+      return targetDiff;
+    }
+    const kindDiff = a.kind.localeCompare(b.kind);
+    if (kindDiff !== 0) {
+      return kindDiff;
+    }
+    return (a.text ?? "").localeCompare(b.text ?? "");
+  });
+
+  return links;
+}
+
+function extractRawDocFragments(block: string): string[] {
+  const fragments = new Set<string>();
+  const inheritDocRegex = /<inheritdoc[^>]*>/gi;
+  let match: RegExpExecArray | null;
+  while ((match = inheritDocRegex.exec(block)) !== null) {
+    fragments.add(match[0].replace(/\s+/g, " ").trim());
+  }
+  inheritDocRegex.lastIndex = 0;
+
+  const includeRegex = /<include[^>]*>/gi;
+  while ((match = includeRegex.exec(block)) !== null) {
+    fragments.add(match[0].replace(/\s+/g, " ").trim());
+  }
+  includeRegex.lastIndex = 0;
+
+  return Array.from(fragments).sort((a, b) => a.localeCompare(b));
+}
+
+const RECOGNIZED_DOC_TAGS = new Set<string>([
+  "summary",
+  "remarks",
+  "param",
+  "typeparam",
+  "returns",
+  "value",
+  "exception",
+  "example",
+  "see",
+  "seealso",
+  "paramref",
+  "typeparamref",
+  "langword",
+  "para",
+  "list",
+  "item",
+  "description",
+  "term",
+  "code",
+  "c",
+  "br",
+  "inheritdoc",
+  "include"
+]);
+
+function detectUnsupportedTags(block: string): string[] {
+  const unsupported = new Set<string>();
+  const regex = /<\/?\s*([a-zA-Z0-9!-]+)(?=[\s>/])/g;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(block)) !== null) {
+    const tagName = match[1].toLowerCase();
+    if (tagName.startsWith("!--")) {
+      continue;
+    }
+    if (!RECOGNIZED_DOC_TAGS.has(tagName)) {
+      unsupported.add(tagName);
+    }
+  }
+  regex.lastIndex = 0;
+  return Array.from(unsupported).sort((a, b) => a.localeCompare(b));
+}
+
+function parseXmlAttributes(fragment: string): Record<string, string> {
+  const attributes: Record<string, string> = {};
+  const regex = /(\w+)\s*=\s*"([^"]*)"/g;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(fragment)) !== null) {
+    attributes[match[1].toLowerCase()] = decodeXmlEntities(match[2]);
+  }
+  return attributes;
+}
+
+function normalizeXmlText(value: string): string {
+  if (!value) {
+    return "";
+  }
+
+  let working = value.replace(/\r\n/g, "\n");
+
+  working = working
+    .replace(/<para\s*\/>/gi, "\n\n")
+    .replace(/<para>/gi, "\n\n")
+    .replace(/<\/para>/gi, "\n\n")
+    .replace(/<br\s*\/?\s*>/gi, "\n")
+    .replace(/<list[^>]*type="bullet"[^>]*>/gi, "\n")
+    .replace(/<list[^>]*type="number"[^>]*>/gi, "\n")
+    .replace(/<list[^>]*>/gi, "\n")
+    .replace(/<\/list>/gi, "\n")
+    .replace(/<item>/gi, "\n- ")
+    .replace(/<\/item>/gi, "")
+    .replace(/<description>/gi, ": ")
+    .replace(/<\/description>/gi, "")
+    .replace(/<term>/gi, "")
+    .replace(/<\/term>/gi, "");
+
+  working = working
+    .replace(/<see\s+cref="([^"]+)"[^>]*>([\s\S]*?)<\/see>/gi, (_match: string, cref: string, text?: string) => {
+      return renderCrefText(cref, text);
+    })
+    .replace(/<see\s+cref="([^"]+)"[^>]*\/>/gi, (_match: string, cref: string) => {
+      return renderCrefText(cref);
+    })
+    .replace(/<see\s+href="([^"]+)"[^>]*>([\s\S]*?)<\/see>/gi, (_match: string, href: string, text?: string) => {
+      const inner = text?.trim();
+      return inner && inner.length > 0 ? `${inner} (${href})` : href;
+    })
+    .replace(/<see\s+href="([^"]+)"[^>]*\/>/gi, "$1")
+    .replace(/<see\s+langword="([^"]+)"[^>]*\/>/gi, "`$1`")
+    .replace(/<paramref\s+name="([^"]+)"[^>]*\/>/gi, "`$1`")
+    .replace(/<typeparamref\s+name="([^"]+)"[^>]*\/>/gi, "`$1`")
+    .replace(/<c>([\s\S]*?)<\/c>/gi, (_match: string, inlineCode: string) => `\`${inlineCode.trim()}\``)
+    .replace(/<code[^>]*>([\s\S]*?)<\/code>/gi, (_match: string, codeBlock: string) => {
+      const trimmed = decodeXmlEntities(codeBlock).trimEnd();
+      return `\n\n\`\`\`\n${trimmed}\n\`\`\`\n\n`;
+    });
+
+  working = working.replace(/<\/?[^>]+>/g, "");
+
+  working = decodeXmlEntities(working);
+
+  working = working
+    .split("\n")
+    .map((line) => line.replace(/\s+$/u, ""))
+    .join("\n");
+
+  working = working.replace(/\n{3,}/g, "\n\n");
+
+  return working.trim();
+}
+
+function decodeXmlEntities(value: string): string {
+  return value
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'");
+}
+
+function normalizeCrefTarget(value: string): string {
+  if (!value) {
+    return value;
+  }
+
+  let normalized = value.trim();
+  if (!normalized) {
+    return normalized;
+  }
+
+  normalized = normalized.replace(/^[A-Z]:/, "");
+  normalized = normalized.replace(/#ctor/g, ".ctor");
+  normalized = normalized.replace(/\{([^}]+)\}/g, "<$1>");
+
+  return normalized;
+}
+
+function renderCrefText(cref: string, inner?: string): string {
+  const normalizedTarget = normalizeCrefTarget(cref);
+  const normalizedInner = inner?.trim();
+  if (normalizedInner && normalizedInner.length > 0 && normalizedInner !== normalizedTarget) {
+    return normalizedInner;
+  }
+  return `\`${normalizedTarget}\``;
+}
+
+function hasStructuredContent(doc: SymbolDocumentation): boolean {
+  return Boolean(
+    doc.summary ||
+      doc.remarks ||
+      doc.returns ||
+      doc.value ||
+      doc.parameters?.length ||
+      doc.typeParameters?.length ||
+      doc.exceptions?.length ||
+      doc.examples?.length ||
+      doc.links?.length ||
+      doc.rawFragments?.length ||
+      doc.unsupportedTags?.length
+  );
+}

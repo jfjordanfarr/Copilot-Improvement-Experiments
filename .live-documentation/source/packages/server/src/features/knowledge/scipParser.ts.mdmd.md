@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/scipParser.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-scipparser-ts
-- Generated At: 2025-11-10T22:24:00.360Z
+- Generated At: 2025-11-13T13:25:19.716Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Converts SCIP indexes into knowledge feed snapshots so we can ingest Sourcegraph
 - Provides a light wrapper `parseSCIP` so callers can parse JSON indexes without managing parser configuration by hand.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-10T22:24:00.360Z","inputHash":"e21976c03ee78a6d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.716Z","inputHash":"1579f5ceb52665b3"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SCIPParserOptions`
@@ -27,15 +27,22 @@ Converts SCIP indexes into knowledge feed snapshots so we can ingest Sourcegraph
 #### `SCIPParser`
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/scipParser.ts#L25)
-- Summary: Parses SCIP (SCIP Code Intelligence Protocol) indexes into ExternalSnapshot format.
+
+##### `SCIPParser` — Summary
+Parses SCIP (SCIP Code Intelligence Protocol) indexes into ExternalSnapshot format.
 
 SCIP is a language-agnostic protocol for code intelligence developed by Sourcegraph.
 Documents contain occurrences (symbol usages) and symbols (definitions/declarations).
 
+##### `SCIPParser` — Links
+- `https` — ://github.com/sourcegraph/scip
+
 #### `parseSCIP`
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/scipParser.ts#L203)
-- Summary: Parse SCIP index into an ExternalSnapshot
+
+##### `parseSCIP` — Summary
+Parse SCIP index into an ExternalSnapshot
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
