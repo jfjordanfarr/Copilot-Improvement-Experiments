@@ -21,8 +21,7 @@ export interface LSIFParserOptions {
  * 
  * LSIF is a newline-delimited JSON format where each line is a vertex or edge.
  * We extract documents as artifacts and definition/reference relationships as links.
- * 
- * @see https://microsoft.github.io/language-server-protocol/specifications/lsif/0.6.0/specification/
+ * Reference: LSIF specification (Language Server Index Format).
  */
 export class LSIFParser {
   private readonly options: Required<LSIFParserOptions>;

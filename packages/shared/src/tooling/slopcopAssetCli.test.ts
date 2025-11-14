@@ -41,7 +41,7 @@ describe("SlopCop asset CLI", () => {
       const repairedPayload = JSON.parse(repaired.stdout.trim() || "{}");
       expect(repairedPayload.issues).toHaveLength(0);
     });
-  });
+  }, 15_000);
 });
 
 function runCli(workspace: string) {

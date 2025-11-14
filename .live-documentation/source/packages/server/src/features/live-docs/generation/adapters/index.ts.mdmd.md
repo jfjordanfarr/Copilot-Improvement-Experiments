@@ -5,17 +5,19 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/adapters/index.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-index-ts
-- Generated At: 2025-11-14T20:58:02.879Z
+- Generated At: 2025-11-14T21:30:42.342Z
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Routes source files through language-specific adapters before falling back to the default TypeScript analyzer, ensuring polyglot projects surface enriched Live Doc metadata.
 
 ### Notes
-_Pending notes_
+- Maintains a registry keyed by file extension so adapters can be added without touching the generator core.
+- Normalises workspace paths before delegating, giving adapters consistent context for dependency resolution and doc rendering.
+- Returns `null` when no adapter claims the file, allowing the core analyzer to handle remaining languages without double work.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T20:58:02.879Z","inputHash":"6f017b3d433e98a9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T21:30:42.342Z","inputHash":"4dc8ba56c8ebc40d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LanguageAdapter`
@@ -24,7 +26,17 @@ _Pending notes_
 
 #### `analyzeWithLanguageAdapters`
 - Type: function
-- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/index.ts#L16)
+- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/index.ts#L24)
+
+##### `analyzeWithLanguageAdapters` — Summary
+Attempts to analyse a source file using the configured language adapters.
+
+##### `analyzeWithLanguageAdapters` — Parameters
+- `options.absolutePath`: Absolute path to the source file under inspection.
+- `options.workspaceRoot`: Workspace root, forwarded to adapters that need relative paths.
+
+##### `analyzeWithLanguageAdapters` — Returns
+Analyzer output when an adapter understands the file extension, otherwise `null`.
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -40,6 +52,7 @@ _Pending notes_
 ### Observed Evidence
 #### Vitest Unit Tests
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
+- [core.docstring.test.ts](../core.docstring.test.ts.mdmd.md)
 - [generator.test.ts](../../generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../renderPublicSymbolLines.test.ts.mdmd.md)
 - [generator.test.ts](../../system/generator.test.ts.mdmd.md)

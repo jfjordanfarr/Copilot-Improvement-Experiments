@@ -21,6 +21,14 @@ const REST_FIELD_PATTERN = /^:([a-zA-Z_]+)(?:\s+([^:]+))?:\s*(.*)$/;
 const SECTION_HEADER_PATTERN = /^([A-Za-z][A-Za-z0-9 -]*):\s*$/;
 const NUMPY_SECTION_UNDERLINE = /^[=~`-]{3,}$/;
 
+/**
+ * Language adapter that extracts public symbols and docstring metadata from Python modules.
+ *
+ * @remarks
+ * The adapter recognises reStructuredText, Google, and NumPy-style docstring conventions
+ * to populate Live Doc summaries, parameter tables, and inline examples without relying
+ * on Python runtime introspection.
+ */
 export const pythonAdapter: LanguageAdapter = {
   id: "python-basic",
   extensions: [".py"],

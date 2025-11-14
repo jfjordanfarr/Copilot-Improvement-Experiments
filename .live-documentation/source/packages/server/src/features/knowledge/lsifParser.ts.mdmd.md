@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/lsifParser.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-lsifparser-ts
-- Generated At: 2025-11-14T18:42:06.434Z
+- Generated At: 2025-11-14T21:31:28.891Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Transforms LSIF dumps into external knowledge snapshots so the ingestion pipelin
 - Exposes a convenience `parseLSIF` helper so other modules do not need to manage parser lifecycle.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.434Z","inputHash":"147aadc593554696"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T21:31:28.891Z","inputHash":"c02def6160e0a1ea"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LSIFParserOptions`
@@ -26,20 +26,18 @@ Transforms LSIF dumps into external knowledge snapshots so the ingestion pipelin
 
 #### `LSIFParser`
 - Type: class
-- Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L27)
+- Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L26)
 
 ##### `LSIFParser` — Summary
 Parses LSIF (Language Server Index Format) dumps into ExternalSnapshot format.
 
 LSIF is a newline-delimited JSON format where each line is a vertex or edge.
 We extract documents as artifacts and definition/reference relationships as links.
-
-##### `LSIFParser` — Links
-- `https` — ://microsoft.github.io/language-server-protocol/specifications/lsif/0.6.0/specification/
+Reference: LSIF specification (Language Server Index Format).
 
 #### `parseLSIF`
 - Type: function
-- Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L283)
+- Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L282)
 
 ##### `parseLSIF` — Summary
 Parse LSIF content into an ExternalSnapshot

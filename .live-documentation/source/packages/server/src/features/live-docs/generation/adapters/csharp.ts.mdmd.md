@@ -5,17 +5,19 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/adapters/csharp.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-csharp-ts
-- Generated At: 2025-11-14T20:58:02.876Z
+- Generated At: 2025-11-14T21:30:42.336Z
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Adapts Roslyn-emitted JSON into Live Doc symbols so C# fixtures carry summaries, parameters, and dependency edges alongside TypeScript sources.
 
 ### Notes
-_Pending notes_
+- Reads the pre-generated C# analysis payloads stored with the fixture suite, avoiding a runtime Roslyn dependency.
+- Normalises XML doc comments into the shared documentation fields so downstream markdown rendering stays format-agnostic.
+- Captures `using` directives and fully-qualified symbol references to describe cross-file dependencies in the Live Doc graph.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T20:58:02.876Z","inputHash":"bf15fbc509c01d45"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T21:30:42.336Z","inputHash":"bf15fbc509c01d45"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `csharpAdapter`
@@ -42,6 +44,7 @@ _Pending notes_
 ### Observed Evidence
 #### Vitest Unit Tests
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
+- [core.docstring.test.ts](../core.docstring.test.ts.mdmd.md)
 - [generator.test.ts](../../generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../renderPublicSymbolLines.test.ts.mdmd.md)
 - [generator.test.ts](../../system/generator.test.ts.mdmd.md)

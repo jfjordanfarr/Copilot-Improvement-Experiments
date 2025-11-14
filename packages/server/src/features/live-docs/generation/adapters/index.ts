@@ -13,6 +13,14 @@ export interface LanguageAdapter {
 
 const ADAPTERS: readonly LanguageAdapter[] = [csharpAdapter, javaAdapter, pythonAdapter];
 
+/**
+ * Attempts to analyse a source file using the configured language adapters.
+ *
+ * @param options.absolutePath - Absolute path to the source file under inspection.
+ * @param options.workspaceRoot - Workspace root, forwarded to adapters that need relative paths.
+ *
+ * @returns Analyzer output when an adapter understands the file extension, otherwise `null`.
+ */
 export async function analyzeWithLanguageAdapters(options: {
   absolutePath: string;
   workspaceRoot: string;

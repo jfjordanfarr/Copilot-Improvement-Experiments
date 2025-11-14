@@ -19,8 +19,7 @@ export interface SCIPParserOptions {
  * 
  * SCIP is a language-agnostic protocol for code intelligence developed by Sourcegraph.
  * Documents contain occurrences (symbol usages) and symbols (definitions/declarations).
- * 
- * @see https://github.com/sourcegraph/scip
+ * Reference: Sourcegraph SCIP protocol repository.
  */
 export class SCIPParser {
   private readonly options: Required<SCIPParserOptions>;

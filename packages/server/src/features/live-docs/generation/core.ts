@@ -123,6 +123,33 @@ interface DiscoverOptions {
   changedOnly: boolean;
 }
 
+/**
+ * Locates workspace files that should receive Live Documentation generation.
+ *
+ * @remarks
+ * When `options.changedOnly` is `true`, the discovery set is intersected with
+ * files currently marked as changed in git, allowing quick iterations that only
+ * regenerate touched artifacts.
+ *
+ * @param options.workspaceRoot - Absolute path to the repository root the CLI is operating in.
+ * @param options.config - Live Documentation configuration describing default globs and overrides.
+ * @param options.include - Optional override set limiting discovery to pre-selected relative paths.
+ * @param options.changedOnly - When `true`, restricts results to files with local modifications.
+ *
+ * @see detectChangedFiles
+ *
+ * @returns A sorted array of absolute, workspace-resolved file paths ready for analysis.
+ *
+ * @example
+ * ```ts
+ * const files = await discoverTargetFiles({
+ *   workspaceRoot,
+ *   config,
+ *   include: new Set(["packages/server/src/index.ts"]),
+ *   changedOnly: false
+ * });
+ * ```
+ */
 export async function discoverTargetFiles(options: DiscoverOptions): Promise<string[]> {
   const patterns = options.include.size > 0 ? Array.from(options.include) : options.config.glob;
   const absoluteFiles = new Set<string>();
@@ -158,6 +185,25 @@ export async function discoverTargetFiles(options: DiscoverOptions): Promise<str
   return candidates;
 }
 
+/**
+ * Determines which Live Documentation archetype applies to a given source file.
+ *
+ * @remarks
+ * Explicit `archetypeOverrides` from the configuration take precedence. When no
+ * overrides match, common fixture and test naming conventions are used as a
+ * fallback before defaulting to the `implementation` archetype.
+ *
+ * @param sourcePath - Workspace-relative source path using forward slashes.
+ * @param config - Live Documentation configuration containing archetype overrides.
+ *
+ * @returns The archetype that should be reflected in the generated markdown metadata.
+ *
+ * @example
+ * ```ts
+ * const archetype = resolveArchetype("packages/app/src/main.test.ts", config);
+ * // archetype === "test"
+ * ```
+ */
 export function resolveArchetype(
   sourcePath: string,
   config: LiveDocumentationConfig
@@ -180,6 +226,13 @@ export function resolveArchetype(
   return "implementation";
 }
 
+/**
+ * Checks whether an authored markdown block carries information beyond the default placeholders.
+ *
+ * @param authoredBlock - Raw markdown captured between the `## Authored` markers.
+ *
+ * @returns `true` when the block contains substantive content, otherwise `false`.
+ */
 export function hasMeaningfulAuthoredContent(authoredBlock?: string): boolean {
   if (!authoredBlock) {
     return false;
@@ -211,6 +264,17 @@ export async function directoryExists(candidate: string): Promise<boolean> {
   }
 }
 
+/**
+ * Recursively removes empty directories from `startDir` up to (but excluding) `stopDir`.
+ *
+ * @remarks
+ * The walk stops as soon as a directory contains any entries or when the
+ * `stopDir` boundary is reached, preventing accidental deletion outside the Live
+ * Doc mirror.
+ *
+ * @param startDir - Directory that was just emptied (for example, a deleted Live Doc path).
+ * @param stopDir - Absolute directory boundary that must remain intact.
+ */
 export async function cleanupEmptyParents(startDir: string, stopDir: string): Promise<void> {
   const stop = path.resolve(stopDir);
   let current = path.resolve(startDir);
@@ -237,6 +301,27 @@ function globPatternToRegExp(pattern: string): string {
   return `^${escaped}$`;
 }
 
+/**
+ * Produces symbol and dependency analysis for a single source artifact.
+ *
+ * @remarks
+ * Language-specific adapters run before falling back to the built-in
+ * TypeScript/JavaScript parser. This lets polyglot fixtures supply rich metadata
+ * without requiring the TypeScript compiler to understand those languages.
+ *
+ * @param absolutePath - Absolute filesystem path to the source file under inspection.
+ * @param workspaceRoot - Workspace root used to normalise relative dependency paths.
+ *
+ * @returns Analyzer output describing exported symbols and detected dependencies.
+ *
+ * @example
+ * ```ts
+ * const analysis = await analyzeSourceFile(srcPath, workspaceRoot);
+ * if (analysis.symbols.length === 0) {
+ *   console.warn("No exports detected");
+ * }
+ * ```
+ */
 export async function analyzeSourceFile(
   absolutePath: string,
   workspaceRoot: string
@@ -279,6 +364,13 @@ export async function analyzeSourceFile(
   };
 }
 
+/**
+ * Maps a file extension to the TypeScript compiler script kind used for parsing.
+ *
+ * @param extension - Lowercase file extension including the leading dot.
+ *
+ * @returns The matching `ts.ScriptKind`, defaulting to `Unknown` for unsupported types.
+ */
 export function inferScriptKind(extension: string): ts.ScriptKind {
   switch (extension) {
     case ".ts":
@@ -298,6 +390,13 @@ export function inferScriptKind(extension: string): ts.ScriptKind {
   }
 }
 
+/**
+ * Scans a TypeScript source file for exported declarations and captures their metadata.
+ *
+ * @param sourceFile - Parsed TypeScript source file produced by the compiler host.
+ *
+ * @returns A location-sorted list of exported symbols suitable for Live Doc rendering.
+ */
 export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolEntry[] {
   const collected: PublicSymbolEntry[] = [];
 
@@ -467,6 +566,21 @@ function collectBindingNames(binding: ts.BindingName): string[] {
   return names;
 }
 
+/**
+ * Enumerates import and export dependencies declared within a TypeScript source file.
+ *
+ * @remarks
+ * Relative specifiers are resolved against the workspace using Node-style extension
+ * fallbacks so the resulting Live Docs can point to concrete files when possible.
+ *
+ * @param params.sourceFile - Parsed source file that acts as the dependency origin.
+ * @param params.absolutePath - Absolute path to the origin file, used for resolution.
+ * @param params.workspaceRoot - Workspace root for normalising resolved paths.
+ *
+ * @see resolveDependency
+ *
+ * @returns A sorted list of dependency entries describing specifiers and imported symbols.
+ */
 export async function collectDependencies(params: {
   sourceFile: ts.SourceFile;
   absolutePath: string;
@@ -542,6 +656,17 @@ function extractImportNames(importClause: ts.ImportClause | undefined): string[]
   return names;
 }
 
+/**
+ * Resolves a relative module specifier to a workspace-relative file path.
+ *
+ * @param specifier - Module specifier as written in the source file (for example, "./utils").
+ * @param fromFile - Absolute path to the file containing the specifier.
+ * @param workspaceRoot - Workspace root used to convert to a relative path.
+ *
+ * @see collectDependencies
+ *
+ * @returns The normalised relative path when resolution succeeds, otherwise `undefined`.
+ */
 export async function resolveDependency(
   specifier: string,
   fromFile: string,
@@ -623,6 +748,8 @@ async function fileExists(candidate: string): Promise<boolean> {
  *   sourceRelativePath
  * });
  * ```
+ *
+ * @see renderDependencyLines
  */
 export function renderPublicSymbolLines(args: {
   analysis: SourceAnalysisResult;
@@ -824,6 +951,23 @@ function normalizeDocText(value?: string): string[] | undefined {
   return normalized.length > 0 ? normalized : undefined;
 }
 
+/**
+ * Renders the markdown bullet list for a Live Doc's `Dependencies` section.
+ *
+ * @remarks
+ * Module specifiers that resolve inside the workspace are linked directly to
+ * their Live Doc counterparts, while external dependencies are emitted as inline
+ * code with optional symbol suffixes.
+ *
+ * @param args.analysis - Analyzer output describing imported and re-exported modules.
+ * @param args.docDir - Directory containing the Live Doc being written.
+ * @param args.workspaceRoot - Workspace root used to compute relative links.
+ * @param args.liveDocsRootAbsolute - Absolute path to the Live Docs mirror root.
+ *
+ * @see renderPublicSymbolLines
+ *
+ * @returns Markdown lines suitable for the `Dependencies` section, or an empty array when none exist.
+ */
 export function renderDependencyLines(args: {
   analysis: SourceAnalysisResult;
   docDir: string;
@@ -1076,21 +1220,19 @@ export function extractJsDocDocumentation(node: ts.Node): SymbolDocumentation | 
   const handleTag = (tag: ts.JSDocTag): void => {
     if (ts.isJSDocParameterTag(tag)) {
       const name = tag.name.getText();
-      const commentText = coalesceJsDocComment(tag.comment);
+      const commentText = normalizeJsDocTagComment(coalesceJsDocComment(tag.comment), name);
       parameterMap.set(name, commentText);
       return;
     }
 
     if (ts.isJSDocReturnTag(tag)) {
-      documentation.returns = appendBlock(
-        documentation.returns,
-        coalesceJsDocComment(tag.comment)
-      );
+      const returnComment = normalizeJsDocTagComment(coalesceJsDocComment(tag.comment));
+      documentation.returns = appendBlock(documentation.returns, returnComment);
       return;
     }
 
     if (ts.isJSDocTemplateTag(tag)) {
-      const commentText = coalesceJsDocComment(tag.comment);
+      const commentText = normalizeJsDocTagComment(coalesceJsDocComment(tag.comment));
       for (const typeParameter of tag.typeParameters) {
         typeParameterMap.set(typeParameter.getText(), commentText);
       }
@@ -1099,23 +1241,35 @@ export function extractJsDocDocumentation(node: ts.Node): SymbolDocumentation | 
 
     if (ts.isJSDocThrowsTag(tag)) {
       const typeName = tag.typeExpression?.type.getText();
-      const description = coalesceJsDocComment(tag.comment);
+      const description = normalizeJsDocTagComment(coalesceJsDocComment(tag.comment));
       exceptions.push({
         type: typeName,
-        description: description?.trim() || undefined
+        description
       });
       return;
     }
 
     if (ts.isJSDocSeeTag(tag)) {
-      const name = tag.name ? tag.name.getText() : undefined;
-      const commentText = coalesceJsDocComment(tag.comment);
-      registerLink(name ?? commentText ?? "", commentText ?? name ?? undefined);
+      const nameText = tag.name ? tag.name.getText().trim() : undefined;
+      const commentText = normalizeJsDocTagComment(coalesceJsDocComment(tag.comment));
+
+      let targetValue = nameText ?? commentText ?? "";
+      let labelValue = commentText ?? nameText ?? undefined;
+
+      if (nameText && commentText) {
+        const combined = `${nameText}${commentText}`.trim();
+        if (/^[a-z]+$/i.test(nameText) && /^[:/]/.test(commentText)) {
+          targetValue = combined;
+          labelValue = combined;
+        }
+      }
+
+      registerLink(targetValue, labelValue);
       return;
     }
 
     const tagName = tag.tagName.text.toLowerCase();
-    const commentText = coalesceJsDocComment(tag.comment);
+    const commentText = normalizeJsDocTagComment(coalesceJsDocComment(tag.comment));
     handleGenericTag(tagName, commentText);
   };
 
@@ -1213,6 +1367,44 @@ function coalesceJsDocComment(
 
   const text = parts.join("").trim();
   return text || undefined;
+}
+
+function normalizeJsDocTagComment(comment: string | undefined, contextName?: string): string | undefined {
+  if (!comment) {
+    return undefined;
+  }
+
+  let trimmed = comment.trim();
+  if (!trimmed) {
+    return undefined;
+  }
+
+  const stripByPrefix = (candidate: string): void => {
+    const patterns = [" - ", " — ", " – ", ":", " :", " —", " –"];
+    for (const pattern of patterns) {
+      const prefix = `${candidate}${pattern}`;
+      if (trimmed.startsWith(prefix)) {
+        trimmed = trimmed.slice(prefix.length).trim();
+        return;
+      }
+    }
+  };
+
+  if (contextName) {
+    stripByPrefix(contextName);
+    if (contextName.includes(".")) {
+      const simple = contextName.split(".").pop();
+      if (simple && simple !== contextName) {
+        stripByPrefix(simple);
+      }
+    }
+  }
+
+  if (/^[-–—]\s+/.test(trimmed)) {
+    trimmed = trimmed.replace(/^[-–—]\s+/, "");
+  }
+
+  return trimmed || undefined;
 }
 
 function isJSDocTagNode(entry: ts.JSDoc | ts.JSDocTag): entry is ts.JSDocTag {

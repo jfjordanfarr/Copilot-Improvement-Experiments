@@ -5,17 +5,19 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/adapters/java.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-java-ts
-- Generated At: 2025-11-14T20:58:02.885Z
+- Generated At: 2025-11-14T21:30:42.349Z
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Transforms Java AST snapshots captured by our fixture oracle into Live Doc-friendly symbols, docstrings, and dependency edges.
 
 ### Notes
-_Pending notes_
+- Resolves package declarations and import statements to detect cross-class references before the core renderer runs.
+- Normalises Javadoc blocks into the shared documentation schema so summaries, parameters, and throws entries render consistently.
+- Uses cached AST output generated during fixture setup, keeping regeneration fast without invoking the Java compiler during Live Doc runs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T20:58:02.885Z","inputHash":"134f693a3b168586"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T21:30:42.349Z","inputHash":"134f693a3b168586"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `javaAdapter`
@@ -42,6 +44,7 @@ _Pending notes_
 ### Observed Evidence
 #### Vitest Unit Tests
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
+- [core.docstring.test.ts](../core.docstring.test.ts.mdmd.md)
 - [generator.test.ts](../../generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../renderPublicSymbolLines.test.ts.mdmd.md)
 - [generator.test.ts](../../system/generator.test.ts.mdmd.md)
