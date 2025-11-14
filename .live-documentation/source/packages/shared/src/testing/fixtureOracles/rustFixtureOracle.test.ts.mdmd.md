@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/rustFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-rustfixtureoracle-test-ts
-- Generated At: 2025-11-09T22:52:13.034Z
+- Generated At: 2025-11-14T18:42:06.884Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Exercises the Rust oracle across real fixture crates to ensure edge extraction, 
 - Keeps fixtures small so the tests execute quickly while still traversing actual file structures and `use`/`mod` syntax combinations.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.034Z","inputHash":"e1384dc8a1dd7da6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.884Z","inputHash":"e4b28d29b4482f96"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/inference/llm/relationshipExtractor.test.ts
 - Live Doc ID: LD-test-packages-shared-src-inference-llm-relationshipextractor-test-ts
-- Generated At: 2025-11-09T22:52:12.319Z
+- Generated At: 2025-11-14T18:42:06.771Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Demonstrate the extractor’s happy path parsing and its defensive failures when
 Constructs a mock prompt and model response to assert that metadata (prompt hash, model id) and normalized candidate fields survive the round trip. Two negative cases confirm the custom error surfaces both malformed JSON and structurally invalid outputs, ensuring downstream ingestion never sees unvalidated relationship payloads.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.319Z","inputHash":"449fb2331568bc07"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.771Z","inputHash":"c28cb22d33a004b5"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

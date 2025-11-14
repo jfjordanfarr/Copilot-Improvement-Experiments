@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/includes.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-includes-ts
-- Generated At: 2025-11-09T22:52:11.984Z
+- Generated At: 2025-11-14T18:42:06.714Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Looks for `#include` directives in C-family sources and turns local includes int
 - Skips references found inside comments and uses `resolveIncludeReference` to apply consistent path normalization and confidence scoring.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.984Z","inputHash":"13eb0aad7493a258"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.714Z","inputHash":"68fde05dd403ba77"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createIncludeHeuristic`

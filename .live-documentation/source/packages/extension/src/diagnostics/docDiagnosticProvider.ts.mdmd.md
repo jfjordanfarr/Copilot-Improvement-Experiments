@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/diagnostics/docDiagnosticProvider.ts
 - Live Doc ID: LD-implementation-packages-extension-src-diagnostics-docdiagnosticprovider-ts
-- Generated At: 2025-11-09T22:52:09.594Z
+- Generated At: 2025-11-14T18:42:06.203Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Supplies quick fixes and commands for link-aware diagnostics so maintainers can 
 - Derives friendly labels, deduplicated pick items, and summaries while handling malformed URIs or missing metadata with user-facing warnings.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.594Z","inputHash":"f59c2f99acb2b991"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.203Z","inputHash":"2a2914acef427daa"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `OPEN_LINKED_ARTIFACT_COMMAND`

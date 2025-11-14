@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/telemetry/latencyTracker.test.ts
 - Live Doc ID: LD-test-packages-server-src-telemetry-latencytracker-test-ts
-- Generated At: 2025-11-12T15:22:22.577Z
+- Generated At: 2025-11-14T18:42:06.624Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Validates the latency tracker’s ability to measure change lifecycles, prune un
 - Exercises the reset path to confirm state and sample buffers clear after reporting.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.577Z","inputHash":"5670ed8b55d2ffc7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.624Z","inputHash":"324270be8974ffd9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

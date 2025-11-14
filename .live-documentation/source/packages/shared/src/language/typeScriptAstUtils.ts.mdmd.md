@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/language/typeScriptAstUtils.ts
 - Live Doc ID: LD-implementation-packages-shared-src-language-typescriptastutils-ts
-- Generated At: 2025-11-09T22:52:12.407Z
+- Generated At: 2025-11-14T18:42:06.782Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Expose shared TypeScript AST helpers so heuristics and tooling can classify iden
 `collectIdentifierUsage` walks a `SourceFile` while skipping declaration identifiers, recording whether each symbol is referenced in value or type positions; `hasRuntimeUsage`/`hasTypeUsage` then answer routing questions for inferred links. `extractLocalImportNames` mirrors the compiler’s import clause structure to surface all bound names, and `isLikelyTypeDefinitionSpecifier` normalizes specifiers to catch `.d.ts` or `types` packages even across path/URL variants. Internals rely solely on `typescript` guards, keeping the helpers stable across compiler upgrades.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.407Z","inputHash":"ec13502f82859a57"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.782Z","inputHash":"0a19b7882bc9e886"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `IdentifierUsage`

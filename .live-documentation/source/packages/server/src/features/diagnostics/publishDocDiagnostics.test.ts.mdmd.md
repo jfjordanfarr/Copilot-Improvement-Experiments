@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/diagnostics/publishDocDiagnostics.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-diagnostics-publishdocdiagnostics-test-ts
-- Generated At: 2025-11-12T15:22:22.328Z
+- Generated At: 2025-11-14T18:42:06.357Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Ensures documentation diagnostic publishing respects noise suppression rules, ac
 - Validates that diagnostics carry metadata (record ID, change event, URIs) so downstream quick actions and telemetry can function.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.328Z","inputHash":"dd2769ea9c79c77b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.357Z","inputHash":"eea59c532ab587a1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

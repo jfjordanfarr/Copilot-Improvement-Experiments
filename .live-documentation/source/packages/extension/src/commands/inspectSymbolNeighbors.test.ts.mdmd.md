@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/inspectSymbolNeighbors.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-inspectsymbolneighbors-test-ts
-- Generated At: 2025-11-12T15:22:22.134Z
+- Generated At: 2025-11-14T18:42:06.150Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Confirms the inspect symbol neighbors command requests data and surfaces quick p
 - Exercises the happy path to ensure neighbor selections trigger the RPC call, populate quick pick entries, and open the chosen document in the editor.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.134Z","inputHash":"ebc02238cab3aa9e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.150Z","inputHash":"452f8bc397db4f9e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

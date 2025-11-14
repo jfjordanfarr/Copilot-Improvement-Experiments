@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/runtime/knowledgeFeeds.ts
 - Live Doc ID: LD-implementation-packages-server-src-runtime-knowledgefeeds-ts
-- Generated At: 2025-11-09T22:52:11.430Z
+- Generated At: 2025-11-14T16:30:21.569Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Orchestrates the background knowledge-feed bridge, wiring its status updates int
 - Applies exponential backoff defaults and captures failures through `describeError`, ensuring the language server degrades gracefully when feeds are unavailable.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.430Z","inputHash":"ac26bc960dd75f3b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.569Z","inputHash":"0d8c20bb6a12e473"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `KnowledgeFeedControllerOptions`

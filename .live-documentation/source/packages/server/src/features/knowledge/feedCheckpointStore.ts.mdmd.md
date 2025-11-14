@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/feedCheckpointStore.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-feedcheckpointstore-ts
-- Generated At: 2025-11-09T22:52:10.503Z
+- Generated At: 2025-11-14T18:42:06.373Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Persists ingestion checkpoints for knowledge feeds so resumable imports pick up 
 - Exposes CRUD helpers used by ingestion orchestrators to load and update checkpoint state around each batch.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.503Z","inputHash":"4edb11d4adf3de48"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.373Z","inputHash":"bf87316ce05a561e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `FeedCheckpointStore`

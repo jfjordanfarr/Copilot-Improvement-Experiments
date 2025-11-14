@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/dependencies/inspectDependencies.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-dependencies-inspectdependencies-ts
-- Generated At: 2025-11-09T22:52:10.031Z
+- Generated At: 2025-11-14T18:42:06.297Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Implements the command that traverses the workspace graph to list inbound and ou
 - Supports filtering by relationship kind and depth, keeping responses bounded for large projects.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.031Z","inputHash":"950cec8a57a42d37"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.297Z","inputHash":"60e27fd97623f8e4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `InspectDependenciesOptions`

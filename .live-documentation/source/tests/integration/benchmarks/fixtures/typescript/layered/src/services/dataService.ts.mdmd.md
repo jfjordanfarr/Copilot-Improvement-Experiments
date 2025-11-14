@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/benchmarks/fixtures/typescript/layered/src/services/dataService.ts
 - Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-typescript-layered-src-services-dataservice-ts
-- Generated At: 2025-11-09T22:52:14.051Z
+- Generated At: 2025-11-14T16:30:22.191Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:14.051Z","inputHash":"23b64bb82b44e71c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.191Z","inputHash":"3b298837001284da"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `loadWidgetMetrics`

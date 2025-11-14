@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/scipParser.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-scipparser-test-ts
-- Generated At: 2025-11-12T15:22:22.442Z
+- Generated At: 2025-11-14T18:42:06.452Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the SCIP parser to ensure it emits artifacts, cross-file links, and me
 - Includes safeguards for same-document references and unknown languages so ingestion does not create noisy edges.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.442Z","inputHash":"2b63b5f5ee8115a7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.452Z","inputHash":"9a39ddc1df600eae"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

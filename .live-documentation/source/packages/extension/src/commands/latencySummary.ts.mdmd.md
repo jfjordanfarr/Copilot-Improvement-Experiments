@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/latencySummary.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-latencysummary-ts
-- Generated At: 2025-11-09T22:52:09.447Z
+- Generated At: 2025-11-14T16:30:20.960Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Registers telemetry commands that fetch, display, and optionally reset latency s
 - Highlights threshold breaches in the toast notification and allows operators to clear counters during the same workflow.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.447Z","inputHash":"c4d83eabb112d909"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:20.960Z","inputHash":"ffc7f923736ed2bc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `registerLatencyTelemetryCommands`

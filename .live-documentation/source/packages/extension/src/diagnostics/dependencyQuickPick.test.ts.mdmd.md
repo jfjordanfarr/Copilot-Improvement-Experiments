@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/diagnostics/dependencyQuickPick.test.ts
 - Live Doc ID: LD-test-packages-extension-src-diagnostics-dependencyquickpick-test-ts
-- Generated At: 2025-11-12T15:22:22.161Z
+- Generated At: 2025-11-14T18:42:06.181Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises helper utilities that format dependency inspection results before they
 - Guards the zod validator against malformed dependency payloads, confirming well-formed responses pass and invalid entries throw.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.161Z","inputHash":"c81bed2fcc3def81"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.181Z","inputHash":"d016c05bafe3385c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

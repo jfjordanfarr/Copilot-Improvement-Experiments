@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/fixture-tools/benchmark-doc.ts
 - Live Doc ID: LD-implementation-scripts-fixture-tools-benchmark-doc-ts
-- Generated At: 2025-11-09T22:52:13.488Z
+- Generated At: 2025-11-14T16:30:22.027Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.488Z","inputHash":"40508d8ae20b1461"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.027Z","inputHash":"2ae90ff220411dfb"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `VENDOR_SECTION_START`

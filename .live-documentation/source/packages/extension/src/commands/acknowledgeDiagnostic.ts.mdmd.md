@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/acknowledgeDiagnostic.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-acknowledgediagnostic-ts
-- Generated At: 2025-11-09T22:52:09.116Z
+- Generated At: 2025-11-14T18:42:06.094Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Registers the `linkDiagnostics.acknowledgeDiagnostic` command so users can clear
 - Listens for acknowledgement notifications to keep other editors in sync and forwards successful payloads to optional workflow callbacks.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.116Z","inputHash":"03f9b9d513fd6b37"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.094Z","inputHash":"ec2d3fee08bec3a2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ACKNOWLEDGE_DIAGNOSTIC_COMMAND`

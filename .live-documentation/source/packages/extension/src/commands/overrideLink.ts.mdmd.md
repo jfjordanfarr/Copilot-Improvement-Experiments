@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/overrideLink.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-overridelink-ts
-- Generated At: 2025-11-09T22:52:09.474Z
+- Generated At: 2025-11-14T16:30:20.968Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Provides the `linkDiagnostics.overrideLink` command to create or update relation
 - Applies heuristics to suggest sensible defaults (layer guesses, relationship types) and echoes results via VS Code toasts for user confirmation.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.474Z","inputHash":"47feec27f3ba701c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:20.968Z","inputHash":"bd35bca4dc00f820"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `registerOverrideLinkCommand`

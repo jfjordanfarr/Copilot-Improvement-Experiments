@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/analyzeWithAI.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-analyzewithai-ts
-- Generated At: 2025-11-09T22:52:09.254Z
+- Generated At: 2025-11-14T18:42:06.126Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Provides the `linkDiagnostics.analyzeWithAI` command that lets maintainers reque
 - Invokes the configured `LlmInvoker`, validates the JSON response, and persists the structured assessment via the server API before refreshing tree views and notifying the user.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.254Z","inputHash":"b9197eff6864631a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.126Z","inputHash":"90b781505ec32751"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `registerAnalyzeWithAICommand`

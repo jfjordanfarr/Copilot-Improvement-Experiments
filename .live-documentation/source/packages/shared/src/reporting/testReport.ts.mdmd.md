@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/reporting/testReport.ts
 - Live Doc ID: LD-implementation-packages-shared-src-reporting-testreport-ts
-- Generated At: 2025-11-09T22:52:12.593Z
+- Generated At: 2025-11-14T18:42:06.818Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Produce human-readable benchmark reports that summarise generated data, highligh
 `buildTestReportMarkdown` renders a headline with git metadata, then groups benchmark records by type: rebuild-stability sections list timing stats, AST accuracy sections emit tables of precision/recall totals and per-fixture results, and unknown benchmarks fall back to JSON blocks. The helper also merges environment metadata into a concise summary and enumerates artifacts with mode/source hints so stakeholders can trace runs back to raw data.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.593Z","inputHash":"d5b347ac14b54d96"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.818Z","inputHash":"36a5ca5f9dce4c6d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `BenchmarkEnvironment`

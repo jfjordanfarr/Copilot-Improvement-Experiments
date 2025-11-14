@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/utils/uri.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-utils-uri-ts
-- Generated At: 2025-11-09T22:52:11.145Z
+- Generated At: 2025-11-14T18:42:06.570Z
 
 ## Authored
 ### Purpose
@@ -19,7 +19,7 @@ Provides the server feature layer with the canonical `normalizeFileUri` helper w
 Forwarded export of [`@copilot-improvement/shared/uri/normalizeFileUri`](../../../../shared/src/uri/normalizeFileUri.ts.mdmd.md#normalizefileuri) so server features can import from a local module path without reaching into shared internals.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.145Z","inputHash":"0936dd7e48c57a5d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.570Z","inputHash":"2c8be50959f8601b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

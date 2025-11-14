@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/live-docs/system-output.test.ts
 - Live Doc ID: LD-test-tests-integration-live-docs-system-output-test-ts
-- Generated At: 2025-11-12T15:19:55.271Z
+- Generated At: 2025-11-14T16:30:22.238Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:19:55.271Z","inputHash":"82a34ee997524ea5"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.238Z","inputHash":"b304dbbe906872a2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-rubyfixtureoracle-test-ts
-- Generated At: 2025-11-09T22:52:12.983Z
+- Generated At: 2025-11-14T18:42:06.878Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Validates the Ruby oracle end-to-end, covering graph generation across bundled f
 - File-system heavy integration is limited to the small fixture bundles so tests remain fast while still exercising real directory structures.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.983Z","inputHash":"8c869dcd6820a71a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.878Z","inputHash":"87ec4d90f0d84799"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

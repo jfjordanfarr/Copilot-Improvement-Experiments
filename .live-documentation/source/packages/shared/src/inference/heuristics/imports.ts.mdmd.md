@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/imports.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-imports-ts
-- Generated At: 2025-11-09T22:52:11.964Z
+- Generated At: 2025-11-14T18:42:06.710Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Extracts module import relationships across TypeScript/JavaScript and Python sou
 - Normalizes raw specifiers with shared reference utilities, applies the same resolver as markdown links, and includes support for relative Python `from`/`import` statements with dot-prefix semantics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.964Z","inputHash":"d363f5b3a907a66c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.710Z","inputHash":"5af07e8e35e2818c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createImportHeuristic`

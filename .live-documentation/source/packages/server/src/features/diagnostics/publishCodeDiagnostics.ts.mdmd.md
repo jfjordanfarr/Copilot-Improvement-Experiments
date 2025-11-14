@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/publishCodeDiagnostics.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-publishcodediagnostics-ts
-- Generated At: 2025-11-09T22:52:10.357Z
+- Generated At: 2025-11-14T16:30:21.265Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Generates ripple diagnostics for code edits, honouring noise suppression budgets
 - Populates diagnostic metadata (`recordId`, `changeEventId`, URIs) to enable quick actions and allow downstream consumers to correlate VS Code entries with graph records.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.357Z","inputHash":"af3b16d16d7db01f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.265Z","inputHash":"4b67c2085ed3239c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `CodeChangeContext`

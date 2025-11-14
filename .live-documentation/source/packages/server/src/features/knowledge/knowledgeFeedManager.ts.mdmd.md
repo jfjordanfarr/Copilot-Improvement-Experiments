@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/knowledgeFeedManager.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-knowledgefeedmanager-ts
-- Generated At: 2025-11-09T22:52:10.581Z
+- Generated At: 2025-11-14T18:42:06.395Z
 
 ## Authored
 ### Purpose
@@ -19,7 +19,7 @@ Coordinates registration, scheduling, and monitoring of knowledge feeds, orchest
 Alias consumed by `KnowledgeGraphBridgeService` for readability; maps directly to the exported [`Disposable`](#disposable) interface.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.581Z","inputHash":"53f8f254b73fcde9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.395Z","inputHash":"ba457388129df5c6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `Disposable`

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/types.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-types-ts
-- Generated At: 2025-11-12T15:22:22.722Z
+- Generated At: 2025-11-14T18:42:06.811Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.722Z","inputHash":"db99a0c8de9d9638"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.811Z","inputHash":"5f9b131ee7fc34a2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `Stage0Symbol`

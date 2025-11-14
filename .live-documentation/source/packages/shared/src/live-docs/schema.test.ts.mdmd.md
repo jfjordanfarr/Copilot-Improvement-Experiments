@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/schema.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-schema-test-ts
-- Generated At: 2025-11-09T22:52:12.524Z
+- Generated At: 2025-11-14T18:42:06.805Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Guard the metadata normalizer against regressions in trimming, provenance filter
 Exercises the happy path to ensure generator provenance remains after whitespace cleanup while empty entries are dropped, and verifies docstring metadata normalization plus enricher passthrough. A separate assertion confirms we still throw when the source path is blank, catching accidental relaxations of the schema contract.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.524Z","inputHash":"35df5e3f92bed721"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.805Z","inputHash":"ffefcbe565d20387"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

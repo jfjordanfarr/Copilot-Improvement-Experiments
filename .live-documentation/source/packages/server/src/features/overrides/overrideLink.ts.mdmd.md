@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/overrides/overrideLink.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-overrides-overridelink-ts
-- Generated At: 2025-11-09T22:52:11.116Z
+- Generated At: 2025-11-14T16:30:21.495Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Persists a manually curated relationship between two artifacts by ensuring both 
 - Returns the affected artifact and link ids so calling surfaces can reconcile with their local optimistic state.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.116Z","inputHash":"0bb11a2505860882"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.495Z","inputHash":"782cc5d073cbd834"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `applyOverrideLink`

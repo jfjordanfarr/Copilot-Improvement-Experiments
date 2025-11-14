@@ -3,6 +3,8 @@ import * as path from "node:path";
 
 let cachedRoot: string | undefined;
 
+const REPO_NAMES = new Set(["copilot-improvement-experiments", "live-documentation"]);
+
 export function getRepoRoot(startDir: string = __dirname): string {
   if (cachedRoot) {
     return cachedRoot;
@@ -46,7 +48,7 @@ function looksLikeRepoRoot(candidate: string): boolean {
       workspaces?: unknown;
     };
 
-    if (manifest.name === "copilot-improvement-experiments") {
+    if (manifest.name && REPO_NAMES.has(manifest.name)) {
       return true;
     }
 

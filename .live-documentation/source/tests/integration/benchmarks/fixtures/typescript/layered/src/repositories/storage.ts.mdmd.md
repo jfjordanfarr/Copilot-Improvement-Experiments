@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/benchmarks/fixtures/typescript/layered/src/repositories/storage.ts
 - Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-typescript-layered-src-repositories-storage-ts
-- Generated At: 2025-11-09T22:52:14.038Z
+- Generated At: 2025-11-14T16:30:22.188Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:14.038Z","inputHash":"9048bf96cd454c6e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.188Z","inputHash":"bbb270406dfd171a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `MetricRecord`

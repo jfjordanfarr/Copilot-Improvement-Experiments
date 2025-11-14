@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/slopcop/config.ts
 - Live Doc ID: LD-implementation-scripts-slopcop-config-ts
-- Generated At: 2025-11-09T22:52:13.894Z
+- Generated At: 2025-11-14T16:30:22.148Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.894Z","inputHash":"aed900a66448b242"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.148Z","inputHash":"c28085c29862d62f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SeveritySetting`

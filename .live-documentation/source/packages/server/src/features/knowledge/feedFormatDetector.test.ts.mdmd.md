@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/feedFormatDetector.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-feedformatdetector-test-ts
-- Generated At: 2025-11-12T15:22:22.356Z
+- Generated At: 2025-11-14T18:42:06.379Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Checks feed format detection across supported file types and edge cases, ensurin
 - Uses synthetic feed descriptors to avoid touching disk while exercising detection logic.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.356Z","inputHash":"aa5969ef453657d0"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.379Z","inputHash":"ad85d2665618a854"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/knowledgeGraphBridge.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-knowledgegraphbridge-test-ts
-- Generated At: 2025-11-12T15:22:22.387Z
+- Generated At: 2025-11-14T18:42:06.398Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies the bridge ingests static feed files into the graph store and reports s
 - Confirms service startup is resilient by asserting it reports zero configured feeds when the workspace root is missing.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.387Z","inputHash":"e5d0f9a1f8ad8c93"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.398Z","inputHash":"62bffb9c67010cff"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

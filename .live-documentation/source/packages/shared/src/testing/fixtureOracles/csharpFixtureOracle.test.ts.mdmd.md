@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-csharpfixtureoracle-test-ts
-- Generated At: 2025-11-09T22:52:12.851Z
+- Generated At: 2025-11-14T18:42:06.859Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Prove the C# oracle detects expected type relationships in fixture workspaces an
 Validates the full graph against the `basic` fixture, checks deterministic JSON ordering, and confirms override utilities both flag unmet manual edges and inject additional records without losing auto-generated ones.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.851Z","inputHash":"71f361f9b85a09ea"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.859Z","inputHash":"7b66744f55bec8a8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

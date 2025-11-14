@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/relationshipRuleAudit.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-relationshipruleaudit-ts
-- Generated At: 2025-11-09T22:52:12.648Z
+- Generated At: 2025-11-14T18:42:06.826Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Evaluate how well compiled relationship rules are satisfied by the persisted kno
 Collects candidate artifacts per step, then walks stored edges to confirm chains exist from source to sink; gaps become `RelationshipCoverageIssue` records annotated with expected link kinds and workspace-relative paths. Propagation checks ensure implicit hops materialise as actual graph edges, and `formatRelationshipDiagnostics` distils findings into sorted, human-readable messages for tooling like SlopCop or command output.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.648Z","inputHash":"e9050ec0e5d0ee11"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.826Z","inputHash":"371a84c1153162b9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RelationshipCoverageChain`

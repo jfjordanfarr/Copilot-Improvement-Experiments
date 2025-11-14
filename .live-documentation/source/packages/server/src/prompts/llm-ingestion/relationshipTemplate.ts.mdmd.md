@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/prompts/llm-ingestion/relationshipTemplate.ts
 - Live Doc ID: LD-implementation-packages-server-src-prompts-llm-ingestion-relationshiptemplate-ts
-- Generated At: 2025-11-09T22:52:11.308Z
+- Generated At: 2025-11-14T18:42:06.593Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Renders the deterministic prompt fed to relationship-extraction models and expos
 - Provides `RELATIONSHIP_RESPONSE_SCHEMA` so orchestrators can verify LLM output matches the expected metadata and relationship payload format before ingesting.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.308Z","inputHash":"22625eace93dc197"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.593Z","inputHash":"d76b9d1b54b58f97"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ConfidenceLabel`

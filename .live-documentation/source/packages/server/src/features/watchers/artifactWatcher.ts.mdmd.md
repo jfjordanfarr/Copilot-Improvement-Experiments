@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/watchers/artifactWatcher.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-watchers-artifactwatcher-ts
-- Generated At: 2025-11-09T22:52:11.197Z
+- Generated At: 2025-11-14T18:42:06.578Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Observes queued workspace changes, classifies them as code or documentation, mat
 - Applies inference results back onto processed changes, records skip reasons for transparency, and surfaces run metadata, making it suitable for telemetry and diagnostics consumers.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.197Z","inputHash":"eb1c4dc0e96ad341"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.578Z","inputHash":"5bcb74c66477703b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ArtifactCategory`

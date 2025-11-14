@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-pythonfixtureoracle-ts
-- Generated At: 2025-11-09T22:52:12.972Z
+- Generated At: 2025-11-14T18:42:06.875Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Coordinates the Python fixture oracle workflow, sourcing edge data from a worker
 - Reuses the shared partition/merge routines to surface unmatched overrides, deduplicate records, and emit deterministic JSON serialisations for git-friendly fixtures.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.972Z","inputHash":"77487396bd24678c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.875Z","inputHash":"59b8321f5b776d0a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `PythonOracleEdgeRelation`

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/knowledgeGraphBridge.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-knowledgegraphbridge-ts
-- Generated At: 2025-11-09T22:52:10.637Z
+- Generated At: 2025-11-14T18:42:06.406Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Acts as the adapter between external knowledge feeds and the internal graph stor
 - Exposes helper utilities for building link relationships so downstream diagnostics can rely on uniform edge structures.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.637Z","inputHash":"578fe0c0d514e2cc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.406Z","inputHash":"2f5ada8ac6ec799b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `KnowledgeGraphBridgeLogger`

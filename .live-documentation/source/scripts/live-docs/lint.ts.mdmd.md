@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/live-docs/lint.ts
 - Live Doc ID: LD-implementation-scripts-live-docs-lint-ts
-- Generated At: 2025-11-09T22:52:13.710Z
+- Generated At: 2025-11-14T16:30:22.110Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.710Z","inputHash":"2fd18597b5450926"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.110Z","inputHash":"8ee18ad75385c451"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

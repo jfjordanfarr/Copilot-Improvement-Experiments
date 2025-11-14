@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/services/symbolBridge.ts
 - Live Doc ID: LD-implementation-packages-extension-src-services-symbolbridge-ts
-- Generated At: 2025-11-09T22:52:09.782Z
+- Generated At: 2025-11-14T18:42:06.253Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Answers the language server's workspace symbol collection request by turning VS 
 - Queues newly discovered URIs as additional seeds so the server can expand coverage on subsequent passes while tracking collection metrics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.782Z","inputHash":"54e5181e92f0be88"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.253Z","inputHash":"448a0bd51134004d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `registerSymbolBridge`

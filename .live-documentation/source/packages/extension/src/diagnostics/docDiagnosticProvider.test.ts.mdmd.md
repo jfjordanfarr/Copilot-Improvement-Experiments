@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/diagnostics/docDiagnosticProvider.test.ts
 - Live Doc ID: LD-test-packages-extension-src-diagnostics-docdiagnosticprovider-test-ts
-- Generated At: 2025-11-12T15:22:22.175Z
+- Generated At: 2025-11-14T18:42:06.193Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Checks the formatting helpers used by the document diagnostic provider so code a
 - Verifies confidence labels and ripple summaries collapse diagnostic metadata into concise user-facing strings, including the empty-state fallback.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.175Z","inputHash":"769cab46a3e9a951"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.193Z","inputHash":"3bc0201ab1dfbc10"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/scip.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-scip-ts
-- Generated At: 2025-11-13T13:25:19.832Z
+- Generated At: 2025-11-14T18:42:06.652Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Captures the TypeScript shape of SCIP indexes so our parsers and analyzers can r
 - `ParsedSCIPIndex` reflects the cached maps we populate after parsing, enabling efficient lookups of symbols and occurrences when reconciling diagnostics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.832Z","inputHash":"b98d9967b7561238"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.652Z","inputHash":"e50248c0ce243485"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SCIPIndex`

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-pythonfixtureoracle-test-ts
-- Generated At: 2025-11-09T22:52:12.948Z
+- Generated At: 2025-11-14T18:42:06.872Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Locks in the Python oracle's post-processing behaviour by exercising partitionin
 - Focuses on synchronous helpers; full worker integration is covered via higher-level benchmark runs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.948Z","inputHash":"068b041749249a8d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.872Z","inputHash":"bc8dd5df5d642a22"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

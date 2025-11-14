@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/watchers/pathReferenceDetector.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-watchers-pathreferencedetector-test-ts
-- Generated At: 2025-11-12T15:22:22.536Z
+- Generated At: 2025-11-14T18:42:06.581Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Proves the path reference detector emits high-confidence hints for markdown link
 - Verifies http URLs and missing files are filtered out, preventing noisy hints from polluting inference runs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.536Z","inputHash":"cc316a42fcd50390"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.581Z","inputHash":"805e094174cfff47"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/services/symbolBridge.test.ts
 - Live Doc ID: LD-test-packages-extension-src-services-symbolbridge-test-ts
-- Generated At: 2025-11-12T15:22:22.220Z
+- Generated At: 2025-11-14T18:42:06.244Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Ensures the symbol bridge synthesizes link evidence, hints, and seeds from VS Co
 - Covers both the happy path (emitting evidences/seeds) and guard rails that deduplicate seeds and skip unsupported languages.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.220Z","inputHash":"d5d58738f2ca0517"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.244Z","inputHash":"6c299a0d465a63e4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

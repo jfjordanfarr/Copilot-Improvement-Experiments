@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/workspaceIndexProvider.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-workspaceindexprovider-test-ts
-- Generated At: 2025-11-12T15:22:22.452Z
+- Generated At: 2025-11-14T18:42:06.464Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Validates that the workspace indexer emits dependency evidences for real TypeScr
 - Normalises URIs back to relative paths in assertions so the test stays portable across platforms.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.452Z","inputHash":"95c04baa1a500b0c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.464Z","inputHash":"80fd5fbcd05b7389"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

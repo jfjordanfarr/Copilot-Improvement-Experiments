@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/llm/relationshipExtractor.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-llm-relationshipextractor-ts
-- Generated At: 2025-11-09T22:52:12.349Z
+- Generated At: 2025-11-14T18:42:06.775Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Wrap an LLM invocation that extracts cross-artifact relationships, enforcing the
 Supplies telemetry tags identifying the prompt template/version/hash and preserves provider usage metadata on the returned batch. Responses must decode to JSON containing a `relationships` array; otherwise the extractor logs a warning and throws a typed `RelationshipExtractorError` that carries the offending payload. The local validator normalizes confidence values, strips invalid chunk references, and records raw rationale data so later calibrators can enrich or filter the relationships.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.349Z","inputHash":"df6584b4eb9c5660"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.775Z","inputHash":"8e56a46b94a5ef47"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ConfidenceTier`

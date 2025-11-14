@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/diagnostics/noiseFilter.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-diagnostics-noisefilter-test-ts
-- Generated At: 2025-11-12T15:22:22.314Z
+- Generated At: 2025-11-14T18:42:06.340Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Validates noise filtering drops impacts according to confidence, depth, per-chan
 - Asserts that contexts are cloned when necessary so consumers receive new arrays only when impacts were removed, preserving reference identity otherwise.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.314Z","inputHash":"2e3fe1ba995349dd"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.340Z","inputHash":"0b3d927b939009ea"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

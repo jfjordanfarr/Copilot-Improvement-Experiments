@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/rust.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-rust-ts
-- Generated At: 2025-11-09T22:52:12.082Z
+- Generated At: 2025-11-14T18:42:06.736Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Analyzes Rust `mod`, `use`, and crate-relative path expressions to infer module 
 - Differentiates between public exports, private uses, and value imports to adjust the emitted context, while ignoring statements that likely target external crates.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.082Z","inputHash":"bd1eaeb79b01bf74"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.736Z","inputHash":"b32b47196aa7fd87"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createRustHeuristic`

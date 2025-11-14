@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/watchers/artifactWatcher.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-watchers-artifactwatcher-test-ts
-- Generated At: 2025-11-12T15:22:22.529Z
+- Generated At: 2025-11-14T18:42:06.573Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Exercises the artifact watcher end to end so document/code edits become tracked 
 - Relies on the default `LinkInferenceOrchestrator` to ensure traces, errors, and link collections are returned with consistent shape.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.529Z","inputHash":"7ade50056bbb3b1b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.573Z","inputHash":"49194be3582b42d0"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

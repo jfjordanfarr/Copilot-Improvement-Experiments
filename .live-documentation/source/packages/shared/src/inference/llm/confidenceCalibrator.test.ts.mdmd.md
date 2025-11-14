@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/inference/llm/confidenceCalibrator.test.ts
 - Live Doc ID: LD-test-packages-shared-src-inference-llm-confidencecalibrator-test-ts
-- Generated At: 2025-11-09T22:52:12.263Z
+- Generated At: 2025-11-14T18:42:06.765Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Prove the calibrator maps labelled and numeric LLM confidence payloads into the 
 Exercises label-driven calibration to verify canonical tier assignments and numeric backfills, then covers threshold-based tiering for plain confidences to ensure only high-scoring links qualify for diagnostics. A corroborated medium-strength example demonstrates how promotion works when the same relationship appears in historical or heuristic evidence, guarding future regressions in eligibility logic.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.263Z","inputHash":"90018da592e29569"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.765Z","inputHash":"a90fa81b84571d36"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

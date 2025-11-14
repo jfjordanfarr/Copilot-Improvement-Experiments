@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/telemetry/inferenceAccuracy.test.ts
 - Live Doc ID: LD-test-packages-server-src-telemetry-inferenceaccuracy-test-ts
-- Generated At: 2025-11-09T22:52:11.500Z
+- Generated At: 2025-11-14T18:42:06.620Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Exercises the inference accuracy tracker to ensure it computes precision/recall,
 - Confirms `snapshot({ reset: true })` clears cumulative state, allowing follow-on calls to start fresh during monitoring workflows.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.500Z","inputHash":"ba2850fdd62aef66"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.620Z","inputHash":"9ed4ad08155ea6e2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

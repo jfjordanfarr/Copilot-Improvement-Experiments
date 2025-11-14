@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/settings/settingsBridge.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-settings-settingsbridge-ts
-- Generated At: 2025-11-09T22:52:11.138Z
+- Generated At: 2025-11-14T18:42:06.568Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Normalises user-supplied extension configuration into bounded runtime settings t
 - Ensures coupled limits remain coherent, e.g. noise-filter depth never exceeding ripple search depth, before returning the final `RuntimeSettings` snapshot.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.138Z","inputHash":"f20c9d4f2917c600"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.568Z","inputHash":"82d47417c33dd3b8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `NoiseSuppressionLevel`

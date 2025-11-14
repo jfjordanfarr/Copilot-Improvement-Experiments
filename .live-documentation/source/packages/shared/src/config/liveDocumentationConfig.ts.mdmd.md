@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/config/liveDocumentationConfig.ts
 - Live Doc ID: LD-implementation-packages-shared-src-config-livedocumentationconfig-ts
-- Generated At: 2025-11-11T05:12:47.479Z
+- Generated At: 2025-11-14T18:42:06.635Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines the canonical configuration shape for staged Live Documentation and norm
 - `normalizeLiveDocumentationConfig` deduplicates globs, trims string options, and merges evidence strictness while preserving any caller-provided overrides.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:47.479Z","inputHash":"ed91752fb5d74f10"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.635Z","inputHash":"be6e5040a24fc10d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LiveDocumentationSlugDialect`

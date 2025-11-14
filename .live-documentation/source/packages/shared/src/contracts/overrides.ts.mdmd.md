@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/overrides.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-overrides-ts
-- Generated At: 2025-11-09T22:52:11.633Z
+- Generated At: 2025-11-14T18:42:06.649Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines the shared request/response envelope for manually overriding a link betw
 - The response returns the persisted link and artifact IDs, which the client caches to avoid re-posting duplicate overrides.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.633Z","inputHash":"38b483fb027c9b48"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.649Z","inputHash":"fe65cbb379dd417b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LinkOverrideReason`

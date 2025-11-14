@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/webforms.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-webforms-ts
-- Generated At: 2025-11-09T22:52:12.112Z
+- Generated At: 2025-11-14T18:42:06.745Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Captures ASP.NET WebForms-specific relationships by wiring pages to their code-b
 - Resolves `CodeBehind`, `CodeFile`, and script `src` attributes relative to the page path, ignoring external links, and emits moderate-confidence edges to reflect explicit runtime coupling.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.112Z","inputHash":"e4f142730f68bb20"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.745Z","inputHash":"a360c2f8a47b650b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createWebFormsHeuristic`

@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/simple-workspace/src/feature.ts
 - Live Doc ID: LD-asset-tests-integration-fixtures-simple-workspace-src-feature-ts
-- Generated At: 2025-11-09T22:52:14.173Z
+- Generated At: 2025-11-14T16:30:22.218Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:14.173Z","inputHash":"95ea4c2d6fa4fbd1"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.218Z","inputHash":"81a41a11d360846b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `FeatureEvaluation`

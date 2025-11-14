@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/relationshipRuleEngine.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-relationshipruleengine-ts
-- Generated At: 2025-11-09T22:52:12.672Z
+- Generated At: 2025-11-14T18:42:06.832Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Load relationship rule configuration, compile it into executable chains, and gen
 `loadRelationshipRuleConfig` tolerates missing files, upgrades legacy `rules` arrays, and records parsing warnings so providers can surface them. The compiler wires glob matchers, resolver instances, inferred link kinds, and propagations with confidence clamping for stability. During evaluation, the engine walks candidate chains, accumulates deduplicated evidences with provenance rationales, and respects custom `createdBy` tags so link inference can trace rule-sourced relationships.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.672Z","inputHash":"a691c8cfab435ed6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.832Z","inputHash":"57b9986eadec5564"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `loadRelationshipRuleConfig`

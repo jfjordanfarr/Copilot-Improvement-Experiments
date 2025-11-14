@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/dependencies.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-dependencies-ts
-- Generated At: 2025-11-09T22:52:11.592Z
+- Generated At: 2025-11-14T18:42:06.637Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Describes the language client/server contract for inspecting dependency fan-out 
 - `DependencyGraphEdge` embeds the traversed path so UI layers can render breadcrumb trails, while `InspectDependenciesSummary` conveys high-level counts for telemetry and quick summaries.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.592Z","inputHash":"08876123448a0c1f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.637Z","inputHash":"0acd629c31ba0d5f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `INSPECT_DEPENDENCIES_REQUEST`

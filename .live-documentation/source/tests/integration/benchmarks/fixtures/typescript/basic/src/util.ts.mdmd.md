@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/benchmarks/fixtures/typescript/basic/src/util.ts
 - Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-typescript-basic-src-util-ts
-- Generated At: 2025-11-09T22:52:14.000Z
+- Generated At: 2025-11-14T16:30:22.177Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:14.000Z","inputHash":"6ab894fa0a2b87c7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.177Z","inputHash":"0d9a9b9aa264f4cd"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `formatWidget`

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-typescriptfixtureoracle-test-ts
-- Generated At: 2025-11-09T22:52:13.060Z
+- Generated At: 2025-11-14T18:42:06.891Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Pins the TypeScript oracle’s behaviour by checking fixture graph extraction, d
 - Exercises the code paths that resolve modules and classify imports without invoking the Python/LLM tooling, keeping the suite fast but comprehensive.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.060Z","inputHash":"75df8b8f53fcc412"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.891Z","inputHash":"99820a211578ce26"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

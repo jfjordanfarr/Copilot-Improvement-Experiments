@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/rippleAnalyzer.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-rippleanalyzer-test-ts
-- Generated At: 2025-11-12T15:22:22.431Z
+- Generated At: 2025-11-14T18:42:06.439Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Confirms ripple analysis surfaces single-hop and multi-hop hints with the expect
 - Uses deterministic URIs so hint paths remain predictable even across different environments.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.431Z","inputHash":"eefd9c95bbe3b071"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.439Z","inputHash":"ad69840f238360fc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

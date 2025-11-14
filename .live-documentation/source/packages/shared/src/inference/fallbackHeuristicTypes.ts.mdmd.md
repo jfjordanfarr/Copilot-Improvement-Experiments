@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/fallbackHeuristicTypes.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-fallbackheuristictypes-ts
-- Generated At: 2025-11-09T22:52:11.826Z
+- Generated At: 2025-11-14T18:42:06.678Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines the shared types that heuristics and fallback inference use to describe 
 - `FallbackHeuristic` exposes optional initialization plus `appliesTo`/`evaluate` so pluggable heuristics can pre-index artifacts, filter sources, and emit `MatchCandidate`s with consistent confidence and rationale fields.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.826Z","inputHash":"dd0dcde1a423bf88"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.678Z","inputHash":"362bccdd86f085f0"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `MatchContext`

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/changeEvents/changeQueue.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-changeevents-changequeue-ts
-- Generated At: 2025-11-09T22:52:09.874Z
+- Generated At: 2025-11-14T18:42:06.272Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Coordinates background processing of saved change events, coalescing bursts and 
 - Provides hooks to inject debounce timing so integration tests can force immediate processing.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.874Z","inputHash":"2cb0734df1a08ebb"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.272Z","inputHash":"fcfffda7f859eb83"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `QueuedChange`

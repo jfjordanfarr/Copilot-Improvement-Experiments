@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/diagnostics.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-diagnostics-ts
-- Generated At: 2025-11-09T22:52:11.600Z
+- Generated At: 2025-11-14T18:42:06.639Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Defines the request/notification strings and payload contracts the extension and
 - Health reporting uses `FEEDS_READY_REQUEST` so the extension can gate UI on knowledge-feed readiness without inspecting internal telemetry structures directly.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.600Z","inputHash":"c249522b7f2d946e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.639Z","inputHash":"3bbee5eef2b54bf3"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ACKNOWLEDGE_DIAGNOSTIC_REQUEST`

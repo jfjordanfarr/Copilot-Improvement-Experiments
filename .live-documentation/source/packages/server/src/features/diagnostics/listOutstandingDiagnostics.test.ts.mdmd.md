@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/diagnostics/listOutstandingDiagnostics.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-diagnostics-listoutstandingdiagnostics-test-ts
-- Generated At: 2025-11-12T15:22:22.306Z
+- Generated At: 2025-11-14T18:42:06.333Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Validates the outstanding-diagnostics snapshot builder so it projects graph meta
 - Covers edge cases where artifact references have been pruned, confirming summaries fall back to `undefined` instead of throwing.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.306Z","inputHash":"9d3999d71919195d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.333Z","inputHash":"ee21659d28ec5b3c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

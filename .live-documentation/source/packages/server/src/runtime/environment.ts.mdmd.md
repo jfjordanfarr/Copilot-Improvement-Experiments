@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/runtime/environment.ts
 - Live Doc ID: LD-implementation-packages-server-src-runtime-environment-ts
-- Generated At: 2025-11-09T22:52:11.410Z
+- Generated At: 2025-11-14T18:42:06.605Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Provides filesystem helpers that the language server uses to resolve workspace r
 - `ensureDirectory` is synchronous to keep boot deterministic inside the extension host; higher-level callers handle async operations once the storage root exists.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.410Z","inputHash":"7a8fe617dd9aa038"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.605Z","inputHash":"dc04d774989aca69"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `resolveDatabasePath`

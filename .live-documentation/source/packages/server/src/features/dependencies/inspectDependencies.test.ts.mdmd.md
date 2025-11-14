@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/dependencies/inspectDependencies.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-dependencies-inspectdependencies-test-ts
-- Generated At: 2025-11-12T15:22:22.264Z
+- Generated At: 2025-11-14T18:42:06.294Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Ensures dependency inspection surfaces inbound/outbound relationships with corre
 - Asserts results remain stable under multiple invocations, confirming caching or ordering logic does not leak state between calls.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.264Z","inputHash":"bb60da80f7758e5e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.294Z","inputHash":"cb16ddfd6ec5d1e6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/shared.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-shared-ts
-- Generated At: 2025-11-09T22:52:12.095Z
+- Generated At: 2025-11-14T18:42:06.740Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Collects utility helpers shared by fallback heuristics for normalizing paths, de
 - `evaluateVariantMatch` returns tiered confidence scores for exact, basename, and stem matches, keeping heuristic outputs consistent across languages.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.095Z","inputHash":"799cc5faca4452f8"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.740Z","inputHash":"338550feac241f0a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `cleanupReference`

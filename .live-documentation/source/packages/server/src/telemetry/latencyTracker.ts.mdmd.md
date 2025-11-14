@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/telemetry/latencyTracker.ts
 - Live Doc ID: LD-implementation-packages-server-src-telemetry-latencytracker-ts
-- Generated At: 2025-11-09T22:52:11.539Z
+- Generated At: 2025-11-14T18:42:06.628Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Measures end-to-end processing time for queued changes, aggregating diagnostics 
 - Produces by-type breakdowns (documents vs code) so operators can spot skewed pipelines and uses `reset` to clear state between reporting intervals.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.539Z","inputHash":"773adaeec61292e7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.628Z","inputHash":"3fb2523cec7a3f9e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LatencyTrackerOptions`

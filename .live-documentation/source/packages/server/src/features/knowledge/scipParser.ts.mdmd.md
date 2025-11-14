@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/scipParser.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-scipparser-ts
-- Generated At: 2025-11-13T13:25:19.716Z
+- Generated At: 2025-11-14T18:42:06.456Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Converts SCIP indexes into knowledge feed snapshots so we can ingest Sourcegraph
 - Provides a light wrapper `parseSCIP` so callers can parse JSON indexes without managing parser configuration by hand.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.716Z","inputHash":"1579f5ceb52665b3"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.456Z","inputHash":"4752157827d3e02d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SCIPParserOptions`

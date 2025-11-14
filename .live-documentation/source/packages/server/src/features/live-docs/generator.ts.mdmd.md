@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generator-ts
-- Generated At: 2025-11-11T05:12:47.231Z
+- Generated At: 2025-11-14T18:42:06.531Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Regenerates Layer‑4 Live Docs by analysing source files, weaving in evidence, 
 - Supports dry-run/reporting workflows through change classification and exposes test utilities for symbol/dependency extraction.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:47.231Z","inputHash":"709bafaa41614967"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.531Z","inputHash":"931a2df47a714265"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `generateLiveDocs`

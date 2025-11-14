@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/llmIngestionOrchestrator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-llmingestionorchestrator-ts
-- Generated At: 2025-11-09T22:52:10.751Z
+- Generated At: 2025-11-14T18:42:06.426Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Orchestrates LLM-powered relationship extraction for queued artifacts, calibrati
 - Supports dry-run snapshots and enforces a concurrency cap so ingestion work can be replayed safely.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.751Z","inputHash":"55715e1434f2c664"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.426Z","inputHash":"dd7e721a46e4e227"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LlmIngestionLogger`

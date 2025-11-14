@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/vscode/suite/index.ts
 - Live Doc ID: LD-test-tests-integration-vscode-suite-index-ts
-- Generated At: 2025-11-09T22:52:14.479Z
+- Generated At: 2025-11-14T16:30:22.299Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:14.479Z","inputHash":"53eaf09e16a741cb"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.299Z","inputHash":"ea1a352434c62b6e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `run`

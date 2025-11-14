@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/knowledgeGraphIngestor.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-knowledgegraphingestor-test-ts
-- Generated At: 2025-11-12T15:22:22.405Z
+- Generated At: 2025-11-14T18:42:06.410Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the ingestor across snapshot and stream flows to confirm normalization
 - Covers link remapping from URI-based events, checkpoint updates, and degraded status emission when validation fails.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.405Z","inputHash":"ff473b8df61bc96c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.410Z","inputHash":"1505698ab7f34c76"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

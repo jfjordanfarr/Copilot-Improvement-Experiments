@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/symbolBridgeProvider.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-symbolbridgeprovider-ts
-- Generated At: 2025-11-09T22:52:10.920Z
+- Generated At: 2025-11-14T16:30:21.399Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Bridges workspace link analysis requests to the extension host, validating respo
 - Emits summary telemetry via the provided logger so operators can track how many files and symbols were analysed.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.920Z","inputHash":"0605253eff95eb3a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.399Z","inputHash":"e0b62fa10c9692f1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createSymbolBridgeProvider`

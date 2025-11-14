@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/watchers/pathReferenceDetector.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-watchers-pathreferencedetector-ts
-- Generated At: 2025-11-09T22:52:11.225Z
+- Generated At: 2025-11-14T18:42:06.584Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Scans document and code content for relative path references, resolving them to 
 - Rates hints by origin-specific confidence and tags rationales, letting downstream filters prioritise references discovered via code imports over broader literal matches.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.225Z","inputHash":"c009e2d25e6b02f5"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.584Z","inputHash":"3e59f1248aafd264"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ArtifactCategory`

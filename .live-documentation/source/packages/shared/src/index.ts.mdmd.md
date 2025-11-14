@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-index-ts
-- Generated At: 2025-11-12T00:39:23.981Z
+- Generated At: 2025-11-14T18:42:06.675Z
 
 ## Authored
 ### Purpose
@@ -34,7 +34,7 @@ Re-export of [`createMockOllamaResponse`](./tooling/ollamaMock.ts.mdmd.md#create
 Convenience alias for [`resolveOllamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#resolveollamaendpoint) so extension and server code reference a single package entry.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T00:39:23.981Z","inputHash":"9f7d2ead65fffa92"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.675Z","inputHash":"7de19b180fdb988a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

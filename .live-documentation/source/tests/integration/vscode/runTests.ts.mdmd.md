@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/vscode/runTests.ts
 - Live Doc ID: LD-test-tests-integration-vscode-runtests-ts
-- Generated At: 2025-11-09T22:52:14.469Z
+- Generated At: 2025-11-14T16:30:22.297Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:14.469Z","inputHash":"adc28d50235d9f8b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.297Z","inputHash":"658fa0ca05442aaf"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

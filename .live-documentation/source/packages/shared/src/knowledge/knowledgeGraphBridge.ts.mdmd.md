@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/knowledge/knowledgeGraphBridge.ts
 - Live Doc ID: LD-implementation-packages-shared-src-knowledge-knowledgegraphbridge-ts
-- Generated At: 2025-11-09T22:52:12.380Z
+- Generated At: 2025-11-14T18:42:06.779Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Normalize external knowledge snapshots and stream events into the shared `GraphS
 Snapshots convert external artifacts/links into canonical records, persist them, and compute a simple payload hash so later runs can detect drift. Alias bookkeeping lets follow-up link events reference either external or canonical ids, and stream handlers guard against missing payloads before mutating the store. Removal logic handles id- or URI-driven deletes, while telemetry-friendly checkpoints capture the latest processed sequence id to support resumable ingestors.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.380Z","inputHash":"9e1a015238ff7baf"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.779Z","inputHash":"037012ee3bb33625"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ExternalArtifact`

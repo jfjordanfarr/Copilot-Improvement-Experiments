@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/symbolCorrectnessProfiles.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-symbolcorrectnessprofiles-ts
-- Generated At: 2025-11-09T22:52:12.758Z
+- Generated At: 2025-11-14T18:42:06.845Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Parse and compile symbol correctness profiles so coverage audits can reason abou
 Loader helpers validate profile ids, sources, and requirement wiring, emitting structured warnings instead of throwing when configs are incomplete. Compilation turns glob patterns into `Minimatch` predicates, normalises optional identifier regexes and metadata fields, and produces lookup functions that filter profiles by workspace-relative paths plus MDMD layers—allowing the rule audit to pair artifacts with the right requirement set.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.758Z","inputHash":"ab654c7b40f47a30"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.845Z","inputHash":"8f1187e50bbebde6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SymbolProfileLoadResult`

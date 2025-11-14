@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-cfixtureoracle-ts
-- Generated At: 2025-11-09T22:52:12.830Z
+- Generated At: 2025-11-14T18:42:06.857Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Derive expected C include/call relationships from benchmark fixtures so integrat
 Scans translation units with `glob`, strips comments, and builds function indexes to emit deduplicated edges capturing `includes` and `calls`. Override helpers let manual corrections merge with generated records while tracking gaps, and serializers keep JSON fixtures stable for regression diffs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.830Z","inputHash":"f0a055600a4659f7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.857Z","inputHash":"5a75836da5d3ccb6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `COracleEdgeRelation`

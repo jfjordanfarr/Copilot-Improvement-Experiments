@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/markdownLinks.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-markdownlinks-ts
-- Generated At: 2025-11-09T22:52:13.259Z
+- Generated At: 2025-11-14T18:42:06.925Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Audits markdown files for broken local links so SlopCop and Live Docs can surfac
 - Reports each violation with file/line/column metadata derived from shared line-start caches, keeping diagnostics precise.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.259Z","inputHash":"6322f63e300c7fb2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.925Z","inputHash":"5948816305ba601d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `MarkdownLinkIssue`

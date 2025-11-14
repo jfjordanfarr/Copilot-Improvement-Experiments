@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/diagnostics/acknowledgementService.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-diagnostics-acknowledgementservice-test-ts
-- Generated At: 2025-11-12T15:22:22.286Z
+- Generated At: 2025-11-14T18:42:06.311Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Verifies acknowledgement workflows coordinate the graph store, drift history log
 - Covers idempotency by acknowledging the same diagnostic multiple times and validating the service returns `already_acknowledged` without mutating state.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.286Z","inputHash":"3cfa4434139e6f03"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.311Z","inputHash":"9e57af10523b5535"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

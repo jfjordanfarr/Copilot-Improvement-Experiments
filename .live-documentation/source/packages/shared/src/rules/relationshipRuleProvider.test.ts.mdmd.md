@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/rules/relationshipRuleProvider.test.ts
 - Live Doc ID: LD-test-packages-shared-src-rules-relationshipruleprovider-test-ts
-- Generated At: 2025-11-09T22:52:12.690Z
+- Generated At: 2025-11-14T18:42:06.835Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Run an end-to-end smoke test that proves rule configs load, compile, and generat
 Builds a temporary workspace with MDMD docs and a code file, then verifies glob matching, markdown resolver hops, and propagation logic all fire to yield three document links. The suite reuses engine helpers to double-check step candidate matching before asserting the provider surfaces the same evidences, ensuring future refactors keep resolver wiring intact.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.690Z","inputHash":"d7bba2788b033b6d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.835Z","inputHash":"d1fba48662ea21b1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

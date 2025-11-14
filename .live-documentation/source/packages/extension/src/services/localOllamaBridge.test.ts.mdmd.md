@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/services/localOllamaBridge.test.ts
 - Live Doc ID: LD-test-packages-extension-src-services-localollamabridge-test-ts
-- Generated At: 2025-11-12T15:22:22.208Z
+- Generated At: 2025-11-14T18:42:06.231Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies the Ollama bridge invokes real endpoints when configured and emits dete
 - Exercises happy path, missing-model, and error scenarios to ensure bridge responses remain reproducible for integration tests.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.208Z","inputHash":"c76aeb657c88525d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.231Z","inputHash":"43023087d415d7b5"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

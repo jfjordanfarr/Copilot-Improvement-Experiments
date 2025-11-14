@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/relationshipRuleTypes.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-relationshipruletypes-ts
-- Generated At: 2025-11-09T22:52:12.743Z
+- Generated At: 2025-11-14T18:42:06.841Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Describe the configuration, compilation, and runtime data structures that drive 
 Defines both author-facing config shapes (rule steps, propagations, symbol profiles) and the compiled counterparts that embed glob matchers, resolvers, and confidence defaults. Shared warning types and chain representations allow loaders, engines, and audits to exchange structured feedback without circular dependencies, while symbol profile lookup contracts feed coverage diagnostics elsewhere in the system.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.743Z","inputHash":"a12b66e6cbb1a521"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.841Z","inputHash":"b47e9dac95372c4e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SymbolProfileRequirementDirection`

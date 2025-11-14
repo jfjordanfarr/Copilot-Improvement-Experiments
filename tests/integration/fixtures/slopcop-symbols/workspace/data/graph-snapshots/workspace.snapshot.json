@@ -1,32 +1,32 @@
 {
   "generatedAt": "2025-01-01T00:00:00.000Z",
-  "workspace": "D:\\Projects\\Copilot-Improvement-Experiments\\tests\\integration\\fixtures\\slopcop-symbols\\workspace",
+  "workspace": "D:\\Projects\\Live-Documentation\\tests\\integration\\fixtures\\slopcop-symbols\\workspace",
   "totals": {
     "artifacts": 4,
     "links": 5
   },
   "artifacts": [
     {
-      "id": "orchestrated-artifact-1b5c45d8",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/slopcop-symbols/workspace/docs/index.md",
+      "id": "orchestrated-artifact-bcfb3963",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/slopcop-symbols/workspace/docs/index.md",
       "layer": "requirements",
       "language": "markdown"
     },
     {
-      "id": "orchestrated-artifact-ebb95267",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/slopcop-symbols/workspace/docs/overview.md",
+      "id": "orchestrated-artifact-ec10aefc",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/slopcop-symbols/workspace/docs/overview.md",
       "layer": "requirements",
       "language": "markdown"
     },
     {
-      "id": "orchestrated-artifact-9f8442b9",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/slopcop-symbols/workspace/docs/symbol-map.md",
+      "id": "orchestrated-artifact-e776ce0e",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/slopcop-symbols/workspace/docs/symbol-map.md",
       "layer": "requirements",
       "language": "markdown"
     },
     {
-      "id": "orchestrated-artifact-494fed6a",
-      "uri": "file:///D:/Projects/Copilot-Improvement-Experiments/tests/integration/fixtures/slopcop-symbols/workspace/src/component.ts",
+      "id": "orchestrated-artifact-49a749ff",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/slopcop-symbols/workspace/src/component.ts",
       "layer": "code",
       "language": "typescript",
       "metadata": {
@@ -42,45 +42,45 @@
   ],
   "links": [
     {
-      "id": "orchestrated-link-9e828545",
-      "sourceId": "orchestrated-artifact-1b5c45d8",
-      "targetId": "orchestrated-artifact-494fed6a",
+      "id": "orchestrated-link-d48ea798",
+      "sourceId": "orchestrated-artifact-bcfb3963",
+      "targetId": "orchestrated-artifact-49a749ff",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-f583241e",
-      "sourceId": "orchestrated-artifact-1b5c45d8",
-      "targetId": "orchestrated-artifact-9f8442b9",
+      "id": "orchestrated-link-f180be00",
+      "sourceId": "orchestrated-artifact-bcfb3963",
+      "targetId": "orchestrated-artifact-e776ce0e",
       "kind": "references",
       "confidence": 0.7,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-2c2f2baa",
-      "sourceId": "orchestrated-artifact-1b5c45d8",
-      "targetId": "orchestrated-artifact-ebb95267",
+      "id": "orchestrated-link-19b6740a",
+      "sourceId": "orchestrated-artifact-bcfb3963",
+      "targetId": "orchestrated-artifact-ec10aefc",
       "kind": "references",
       "confidence": 0.7,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-c9926adb",
-      "sourceId": "orchestrated-artifact-9f8442b9",
-      "targetId": "orchestrated-artifact-494fed6a",
+      "id": "orchestrated-link-0360a210",
+      "sourceId": "orchestrated-artifact-e776ce0e",
+      "targetId": "orchestrated-artifact-49a749ff",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-d805b567",
-      "sourceId": "orchestrated-artifact-ebb95267",
-      "targetId": "orchestrated-artifact-494fed6a",
+      "id": "orchestrated-link-f04baa9a",
+      "sourceId": "orchestrated-artifact-ec10aefc",
+      "targetId": "orchestrated-artifact-49a749ff",
       "kind": "documents",
       "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",

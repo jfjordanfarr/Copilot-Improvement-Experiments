@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/lsifParser.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-lsifparser-test-ts
-- Generated At: 2025-11-12T15:22:22.425Z
+- Generated At: 2025-11-14T18:42:06.429Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Regression-tests the LSIF parser to confirm it emits artifacts, relationships, a
 - Mocks console warnings to ensure malformed lines are skipped without breaking snapshot generation.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.425Z","inputHash":"2e04cbae990f60c7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.429Z","inputHash":"e5c745dfb4074668"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

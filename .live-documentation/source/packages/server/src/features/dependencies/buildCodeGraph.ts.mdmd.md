@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/dependencies/buildCodeGraph.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-dependencies-buildcodegraph-ts
-- Generated At: 2025-11-09T22:52:09.984Z
+- Generated At: 2025-11-14T18:42:06.291Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Builds the workspace dependency graph by ingesting artifacts, relationships, and
 - Ensures graph rebuilds are idempotent so repeated runs during integration tests produce stable fixtures.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.984Z","inputHash":"697392d2a0b342da"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.291Z","inputHash":"19070e624d53d251"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `CodeImpactEdge`

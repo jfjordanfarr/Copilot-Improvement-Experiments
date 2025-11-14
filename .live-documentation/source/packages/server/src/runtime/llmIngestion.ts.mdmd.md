@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/runtime/llmIngestion.ts
 - Live Doc ID: LD-implementation-packages-server-src-runtime-llmingestion-ts
-- Generated At: 2025-11-09T22:52:11.445Z
+- Generated At: 2025-11-14T16:30:21.572Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Queues artifacts for LLM-powered relationship extraction and provides a default 
 - `createDefaultRelationshipExtractor` wraps the language server connection’s `INVOKE_LLM_REQUEST`, tagging logs and enforcing `llmProviderMode` before forwarding prompts.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.445Z","inputHash":"46a4fcc65a9e2cf8"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.572Z","inputHash":"389d13578a639a10"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LlmIngestionManagerOptions`

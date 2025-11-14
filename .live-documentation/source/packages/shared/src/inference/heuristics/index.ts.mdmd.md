@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-index-ts
-- Generated At: 2025-11-09T22:52:12.009Z
+- Generated At: 2025-11-14T18:42:06.719Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Aggregates the suite of fallback heuristics, returning them in execution order s
 - Acts as the single place to plug additional heuristics, keeping the fallback graph builder agnostic of concrete implementations.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.009Z","inputHash":"1551b8b3750c573f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.719Z","inputHash":"1ef951ee5adb2da1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createDefaultHeuristics`

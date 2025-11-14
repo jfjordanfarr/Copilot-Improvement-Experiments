@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/slopcopAssetCli.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-slopcopassetcli-test-ts
-- Generated At: 2025-11-09T22:52:13.351Z
+- Generated At: 2025-11-14T16:30:21.988Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Exercises the asset-check CLI end-to-end, confirming it reports clean runs for h
 - Uses a temporary directory copy to keep the integration deterministic without mutating the shared fixtures in `tests/integration/fixtures/slopcop-assets`.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.351Z","inputHash":"beb136f2ba2e4bd7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.988Z","inputHash":"5ffd82e741555fc2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

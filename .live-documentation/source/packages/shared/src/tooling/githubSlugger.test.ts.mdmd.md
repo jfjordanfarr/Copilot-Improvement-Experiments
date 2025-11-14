@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/githubSlugger.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-githubslugger-test-ts
-- Generated At: 2025-11-09T22:52:13.209Z
+- Generated At: 2025-11-14T18:42:06.913Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Locks the vendored slugger against upstream behaviour by asserting casing, unico
 - Includes guards for non-string inputs and headings that reduce to empty slugs, catching regressions when upgrading the regex.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.209Z","inputHash":"74337d447b1ab1e0"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.913Z","inputHash":"c9b7bc6dda438c82"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

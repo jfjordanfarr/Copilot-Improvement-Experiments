@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/analyzeWithAI.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-analyzewithai-test-ts
-- Generated At: 2025-11-12T15:22:22.081Z
+- Generated At: 2025-11-14T18:42:06.109Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies the `analyzeWithAI` command wiring so AI-assisted diagnostic assessment
 - Simulates a successful diagnostic selection and LLM invocation, asserting that the response is stored via the client, tree views refresh, and user messaging is shown.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.081Z","inputHash":"7c7f3b0707507ec0"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.109Z","inputHash":"fc7a1c9977b9d779"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

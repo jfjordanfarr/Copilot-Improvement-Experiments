@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/shared/artifactSchemas.ts
 - Live Doc ID: LD-implementation-packages-extension-src-shared-artifactschemas-ts
-- Generated At: 2025-11-09T22:52:09.811Z
+- Generated At: 2025-11-14T18:42:06.260Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines the zod schemas and inferred types shared by extension features when val
 - Supplies reusable schemas for artifact metadata and relationship kinds that mirror the contracts expected by the language server.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.811Z","inputHash":"ba441d8a50002ffe"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.260Z","inputHash":"c325fceb008073af"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ArtifactLayerSchema`

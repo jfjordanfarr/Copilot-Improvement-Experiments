@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/reporting/testReport.test.ts
 - Live Doc ID: LD-test-packages-shared-src-reporting-testreport-test-ts
-- Generated At: 2025-11-09T22:52:12.561Z
+- Generated At: 2025-11-14T18:42:06.813Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Ensure the report generator emits the expected sections for known benchmark type
 Constructs rebuild-stability and AST-accuracy records to verify table text, environment summaries, and artifact listings all appear in the markdown. A secondary case feeds an unknown benchmark so the suite confirms we still dump the raw JSON, protecting manual investigations when new benchmark families are introduced.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.561Z","inputHash":"78bc0cc77c869482"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.813Z","inputHash":"5e1d3c3ffde9dcb4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/csharp.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-csharp-ts
-- Generated At: 2025-11-09T22:52:11.926Z
+- Generated At: 2025-11-14T18:42:06.701Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Infers relationships between C# files by correlating using directives, type iden
 - Emits `imports` vs `uses` contexts with tuned confidences, and links partial class peers (designer/generated files) so tooling understands the full type definition span.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.926Z","inputHash":"4c1258a76a1a5b75"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.701Z","inputHash":"946836171a1dc728"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createCSharpHeuristic`

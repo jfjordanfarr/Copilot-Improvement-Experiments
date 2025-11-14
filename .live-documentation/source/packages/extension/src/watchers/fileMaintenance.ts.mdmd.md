@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/watchers/fileMaintenance.ts
 - Live Doc ID: LD-implementation-packages-extension-src-watchers-filemaintenance-ts
-- Generated At: 2025-11-09T22:52:09.863Z
+- Generated At: 2025-11-14T16:30:21.093Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Notifies the language server when workspace files are deleted or renamed so it c
 - Returns a composite disposable that tears down all listeners when the extension deactivates.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.863Z","inputHash":"5bac602a6e5a2c68"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.093Z","inputHash":"4f3839910ab02e9a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `registerFileMaintenanceWatcher`

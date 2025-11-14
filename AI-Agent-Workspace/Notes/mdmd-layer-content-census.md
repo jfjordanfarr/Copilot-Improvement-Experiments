@@ -367,6 +367,7 @@ graph TD
 - Capability terminology forms an explicit chain (CapabilityID → RequirementID → ComponentID → Implementation) to keep layers interoperable. (`2025-10-30.md:L420-L470`)
 - [2025-11-10] Keep numeric layer identifiers but present the user-facing aliases “Capability/Commitment/System/Implementation” so docs stay approachable without renumbering. (`2025-11-10.md:L1222-L1245`)
 - [2025-11-11] Target the Capability layer for public-facing surfaces (e.g., GitHub Pages) while keeping Implementation-layer docs durable and allowing System views to materialise on demand. (`2025-11-11.md:L1532-L1558`,`2025-11-11.md:L1878-L1895`)
+- [2025-11-13] Standardise the product name as “Live Documentation” in Layer 1 narratives and plan to stage the future GitHub Pages experience under `docs/site/` so capabilities have a dedicated publication home. (`2025-11-13.md:L1771-L1784`,`2025-11-13.md:L1888-L1998`)
 
 ## Layer 2 – Requirements / Work Items
 - Classified as a "unit" layer: each Layer 2 doc corresponds to a concrete work item and must cite acceptance criteria, evidence, and links to the architecture and implementation that fulfil it. (`2025-10-30.md:L420-L512`)
@@ -413,6 +414,7 @@ graph TD
 - Tooling updates (instructions, audits, validators) should enforce required section spines per layer (`Intent/Signals`, `Requirement/Acceptance/Evidence/Links`, `Purpose/Responsibilities/Interfaces/Failure Modes/Telemetry`, `Source Mapping/Exports/Collaborators/Evidence`). (`2025-10-30.md:L420-L470`)
 - [2025-11-10] Treat Layers 3/4 as the deterministic spine (machine-generated from Stage‑0 signals) and Layers 1/2 as curated intent documents with lightweight generated tallies so automation remains reproducible without suppressing stakeholder storytelling. (`2025-11-10.md:L1124-L1185`)
 - [2025-11-11] Plan for Capability-layer publishing (e.g., GitHub Pages) while tightening System-layer regeneration so users consume the latest view without stale artefacts. (`2025-11-11.md:L1532-L1558`)
+- [2025-11-13] Capture the stretch goal where Live Documentation supports bidirectional authoring: Layer 1/2/3 docs must describe feature-flagged round-trip tooling, preview/apply telemetry, and scratch scaffolding that syncs doc edits back into source docstrings. (`2025-11-13.md:L1513-L1565`)
 - [2025-11-12] Cascade the structured docstring schema through Layer 1 capabilities, Layer 2 requirements, Layer 3 system memos, and the `001-link-aware-diagnostics` spec so planning artifacts and implementation stay in lockstep. (`2025-11-12.md:L1340-L1380`)
 
 ## Emerging Ideas for Upper Layers

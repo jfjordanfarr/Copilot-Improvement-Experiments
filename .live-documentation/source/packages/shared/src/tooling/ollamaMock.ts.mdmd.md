@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/ollamaMock.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-ollamamock-ts
-- Generated At: 2025-11-09T22:52:13.305Z
+- Generated At: 2025-11-14T18:42:06.937Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Generates deterministic stand-in responses when no Ollama model is configured, k
 - Exposes the mock model ID constant so telemetry can distinguish simulated sessions from real invocations.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.305Z","inputHash":"9cddf02df20061db"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.937Z","inputHash":"eb5510a781f30b17"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `MockOllamaResponse`

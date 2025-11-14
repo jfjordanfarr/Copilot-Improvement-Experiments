@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-symbolcorrectnessvalidator-ts
-- Generated At: 2025-11-09T22:52:10.495Z
+- Generated At: 2025-11-14T16:30:21.285Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Evaluates compiled symbol profile requirements against the workspace graph, prod
 - Violations carry depth and direction data (`incoming`/`outbound`) so diagnostics consumers can distinguish missing parents from missing dependents.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.495Z","inputHash":"751eab5056fe9f3d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.285Z","inputHash":"b3d64618b197c930"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SymbolCorrectnessDiagnosticOptions`

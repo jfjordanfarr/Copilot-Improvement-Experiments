@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-csharpfixtureoracle-ts
-- Generated At: 2025-11-09T22:52:12.878Z
+- Generated At: 2025-11-14T18:42:06.863Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Construct ground-truth dependency edges for C# benchmark fixtures by scanning na
 Parses each file for declared types, `using` directives, and identifier references, then resolves candidates via namespace/import heuristics to emit `imports` vs `uses` edges with provenance. Override helpers mirror the C oracle, letting manual corrections merge or flag missing entries while keeping serialized records sorted for fixture regeneration.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.878Z","inputHash":"6046421a0c146a5e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.863Z","inputHash":"4885a1a99bfc69b6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `CSharpOracleEdgeRelation`

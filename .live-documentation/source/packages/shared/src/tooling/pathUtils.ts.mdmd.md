@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/pathUtils.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-pathutils-ts
-- Generated At: 2025-11-13T13:25:19.988Z
+- Generated At: 2025-11-14T18:42:06.939Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Normalises file paths between URI and workspace-relative formats so diagnostics 
 - `normalizeWorkspacePath` forces POSIX separators, ensuring Live Docs and markdown links stay stable in git diffs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:19.988Z","inputHash":"5e7f7b000ef4b0f7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.939Z","inputHash":"ef07c16a180e3117"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `toWorkspaceRelativePath`

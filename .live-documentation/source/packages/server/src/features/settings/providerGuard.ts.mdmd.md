@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/settings/providerGuard.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-settings-providerguard-ts
-- Generated At: 2025-11-09T22:52:11.127Z
+- Generated At: 2025-11-14T18:42:06.565Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Captures the latest extension configuration coming from the language client and 
 - Surfaces typed accessors (`getSettings`, `areDiagnosticsEnabled`) for downstream services that need to read consent state without owning the raw settings blob.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.127Z","inputHash":"da358a251a6f86d6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.565Z","inputHash":"84e8fc748451659d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RippleExtensionSettings`

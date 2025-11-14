@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/graph-tools/audit-doc-coverage.ts
 - Live Doc ID: LD-implementation-scripts-graph-tools-audit-doc-coverage-ts
-- Generated At: 2025-11-11T05:12:48.290Z
+- Generated At: 2025-11-14T16:30:22.079Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.290Z","inputHash":"83cbc5a8bdac90ec"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.079Z","inputHash":"b7a59f600c5ccfe8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `parseArgs`

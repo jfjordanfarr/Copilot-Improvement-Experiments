@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/settings/configService.ts
 - Live Doc ID: LD-implementation-packages-extension-src-settings-configservice-ts
-- Generated At: 2025-11-09T22:52:09.794Z
+- Generated At: 2025-11-14T18:42:06.257Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Centralizes reading and watching Link-Aware Diagnostics workspace settings so ot
 - Provides a manual `refresh` hook used after onboarding prompts update workspace settings.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.794Z","inputHash":"32371051ece2586a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.257Z","inputHash":"67b6f6929e00fa29"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LinkDiagnosticsSettings`

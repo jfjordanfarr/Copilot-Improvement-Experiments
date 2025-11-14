@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/db/graphStore.test.ts
 - Live Doc ID: LD-test-packages-shared-src-db-graphstore-test-ts
-- Generated At: 2025-11-09T22:52:11.691Z
+- Generated At: 2025-11-14T18:42:06.659Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises critical GraphStore behaviours—artifact upserts and LLM provenance p
 - Validates that upserting by URI reuses the same artifact id and that provenance metadata survives JSON serialization when retrieved.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.691Z","inputHash":"7541e0fc824d5c49"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.659Z","inputHash":"fc719257eb64966d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

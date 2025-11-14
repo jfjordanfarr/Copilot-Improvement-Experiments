@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/referenceResolver.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-referenceresolver-ts
-- Generated At: 2025-11-09T22:52:12.038Z
+- Generated At: 2025-11-14T18:42:06.728Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Provides shared helpers for translating textual references into candidate artifa
 - `resolveIncludeReference` takes a simpler path by normalizing `#include` targets against the source directory and assigns a fixed high confidence for direct matches.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.038Z","inputHash":"ed3b4cc8b5c7be3a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.728Z","inputHash":"89da24ea8ff787f9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ReferenceResolution`

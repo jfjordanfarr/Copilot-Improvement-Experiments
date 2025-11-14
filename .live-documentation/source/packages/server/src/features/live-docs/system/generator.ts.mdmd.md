@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/system/generator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-system-generator-ts
-- Generated At: 2025-11-12T15:19:54.817Z
+- Generated At: 2025-11-14T18:42:06.556Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:19:54.817Z","inputHash":"a2dd4c24c8c48d37"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.556Z","inputHash":"ece2f202802139f5"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `GenerateSystemLiveDocsOptions`

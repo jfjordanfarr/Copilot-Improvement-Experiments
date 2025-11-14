@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/domain/artifacts.ts
 - Live Doc ID: LD-implementation-packages-shared-src-domain-artifacts-ts
-- Generated At: 2025-11-09T22:52:11.738Z
+- Generated At: 2025-11-14T18:42:06.668Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Centralises the shared domain types that describe knowledge artifacts, graph rel
 - Wraps diagnostic-related structures—records, acknowledgements, drift history, and LLM assessments—so telemetry, export flows, and GraphStore storage can reuse the same interfaces.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.738Z","inputHash":"47be878d4b23fe27"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.668Z","inputHash":"0716ab01f7ce6f70"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ArtifactLayer`

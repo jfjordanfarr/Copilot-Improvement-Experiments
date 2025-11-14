@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/telemetry/driftHistoryStore.ts
 - Live Doc ID: LD-implementation-packages-server-src-telemetry-drifthistorystore-ts
-- Generated At: 2025-11-09T22:52:11.488Z
+- Generated At: 2025-11-14T18:42:06.618Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Captures emitted and acknowledged diagnostics in the graph store so teams can au
 - Exposes `list` and `summarize` pass-throughs to the `GraphStore`, allowing diagnostics services to render history feeds without duplicating query logic.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.488Z","inputHash":"864990b6d360cc07"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.618Z","inputHash":"6eab102e714e3738"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `DriftHistoryStoreOptions`

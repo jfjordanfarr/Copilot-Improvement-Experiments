@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/config/liveDocumentationConfig.test.ts
 - Live Doc ID: LD-test-packages-shared-src-config-livedocumentationconfig-test-ts
-- Generated At: 2025-11-09T22:52:11.572Z
+- Generated At: 2025-11-14T18:42:06.632Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Demonstrates how the config normaliser applies defaults, trims overrides, and de
 - Covers blank override inputs, confirming they fall back to defaults rather than emitting empty configuration.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.572Z","inputHash":"b146b1822975fd79"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.632Z","inputHash":"637da3df0491a78c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

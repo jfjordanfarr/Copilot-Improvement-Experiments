@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/main.ts
 - Live Doc ID: LD-implementation-packages-server-src-main-ts
-- Generated At: 2025-11-09T22:52:11.278Z
+- Generated At: 2025-11-14T16:30:21.545Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Bootstraps the language server runtime: establishes the LSP connection, wires te
 - Responds to configuration updates by recomputing runtime settings, retuning debounce windows/noise filters, and reinitialising ancillary services to ensure operator consent and performance knobs take effect immediately.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.278Z","inputHash":"b9da13adc6697d04"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.545Z","inputHash":"066b5ec445ecf63f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

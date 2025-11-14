@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/documentationLinks.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-documentationlinks-ts
-- Generated At: 2025-11-11T05:12:48.071Z
+- Generated At: 2025-11-14T18:42:06.910Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Coordinates parsing of Base Layer Live Documentation anchors, resolves them into
 - Breadcrumb insertion happens ahead of the first non-comment statement; unsupported comment syntaxes raise a violation instead of mutating the file so future language adapters remain deliberate.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.071Z","inputHash":"4f93f49b8640e728"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.910Z","inputHash":"965d506b56890976"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `DocumentationRule`

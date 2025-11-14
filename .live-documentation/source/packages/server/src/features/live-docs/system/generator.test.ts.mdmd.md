@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/live-docs/system/generator.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-live-docs-system-generator-test-ts
-- Generated At: 2025-11-14T00:28:05.520Z
+- Generated At: 2025-11-14T18:42:06.541Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T00:28:05.520Z","inputHash":"785e6488f6669d7b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.541Z","inputHash":"2a44ae8bcd8c0a5e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

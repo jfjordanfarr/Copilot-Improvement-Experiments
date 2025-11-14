@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-rustfixtureoracle-ts
-- Generated At: 2025-11-09T22:52:13.050Z
+- Generated At: 2025-11-14T18:42:06.888Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Extracts inter-module edges from Rust fixture crates and exposes utilities that 
 - Supplements `use` analysis with `module::symbol` scans, applies precedence so stronger relations win dedupe races, and shares partition/merge helpers to surface manual override gaps.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.050Z","inputHash":"5dbc0ce97e0b13ba"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.888Z","inputHash":"d1b7245f26b253d1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RustOracleEdgeRelation`

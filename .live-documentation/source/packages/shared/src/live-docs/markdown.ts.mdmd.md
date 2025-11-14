@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/markdown.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-markdown-ts
-- Generated At: 2025-11-11T05:12:47.815Z
+- Generated At: 2025-11-14T18:42:06.802Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Render deterministic Live Documentation files by combining preserved authored pr
 Builds the full markdown document in memory, inserting metadata headers, authored content (or the default template when missing), and generator-supplied sections bounded by BEGIN/END comments for later diffing. Utility exports expose marker strings, provenance serialization, and helpers that compose workspace-relative Live Doc paths and ids using `normalizeWorkspacePath` so both CLI and extension produce identical layouts.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:47.815Z","inputHash":"3e673fbb7cc11a63"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.802Z","inputHash":"1b3906fb77428b3b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LIVE_DOC_BEGIN_MARKER_PREFIX`

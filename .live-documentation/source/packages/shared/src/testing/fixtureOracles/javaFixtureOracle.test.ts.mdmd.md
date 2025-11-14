@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/javaFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-javafixtureoracle-test-ts
-- Generated At: 2025-11-09T22:52:12.904Z
+- Generated At: 2025-11-14T18:42:06.866Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the Java fixture oracle helpers to ensure they extract, normalise, and
 - Serialisation and merge tests safeguard the reporting pipeline by pinning down formatting/ordering guarantees and manual override behaviour, preventing regressions when new edge types or provenance rules land.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.904Z","inputHash":"28ee8ac1acb2894f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.866Z","inputHash":"01c95677f4e7587e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

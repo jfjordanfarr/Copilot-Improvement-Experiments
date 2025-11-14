@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/runtime/environment.test.ts
 - Live Doc ID: LD-test-packages-server-src-runtime-environment-test-ts
-- Generated At: 2025-11-12T15:22:22.558Z
+- Generated At: 2025-11-14T18:42:06.602Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Verifies the environment helpers resolve storage paths, workspace roots, and URI
 - Uses temporary directories to confirm `ensureDirectory` is idempotent and that `describeError` emits consistent text for both `Error` objects and primitives.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.558Z","inputHash":"a0184f0af978ae92"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.602Z","inputHash":"6329dcd8e86cdcd9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

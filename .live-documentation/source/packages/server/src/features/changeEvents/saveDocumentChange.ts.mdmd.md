@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/changeEvents/saveDocumentChange.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-changeevents-savedocumentchange-ts
-- Generated At: 2025-11-09T22:52:09.968Z
+- Generated At: 2025-11-14T18:42:06.287Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Stores markdown/document edits in the graph store and prepares ripple metadata s
 - Shares queue orchestration and ripple scheduling logic with `saveCodeChange`, keeping both change types consistent.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.968Z","inputHash":"a9e79174f4e13665"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.287Z","inputHash":"394453e4afcd41ec"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `PersistedDocumentChange`

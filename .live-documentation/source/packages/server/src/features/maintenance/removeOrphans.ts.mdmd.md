@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/maintenance/removeOrphans.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-maintenance-removeorphans-ts
-- Generated At: 2025-11-09T22:52:11.100Z
+- Generated At: 2025-11-14T16:30:21.491Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Removes deleted or renamed artifacts from the graph and notifies clients so depe
 - Shares the same flow for deletions and renames, adding the new URI when available for richer guidance.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.100Z","inputHash":"d00cc3f1df8667af"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.491Z","inputHash":"1feaa79873b4a74a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `handleArtifactDeleted`

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/symbolReferences.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-symbolreferences-test-ts
-- Generated At: 2025-11-09T22:52:13.379Z
+- Generated At: 2025-11-14T18:42:06.944Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Validate that symbol reference auditing reports duplicates and missing anchors w
 - The second scenario disables the duplicate rule and provides an `ignoreSlugPatterns` entry, confirming the analyzer returns no issues when instructed to suppress specific slugs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.379Z","inputHash":"6a425ea25620d4a3"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.944Z","inputHash":"9a47f5ec35c37582"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

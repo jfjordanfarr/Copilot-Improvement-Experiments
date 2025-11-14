@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/markdown.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-markdown-ts
-- Generated At: 2025-11-09T22:52:12.029Z
+- Generated At: 2025-11-14T18:42:06.725Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Transforms markdown link syntax (inline and wiki-style) into deterministic artif
 - Reuses the shared reference resolver, ensuring URL normalization, fragment stripping, and confidence scoring match the rest of the inference pipeline.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.029Z","inputHash":"c91ff52f5ac8a5d9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.725Z","inputHash":"1c1387103ab40244"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createMarkdownHeuristic`

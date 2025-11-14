@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/relationshipRuleProvider.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-relationshipruleprovider-ts
-- Generated At: 2025-11-09T22:52:12.726Z
+- Generated At: 2025-11-14T18:42:06.838Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Expose relationship rules as a `WorkspaceLinkProvider`, wiring config loading, c
 Each collection run reloads the JSON rules file, logs parser/compiler warnings through an optional logger, and short-circuits when no rules or chains compile. When evidences are produced, the provider stamps them with a configurable creator id and surfaces volume metrics via `info` logs so operators can gauge impact without inspecting raw traces.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.726Z","inputHash":"bc37d1149c126c72"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.838Z","inputHash":"255364b67d33ab28"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RelationshipRuleProviderLogger`

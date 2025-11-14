@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/java.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-java-ts
-- Generated At: 2025-11-09T22:52:12.019Z
+- Generated At: 2025-11-14T18:42:06.722Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Resolves Java `import` statements to workspace artifacts by indexing packages an
 - When evaluating, classifies matches as `uses` if constructors or identifiers appear in the file, giving those edges higher confidence than passive imports.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.019Z","inputHash":"54a64feefabd577d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.722Z","inputHash":"5f13dfaed6da1387"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createJavaHeuristic`

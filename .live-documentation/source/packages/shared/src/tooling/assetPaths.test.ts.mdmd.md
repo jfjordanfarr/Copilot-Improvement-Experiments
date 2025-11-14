@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/assetPaths.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-assetpaths-test-ts
-- Generated At: 2025-11-09T22:52:13.119Z
+- Generated At: 2025-11-14T18:42:06.899Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Exercises the asset path auditor end-to-end, ensuring it catches missing resourc
 - Keeps fixtures lightweight by writing files directly in tests, giving fast feedback on regex extraction and path resolution logic.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.119Z","inputHash":"69332c8b7e048bf7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.899Z","inputHash":"20128627ba52330d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

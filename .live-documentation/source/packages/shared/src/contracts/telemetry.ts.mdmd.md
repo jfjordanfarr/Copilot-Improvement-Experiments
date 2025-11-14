@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/telemetry.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-telemetry-ts
-- Generated At: 2025-11-09T22:52:11.679Z
+- Generated At: 2025-11-14T18:42:06.656Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Declares the telemetry request contract that powers latency dashboards, letting 
 - The request supports optional resets and sample limits, enabling ad-hoc troubleshooting without forcing the server to stream the full history.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.679Z","inputHash":"31dff1c1919d22c4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.656Z","inputHash":"78f6f2dd48080ca8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LATENCY_SUMMARY_REQUEST`

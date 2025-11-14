@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/publishDocDiagnostics.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-publishdocdiagnostics-ts
-- Generated At: 2025-11-09T22:52:10.458Z
+- Generated At: 2025-11-14T18:42:06.364Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Emits documentation drift diagnostics by combining broken-link checks with rippl
 - Converts filesystem paths with `normaliseDisplayPath` to keep diagnostic messages readable regardless of URI encoding or platform separators.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.458Z","inputHash":"62af01f2ceb0ac1f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.364Z","inputHash":"f90b5a6f5bfda08b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `DocumentChangeContext`

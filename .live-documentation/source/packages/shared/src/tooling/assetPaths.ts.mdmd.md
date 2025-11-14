@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/assetPaths.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-assetpaths-ts
-- Generated At: 2025-11-09T22:52:13.134Z
+- Generated At: 2025-11-14T18:42:06.902Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Scans HTML and CSS sources for asset references, resolving them against the work
 - Computes line/column offsets once per file to report precise issue positions, returning structured issue objects consumed by CLI and extension diagnostics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.134Z","inputHash":"2500a3b4a67dcfc6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.902Z","inputHash":"e76eee99d37286f4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `AssetReferenceIssue`

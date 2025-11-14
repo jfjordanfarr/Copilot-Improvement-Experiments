@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/linkInference.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-linkinference-ts
-- Generated At: 2025-11-09T22:52:12.184Z
+- Generated At: 2025-11-14T18:42:06.755Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Coordinates workspace providers, knowledge feeds, and fallback heuristics to bui
 - Falls back to `inferFallbackGraph` when providers leave gaps, threading optional LLM bridges and content loaders to enrich suggestions without duplicating trace logic.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.184Z","inputHash":"bd5cf0871a29b238"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.755Z","inputHash":"8745e7dc2c77c715"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LinkInferenceTraceOrigin`

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/changeEvents/saveDocumentChange.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-changeevents-savedocumentchange-test-ts
-- Generated At: 2025-11-12T15:22:22.252Z
+- Generated At: 2025-11-14T18:42:06.284Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Confirms document change persistence records markdown edits, ripple hints, and q
 - Verifies that multiple changes enqueue correctly and that deduplication logic prevents redundant records.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.252Z","inputHash":"9cf1cf44feb4caec"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.284Z","inputHash":"d878a3a22734667b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

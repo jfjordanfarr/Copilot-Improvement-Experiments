@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/relationshipResolvers.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-relationshipresolvers-ts
-- Generated At: 2025-11-09T22:52:12.616Z
+- Generated At: 2025-11-14T18:42:06.822Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Bundle the built-in relationship resolvers that translate markdown links or MDMD
 The `markdown-links` resolver parses inline and reference-style links, normalises relative targets against the workspace root, and guards against duplicate matches. The `mdmd-code-paths` resolver inspects MDMD metadata to resolve canonical code paths, tolerating malformed entries while still deduplicating hits. Shared helpers keep URI handling consistent so downstream engines can rely on workspace-relative link keys.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.616Z","inputHash":"cce663c3420107cc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.822Z","inputHash":"adbb5c0a571829c8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createBuiltInResolvers`

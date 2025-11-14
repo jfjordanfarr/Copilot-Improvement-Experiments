@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/rippleTypes.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-rippletypes-ts
-- Generated At: 2025-11-09T22:52:10.477Z
+- Generated At: 2025-11-14T18:42:06.366Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines the shared ripple impact structures passed from inference to diagnostic 
 - Simplified type definitions keep ripple payloads serializable, enabling storage in the graph store or transmission to clients when needed.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.477Z","inputHash":"387ebb329357b678"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.366Z","inputHash":"6829cb7fed97e1bf"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RippleHint`

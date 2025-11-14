@@ -658,6 +658,14 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L3724-L3770` — Before proposing a commit, inspect the diffs for unexpected changes (chat history included) and surface the suggested commit message in chat.
 - `L4750-L4760` — Ensure the final commit narrative reflects both the planning/documentation half and the adapter/test implementation so the day’s story stays coherent.
 
+## 2025-11-13 (Dev Day 22)
+- `2025-11-13.md:L1-L36` — Keep the dev-day ritual: summarize 11/12 via `devHistory.summarizeDay.prompt.md` and correlate it to commit `b2b8f7590d928fd356a0df008de17d3e6bfc51e3` before taking on new work.
+- `L1330-L1346` — Sanitize Javadoc block tags (e.g., `<p>`, `<br>`) inside the Java adapter, regenerate the fixture, and rerun the pipeline so Live Docs stay Markdown-native.
+- `L1513-L1565` — Extend Layer 1/Layer 2/Layer 3 docs plus `001-link-aware-diagnostics` to capture the stretch goal of Live Documentation-backed authoring and two-way docstring bridges.
+- `L1771-L1784` — Standardise on “Live Documentation” as the formal product name; avoid “LiveDocs” in persisted artifacts to prevent brand collisions.
+- `L1888-L1998` — Drive the workspace cleanup plan: prepare for a repo rename to `Live-Documentation`, stand up a future `docs/site/` GitHub Pages scaffold, purge temp debris, and keep ChatHistory organised by year/month folders.
+- `L2238-L2244` — Treat historical ChatHistory entries as read-only audit artifacts; do not rewrite or auto-migrate their internal links during tooling passes.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

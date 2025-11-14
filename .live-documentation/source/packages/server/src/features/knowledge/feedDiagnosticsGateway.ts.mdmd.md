@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/feedDiagnosticsGateway.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-feeddiagnosticsgateway-ts
-- Generated At: 2025-11-09T22:52:10.510Z
+- Generated At: 2025-11-14T18:42:06.376Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Publishes ingestion diagnostics and metrics to the telemetry pipeline so operato
 - Tracks last-seen offsets and failure contexts to aid in triaging stalled feeds.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.510Z","inputHash":"be41f1e87739e038"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.376Z","inputHash":"f0e717a6ffffa870"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `FeedHealthStatus`

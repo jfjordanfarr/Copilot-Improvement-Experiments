@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/exportDiagnostics.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-exportdiagnostics-ts
-- Generated At: 2025-11-09T22:52:09.351Z
+- Generated At: 2025-11-14T18:42:06.142Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Implements the `linkDiagnostics.exportDiagnostics` command that serializes outst
 - Persists the export via Node FS APIs, optionally reopens the file, and reports errors through toast messaging.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.351Z","inputHash":"537a661632fd8f46"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.142Z","inputHash":"72f5b6971308d228"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `EXPORT_DIAGNOSTICS_COMMAND`

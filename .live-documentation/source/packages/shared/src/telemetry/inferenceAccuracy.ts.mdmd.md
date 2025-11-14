@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/telemetry/inferenceAccuracy.ts
 - Live Doc ID: LD-implementation-packages-shared-src-telemetry-inferenceaccuracy-ts
-- Generated At: 2025-11-09T22:52:12.779Z
+- Generated At: 2025-11-14T18:42:06.849Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Track precision/recall metrics for inferred links across benchmark runs, retaini
 `InferenceAccuracyTracker` normalises artifact URIs, increments weighted TP/FP/FN totals per benchmark, and trims its rolling sample buffer to a configurable size. Snapshots return per-benchmark ratios plus global aggregates, with optional reset semantics so long-lived processes can publish deltas without reallocating the tracker.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.779Z","inputHash":"8085af66168b389e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.849Z","inputHash":"5ed2f37400dc7e95"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `InferenceOutcome`

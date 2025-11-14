@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/dependencies/symbolNeighbors.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-dependencies-symbolneighbors-ts
-- Generated At: 2025-11-09T22:52:10.063Z
+- Generated At: 2025-11-14T18:42:06.305Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exposes an API for finding graph neighbors of a symbol, returning related implem
 - Relies on shared graph traversal utilities so symbol inspection stays consistent with dependency inspection behaviour.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.063Z","inputHash":"184e114b4a69ce54"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.305Z","inputHash":"b0f2cc1c5f931e88"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `InspectSymbolNeighborsOptions`

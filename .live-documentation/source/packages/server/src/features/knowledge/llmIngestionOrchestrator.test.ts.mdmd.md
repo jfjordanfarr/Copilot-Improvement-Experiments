@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/llmIngestionOrchestrator.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-llmingestionorchestrator-test-ts
-- Generated At: 2025-11-12T15:22:22.418Z
+- Generated At: 2025-11-14T18:42:06.420Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Validates that LLM ingestion persists calibrated relationships with provenance a
 - Exercises dry-run output to confirm snapshot files capture calibration context while leaving the underlying graph untouched.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.418Z","inputHash":"b39d2271b5ca8591"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.420Z","inputHash":"4a0340292cc59905"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

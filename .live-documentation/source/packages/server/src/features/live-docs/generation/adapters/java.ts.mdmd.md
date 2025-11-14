@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/adapters/java.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-java-ts
-- Generated At: 2025-11-14T00:28:05.490Z
+- Generated At: 2025-11-14T18:42:06.505Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T00:28:05.490Z","inputHash":"30d8fa8bc34dbf32"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.505Z","inputHash":"134f693a3b168586"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `javaAdapter`

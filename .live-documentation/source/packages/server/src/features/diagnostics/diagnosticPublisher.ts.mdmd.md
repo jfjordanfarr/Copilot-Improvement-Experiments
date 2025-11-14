@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/diagnosticPublisher.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-diagnosticpublisher-ts
-- Generated At: 2025-11-09T22:52:10.119Z
+- Generated At: 2025-11-14T16:30:21.191Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Caches diagnostics sent through the language server connection so subsequent doc
 - `buildDocumentReport` returns `DocumentDiagnosticReportKind.Unchanged` whenever the consumer presents the current `resultId`, letting VS Code skip redundant UI updates.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.119Z","inputHash":"6c423484ab68c553"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.191Z","inputHash":"03600a59a9a3de0a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `DiagnosticPublisher`

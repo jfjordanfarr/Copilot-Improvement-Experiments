@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/cFunctions.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-cfunctions-ts
-- Generated At: 2025-11-09T22:52:11.908Z
+- Generated At: 2025-11-14T18:42:06.696Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Indexes C source files for function definitions and emits `depends_on` edges whe
 - During evaluation it scans call sites, ignores self-references and reserved keywords, and records a single match per target to keep inferred edges deterministic.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.908Z","inputHash":"a701e5b0bebd6a8b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.696Z","inputHash":"367932f3821ccba9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createCFunctionHeuristic`

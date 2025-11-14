@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/testing/testHooks.ts
 - Live Doc ID: LD-implementation-packages-extension-src-testing-testhooks-ts
-- Generated At: 2025-11-09T22:52:09.823Z
+- Generated At: 2025-11-14T18:42:06.263Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Provides a mechanism for tests to override VS Code window APIs without mutating 
 - Returns bound functions so downstream code (like quick pick controllers) can call the APIs without caring about the active environment.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.823Z","inputHash":"218ab8e143a5dbb5"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.263Z","inputHash":"bf5c5fa42b5c18d2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `resolveWindowApis`

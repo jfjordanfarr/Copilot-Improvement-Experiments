@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/llm.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-llm-ts
-- Generated At: 2025-11-09T22:52:11.606Z
+- Generated At: 2025-11-14T18:42:06.641Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Specifies the shared request contract the extension uses to ask the server to in
 - Results surface either raw text or structured objects, and expose the resolved `modelId` and token usage to keep telemetry consistent with the orchestrator.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.606Z","inputHash":"eef54191d0d65ada"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.641Z","inputHash":"2ba0f5021e760a96"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `INVOKE_LLM_REQUEST`

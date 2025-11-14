@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/llmSampling.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-llmsampling-ts
-- Generated At: 2025-11-09T22:52:12.245Z
+- Generated At: 2025-11-14T18:42:06.762Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Provide reusable scaffolding for multi-variant LLM sampling sessions, aggregatin
 `aggregateVotes` collapses edge proposals across variants into deterministic support/average-confidence tuples sorted for stable diagnostics. `scoreSamples` buckets aggregated edges into accepted or pending lists relative to a session-level threshold, while `runSamplingSession` executes a pluggable vote collector, stamps timing metadata, and ignores telemetry sink failures on purpose. Telemetry payloads summarize edge counts and duration so higher layers can monitor sampling quality without depending on implementation details.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.245Z","inputHash":"ab684e8d1c46048c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.762Z","inputHash":"49fa9e45e4573adc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SamplingPromptVariant`

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/live-docs/build-target-manifest.ts
 - Live Doc ID: LD-implementation-scripts-live-docs-build-target-manifest-ts
-- Generated At: 2025-11-09T22:52:13.690Z
+- Generated At: 2025-11-14T16:30:22.093Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.690Z","inputHash":"dd26da36b5765557"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.093Z","inputHash":"f20d7b57d28ae6ab"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

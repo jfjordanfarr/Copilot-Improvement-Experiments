@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/adapters/csharp.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-csharp-ts
-- Generated At: 2025-11-13T21:16:22.853Z
+- Generated At: 2025-11-14T18:42:06.496Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T21:16:22.853Z","inputHash":"a1ca1858085e2e58"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.496Z","inputHash":"bf15fbc509c01d45"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `csharpAdapter`

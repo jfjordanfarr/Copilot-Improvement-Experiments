@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/runtime/settings.test.ts
 - Live Doc ID: LD-test-packages-server-src-runtime-settings-test-ts
-- Generated At: 2025-11-12T15:22:22.569Z
+- Generated At: 2025-11-14T18:42:06.611Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Confirms the runtime settings parsers extract valid extension configuration from
 - Exercises the overrides parser to ensure test harnesses can flip diagnostics, provider mode, and ripple settings without mutating the base configuration.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.569Z","inputHash":"74150c839d734279"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.611Z","inputHash":"738fb82081b65f72"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

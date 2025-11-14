@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/onboarding/providerGate.ts
 - Live Doc ID: LD-implementation-packages-extension-src-onboarding-providergate-ts
-- Generated At: 2025-11-09T22:52:09.660Z
+- Generated At: 2025-11-14T16:30:21.023Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Guides first-time users to choose an LLM provider mode so diagnostics and AI fea
 - Presents a guarded quick pick that defaults to local-only diagnostics but allows opting into repeated prompts or fully disabling LLM-backed diagnostics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.660Z","inputHash":"cb2993acc3432cc6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.023Z","inputHash":"b90a332287edbbc0"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ensureProviderSelection`

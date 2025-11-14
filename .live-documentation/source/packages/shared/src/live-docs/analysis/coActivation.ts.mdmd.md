@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/analysis/coActivation.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-analysis-coactivation-ts
-- Generated At: 2025-11-12T15:22:22.709Z
+- Generated At: 2025-11-14T18:42:06.793Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.709Z","inputHash":"d4b11eb6645fe1ba"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.793Z","inputHash":"ed0dc3023504e06d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `CoActivationBuildArgs`

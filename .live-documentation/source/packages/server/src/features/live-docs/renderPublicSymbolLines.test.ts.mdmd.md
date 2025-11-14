@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/live-docs/renderPublicSymbolLines.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-live-docs-renderpublicsymbollines-test-ts
-- Generated At: 2025-11-14T00:28:05.515Z
+- Generated At: 2025-11-14T18:42:06.533Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies the symbol renderer formats headings, metadata bullets, and links corre
 - Guards against regressions where trailing newlines or missing blank separators would degrade rendered markdown.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T00:28:05.515Z","inputHash":"2d24ce0afe269d23"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.533Z","inputHash":"1331d9a54347168a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

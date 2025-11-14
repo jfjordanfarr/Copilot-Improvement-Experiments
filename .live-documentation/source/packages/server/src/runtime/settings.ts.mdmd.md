@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/runtime/settings.ts
 - Live Doc ID: LD-implementation-packages-server-src-runtime-settings-ts
-- Generated At: 2025-11-09T22:52:11.481Z
+- Generated At: 2025-11-14T18:42:06.616Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Parses raw initialization payloads into typed extension settings, applies test-m
 - `extractTestModeOverrides` mirrors the primary parser but only honours a curated subset, letting integration tests short-circuit consent and rate limits via initialization options.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.481Z","inputHash":"f9b9ae061b4356fd"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.616Z","inputHash":"f44bc0c70c8f8b9c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `extractExtensionSettings`

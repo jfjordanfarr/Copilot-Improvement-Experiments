@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/diagnosticUtils.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-diagnosticutils-ts
-- Generated At: 2025-11-09T22:52:10.132Z
+- Generated At: 2025-11-14T18:42:06.322Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines shared helpers for diagnostic publishing: the `DiagnosticSender` abstrac
 - `DiagnosticSender` keeps the publisher contract minimal (URI + diagnostics array) so integration tests can substitute fakes without importing the language server connection.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.132Z","inputHash":"79c95342045c8796"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.322Z","inputHash":"6c1779c4e72c2026"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `DiagnosticSender`

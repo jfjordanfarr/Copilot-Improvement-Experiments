@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/generator.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-generator-test-ts
-- Generated At: 2025-11-09T22:52:12.431Z
+- Generated At: 2025-11-14T18:42:06.797Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercise the markdown helpers so live documentation regeneration keeps authored 
 Asserts that previously written Purpose/Notes blocks survive round-tripping, verifies the default template appears when no authored section exists, and checks that metadata and section markers render with the expected HTML comments. Additional cases ensure Live Doc ids and output paths remain deterministic across environments, and that provenance payloads serialise to JSON inside the marker comment.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.431Z","inputHash":"e922a8cfb1d73ffc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.797Z","inputHash":"f6481885a78dd055"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

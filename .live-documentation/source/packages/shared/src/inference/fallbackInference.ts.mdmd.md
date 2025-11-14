@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/fallbackInference.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-fallbackinference-ts
-- Generated At: 2025-11-09T22:52:11.885Z
+- Generated At: 2025-11-14T18:42:06.691Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Builds a knowledge-graph proposal from seed artifacts using deterministic heuris
 - Returns both the inferred edges and the trace log so callers can surface provenance (heuristic vs. hint vs. LLM) alongside suggestions in the UI.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.885Z","inputHash":"34f3099b95e3c28f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.691Z","inputHash":"373c19057ae0e5f1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ArtifactSeed`

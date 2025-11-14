@@ -40,7 +40,7 @@ interface BridgeResult {
 
 describe("invokeLocalOllamaBridge", () => {
   const originalEnv = { ...process.env };
-  let warnSpy: MockInstance<[message?: any, ...optionalParams: any[]], void>;
+  let warnSpy: MockInstance<typeof console.warn>;
 
   beforeAll(async () => {
     ({ invokeLocalOllamaBridge } = await import("./localOllamaBridge"));

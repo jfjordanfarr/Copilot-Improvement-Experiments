@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/telemetry/inferenceAccuracy.ts
 - Live Doc ID: LD-implementation-packages-server-src-telemetry-inferenceaccuracy-ts
-- Generated At: 2025-11-09T22:52:11.510Z
+- Generated At: 2025-11-14T18:42:06.622Z
 
 ## Authored
 ### Purpose
@@ -18,7 +18,7 @@ Re-exports the shared inference-accuracy telemetry helpers so server modules can
 Re-exported from [`@copilot-improvement/shared/telemetry/inferenceAccuracy`](../../../../packages/shared/src/telemetry/inferenceAccuracy.ts.mdmd.md#inferenceaccuracytracker) so server modules can reference the shared tracker through a local entry point.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.510Z","inputHash":"d9a3bb7d21c1882f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.622Z","inputHash":"f3e0e52a9ef80e53"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

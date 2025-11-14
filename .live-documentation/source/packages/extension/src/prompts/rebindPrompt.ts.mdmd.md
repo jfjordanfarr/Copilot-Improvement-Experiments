@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/prompts/rebindPrompt.ts
 - Live Doc ID: LD-implementation-packages-extension-src-prompts-rebindprompt-ts
-- Generated At: 2025-11-09T22:52:09.669Z
+- Generated At: 2025-11-14T16:30:21.029Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Surfaces a toast when tracked artifacts are removed or renamed and offers to reb
 - Leaves diagnostics untouched when dismissed, ensuring operators stay in control of remediation timing.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.669Z","inputHash":"d1ecb2b648038fdd"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.029Z","inputHash":"9ced11325a734c66"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `showRebindPrompt`

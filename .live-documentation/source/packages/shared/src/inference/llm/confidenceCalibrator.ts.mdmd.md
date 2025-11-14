@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/llm/confidenceCalibrator.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-llm-confidencecalibrator-ts
-- Generated At: 2025-11-09T22:52:12.291Z
+- Generated At: 2025-11-14T18:42:06.768Z
 
 ## Authored
 ### Purpose
@@ -18,7 +18,7 @@ Maps optional string labels to canonical tiers first, then falls back to numeric
 Alias exported via `packages/shared/src/index.ts` for downstream convenience; resolves to [`ConfidenceTier`](#confidencetier).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.291Z","inputHash":"a628b395953e8970"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.768Z","inputHash":"a688b699a353de15"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ConfidenceTier`

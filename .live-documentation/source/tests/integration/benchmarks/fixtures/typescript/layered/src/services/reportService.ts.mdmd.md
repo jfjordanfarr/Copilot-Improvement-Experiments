@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/benchmarks/fixtures/typescript/layered/src/services/reportService.ts
 - Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-typescript-layered-src-services-reportservice-ts
-- Generated At: 2025-11-09T22:52:14.064Z
+- Generated At: 2025-11-14T16:30:22.193Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:14.064Z","inputHash":"a0fe049b2737924a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.193Z","inputHash":"7586e4278b7d13e0"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `generateReport`

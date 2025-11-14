@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/markdownLinks.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-markdownlinks-test-ts
-- Generated At: 2025-11-09T22:52:13.240Z
+- Generated At: 2025-11-14T18:42:06.922Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Regression-tests the markdown link auditor against representative inline, refere
 - Exercises reference-definition parsing to ensure missing definitions and broken targets both raise diagnostics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.240Z","inputHash":"7b119fa6f97f56c5"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.922Z","inputHash":"bca43c3a5e6d0d9d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

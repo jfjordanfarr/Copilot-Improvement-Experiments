@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/symbols.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-symbols-ts
-- Generated At: 2025-11-09T22:52:11.668Z
+- Generated At: 2025-11-14T18:42:06.654Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines the shared contracts for collecting workspace symbols and inspecting the
 - Symbol neighbor inspection accepts artifact IDs or URIs, and groups responses by relationship kind with per-neighbor path metadata so the UI can render hop-by-hop provenance.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.668Z","inputHash":"3a3cd2659de9aa98"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.654Z","inputHash":"8b263be8a82f6c9f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `COLLECT_WORKSPACE_SYMBOLS_REQUEST`

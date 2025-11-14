@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/views/diagnosticsTree.ts
 - Live Doc ID: LD-implementation-packages-extension-src-views-diagnosticstree-ts
-- Generated At: 2025-11-09T22:52:09.844Z
+- Generated At: 2025-11-14T16:30:21.089Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Renders outstanding Link-Aware Diagnostics in a tree view grouped by target arti
 - Exposes helper utilities so commands can detect diagnostic nodes and forward acknowledgement payloads when triggered from the tree.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.844Z","inputHash":"f074d77ab6c3419d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.089Z","inputHash":"ca85ed087a224173"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `TreeNode`

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/knowledgeGraphIngestor.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-knowledgegraphingestor-ts
-- Generated At: 2025-11-09T22:52:10.700Z
+- Generated At: 2025-11-14T18:42:06.416Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Coordinates ingestion of knowledge feed snapshots and stream events into the gra
 - Reports health through `FeedDiagnosticsGateway` and persists checkpoints so stream replay can resume after restarts.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.700Z","inputHash":"d1c0dd66cc52d699"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.416Z","inputHash":"4c13aceb03145184"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `KnowledgeGraphIngestorLogger`

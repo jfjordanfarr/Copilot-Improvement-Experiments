@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/changeEvents/saveCodeChange.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-changeevents-savecodechange-test-ts
-- Generated At: 2025-11-12T15:22:22.246Z
+- Generated At: 2025-11-14T18:42:06.276Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Validates code change persistence captures artifacts, ripple hints, and queue sc
 - Injects fake acknowledgement and queue adapters so the test can assert on interactions without executing background jobs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.246Z","inputHash":"6179cc96f92bc13f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.276Z","inputHash":"136f926f2df87d6c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

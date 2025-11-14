@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/exportDiagnostics.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-exportdiagnostics-test-ts
-- Generated At: 2025-11-12T15:22:22.113Z
+- Generated At: 2025-11-14T18:42:06.134Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the export diagnostics command to ensure user interactions serialize s
 - Covers CSV exports end-to-end, verifying the language client request, save dialog prompt, and informational toast for empty snapshots.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.113Z","inputHash":"c00d8ea99c8d76e6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.134Z","inputHash":"babed95da9c382e2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-staticfeedworkspaceprovider-ts
-- Generated At: 2025-11-09T22:52:10.908Z
+- Generated At: 2025-11-14T16:30:21.394Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Provides a workspace link provider that bootstraps artifacts and evidences from 
 - Deduplicates seeds by URI and logs missing paths to aid authors when feed fixtures drift from the repository layout.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.908Z","inputHash":"3b6d8b7bec913bf9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.394Z","inputHash":"853ac674a62f952f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `StaticFeedWorkspaceProviderOptions`

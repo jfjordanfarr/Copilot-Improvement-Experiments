@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-typescriptfixtureoracle-ts
-- Generated At: 2025-11-09T22:52:13.082Z
+- Generated At: 2025-11-14T18:42:06.896Z
 
 ## Authored
 ### Purpose
@@ -29,7 +29,7 @@ Alias preserved for [`mergeOracleEdges`](#mergeoracleedges) to support prior imp
 Alias preserved for [`serializeOracleEdges`](#serializeoracleedges) so benchmark tooling retains stable references.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.082Z","inputHash":"69bc8cb54d35ca13"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.896Z","inputHash":"d4858b80576ec633"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `OracleEdgeRelation`

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/directives.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-directives-ts
-- Generated At: 2025-11-09T22:52:11.945Z
+- Generated At: 2025-11-14T18:42:06.704Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Parses `@link` directives embedded in content and resolves them to known artifac
 - Runs for every artifact; confidence and rationale come directly from the resolver to preserve nuanced scoring.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.945Z","inputHash":"b87573832d607f7f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.704Z","inputHash":"8aa041a498869c85"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createDirectiveHeuristic`

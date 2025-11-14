@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/inference/linkInference.test.ts
 - Live Doc ID: LD-test-packages-shared-src-inference-linkinference-test-ts
-- Generated At: 2025-11-09T22:52:12.136Z
+- Generated At: 2025-11-14T18:42:06.748Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercise the `LinkInferenceOrchestrator` end-to-end so a representative workspac
 Seeds include a markdown requirement and TypeScript implementation file so fallback inference emits reciprocal document/code links and a heuristic trace. A mock workspace provider supplies one additional evidence item, while a mock knowledge-feed snapshot contributes an out-of-repo spec artifact and pre-linked relationship to verify snapshot promotion. The assertions confirm artifact hydration, link deduplication, provider/feed summaries, and that the run records the three distinct trace origins (`heuristic`, provider id, `knowledge-feed`).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.136Z","inputHash":"9f162f13d6b06100"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.748Z","inputHash":"7a0eeb6ef120fed7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

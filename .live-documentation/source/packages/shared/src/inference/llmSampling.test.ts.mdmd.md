@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/inference/llmSampling.test.ts
 - Live Doc ID: LD-test-packages-shared-src-inference-llmsampling-test-ts
-- Generated At: 2025-11-09T22:52:12.212Z
+- Generated At: 2025-11-14T18:42:06.759Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Verify the sampling utilities aggregate and score edge votes correctly, drive a 
 The suite covers the deterministic ordering of aggregated votes, threshold-based acceptance math, and the control flow that invokes a provided `collectVotes` hook. A final assertion uses a stub sink to ensure telemetry payloads report duration and session identifiers, preventing regressions where monitoring hooks silently stop firing.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.212Z","inputHash":"e72bb3dba8ea98ec"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.759Z","inputHash":"ab00c55ce918af30"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/live-docs/system.ts
 - Live Doc ID: LD-implementation-scripts-live-docs-system-ts
-- Generated At: 2025-11-12T15:19:55.213Z
+- Generated At: 2025-11-14T16:30:22.119Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:19:55.213Z","inputHash":"153b4f553256580a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.119Z","inputHash":"5107c9c37c6469c5"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

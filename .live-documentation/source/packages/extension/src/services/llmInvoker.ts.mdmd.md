@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/services/llmInvoker.ts
 - Live Doc ID: LD-implementation-packages-extension-src-services-llminvoker-ts
-- Generated At: 2025-11-09T22:52:09.684Z
+- Generated At: 2025-11-14T18:42:06.225Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Wraps VS Code's language model APIs so Link-Aware Diagnostics can invoke chat mo
 - Surfaces structured failure reasons to callers, enabling fallbacks such as the local Ollama bridge when no eligible models are available.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.684Z","inputHash":"9a69033e9ec7965b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.225Z","inputHash":"c16fcf9c9e2cee78"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LlmProviderMode`

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/changeEvents/saveCodeChange.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-changeevents-savecodechange-ts
-- Generated At: 2025-11-09T22:52:09.923Z
+- Generated At: 2025-11-14T18:42:06.280Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Persists tracked code edits into the graph store while capturing ripple metadata
 - Delegates scheduling to the change queue module, ensuring code and document changes share the same processing infrastructure.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.923Z","inputHash":"ae5b5738d3b17b8a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.280Z","inputHash":"615750689bc3b611"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `PersistedCodeChange`

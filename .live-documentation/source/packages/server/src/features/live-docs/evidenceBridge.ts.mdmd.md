@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/evidenceBridge.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-evidencebridge-ts
-- Generated At: 2025-11-11T05:12:47.179Z
+- Generated At: 2025-11-14T18:42:06.486Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Aggregates coverage reports, target manifests, and waivers into the evidence sna
 - Allows manual waivers to append documentation when automated evidence is unavailable, keeping diagnostics transparent.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:47.179Z","inputHash":"35cbd5f2c6c21b84"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.486Z","inputHash":"eec280c0faf00a1c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `EvidenceKind`

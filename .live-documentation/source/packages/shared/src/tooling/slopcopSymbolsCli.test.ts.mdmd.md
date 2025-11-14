@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/slopcopSymbolsCli.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-slopcopsymbolscli-test-ts
-- Generated At: 2025-11-09T22:52:13.363Z
+- Generated At: 2025-11-14T16:30:21.990Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Verifies the symbol hygiene CLI detects markdown heading regressions and recover
 - Restores the fixture files to confirm the CLI returns to a clean bill of health, ensuring the tests cover both failure and repair cycles.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.363Z","inputHash":"dc665443d0bdd3e1"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.990Z","inputHash":"ac4d249ab62bcc34"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

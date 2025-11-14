@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/githubSlugger.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-githubslugger-ts
-- Generated At: 2025-11-11T05:12:48.087Z
+- Generated At: 2025-11-14T18:42:06.916Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Provides a vendored GitHub-compatible slugger so Live Docs and diagnostics can g
 - Avoids pulling an ESM dependency into the shared workspace, keeping runtime usage compatible with the extension, server, and tests.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.087Z","inputHash":"296506271f0a8849"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.916Z","inputHash":"60022c047e8317af"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SlugContext`

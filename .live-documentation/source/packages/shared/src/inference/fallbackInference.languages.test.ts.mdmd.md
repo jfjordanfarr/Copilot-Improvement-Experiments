@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/inference/fallbackInference.languages.test.ts
 - Live Doc ID: LD-test-packages-shared-src-inference-fallbackinference-languages-test-ts
-- Generated At: 2025-11-09T22:52:11.843Z
+- Generated At: 2025-11-14T18:42:06.681Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises language-specific fallback heuristics across C, Rust, Java, and Ruby t
 - Shared helpers assert both edge existence and trace payloads so regressions in normalization or provenance capture fail loudly.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.843Z","inputHash":"1480f9277054b50f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.681Z","inputHash":"f5ff1f80950d7ddf"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

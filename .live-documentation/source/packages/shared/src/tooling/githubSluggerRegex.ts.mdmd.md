@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/githubSluggerRegex.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-githubsluggerregex-ts
-- Generated At: 2025-11-11T05:12:48.096Z
+- Generated At: 2025-11-14T18:42:06.918Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exposes the precomputed character-stripping regex used by GitHub’s slugger so 
 - Shared by both the TypeScript and CommonJS slugger modules to avoid duplicating the massive literal.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-11T05:12:48.096Z","inputHash":"9b9f1a070c7cba2f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.918Z","inputHash":"047b81693a3d7f2d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `GITHUB_SLUG_REMOVE_PATTERN`

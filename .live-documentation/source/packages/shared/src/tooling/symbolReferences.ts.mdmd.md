@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/symbolReferences.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-symbolreferences-ts
-- Generated At: 2025-11-09T22:52:13.397Z
+- Generated At: 2025-11-14T18:42:06.948Z
 
 ## Authored
 ### Purpose
@@ -18,7 +18,7 @@ Surface markdown symbol hygiene issues by scanning tracked files for duplicate h
 - Rule settings default to `warn` for duplicate headings and `error` for missing anchors but can be overridden per invocation; emitted issues are sorted for deterministic diagnostics.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.397Z","inputHash":"5503cd5184cdd7c2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.948Z","inputHash":"7d76e814182bba5c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SymbolIssueKind`

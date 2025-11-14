@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-listoutstandingdiagnostics-ts
-- Generated At: 2025-11-09T22:52:10.231Z
+- Generated At: 2025-11-14T18:42:06.336Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Transforms raw `DiagnosticRecord`s from the graph store into summaries suitable 
 - Preserves `llmAssessment` data when present, allowing future surfaces to display assistance metadata alongside diagnostic details.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.231Z","inputHash":"481d7b19e303699b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.336Z","inputHash":"4cf5b0b4ab969d0d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `buildOutstandingDiagnosticsResult`

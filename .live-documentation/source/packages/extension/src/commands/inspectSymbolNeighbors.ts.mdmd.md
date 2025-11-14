@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/inspectSymbolNeighbors.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-inspectsymbolneighbors-ts
-- Generated At: 2025-11-09T22:52:09.427Z
+- Generated At: 2025-11-14T18:42:06.163Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Offers the `linkDiagnostics.inspectSymbolNeighbors` command so users can explore
 - Opens the chosen artifact in the editor and reroutes window APIs through test hooks, which allows deterministic unit test coverage.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:09.427Z","inputHash":"72c1a9eb7797ef64"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.163Z","inputHash":"825bddca4f651ef5"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `registerInspectSymbolNeighborsCommand`

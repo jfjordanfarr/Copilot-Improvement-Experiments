@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/ruby.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-ruby-ts
-- Generated At: 2025-11-09T22:52:12.050Z
+- Generated At: 2025-11-14T18:42:06.731Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Detects `require_relative` statements and links Ruby files to their dependencies
 - Tracks seen targets per file to avoid duplicating edges and emits a moderate confidence score reflecting the explicit runtime dependency.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.050Z","inputHash":"8d666360b9f69323"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.731Z","inputHash":"c2b5e88e8d8b3dc2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createRubyHeuristic`

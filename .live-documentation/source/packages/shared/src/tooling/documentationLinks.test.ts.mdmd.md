@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/documentationLinks.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-documentationlinks-test-ts
-- Generated At: 2025-11-09T22:52:13.149Z
+- Generated At: 2025-11-14T18:42:06.905Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Covers the documentation link enforcement pipeline, ensuring anchors resolve to 
 - Asserts enforcement emits a missing-breadcrumb violation before repair, then successfully patches the source file when `fix: true` is supplied.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.149Z","inputHash":"4d957622527c17cc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.905Z","inputHash":"da7ebb007c594a47"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

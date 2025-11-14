@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/noiseFilter.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-noisefilter-ts
-- Generated At: 2025-11-09T22:52:10.314Z
+- Generated At: 2025-11-14T18:42:06.344Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Applies runtime-configurable noise suppression to ripple impact contexts, trimmi
 - The filter works per context, retaining order and metadata while replacing the `rippleImpacts` array with only the accepted impacts.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.314Z","inputHash":"d7e21531037be12a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.344Z","inputHash":"ecebfe88517d8127"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `NoiseFilterTotals`

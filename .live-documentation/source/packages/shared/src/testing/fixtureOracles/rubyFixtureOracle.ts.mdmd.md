@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-rubyfixtureoracle-ts
-- Generated At: 2025-11-09T22:52:13.004Z
+- Generated At: 2025-11-14T18:42:06.881Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Produces the Ruby fixture dependency graph by crawling source trees, extracting 
 - Shares the partition/merge/serialisation helpers that highlight missing overrides and maintain sorted JSON payloads used by integration fixtures.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.004Z","inputHash":"56eab809e0a68afd"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.881Z","inputHash":"3e2c7c71502894cc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RubyOracleEdgeRelation`

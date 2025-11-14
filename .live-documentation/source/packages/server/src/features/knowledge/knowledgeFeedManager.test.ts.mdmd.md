@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/knowledgeFeedManager.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-knowledgefeedmanager-test-ts
-- Generated At: 2025-11-12T15:22:22.372Z
+- Generated At: 2025-11-14T18:42:06.389Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Validates feed manager scheduling, checkpoint updates, and telemetry emission ac
 - Confirms failed runs mark feeds unhealthy and invoke diagnostics gateways with actionable context.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-12T15:22:22.372Z","inputHash":"06b6564f88c65724"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.389Z","inputHash":"df5bd4ca9a6100d1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

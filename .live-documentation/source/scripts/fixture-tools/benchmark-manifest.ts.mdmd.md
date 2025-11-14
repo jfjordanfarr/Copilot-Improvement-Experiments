@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/fixture-tools/benchmark-manifest.ts
 - Live Doc ID: LD-implementation-scripts-fixture-tools-benchmark-manifest-ts
-- Generated At: 2025-11-09T22:52:13.498Z
+- Generated At: 2025-11-14T16:30:22.035Z
 
 ## Authored
 ### Purpose
@@ -18,7 +18,7 @@ _Pending notes_
 Legacy alias for [`BenchmarkFixtureDefinition`](#benchmarkfixturedefinition); retained so fixture tooling imports remain stable.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.498Z","inputHash":"a7892006ea5055c3"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.035Z","inputHash":"9122dc4bed9e5796"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `FixtureSummary`

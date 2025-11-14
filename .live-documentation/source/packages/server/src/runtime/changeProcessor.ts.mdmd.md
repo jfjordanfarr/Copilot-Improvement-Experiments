@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/runtime/changeProcessor.ts
 - Live Doc ID: LD-implementation-packages-server-src-runtime-changeprocessor-ts
-- Generated At: 2025-11-09T22:52:11.374Z
+- Generated At: 2025-11-14T16:30:21.556Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Coordinates queued workspace changes through artifact persistence, ripple analys
 - Re-enqueues artifacts into the LLM ingestion manager and respects provider consent, ensuring diagnostics only emit once operators have opted in.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.374Z","inputHash":"bca23f75b4b1a636"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.556Z","inputHash":"06954e95539d1a84"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ChangeProcessorContext`

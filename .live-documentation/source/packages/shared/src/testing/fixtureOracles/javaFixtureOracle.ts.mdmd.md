@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-javafixtureoracle-ts
-- Generated At: 2025-11-09T22:52:12.931Z
+- Generated At: 2025-11-14T18:42:06.869Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Builds the deterministic Java fixture graph used by benchmark suites, extracting
 - Provides helpers to partition auto edges against override configs, serialise sorted JSON payloads, and merge manual adjustments so downstream fixtures stay stable across regenerations.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:12.931Z","inputHash":"f12cac9c1f8e314f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.869Z","inputHash":"3dc9b496ff65f70f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `JavaOracleEdgeRelation`

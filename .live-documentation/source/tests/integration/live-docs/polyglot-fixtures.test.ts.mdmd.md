@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/live-docs/polyglot-fixtures.test.ts
 - Live Doc ID: LD-asset-tests-integration-live-docs-polyglot-fixtures-test-ts
-- Generated At: 2025-11-13T13:25:20.088Z
+- Generated At: 2025-11-14T16:30:22.233Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T13:25:20.088Z","inputHash":"1f8fb0f08d758919"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.233Z","inputHash":"febeb972bf9a0b38"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

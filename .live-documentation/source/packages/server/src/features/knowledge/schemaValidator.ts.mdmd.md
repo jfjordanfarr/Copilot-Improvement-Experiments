@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/schemaValidator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-schemavalidator-ts
-- Generated At: 2025-11-09T22:52:10.866Z
+- Generated At: 2025-11-14T18:42:06.448Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Guards the knowledge ingestion boundary by validating snapshots and stream event
 - Accepts partial payloads for removals and merges artifact ID bookkeeping so cross-reference checks produce actionable errors.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.866Z","inputHash":"58a0fc9ee5d6e040"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.448Z","inputHash":"00bbe10ba3a8e20e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SchemaViolation`

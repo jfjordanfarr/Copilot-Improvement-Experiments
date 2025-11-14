@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: packages/shared/src/tooling/__fixtures__/documentation-links/sample-tool.ts
 - Live Doc ID: LD-asset-packages-shared-src-tooling-fixtures-documentation-links-sample-tool-ts
-- Generated At: 2025-11-09T22:52:13.097Z
+- Generated At: 2025-11-14T16:30:21.935Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Provide a minimal exported symbol that tests can reference when verifying docume
 - Comment metadata points back to the Layer-4 documentation entry, allowing analyzers to confirm fixtures participate in the live-doc graph.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.097Z","inputHash":"23906d8ef04cf6d8"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:21.935Z","inputHash":"2aa7e38157425fcc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `sampleTool`

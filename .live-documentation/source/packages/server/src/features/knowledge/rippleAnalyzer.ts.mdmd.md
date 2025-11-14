@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/rippleAnalyzer.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-rippleanalyzer-ts
-- Generated At: 2025-11-09T22:52:10.844Z
+- Generated At: 2025-11-14T18:42:06.443Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Generates ripple hints from the workspace graph so diagnostics can flag downstre
 - Computes heuristic confidence scores by combining relationship kind baselines with depth penalties to keep hints comparable.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.844Z","inputHash":"6f07cbccc64dd8f9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.443Z","inputHash":"5dce3d7d92168357"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RippleAnalyzerLogger`

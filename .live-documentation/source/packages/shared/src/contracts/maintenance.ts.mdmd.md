@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/maintenance.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-maintenance-ts
-- Generated At: 2025-11-09T22:52:11.621Z
+- Generated At: 2025-11-14T18:42:06.647Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Models the payload the server emits when a tracked artifact must be rebound—ty
 - `newUri` is optional so callers can distinguish between destructive deletes and moves where automated updates are possible.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:11.621Z","inputHash":"34794e87a4404782"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.647Z","inputHash":"cde752e5ac773d62"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RebindReason`

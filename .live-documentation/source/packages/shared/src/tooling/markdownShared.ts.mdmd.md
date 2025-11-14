@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/markdownShared.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-markdownshared-ts
-- Generated At: 2025-11-09T22:52:13.268Z
+- Generated At: 2025-11-14T18:42:06.928Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Supplies lightweight markdown helpers used by link- and asset-auditing tools to 
 - Handles angle-bracket escaping and surrounding whitespace through `parseLinkTarget`, centralising URL sanitisation for both markdown and documentation tooling.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:13.268Z","inputHash":"16d51c1265e78edf"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.928Z","inputHash":"9ef3a326d9374485"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `ReferenceDefinition`

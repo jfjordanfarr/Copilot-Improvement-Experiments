@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/acknowledgementService.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-acknowledgementservice-ts
-- Generated At: 2025-11-09T22:52:10.104Z
+- Generated At: 2025-11-14T18:42:06.316Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Coordinates diagnostic acknowledgement workflows: determines whether new drift a
 - Accepts an injected clock (`now`) to keep tests deterministic; production default uses the current time when issuing IDs and timestamps.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-09T22:52:10.104Z","inputHash":"1c10f63ae828fb14"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.316Z","inputHash":"2ad1f24e7f72e62c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `AcknowledgementServiceOptions`
