@@ -188,4 +188,140 @@ suite("Live Docs polyglot fixtures", () => {
       await fs.rm(workspaceRoot, { recursive: true, force: true });
     }
   });
+
+  test("generates Java docs for basic fixture", async function () {
+    this.timeout(20000);
+
+    const workspaceRoot = await fs.mkdtemp(path.join(os.tmpdir(), "live-docs-java-"));
+
+    try {
+      const fixtureRoot = path.join(
+        __dirname,
+        "../../benchmarks/fixtures/java/basic"
+      );
+      await fs.cp(fixtureRoot, workspaceRoot, { recursive: true });
+
+      const config = normalizeLiveDocumentationConfig({
+        ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
+        root: ".live-documentation",
+        baseLayer: "source",
+        glob: ["src/**/*.java"]
+      });
+
+      const result = await generateLiveDocs({
+        workspaceRoot,
+        config,
+        changedOnly: false,
+        dryRun: false,
+        now: () => new Date("2024-01-01T00:00:00.000Z")
+      });
+
+      assert.ok(result.processed > 0, "Expected at least one processed source file");
+
+      const appDoc = await fs.readFile(
+        path.join(
+          workspaceRoot,
+          ".live-documentation",
+          "source",
+          "src",
+          "com",
+          "example",
+          "app",
+          "App.java.mdmd.md"
+        ),
+        "utf8"
+      );
+      assert.match(appDoc, /#### `App`/);
+      assert.match(appDoc, /##### `App` — Summary\s+Entry point for the reporting pipeline used by the fixture\./);
+      assert.match(
+        appDoc,
+        /##### `run` — Summary\s+Runs the reporting pipeline for the supplied dataset\./
+      );
+      assert.match(
+        appDoc,
+        /##### `run` — Parameters[\s\S]*- `dataset`: dataset identifier used to load records/
+      );
+      assert.match(
+        appDoc,
+        /##### `run` — Returns\s+formatted report summary/i
+      );
+      assert.match(
+        appDoc,
+        /##### `run` — Exceptions[\s\S]*- `IllegalArgumentException`: if `dataset` is null or blank/
+      );
+      assert.match(
+        appDoc,
+        /##### `run` — Links[\s\S]*`Reader#load\(String\)`/
+      );
+      assert.match(
+        appDoc,
+        /### Dependencies[\s\S]*com\.example\.data\.Reader/
+      );
+
+      const readerDoc = await fs.readFile(
+        path.join(
+          workspaceRoot,
+          ".live-documentation",
+          "source",
+          "src",
+          "com",
+          "example",
+          "data",
+          "Reader.java.mdmd.md"
+        ),
+        "utf8"
+      );
+      assert.match(
+        readerDoc,
+        /##### `Reader` — Summary\s+Loads synthetic records for the fixtures\./
+      );
+      assert.match(
+        readerDoc,
+        /##### `load` — Examples[\s\S]*Reader\.load\("baseline"\)/
+      );
+
+      const recordDoc = await fs.readFile(
+        path.join(
+          workspaceRoot,
+          ".live-documentation",
+          "source",
+          "src",
+          "com",
+          "example",
+          "model",
+          "Record.java.mdmd.md"
+        ),
+        "utf8"
+      );
+      assert.match(recordDoc, /#### `Record`/);
+      assert.match(
+        recordDoc,
+        /##### `Record` — Parameters[\s\S]*- `dataset`: dataset identifier associated with each metric/
+      );
+      assert.match(
+        recordDoc,
+        /##### `Record` — Parameters[\s\S]*- `value`: metric value captured for the dataset/
+      );
+
+      const catalogDoc = await fs.readFile(
+        path.join(
+          workspaceRoot,
+          ".live-documentation",
+          "source",
+          "src",
+          "com",
+          "example",
+          "data",
+          "Catalog.java.mdmd.md"
+        ),
+        "utf8"
+      );
+      assert.match(
+        catalogDoc,
+        /##### `describe` — Returns\s+Caption describing the dataset or `Unknown Dataset`/
+      );
+    } finally {
+      await fs.rm(workspaceRoot, { recursive: true, force: true });
+    }
+  });
 });

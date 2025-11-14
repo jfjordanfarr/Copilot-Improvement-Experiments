@@ -395,13 +395,8 @@ graph TD
 - [2025-11-09] Live Doc IDs compose as `LD-<archetype>-<normalized-source-path>` so provenance stays deterministic across contributors (e.g., `LD-implementation-packages-shared-src-inference-linkinference-ts`). (`2025-11-08.md:L3073-L3110`)
 - Live Docs must be grounded in real code: review the source and tests before updating authored notes to keep the mirror trustworthy. (`2025-11-09.md:L1210-L1220`)
 - Public symbols in Layer 4 docs must reference the symbol name in backticks so graph audits can confirm coverage. (`2025-10-27.md:L1600-L1680`)
-- [2025-10-23] Every Layer 4 MDMD entry must capture the file’s purpose, public interfaces/contracts, referenced tests (including paths), and the justification for the file’s existence so the implementation stays defensible. (`2025-10-23.md:L2442-L2454`)
-- Generated metadata adjustments: `Observed Evidence` is optional and should surface only when coverage or waivers exist to avoid bloated docs. (`2025-11-09.md:L360-L410`)
-- Test docs always emit a `Supporting Fixtures` block (defaulting to `_No supporting fixtures documented yet_`) so lint stays clean until richer metadata arrives. (`2025-11-09.md:L780-L842`)
-- Base-layer naming is configurable; default staging uses `/.live-documentation/source/`, leaving space for future `architecture/` or `work-items/` layers. (`2025-11-08.md:L1316-L1340`)
-- Binary assets can stay doc-less if referenced by markdown links from implementation or test Live Docs, keeping coverage without duplicate files. (`2025-11-08.md:L800-L840`)
-- [2025-10-24] Document unit tests within their implementation’s Layer 4 page by default; only promote a test or harness to its own Layer 4 doc (and matching Layer 3 entry) when it exercises multiple code units. (`2025-10-24.md:L8181-L8184`)
-- [2025-11-10] Retire churn-based heuristics tied to developer git history; future analytics should lean on deterministic co-activation signals sourced from repository artifacts instead. (`2025-11-10.md:L2188-L2205`)
+ [2025-11-12] Emit structured docstring content under deterministic `##### \`Symbol\` — Field` subsections so every recommended XML tag becomes uniquely addressable inside Layer 4 Live Docs. (`2025-11-12.md:L790-L840`)
+ [2025-11-12] Expand the language-agnostic documentation schema to capture summaries, remarks, params/type params, returns/value, exceptions, examples, links, and raw fragments while surfacing unsupported tags for future tooling. (`2025-11-12.md:L880-L1338`)
 
 ## Live Documentation Base Layer Mechanics
 - Each Live Doc separates metadata, authored content, and generated sections, a pattern intended for reuse in higher layers. (`2025-11-08.md:L1144-L1185`)
@@ -418,6 +413,7 @@ graph TD
 - Tooling updates (instructions, audits, validators) should enforce required section spines per layer (`Intent/Signals`, `Requirement/Acceptance/Evidence/Links`, `Purpose/Responsibilities/Interfaces/Failure Modes/Telemetry`, `Source Mapping/Exports/Collaborators/Evidence`). (`2025-10-30.md:L420-L470`)
 - [2025-11-10] Treat Layers 3/4 as the deterministic spine (machine-generated from Stage‑0 signals) and Layers 1/2 as curated intent documents with lightweight generated tallies so automation remains reproducible without suppressing stakeholder storytelling. (`2025-11-10.md:L1124-L1185`)
 - [2025-11-11] Plan for Capability-layer publishing (e.g., GitHub Pages) while tightening System-layer regeneration so users consume the latest view without stale artefacts. (`2025-11-11.md:L1532-L1558`)
+- [2025-11-12] Cascade the structured docstring schema through Layer 1 capabilities, Layer 2 requirements, Layer 3 system memos, and the `001-link-aware-diagnostics` spec so planning artifacts and implementation stay in lockstep. (`2025-11-12.md:L1340-L1380`)
 
 ## Emerging Ideas for Upper Layers
 - Potential Layer 1 Live Docs per release could track capabilities and requirements, forming the roadmap when aggregated. (`2025-11-08.md:L1144-L1162`)

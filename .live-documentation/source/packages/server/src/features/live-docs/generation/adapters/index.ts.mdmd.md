@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/adapters/index.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-index-ts
-- Generated At: 2025-11-13T21:16:22.856Z
+- Generated At: 2025-11-14T00:22:33.030Z
 
 ## Authored
 ### Purpose
@@ -15,22 +15,23 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-13T21:16:22.856Z","inputHash":"ff63737a210352ac"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T00:22:33.030Z","inputHash":"eb09a0e391985bd1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LanguageAdapter`
 - Type: interface
-- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/index.ts#L6)
+- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/index.ts#L7)
 
 #### `analyzeWithLanguageAdapters`
 - Type: function
-- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/index.ts#L14)
+- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/index.ts#L15)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
 - [`csharp.csharpAdapter`](./csharp.ts.mdmd.md#csharpadapter)
+- [`java.javaAdapter`](./java.ts.mdmd.md#javaadapter)
 - [`core.SourceAnalysisResult`](../core.ts.mdmd.md#sourceanalysisresult) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 

@@ -646,6 +646,18 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L2208-L2245` — Document the planned transition to a formal `Live-Docs` repo (paths, cleanup, professional polish) before starting the static site work.
 - `L2470-L2485` — Maintain a canonical CLI command catalog and update documentation whenever new npm scripts or flags are introduced.
 
+## 2025-11-12 (Dev Day 21)
+- `2025-11-12.md:L1-L84` — Rehydrate the dev-history workflow by following `devHistory.summarizeDay.prompt.md` for the 11/11 recap, correlating it with commit `5a20f2e8ddd8091879492915ee5d79e0668346c0` before starting new work.
+- `L64-L176` — Keep the intent and MDMD layer censuses current (including rereads of both files) and double-check `tasks.md` after the earlier miscue so planning artifacts stay aligned.
+- `L179-L220` — Prioritise polyglot Live Doc emitters against in-repo fixtures first, only expanding to external repositories once local coverage is solid.
+- `L304-L360` — Provide a proactive change plan covering the language-adapter abstraction and the new `tests/integration/live-docs/polyglot-fixtures.test.ts`, then execute with high-agency, low-chatter follow-through.
+- `L790-L840` — Treat docstring bridging as a structured surface: emit per-symbol `##### \`Name\` — Field` headings so every recommended XML tag has a uniquely addressable slot in Live Docs.
+- `L880-L1338` — Design a language-agnostic documentation schema that captures summaries, remarks, params/type params, returns/value, exceptions, examples, links, and raw fragments, preserving unsupported tags for later tooling.
+- `L1340-L1380` — Codify the structured docstring commitments across Layer 1, Layer 2, Layer 3, and the `001-link-aware-diagnostics` spec so the roadmap and architecture stay synchronized with the implementation plan.
+- `L1760-L1785` — After major code passes, rehydrate on the full day’s chat log before continuing, then resume with high agency once alignment is confirmed.
+- `L3724-L3770` — Before proposing a commit, inspect the diffs for unexpected changes (chat history included) and surface the suggested commit message in chat.
+- `L4750-L4760` — Ensure the final commit narrative reflects both the planning/documentation half and the adapter/test implementation so the day’s story stays coherent.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

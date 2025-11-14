@@ -2,6 +2,7 @@ import path from "node:path";
 
 import type { SourceAnalysisResult } from "../core";
 import { csharpAdapter } from "./csharp";
+import { javaAdapter } from "./java";
 
 export interface LanguageAdapter {
   readonly id: string;
@@ -9,7 +10,7 @@ export interface LanguageAdapter {
   analyze(input: { absolutePath: string; workspaceRoot: string }): Promise<SourceAnalysisResult | null>;
 }
 
-const ADAPTERS: readonly LanguageAdapter[] = [csharpAdapter];
+const ADAPTERS: readonly LanguageAdapter[] = [csharpAdapter, javaAdapter];
 
 export async function analyzeWithLanguageAdapters(options: {
   absolutePath: string;
