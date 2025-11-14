@@ -2,11 +2,11 @@ You have been requested to summarize the following dev day conversation file int
 
 **PLEASE READ ALL PRIOR SUMMARIES FROM THE CURRENT MONTH IN FULL BEFORE SUMMARIZING YESTERDAY'S CONVERSATION**
 
-[Development Chat History Summary Folder](/AI-Agent-Workspace/ChatHistory/Summarized/)
+[Development Chat History Summary Index](/AI-Agent-Workspace/ChatHistory/README.md)
 
 Next, extract turn-by-turn conversation summaries, with a preference for direct quotes as practical, **1200 lines at a time**. Emit an update to the summary file after each 1200 lines of conversation history parsed.
 
-[Raw Development Chat History Folder](/AI-Agent-Workspace/ChatHistory/)
+[Raw Development Chat History Folder](/AI-Agent-Workspace/ChatHistory/README.md)
 
 **Do not check back in until the entire conversation history is parsed.** This means that, before the copilot response is completed, **at least one lossy autosummarization process will occur**. In order to maintain continuity, **you must rehydrate from the summary file you have already generated** so that you do not lose progress. 
 

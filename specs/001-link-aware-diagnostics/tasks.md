@@ -92,15 +92,20 @@ description: "Task list for Live Documentation"
 
 **Checkpoint**: All consumption surfaces operate on Live Docs with documented parity against legacy graph outputs.
 
-## Phase 5 – Docstring Bridges & Drift Enforcement (FR-LD6)
+## Phase 5 – Docstring Bridges & Bidirectional Authoring (FR-LD6, REQ-G1)
 
-**Purpose**: Generate docstring bridge metadata, surface drift diagnostics, and expose sync workflows.
+**Purpose**: Generate docstring bridge metadata, surface drift diagnostics, and deliver feature-flagged authoring loops that round-trip Live Documentation edits into source while preserving audit trails.
 
 - [ ] LD-500 Emit docstring bridge config from generator (`scripts/live-docs/generate.ts` + `packages/shared/src/live-docs/docstringBridge.ts`)
 - [ ] LD-501 Implement server-side bridge ingestion (`packages/server/src/features/live-docs/docstringService.ts`) tracking drift state
 - [ ] LD-502 Publish drift diagnostics + CLI sync command (`packages/extension/src/commands/syncDocstrings.ts`, `scripts/live-docs/sync-docstrings.ts`)
 - [ ] LD-503 [P] Add integration test `tests/integration/live-docs/docstring-drift.test.ts` covering positive/negative cases
 - [ ] LD-504 Update falsifiability and waiver docs to include docstring drift escalation paths
+- [ ] LD-505 Wire workspace feature flags safeguarding bidirectional authoring (`liveDocumentation.enableAuthoring`, configuration plumbing across extension + server)
+- [ ] LD-506 Capture audit telemetry for markdown → docstring updates (server telemetry sink + reports under `reports/benchmarks/live-docs/roundtrip.json`)
+- [ ] LD-507 Build preview/apply UX (`packages/extension/src/commands/liveDocsAuthoring.ts`, `scripts/live-docs/sync-docstrings.ts --preview`) that records diff summaries before writes
+- [ ] LD-508 Expand polyglot fixtures with multi-paragraph, HTML-rich docstrings (Java basic fixture, Python requests slice) and update `tests/integration/live-docs/polyglot-fixtures.test.ts`
+- [ ] LD-509 Prototype generative scaffolding CLI (`scripts/live-docs/scaffold.ts`) emitting scratch drafts under `AI-Agent-Workspace/tmp/live-docs/scaffolds/` with Live Documentation provenance
 
 **Checkpoint**: Docstring drift shows up in diagnostics/CLI, with waivers documented and tests capturing remediation flow.
 
@@ -174,8 +179,8 @@ Tasks tagged `[P]` can run concurrently when dependencies agree (e.g., LD-202/20
 
 ## Summary Metrics
 **Summary Metrics**
-- **Total Tasks**: 64 (13 closed, 51 open)
-- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (5 open), Phase6 (5 open), Phase7 (20 open), Stage8 (3 open)
+- **Total Tasks**: 69 (13 closed, 56 open)
+- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (10 open), Phase6 (5 open), Phase7 (20 open), Stage8 (3 open)
 - **Independent Tests**: `generation.test.ts`, `evidence.test.ts`, `inspect-cli.test.ts`, `docstring-drift.test.ts`
 - **Primary Workstreams**: Generator foundations (WI-LD101), Evidence bridges (WI-LD102), Docstring drift (WI-LD201), Consumption parity (WI-LD301), System Layer migration (WI-LD401)
 

@@ -119,6 +119,25 @@ Stakeholders expect Layer 1 vision pages to publish externally without manual 
 
 ---
 
+### User Story 7 – Writers sync docstrings & generate scaffolds (Priority: P2)
+
+**Status**: Planned — feature-flagged pilot gated behind docstring round-trip adapters. Requires REQ-G1 completion.
+
+Authors treat Live Docs as the canonical AST for documentation and optional skeleton code. They can edit summaries, remarks, and parameter notes inside Layer‑4 markdown, preview the diff against inline docstrings, and push updates with provenance logging. Early adopters can also request language-specific scaffolds or pseudocode drafts seeded from the same Live Doc without mutating tracked files.
+
+**Why this priority**: Bidirectional sync unlocks the long-term vision of Live Docs as a generation surface; without it, documentation edits drift from code, and generative workflows lack a grounded source of truth.
+
+**Independent Test**: Modify the `run` summary inside `src/com/example/app/App.java`’s Live Doc, run the round-trip CLI with preview mode, approve the update, and confirm the Javadoc now mirrors the markdown while audit telemetry records the change.
+
+**Acceptance Scenarios**:
+
+1. **Given** a Live Doc edit that changes summary and parameters, **When** the author runs `npm run live-docs:sync-docstrings -- --apply`, **Then** the tool presents a diff, updates the inline docstring upon confirmation, and writes an audit entry listing the symbols touched.
+2. **Given** a Live Doc edit that introduces unsupported tags, **When** preview runs, **Then** the diff highlights unmapped fragments, falls back to `rawFragments`, and blocks automatic application until the adapter learns the tag.
+3. **Given** a request for generative scaffolding in Rust, **When** the author invokes `live-docs:scaffold --language rust`, **Then** a draft appears under `AI-Agent-Workspace/tmp/live-docs/scaffolds/` with references back to the originating Live Doc and no tracked files changed.
+4. **Given** feature flags disabled, **When** a user attempts to apply docstring updates, **Then** the tool exits with guidance to enable the workspace setting, ensuring legacy workflows remain untouched.
+
+---
+
 ### Edge Cases
 
 - Newly created files without exports still receive stub Live Docs; generated sections display `_No data available_` until analyzers detect symbols.
@@ -131,13 +150,16 @@ Stakeholders expect Layer 1 vision pages to publish externally without manual 
 - System analytics should never leave behind tracked files by default; generators must clean up temporary exports even when commands error.
 - Static site publishing and Spec-Kit syncing remain optional per workspace but default on for project-owned repos so stakeholders have a consistent entry point.
 - Docstring bridges must degrade gracefully when encountering unsupported tags (`<typeparam>`, `<include>`, custom extensions); provenance should capture raw XML and the Live Doc should display `_Not documented_` placeholders instead of silently dropping content.
+- Round-trip tooling must fail safe when source files change between preview and apply, prompting users to regenerate diffs instead of overwriting concurrent edits.
+- Generative scaffolding outputs remain in scratch locations even when commands crash; cleanup routines run on next invocation to avoid accumulating stale drafts.
 
 ### Live Doc Generation Lifecycle
 
 1. **Staging**: Regeneration writes output to `/.live-documentation/` (or configured path), preserving authored sections and updating generated blocks.
 2. **Validation**: Safe-commit runs structural lint, analyzer parity checks, and evidence completeness audits before allowing merges.
-3. **Promotion**: Once parity with existing MDMD Layer‑4 docs is proven, configuration flips to treat Live Docs as canonical; legacy docs become generated outputs as well.
-4. **Consumption**: Diagnostics, CLI, and Copilot exports read directly from Live Docs, while System analytics regenerate materialized views on demand (streamed to stdout or temp files) so no stale architecture docs linger in the repo.
+3. **Authoring Loop**: Feature-flagged tooling compares authored Live Doc edits with inline docstrings, records preview/apply telemetry, and (optionally) emits generative scaffolds into scratch directories without touching tracked files until humans promote them.
+4. **Promotion**: Once parity with existing MDMD Layer‑4 docs is proven, configuration flips to treat Live Docs as canonical; legacy docs become generated outputs as well.
+5. **Consumption**: Diagnostics, CLI, and Copilot exports read directly from Live Docs, while System analytics regenerate materialized views on demand (streamed to stdout or temp files) so no stale architecture docs linger in the repo.
 
 ### Cache Retention & Privacy
 
@@ -160,6 +182,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **FR-LD11**: Generated Live Docs MUST emit workspace-relative markdown links and enforce header slugs according to the configured dialect (GitHub default); violations require explicit waivers surfaced in lint.
 - **FR-LD12**: System analytics MUST default to ephemeral outputs (stdout or temporary directories) and require explicit user confirmation before writing tracked files; commands MUST tag persisted exports so lint can detect strays.
 - **FR-LD13**: Layer distribution tooling MUST publish Layer 1 capabilities via a scripted static site, reconcile Layer 2 requirement status with Spec-Kit/issue trackers, and keep System analytics as CLI materialized views that leave no tracked artefacts unless explicitly promoted.
+- **FR-LD14**: Round-trip authoring tools MUST expose preview/apply flows protected by feature flags, record audit telemetry for every docstring mutation, and emit generative scaffolds into scratch locations without modifying tracked files until humans promote them.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -168,6 +191,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **Evidence Item**: Test case, benchmark, or manual review that exercises or validates an implementation artifact; includes status, location, and waiver metadata.
 - **Waiver Record**: Justification for temporarily accepting missing evidence; references owning team, expiry date, and follow-up task id.
 - **Consumption Surface**: Diagnostics, CLI, Copilot prompt, or report derived from Live Docs; records render latency and Live Doc version used.
+- **Authoring Session**: Feature-flagged interaction capturing Live Doc edits, preview diffs, selected language adapters, resulting docstring mutations, scaffold outputs, and audit telemetry for compliance.
 
 ## Assumptions
 
@@ -194,6 +218,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **SC-LD8**: System analytics commands leave no tracked artefacts by default and finish within ≤2 s for repositories under 10k files when streaming to stdout.
 - **SC-LD9**: Static site builds publish Layer 1 capabilities without broken links, Layer 2 requirements stay in sync with Spec-Kit/issue trackers, and the System CLI surfaces architectural debt while keeping the tracked tree clean between runs.
 - **SC-LD10**: Structured docstring bridges populate canonical subsections for ≥95% of documented public symbols in supported languages; unmapped tags surface in telemetry within one regeneration cycle.
+- **SC-LD11**: Bidirectional docstring sync succeeds (preview + apply) for ≥90% of supported language fixtures, emits telemetry for 100% of write-backs, and never mutates tracked files without explicit human confirmation logged in safe-commit output.
 
 
 ## Clarifications

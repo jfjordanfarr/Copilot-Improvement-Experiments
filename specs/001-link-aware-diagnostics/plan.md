@@ -7,13 +7,14 @@
 
 ## Summary
 
-Deliver a reproducible Live Documentation system where every tracked workspace asset has a paired markdown file containing an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata). The VS Code extension watches file saves, runs analyzers to refresh generated sections into a mirror tree under `/.live-documentation/<baseLayer>/` (default `source/`, user configurable), and enforces structure via lint gates embedded in `npm run safe:commit`. Generated blocks are owned by tooling while humans curate small authored notes, keeping the corpus reviewable and diff-friendly. Deterministic benchmarks, coverage feeds, and docstring bridges back the generated data so diagnostics, CLI exports, and LLM consumers rely on the same markdown-as-AST graph. The plan stages the migration from existing Layer‑4 MDMD docs to generated Live Docs, maintains polyglot analyzer fidelity, and ensures every interaction surface (VS Code UI, CLI, LLM prompts) exposes equivalent functionality.
+Deliver a reproducible Live Documentation system where every tracked workspace asset has a paired markdown file containing an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata). The VS Code extension watches file saves, runs analyzers to refresh generated sections into a mirror tree under `/.live-documentation/<baseLayer>/` (default `source/`, user configurable), and enforces structure via lint gates embedded in `npm run safe:commit`. Generated blocks are owned by tooling while humans curate small authored notes, keeping the corpus reviewable and diff-friendly. Deterministic benchmarks, coverage feeds, and docstring bridges back the generated data so diagnostics, CLI exports, and LLM consumers rely on the same markdown-as-AST graph. The plan stages the migration from existing Layer‑4 MDMD docs to generated Live Documentation, maintains polyglot analyzer fidelity, and graduates into feature-flagged authoring loops where markdown edits safely round-trip into docstrings and optional scaffolds.
 
 ## Adoption Strategy
-- **Stage 0 – Observe**: Generate Live Docs into `/.live-documentation/<baseLayer>/` (default `source/`) without replacing MDMD; provide read-only viewers and diff tooling so contributors assess fidelity.
+- **Stage 0 – Observe**: Generate Live Documentation into `/.live-documentation/<baseLayer>/` (default `source/`) without replacing MDMD; provide read-only viewers and diff tooling so contributors assess fidelity.
 - **Stage 1 – Guard**: Enable lint warnings for structural drift, missing evidence, or stale generated sections; enforce workspace-relative link hygiene and configurable slug dialects for wiki publishing.
-- **Stage 2 – Bridge**: Activate docstring and coverage bridges, wire diagnostics/CLI exports to Live Docs, and require explicit acknowledgements or waivers when evidence is absent.
-- **Stage 3 – Sustain**: Treat generated Live Docs as canonical, flip configuration so Layer‑4 MDMD mirrors the staged tree, and block merges unless regeneration and lint gates pass.
+- **Stage 2 – Bridge**: Activate docstring and coverage bridges, wire diagnostics/CLI exports to Live Documentation, and require explicit acknowledgements or waivers when evidence is absent.
+- **Stage 3 – Sustain**: Treat generated Live Documentation as canonical, flip configuration so Layer‑4 MDMD mirrors the staged tree, and block merges unless regeneration and lint gates pass.
+- **Stage 4 – Author**: Introduce opt-in bidirectional authoring commands that preview markdown → docstring diffs, capture audit trails, and emit scratch scaffolds without touching tracked files until humans promote them.
 
 ## Technical Context
 
@@ -96,10 +97,12 @@ TBD — populate if future scope deviates from Constitution constraints.
 - Ship CLI counterparts (`live-docs inspect`, `live-docs evidence`, etc.) delivering equivalent data for LLM automation.
 - Provide diff and dry-run modes to review regeneration impacts before applying.
 
-### Phase 5 – Docstring Bridges & Drift Enforcement
-- Emit docstring bridge configuration from Live Docs, implement server-side reconciliation, and surface drift diagnostics.
-- Add CLI + VS Code commands to sync docstrings and generate drift reports, keeping generated content authoritative.
-- Expand falsifiability suites to cover positive/negative drift scenarios across polyglot fixtures.
+### Phase 5 – Docstring Bridges & Bidirectional Authoring
+- Emit docstring bridge configuration from Live Documentation, implement server-side reconciliation, and surface drift diagnostics with actionable remediation hints.
+- Build preview/apply workflows (CLI + VS Code) that diff authored markdown against inline docstrings, require explicit confirmation, and record provenance (`actor`, `timestamp`, `target symbols`).
+- Introduce workspace feature flags and telemetry sinks so teams can trial bidirectional authoring without destabilising regeneration, capturing success/failure metrics for every attempt.
+- Harden polyglot fixtures (C#, Java, TypeScript, Python) with HTML-rich, multi-paragraph docstrings to validate sanitisation, canonical tagging, and lossless round trips.
+- Prototype generative scaffolding commands that materialise scratch pseudocode or language-specific skeletons tied back to the originating Live Documentation file.
 
 ### Phase 6 – Migration & Promotion
 - Produce migration CLI (`live-docs migrate`) that copies staged Live Docs into the MDMD Layer‑4 tree once parity metrics pass.

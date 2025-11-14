@@ -3,7 +3,7 @@
   "workspace": "D:\\Projects\\Copilot-Improvement-Experiments",
   "totals": {
     "artifacts": 804,
-    "links": 1606
+    "links": 1607
   },
   "artifacts": [
     {
@@ -4737,7 +4737,8 @@
             "CAP-002",
             "CAP-003",
             "CAP-004",
-            "CAP-005"
+            "CAP-005",
+            "CAP-006"
           ]
         }
       }
@@ -4759,7 +4760,8 @@
             "REQ-F5",
             "REQ-F6",
             "REQ-F7",
-            "REQ-F8"
+            "REQ-F8",
+            "REQ-F9"
           ],
           "codePaths": [],
           "exports": [],
@@ -4772,6 +4774,7 @@
             "REQ-F6",
             "REQ-F7",
             "REQ-F8",
+            "REQ-F9",
             "COMP-004",
             "COMP-005",
             "COMP-009",
@@ -4798,6 +4801,7 @@
             "REQ-L1",
             "REQ-L2",
             "REQ-L3",
+            "REQ-G1",
             "REQ-E1",
             "REQ-D1"
           ],
@@ -4807,6 +4811,7 @@
             "REQ-L1",
             "REQ-L2",
             "REQ-L3",
+            "REQ-G1",
             "REQ-E1",
             "REQ-D1",
             "COMP-001",
@@ -4823,6 +4828,7 @@
             "COMP-013",
             "COMP-014",
             "COMP-020",
+            "COMP-021",
             "IMP-101",
             "IMP-102",
             "IMP-103",
@@ -4845,7 +4851,9 @@
             "IMP-524",
             "IMP-541",
             "IMP-530",
-            "IMP-610"
+            "IMP-610",
+            "IMP-901",
+            "IMP-902"
           ]
         }
       }
@@ -4923,6 +4931,7 @@
             "IMP-109",
             "IMP-110",
             "IMP-111",
+            "IMP-112",
             "IMP-302",
             "IMP-303",
             "IMP-304",
@@ -5121,11 +5130,14 @@
           "sectionSymbols": [
             "COMP-201",
             "COMP-202",
+            "COMP-203",
             "IMP-301",
             "IMP-302",
             "IMP-303",
             "IMP-304",
-            "IMP-305"
+            "IMP-305",
+            "IMP-306",
+            "IMP-307"
           ]
         }
       }
@@ -21038,15 +21050,6 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-aba9f44d",
-      "sourceId": "orchestrated-artifact-2b7a84e0",
-      "targetId": "orchestrated-artifact-8a22c4e6",
-      "kind": "depends_on",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-5702470a",
       "sourceId": "orchestrated-artifact-2b7a84e0",
       "targetId": "orchestrated-artifact-8a22c61c",
@@ -21054,6 +21057,15 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-a9493d71",
+      "sourceId": "orchestrated-artifact-2b7a84e0",
+      "targetId": "orchestrated-artifact-a9d5b35b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-cc3279e5",
@@ -23531,15 +23543,6 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-e897e90c",
-      "sourceId": "orchestrated-artifact-622b024f",
-      "targetId": "orchestrated-artifact-8a22c4e6",
-      "kind": "depends_on",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-93f03bc9",
       "sourceId": "orchestrated-artifact-622b024f",
       "targetId": "orchestrated-artifact-8a22c61c",
@@ -23547,6 +23550,15 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-e6373230",
+      "sourceId": "orchestrated-artifact-622b024f",
+      "targetId": "orchestrated-artifact-a9d5b35b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-09206ea4",
@@ -23844,6 +23856,15 @@
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-e287d032",
+      "sourceId": "orchestrated-artifact-68125015",
+      "targetId": "orchestrated-artifact-a9d5b35b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-05710ca6",
@@ -32675,15 +32696,6 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-1b48d3c7",
-      "sourceId": "orchestrated-artifact-fde3202c",
-      "targetId": "orchestrated-artifact-8a22c4e6",
-      "kind": "depends_on",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-c6a12684",
       "sourceId": "orchestrated-artifact-fde3202c",
       "targetId": "orchestrated-artifact-8a22c61c",
@@ -32691,6 +32703,15 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-18e81ceb",
+      "sourceId": "orchestrated-artifact-fde3202c",
+      "targetId": "orchestrated-artifact-a9d5b35b",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-3bd1595f",
@@ -32995,7 +33016,7 @@
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
       "seedCount": 1116,
-      "hintCount": 560,
+      "hintCount": 563,
       "evidenceCount": 469
     },
     {

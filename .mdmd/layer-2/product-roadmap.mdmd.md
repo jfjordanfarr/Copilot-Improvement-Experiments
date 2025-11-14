@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 2
-- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-E1, REQ-D1
+- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-G1, REQ-E1, REQ-D1
 
 ## Requirements
 
@@ -73,6 +73,24 @@ Supports CAP-003 by making Live Documentation the backbone of diagnostics, CLI t
 - Emit JSON reports for dashboards and future IDE integrations (JetBrains, Vim) without duplicating business logic.
 - Support staged adoption (Observe → Sustain) with profile configurations that control enforcement scope.
 
+### REQ-G1 Generative Authoring Bridge
+Supports CAP-006 by enabling two-way sync between Live Docs and inline docstrings while incubating generative authoring workflows that treat Layer‑4 markdown as the canonical AST for code scaffolding.
+
+#### Stream LDG-A – Docstring Round-Trip *(in progress)*
+- Extend docstring bridges to emit structured deltas when authored Live Doc sections change, preserving provenance for every push back into code.
+- Provide CLI and VS Code commands that preview pending docstring updates, require human confirmation, and log audit metadata (`actor`, `timestamp`, `target symbol`).
+- Harden polyglot fixtures (C#, Java, TypeScript, Python) with multi-paragraph, HTML-rich docstrings to validate sanitisation, canonical tagging, and lossless round trips.
+
+#### Stream LDG-B – Feature Controls & Telemetry *(planned)*
+- Introduce workspace-level feature flags so adopters can enable bidirectional sync and generative scaffolds incrementally without destabilising existing regeneration flows.
+- Capture success/failure metrics for docstring pushes, unmapped tag fallbacks, and user rollbacks; surface telemetry inside `reports/benchmarks/live-docs/roundtrip.json`.
+- Wire safety rails into safe-commit so automated rewrites require explicit opt-in and fall back cleanly when analyzers report uncertainty.
+
+#### Stream LDG-C – Generative Scaffolding *(stretch goal)*
+- Generate language-specific skeletons or pseudocode from Live Doc authored intent, emitting draft source files into a scratch workspace for review.
+- Allow multi-language exploration (e.g., TypeScript + Rust prototypes) seeded from the same Live Doc while tagging outputs as experimental until promoted.
+- Partner with Copilot agents to replay ensured scaffolds, keeping execution deterministic and auditable.
+
 ### REQ-E1 Ecosystem Enablement
 Supports CAP-004 by packaging the Live Documentation system for open adoption and long-term sustainability.
 
@@ -114,10 +132,12 @@ Supports CAP-005 by anchoring each MDMD layer to the surface where it excels: La
 - Generated sections refresh within a single `safe:commit` run for modified files; stale Live Docs raise warnings within 24 hours if regeneration is skipped.
 
 ### REQ-L2 Acceptance Criteria
-- Per-language benchmarks report ≥0.9 precision/recall for exported symbol detection and ≥0.8 for dependency resolution.
-- Docstring bridges emit drift diagnostics, map multi-tag payloads into the shared schema, and update generated sections during regeneration.
-- Implementation Live Docs list at least one evidence artefact or record a waiver comment.
-- Benchmark suites remain green for legacy languages (C#, Java, Rust, Python, Ruby, C) so Generated sections keep polyglot coverage parity.
+
+### REQ-G1 Acceptance Criteria
+- Docstring round-trip commands present human-readable diffs and succeed for ≥90% of supported language fixtures without losing structure or provenance.
+- Feature flags default to read-only mode; enabling bidirectional sync requires explicit configuration and emits telemetry for every write-back event.
+- Generative scaffolding workflows emit artifacts into `AI-Agent-Workspace/tmp/**` (or caller-provided scratch paths) and never mutate tracked files without a follow-up approval step recorded in safe-commit logs.
+- Unmapped docstring tags appear in Live Docs under `rawFragments` with actionable telemetry so adapters can be extended without silently dropping content.
 
 ### REQ-L3 Acceptance Criteria
 - Diagnostics, CLI, and narrative commands reference Live Docs as the single source of truth (no bespoke graph queries).
@@ -182,6 +202,9 @@ Supports REQ-020 and REQ-030. [Polyglot Oracles & Sampling Architecture](../laye
 
 ### COMP-020 Layer Distribution Pipeline
 Supports REQ-D1. [Live Documentation Pipeline](../layer-3/live-documentation-pipeline.mdmd.md)
+
+### COMP-021 Generative Authoring Bridge
+Supports REQ-G1. [Live Documentation Pipeline](../layer-3/live-documentation-pipeline.mdmd.md#comp203-live-doc-authoring-bridge)
 
 ## Linked Implementations
 
@@ -254,6 +277,12 @@ Supports REQ-201 and REQ-301. [LLM Sampling Harness](../layer-4/shared/llmSampli
 ### IMP-610 liveDocsSystemCli *(planned)*
 Supports REQ-D1. (CLI will be documented alongside the System analytics implementation.)
 
+### IMP-901 docstringRoundTripService *(planned)*
+Supports REQ-G1. (Implementation will live under `packages/server/src/features/live-docs/docstringRoundTripService.ts` once the authoring bridge lands.)
+
+### IMP-902 liveDocsAuthoringCommands *(planned)*
+Supports REQ-G1. (VS Code commands under `packages/extension/src/commands/liveDocsAuthoring.ts` will surface preview and apply flows for docstring sync and scaffolding.)
+
 ## Evidence
 
 ### REQ-101 Evidence
@@ -281,6 +310,11 @@ Supports REQ-D1. (CLI will be documented alongside the System analytics implemen
 - Stage 8 backlog items (`LD-800`–`LD-802`) in `specs/001-link-aware-diagnostics/tasks.md` track execution of the public site, requirement integration, and onboarding updates.
 - System analytics CLI fixtures (to be added) will validate that architectural debt surfaces without persisting docs.
 
+### REQ-G1 Evidence
+- Java fixture with HTML-rich docstrings (`tests/integration/benchmarks/fixtures/java/basic`) demonstrates sanitisation improvements and structured Live Doc output captured during 2025-11-13 development.
+- Chat history 2025-11-13 records stakeholder vision for bidirectional authoring, feature gating, and generative scaffolds to guide upcoming implementation.
+- Planned integration suite `tests/integration/live-docs/docstring-roundtrip.test.ts` will validate CLI and extension commands once the authoring bridge ships.
+
 ## Verification Strategy
 - Pre-commit guard: [`npm run safe:commit`](/scripts/safe-to-commit.mjs) chaining lint, tests, graph snapshot or audit, and the SlopCop suite (markdown, asset, symbol audits).
 - Integration coverage: US1 to US5 suites emulate writer, developer, rename, and template ripple flows.
@@ -289,6 +323,7 @@ Supports REQ-D1. (CLI will be documented alongside the System analytics implemen
 - System analytics verification: targeted fixtures confirm `npm run live-docs:system` cleans up temporary exports, flags architectural debt, and leaves the repo unmodified.
 - Site pipeline verification: static site builds (GitHub Pages preview) run in CI, failing on broken links or missing Layer 1 capabilities.
 - Docstring bridge verification: polyglot fixture suites exercise recommended tags per language, snapshot rendered subsections, and fail when unmapped fragments or missing placeholders slip through without provenance.
+- Round-trip verification: feature-flagged integration suites replay Live Doc edits into inline docstrings, capture telemetry for success/failure outcomes, and assert no tracked files change without human confirmation.
 
 ## Traceability Links
 - Vision alignment: [Layer 1 Vision](../layer-1/link-aware-diagnostics-vision.mdmd.md)
@@ -304,3 +339,4 @@ Supports REQ-D1. (CLI will be documented alongside the System analytics implemen
 - How do we package Live Docs inside the extension without inflating download size for adopters who regenerate on demand?
 - Which narrative/diagram presets best serve both humans and copilots while remaining deterministically regenerable?
 - What rollout messaging best guides adopters through the public site pipeline and Spec-Kit integration handoff while keeping System analytics ephemeral?
+- Which UX affordances keep bidirectional docstring sync human-controlled while still enabling future generative scaffolding workflows?

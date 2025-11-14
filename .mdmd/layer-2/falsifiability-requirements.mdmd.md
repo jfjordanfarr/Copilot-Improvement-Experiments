@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 2
-- Requirement IDs: REQ-F1, REQ-F2, REQ-F3, REQ-F4, REQ-F5, REQ-F6, REQ-F7, REQ-F8
+- Requirement IDs: REQ-F1, REQ-F2, REQ-F3, REQ-F4, REQ-F5, REQ-F6, REQ-F7, REQ-F8, REQ-F9
 
 ## Requirements
 
@@ -72,6 +72,15 @@ Guarantee CAP-005: Layer 1 capabilities, Layer 2 requirements, and System ma
 - Safe-commit fails when drift counts exceed zero, unless waivers are recorded in the authored block.
 - Integration fixtures exercise positive/negative drift scenarios across TypeScript, Python, and C# examples.
 
+### REQ-F9 Bidirectional Authoring Safeguards
+Guarantee CAP-006: feature-flagged authoring loops reflect Live Documentation edits back into inline docstrings and scaffolding outputs without risking silent mutations or data loss.
+
+#### REQ-F9 Criteria
+- Preview/apply workflows render human-readable diffs before any docstring mutation and require explicit confirmation from the caller (CLI or VS Code command).
+- Each applied update records provenance (initiator, timestamp, affected symbols, feature flag state) and persists telemetry to `reports/benchmarks/live-docs/roundtrip.json`.
+- Generative scaffolding commands emit drafts into scratch directories (`AI-Agent-Workspace/tmp/**`) that reference their source Live Documentation files and never create or modify tracked files during execution.
+- Feature flags default to read-only; switching to apply mode is gated behind workspace configuration and safe-commit verifies the flag state before allowing automated runs.
+
 ## Acceptance Criteria and Verification
 
 ### REQ-F1 Verification
@@ -98,6 +107,11 @@ Guarantee CAP-005: Layer 1 capabilities, Layer 2 requirements, and System ma
 - Docstring drift integration suites (`tests/integration/live-docs/docstringBridge.test.ts`) fail when Live Docs and inline comments diverge.
 - Unit tests for bridge adapters (TypeScript, Python, C#) assert mismatch detection thresholds and waiver handling.
 - Safe-commit run with `npm run live-docs:verify-docstrings` reports zero unchecked drifts before completion.
+
+### REQ-F9 Verification
+- Round-trip integration suite (`tests/integration/live-docs/docstring-roundtrip.test.ts`) replays markdown edits through preview/apply commands and asserts docstrings update only after confirmation.
+- Telemetry snapshots (`reports/benchmarks/live-docs/roundtrip.json`) record provenance for simulated apply flows; falsifiability checks fail when entries are missing or malformed.
+- Scaffolding smoke tests ensure `scripts/live-docs/scaffold.ts` outputs drafts exclusively to `AI-Agent-Workspace/tmp/**` and leaves the tracked tree untouched.
 
 ### REQ-F7 Verification
 - CLI regression tests assert that running `npm run live-docs:system -- --output stdout` leaves the workspace clean and pipes analytics to the console.
