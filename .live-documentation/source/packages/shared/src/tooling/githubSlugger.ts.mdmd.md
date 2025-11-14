@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/githubSlugger.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-githubslugger-ts
-- Generated At: 2025-11-14T18:42:06.916Z
+- Generated At: 2025-11-14T20:58:03.232Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Provides a vendored GitHub-compatible slugger so Live Docs and diagnostics can g
 - Avoids pulling an ESM dependency into the shared workspace, keeping runtime usage compatible with the extension, server, and tests.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.916Z","inputHash":"60022c047e8317af"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T20:58:03.232Z","inputHash":"60022c047e8317af"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SlugContext`
@@ -69,6 +69,7 @@ Provides a vendored GitHub-compatible slugger so Live Docs and diagnostics can g
 - [rippleAnalyzer.test.ts](../../../server/src/features/knowledge/rippleAnalyzer.test.ts.mdmd.md)
 - [scipParser.test.ts](../../../server/src/features/knowledge/scipParser.test.ts.mdmd.md)
 - [workspaceIndexProvider.test.ts](../../../server/src/features/knowledge/workspaceIndexProvider.test.ts.mdmd.md)
+- [python.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/python.docstring.test.ts.mdmd.md)
 - [generator.test.ts](../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
 - [generator.test.ts](../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)

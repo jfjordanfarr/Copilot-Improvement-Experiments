@@ -324,4 +324,58 @@ suite("Live Docs polyglot fixtures", () => {
       await fs.rm(workspaceRoot, { recursive: true, force: true });
     }
   });
+
+  test("generates Python docs for basics fixture", async function () {
+    this.timeout(20000);
+
+    const workspaceRoot = await fs.mkdtemp(path.join(os.tmpdir(), "live-docs-python-"));
+
+    try {
+      const fixtureRoot = path.join(
+        __dirname,
+        "../../benchmarks/fixtures/python/basics"
+      );
+      await fs.cp(fixtureRoot, workspaceRoot, { recursive: true });
+
+      const config = normalizeLiveDocumentationConfig({
+        ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
+        root: ".live-documentation",
+        baseLayer: "source",
+        glob: ["src/**/*.py"]
+      });
+
+      const result = await generateLiveDocs({
+        workspaceRoot,
+        config,
+        changedOnly: false,
+        dryRun: false,
+        now: () => new Date("2024-01-01T00:00:00.000Z")
+      });
+
+      assert.ok(result.processed > 0, "Expected at least one processed source file");
+
+      const mainDocPath = path.join(
+        workspaceRoot,
+        ".live-documentation",
+        "source",
+        "src",
+        "main.py.mdmd.md"
+      );
+      const mainDoc = await fs.readFile(mainDocPath, "utf8");
+      assert.match(mainDoc, /#### `run`/);
+      assert.match(mainDoc, /### Dependencies[\s\S]*util\.summarize_values/);
+
+      const utilDocPath = path.join(
+        workspaceRoot,
+        ".live-documentation",
+        "source",
+        "src",
+        "util.py.mdmd.md"
+      );
+      const utilDoc = await fs.readFile(utilDocPath, "utf8");
+      assert.match(utilDoc, /#### `summarize_values`/);
+    } finally {
+      await fs.rm(workspaceRoot, { recursive: true, force: true });
+    }
+  });
 });

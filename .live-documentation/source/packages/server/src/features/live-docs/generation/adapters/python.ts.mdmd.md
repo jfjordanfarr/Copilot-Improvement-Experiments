@@ -1,11 +1,11 @@
-# packages/server/src/features/live-docs/generation/adapters/java.ts
+# packages/server/src/features/live-docs/generation/adapters/python.ts
 
 ## Metadata
 - Layer: 4
 - Archetype: implementation
-- Code Path: packages/server/src/features/live-docs/generation/adapters/java.ts
-- Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-java-ts
-- Generated At: 2025-11-14T20:58:02.885Z
+- Code Path: packages/server/src/features/live-docs/generation/adapters/python.ts
+- Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-python-ts
+- Generated At: 2025-11-14T20:58:02.897Z
 
 ## Authored
 ### Purpose
@@ -15,12 +15,12 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T20:58:02.885Z","inputHash":"134f693a3b168586"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T20:58:02.897Z","inputHash":"14eca41b5a6ffc0e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `javaAdapter`
+#### `pythonAdapter`
 - Type: const
-- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/java.ts#L21)
+- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/python.ts#L24)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -32,10 +32,7 @@ _Pending notes_
 - [`core.SourceAnalysisResult`](../core.ts.mdmd.md#sourceanalysisresult) (type-only)
 - [`core.SymbolDocumentation`](../core.ts.mdmd.md#symboldocumentation) (type-only)
 - [`core.SymbolDocumentationExample`](../core.ts.mdmd.md#symboldocumentationexample) (type-only)
-- [`core.SymbolDocumentationException`](../core.ts.mdmd.md#symboldocumentationexception) (type-only)
 - [`core.SymbolDocumentationLink`](../core.ts.mdmd.md#symboldocumentationlink) (type-only)
-- [`core.SymbolDocumentationLinkKind`](../core.ts.mdmd.md#symboldocumentationlinkkind) (type-only)
-- [`core.SymbolDocumentationParameter`](../core.ts.mdmd.md#symboldocumentationparameter) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->
