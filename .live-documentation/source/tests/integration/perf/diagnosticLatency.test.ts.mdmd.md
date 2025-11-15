@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/perf/diagnosticLatency.test.ts
 - Live Doc ID: LD-test-tests-integration-perf-diagnosticlatency-test-ts
-- Generated At: 2025-11-14T23:55:07.393Z
+- Generated At: 2025-11-15T01:50:43.972Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.393Z","inputHash":"9c3eedb9cd653b7d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.972Z","inputHash":"9c3eedb9cd653b7d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

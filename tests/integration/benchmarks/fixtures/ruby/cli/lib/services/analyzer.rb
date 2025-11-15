@@ -8,7 +8,14 @@ module BenchmarkCLI
     module Analyzer
       module_function
 
+      # Computes aggregate statistics for a dataset.
+      #
+      # @param data [Array<Integer>] Measurements to analyse.
+      # @return [Hash] Aggregated totals and averages.
+      # @raise ArgumentError when the dataset is empty.
       def analyze(data)
+        raise ArgumentError, "data required" if data.empty?
+
         cached = Cache.fetch(data)
         return cached if cached
 
@@ -21,6 +28,10 @@ module BenchmarkCLI
         result
       end
 
+      # Emits a log line summarizing the statistics.
+      #
+      # @param result [Hash] The payload returned from {analyze}.
+      # @return [void]
       def describe(result)
         status = result[:alert] ? "ALERT" : "OK"
         Support::Logger.info("#{status} total=#{result[:total]}")

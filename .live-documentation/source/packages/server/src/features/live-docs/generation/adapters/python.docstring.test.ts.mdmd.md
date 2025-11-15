@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/live-docs/generation/adapters/python.docstring.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-live-docs-generation-adapters-python-docstring-test-ts
-- Generated At: 2025-11-14T23:55:06.977Z
+- Generated At: 2025-11-15T01:50:43.298Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:06.977Z","inputHash":"5a6bd600a6c50648"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.298Z","inputHash":"5a6bd600a6c50648"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -35,7 +35,7 @@ _No public symbols detected_
 ### Targets
 #### Vitest Unit Tests
 - packages/server/src/features/live-docs/generation: [core.ts](../core.ts.mdmd.md)
-- packages/server/src/features/live-docs/generation/adapters: [adapters/index.ts](./index.ts.mdmd.md), [csharp.ts](./csharp.ts.mdmd.md), [java.ts](./java.ts.mdmd.md), [python.ts](./python.ts.mdmd.md), [rust.ts](./rust.ts.mdmd.md)
+- packages/server/src/features/live-docs/generation/adapters: [adapters/index.ts](./index.ts.mdmd.md), [csharp.ts](./csharp.ts.mdmd.md), [java.ts](./java.ts.mdmd.md), [python.ts](./python.ts.mdmd.md), [ruby.ts](./ruby.ts.mdmd.md), [rust.ts](./rust.ts.mdmd.md)
 - packages/shared/src/config: [liveDocumentationConfig.ts](../../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md)
 - packages/shared/src/tooling: [githubSlugger.ts](../../../../../../shared/src/tooling/githubSlugger.ts.mdmd.md), [githubSluggerRegex.ts](../../../../../../shared/src/tooling/githubSluggerRegex.ts.mdmd.md), [pathUtils.ts](../../../../../../shared/src/tooling/pathUtils.ts.mdmd.md)
 <!-- LIVE-DOC:END Targets -->

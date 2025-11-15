@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/slopcop/assetsAudit.test.ts
 - Live Doc ID: LD-test-tests-integration-slopcop-assetsaudit-test-ts
-- Generated At: 2025-11-14T23:55:07.394Z
+- Generated At: 2025-11-15T01:50:43.974Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.394Z","inputHash":"eba397687d65c580"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.974Z","inputHash":"eba397687d65c580"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

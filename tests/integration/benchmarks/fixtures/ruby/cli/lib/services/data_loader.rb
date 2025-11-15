@@ -12,6 +12,12 @@ module BenchmarkCLI
         "volatile" => [4, 90, 6]
       }.freeze
 
+      # Loads a dataset by name.
+      #
+      # @param name [String] Identifier such as "baseline".
+      # @return [Array<Integer>] Numeric samples.
+      # @example
+      #   DataLoader.load("baseline")
       def load(name)
         Support::Logger.info("loading dataset #{name}")
         DATASETS.fetch(name) { [0] }

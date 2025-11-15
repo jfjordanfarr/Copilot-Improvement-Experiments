@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/graph-tools/inspect-symbol.ts
 - Live Doc ID: LD-implementation-scripts-graph-tools-inspect-symbol-ts
-- Generated At: 2025-11-14T23:55:07.311Z
+- Generated At: 2025-11-15T01:50:43.848Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.311Z","inputHash":"6bf098ad5e02cd83"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.848Z","inputHash":"6bf098ad5e02cd83"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `parseArgs`

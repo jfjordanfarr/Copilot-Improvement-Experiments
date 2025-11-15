@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/doc-tools/enforce-documentation-links.ts
 - Live Doc ID: LD-implementation-scripts-doc-tools-enforce-documentation-links-ts
-- Generated At: 2025-11-14T23:55:07.275Z
+- Generated At: 2025-11-15T01:50:43.790Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.275Z","inputHash":"b0c0d0c1afe1a08e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.790Z","inputHash":"b0c0d0c1afe1a08e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `EXIT_CODES`

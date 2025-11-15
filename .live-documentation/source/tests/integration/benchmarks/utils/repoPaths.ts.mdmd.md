@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/benchmarks/utils/repoPaths.ts
 - Live Doc ID: LD-test-tests-integration-benchmarks-utils-repopaths-ts
-- Generated At: 2025-11-14T23:55:07.376Z
+- Generated At: 2025-11-15T01:50:43.944Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.376Z","inputHash":"746d7fbe48aef26e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.944Z","inputHash":"746d7fbe48aef26e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `getRepoRoot`

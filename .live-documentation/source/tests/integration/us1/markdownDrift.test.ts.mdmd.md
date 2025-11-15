@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/us1/markdownDrift.test.ts
 - Live Doc ID: LD-test-tests-integration-us1-markdowndrift-test-ts
-- Generated At: 2025-11-14T23:55:07.401Z
+- Generated At: 2025-11-15T01:50:43.984Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.401Z","inputHash":"a5053b6c13886761"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.984Z","inputHash":"a5053b6c13886761"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

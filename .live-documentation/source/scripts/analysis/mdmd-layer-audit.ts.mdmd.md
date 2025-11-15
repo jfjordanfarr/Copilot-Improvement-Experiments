@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/analysis/mdmd-layer-audit.ts
 - Live Doc ID: LD-implementation-scripts-analysis-mdmd-layer-audit-ts
-- Generated At: 2025-11-14T23:55:07.268Z
+- Generated At: 2025-11-15T01:50:43.781Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.268Z","inputHash":"fb602aed36e9c650"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.781Z","inputHash":"fb602aed36e9c650"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `collectLayerReport`

@@ -8,6 +8,9 @@ module BenchmarkCLI
     module Report
       module_function
 
+      # Generates the default benchmark report.
+      #
+      # @return [void]
       def run
         data = Services::DataLoader.load("baseline")
         summary = Services::Analyzer.analyze(data)

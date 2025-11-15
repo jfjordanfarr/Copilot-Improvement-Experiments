@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/us4/scopeCollision.test.ts
 - Live Doc ID: LD-test-tests-integration-us4-scopecollision-test-ts
-- Generated At: 2025-11-14T23:55:07.413Z
+- Generated At: 2025-11-15T01:50:44.004Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.413Z","inputHash":"339c803e7ada21a1"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:44.004Z","inputHash":"339c803e7ada21a1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
