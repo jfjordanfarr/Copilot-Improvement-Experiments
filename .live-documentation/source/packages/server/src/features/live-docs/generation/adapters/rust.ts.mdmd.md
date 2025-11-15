@@ -1,28 +1,26 @@
-# packages/server/src/features/live-docs/generation/adapters/csharp.ts
+# packages/server/src/features/live-docs/generation/adapters/rust.ts
 
 ## Metadata
 - Layer: 4
 - Archetype: implementation
-- Code Path: packages/server/src/features/live-docs/generation/adapters/csharp.ts
-- Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-csharp-ts
-- Generated At: 2025-11-14T22:24:33.889Z
+- Code Path: packages/server/src/features/live-docs/generation/adapters/rust.ts
+- Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-rust-ts
+- Generated At: 2025-11-14T23:55:06.993Z
 
 ## Authored
 ### Purpose
-Adapts Roslyn-emitted JSON into Live Doc symbols so C# fixtures carry summaries, parameters, and dependency edges alongside TypeScript sources.
+_Pending authored purpose_
 
 ### Notes
-- Reads the pre-generated C# analysis payloads stored with the fixture suite, avoiding a runtime Roslyn dependency.
-- Normalises XML doc comments into the shared documentation fields so downstream markdown rendering stays format-agnostic.
-- Captures `using` directives and fully-qualified symbol references to describe cross-file dependencies in the Live Doc graph.
+_Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T22:24:33.889Z","inputHash":"bf15fbc509c01d45"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:06.993Z","inputHash":"044721d221c3f411"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `csharpAdapter`
+#### `rustAdapter`
 - Type: const
-- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/csharp.ts#L46)
+- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/rust.ts#L32)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -36,7 +34,6 @@ Adapts Roslyn-emitted JSON into Live Doc symbols so C# fixtures carry summaries,
 - [`core.SymbolDocumentationExample`](../core.ts.mdmd.md#symboldocumentationexample) (type-only)
 - [`core.SymbolDocumentationException`](../core.ts.mdmd.md#symboldocumentationexception) (type-only)
 - [`core.SymbolDocumentationLink`](../core.ts.mdmd.md#symboldocumentationlink) (type-only)
-- [`core.SymbolDocumentationLinkKind`](../core.ts.mdmd.md#symboldocumentationlinkkind) (type-only)
 - [`core.SymbolDocumentationParameter`](../core.ts.mdmd.md#symboldocumentationparameter) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 

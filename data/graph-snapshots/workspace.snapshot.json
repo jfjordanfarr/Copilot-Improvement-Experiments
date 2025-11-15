@@ -2,8 +2,8 @@
   "generatedAt": "2025-01-01T00:00:00.000Z",
   "workspace": "D:\\Projects\\Live-Documentation",
   "totals": {
-    "artifacts": 800,
-    "links": 1596
+    "artifacts": 804,
+    "links": 1598
   },
   "artifacts": [
     {
@@ -1360,6 +1360,40 @@
           "identifiers": [],
           "codePaths": [
             "packages/server/src/features/live-docs/generation/adapters/python.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-63eec696",
+      "uri": "file:///D:/Projects/Live-Documentation/.live-documentation/source/packages/server/src/features/live-docs/generation/adapters/rust.docstring.test.ts.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "packages/server/src/features/live-docs/generation/adapters/rust.docstring.test.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-640267d1",
+      "uri": "file:///D:/Projects/Live-Documentation/.live-documentation/source/packages/server/src/features/live-docs/generation/adapters/rust.ts.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "packages/server/src/features/live-docs/generation/adapters/rust.ts"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -13631,6 +13665,26 @@
       }
     },
     {
+      "id": "orchestrated-artifact-c304a9a7",
+      "uri": "file:///D:/Projects/Live-Documentation/packages/server/src/features/live-docs/generation/adapters/rust.docstring.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
+      "id": "orchestrated-artifact-559108ae",
+      "uri": "file:///D:/Projects/Live-Documentation/packages/server/src/features/live-docs/generation/adapters/rust.ts",
+      "layer": "code",
+      "language": "typescript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "rustAdapter",
+            "kind": "variable"
+          }
+        ]
+      }
+    },
+    {
       "id": "orchestrated-artifact-d8df9b17",
       "uri": "file:///D:/Projects/Live-Documentation/packages/server/src/features/live-docs/generation/core.docstring.test.ts",
       "layer": "code",
@@ -19950,6 +20004,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-359fbc00",
+      "sourceId": "orchestrated-artifact-290e65d6",
+      "targetId": "orchestrated-artifact-559108ae",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-acf0666a",
       "sourceId": "orchestrated-artifact-290e65d6",
       "targetId": "orchestrated-artifact-8c5fe5b0",
@@ -22650,6 +22713,24 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-4d98703f",
+      "sourceId": "orchestrated-artifact-559108ae",
+      "targetId": "orchestrated-artifact-290e65d6",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-f085f176",
+      "sourceId": "orchestrated-artifact-559108ae",
+      "targetId": "orchestrated-artifact-abbf653e",
+      "kind": "references",
+      "confidence": 0.85,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-32b8c97b",
       "sourceId": "orchestrated-artifact-56242c74",
       "targetId": "orchestrated-artifact-5d5418fe",
@@ -23463,6 +23544,24 @@
       "id": "orchestrated-link-b9e72783",
       "sourceId": "orchestrated-artifact-6387d98e",
       "targetId": "orchestrated-artifact-6a8cadd4",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-75007dcd",
+      "sourceId": "orchestrated-artifact-63eec696",
+      "targetId": "orchestrated-artifact-c304a9a7",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-222af04e",
+      "sourceId": "orchestrated-artifact-640267d1",
+      "targetId": "orchestrated-artifact-559108ae",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -25278,15 +25377,6 @@
       "createdBy": "heuristic"
     },
     {
-      "id": "orchestrated-link-6e994d17",
-      "sourceId": "orchestrated-artifact-819940aa",
-      "targetId": "orchestrated-artifact-a8692030",
-      "kind": "depends_on",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-4a2a0a73",
       "sourceId": "orchestrated-artifact-819940aa",
       "targetId": "orchestrated-artifact-a8692166",
@@ -26295,15 +26385,6 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-8dfa84fb",
-      "sourceId": "orchestrated-artifact-9bf9eb77",
-      "targetId": "orchestrated-artifact-a8692030",
-      "kind": "depends_on",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
-    },
-    {
       "id": "orchestrated-link-698b4257",
       "sourceId": "orchestrated-artifact-9bf9eb77",
       "targetId": "orchestrated-artifact-a8692166",
@@ -26518,15 +26599,6 @@
       "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
-    },
-    {
-      "id": "orchestrated-link-14a39f5d",
-      "sourceId": "orchestrated-artifact-9ecfee6b",
-      "targetId": "orchestrated-artifact-a8692030",
-      "kind": "depends_on",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-f0345cb9",
@@ -26860,15 +26932,6 @@
       "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
-    },
-    {
-      "id": "orchestrated-link-1263d036",
-      "sourceId": "orchestrated-artifact-a830e95a",
-      "targetId": "orchestrated-artifact-a8692030",
-      "kind": "depends_on",
-      "confidence": 0.8,
-      "createdAt": "2025-01-01T00:00:00.000Z",
-      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-edf48d92",
@@ -29088,6 +29151,15 @@
       "id": "orchestrated-link-9a2921cf",
       "sourceId": "orchestrated-artifact-c2e7402c",
       "targetId": "orchestrated-artifact-dba29a98",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-2b919fd5",
+      "sourceId": "orchestrated-artifact-c304a9a7",
+      "targetId": "orchestrated-artifact-559108ae",
       "kind": "depends_on",
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -32878,9 +32950,9 @@
     {
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
-      "seedCount": 1110,
-      "hintCount": 550,
-      "evidenceCount": 473
+      "seedCount": 1116,
+      "hintCount": 552,
+      "evidenceCount": 477
     },
     {
       "id": "relationship-rules",

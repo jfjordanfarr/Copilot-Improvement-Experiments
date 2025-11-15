@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: scripts/fixture-tools/verify-fixtures.ts
 - Live Doc ID: LD-asset-scripts-fixture-tools-verify-fixtures-ts
-- Generated At: 2025-11-14T16:30:22.071Z
+- Generated At: 2025-11-14T23:55:07.300Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.071Z","inputHash":"4a4c4852c12ab34e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.300Z","inputHash":"4a4c4852c12ab34e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

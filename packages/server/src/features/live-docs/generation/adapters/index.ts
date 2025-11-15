@@ -4,6 +4,7 @@ import type { SourceAnalysisResult } from "../core";
 import { csharpAdapter } from "./csharp";
 import { javaAdapter } from "./java";
 import { pythonAdapter } from "./python";
+import { rustAdapter } from "./rust";
 
 export interface LanguageAdapter {
   readonly id: string;
@@ -11,7 +12,7 @@ export interface LanguageAdapter {
   analyze(input: { absolutePath: string; workspaceRoot: string }): Promise<SourceAnalysisResult | null>;
 }
 
-const ADAPTERS: readonly LanguageAdapter[] = [csharpAdapter, javaAdapter, pythonAdapter];
+const ADAPTERS: readonly LanguageAdapter[] = [csharpAdapter, javaAdapter, pythonAdapter, rustAdapter];
 
 /**
  * Attempts to analyse a source file using the configured language adapters.

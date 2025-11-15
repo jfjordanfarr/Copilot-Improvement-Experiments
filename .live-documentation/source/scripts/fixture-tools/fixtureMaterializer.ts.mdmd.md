@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/fixture-tools/fixtureMaterializer.ts
 - Live Doc ID: LD-implementation-scripts-fixture-tools-fixturematerializer-ts
-- Generated At: 2025-11-14T16:30:22.039Z
+- Generated At: 2025-11-14T23:55:07.281Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.039Z","inputHash":"e7b0e556d26929c4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.281Z","inputHash":"e7b0e556d26929c4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `MaterializeResult`

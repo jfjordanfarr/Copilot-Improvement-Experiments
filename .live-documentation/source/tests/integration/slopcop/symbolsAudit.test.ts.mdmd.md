@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/slopcop/symbolsAudit.test.ts
 - Live Doc ID: LD-test-tests-integration-slopcop-symbolsaudit-test-ts
-- Generated At: 2025-11-14T16:30:22.251Z
+- Generated At: 2025-11-14T23:55:07.395Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.251Z","inputHash":"3fd347c48052e0e2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.395Z","inputHash":"3fd347c48052e0e2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

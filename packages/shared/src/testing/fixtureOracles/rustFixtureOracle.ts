@@ -227,9 +227,10 @@ function collectUseEdges(input: {
   edges: Map<string, RustOracleEdge>;
 }): void {
   const { content, sourceRelativePath, moduleIndex, edges } = input;
+  const sanitized = stripDocComments(content);
   const pattern = /^use\s+([^;]+);/gm;
   let match: RegExpExecArray | null;
-  while ((match = pattern.exec(content)) !== null) {
+  while ((match = pattern.exec(sanitized)) !== null) {
     const statement = match[0];
     const parsed = parseUseStatement(statement);
     if (!parsed) {
@@ -320,9 +321,10 @@ function collectModuleReferences(input: {
   edges: Map<string, RustOracleEdge>;
 }): void {
   const { content, sourceRelativePath, moduleIndex, edges } = input;
+  const sanitized = stripDocComments(content);
   const pattern = /\b([a-zA-Z_][a-zA-Z0-9_]*)::[a-zA-Z_][a-zA-Z0-9_]*/g;
   let match: RegExpExecArray | null;
-  while ((match = pattern.exec(content)) !== null) {
+  while ((match = pattern.exec(sanitized)) !== null) {
     const moduleName = match[1];
     const target = moduleIndex.get(moduleName);
     if (!target || target === sourceRelativePath) {
@@ -433,4 +435,11 @@ function collectRecords(records: RustOracleEdgeRecord[]): RustOracleEdgeRecord[]
 
 function edgeKey(source: string, target: string, relation: string): string {
   return `${source}::${target}::${relation}`;
+}
+
+function stripDocComments(content: string): string {
+  // Remove block Rustdoc comments (/** ... */) first so any embedded use statements are ignored.
+  const withoutBlockDocs = content.replace(/\/\*\*[\s\S]*?\*\//g, "");
+  // Remove single-line Rustdoc comments (/// ...).
+  return withoutBlockDocs.replace(/\/\/\/.*$/gm, "");
 }

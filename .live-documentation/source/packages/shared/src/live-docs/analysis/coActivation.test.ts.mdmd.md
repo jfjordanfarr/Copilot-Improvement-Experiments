@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/analysis/coActivation.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-analysis-coactivation-test-ts
-- Generated At: 2025-11-14T18:42:06.785Z
+- Generated At: 2025-11-14T23:55:07.168Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T18:42:06.785Z","inputHash":"2e0c279a16401551"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.168Z","inputHash":"2e0c279a16401551"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/benchmarks/rebuildStability.test.ts
 - Live Doc ID: LD-test-tests-integration-benchmarks-rebuildstability-test-ts
-- Generated At: 2025-11-14T16:30:22.200Z
+- Generated At: 2025-11-14T23:55:07.373Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T16:30:22.200Z","inputHash":"17833ae373021730"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:07.373Z","inputHash":"17833ae373021730"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

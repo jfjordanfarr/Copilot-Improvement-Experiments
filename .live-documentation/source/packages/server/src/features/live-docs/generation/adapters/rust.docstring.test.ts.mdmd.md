@@ -1,11 +1,11 @@
-# packages/server/src/features/live-docs/generation/adapters/python.docstring.test.ts
+# packages/server/src/features/live-docs/generation/adapters/rust.docstring.test.ts
 
 ## Metadata
 - Layer: 4
 - Archetype: test
-- Code Path: packages/server/src/features/live-docs/generation/adapters/python.docstring.test.ts
-- Live Doc ID: LD-test-packages-server-src-features-live-docs-generation-adapters-python-docstring-test-ts
-- Generated At: 2025-11-14T23:55:06.977Z
+- Code Path: packages/server/src/features/live-docs/generation/adapters/rust.docstring.test.ts
+- Live Doc ID: LD-test-packages-server-src-features-live-docs-generation-adapters-rust-docstring-test-ts
+- Generated At: 2025-11-14T23:55:06.988Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:06.977Z","inputHash":"5a6bd600a6c50648"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-14T23:55:06.988Z","inputHash":"910d2c4a68cc137c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,8 +26,7 @@ _No public symbols detected_
 - `node:fs/promises` - `fs`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`python.pythonAdapter`](./python.ts.mdmd.md#pythonadapter)
-- [`core.renderPublicSymbolLines`](../core.ts.mdmd.md#renderpublicsymbollines)
+- [`rust.rustAdapter`](./rust.ts.mdmd.md#rustadapter)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 
