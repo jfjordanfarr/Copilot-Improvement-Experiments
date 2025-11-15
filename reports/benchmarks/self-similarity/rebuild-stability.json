@@ -1,12 +1,12 @@
 {
   "benchmark": "rebuild-stability",
   "mode": "self-similarity",
-  "recordedAt": "2025-11-15T02:18:51.798Z",
+  "recordedAt": "2025-11-15T02:57:09.949Z",
   "environment": {
-    "nodeVersion": "v22.20.0",
+    "nodeVersion": "v22.14.0",
     "platform": "win32",
     "arch": "x64",
-    "providerMode": "local-only",
+    "providerMode": null,
     "ollamaModel": "qwen3-coder:30b",
     "ollamaEndpoint": null
   },
@@ -15,12 +15,12 @@
     "workspace": "simple-workspace",
     "iterations": 3,
     "durationsMs": [
-      2834,
-      2511,
-      2496
+      1179,
+      1148,
+      1145
     ],
-    "averageDurationMs": 2613.6666666666665,
-    "maxDurationMs": 2834,
+    "averageDurationMs": 1157.3333333333333,
+    "maxDurationMs": 1179,
     "driftDetected": false
   }
 }

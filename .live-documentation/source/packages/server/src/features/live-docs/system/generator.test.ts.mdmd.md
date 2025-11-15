@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/live-docs/system/generator.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-live-docs-system-generator-test-ts
-- Generated At: 2025-11-15T01:50:43.379Z
+- Generated At: 2025-11-15T02:58:51.634Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.379Z","inputHash":"2a44ae8bcd8c0a5e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T02:58:51.634Z","inputHash":"2a44ae8bcd8c0a5e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -35,7 +35,8 @@ _No public symbols detected_
 ### Targets
 #### Vitest Unit Tests
 - packages/server/src/features/live-docs/generation: [core.ts](../generation/core.ts.mdmd.md)
-- packages/server/src/features/live-docs/generation/adapters: [adapters/index.ts](../generation/adapters/index.ts.mdmd.md), [csharp.ts](../generation/adapters/csharp.ts.mdmd.md), [java.ts](../generation/adapters/java.ts.mdmd.md), [python.ts](../generation/adapters/python.ts.mdmd.md), [ruby.ts](../generation/adapters/ruby.ts.mdmd.md), [rust.ts](../generation/adapters/rust.ts.mdmd.md)
+- packages/server/src/features/live-docs/generation/adapters: [adapters/index.ts](../generation/adapters/index.ts.mdmd.md), [c.ts](../generation/adapters/c.ts.mdmd.md), [csharp.ts](../generation/adapters/csharp.ts.mdmd.md), [java.ts](../generation/adapters/java.ts.mdmd.md), [python.ts](../generation/adapters/python.ts.mdmd.md), [ruby.ts](../generation/adapters/ruby.ts.mdmd.md)
+  [rust.ts](../generation/adapters/rust.ts.mdmd.md)
 - packages/server/src/features/live-docs/stage0: [docLoader.ts](../stage0/docLoader.ts.mdmd.md)
 - packages/server/src/features/live-docs/system: [generator.ts](./generator.ts.mdmd.md)
 - packages/server/src/features/live-docs/targets: [manifest.ts](../targets/manifest.ts.mdmd.md)

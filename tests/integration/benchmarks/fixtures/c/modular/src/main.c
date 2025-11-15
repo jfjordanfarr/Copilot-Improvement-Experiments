@@ -1,6 +1,10 @@
 #include "pipeline.h"
 #include "logger.h"
 
+/**
+ * @brief End-to-end demonstration of the modular pipeline runnable.
+ * @return int Zero when the pipeline produces a non-negative value.
+ */
 int main(void) {
 	double samples[3] = {42.0, 64.0, 29.0};
 	double result = run_pipeline(samples, 3);

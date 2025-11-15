@@ -61,7 +61,7 @@ description: "Task list for Live Documentation"
 - [x] LD-204 [P] Stage output into `/.live-documentation/<baseLayer>/` (default `source/`); respect configurable root via workspace settings and CLI flag
 - [x] LD-205 Add diff/dry-run mode so `npm run live-docs:generate -- --dry-run` surfaces changes without writing
 - [x] LD-206 Create integration suite skeleton `tests/integration/live-docs/generation.test.ts` covering authored preservation and deterministic output
-- [ ] LD-207 Establish language analyzer adapters for non-TypeScript fixtures so the generator emits `Public Symbols` and `Dependencies` for Python, C#, Java, Ruby, Rust, and C files using repository-hosted benchmark oracles (scope limited to fixtures tracked in this repo).
+- [x] LD-207 Establish language analyzer adapters for non-TypeScript fixtures so the generator emits `Public Symbols` and `Dependencies` for Python, C#, Java, Ruby, Rust, and C files using repository-hosted benchmark oracles (scope limited to fixtures tracked in this repo). *(Completed via rubyAdapter + cAdapter docstring suites and regenerated fixtures on 2025-11-14.)*
 - [ ] LD-208 [P] Add integration coverage that runs `live-docs:generate` against the polyglot fixture workspaces and snapshots markdown output under `tests/integration/live-docs/polyglot-fixtures.test.ts`, ensuring regenerated docs stay deterministic before we target external repositories.
 
 **Checkpoint**: Generator CLI produces deterministic staged Live Docs with provenance markers and dry-run diffing.

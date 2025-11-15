@@ -1,11 +1,11 @@
-# packages/server/src/features/live-docs/generation/adapters/rust.ts
+# packages/server/src/features/live-docs/generation/adapters/c.ts
 
 ## Metadata
 - Layer: 4
 - Archetype: implementation
-- Code Path: packages/server/src/features/live-docs/generation/adapters/rust.ts
-- Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-rust-ts
-- Generated At: 2025-11-15T02:58:51.590Z
+- Code Path: packages/server/src/features/live-docs/generation/adapters/c.ts
+- Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-c-ts
+- Generated At: 2025-11-15T02:58:51.527Z
 
 ## Authored
 ### Purpose
@@ -15,17 +15,18 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T02:58:51.590Z","inputHash":"044721d221c3f411"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T02:58:51.527Z","inputHash":"423904ee11fe3575"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `rustAdapter`
+#### `cAdapter`
 - Type: const
-- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/rust.ts#L32)
+- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/c.ts#L30)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- `node:fs` - `fs`
+- `node:fs` - `fs`, `statSync`
+- `node:path` - `path`
 - [`index.LanguageAdapter`](./index.ts.mdmd.md#languageadapter) (type-only)
 - [`core.DependencyEntry`](../core.ts.mdmd.md#dependencyentry) (type-only)
 - [`core.PublicSymbolEntry`](../core.ts.mdmd.md#publicsymbolentry) (type-only)

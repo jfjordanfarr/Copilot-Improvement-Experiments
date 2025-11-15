@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/core.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-core-ts
-- Generated At: 2025-11-15T01:50:43.358Z
+- Generated At: 2025-11-15T02:58:51.613Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Coordinates Live Documentation generation across the workspace, bridging analyze
 - De-duplicates change detection to support fast `--changed` iterations while still cleaning up stale docs when files disappear from the workspace.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.358Z","inputHash":"c171e4ae6ab9e063"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T02:58:51.613Z","inputHash":"c171e4ae6ab9e063"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SourceAnalysisResult`
@@ -396,6 +396,7 @@ Markdown lines suitable for the `Dependencies` section, or an empty array when n
 <!-- LIVE-DOC:BEGIN Observed Evidence -->
 ### Observed Evidence
 #### Vitest Unit Tests
+- [c.docstring.test.ts](./adapters/c.docstring.test.ts.mdmd.md)
 - [python.docstring.test.ts](./adapters/python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](./adapters/ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](./adapters/rust.docstring.test.ts.mdmd.md)

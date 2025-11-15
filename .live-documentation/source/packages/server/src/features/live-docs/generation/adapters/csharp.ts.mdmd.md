@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/adapters/csharp.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-csharp-ts
-- Generated At: 2025-11-15T01:50:43.280Z
+- Generated At: 2025-11-15T02:58:51.536Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Adapts Roslyn-emitted JSON into Live Doc symbols so C# fixtures carry summaries,
 - Captures `using` directives and fully-qualified symbol references to describe cross-file dependencies in the Live Doc graph.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.280Z","inputHash":"bf15fbc509c01d45"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T02:58:51.536Z","inputHash":"bf15fbc509c01d45"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `csharpAdapter`
@@ -43,6 +43,7 @@ Adapts Roslyn-emitted JSON into Live Doc symbols so C# fixtures carry summaries,
 <!-- LIVE-DOC:BEGIN Observed Evidence -->
 ### Observed Evidence
 #### Vitest Unit Tests
+- [c.docstring.test.ts](./c.docstring.test.ts.mdmd.md)
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](./ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](./rust.docstring.test.ts.mdmd.md)

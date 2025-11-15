@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generation/adapters/python.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-python-ts
-- Generated At: 2025-11-15T01:50:43.311Z
+- Generated At: 2025-11-15T02:58:51.567Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Extracts Python exports, dependencies, and structured docstrings so Live Docs ca
 - Emits dependency edges for `import` and `from` clauses, reconciling relative package paths against the originating file.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T01:50:43.311Z","inputHash":"8b4a4783da15c658"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-15T02:58:51.567Z","inputHash":"8b4a4783da15c658"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `pythonAdapter`
@@ -48,6 +48,7 @@ on Python runtime introspection.
 <!-- LIVE-DOC:BEGIN Observed Evidence -->
 ### Observed Evidence
 #### Vitest Unit Tests
+- [c.docstring.test.ts](./c.docstring.test.ts.mdmd.md)
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](./ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](./rust.docstring.test.ts.mdmd.md)
