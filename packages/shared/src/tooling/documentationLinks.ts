@@ -24,7 +24,7 @@ export const DEFAULT_RULES: DocumentationRule[] = [
     label: "Live Documentation",
     docGlobs: [
       ".mdmd/layer-4/**/*.mdmd.md",
-      ".live-documentation/source/**/*.mdmd.md"
+      ".live-documentation/source/**/*.md"
     ],
     codeGlobs: [
       "packages/**/*.{ts,tsx,js,jsx,cts,mts,mjs,cjs}",

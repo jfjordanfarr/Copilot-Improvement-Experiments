@@ -1,4 +1,4 @@
-// Live Documentation: .live-documentation/source/packages/shared/src/config/liveDocumentationConfig.mdmd.md
+// Live Documentation: .live-documentation/source/packages/shared/src/config/liveDocumentationConfig.md
 
 export type LiveDocumentationSlugDialect = "github" | "azure-devops" | "gitlab";
 
@@ -45,6 +45,7 @@ export type LiveDocumentationConfigInput = Partial<LiveDocumentationConfig> & {
 
 export const LIVE_DOCUMENTATION_DEFAULT_ROOT = ".live-documentation";
 export const LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER = "source";
+export const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md";
 export const LIVE_DOCUMENTATION_DEFAULT_GLOBS = [
   "packages/**/src/**/*.ts",
   "packages/**/src/**/*.tsx",
@@ -56,6 +57,8 @@ export const LIVE_DOCUMENTATION_DEFAULT_GLOBS = [
   "packages/**/src/**/*.cts",
   "scripts/**/*.ts",
   "scripts/**/*.tsx",
+  "scripts/**/*.mjs",
+  "scripts/**/*.cjs",
   "tests/**/*.ts"
 ];
 

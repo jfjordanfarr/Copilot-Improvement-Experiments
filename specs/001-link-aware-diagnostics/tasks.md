@@ -151,13 +151,23 @@ description: "Task list for Live Documentation"
 
 ## Stage 8 – Layer Distribution & External Surfaces
 
-**Purpose**: Place each MDMD layer with the platform best suited for it while Live Documentation focuses on Implementation + analytics.
+**Purpose**: Place each MDMD layer with the platform best suited for it and wire the GitHub Pages projection into our CI/CD gates before the hosted showcase spins up.
 
-- [ ] LD-800 Scaffolding task: generate a GitHub Pages (or equivalent) site sourced from Layer‑1 vision content, including build script and publish workflow.
+- [ ] LD-800 Scaffolding task: generate a GitHub Pages (or equivalent) site sourced from Layer‑1 vision content, including build script, publish workflow, and `npm run safe:commit` verification hooks so CI/CD catches drift before Stage 9.
 - [ ] LD-801 Define integration pattern for Layer‑2 commitments via Spec-Kit and external issue trackers, adding cross-links from Live Docs to canonical work items.
 - [ ] LD-802 Update onboarding/quickstart docs to explain the layered artifact distribution and reference the System analytics CLI as the source of materialized views.
 
-**Checkpoint**: Documentation layers are mapped to their long-term homes, and Live Docs tooling references them accordingly.
+**Checkpoint**: Documentation layers are mapped to their long-term homes, the GitHub Pages build runs inside CI/CD, and Live Docs tooling references them accordingly.
+
+## Stage 9 – Hosted Showcase Trials (CAP-007, REQ-H1)
+
+**Purpose**: Give prospects a zero-install path by cloning public GitHub repos inside a stateless Cloudflare (or equivalent) runner, generating Live Docs headlessly, and returning a downloadable bundle with guidance for replaying the analysis locally.
+
+- [ ] LD-900 Capture Code Wiki competitive deltas plus hosted-showcase requirements in `specs/001-link-aware-diagnostics/research.md`, `plan.md`, and `.mdmd/layer-1/link-aware-diagnostics-vision.mdmd.md`, ensuring governance docs record consent/privacy expectations.
+- [ ] LD-901 [P] Containerise the Live Docs generator + dependencies for Cloudflare Workers/Pages (or equivalent), wire a request handler (`scripts/live-docs/showcaseWorker.ts`) that accepts `org/repo@ref`, clones to ephemeral storage, runs `npm run live-docs:generate`, and deletes the workspace immediately after bundling.
+- [ ] LD-902 Build the bundler + README/prompt guide generator (`scripts/live-docs/packageBundle.ts`), embed provenance metadata (commit hash, analyzer versions, benchmark IDs), and add telemetry showing when bundles are downloaded and when artefacts are purged.
+
+**Checkpoint**: Hosted showcase produces reproducible bundles, emits provenance + deletion telemetry, and stays stateless so prospects can evaluate Live Docs without installing the extension.
 
 ## Stage Dependencies & Parallelism
 
@@ -168,6 +178,7 @@ description: "Task list for Live Documentation"
 - **Phase4 → Phase5**: Docstring drift requires Live Docs as source of truth.
 - **Phase5 → Phase6**: Migration waits for drift tools to avoid regressions.
 - **Phase6 → Phase7**: Enrichers build on canonical Live Docs.
+- **Stage8 → Stage9**: Hosted showcase depends on the Layer distribution pipeline so the stateless runner can reuse proven generator assets and publishing guides.
 
 Tasks tagged `[P]` can run concurrently when dependencies agree (e.g., LD-202/203, LD-302/303). Evidence and consumption phases split across teams by surface (CLI vs diagnostics) once generator stabilises.
 
@@ -179,8 +190,8 @@ Tasks tagged `[P]` can run concurrently when dependencies agree (e.g., LD-202/20
 
 ## Summary Metrics
 **Summary Metrics**
-- **Total Tasks**: 69 (13 closed, 56 open)
-- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (10 open), Phase6 (5 open), Phase7 (20 open), Stage8 (3 open)
+- **Total Tasks**: 72 (13 closed, 59 open)
+- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (10 open), Phase6 (5 open), Phase7 (20 open), Stage8 (3 open), Stage9 (3 open)
 - **Independent Tests**: `generation.test.ts`, `evidence.test.ts`, `inspect-cli.test.ts`, `docstring-drift.test.ts`
 - **Primary Workstreams**: Generator foundations (WI-LD101), Evidence bridges (WI-LD102), Docstring drift (WI-LD201), Consumption parity (WI-LD301), System Layer migration (WI-LD401)
 

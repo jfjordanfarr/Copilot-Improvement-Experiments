@@ -7,6 +7,7 @@ import ts from "typescript";
 
 import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig,
   type LiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
@@ -62,7 +63,12 @@ async function main(): Promise<void> {
     ...DEFAULT_LIVE_DOCUMENTATION_CONFIG
   });
 
-  const docGlob = path.join(config.root, config.baseLayer, "**", "*.mdmd.md");
+  const docGlob = path.join(
+    config.root,
+    config.baseLayer,
+    "**",
+    `*${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+  );
   const docs = await glob(docGlob, {
     cwd: workspaceRoot,
     absolute: true,
@@ -360,10 +366,10 @@ function resolveDependencyTarget(
 
   if (normalizedRelative.startsWith(`${liveDocsPrefix}/`)) {
     const withoutPrefix = normalizedRelative.slice(liveDocsPrefix.length + 1);
-    if (!withoutPrefix.endsWith(".mdmd.md")) {
+    if (!withoutPrefix.endsWith(LIVE_DOCUMENTATION_FILE_EXTENSION)) {
       return undefined;
     }
-    return withoutPrefix.slice(0, -".mdmd.md".length);
+    return withoutPrefix.slice(0, -LIVE_DOCUMENTATION_FILE_EXTENSION.length);
   }
 
   return normalizedRelative;

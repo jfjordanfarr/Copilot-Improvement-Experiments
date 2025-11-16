@@ -4,6 +4,7 @@ import * as fs from "node:fs/promises";
 import path from "node:path";
 import ts from "typescript";
 
+import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "@copilot-improvement/shared/config/liveDocumentationConfig";
 import type { LiveDocumentationConfig, LiveDocumentationArchetype } from "@copilot-improvement/shared/config/liveDocumentationConfig";
 import { slug as githubSlug } from "@copilot-improvement/shared/tooling/githubSlugger";
 import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
@@ -1001,7 +1002,7 @@ export function renderDependencyLines(args: {
       const moduleLabel = toModuleLabel(dependency.resolvedPath);
       const docAbsolute = path.resolve(
         args.liveDocsRootAbsolute,
-        `${dependency.resolvedPath}.mdmd.md`
+        `${dependency.resolvedPath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const docRelative = formatRelativePathFromDoc(args.docDir, docAbsolute);
       const symbols = Array.from(bucket.symbols).sort();

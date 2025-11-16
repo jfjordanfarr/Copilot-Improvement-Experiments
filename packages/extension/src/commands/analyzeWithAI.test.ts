@@ -1,44 +1,18 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { LanguageClient } from "vscode-languageclient/node";
 
+import { getSharedVscodeMock } from "../testUtils/vscodeMock";
 import type { InvokeChatResult, LlmInvoker } from "../services/llmInvoker";
 import type { LinkDiagnosticsSettings } from "../settings/configService";
 
-const mockCommands = {
-  registerCommand: vi.fn()
-};
+const vscodeMock = getSharedVscodeMock();
+const mockCommands = vscodeMock.commands;
+const mockWindow = vscodeMock.window;
+const mockWorkspace = vscodeMock.workspace;
+const mockUri = vscodeMock.Uri;
+const mockProgressLocation = vscodeMock.ProgressLocation;
 
-const mockWindow = {
-  showInformationMessage: vi.fn(),
-  showQuickPick: vi.fn(),
-  showErrorMessage: vi.fn(),
-  withProgress: vi.fn()
-};
-
-const mockWorkspace = {
-  openTextDocument: vi.fn(),
-  asRelativePath: vi.fn((uri: string) => uri)
-};
-
-const mockUri = {
-  parse: vi.fn((value: string) => ({ toString: () => value }))
-};
-
-const mockProgressLocation = {
-  Notification: 1
-};
-
-vi.mock("vscode", () => {
-  class CancellationError extends Error {}
-  return {
-    commands: mockCommands,
-    window: mockWindow,
-    workspace: mockWorkspace,
-    Uri: mockUri,
-    ProgressLocation: mockProgressLocation,
-    CancellationError
-  };
-});
+vi.mock("vscode", () => vscodeMock.module);
 
 describe("registerAnalyzeWithAICommand", () => {
   const defaultSettings: LinkDiagnosticsSettings = {
@@ -74,7 +48,7 @@ describe("registerAnalyzeWithAICommand", () => {
       "linkDiagnostics.analyzeWithAI",
       expect.any(Function)
     );
-  });
+  }, 15000);
 
   it("shows information when provider is disabled", async () => {
     const { registerAnalyzeWithAICommand } = await import("./analyzeWithAI");

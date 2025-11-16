@@ -3,6 +3,8 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 
+const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md" as const; // Keep in sync with liveDocumentationConfig
+
 const { generateLiveDocs } = require(
   path.join(
     __dirname,
@@ -53,7 +55,7 @@ suite("Live Docs polyglot fixtures", () => {
         "source",
         "src",
         "Diagnostics",
-        "WidgetRegistry.cs.mdmd.md"
+        `WidgetRegistry.cs${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const widgetDocContent = await fs.readFile(widgetRegistryDoc, "utf8");
       assert.match(widgetDocContent, /#### `WidgetRegistry`/);
@@ -175,7 +177,7 @@ suite("Live Docs polyglot fixtures", () => {
         "src",
         "Diagnostics",
         "Extensions",
-        "WidgetExtensions.cs.mdmd.md"
+        `WidgetExtensions.cs${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const extensionsDocContent = await fs.readFile(extensionsDoc, "utf8");
       assert.match(extensionsDocContent, /#### `WidgetExtensions`/);
@@ -227,7 +229,7 @@ suite("Live Docs polyglot fixtures", () => {
           "com",
           "example",
           "app",
-          "App.java.mdmd.md"
+          `App.java${LIVE_DOCUMENTATION_FILE_EXTENSION}`
         ),
         "utf8"
       );
@@ -267,7 +269,7 @@ suite("Live Docs polyglot fixtures", () => {
           "com",
           "example",
           "data",
-          "Reader.java.mdmd.md"
+          `Reader.java${LIVE_DOCUMENTATION_FILE_EXTENSION}`
         ),
         "utf8"
       );
@@ -289,7 +291,7 @@ suite("Live Docs polyglot fixtures", () => {
           "com",
           "example",
           "model",
-          "Record.java.mdmd.md"
+          `Record.java${LIVE_DOCUMENTATION_FILE_EXTENSION}`
         ),
         "utf8"
       );
@@ -312,7 +314,7 @@ suite("Live Docs polyglot fixtures", () => {
           "com",
           "example",
           "data",
-          "Catalog.java.mdmd.md"
+          `Catalog.java${LIVE_DOCUMENTATION_FILE_EXTENSION}`
         ),
         "utf8"
       );
@@ -359,7 +361,7 @@ suite("Live Docs polyglot fixtures", () => {
         ".live-documentation",
         "source",
         "src",
-        "main.py.mdmd.md"
+        `main.py${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const mainDoc = await fs.readFile(mainDocPath, "utf8");
       assert.match(mainDoc, /#### `run`/);
@@ -370,7 +372,7 @@ suite("Live Docs polyglot fixtures", () => {
         ".live-documentation",
         "source",
         "src",
-        "util.py.mdmd.md"
+        `util.py${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const utilDoc = await fs.readFile(utilDocPath, "utf8");
       assert.match(utilDoc, /#### `summarize_values`/);

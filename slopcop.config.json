@@ -7,7 +7,7 @@
     "includeGlobs": [
       "**/*.md",
       "**/*.mdmd",
-      ".live-documentation/**/*.mdmd.md"
+      ".live-documentation/**/*.md"
     ],
     "ignoreGlobs": [
       "AI-Agent-Workspace/tmp/**"

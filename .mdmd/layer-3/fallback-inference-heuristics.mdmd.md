@@ -3,7 +3,7 @@
 ## Metadata
 - Layer: 3
 - Component IDs: COMP-003
-- Related Docs: [Language Server Architecture](./language-server-architecture.mdmd.md), [Fallback Inference](../layer-4/shared/fallbackInference.mdmd.md)
+- Related Docs: [Language Server Architecture](./language-server-architecture.mdmd.md), [Fallback Inference](../../.live-documentation/source/packages/shared/src/inference/fallbackInference.ts.md)
 
 ## Components
 

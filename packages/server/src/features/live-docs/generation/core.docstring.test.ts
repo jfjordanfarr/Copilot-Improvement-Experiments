@@ -2,6 +2,8 @@ import path from "node:path";
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
+import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+
 import { collectExportedSymbols, renderPublicSymbolLines } from "./core";
 
 describe("TypeScript docstring bridging", () => {
@@ -110,7 +112,7 @@ export async function orchestrate<T>(options: { workspaceRoot: string; includePa
       workspaceRoot,
       ".live-documentation",
       "source",
-      `${sourceRelativePath}.mdmd.md`
+      `${sourceRelativePath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
     );
     const docDir = path.dirname(docAbsolute);
 

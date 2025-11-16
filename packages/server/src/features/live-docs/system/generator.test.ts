@@ -4,12 +4,33 @@ import * as path from "node:path";
 
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 
-import { normalizeLiveDocumentationConfig } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import {
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
+  normalizeLiveDocumentationConfig
+} from "@copilot-improvement/shared/config/liveDocumentationConfig";
 
 import { generateSystemLiveDocs } from "./generator";
 
 describe("generateSystemLiveDocs", () => {
   let workspaceRoot: string;
+
+  const withExtension = (relativePath: string): string =>
+    `${relativePath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`;
+
+  const stage0DocPath = (...segments: string[]): string => {
+    if (segments.length === 0) {
+      throw new Error("stage0DocPath requires at least one segment");
+    }
+    const parts = segments.slice(0, -1);
+    const last = segments[segments.length - 1];
+    return path.join(
+      workspaceRoot,
+      ".live-documentation",
+      "source",
+      ...parts,
+      `${last}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+    );
+  };
 
   beforeEach(async () => {
     workspaceRoot = await fs.mkdtemp(path.join(os.tmpdir(), "system-live-docs-"));
@@ -19,38 +40,32 @@ describe("generateSystemLiveDocs", () => {
     await fs.mkdir(path.join(workspaceRoot, "data", "live-docs"), { recursive: true });
 
     await writeStage0Doc(
-      path.join(
-        workspaceRoot,
-        ".live-documentation",
-        "source",
+      stage0DocPath(
         "packages",
         "server",
         "src",
         "features",
         "live-docs",
-        "generator.ts.mdmd.md"
+        "generator.ts"
       ),
       {
         codePath: "packages/server/src/features/live-docs/generator.ts",
         liveDocId: "LD-implementation-packages-server-src-features-live-docs-generator-ts",
-        dependencies: ["./generation/core.ts.mdmd.md"],
+        dependencies: [withExtension("./generation/core.ts")],
         publicSymbols: ["generateLiveDocs"],
         extraDependencies: ["node:fs"]
       }
     );
 
     await writeStage0Doc(
-      path.join(
-        workspaceRoot,
-        ".live-documentation",
-        "source",
+      stage0DocPath(
         "packages",
         "server",
         "src",
         "features",
         "live-docs",
         "generation",
-        "core.ts.mdmd.md"
+        "core.ts"
       ),
       {
         codePath: "packages/server/src/features/live-docs/generation/core.ts",
@@ -62,54 +77,36 @@ describe("generateSystemLiveDocs", () => {
     );
 
     await writeStage0Doc(
-      path.join(
-        workspaceRoot,
-        ".live-documentation",
-        "source",
-        "scripts",
-        "live-docs",
-        "generate.ts.mdmd.md"
-      ),
+      stage0DocPath("scripts", "live-docs", "generate.ts"),
       {
         codePath: "scripts/live-docs/generate.ts",
         liveDocId: "LD-implementation-scripts-live-docs-generate-ts",
-        dependencies: ["../../packages/server/src/features/live-docs/generator.ts.mdmd.md"],
+        dependencies: [withExtension("../../packages/server/src/features/live-docs/generator.ts")],
         publicSymbols: ["main"],
         extraDependencies: []
       }
     );
 
     await writeStage0Doc(
-      path.join(
-        workspaceRoot,
-        ".live-documentation",
-        "source",
-        "scripts",
-        "live-docs",
-        "run-all.ts.mdmd.md"
-      ),
+      stage0DocPath("scripts", "live-docs", "run-all.ts"),
       {
         codePath: "scripts/live-docs/run-all.ts",
         liveDocId: "LD-implementation-scripts-live-docs-run-all-ts",
-        dependencies: ["./generate.ts.mdmd.md", "../../packages/server/src/features/live-docs/generator.ts.mdmd.md"],
+        dependencies: [
+          withExtension("./generate.ts"),
+          withExtension("../../packages/server/src/features/live-docs/generator.ts")
+        ],
         publicSymbols: ["main"],
         extraDependencies: []
       }
     );
 
     await writeStage0Doc(
-      path.join(
-        workspaceRoot,
-        ".live-documentation",
-        "source",
-        "tests",
-        "live-docs",
-        "run-all.test.ts.mdmd.md"
-      ),
+      stage0DocPath("tests", "live-docs", "run-all.test.ts"),
       {
         codePath: "tests/live-docs/run-all.test.ts",
         liveDocId: "LD-test-tests-live-docs-run-all-test-ts",
-        dependencies: ["../../scripts/live-docs/run-all.ts.mdmd.md"],
+        dependencies: [withExtension("../../scripts/live-docs/run-all.ts")],
         publicSymbols: ["shouldRun"],
         archetype: "test",
         extraDependencies: []

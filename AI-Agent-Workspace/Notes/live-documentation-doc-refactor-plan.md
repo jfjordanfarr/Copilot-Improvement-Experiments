@@ -173,10 +173,12 @@
 - [ ] Document the CLI surface area (generate, lint, inspect, co-activation, forthcoming system views) in a single reference so onboarding copilots know which commands exist and what format they emit.
 
 ## 9. Layer Distribution Strategy
-- [ ] Define the long-term Layer ownership model: Capability stories delivered via a public site (GitHub Pages or similar), Commitment backlog tracked in Spec-Kit / issue trackers, System analytics emitted as materialized views, Implementation Layer rooted in `.live-documentation/source/`.
-- [ ] Add tasks/spec entries for scaffolding a GitHub Pages site sourced from Layer‑1 content, including build script, publish workflow, and live preview instructions.
-- [ ] Capture expectations for integrating external work-item systems (GitHub Issues/Azure DevOps) as the canonical Layer‑2 home while Live Docs reference them through generated links.
-- [ ] Update rollout comms (Layer‑1 vision, roadmap, quickstart) to describe the new distribution so contributors know where authored vs generated artifacts live.
+- [ ] Define the long-term Layer ownership model: Capability stories delivered via a public site (GitHub Pages or similar), Commitment backlog tracked in Spec-Kit / issue trackers, System analytics emitted as materialized views, Implementation Layer rooted in `.live-documentation/source/`. Call out that Stage 8 lands this split before any hosted showcase work (Stage 9) proceeds.
+- [ ] Add tasks/spec entries for scaffolding a GitHub Pages (Astro) site sourced from Layer‑1 content, including build script, publish workflow, live preview instructions, and `npm run site:build -- --check` wiring inside `safe:commit`. The site + CI/CD gates must be green before the hosted showcase pipeline earns approval.
+- [ ] Capture expectations for integrating external work-item systems (GitHub Issues/Azure DevOps) as the canonical Layer‑2 home while Live Docs reference them through generated links. Document how Spec-Kit exports map into the public site to keep roadmap + tracker states DRY.
+- [ ] Update rollout comms (Layer‑1 vision, roadmap, quickstart) to describe the distribution model, explicitly stating that the Cloudflare-hosted showcase is a marketing trial that reuses the local generator and links back to offline-first workflows across VS Code, Windsurf, Cursor, and future forks.
+
+> Note: This distribution layer must ship inside the CI/CD pipeline hardening window so the static site exists—and is health-checked—before the hosted demo (Stage 9) spins up.
 
 ## 8. Final Alignment & Cleanups
 - [ ] Ensure all references to "Link-Aware Diagnostics" either retire or become “Live Documentation” (document historical note where needed).

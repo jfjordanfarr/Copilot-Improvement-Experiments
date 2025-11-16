@@ -2,37 +2,15 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import type * as vscode from "vscode";
 
 import type { ListOutstandingDiagnosticsResult } from "@copilot-improvement/shared";
+import { getSharedVscodeMock } from "../testUtils/vscodeMock";
 
-// Mock VS Code
-const mockCommands = {
-  registerCommand: vi.fn()
-};
+const vscodeMock = getSharedVscodeMock();
+const mockCommands = vscodeMock.commands;
+const mockWindow = vscodeMock.window;
+const mockWorkspace = vscodeMock.workspace;
+const mockUri = vscodeMock.Uri;
 
-const mockWindow = {
-  showQuickPick: vi.fn(),
-  showSaveDialog: vi.fn(),
-  showInformationMessage: vi.fn(),
-  showErrorMessage: vi.fn()
-};
-
-const mockWorkspace = {
-  workspaceFolders: undefined as vscode.WorkspaceFolder[] | undefined,
-  asRelativePath: vi.fn((uri: string) => uri)
-};
-
-const mockUri = {
-  file: vi.fn((path: string) => ({ fsPath: path, toString: () => path })),
-  joinPath: vi.fn((base: { fsPath: string }, ...segments: string[]) => ({ 
-    fsPath: `${base.fsPath}/${segments.join("/")}` 
-  }))
-};
-
-vi.mock("vscode", () => ({
-  commands: mockCommands,
-  window: mockWindow,
-  workspace: mockWorkspace,
-  Uri: mockUri
-}));
+vi.mock("vscode", () => vscodeMock.module);
 
 vi.mock("node:fs/promises", () => ({
   default: {

@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 2
-- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-G1, REQ-E1, REQ-D1
+- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-G1, REQ-E1, REQ-D1, REQ-H1
 
 ## Requirements
 
@@ -122,6 +122,24 @@ Supports CAP-005 by anchoring each MDMD layer to the surface where it excels: La
 - Remove the committed `.live-documentation/system/` mirror once the CLI is validated; update lint/safe-commit rules to block stray System files.
 - Author integration tests and fixture workspaces that prove messy repos surface debt via the CLI output alone.
 
+### REQ-H1 Hosted Showcase Pipeline
+Supports CAP-007 by delivering a stateless Cloudflare (or equivalent) runner that clones public GitHub repositories, executes the existing Live Docs generator, and returns a downloadable bundle while preserving the offline-first guarantee.
+
+#### Stream H1-A – Stateless Runner *(planned)*
+- Containerise the Live Docs generator and its dependencies so `npm run live-docs:generate` and lint steps execute identically inside Cloudflare Pages/Workers or another serverless sandbox with deterministic resource ceilings.
+- Provide infrastructure-as-code plus GitHub workflow documentation so the hosted surface tracks the same branches/tags as the repository and reuses existing CI artifacts when available.
+- Enforce strict deletion of workspaces immediately after bundles are produced; expose telemetry proving the cleanup succeeded.
+
+#### Stream H1-B – Bundle Assembly & Guidance *(planned)*
+- Produce downloadable archives containing the generated Live Docs mirror, provenance manifest (commit hash, analyzer versions, benchmark IDs), and a README that explains how to rerun everything locally in VS Code, Windsurf, Cursor, and other forks.
+- Include prompt guides and CLI recipes tailored for LLM workflows so hosted trials showcase downstream consumption without promising cloud-only execution.
+- Track bundle generation metrics and publish anonymised counts (e.g., number of repos analyzed) for marketing without storing customer code.
+
+#### Stream H1-C – Consent, Privacy & Telemetry *(planned)*
+- Require explicit acknowledgement that only public repositories are supported, log repo/ref metadata for abuse mitigation, and document how rate limits apply.
+- Emit telemetry covering request lifecycle (received, clone complete, generation success/failure, bundle download) with correlation IDs so support can trace incidents without retaining code.
+- Signpost privacy, offline-first positioning, and a “Replay Locally” CTA in every hosted response so prospects immediately understand that the Cloudflare run mirrors the installable workflow.
+
 ## Acceptance Criteria
 
 ### REQ-L1 Acceptance Criteria
@@ -155,6 +173,12 @@ Supports CAP-005 by anchoring each MDMD layer to the surface where it excels: La
 - Layer 2 docs reference Spec-Kit/issue tracker IDs in `### Integration`, and generated snapshots highlight mismatches during safe-commit.
 - `npm run live-docs:system` (or successor command) defaults to ephemeral output, cleans up temporary files, and lint fails when `.live-documentation/system/` contains untagged artefacts.
 - Integration fixtures capture “bad” workspaces and prove the CLI output surfaces architectural debt without persisting docs.
+
+### REQ-H1 Acceptance Criteria
+- Hosted showcase runners use the exact same generator build as local developers (verified via provenance hashes) and fail closed when analyzer versions drift.
+- Bundles include a README that highlights offline-first steps plus compatibility guidance for VS Code, Windsurf, Cursor, and other forks; telemetry confirms the link back to local workflows is shown on every run.
+- Workspace archives are deleted automatically after bundle creation, with audit logs recording completion timestamps and correlation IDs.
+- Marketing copy and telemetry dashboards explicitly label the hosted surface as a demo-only experience and block private repositories by design.
 
 
 
@@ -209,73 +233,76 @@ Supports REQ-G1. [Live Documentation Pipeline](../layer-3/live-documentation-pip
 ## Linked Implementations
 
 ### IMP-101 docDiagnosticProvider
-Supports REQ-301. [Extension Diagnostic Provider](../layer-4/extension-diagnostics/docDiagnosticProvider.mdmd.md)
+Supports REQ-301. [Extension Diagnostic Provider](../../.live-documentation/source/packages/extension/src/diagnostics/docDiagnosticProvider.ts.md)
 
 ### IMP-102 publishDocDiagnostics
-Supports REQ-301. [Server Diagnostics Publisher](../layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md)
+Supports REQ-301. [Server Diagnostics Publisher](../../.live-documentation/source/packages/server/src/features/diagnostics/publishDocDiagnostics.ts.md)
 
 ### IMP-103 changeProcessor
-Supports REQ-101 and REQ-201. [Change Processor Runtime](../layer-4/language-server-runtime/changeProcessor.mdmd.md)
+Supports REQ-101 and REQ-201. [Change Processor Runtime](../../.live-documentation/source/packages/server/src/runtime/changeProcessor.ts.md)
 
 ### IMP-201 slopcopMarkdownLinks CLI
-Supports REQ-101. [SlopCop Markdown Audit](../layer-4/tooling/slopcopMarkdownLinks.mdmd.md)
+Supports REQ-101. [SlopCop Markdown Audit](../../.live-documentation/source/scripts/slopcop/check-markdown-links.ts.md)
 
 ### IMP-202 slopcopAssetPaths CLI
-Supports REQ-101. [SlopCop Asset Audit](../layer-4/tooling/slopcopAssetPaths.mdmd.md)
+Supports REQ-101. [SlopCop Asset Audit](../../.live-documentation/source/scripts/slopcop/check-asset-paths.ts.md)
 
 ### IMP-203 documentationBridge Schema
-Supports REQ-201. [Workspace Graph Snapshot](../layer-4/tooling/workspaceGraphSnapshot.mdmd.md)
+Supports REQ-201. [Workspace Graph Snapshot](../../.live-documentation/source/scripts/graph-tools/snapshot-workspace.ts.md)
 
 ### IMP-301 safe-to-commit Orchestrator
-Supports REQ-101 and REQ-301. [Safe to Commit Pipeline](../layer-4/tooling/safeToCommit.mdmd.md)
+Supports REQ-101 and REQ-301. [Safe to Commit Pipeline](../../scripts/safe-to-commit.mjs)
 
 ### IMP-302 graphCoverageAudit CLI
-Supports REQ-030. [Graph Coverage Audit](../layer-4/tooling/graphCoverageAudit.mdmd.md)
+Supports REQ-030. [Graph Coverage Audit](../../.live-documentation/source/scripts/graph-tools/audit-doc-coverage.ts.md)
 
 ### IMP-303 inspectSymbolNeighbors CLI
-Supports REQ-030. [Inspect Symbol Neighbors CLI](../layer-4/tooling/inspectSymbolNeighborsCli.mdmd.md)
+Supports REQ-030. [Inspect Symbol Neighbors CLI](../../.live-documentation/source/scripts/graph-tools/inspect-symbol.ts.md)
 
 ### IMP-401 Relationship Rule Engine
-Supports REQ-040. [Relationship Rule Engine](../layer-4/tooling/relationshipRuleEngine.mdmd.md)
+Supports REQ-040. [Relationship Rule Engine](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleEngine.ts.md)
 
 ### IMP-402 Relationship Rule Audit
-Supports REQ-040. [Relationship Rule Audit](../layer-4/tooling/relationshipRuleAudit.mdmd.md)
+Supports REQ-040. [Relationship Rule Audit](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleAudit.ts.md)
 
 ### IMP-403 Relationship Rule Resolvers
-Supports REQ-040. [Relationship Rule Resolvers](../layer-4/tooling/relationshipRuleResolvers.mdmd.md)
+Supports REQ-040. [Relationship Rule Resolvers](../../.live-documentation/source/packages/shared/src/rules/relationshipResolvers.ts.md)
 
 ### IMP-404 Relationship Rule Types
-Supports REQ-040. [Relationship Rule Types](../layer-4/tooling/relationshipRuleTypes.mdmd.md)
+Supports REQ-040. [Relationship Rule Types](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleTypes.ts.md)
 
 ### IMP-480 Symbol Correctness Profiles
-Supports REQ-040. [Symbol Correctness Profiles](../layer-4/tooling/symbolCorrectnessProfiles.mdmd.md)
+Supports REQ-040. [Symbol Correctness Profiles](../../.live-documentation/source/packages/shared/src/rules/symbolCorrectnessProfiles.ts.md)
 
 ### IMP-481 Symbol Correctness Validator
-Supports REQ-040. [Symbol Correctness Validator](../layer-4/server-diagnostics/symbolCorrectnessValidator.mdmd.md)
+Supports REQ-040. [Symbol Correctness Validator](../../.live-documentation/source/packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts.md)
 
 ### IMP-510 Python Fixture Oracle
-Supports REQ-030. [Python Fixture Oracle](../layer-4/testing/benchmarks/pythonFixtureOracle.mdmd.md)
+Supports REQ-030. [Python Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts.md)
 
 ### IMP-521 C Fixture Oracle
-Supports REQ-030. [C Fixture Oracle](../layer-4/testing/benchmarks/cFixtureOracle.mdmd.md)
+Supports REQ-030. [C Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts.md)
 
 ### IMP-522 Rust Fixture Oracle
-Supports REQ-030. [Rust Fixture Oracle](../layer-4/testing/benchmarks/rustFixtureOracle.mdmd.md)
+Supports REQ-030. [Rust Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts.md)
 
 ### IMP-523 Java Fixture Oracle
-Supports REQ-030. [Java Fixture Oracle](../layer-4/testing/benchmarks/javaFixtureOracle.mdmd.md)
+Supports REQ-030. [Java Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts.md)
 
 ### IMP-524 Ruby Fixture Oracle
-Supports REQ-030. [Ruby Fixture Oracle](../layer-4/testing/benchmarks/rubyFixtureOracle.mdmd.md)
+Supports REQ-030. [Ruby Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts.md)
 
 ### IMP-541 C# Fixture Oracle
-Supports REQ-050. [CSharp Fixture Oracle](../layer-4/testing/benchmarks/csharpFixtureOracle.mdmd.md)
+Supports REQ-050. [CSharp Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts.md)
 
 ### IMP-530 LLM Sampling Harness
-Supports REQ-201 and REQ-301. [LLM Sampling Harness](../layer-4/shared/llmSampling.mdmd.md)
+Supports REQ-201 and REQ-301. [LLM Sampling Harness](../../.live-documentation/source/packages/shared/src/inference/llmSampling.ts.md)
 
 ### IMP-610 liveDocsSystemCli *(planned)*
 Supports REQ-D1. (CLI will be documented alongside the System analytics implementation.)
+
+### IMP-950 hostedShowcaseWorker *(planned)*
+Supports REQ-H1. (Implementation will live under `scripts/live-docs/showcaseWorker.ts` with infrastructure configuration documented alongside the hosted pipeline.)
 
 ### IMP-901 docstringRoundTripService *(planned)*
 Supports REQ-G1. (Implementation will live under `packages/server/src/features/live-docs/docstringRoundTripService.ts` once the authoring bridge lands.)
@@ -340,3 +367,8 @@ Supports REQ-G1. (VS Code commands under `packages/extension/src/commands/liveDo
 - Which narrative/diagram presets best serve both humans and copilots while remaining deterministically regenerable?
 - What rollout messaging best guides adopters through the public site pipeline and Spec-Kit integration handoff while keeping System analytics ephemeral?
 - Which UX affordances keep bidirectional docstring sync human-controlled while still enabling future generative scaffolding workflows?
+- How do we articulate the handoff between the GitHub Pages handbook (Stage 8) and the hosted showcase (Stage 9) so prospects understand that all roads lead back to offline-first regeneration?
+
+## Stage Sequencing Notes
+- **Stage 8 – Layer Distribution & CI/CD Surfaces**: GitHub Pages (Astro) projection for Layer‑1/2 content lands alongside CI/CD guardrails so `npm run safe:commit` can catch site drift before publishing; System analytics remain CLI-only but linted to prevent committed artefacts.
+- **Stage 9 – Hosted Showcase Trials**: Only after the site + CI/CD gates are stable do we green-light the Cloudflare demo path, reusing the same generator container, publishing provenance-rich bundles, and positioning the hosted runner strictly as a marketing experience that links back to local VS Code/Windsurf/Cursor flows.

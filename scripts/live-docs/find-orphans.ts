@@ -3,6 +3,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+
 interface CliOptions {
   help: boolean;
   workspace: string;
@@ -97,7 +99,7 @@ async function collectLiveDocFiles(root: string): Promise<string[]> {
         await walk(fullPath);
         continue;
       }
-      if (entry.isFile() && entry.name.endsWith(".mdmd.md")) {
+      if (entry.isFile() && entry.name.endsWith(LIVE_DOCUMENTATION_FILE_EXTENSION)) {
         results.push(fullPath);
       }
     }
@@ -147,8 +149,8 @@ async function findOrphans(options: CliOptions): Promise<OrphanRecord[]> {
     const codePathFromMetadata = await extractCodePath(liveDoc);
 
     let expectedCodePath = codePathFromMetadata ?? relativeDoc;
-    if (expectedCodePath.endsWith(".mdmd.md")) {
-      expectedCodePath = expectedCodePath.slice(0, -".mdmd.md".length);
+    if (expectedCodePath.endsWith(LIVE_DOCUMENTATION_FILE_EXTENSION)) {
+      expectedCodePath = expectedCodePath.slice(0, -LIVE_DOCUMENTATION_FILE_EXTENSION.length);
     }
 
     const absoluteTarget = path.resolve(workspaceRoot, expectedCodePath);

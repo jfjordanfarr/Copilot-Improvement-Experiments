@@ -9,7 +9,7 @@ This mock chain mirrors the "workspace-wide markdown AST" capability while enfor
 - `/.live-documentation/layer-1/capabilities/cap-workspace-polyglot-ast.md`
 - `/.live-documentation/layer-2/requirements/req-live-docs-sync.md`
 - `/.live-documentation/layer-3/components/comp-live-docs-graph-ingest.md`
-- `/.live-documentation/source/packages/shared/src/live-docs/markdown.ts.mdmd.md`
+- `/.live-documentation/source/packages/shared/src/live-docs/markdown.ts.md`
 
 ### Layer 1 – CAP-Workspace-Polyglot-AST (concept)
 
@@ -101,9 +101,9 @@ This mock chain mirrors the "workspace-wide markdown AST" capability while enfor
 
 ## Generated
 ### Components
-- [`LD-implementation-packages-shared-src-live-docs-markdown-ts`](../../.live-documentation/source/packages/shared/src/live-docs/markdown.ts.mdmd.md)
-- [`LD-implementation-packages-shared-src-live-docs-schema-ts`](../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.mdmd.md)
-- [`LD-test-packages-shared-src-live-docs-generator-test-ts`](../../.live-documentation/source/packages/shared/src/live-docs/generator.test.ts.mdmd.md)
+- [`LD-implementation-packages-shared-src-live-docs-markdown-ts`](../../.live-documentation/source/packages/shared/src/live-docs/markdown.ts.md)
+- [`LD-implementation-packages-shared-src-live-docs-schema-ts`](../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.md)
+- [`LD-test-packages-shared-src-live-docs-generator-test-ts`](../../.live-documentation/source/packages/shared/src/live-docs/generator.test.ts.md)
 
 ### Topology *(generated from Layer-4 dependency graph)*
 ```mermaid
@@ -115,9 +115,9 @@ graph TD
 	comp --> ld1
 	comp --> ld2
 	comp --> ld3
-	click ld1 "../../.live-documentation/source/packages/shared/src/live-docs/markdown.ts.mdmd.md" "Open implementation doc"
-	click ld2 "../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.mdmd.md" "Open schema doc"
-	click ld3 "../../.live-documentation/source/packages/shared/src/live-docs/generator.test.ts.mdmd.md" "Open regeneration tests"
+	click ld1 "../../.live-documentation/source/packages/shared/src/live-docs/markdown.ts.md" "Open implementation doc"
+	click ld2 "../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.md" "Open schema doc"
+	click ld3 "../../.live-documentation/source/packages/shared/src/live-docs/generator.test.ts.md" "Open regeneration tests"
 ```
 ```
 
@@ -146,8 +146,8 @@ graph TD
 - `composeLiveDocId`
 
 ### Dependencies
-- [`schema.LiveDocMetadata`](../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.mdmd.md)
-- [`pathUtils.normalizeWorkspacePath`](../../.live-documentation/source/packages/shared/src/tooling/pathUtils.ts.mdmd.md)
+- [`schema.LiveDocMetadata`](../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.md)
+- [`pathUtils.normalizeWorkspacePath`](../../.live-documentation/source/packages/shared/src/tooling/pathUtils.ts.md)
 ```
 
 ### Layer 3 – COMP-Live-Docs-Regeneration-Tests (concept)
@@ -170,9 +170,9 @@ graph TD
 
 ## Generated
 ### Components
-- [`LD-test-packages-shared-src-live-docs-generator-test-ts`](../../.live-documentation/source/packages/shared/src/live-docs/generator.test.ts.mdmd.md)
-- [`LD-test-packages-server-src-features-live-docs-renderpublicsymbollines-test-ts`](../../.live-documentation/source/packages/server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
-- [`LD-test-packages-extension-src-commands-exportdiagnostics-test-ts`](../../.live-documentation/source/packages/extension/src/commands/exportDiagnostics.test.ts.mdmd.md)
+- [`LD-test-packages-shared-src-live-docs-generator-test-ts`](../../.live-documentation/source/packages/shared/src/live-docs/generator.test.ts.md)
+- [`LD-test-packages-server-src-features-live-docs-renderpublicsymbollines-test-ts`](../../.live-documentation/source/packages/server/src/features/live-docs/renderPublicSymbolLines.test.ts.md)
+- [`LD-test-packages-extension-src-commands-exportdiagnostics-test-ts`](../../.live-documentation/source/packages/extension/src/commands/exportDiagnostics.test.ts.md)
 
 ### Topology
 ```mermaid
@@ -184,9 +184,9 @@ graph TD
 	comp --> ld1
 	comp --> ld2
 	comp --> ld3
-	click ld1 "../../.live-documentation/source/packages/shared/src/live-docs/generator.test.ts.mdmd.md" "Open shared regeneration test"
-	click ld2 "../../.live-documentation/source/packages/server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md" "Open server regeneration test"
-	click ld3 "../../.live-documentation/source/packages/extension/src/commands/exportDiagnostics.test.ts.mdmd.md" "Open extension regeneration test"
+	click ld1 "../../.live-documentation/source/packages/shared/src/live-docs/generator.test.ts.md" "Open shared regeneration test"
+	click ld2 "../../.live-documentation/source/packages/server/src/features/live-docs/renderPublicSymbolLines.test.ts.md" "Open server regeneration test"
+	click ld3 "../../.live-documentation/source/packages/extension/src/commands/exportDiagnostics.test.ts.md" "Open extension regeneration test"
 ```
 ```
 
@@ -210,10 +210,10 @@ graph TD
 
 ## Generated
 ### Commands
-- [`scripts/live-docs/generate.ts`](../../.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md)
-- [`scripts/live-docs/lint.ts`](../../.live-documentation/source/scripts/live-docs/lint.ts.mdmd.md)
-- [`scripts/live-docs/run-all.ts`](../../.live-documentation/source/scripts/live-docs/run-all.ts.mdmd.md)
-- [`scripts/live-docs/report-precision.ts`](../../.live-documentation/source/scripts/live-docs/report-precision.ts.mdmd.md)
+- [`scripts/live-docs/generate.ts`](../../.live-documentation/source/scripts/live-docs/generate.ts.md)
+- [`scripts/live-docs/lint.ts`](../../.live-documentation/source/scripts/live-docs/lint.ts.md)
+- [`scripts/live-docs/run-all.ts`](../../.live-documentation/source/scripts/live-docs/run-all.ts.md)
+- [`scripts/live-docs/report-precision.ts`](../../.live-documentation/source/scripts/live-docs/report-precision.ts.md)
 
 ### Topology
 ```mermaid
@@ -227,10 +227,10 @@ graph TD
 	surf --> cmdLint
 	surf --> cmdRunAll
 	surf --> cmdReport
-	click cmdGenerate "../../.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md" "Open generate implementation"
-	click cmdLint "../../.live-documentation/source/scripts/live-docs/lint.ts.mdmd.md" "Open lint implementation"
-	click cmdRunAll "../../.live-documentation/source/scripts/live-docs/run-all.ts.mdmd.md" "Open run-all implementation"
-	click cmdReport "../../.live-documentation/source/scripts/live-docs/report-precision.ts.mdmd.md" "Open report implementation"
+	click cmdGenerate "../../.live-documentation/source/scripts/live-docs/generate.ts.md" "Open generate implementation"
+	click cmdLint "../../.live-documentation/source/scripts/live-docs/lint.ts.md" "Open lint implementation"
+	click cmdRunAll "../../.live-documentation/source/scripts/live-docs/run-all.ts.md" "Open run-all implementation"
+	click cmdReport "../../.live-documentation/source/scripts/live-docs/report-precision.ts.md" "Open report implementation"
 ```
 ```
 
@@ -254,8 +254,8 @@ graph TD
 
 ## Generated
 ### Definitions
-- [`packages/shared/src/live-docs/schema.ts`](../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.mdmd.md)
-- [`packages/shared/src/live-docs/schema.test.ts`](../../.live-documentation/source/packages/shared/src/live-docs/schema.test.ts.mdmd.md)
+- [`packages/shared/src/live-docs/schema.ts`](../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.md)
+- [`packages/shared/src/live-docs/schema.test.ts`](../../.live-documentation/source/packages/shared/src/live-docs/schema.test.ts.md)
 
 ### Topology
 ```mermaid
@@ -269,10 +269,10 @@ graph TD
 	data --> test
 	impl --> consumer1
 	impl --> consumer2
-	click impl "../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.mdmd.md" "Open schema implementation"
-	click test "../../.live-documentation/source/packages/shared/src/live-docs/schema.test.ts.mdmd.md" "Open schema tests"
-	click consumer1 "../../.live-documentation/source/packages/server/src/features/live-docs/generator.ts.mdmd.md" "Open generator implementation"
-	click consumer2 "../../.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md" "Open CLI implementation"
+	click impl "../../.live-documentation/source/packages/shared/src/live-docs/schema.ts.md" "Open schema implementation"
+	click test "../../.live-documentation/source/packages/shared/src/live-docs/schema.test.ts.md" "Open schema tests"
+	click consumer1 "../../.live-documentation/source/packages/server/src/features/live-docs/generator.ts.md" "Open generator implementation"
+	click consumer2 "../../.live-documentation/source/scripts/live-docs/generate.ts.md" "Open CLI implementation"
 ```
 ```
 
@@ -296,9 +296,9 @@ graph TD
 
 ## Generated
 ### Stages
-- [`scripts/live-docs/run-all.ts`](../../.live-documentation/source/scripts/live-docs/run-all.ts.mdmd.md)
-- [`scripts/live-docs/build-target-manifest.ts`](../../.live-documentation/source/scripts/live-docs/build-target-manifest.ts.mdmd.md)
-- [`packages/server/src/features/live-docs/generator.ts`](../../.live-documentation/source/packages/server/src/features/live-docs/generator.ts.mdmd.md)
+- [`scripts/live-docs/run-all.ts`](../../.live-documentation/source/scripts/live-docs/run-all.ts.md)
+- [`scripts/live-docs/build-target-manifest.ts`](../../.live-documentation/source/scripts/live-docs/build-target-manifest.ts.md)
+- [`packages/server/src/features/live-docs/generator.ts`](../../.live-documentation/source/packages/server/src/features/live-docs/generator.ts.md)
 
 ### Topology
 ```mermaid
@@ -309,10 +309,10 @@ graph LR
 	stage3[[LD-implementation-packages-server-src-features-live-docs-generator-ts]]
 	stage4[[LD-implementation-packages/shared/src/live-docs/markdown.ts]]
 	flow --> stage1 --> stage2 --> stage3 --> stage4
-	click stage1 "../../.live-documentation/source/scripts/live-docs/run-all.ts.mdmd.md" "Open run-all implementation"
-	click stage2 "../../.live-documentation/source/scripts/live-docs/build-target-manifest.ts.mdmd.md" "Open manifest builder"
-	click stage3 "../../.live-documentation/source/packages/server/src/features/live-docs/generator.ts.mdmd.md" "Open server generator"
-	click stage4 "../../.live-documentation/source/packages/shared/src/live-docs/markdown.ts.mdmd.md" "Open serializer"
+	click stage1 "../../.live-documentation/source/scripts/live-docs/run-all.ts.md" "Open run-all implementation"
+	click stage2 "../../.live-documentation/source/scripts/live-docs/build-target-manifest.ts.md" "Open manifest builder"
+	click stage3 "../../.live-documentation/source/packages/server/src/features/live-docs/generator.ts.md" "Open server generator"
+	click stage4 "../../.live-documentation/source/packages/shared/src/live-docs/markdown.ts.md" "Open serializer"
 ```
 ```
 
@@ -336,9 +336,9 @@ graph LR
 
 ## Generated
 ### Components
-- [`packages/server/src/runtime/environment.ts`](../../.live-documentation/source/packages/server/src/runtime/environment.ts.mdmd.md)
-- [`packages/server/src/runtime/environment.test.ts`](../../.live-documentation/source/packages/server/src/runtime/environment.test.ts.mdmd.md)
-- [`packages/server/src/features/settings/providerGuard.ts`](../../.live-documentation/source/packages/server/src/features/settings/providerGuard.ts.mdmd.md)
+- [`packages/server/src/runtime/environment.ts`](../../.live-documentation/source/packages/server/src/runtime/environment.ts.md)
+- [`packages/server/src/runtime/environment.test.ts`](../../.live-documentation/source/packages/server/src/runtime/environment.test.ts.md)
+- [`packages/server/src/features/settings/providerGuard.ts`](../../.live-documentation/source/packages/server/src/features/settings/providerGuard.ts.md)
 
 ### Topology
 ```mermaid
@@ -352,10 +352,10 @@ graph TD
 	integration --> envTest
 	envImpl --> settings
 	envImpl --> database
-	click envImpl "../../.live-documentation/source/packages/server/src/runtime/environment.ts.mdmd.md" "Open environment helper"
-	click envTest "../../.live-documentation/source/packages/server/src/runtime/environment.test.ts.mdmd.md" "Open environment tests"
-	click settings "../../.live-documentation/source/packages/server/src/features/settings/providerGuard.ts.mdmd.md" "Open settings provider"
-	click database "../../.live-documentation/source/packages/server/src/features/live-docs/generator.ts.mdmd.md" "Open generator"
+	click envImpl "../../.live-documentation/source/packages/server/src/runtime/environment.ts.md" "Open environment helper"
+	click envTest "../../.live-documentation/source/packages/server/src/runtime/environment.test.ts.md" "Open environment tests"
+	click settings "../../.live-documentation/source/packages/server/src/features/settings/providerGuard.ts.md" "Open settings provider"
+	click database "../../.live-documentation/source/packages/server/src/features/live-docs/generator.ts.md" "Open generator"
 ```
 ```
 
@@ -368,6 +368,8 @@ graph TD
 - [2025-11-10] Keep numeric layer identifiers but present the user-facing aliases “Capability/Commitment/System/Implementation” so docs stay approachable without renumbering. (`2025-11-10.md:L1222-L1245`)
 - [2025-11-11] Target the Capability layer for public-facing surfaces (e.g., GitHub Pages) while keeping Implementation-layer docs durable and allowing System views to materialise on demand. (`2025-11-11.md:L1532-L1558`,`2025-11-11.md:L1878-L1895`)
 - [2025-11-13] Standardise the product name as “Live Documentation” in Layer 1 narratives and plan to stage the future GitHub Pages experience under `docs/site/` so capabilities have a dedicated publication home. (`2025-11-13.md:L1771-L1784`,`2025-11-13.md:L1888-L1998`)
+- [2025-11-15] Keep Layer 1–3 MDMD folders as the only authored sources; any public “handbook” must be a deterministic Astro projection that rewrites links without editing the markdown and treats `.live-documentation/` as the Layer 4 mirror. (`2025-11-15.md:L971-L1004`)
+- [2025-11-15] Schedule the static-site projection alongside the CI/CD rollout so it precedes the hosted demo site but never replaces the offline extension experience. (`2025-11-15.md:L1014-L1044`)
 
 ## Layer 2 – Requirements / Work Items
 - Classified as a "unit" layer: each Layer 2 doc corresponds to a concrete work item and must cite acceptance criteria, evidence, and links to the architecture and implementation that fulfil it. (`2025-10-30.md:L420-L512`)
@@ -389,6 +391,8 @@ graph TD
 - [2025-11-10] Generate System-layer docs purely from Stage‑0 Live Docs—legacy `.mdmd` files serve only for validation—while deriving archetypes via deterministic signals (component clusters, CLI entry points, schema files, workflow stages, integration touchpoints, coverage manifests). (`2025-11-10.md:L1310-L1505`)
 - [2025-11-10] Guarantee every Implementation-layer doc appears in at least one System doc, summarise ancillary tests, allow optional multi-sampled LLM review for ambiguous archetype splits, and model dynamic branching by first replicating the manual reasoning path. (`2025-11-10.md:L2392-L2404`)
 - [2025-11-11] Treat System docs as ephemeral generative views: regenerate them via CLI, keep bad fixtures visible in tests until debt is cleared, and avoid tracking materialised copies in git. (`2025-11-11.md:L1532-L1558`)
+- [2025-11-15] Dogfood `npm run live-docs:system` outputs before editing architecture so modularity proposals (extension harness vs headless CLI vs container runner) reflect the actual topology captured in the generated System docs. (`2025-11-15.md:L1102-L1175`)
+- [2025-11-15] Capture lasting integration-testing and sandbox-fixture plans inside Layer 3 MDMD files instead of tweaking the ephemeral System doc mirrors; the published architecture is the versioned source of truth. (`2025-11-15.md:L1180-L1189`)
 
 ## Layer 4 – Implementation / Live Documentation Base
 - [2025-11-08] Base Live Docs pair an authored `Purpose`/`Notes` block with generated `Public Symbols` and `Dependencies`, forming the markdown-as-AST backbone. (`2025-11-08.md:L268-L340`,`2025-11-08.md:L5603-L5618`)
@@ -398,6 +402,8 @@ graph TD
 - Public symbols in Layer 4 docs must reference the symbol name in backticks so graph audits can confirm coverage. (`2025-10-27.md:L1600-L1680`)
  [2025-11-12] Emit structured docstring content under deterministic `##### \`Symbol\` — Field` subsections so every recommended XML tag becomes uniquely addressable inside Layer 4 Live Docs. (`2025-11-12.md:L790-L840`)
  [2025-11-12] Expand the language-agnostic documentation schema to capture summaries, remarks, params/type params, returns/value, exceptions, examples, links, and raw fragments while surfacing unsupported tags for future tooling. (`2025-11-12.md:L880-L1338`)
+- [2025-11-15] Retire legacy `.mdmd/layer-4` files—`.live-documentation/source/**/*.md` now embodies Layer 4 and will be the feedstock for any downstream projection (Astro site, demo bundles, etc.). (`2025-11-15.md:L971-L1004`)
+- [2025-11-15] Enforce `.md` as the Live Doc extension and add matching `*.instructions.md` guides so lint globs, CLI tooling, and instructions target the Stage‑0 outputs instead of `.mdmd.md`. (`2025-11-15.md:L1258-L1279`)
 
 ## Live Documentation Base Layer Mechanics
 - Each Live Doc separates metadata, authored content, and generated sections, a pattern intended for reuse in higher layers. (`2025-11-08.md:L1144-L1185`)

@@ -41,28 +41,28 @@ Supports FR-LD5, FR-LD7, and SC-LD4 by consuming Live Documentation projections,
 ## Linked Implementations
 
 ### IMP-101 docDiagnosticProvider
-Renders diagnostic metadata and quick actions in the extension. [Extension Diagnostic Provider](/.mdmd/layer-4/extension-diagnostics/docDiagnosticProvider.mdmd.md)
+Renders diagnostic metadata and quick actions in the extension. [Extension Diagnostic Provider](../../.live-documentation/source/packages/extension/src/diagnostics/docDiagnosticProvider.ts.md)
 
 ### IMP-102 publishDocDiagnostics
-Emits document diagnostics with hysteresis and acknowledgement budgets. [Server Diagnostics Publisher](/.mdmd/layer-4/server-diagnostics/publishDocDiagnostics.mdmd.md)
+Emits document diagnostics with hysteresis and acknowledgement budgets. [Server Diagnostics Publisher](../../.live-documentation/source/packages/server/src/features/diagnostics/publishDocDiagnostics.ts.md)
 
 ### IMP-103 changeProcessor
-Persists change events and orchestrates ripple analysis. [Change Processor Runtime](/.mdmd/layer-4/language-server-runtime/changeProcessor.mdmd.md)
+Persists change events and orchestrates ripple analysis. [Change Processor Runtime](../../.live-documentation/source/packages/server/src/runtime/changeProcessor.ts.md)
 
 ### IMP-104 publishCodeDiagnostics
-Produces code-ripple diagnostics with batching and noise suppression. [Code Diagnostics Publisher](/.mdmd/layer-4/server-diagnostics/publishCodeDiagnostics.mdmd.md)
+Produces code-ripple diagnostics with batching and noise suppression. [Code Diagnostics Publisher](../../.live-documentation/source/packages/server/src/features/diagnostics/publishCodeDiagnostics.ts.md)
 
 ### IMP-105 acknowledgementService
-Maintains acknowledgement state and suppression lookups. [Acknowledgement Service](/.mdmd/layer-4/server-diagnostics/acknowledgementService.mdmd.md)
+Maintains acknowledgement state and suppression lookups. [Acknowledgement Service](../../.live-documentation/source/packages/server/src/features/diagnostics/acknowledgementService.ts.md)
 
 ### IMP-106 listOutstandingDiagnostics
-Summarises unresolved diagnostics for CLI and UI surfaces. [Outstanding Diagnostics](/.mdmd/layer-4/server-diagnostics/listOutstandingDiagnostics.mdmd.md)
+Summarises unresolved diagnostics for CLI and UI surfaces. [Outstanding Diagnostics](../../.live-documentation/source/packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts.md)
 
 ### IMP-116 artifactWatcher
-Classifies workspace changes and enriches inference seeds ahead of ripple analysis. [Artifact Watcher](/.mdmd/layer-4/language-server-runtime/artifactWatcher.mdmd.md)
+Classifies workspace changes and enriches inference seeds ahead of ripple analysis. [Artifact Watcher](../../.live-documentation/source/packages/server/src/features/watchers/artifactWatcher.ts.md)
 
 ### IMP-117 rippleAnalyzer
-Generates relationship hints that communicate downstream impact for diagnostics surfaces. [Ripple Analyzer](/.mdmd/layer-4/knowledge-graph-ingestion/rippleAnalyzer.mdmd.md)
+Generates relationship hints that communicate downstream impact for diagnostics surfaces. [Ripple Analyzer](../../.live-documentation/source/packages/server/src/features/knowledge/rippleAnalyzer.ts.md)
 
 ## Evidence
 - Unit coverage: `publishDocDiagnostics.test.ts`, `acknowledgementService.test.ts`, `listOutstandingDiagnostics.test.ts`, `artifactWatcher.test.ts`, `docDiagnosticProvider.test.ts`, `rippleAnalyzer.test.ts`.

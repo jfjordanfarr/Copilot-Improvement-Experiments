@@ -8,7 +8,7 @@
 
 **Input**: "Deliver an open-source, markdown-as-AST system where every workspace artifact has Live Documentation: an authored preamble plus generated sections describing programmatic surface, dependencies, and evidence, powering diagnostics and copilots without cloud dependencies."
 
-**Current Vision**: Live Documentation mirrors each tracked asset under `/.live-documentation/source/`, giving it an authored preamble plus deterministic generated metadata. Diagnostics, CLI exports, and copilots consume the same markdown graph, while System-level views (clusters, workflows, coverage rollups) are generated on demand instead of being committed to the repository, keeping the experience reproducible and ephemeral by design. Layer 1 capabilities publish to a static site (initially GitHub Pages), Layer 2 requirements reconcile with Spec-Kit and issue trackers, and the System CLI streams materialized views so no architecture markdown lingers in the repo.
+**Current Vision**: Live Documentation mirrors each tracked asset under `/.live-documentation/source/`, giving it an authored preamble plus deterministic generated metadata. Diagnostics, CLI exports, and copilots consume the same markdown graph, while System-level views (clusters, workflows, coverage rollups) are generated on demand instead of being committed to the repository, keeping the experience reproducible and ephemeral by design. Layer 1 capabilities publish to a static site (initially GitHub Pages), Layer 2 requirements reconcile with Spec-Kit and issue trackers, and the System CLI streams materialized views so no architecture markdown lingers in the repo. A future Cloudflare-hosted showcase reuses the exact same generator so prospects can submit a public GitHub repository, receive a downloadable bundle (Live Docs, SQLite cache, README + prompt guide), and replay the experience locally without installing the extension or paying for LLM tokens.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -138,6 +138,24 @@ Authors treat Live Docs as the canonical AST for documentation and optional skel
 
 ---
 
+### User Story 8 – Hosted Showcase Trials (Priority: P2)
+
+**Status**: Planned — depends on REQ-H1 and the hosted showcase pipeline.
+
+Prospective adopters visit a Cloudflare-backed site, enter a public GitHub repository reference, and receive a downloadable bundle containing Live Docs, the SQLite knowledge graph, and a README + prompt guide. The hosted runner is stateless, deletes the cloned repo once the bundle is produced, and exposes provenance metadata so teams can reproduce the output locally or feed it to their preferred LLM workflows.
+
+**Why this priority**: Visibility drives adoption. Demonstrating Live Documentation without installation friction or paid LLM calls positions the project against Code Wiki, Windsurf Codemaps, and GitLab Knowledge Graph while preserving the local-first philosophy.
+
+**Independent Test**: Submit `github.com/example/repo@main` via the showcase UI, download the resulting bundle, and confirm it contains Live Docs, the SQLite cache, provenance metadata, and the prompt guide. Re-run `npm run live-docs:generate` locally to ensure hashes match.
+
+**Acceptance Scenarios**:
+
+1. **Given** a public GitHub repo reference, **When** the showcase pipeline executes, **Then** it clones the repo into ephemeral storage, runs the standard generator, emits provenance metadata, and returns a zip containing Live Docs, SQLite cache, README, and prompt guide.
+2. **Given** a downloaded bundle, **When** the user follows the README instructions, **Then** they can rehydrate the SQLite cache locally, inspect Live Docs in the workspace, and replay the same prompts in their LLM of choice.
+3. **Given** the hosted runner completes, **When** telemetry is inspected, **Then** it shows that all temporary clones and caches were deleted within the configured TTL and that no private repositories were accepted.
+
+---
+
 ### Edge Cases
 
 - Newly created files without exports still receive stub Live Docs; generated sections display `_No data available_` until analyzers detect symbols.
@@ -152,6 +170,7 @@ Authors treat Live Docs as the canonical AST for documentation and optional skel
 - Docstring bridges must degrade gracefully when encountering unsupported tags (`<typeparam>`, `<include>`, custom extensions); provenance should capture raw XML and the Live Doc should display `_Not documented_` placeholders instead of silently dropping content.
 - Round-trip tooling must fail safe when source files change between preview and apply, prompting users to regenerate diffs instead of overwriting concurrent edits.
 - Generative scaffolding outputs remain in scratch locations even when commands crash; cleanup routines run on next invocation to avoid accumulating stale drafts.
+- Hosted showcase runs accept only public repositories, enforce repo size/time limits, and delete all cloned artefacts immediately after bundling to keep the service stateless.
 
 ### Live Doc Generation Lifecycle
 
@@ -183,6 +202,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **FR-LD12**: System analytics MUST default to ephemeral outputs (stdout or temporary directories) and require explicit user confirmation before writing tracked files; commands MUST tag persisted exports so lint can detect strays.
 - **FR-LD13**: Layer distribution tooling MUST publish Layer 1 capabilities via a scripted static site, reconcile Layer 2 requirement status with Spec-Kit/issue trackers, and keep System analytics as CLI materialized views that leave no tracked artefacts unless explicitly promoted.
 - **FR-LD14**: Round-trip authoring tools MUST expose preview/apply flows protected by feature flags, record audit telemetry for every docstring mutation, and emit generative scaffolds into scratch locations without modifying tracked files until humans promote them.
+- **FR-LD15**: The hosted showcase pipeline MUST reuse the standard generator to process public GitHub repositories headlessly, emit provenance metadata, produce a downloadable bundle (Live Docs, SQLite cache, README, prompt guide), and delete cloned data immediately after the bundle is created.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -200,7 +220,8 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - Analyzer plugins can be authored in TypeScript and executed within the server; polyglot coverage is staged via CLI bridges until native analyzers land.
 - Teams tolerate short regeneration windows (≤30 s for 5k-file repo) during safe-commit; tooling will parallelise to stay within bounds.
 - Documentation writers will adopt the authored header schema once editors expose helpers or snippets.
-- External adopters expect MIT-licensed tooling and CLI-first workflows; Live Docs must regenerate without VS Code to broaden reach.
+- External adopters expect MIT-licensed tooling and CLI-first workflows; Live Docs must regenerate without VS Code to broaden reach, and the extension must stay compatible with VS Code forks (Windsurf, Cursor, others) that implement the same API surface.
+- Hosted showcases target only public repositories, run the same generator used locally, and guarantee that temporary clones are purged immediately after bundles are produced.
 - System analytics remain ephemeral unless a user explicitly persists them; tooling should assume a clean workspace between runs.
 - Static site publishing and Spec-Kit syncing remain optional per workspace but default on for project-owned repos so stakeholders have a consistent entry point.
 
@@ -219,6 +240,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **SC-LD9**: Static site builds publish Layer 1 capabilities without broken links, Layer 2 requirements stay in sync with Spec-Kit/issue trackers, and the System CLI surfaces architectural debt while keeping the tracked tree clean between runs.
 - **SC-LD10**: Structured docstring bridges populate canonical subsections for ≥95% of documented public symbols in supported languages; unmapped tags surface in telemetry within one regeneration cycle.
 - **SC-LD11**: Bidirectional docstring sync succeeds (preview + apply) for ≥90% of supported language fixtures, emits telemetry for 100% of write-backs, and never mutates tracked files without explicit human confirmation logged in safe-commit output.
+- **SC-LD12**: Hosted showcase runs finish within ≤3 minutes for repos under 5k files, emit bundles whose hashes match local regeneration, and delete temporary clones/caches within 60 seconds of completion.
 
 
 ## Clarifications
@@ -239,6 +261,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **WI-LD401** – Package sample workspace and MIT-licensed release notes for public adoption.
 - **WI-LD501** – Build System analytics CLI (clusters, workflows, coverage) that defaults to streaming output and includes cleanup guarantees.
 - **WI-LD601** – Stand up the layer distribution surfaces (static site pipeline, Spec-Kit/issue tracker reconciliation, and the guardrailed `live-docs:system` CLI).
+- **WI-LD701** – Launch the hosted showcase pipeline (Cloudflare or equivalent) that clones public repositories into ephemeral storage, runs the standard generator, zips Live Docs + SQLite + README + prompt guide, emits provenance metadata, and proves all artefacts are deleted after the bundle is signed.
 
 
 ## Implementation Traceability

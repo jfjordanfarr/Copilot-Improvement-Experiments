@@ -38,7 +38,7 @@ export function registerAnalyzeWithAICommand(options: AnalyzeWithAIOptions): vsc
       return;
     }
 
-    let snapshot: ListOutstandingDiagnosticsResult;
+    let snapshot: ListOutstandingDiagnosticsResult | undefined;
     try {
       snapshot = await options.client.sendRequest<ListOutstandingDiagnosticsResult>(
         LIST_OUTSTANDING_DIAGNOSTICS_REQUEST
@@ -50,12 +50,13 @@ export function registerAnalyzeWithAICommand(options: AnalyzeWithAIOptions): vsc
       return;
     }
 
-    if (!snapshot.diagnostics.length) {
+    const diagnostics = snapshot?.diagnostics ?? [];
+    if (diagnostics.length === 0) {
       void vscode.window.showInformationMessage("No outstanding diagnostics to analyze.");
       return;
     }
 
-    const pickItems = snapshot.diagnostics.map(diagnostic => ({
+    const pickItems = diagnostics.map(diagnostic => ({
       label: formatDiagnosticLabel(diagnostic),
       description: diagnostic.message,
       detail: diagnostic.target?.uri ?? diagnostic.trigger?.uri ?? diagnostic.recordId,

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "../../config/liveDocumentationConfig";
 import { buildCoActivationReport } from "./coActivation";
 import type { Stage0Doc, TargetManifest } from "../types";
 
@@ -8,10 +9,11 @@ function makeDoc(options: {
   dependencies?: string[];
   archetype?: string;
 }): Stage0Doc {
+  const docPath = `${options.sourcePath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`;
   return {
     sourcePath: options.sourcePath,
-    docAbsolutePath: `/abs/${options.sourcePath}.mdmd.md`,
-    docRelativePath: `${options.sourcePath}.mdmd.md`,
+    docAbsolutePath: `/abs/${docPath}`,
+    docRelativePath: docPath,
     archetype: options.archetype ?? "implementation",
     dependencies: options.dependencies ?? [],
     externalModules: [],
@@ -64,7 +66,7 @@ describe("buildCoActivationReport", () => {
     expect(report.nodes).toEqual([
       {
         id: "packages/a.ts",
-        docRelativePath: "packages/a.ts.mdmd.md",
+        docRelativePath: `packages/a.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`,
         archetype: "implementation",
         degree: 1,
         strength: 1,
@@ -73,7 +75,7 @@ describe("buildCoActivationReport", () => {
       },
       {
         id: "packages/b.ts",
-        docRelativePath: "packages/b.ts.mdmd.md",
+        docRelativePath: `packages/b.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`,
         archetype: "implementation",
         degree: 1,
         strength: 1,

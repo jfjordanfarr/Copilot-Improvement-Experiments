@@ -55,13 +55,13 @@ Supports FR-LD3, FR-LD4, and REQ-L3 by producing reproducible performance, accur
 ## Linked Implementations
 
 ### IMP-306 testReportGenerator
-Produces the combined verification and benchmark report. [Test Report Generator](/.mdmd/layer-4/tooling/testReportGenerator.mdmd.md)
+Produces the combined verification and benchmark report. [Test Report Generator](../../.live-documentation/source/packages/shared/src/reporting/testReport.ts.md)
 
 ### IMP-307 benchmarkRecorder
-Shared utilities powering benchmark fixtures. [Benchmark Recorder](/.mdmd/layer-4/testing/benchmarks/benchmarkRecorder.mdmd.md)
+Shared utilities powering benchmark fixtures. [Benchmark Recorder](../../.live-documentation/source/tests/integration/benchmarks/utils/benchmarkRecorder.ts.md)
 
 ### IMP-308 inferenceAccuracy Tracker
-Captures precision/recall metrics for ripple inference. [Inference Accuracy Telemetry](/.mdmd/layer-4/telemetry/inferenceAccuracyTracker.mdmd.md)
+Captures precision/recall metrics for ripple inference. [Inference Accuracy Telemetry](../../.live-documentation/source/packages/shared/src/telemetry/inferenceAccuracy.ts.md)
 
 ## Evidence
 - Benchmark integration suites under `tests/integration/benchmarks` ensure rebuild stability and inference accuracy assertions stay green.

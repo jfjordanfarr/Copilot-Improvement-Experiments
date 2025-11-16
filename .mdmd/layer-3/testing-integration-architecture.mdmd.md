@@ -24,6 +24,11 @@ Supports FR-LD1 through FR-LD6 plus REQ-F1 to REQ-F6 by executing end-to-end sce
 - Add Live Documentation suites (`live-docs-generation`, `live-docs-evidence`, `live-docs-inspect-cli`, `live-docs-docstring-drift`) validating regeneration determinism, evidence population, CLI parity, and drift remediation.
 - Keep suite responsibilities mapped back to runtime components (Live Doc generator, diagnostics pipeline, knowledge ingestion, LLM bridge) for traceability.
 
+### Harness Strategy & Options
+- **Immediate path (Options 1 + 4)**: retain the VS Code harness for UI/diagnostics flows while carving out a lightweight headless runner that replays the same suites against compiled artifacts using a sandboxed fixture. This preserves UX coverage and gives us a deterministic harness for CLI, generator, and hosted showcase rehearsal without pulling Electron into every scenario.
+- **Durable target (Options 2 + 3)**: promote the Live Docs generator/analyzer stack into a reusable core package that both VS Code and headless/container harnesses consume, and pair it with scenario-specific benchmark suites that validate the hosted showcase container. These options unlock containerisation, Cloudflare demo rehearsals, and multi-IDE harness reuse once the core stabilises.
+- Keep VS Code and headless/container harnesses independent even after the core extraction so regressions in one surface do not mask the other. Hosted showcase validations must point to the headless/container harness to guarantee parity with the Cloudflare runner while acknowledging the marketing-only positioning.
+
 ### Artefact Capture
 - Persist run outputs (snapshot JSON, logs, Live Doc markdown fixtures, provenance files) in per-suite temp directories for inspection and regression comparisons.
 
@@ -40,22 +45,22 @@ Supports FR-LD1 through FR-LD6 plus REQ-F1 to REQ-F6 by executing end-to-end sce
 ## Linked Implementations
 
 ### IMP-401 vscodeIntegrationHarness
-Bootstraps VS Code with compiled artifacts and loads suites. [VS Code Integration Harness](/.mdmd/layer-4/testing/integration/vscodeIntegrationHarness.mdmd.md)
+Bootstraps VS Code with compiled artifacts and loads suites. [VS Code Integration Harness](../../.live-documentation/source/tests/integration/vscode/runTests.ts.md)
 
 ### IMP-402 simpleWorkspaceFixture
-Primary workspace assets used across US suites. [Simple Workspace Fixture](/.mdmd/layer-4/testing/integration/simpleWorkspaceFixture.mdmd.md)
+Primary workspace assets used across US suites. [Simple Workspace Fixture](../../.live-documentation/source/tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts.md)
 
 ### IMP-403 us1ThroughUs5 Suites
-Scenario implementations verifying ripple, writer, developer, scope collision, and transform flows. [US Integration Suites](/.mdmd/layer-4/testing/integration/us1-codeImpactSuite.mdmd.md)
+Scenario implementations verifying ripple, writer, developer, scope collision, and transform flows. [US Integration Suites](../../.live-documentation/source/tests/integration/us1/codeImpact.test.ts.md)
 
 ### IMP-404 cleanDistUtility
-Removes stale bundles before integration runs. [Clean Dist Utility](/.mdmd/layer-4/testing/integration/cleanDistUtility.mdmd.md)
+Removes stale bundles before integration runs. [Clean Dist Utility](../../tests/integration/clean-dist.mjs)
 
 ### IMP-405 liveDocsGenerationSuite
-Exercises regeneration CLI, authored preservation, and deterministic output. [Stage‑0 Live Doc](../../.live-documentation/source/tests/integration/live-docs/generation.test.ts.mdmd.md)
+Exercises regeneration CLI, authored preservation, and deterministic output. [Stage‑0 Live Doc](../../.live-documentation/source/tests/integration/live-docs/generation.test.ts.md)
 
 ### IMP-406 liveDocsEvidenceSuite
-Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Stage‑0 Live Doc](../../.live-documentation/source/tests/integration/live-docs/evidence.test.ts.mdmd.md)
+Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Stage‑0 Live Doc](../../.live-documentation/source/tests/integration/live-docs/evidence.test.ts.md)
 
 ### IMP-407 liveDocsInspectCliSuite
 CLI parity suite remains on the roadmap; capture its responsibility once the corresponding Stage-0 doc materialises.
@@ -72,3 +77,4 @@ Drift remediation suite remains planned; update this entry after initial impleme
 ## Operational Notes
 - Snapshot directories remain isolated per suite to ease diffing pre/post change.
 - Adding a new scenario requires extending the fixture set and documenting its responsibility here to preserve traceability.
+- Maintain distinct runbooks for the VS Code harness and the headless/container harness so hosted showcase rehearsals (Cloudflare pipeline) never depend on Electron-specific behaviours; both harnesses must share compiled artifacts but publish independent logs.

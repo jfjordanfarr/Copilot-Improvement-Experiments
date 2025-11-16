@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 1
-- Capability IDs: CAP-001, CAP-002, CAP-003, CAP-004
+- Capability IDs: CAP-001, CAP-002, CAP-003, CAP-004, CAP-005, CAP-006, CAP-007
 
 ## Capabilities
 
@@ -25,18 +25,23 @@ Publish vision + roadmap knowledge to a static site (initially GitHub Pages), de
 ### CAP-006 – Generative Authoring & Docstring Bridges
 Deliver a two-way authoring loop where Live Docs act as the editable AST for code and documentation. Writers can draft or revise summaries, remarks, and parameter notes inside Layer‑4 markdown and push those changes back into inline docstrings; conversely, analyzers harvest rich docstring payloads (including HTML blocks, custom tags, and examples) into canonical Live Doc sections. Feature flags protect legacy flows while we graduate round-trip sync, generative skeleton scaffolding, and language-specific adapters that can emit starter code or pseudocode from authored Live Doc intent ([AI-Agent-Workspace/ChatHistory/2025/11/2025-11-13.md](../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-13.md)).
 
+### CAP-007 – Hosted Showcase & Trials
+Deliver a stateless, Cloudflare-hosted showcase that clones public GitHub repositories, runs the existing Live Docs generator headlessly, and returns a downloadable bundle (markdown mirror, provenance metadata, replay instructions) so prospects can evaluate the system without installing the extension. The hosted surface is marketing-only: it never replaces the offline-first workflow, always links back to the local VS Code extension, and must highlight compatibility with VS Code forks like Windsurf and Cursor to reinforce multi-IDE reach. Instrument the flow with telemetry that proves workspaces are deleted immediately while preserving enough audit trails to troubleshoot demo failures ([AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md](../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md)).
+
 ## Desired Outcomes
 - Layer‑4 Live Docs regenerate deterministically; authored content stays small, intentional, and easy to review.
 - Implementation Live Docs list their public surface, structured docstring fields, dependencies, and observed evidence so ripple impact and test coverage are auditable in markdown alone.
 - Test and asset archetypes expose their relationships through generated sections (`Targets`, `Supporting Fixtures`, `Consumers`), enabling cross-language AST traversal without bespoke parsers.
 - Ephemeral System views spin up from the Layer‑4 corpus on demand (markdown, JSON, graph exports) and can safely incorporate statistical analytics or local history without committing churn to the repo.
 - Layer‑1 capabilities replicate cleanly into a static site (GitHub Pages or equivalent) so stakeholders consume the same markdown we curate in-repo.
+- Hosted showcase runs reuse the exact generator stack, emit reproducible bundles, and always point participants back to local regeneration so offline workflows remain the authoritative path.
 - Layer‑2 requirement docs cross-link to Spec-Kit tasks or issue trackers while remaining the authoritative summaries for automation.
 - Diagnostics, exports, and LLM prompts rely on the same markdown-as-AST graph, shrinking the gap between human review workflows and autonomous copilots.
 - Markdown links stay relative (slug dialect configurable) so Live Docs double as wiki-friendly artefacts consumers can publish directly.
 - Tooling, instructions, and licensing remain MIT-friendly so adopters can regenerate Layer‑4 docs locally and opt into System analytics when needed.
 - Structured docstring subsections provide anchored headers per field so diagnostics, prompts, and writers can target summaries, parameters, remarks, or examples without scraping prose.
 - Two-way docstring bridges allow Live Docs to seed inline documentation and future generative workflows without forking the source of truth.
+- Multi-IDE distribution (VS Code, Windsurf, Cursor, and future forks) stays first-class by ensuring commands, docs, and hosted showcases all document their compatibility and offline fallback steps.
 
 ## Downstream Requirements
 
@@ -54,6 +59,9 @@ Deliver a two-way authoring loop where Live Docs act as the editable AST for cod
 
 ### REQ-501 – Layer Distribution Surfaces
 [Product roadmap – layer distribution surfaces](../layer-2/product-roadmap.mdmd.md) captures the GitHub Pages scaffold, Spec-Kit integration, and on-demand System CLI expectations backing CAP-005.
+
+### REQ-H1 – Hosted Showcase Pipeline
+[Product roadmap – hosted showcase pipeline](../layer-2/product-roadmap.mdmd.md#reqh1-hosted-showcase-pipeline) details the Cloudflare marketing surface, CI/CD guardrails, telemetry, and deletion guarantees required to satisfy CAP-007 without compromising the offline-first promise.
 
 ## Success Signals
 - ≥95% of modified source files have Live Docs regenerated within the same verify run, and all generated sections hash-match local analyser output (SC-LD-001).
@@ -77,10 +85,10 @@ Deliver a two-way authoring loop where Live Docs act as the editable AST for cod
 
 ## Guiding Principles
 1. **Markdown as AST** – treat Layer‑4 markdown links, headings, and sections as the canonical graph; analyzers refresh markdown, not bespoke caches.
-2. **Workspace Local First** – run entirely on developer machines, keeping data private and reproducible; remote feeds remain optional accelerators.
+2. **Workspace Local First** – run entirely on developer machines, keeping data private and reproducible; remote feeds remain optional accelerators and hosted showcases are explicitly positioned as marketing trials that always link back to local workflows (VS Code, Windsurf, Cursor, and other forks).
 3. **Generated Blocks are Sacred** – tooling owns generated sections; humans curate authored notes and waivers with discipline.
 4. **Evidence or Escalation** – every implementation must link to proof, or record a waiver explaining the gap.
-5. **Shareable by Default** – Live Docs, CLI exports, and MIT licensing keep artefacts portable across GitHub, Azure DevOps, and other wiki surfaces.
+5. **Shareable by Default** – Live Docs, CLI exports, hosted showcase bundles, and MIT licensing keep artefacts portable across GitHub, Azure DevOps, and other wiki surfaces.
 6. **System Views are Materialized** – architecture/topology views are regenerated when needed and never treated as permanent docs, freeing analytics to evolve without churn.
 7. **Continuous Falsifiability** – benchmarks, integration suites, and SlopCop rules back every guarantee with repeatable tests.
 8. **Authoring Loops Stay Human-First** – bidirectional sync and generative scaffolds require explicit human confirmation and publish audit trails so Live Docs never silently rewrite code or docstrings.
@@ -114,9 +122,9 @@ Deliver a two-way authoring loop where Live Docs act as the editable AST for cod
 
 ## Implementation Touchpoints
 - [Live Documentation Generator](../layer-3/language-server-architecture.mdmd.md) will orchestrate analyzers, docstring bridges, and markdown emitters to refresh generated sections.
-- [Knowledge Feed Manager](../layer-4/knowledge-graph-ingestion/knowledgeFeedManager.mdmd.md) keeps optional LSIF/SCIP feeds healthy so generated sections remain accurate.
-- [Diagnostics Tree View](../layer-4/extension-views/diagnosticsTree.mdmd.md) and [Export Diagnostics Command](../layer-4/extension-commands/exportDiagnostics.mdmd.md) consume Live Docs for impact analysis.
-- [SlopCop Markdown Audit](../layer-4/tooling/slopcopMarkdownLinks.mdmd.md) and future Live Doc-specific lint rules enforce authored/generated boundaries and evidence guarantees.
+- [Knowledge Feed Manager](../../.live-documentation/source/packages/server/src/features/knowledge/knowledgeFeedManager.ts.md) keeps optional LSIF/SCIP feeds healthy so generated sections remain accurate.
+- [Diagnostics Tree View](../../.live-documentation/source/packages/extension/src/views/diagnosticsTree.ts.md) and [Export Diagnostics Command](../../.live-documentation/source/packages/extension/src/commands/exportDiagnostics.ts.md) consume Live Docs for impact analysis.
+- [SlopCop Markdown Audit](../../.live-documentation/source/scripts/slopcop/check-markdown-links.ts.md) and future Live Doc-specific lint rules enforce authored/generated boundaries and evidence guarantees.
 
 ## Code Anchors
 - [`packages/server/src/main.ts`](../../packages/server/src/main.ts) bootstraps the language server runtime that triggers Live Doc regeneration.

@@ -652,6 +652,12 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L179-L220` — Prioritise polyglot Live Doc emitters against in-repo fixtures first, only expanding to external repositories once local coverage is solid.
 - `L304-L360` — Provide a proactive change plan covering the language-adapter abstraction and the new `tests/integration/live-docs/polyglot-fixtures.test.ts`, then execute with high-agency, low-chatter follow-through.
 - `L790-L840` — Treat docstring bridging as a structured surface: emit per-symbol `##### \`Name\` — Field` headings so every recommended XML tag has a uniquely addressable slot in Live Docs.
+
+## 2025-11-14 (Dev Day 23)
+- `2025-11-14.md:L2850-L2865` — Evidence for new docstring adapters must be both machine-verifiable (unit/integration/benchmark suites) and manually inspected; always dogfood Live Docs in non-TypeScript languages and finish with `npm run safe:commit -- --benchmarks` before calling the work ready.
+- `L2989-L3045` — Before touching code for another language adapter, walk the relevant files, produce a full implementation plan (syntax coverage, tests, manual inspection, schema impacts), operate with low chatty output, and rehydrate via the cited snippet plus local diffs whenever autosummarization interrupts.
+- `L3332-L3340` — After adapter work, generate Live Docs for the affected fixtures in an isolated workspace, review the Markdown by hand, and only then rerun the full safe-commit pipeline.
+- `L3410-L3485` — Restore real Ollama usage during integration tests by pointing both `LINK_AWARE_OLLAMA_MODEL` and `OLLAMA_MODEL` to `qwen3-coder:30b`, capturing traces under `AI-Agent-Workspace/ollama-traces`, and rejecting the mock-response fallback going forward.
 - `L880-L1338` — Design a language-agnostic documentation schema that captures summaries, remarks, params/type params, returns/value, exceptions, examples, links, and raw fragments, preserving unsupported tags for later tooling.
 - `L1340-L1380` — Codify the structured docstring commitments across Layer 1, Layer 2, Layer 3, and the `001-link-aware-diagnostics` spec so the roadmap and architecture stay synchronized with the implementation plan.
 - `L1760-L1785` — After major code passes, rehydrate on the full day’s chat log before continuing, then resume with high agency once alignment is confirmed.
@@ -665,6 +671,17 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L1771-L1784` — Standardise on “Live Documentation” as the formal product name; avoid “LiveDocs” in persisted artifacts to prevent brand collisions.
 - `L1888-L1998` — Drive the workspace cleanup plan: prepare for a repo rename to `Live-Documentation`, stand up a future `docs/site/` GitHub Pages scaffold, purge temp debris, and keep ChatHistory organised by year/month folders.
 - `L2238-L2244` — Treat historical ChatHistory entries as read-only audit artifacts; do not rewrite or auto-migrate their internal links during tooling passes.
+
+## 2025-11-15 (Dev Day 24)
+- `2025-11-15.md:L372-L385` — Capture the Cloudflare-hosted public showcase plan across vision, roadmap, and spec docs so we can run Live Documentation on OSS repos, return zipped outputs, and still position the extension as the primary offline product.
+- `L698-L788` — Document that the hosted showcase is marketing-only: it must never starve or replace local workflows, and our roadmap should explicitly call out support for VS Code forks (Windsurf, Cursor, etc.) while purging speculative wording that could seed hallucinations.
+- `L900-L1041` — Keep the static site fully DRY by projecting existing Layer 1–3 MDMD files via a deterministic Node/TypeScript builder (Astro is acceptable) and fold the site work into the CI/CD stage before tackling the hosted demo.
+- `L1099-L1124` — Update Layer‑3 integration/benchmark plans to split harnesses by runtime context (extension vs. headless generator) so Options 2+3 remain the durable strategy for future containerised/demo deployments.
+- `L1204-L1213` — Behaviour expectations now include “Do it the Right Way,” prioritising durable, complete solutions over quick fixes—especially for architecture, design patterns, and tests.
+- `L1248-L1273` — Revise Layer‑3 instructions, delete legacy Layer‑4 MDMD, ensure the generator emits `.md` Live Docs, and add matching `*.instructions.md` guards for the new glob.
+- `L2706-L2706` — Rehydrate and update `mdmd-layer-content-census.md` with signals from both 11/14 and 11/15 after any git reset so intent tracking stays accurate.
+- `L2822-L2822` — After removing Layer‑4 MDMD, drive SlopCop markdown/symbol back to zero and rerun `npm run safe:commit -- --benchmarks` before resuming authored work.
+- `L4029-L4055` — Harden `.github/copilot-instructions.md` with an evergreen Stage‑0 preservation rule: never use bulk `git checkout`/`git restore` on `.live-documentation/**` or `.mdmd/**`; stage or stash first and reference today’s log as the cautionary tale.
 
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.

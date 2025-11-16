@@ -1,6 +1,7 @@
 import path from "node:path";
 
 import type { LiveDocMetadata, LiveDocProvenance } from "./schema";
+import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "../config/liveDocumentationConfig";
 import { normalizeWorkspacePath } from "../tooling/pathUtils";
 
 export const LIVE_DOC_BEGIN_MARKER_PREFIX = "<!-- LIVE-DOC:BEGIN ";
@@ -155,7 +156,10 @@ export function composeLiveDocPath(
   const normalizedRoot = normalizeWorkspacePath(root);
   const normalizedLayer = normalizeWorkspacePath(baseLayer);
   const normalizedSource = normalizeWorkspacePath(sourcePath);
-  return path.join(normalizedRoot, normalizedLayer, `${normalizedSource}.mdmd.md`).split(path.sep).join("/");
+  return path
+    .join(normalizedRoot, normalizedLayer, `${normalizedSource}${LIVE_DOCUMENTATION_FILE_EXTENSION}`)
+    .split(path.sep)
+    .join("/");
 }
 
 export function composeLiveDocId(archetype: string | undefined, sourcePath: string): string {

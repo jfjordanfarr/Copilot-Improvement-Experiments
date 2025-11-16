@@ -36,19 +36,19 @@ Supports REQ-F1 to REQ-F5 by providing deterministic integration suites that exp
 ## Linked Implementations
 
 ### IMP-403 us1ThroughUs5 Suites
-Scenario implementations verifying falsifiability coverage. [US1 Code Impact Suite](/.mdmd/layer-4/testing/integration/us1-codeImpactSuite.mdmd.md)
+Scenario implementations verifying falsifiability coverage. [US1 Code Impact Suite](../../../.live-documentation/source/tests/integration/us1/codeImpact.test.ts.md)
 
 ### IMP-406 markdownDrift Suite
-Dedicated falsifiability run for markdown drift. [US2 Markdown Drift Suite](/.mdmd/layer-4/testing/integration/us2-markdownDriftSuite.mdmd.md)
+Dedicated falsifiability run for markdown drift. [US2 Markdown Drift Suite](../../../.live-documentation/source/tests/integration/us2/markdownDrift.test.ts.md)
 
 ### IMP-407 acknowledgement Suite
-Ensures acknowledgement flows remain stable under drift. [US3 Acknowledge Diagnostics Suite](/.mdmd/layer-4/testing/integration/us3-acknowledgeDiagnosticsSuite.mdmd.md)
+Ensures acknowledgement flows remain stable under drift. [US3 Acknowledge Diagnostics Suite](../../../.live-documentation/source/tests/integration/us3/acknowledgeDiagnostics.test.ts.md)
 
 ### IMP-408 scopeCollision Suite
-Confirms duplicate symbols do not emit diagnostics. [US4 Scope Collision Suite](/.mdmd/layer-4/testing/integration/us4-symbolNeighborsSuite.mdmd.md)
+Confirms duplicate symbols do not emit diagnostics. [US4 Scope Collision Suite](../../../.live-documentation/source/tests/integration/us4/inspectSymbolNeighbors.test.ts.md)
 
 ### IMP-409 transformRipple Suite
-Validates template-driven ripple depth metadata. [US5 LLM Ingestion Suite](/.mdmd/layer-4/testing/integration/us5-llmIngestionSuite.mdmd.md)
+Validates template-driven ripple depth metadata. [US5 LLM Ingestion Suite](../../../.live-documentation/source/tests/integration/us5/llmIngestionDryRun.test.ts.md)
 
 ## Evidence
 - Integration suites US3–US5 run under `npm run test:integration` and safe-to-commit, producing falsifiability coverage reports.

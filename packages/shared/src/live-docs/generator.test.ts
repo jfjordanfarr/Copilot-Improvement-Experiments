@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "../config/liveDocumentationConfig";
 import type { LiveDocMetadata, LiveDocProvenance } from "./schema";
 import {
   composeLiveDocId,
@@ -91,7 +92,9 @@ describe("Live Documentation markdown rendering", () => {
 
   it("composes Live Doc paths using normalized separators", () => {
     const composed = composeLiveDocPath(".live-documentation", "source", "src/index.ts");
-    expect(composed).toBe(".live-documentation/source/src/index.ts.mdmd.md");
+    expect(composed).toBe(
+      `.live-documentation/source/src/index.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+    );
   });
 
   it("renders provenance payloads as JSON", () => {

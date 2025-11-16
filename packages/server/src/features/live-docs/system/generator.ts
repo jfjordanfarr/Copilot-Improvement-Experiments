@@ -3,6 +3,7 @@ import * as fs from "node:fs/promises";
 import path from "node:path";
 
 import {
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
   type LiveDocumentationConfig,
   normalizeLiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
@@ -1186,7 +1187,7 @@ async function pruneStaleSystemDocs(args: {
     return [];
   }
 
-  const files = await glob("**/*.mdmd.md", {
+  const files = await glob(`**/*${LIVE_DOCUMENTATION_FILE_EXTENSION}`, {
     cwd: systemRoot,
     absolute: true,
     nodir: true,
@@ -1717,7 +1718,7 @@ function resolveSystemDocPaths(args: {
     args.config.root,
     SYSTEM_LAYER_NAME,
     args.archetype,
-    `${args.slug}.mdmd.md`
+    `${args.slug}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
   );
 
   const baseRoot = args.outputRoot ?? args.workspaceRoot;

@@ -7,7 +7,7 @@
 
 ## Summary
 
-Deliver a reproducible Live Documentation system where every tracked workspace asset has a paired markdown file containing an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata). The VS Code extension watches file saves, runs analyzers to refresh generated sections into a mirror tree under `/.live-documentation/<baseLayer>/` (default `source/`, user configurable), and enforces structure via lint gates embedded in `npm run safe:commit`. Generated blocks are owned by tooling while humans curate small authored notes, keeping the corpus reviewable and diff-friendly. Deterministic benchmarks, coverage feeds, and docstring bridges back the generated data so diagnostics, CLI exports, and LLM consumers rely on the same markdown-as-AST graph. The plan stages the migration from existing Layer‑4 MDMD docs to generated Live Documentation, maintains polyglot analyzer fidelity, and graduates into feature-flagged authoring loops where markdown edits safely round-trip into docstrings and optional scaffolds.
+Deliver a reproducible Live Documentation system where every tracked workspace asset has a paired markdown file containing an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata). The VS Code extension watches file saves, runs analyzers to refresh generated sections into a mirror tree under `/.live-documentation/<baseLayer>/` (default `source/`, user configurable), and enforces structure via lint gates embedded in `npm run safe:commit`. Generated blocks are owned by tooling while humans curate small authored notes, keeping the corpus reviewable and diff-friendly. Deterministic benchmarks, coverage feeds, and docstring bridges back the generated data so diagnostics, CLI exports, and LLM consumers rely on the same markdown-as-AST graph. The plan stages the migration from existing Layer‑4 MDMD docs to generated Live Documentation, maintains polyglot analyzer fidelity, graduates into feature-flagged authoring loops where markdown edits safely round-trip into docstrings and optional scaffolds, and culminates in a Cloudflare-hosted showcase that runs the same generator headlessly to hand prospects a downloadable Live Doc bundle.
 
 ## Adoption Strategy
 - **Stage 0 – Observe**: Generate Live Documentation into `/.live-documentation/<baseLayer>/` (default `source/`) without replacing MDMD; provide read-only viewers and diff tooling so contributors assess fidelity.
@@ -72,7 +72,7 @@ TBD — populate if future scope deviates from Constitution constraints.
 ## Phases & Key Deliverables
 
 ### Phase 0 – Research & Competitive Analysis
-- Document Windsurf Codemaps and GitLab Knowledge Graph capabilities; extract UX expectations (shareable maps, CLI/agent surfaces) into requirements.
+- Document Windsurf Codemaps, GitLab Knowledge Graph, and Google Code Wiki capabilities; extract UX expectations (shareable maps, hosted showcases, CLI/agent surfaces) into requirements.
 - Audit existing analyzers/benchmarks to confirm they emit symbol + dependency data required for generated sections; note coverage gaps.
 - Decide Live Doc storage defaults, configuration shape (`liveDocumentation.root`, slug dialect), and migration toggles.
 
@@ -114,9 +114,17 @@ TBD — populate if future scope deviates from Constitution constraints.
 - Prototype Layer‑3/Layer‑2 Live Documentation derived from aggregated Layer‑4 data (release-level docs, work-item mapping) while preserving authored/generated pattern.
 - Explore visual exports (mermaid diagrams, shareable codemaps) grounded in the markdown graph.
 
-#### System Layer Migration Checklist
-- [ ] Iterate on first-pass System Layer output: filter build artefacts (e.g., `.js` siblings) from `Components`, collapse duplicate interaction/workflow docs, enrich topology edges for CLI orchestration, and trim coverage graphs to Live Docs suites.
-- [ ] Introduce layer-specific generators (`generator.layer4.ts`, `generator.system.ts`) that compose the shared foundation with archetype derivation rules, keeping the existing CLI entrypoints compatible.
+
+### Phase 8 – Layer Distribution & CI/CD Surfaces
+- Stand up the GitHub Pages (Astro) projection for Layer‑1/2/3 docs, sourcing markdown directly from `.mdmd/layer-*` and the roadmap so the public handbook stays DRY.
+- Wire the site builder into the existing CI/CD path: `npm run site:build -- --check` runs during `npm run safe:commit`, and a dedicated GitHub Pages workflow publishes snapshots with git SHA provenance.
+- Document how requirement trackers (Spec‑Kit today, GitHub Issues tomorrow) continue to feed the roadmap so the projection remains tracker-agnostic.
+- Update onboarding/quickstart material with the distribution model so contributors know Layer‑1/2 live on the site, Layer‑3 analytics stay derived, and Layer‑4 is powered by Live Docs.
+
+### Phase 9 – Hosted Showcase Trials
+- Containerise the Live Docs generator and dependencies so it can run inside Cloudflare Workers/Pages (or equivalent serverless runners) with deterministic resource ceilings.
+- Build a pipeline that accepts GitHub repo references, clones to ephemeral storage, executes `npm run live-docs:generate`, embeds provenance metadata, and zips the resulting Live Docs + SQLite cache + README + prompt guide.
+- Ship consent + privacy messaging, rate limiting, and telemetry that prove repositories are public-only and that all temporary artefacts are deleted immediately after bundles are created.
 
 ## Implementation Traceability
 - [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) orchestrates analyzer execution feeding Live Doc regeneration.

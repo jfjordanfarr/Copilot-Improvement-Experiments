@@ -3,6 +3,8 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 
+const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md" as const; // Keep in sync with liveDocumentationConfig
+
 const { generateLiveDocs } = require(
   path.join(
     __dirname,
@@ -48,7 +50,7 @@ suite("Live Docs generator", () => {
       const docDir = path.join(workspaceRoot, ".live-documentation", "source", "packages", "app", "src");
       await fs.mkdir(docDir, { recursive: true });
 
-      const docPath = path.join(docDir, "example.ts.mdmd.md");
+      const docPath = path.join(docDir, `example.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`);
       await fs.writeFile(
         docPath,
         [

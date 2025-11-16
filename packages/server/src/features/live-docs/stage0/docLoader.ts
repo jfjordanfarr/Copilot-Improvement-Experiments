@@ -2,7 +2,10 @@ import { glob } from "glob";
 import * as fs from "node:fs/promises";
 import path from "node:path";
 
-import type { LiveDocumentationConfig } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import {
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
+  type LiveDocumentationConfig
+} from "@copilot-improvement/shared/config/liveDocumentationConfig";
 import {
   renderBeginMarker,
   renderEndMarker
@@ -39,7 +42,7 @@ export async function loadStage0Docs(args: LoadStage0DocsArgs): Promise<Stage0Do
     return [];
   }
 
-  const files = await glob("**/*.mdmd.md", {
+  const files = await glob(`**/*${LIVE_DOCUMENTATION_FILE_EXTENSION}`, {
     cwd: stage0Root,
     absolute: true,
     nodir: true,
@@ -174,15 +177,17 @@ function parseDependencyLinks(args: {
       continue;
     }
 
-    const linkMatch = trimmed.match(/\(([^)]+\.mdmd\.md)(#[^)]+)?\)/);
+    const linkMatch = trimmed.match(/\(([^)#]+)(#[^)]+)?\)/);
     if (linkMatch) {
       const reference = linkMatch[1];
-      const targetAbsolute = path.resolve(path.dirname(args.docAbsolutePath), reference);
-      if (targetAbsolute.startsWith(args.stage0Root)) {
-        const stage0Relative = targetAbsolute.slice(args.stage0Root.length + 1).replace(/\\/g, "/");
-        const sourcePath = stage0Relative.replace(/\.mdmd\.md$/i, "");
-        stage0Paths.add(normalizeWorkspacePath(sourcePath));
-        continue;
+      if (reference.toLowerCase().endsWith(LIVE_DOCUMENTATION_FILE_EXTENSION)) {
+        const targetAbsolute = path.resolve(path.dirname(args.docAbsolutePath), reference);
+        if (targetAbsolute.startsWith(args.stage0Root)) {
+          const stage0Relative = targetAbsolute.slice(args.stage0Root.length + 1).replace(/\\/g, "/");
+          const sourcePath = stage0Relative.slice(0, -LIVE_DOCUMENTATION_FILE_EXTENSION.length);
+          stage0Paths.add(normalizeWorkspacePath(sourcePath));
+          continue;
+        }
       }
     }
 

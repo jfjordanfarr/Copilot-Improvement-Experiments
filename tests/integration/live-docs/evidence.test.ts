@@ -3,6 +3,8 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 
+const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md" as const; // Keep in sync with liveDocumentationConfig
+
 const { generateLiveDocs } = require(
   path.join(
     __dirname,
@@ -21,6 +23,8 @@ const {
 ) as typeof import("../../../packages/shared/dist/config/liveDocumentationConfig");
 
 suite("Live Docs evidence bridge", () => {
+  const LIVE_DOC_EXTENSION_PATTERN = LIVE_DOCUMENTATION_FILE_EXTENSION.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+
   async function withTempWorkspace(
     callback: (workspaceRoot: string) => Promise<void>
   ): Promise<void> {
@@ -134,12 +138,14 @@ suite("Live Docs evidence bridge", () => {
         "packages",
         "app",
         "src",
-        "example.ts.mdmd.md"
+        `example.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const implementationContent = await fs.readFile(implementationDoc, "utf8");
       assert.match(
         implementationContent,
-        /Observed Evidence[\s\S]*Vitest[\s\S]*tests\/app\/example\.test\.ts\.mdmd\.md/
+        new RegExp(
+          `Observed Evidence[\\s\\S]*Vitest[\\s\\S]*tests\/app\/example\\.test\\.ts${LIVE_DOC_EXTENSION_PATTERN}`
+        )
       );
       assert.doesNotMatch(implementationContent, /_No automated evidence found_/);
 
@@ -149,12 +155,14 @@ suite("Live Docs evidence bridge", () => {
         "source",
         "tests",
         "app",
-        "example.test.ts.mdmd.md"
+        `example.test.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const testContent = await fs.readFile(testDoc, "utf8");
       assert.match(
         testContent,
-        /## Generated[\s\S]*Targets[\s\S]*#### Vitest[\s\S]*- packages\/app\/src: \[example\.ts\]\(.+packages\/app\/src\/example\.ts\.mdmd\.md\)/
+        new RegExp(
+          `## Generated[\\s\\S]*Targets[\\s\\S]*#### Vitest[\\s\\S]*- packages\/app\/src: \\[example\\.ts\\]\\(.+packages\/app\/src\/example\\.ts${LIVE_DOC_EXTENSION_PATTERN}\\)`
+        )
       );
       assert.match(testContent, /Supporting Fixtures[\s\S]*tests\/app\/fixtures\/greeting\.json/);
     });
@@ -241,7 +249,7 @@ suite("Live Docs evidence bridge", () => {
         "source",
         "tests",
         "app",
-        "example.test.ts.mdmd.md"
+        `example.test.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const testContent = await fs.readFile(testDoc, "utf8");
       assert.match(testContent, /Supporting Fixtures[\s\S]*_No supporting fixtures documented yet_/);
@@ -287,7 +295,7 @@ suite("Live Docs evidence bridge", () => {
         "packages",
         "app",
         "src",
-        "lonely.ts.mdmd.md"
+        `lonely.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const implementationContent = await fs.readFile(implementationDoc, "utf8");
       assert.ok(!implementationContent.includes("<!-- LIVE-DOC:BEGIN Observed Evidence -->"));
@@ -352,7 +360,7 @@ suite("Live Docs evidence bridge", () => {
         "packages",
         "app",
         "src",
-        "waived.ts.mdmd.md"
+        `waived.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const implementationContent = await fs.readFile(implementationDoc, "utf8");
       assert.match(implementationContent, /<!-- LIVE-DOC:BEGIN Observed Evidence -->/);

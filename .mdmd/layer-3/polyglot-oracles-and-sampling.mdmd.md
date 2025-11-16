@@ -39,14 +39,14 @@ Provides an optional, confidence-gated sampling layer that augments deterministi
 - Captures sampling agreement, rejection reasons, and reviewer decisions so operators can triage noisy models quickly.
 
 ## Linked Implementations
-- [IMP-509 TypeScript Fixture Oracle](../layer-4/testing/benchmarks/typeScriptFixtureOracle.mdmd.md)
-- [IMP-510 Python Fixture Oracle](../layer-4/testing/benchmarks/pythonFixtureOracle.mdmd.md)
-- [IMP-521 C Fixture Oracle](../layer-4/testing/benchmarks/cFixtureOracle.mdmd.md)
-- [IMP-522 Rust Fixture Oracle](../layer-4/testing/benchmarks/rustFixtureOracle.mdmd.md)
-- [IMP-523 Java Fixture Oracle](../layer-4/testing/benchmarks/javaFixtureOracle.mdmd.md)
-- [IMP-524 Ruby Fixture Oracle](../layer-4/testing/benchmarks/rubyFixtureOracle.mdmd.md)
-- [IMP-530 LLM Sampling Harness](../layer-4/shared/llmSampling.mdmd.md)
-- [IMP-510 Benchmark Fixture Regenerator](../layer-4/tooling/benchmarkFixtureRegenerator.mdmd.md)
+- [IMP-509 TypeScript Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts.md)
+- [IMP-510 Python Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts.md)
+- [IMP-521 C Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts.md)
+- [IMP-522 Rust Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts.md)
+- [IMP-523 Java Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts.md)
+- [IMP-524 Ruby Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts.md)
+- [IMP-530 LLM Sampling Harness](../../.live-documentation/source/packages/shared/src/inference/llmSampling.ts.md)
+- [IMP-510 Benchmark Fixture Regenerator](../../.live-documentation/source/scripts/fixture-tools/regenerate-benchmarks.ts.md)
 
 ## Evidence
 - `npm run test:benchmarks -- --suite ast` produces precision/recall figures per language, verifying deterministic oracle parity across curated fixtures.

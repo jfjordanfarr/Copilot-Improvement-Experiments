@@ -1,4 +1,4 @@
-// Live Documentation: .live-documentation/source/packages/shared/src/live-docs/schema.mdmd.md
+// Live Documentation: .live-documentation/source/packages/shared/src/live-docs/schema.md
 
 import type { LiveDocumentationArchetype } from "../config/liveDocumentationConfig";
 

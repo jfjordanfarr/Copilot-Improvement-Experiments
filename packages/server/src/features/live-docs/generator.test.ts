@@ -4,7 +4,10 @@ import * as path from "node:path";
 
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
-import { normalizeLiveDocumentationConfig } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import {
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
+  normalizeLiveDocumentationConfig
+} from "@copilot-improvement/shared/config/liveDocumentationConfig";
 
 import { generateLiveDocs } from "./generator";
 
@@ -49,8 +52,20 @@ describe("generateLiveDocs pruning", () => {
     expect(initialResult.deletedFiles).toHaveLength(0);
 
     const docRoot = path.join(workspaceRoot, ".live-documentation", "source");
-    const orphanDocPath = path.join(docRoot, "packages", "foo", "src", "orphan.ts.mdmd.md");
-    const preserveDocPath = path.join(docRoot, "packages", "foo", "src", "preserve.ts.mdmd.md");
+    const orphanDocPath = path.join(
+      docRoot,
+      "packages",
+      "foo",
+      "src",
+      `orphan.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+    );
+    const preserveDocPath = path.join(
+      docRoot,
+      "packages",
+      "foo",
+      "src",
+      `preserve.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+    );
 
     await fs.mkdir(path.dirname(orphanDocPath), { recursive: true });
 
@@ -133,10 +148,10 @@ describe("generateLiveDocs pruning", () => {
 
     expect(result.deleted).toBe(1);
     expect(result.deletedFiles).toContain(
-      ".live-documentation/source/packages/foo/src/orphan.ts.mdmd.md"
+      `.live-documentation/source/packages/foo/src/orphan.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
     );
     expect(result.deletedFiles).not.toContain(
-      ".live-documentation/source/packages/foo/src/preserve.ts.mdmd.md"
+      `.live-documentation/source/packages/foo/src/preserve.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
     );
 
     await expect(fs.stat(orphanDocPath)).rejects.toThrowError();

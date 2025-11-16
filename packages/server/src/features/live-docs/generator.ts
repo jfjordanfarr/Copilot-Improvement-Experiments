@@ -5,6 +5,7 @@ import path from "node:path";
 
 import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
   type LiveDocumentationArchetype,
   type LiveDocumentationConfig,
   normalizeLiveDocumentationConfig
@@ -264,7 +265,11 @@ function resolveLiveDocPaths(
   config: LiveDocumentationConfig,
   sourcePath: string
 ): { absolute: string; relative: string } {
-  const docRelative = path.join(config.root, config.baseLayer, `${sourcePath}.mdmd.md`);
+  const docRelative = path.join(
+    config.root,
+    config.baseLayer,
+    `${sourcePath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+  );
   const absolute = path.resolve(workspaceRoot, docRelative);
   return {
     absolute,
@@ -285,7 +290,7 @@ async function pruneStaleLiveDocs(args: {
     return [];
   }
 
-  const files = await glob("**/*.mdmd.md", {
+  const files = await glob(`**/*${LIVE_DOCUMENTATION_FILE_EXTENSION}`, {
     cwd: baseLayerRoot,
     absolute: true,
     nodir: true,
@@ -484,7 +489,7 @@ function renderObservedEvidenceLines(params: {
       seenTests.add(testPath);
       const testDocAbsolute = path.resolve(
         params.liveDocsRootAbsolute,
-        `${testPath}.mdmd.md`
+        `${testPath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
       const relativeDocPath = formatRelativePathFromDoc(params.docDir, testDocAbsolute);
       entries.push(`- [${formatTargetLabel(testPath)}](${relativeDocPath})`);
@@ -559,7 +564,10 @@ function renderTargetLines(params: {
     }
     seen.add(target);
 
-    const docAbsolute = path.resolve(params.liveDocsRootAbsolute, `${target}.mdmd.md`);
+    const docAbsolute = path.resolve(
+      params.liveDocsRootAbsolute,
+      `${target}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+    );
     const relative = formatRelativePathFromDoc(params.docDir, docAbsolute);
     const directory = path.dirname(target);
     const bucket = grouped.get(directory) ?? [];

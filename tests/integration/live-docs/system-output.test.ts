@@ -3,6 +3,8 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 
+const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md" as const; // Keep in sync with liveDocumentationConfig
+
 const { generateSystemLiveDocs } = require(
   path.join(
     __dirname,
@@ -39,19 +41,19 @@ suite("System Live Docs generator", () => {
       await fs.mkdir(stage0Root, { recursive: true });
 
       await fs.writeFile(
-        path.join(stage0Root, "a.ts.mdmd.md"),
+        path.join(stage0Root, `a.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`),
         createStage0Doc({
           codePath: "packages/shared/src/live-docs/a.ts",
-          dependencyFile: "b.ts.mdmd.md"
+          dependencyFile: `b.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
         }),
         "utf8"
       );
 
       await fs.writeFile(
-        path.join(stage0Root, "b.ts.mdmd.md"),
+        path.join(stage0Root, `b.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`),
         createStage0Doc({
           codePath: "packages/shared/src/live-docs/b.ts",
-          dependencyFile: "a.ts.mdmd.md"
+          dependencyFile: `a.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
         }),
         "utf8"
       );
@@ -80,7 +82,7 @@ suite("System Live Docs generator", () => {
         ".live-documentation",
         "system",
         "component",
-        "packagessharedsrclivedocs.mdmd.md"
+        `packagessharedsrclivedocs${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
 
       const docContent = await fs.readFile(materialisedDoc, "utf8");
@@ -99,7 +101,7 @@ suite("System Live Docs generator", () => {
 
 function createStage0Doc(args: { codePath: string; dependencyFile?: string }): string {
   const dependencySection = args.dependencyFile
-    ? `- [${args.codePath.replace(/[^/]+$/, args.dependencyFile.replace(/\.mdmd\.md$/, ""))}](./${args.dependencyFile})`
+    ? `- [${args.codePath.replace(/[^/]+$/, stripLiveDocExtension(args.dependencyFile))}](./${args.dependencyFile})`
     : "_No data provided_";
 
   return [
@@ -128,6 +130,12 @@ function createStage0Doc(args: { codePath: string; dependencyFile?: string }): s
 
 function normalizeId(codePath: string): string {
   return codePath.replace(/[^a-zA-Z0-9]+/g, "-");
+}
+
+function stripLiveDocExtension(fileName: string): string {
+  return fileName.endsWith(LIVE_DOCUMENTATION_FILE_EXTENSION)
+    ? fileName.slice(0, -LIVE_DOCUMENTATION_FILE_EXTENSION.length)
+    : fileName;
 }
 
 async function directoryExists(candidate: string): Promise<boolean> {

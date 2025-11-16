@@ -6,6 +6,7 @@ import process from "node:process";
 
 import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig,
   type LiveDocumentationEvidenceStrictMode
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
@@ -26,7 +27,12 @@ async function main(): Promise<void> {
     ...DEFAULT_LIVE_DOCUMENTATION_CONFIG
   });
 
-  const docGlob = path.join(config.root, config.baseLayer, "**", "*.mdmd.md");
+  const docGlob = path.join(
+    config.root,
+    config.baseLayer,
+    "**",
+    `*${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+  );
   const files = await glob(docGlob, {
     cwd: workspaceRoot,
     absolute: true,

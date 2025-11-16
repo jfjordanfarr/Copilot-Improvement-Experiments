@@ -44,22 +44,22 @@ Supports REQ-020, REQ-030, REQ-F4, and REQ-F5 by delivering repository-wide lint
 ## Linked Implementations
 
 ### IMP-201 slopcopMarkdownLinks CLI
-CLI entry that enforces markdown/MDMD link integrity. [SlopCop Markdown Audit](/.mdmd/layer-4/tooling/slopcopMarkdownLinks.mdmd.md)
+CLI entry that enforces markdown/MDMD link integrity. [SlopCop Markdown Audit](../../.live-documentation/source/scripts/slopcop/check-markdown-links.ts.md)
 
 ### IMP-202 slopcopAssetPaths CLI
-CLI entry that validates static asset references. [SlopCop Asset Audit](/.mdmd/layer-4/tooling/slopcopAssetPaths.mdmd.md)
+CLI entry that validates static asset references. [SlopCop Asset Audit](../../.live-documentation/source/scripts/slopcop/check-asset-paths.ts.md)
 
 ### IMP-204 slopcopSymbols CLI
-CLI entry for heading and symbol audits. [SlopCop Symbol References](/.mdmd/layer-4/tooling/slopcopSymbolReferences.mdmd.md)
+CLI entry for heading and symbol audits. [SlopCop Symbol References](../../.live-documentation/source/scripts/slopcop/check-symbols.ts.md)
 
 ### IMP-301 safeToCommit Orchestrator
-Chains SlopCop passes alongside verify and graph tooling. [Safe to Commit Pipeline](/.mdmd/layer-4/tooling/safeToCommit.mdmd.md)
+Chains SlopCop passes alongside verify and graph tooling. [Safe to Commit Pipeline](../../scripts/safe-to-commit.mjs)
 
 ### IMP-302 graphCoverageAudit CLI
-Audits documentation coverage to complement lint findings. [Graph Coverage Audit](/.mdmd/layer-4/tooling/graphCoverageAudit.mdmd.md)
+Audits documentation coverage to complement lint findings. [Graph Coverage Audit](../../.live-documentation/source/scripts/graph-tools/audit-doc-coverage.ts.md)
 
 ### IMP-303 inspectSymbolNeighbors CLI
-Provides headless dependency exploration referenced by lint diagnostics. [Inspect Symbol Neighbors CLI](/.mdmd/layer-4/tooling/inspectSymbolNeighborsCli.mdmd.md)
+Provides headless dependency exploration referenced by lint diagnostics. [Inspect Symbol Neighbors CLI](../../.live-documentation/source/scripts/graph-tools/inspect-symbol.ts.md)
 
 ## Evidence
 - Shared tooling unit tests (`markdownLinks.test.ts`, `assetPaths.test.ts`, `symbolReferences.test.ts`) validate parsing and diagnostics.

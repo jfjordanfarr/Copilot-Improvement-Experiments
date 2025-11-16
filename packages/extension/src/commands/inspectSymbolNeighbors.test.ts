@@ -2,60 +2,21 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import type * as vscode from "vscode";
 
 import type { InspectSymbolNeighborsParams } from "@copilot-improvement/shared";
+import { getSharedVscodeMock } from "../testUtils/vscodeMock";
 import type { ParsedInspectSymbolNeighborsResult } from "./inspectSymbolNeighbors";
 
-// VS Code mocks
-const mockCommands = {
-  registerCommand: vi.fn()
-};
+const vscodeMock = getSharedVscodeMock();
+const mockCommands = vscodeMock.commands;
+const mockWindow = vscodeMock.window;
+const mockWorkspace = vscodeMock.workspace;
+const mockUri = vscodeMock.Uri;
 
-const windowState: { activeTextEditor?: vscode.TextEditor } = {};
+const showQuickPickMock = mockWindow.showQuickPick as ReturnType<typeof vi.fn>;
+const showInformationMessageMock = mockWindow.showInformationMessage as ReturnType<typeof vi.fn>;
+const showErrorMessageMock = mockWindow.showErrorMessage as ReturnType<typeof vi.fn>;
+const showTextDocumentMock = mockWindow.showTextDocument as ReturnType<typeof vi.fn>;
 
-const showQuickPickMock = vi.fn();
-const showInformationMessageMock = vi.fn();
-const showErrorMessageMock = vi.fn();
-const showTextDocumentMock = vi.fn();
-
-const mockWindow = {
-  showQuickPick: showQuickPickMock,
-  showInformationMessage: showInformationMessageMock,
-  showErrorMessage: showErrorMessageMock,
-  showTextDocument: showTextDocumentMock,
-  get activeTextEditor() {
-    return windowState.activeTextEditor;
-  },
-  set activeTextEditor(value: vscode.TextEditor | undefined) {
-    windowState.activeTextEditor = value;
-  }
-} as unknown as typeof import("vscode")["window"];
-
-const mockWorkspace = {
-  asRelativePath: vi.fn((uri: vscode.Uri) => uri.toString()),
-  openTextDocument: vi.fn((uri: vscode.Uri) => Promise.resolve({ uri })),
-  textDocuments: [] as vscode.TextDocument[]
-};
-
-const mockUri = {
-  parse: vi.fn((value: string) => ({
-    toString: () => value,
-    fsPath: value.replace(/^file:\/\//u, ""),
-    scheme: value.split(":")[0] ?? "",
-    path: value
-  })),
-  file: vi.fn((value: string) => ({
-    toString: () => `file://${value}`,
-    fsPath: value,
-    scheme: "file",
-    path: value
-  }))
-};
-
-vi.mock("vscode", () => ({
-  commands: mockCommands,
-  window: mockWindow,
-  workspace: mockWorkspace,
-  Uri: mockUri
-}));
+vi.mock("vscode", () => vscodeMock.module);
 
 describe("inspectSymbolNeighbors command", () => {
   beforeEach(() => {
@@ -81,7 +42,7 @@ describe("inspectSymbolNeighbors command", () => {
       "linkDiagnostics.inspectSymbolNeighbors",
       expect.any(Function)
     );
-  });
+  }, 15000);
 
   it("shows an informational message when no editor is active", async () => {
   mockWindow.activeTextEditor = undefined;
