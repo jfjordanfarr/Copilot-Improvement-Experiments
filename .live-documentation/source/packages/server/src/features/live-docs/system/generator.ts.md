@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/system/generator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-system-generator-ts
-- Generated At: 2025-11-16T02:09:51.635Z
+- Generated At: 2025-11-16T15:28:40.371Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:51.635Z","inputHash":"822daab96212456b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T15:28:40.371Z","inputHash":"5582d9eea6cfff6a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `GenerateSystemLiveDocsOptions`
@@ -43,6 +43,7 @@ _Pending notes_
 ### Dependencies
 - `@copilot-improvement/shared/config/liveDocumentationConfig` - `LIVE_DOCUMENTATION_FILE_EXTENSION`, `LiveDocumentationConfig`, `normalizeLiveDocumentationConfig`
 - `@copilot-improvement/shared/live-docs/analysis/coActivation` - `CoActivationEdge`, `CoActivationReport` (type-only)
+- `@copilot-improvement/shared/live-docs/core` - `cleanupEmptyParents`, `directoryExists`, `formatRelativePathFromDoc`, `hasMeaningfulAuthoredContent`
 - `@copilot-improvement/shared/live-docs/markdown` - `LiveDocRenderSection`, `extractAuthoredBlock`, `renderLiveDocMarkdown`
 - `@copilot-improvement/shared/live-docs/schema` - `LiveDocMetadata`, `LiveDocProvenance`, `normalizeLiveDocMetadata`
 - `@copilot-improvement/shared/live-docs/types` - `Stage0Doc`, `Stage0Symbol`, `TargetManifest` (type-only)
@@ -51,10 +52,6 @@ _Pending notes_
 - `glob` - `glob`
 - `node:fs/promises` - `fs`
 - `node:path` - `path`
-- [`core.cleanupEmptyParents`](../generation/core.ts.md#cleanupemptyparents)
-- [`core.directoryExists`](../generation/core.ts.md#directoryexists)
-- [`core.formatRelativePathFromDoc`](../generation/core.ts.md#formatrelativepathfromdoc)
-- [`core.hasMeaningfulAuthoredContent`](../generation/core.ts.md#hasmeaningfulauthoredcontent)
 - [`docLoader.loadStage0Docs`](../stage0/docLoader.ts.md#loadstage0docs)
 - [`manifest.loadTargetManifest`](../targets/manifest.ts.md#loadtargetmanifest)
 <!-- LIVE-DOC:END Dependencies -->

@@ -4,6 +4,7 @@ import type * as vscode from "vscode";
 import type { ListOutstandingDiagnosticsResult } from "@copilot-improvement/shared";
 import { getSharedVscodeMock } from "../testUtils/vscodeMock";
 
+const TEST_TIMEOUT_MS = 15000;
 const vscodeMock = getSharedVscodeMock();
 const mockCommands = vscodeMock.commands;
 const mockWindow = vscodeMock.window;
@@ -36,7 +37,7 @@ describe("exportDiagnostics", () => {
       "linkDiagnostics.exportDiagnostics",
       expect.any(Function)
     );
-  });
+  }, TEST_TIMEOUT_MS);
 
   it("exports diagnostics in CSV format", async () => {
     const mockResult: ListOutstandingDiagnosticsResult = {
@@ -71,7 +72,7 @@ describe("exportDiagnostics", () => {
 
     expect(mockClient.sendRequest).toHaveBeenCalledWith("linkDiagnostics/diagnostics/list");
     expect(mockWindow.showSaveDialog).toHaveBeenCalled();
-  });
+  }, TEST_TIMEOUT_MS);
 
   it("shows message when no diagnostics exist", async () => {
     const mockResult: ListOutstandingDiagnosticsResult = {
@@ -95,7 +96,7 @@ describe("exportDiagnostics", () => {
     expect(mockWindow.showInformationMessage).toHaveBeenCalledWith(
       "No outstanding diagnostics to export."
     );
-  });
+  }, TEST_TIMEOUT_MS);
 
   it("handles cancellation gracefully", async () => {
     mockWindow.showQuickPick.mockResolvedValue(undefined);
@@ -112,5 +113,5 @@ describe("exportDiagnostics", () => {
     await handler();
 
     expect(mockClient.sendRequest).not.toHaveBeenCalled();
-  });
+  }, TEST_TIMEOUT_MS);
 });

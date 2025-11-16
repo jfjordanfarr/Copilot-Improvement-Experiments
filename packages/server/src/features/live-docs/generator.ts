@@ -11,6 +11,21 @@ import {
   normalizeLiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
 import {
+  analyzeSourceFile,
+  cleanupEmptyParents,
+  collectDependencies,
+  collectExportedSymbols,
+  directoryExists,
+  discoverTargetFiles,
+  formatRelativePathFromDoc,
+  hasMeaningfulAuthoredContent,
+  inferScriptKind,
+  renderDependencyLines,
+  renderPublicSymbolLines,
+  resolveArchetype,
+  type SourceAnalysisResult
+} from "@copilot-improvement/shared/live-docs/core";
+import {
   composeLiveDocId,
   extractAuthoredBlock,
   renderLiveDocMarkdown,
@@ -29,26 +44,11 @@ import {
 
 import {
   loadEvidenceSnapshot,
+  type CoverageSummary,
   type EvidenceSnapshot,
   type ImplementationEvidenceItem,
-  type TestEvidenceItem,
-  type CoverageSummary
+  type TestEvidenceItem
 } from "./evidenceBridge";
-import {
-  analyzeSourceFile,
-  collectDependencies,
-  collectExportedSymbols,
-  discoverTargetFiles,
-  formatRelativePathFromDoc,
-  inferScriptKind,
-  renderDependencyLines,
-  renderPublicSymbolLines,
-  resolveArchetype,
-  hasMeaningfulAuthoredContent,
-  directoryExists,
-  cleanupEmptyParents,
-  type SourceAnalysisResult
-} from "./generation/core";
 
 interface GenerateLiveDocsOptions {
   workspaceRoot: string;
@@ -66,7 +66,7 @@ interface LiveDocGeneratorLogger {
   error(message: string): void;
 }
 
-interface LiveDocGeneratorResult {
+export interface LiveDocGeneratorResult {
   processed: number;
   written: number;
   skipped: number;

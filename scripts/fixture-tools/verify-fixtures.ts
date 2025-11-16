@@ -268,10 +268,10 @@ async function ensureVendorDocsAligned(
 ): Promise<void> {
   const docPath = path.join(
     repoRoot,
-    ".mdmd",
-    "layer-4",
+    ".live-documentation",
+    "source",
     "benchmarks",
-    "astAccuracyFixtures.mdmd.md"
+    "astAccuracyFixtures.md"
   );
 
   const vendorBlock = renderVendorInventory(fixtures, { repoRoot, docPath }).trim();

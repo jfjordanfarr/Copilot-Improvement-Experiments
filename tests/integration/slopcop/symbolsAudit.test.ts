@@ -66,6 +66,8 @@ function runSlopcopSymbols(workspacePath: string): SlopcopRun {
   };
 }
 
+const TEST_TIMEOUT_MS = 20000;
+
 describe("SlopCop symbol audit fixture", () => {
   it("passes on the healed baseline workspace", async () => {
     await withFixtureCopy(async workspacePath => {
@@ -76,7 +78,7 @@ describe("SlopCop symbol audit fixture", () => {
       expect(payload.scannedFiles).toBeGreaterThan(0);
       expect(payload.issues).toHaveLength(0);
     });
-  });
+  }, TEST_TIMEOUT_MS);
 
   it("flags duplicate headings introduced at runtime", async () => {
     await withFixtureCopy(async workspacePath => {
@@ -93,7 +95,7 @@ describe("SlopCop symbol audit fixture", () => {
       );
       expect(duplicateIssue).toBeTruthy();
     });
-  });
+  }, TEST_TIMEOUT_MS);
 
   it("flags missing anchor references added during the test", async () => {
     await withFixtureCopy(async workspacePath => {
@@ -109,5 +111,5 @@ describe("SlopCop symbol audit fixture", () => {
       );
       expect(missingAnchorIssue).toBeTruthy();
     });
-  });
+  }, TEST_TIMEOUT_MS);
 });

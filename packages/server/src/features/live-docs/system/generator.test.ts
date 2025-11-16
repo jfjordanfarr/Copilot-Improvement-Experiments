@@ -51,7 +51,7 @@ describe("generateSystemLiveDocs", () => {
       {
         codePath: "packages/server/src/features/live-docs/generator.ts",
         liveDocId: "LD-implementation-packages-server-src-features-live-docs-generator-ts",
-        dependencies: [withExtension("./generation/core.ts")],
+        dependencies: [withExtension("../../../../shared/src/live-docs/core.ts")],
         publicSymbols: ["generateLiveDocs"],
         extraDependencies: ["node:fs"]
       }
@@ -60,16 +60,14 @@ describe("generateSystemLiveDocs", () => {
     await writeStage0Doc(
       stage0DocPath(
         "packages",
-        "server",
+        "shared",
         "src",
-        "features",
         "live-docs",
-        "generation",
         "core.ts"
       ),
       {
-        codePath: "packages/server/src/features/live-docs/generation/core.ts",
-        liveDocId: "LD-implementation-packages-server-src-features-live-docs-generation-core-ts",
+        codePath: "packages/shared/src/live-docs/core.ts",
+        liveDocId: "LD-implementation-packages-shared-src-live-docs-core-ts",
         dependencies: [],
         publicSymbols: ["analyze"],
         extraDependencies: []

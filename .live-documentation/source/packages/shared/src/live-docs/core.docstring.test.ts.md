@@ -1,11 +1,11 @@
-# packages/server/src/features/live-docs/generation/core.docstring.test.ts
+# packages/shared/src/live-docs/core.docstring.test.ts
 
 ## Metadata
 - Layer: 4
 - Archetype: test
-- Code Path: packages/server/src/features/live-docs/generation/core.docstring.test.ts
-- Live Doc ID: LD-test-packages-server-src-features-live-docs-generation-core-docstring-test-ts
-- Generated At: 2025-11-16T02:09:51.564Z
+- Code Path: packages/shared/src/live-docs/core.docstring.test.ts
+- Live Doc ID: LD-test-packages-shared-src-live-docs-core-docstring-test-ts
+- Generated At: 2025-11-16T16:08:45.776Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Guards the TypeScript docstring bridge by exercising end-to-end symbol extractio
 - Reuses shared fixture helpers so future adapters can reference the same expectations when expanding docstring support to other languages.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:51.564Z","inputHash":"b5de2aad98e4c016"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T16:08:45.776Z","inputHash":"cb7e58610fda289f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -25,8 +25,8 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- `@copilot-improvement/shared/config/liveDocumentationConfig` - `LIVE_DOCUMENTATION_FILE_EXTENSION`
 - `node:path` - `path`
+- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../config/liveDocumentationConfig.ts.md#live_documentation_file_extension)
 - [`core.collectExportedSymbols`](./core.ts.md#collectexportedsymbols)
 - [`core.renderPublicSymbolLines`](./core.ts.md#renderpublicsymbollines)
 - `typescript` - `ts`
@@ -36,11 +36,11 @@ _No public symbols detected_
 <!-- LIVE-DOC:BEGIN Targets -->
 ### Targets
 #### Vitest Unit Tests
-- packages/server/src/features/live-docs/generation: [core.ts](./core.ts.md)
-- packages/server/src/features/live-docs/generation/adapters: [adapters/index.ts](./adapters/index.ts.md), [c.ts](./adapters/c.ts.md), [csharp.ts](./adapters/csharp.ts.md), [java.ts](./adapters/java.ts.md), [python.ts](./adapters/python.ts.md), [ruby.ts](./adapters/ruby.ts.md)
+- packages/shared/src/config: [liveDocumentationConfig.ts](../config/liveDocumentationConfig.ts.md)
+- packages/shared/src/live-docs: [core.ts](./core.ts.md)
+- packages/shared/src/live-docs/adapters: [adapters/index.ts](./adapters/index.ts.md), [c.ts](./adapters/c.ts.md), [csharp.ts](./adapters/csharp.ts.md), [java.ts](./adapters/java.ts.md), [python.ts](./adapters/python.ts.md), [ruby.ts](./adapters/ruby.ts.md)
   [rust.ts](./adapters/rust.ts.md)
-- packages/shared/src/config: [liveDocumentationConfig.ts](../../../../../shared/src/config/liveDocumentationConfig.ts.md)
-- packages/shared/src/tooling: [githubSlugger.ts](../../../../../shared/src/tooling/githubSlugger.ts.md), [githubSluggerRegex.ts](../../../../../shared/src/tooling/githubSluggerRegex.ts.md), [pathUtils.ts](../../../../../shared/src/tooling/pathUtils.ts.md)
+- packages/shared/src/tooling: [githubSlugger.ts](../tooling/githubSlugger.ts.md), [githubSluggerRegex.ts](../tooling/githubSluggerRegex.ts.md), [pathUtils.ts](../tooling/pathUtils.ts.md)
 <!-- LIVE-DOC:END Targets -->
 
 <!-- LIVE-DOC:BEGIN Supporting Fixtures -->

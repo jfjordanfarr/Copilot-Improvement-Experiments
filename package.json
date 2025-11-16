@@ -35,6 +35,7 @@
     "livedocs": "tsx --tsconfig ./tsconfig.base.json scripts/live-docs/run-all.ts",
     "live-docs:generate": "tsx --tsconfig ./tsconfig.base.json scripts/live-docs/generate.ts",
     "live-docs:system": "tsx --tsconfig ./tsconfig.base.json scripts/live-docs/system.ts",
+    "live-docs:headless": "tsx --tsconfig ./tsconfig.base.json scripts/live-docs/headless.ts",
     "live-docs:lint": "tsx --tsconfig ./tsconfig.base.json scripts/live-docs/lint.ts",
     "live-docs:targets": "tsx --tsconfig ./tsconfig.base.json scripts/live-docs/build-target-manifest.ts",
     "live-docs:report": "tsx --tsconfig ./tsconfig.base.json scripts/live-docs/report-precision.ts",

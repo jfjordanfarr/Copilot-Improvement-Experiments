@@ -1,11 +1,11 @@
-# packages/server/src/features/live-docs/generation/adapters/rust.ts
+# packages/shared/src/live-docs/adapters/rust.ts
 
 ## Metadata
 - Layer: 4
 - Archetype: implementation
-- Code Path: packages/server/src/features/live-docs/generation/adapters/rust.ts
-- Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-rust-ts
-- Generated At: 2025-11-16T02:09:51.560Z
+- Code Path: packages/shared/src/live-docs/adapters/rust.ts
+- Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-rust-ts
+- Generated At: 2025-11-16T16:08:45.747Z
 
 ## Authored
 ### Purpose
@@ -15,12 +15,12 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:51.560Z","inputHash":"044721d221c3f411"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T16:08:45.747Z","inputHash":"4d67a3ef56541f7e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `rustAdapter`
 - Type: const
-- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/rust.ts#L32)
+- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/rust.ts#L32)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -40,12 +40,12 @@ _Pending notes_
 <!-- LIVE-DOC:BEGIN Observed Evidence -->
 ### Observed Evidence
 #### Vitest Unit Tests
+- [generator.test.ts](../../../../server/src/features/live-docs/generator.test.ts.md)
+- [renderPublicSymbolLines.test.ts](../../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.md)
+- [generator.test.ts](../../../../server/src/features/live-docs/system/generator.test.ts.md)
 - [c.docstring.test.ts](./c.docstring.test.ts.md)
 - [python.docstring.test.ts](./python.docstring.test.ts.md)
 - [ruby.docstring.test.ts](./ruby.docstring.test.ts.md)
 - [rust.docstring.test.ts](./rust.docstring.test.ts.md)
 - [core.docstring.test.ts](../core.docstring.test.ts.md)
-- [generator.test.ts](../../generator.test.ts.md)
-- [renderPublicSymbolLines.test.ts](../../renderPublicSymbolLines.test.ts.md)
-- [generator.test.ts](../../system/generator.test.ts.md)
 <!-- LIVE-DOC:END Observed Evidence -->

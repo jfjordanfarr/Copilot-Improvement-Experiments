@@ -1,11 +1,11 @@
-# packages/server/src/features/live-docs/generation/adapters/java.ts
+# packages/shared/src/live-docs/adapters/java.ts
 
 ## Metadata
 - Layer: 4
 - Archetype: implementation
-- Code Path: packages/server/src/features/live-docs/generation/adapters/java.ts
-- Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generation-adapters-java-ts
-- Generated At: 2025-11-16T02:09:51.513Z
+- Code Path: packages/shared/src/live-docs/adapters/java.ts
+- Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-java-ts
+- Generated At: 2025-11-16T16:08:45.662Z
 
 ## Authored
 ### Purpose
@@ -17,12 +17,12 @@ Transforms Java AST snapshots captured by our fixture oracle into Live Doc-frien
 - Uses cached AST output generated during fixture setup, keeping regeneration fast without invoking the Java compiler during Live Doc runs.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:51.513Z","inputHash":"134f693a3b168586"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T16:08:45.662Z","inputHash":"4edfdc01ff99ccd8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `javaAdapter`
 - Type: const
-- Source: [source](../../../../../../../../../packages/server/src/features/live-docs/generation/adapters/java.ts#L21)
+- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/java.ts#L21)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -43,12 +43,12 @@ Transforms Java AST snapshots captured by our fixture oracle into Live Doc-frien
 <!-- LIVE-DOC:BEGIN Observed Evidence -->
 ### Observed Evidence
 #### Vitest Unit Tests
+- [generator.test.ts](../../../../server/src/features/live-docs/generator.test.ts.md)
+- [renderPublicSymbolLines.test.ts](../../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.md)
+- [generator.test.ts](../../../../server/src/features/live-docs/system/generator.test.ts.md)
 - [c.docstring.test.ts](./c.docstring.test.ts.md)
 - [python.docstring.test.ts](./python.docstring.test.ts.md)
 - [ruby.docstring.test.ts](./ruby.docstring.test.ts.md)
 - [rust.docstring.test.ts](./rust.docstring.test.ts.md)
 - [core.docstring.test.ts](../core.docstring.test.ts.md)
-- [generator.test.ts](../../generator.test.ts.md)
-- [renderPublicSymbolLines.test.ts](../../renderPublicSymbolLines.test.ts.md)
-- [generator.test.ts](../../system/generator.test.ts.md)
 <!-- LIVE-DOC:END Observed Evidence -->

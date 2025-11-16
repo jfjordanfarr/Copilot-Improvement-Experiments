@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generator-ts
-- Generated At: 2025-11-16T02:09:51.603Z
+- Generated At: 2025-11-16T15:28:40.320Z
 
 ## Authored
 ### Purpose
@@ -17,9 +17,13 @@ Regenerates Layer‑4 Live Docs by analysing source files, weaving in evidence, 
 - Supports dry-run/reporting workflows through change classification and exposes test utilities for symbol/dependency extraction.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:51.603Z","inputHash":"7408ad86b3fe90f2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T15:28:40.320Z","inputHash":"534f7d606907761c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
+#### `LiveDocGeneratorResult`
+- Type: interface
+- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L69)
+
 #### `generateLiveDocs`
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L92)
@@ -36,6 +40,7 @@ Regenerates Layer‑4 Live Docs by analysing source files, weaving in evidence, 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `@copilot-improvement/shared/config/liveDocumentationConfig` - `DEFAULT_LIVE_DOCUMENTATION_CONFIG`, `LIVE_DOCUMENTATION_FILE_EXTENSION`, `LiveDocumentationArchetype`, `LiveDocumentationConfig`, `normalizeLiveDocumentationConfig`
+- `@copilot-improvement/shared/live-docs/core` - `SourceAnalysisResult`, `analyzeSourceFile`, `cleanupEmptyParents`, `collectDependencies`, `collectExportedSymbols`, `directoryExists`, `discoverTargetFiles`, `formatRelativePathFromDoc`, `hasMeaningfulAuthoredContent`, `inferScriptKind`, `renderDependencyLines`, `renderPublicSymbolLines`, `resolveArchetype`
 - `@copilot-improvement/shared/live-docs/markdown` - `LiveDocRenderSection`, `composeLiveDocId`, `extractAuthoredBlock`, `renderLiveDocMarkdown`
 - `@copilot-improvement/shared/live-docs/schema` - `LiveDocGeneratorProvenance`, `LiveDocMetadata`, `LiveDocProvenance` (type-only)
 - `@copilot-improvement/shared/tooling/pathUtils` - `normalizeWorkspacePath`, `toWorkspaceFileUri`, `toWorkspaceRelativePath`
@@ -48,19 +53,6 @@ Regenerates Layer‑4 Live Docs by analysing source files, weaving in evidence, 
 - [`evidenceBridge.ImplementationEvidenceItem`](./evidenceBridge.ts.md#implementationevidenceitem)
 - [`evidenceBridge.TestEvidenceItem`](./evidenceBridge.ts.md#testevidenceitem)
 - [`evidenceBridge.loadEvidenceSnapshot`](./evidenceBridge.ts.md#loadevidencesnapshot)
-- [`core.SourceAnalysisResult`](./generation/core.ts.md#sourceanalysisresult)
-- [`core.analyzeSourceFile`](./generation/core.ts.md#analyzesourcefile)
-- [`core.cleanupEmptyParents`](./generation/core.ts.md#cleanupemptyparents)
-- [`core.collectDependencies`](./generation/core.ts.md#collectdependencies)
-- [`core.collectExportedSymbols`](./generation/core.ts.md#collectexportedsymbols)
-- [`core.directoryExists`](./generation/core.ts.md#directoryexists)
-- [`core.discoverTargetFiles`](./generation/core.ts.md#discovertargetfiles)
-- [`core.formatRelativePathFromDoc`](./generation/core.ts.md#formatrelativepathfromdoc)
-- [`core.hasMeaningfulAuthoredContent`](./generation/core.ts.md#hasmeaningfulauthoredcontent)
-- [`core.inferScriptKind`](./generation/core.ts.md#inferscriptkind)
-- [`core.renderDependencyLines`](./generation/core.ts.md#renderdependencylines)
-- [`core.renderPublicSymbolLines`](./generation/core.ts.md#renderpublicsymbollines)
-- [`core.resolveArchetype`](./generation/core.ts.md#resolvearchetype)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

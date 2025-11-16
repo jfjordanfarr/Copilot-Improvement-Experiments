@@ -2,7 +2,7 @@ import path from "node:path";
 import ts from "typescript";
 import { describe, expect, it } from "vitest";
 
-import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "../config/liveDocumentationConfig";
 
 import { collectExportedSymbols, renderPublicSymbolLines } from "./core";
 

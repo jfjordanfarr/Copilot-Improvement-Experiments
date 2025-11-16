@@ -4,12 +4,14 @@ import * as fs from "node:fs/promises";
 import path from "node:path";
 import ts from "typescript";
 
-import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import type { LiveDocumentationConfig, LiveDocumentationArchetype } from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { slug as githubSlug } from "@copilot-improvement/shared/tooling/githubSlugger";
-import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
-
 import { analyzeWithLanguageAdapters } from "./adapters";
+import {
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
+  type LiveDocumentationConfig,
+  type LiveDocumentationArchetype
+} from "../config/liveDocumentationConfig";
+import { slug } from "../tooling/githubSlugger";
+import { normalizeWorkspacePath } from "../tooling/pathUtils";
 
 export interface SourceAnalysisResult {
   symbols: PublicSymbolEntry[];
@@ -1045,7 +1047,7 @@ export function formatRelativePathFromDoc(docDir: string, targetAbsolute: string
 }
 
 export function createSymbolSlug(name: string): string | undefined {
-  const candidate = githubSlug(`\`${name}\``);
+  const candidate = slug(`\`${name}\``);
   return candidate && candidate.length > 0 ? candidate : undefined;
 }
 

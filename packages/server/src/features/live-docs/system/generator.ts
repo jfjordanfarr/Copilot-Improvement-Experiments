@@ -4,13 +4,19 @@ import path from "node:path";
 
 import {
   LIVE_DOCUMENTATION_FILE_EXTENSION,
-  type LiveDocumentationConfig,
-  normalizeLiveDocumentationConfig
+  normalizeLiveDocumentationConfig,
+  type LiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
 import type {
   CoActivationEdge,
   CoActivationReport
 } from "@copilot-improvement/shared/live-docs/analysis/coActivation";
+import {
+  cleanupEmptyParents,
+  directoryExists,
+  formatRelativePathFromDoc,
+  hasMeaningfulAuthoredContent
+} from "@copilot-improvement/shared/live-docs/core";
 import {
   extractAuthoredBlock,
   renderLiveDocMarkdown,
@@ -25,12 +31,6 @@ import type { Stage0Doc, Stage0Symbol, TargetManifest } from "@copilot-improveme
 import { slug as githubSlug } from "@copilot-improvement/shared/tooling/githubSlugger";
 import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
 
-import {
-  cleanupEmptyParents,
-  directoryExists,
-  formatRelativePathFromDoc,
-  hasMeaningfulAuthoredContent
-} from "../generation/core";
 import { loadStage0Docs } from "../stage0/docLoader";
 import { loadTargetManifest } from "../targets/manifest";
 

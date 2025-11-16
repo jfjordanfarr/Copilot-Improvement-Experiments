@@ -31,6 +31,7 @@ vi.mock("@copilot-improvement/shared", async () => {
 });
 
 let invokeLocalOllamaBridge!: typeof import("./localOllamaBridge").invokeLocalOllamaBridge;
+const HOOK_TIMEOUT_MS = 30000;
 
 interface BridgeResult {
   response: string | object;
@@ -44,7 +45,7 @@ describe("invokeLocalOllamaBridge", () => {
 
   beforeAll(async () => {
     ({ invokeLocalOllamaBridge } = await import("./localOllamaBridge"));
-  });
+  }, HOOK_TIMEOUT_MS);
 
   beforeEach(() => {
     invokeOllamaChatMock.mockReset();

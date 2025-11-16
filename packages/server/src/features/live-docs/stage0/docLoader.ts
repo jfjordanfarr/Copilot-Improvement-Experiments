@@ -6,6 +6,7 @@ import {
   LIVE_DOCUMENTATION_FILE_EXTENSION,
   type LiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import { directoryExists } from "@copilot-improvement/shared/live-docs/core";
 import {
   renderBeginMarker,
   renderEndMarker
@@ -15,11 +16,7 @@ import type {
   Stage0DocLogger,
   Stage0Symbol
 } from "@copilot-improvement/shared/live-docs/types";
-import {
-  normalizeWorkspacePath
-} from "@copilot-improvement/shared/tooling/pathUtils";
-
-import { directoryExists } from "../generation/core";
+import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
 
 interface LoadStage0DocsArgs {
   workspaceRoot: string;

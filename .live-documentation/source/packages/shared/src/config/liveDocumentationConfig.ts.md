@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/config/liveDocumentationConfig.ts
 - Live Doc ID: LD-implementation-packages-shared-src-config-livedocumentationconfig-ts
-- Generated At: 2025-11-16T02:15:07.659Z
+- Generated At: 2025-11-16T16:08:45.239Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Defines the canonical configuration shape for staged Live Documentation and norm
 - `normalizeLiveDocumentationConfig` deduplicates globs, trims string options, and merges evidence strictness while preserving any caller-provided overrides.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:15:07.659Z","inputHash":"73d9a0e0c77764ce"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T16:08:45.239Z","inputHash":"73d9a0e0c77764ce"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LiveDocumentationSlugDialect`
@@ -100,11 +100,6 @@ _No dependencies documented yet_
 - [rippleAnalyzer.test.ts](../../../server/src/features/knowledge/rippleAnalyzer.test.ts.md)
 - [scipParser.test.ts](../../../server/src/features/knowledge/scipParser.test.ts.md)
 - [workspaceIndexProvider.test.ts](../../../server/src/features/knowledge/workspaceIndexProvider.test.ts.md)
-- [c.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/c.docstring.test.ts.md)
-- [python.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/python.docstring.test.ts.md)
-- [ruby.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/ruby.docstring.test.ts.md)
-- [rust.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/rust.docstring.test.ts.md)
-- [core.docstring.test.ts](../../../server/src/features/live-docs/generation/core.docstring.test.ts.md)
 - [generator.test.ts](../../../server/src/features/live-docs/generator.test.ts.md)
 - [renderPublicSymbolLines.test.ts](../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.md)
 - [generator.test.ts](../../../server/src/features/live-docs/system/generator.test.ts.md)
@@ -114,7 +109,12 @@ _No dependencies documented yet_
 - [settings.test.ts](../../../server/src/runtime/settings.test.ts.md)
 - [latencyTracker.test.ts](../../../server/src/telemetry/latencyTracker.test.ts.md)
 - [liveDocumentationConfig.test.ts](./liveDocumentationConfig.test.ts.md)
+- [c.docstring.test.ts](../live-docs/adapters/c.docstring.test.ts.md)
+- [python.docstring.test.ts](../live-docs/adapters/python.docstring.test.ts.md)
+- [ruby.docstring.test.ts](../live-docs/adapters/ruby.docstring.test.ts.md)
+- [rust.docstring.test.ts](../live-docs/adapters/rust.docstring.test.ts.md)
 - [coActivation.test.ts](../live-docs/analysis/coActivation.test.ts.md)
+- [core.docstring.test.ts](../live-docs/core.docstring.test.ts.md)
 - [generator.test.ts](../live-docs/generator.test.ts.md)
 - [schema.test.ts](../live-docs/schema.test.ts.md)
 <!-- LIVE-DOC:END Observed Evidence -->

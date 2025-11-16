@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/telemetry/latencyTracker.test.ts
 - Live Doc ID: LD-test-packages-server-src-telemetry-latencytracker-test-ts
-- Generated At: 2025-11-16T02:09:51.730Z
+- Generated At: 2025-11-16T16:08:45.214Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Validates the latency tracker’s ability to measure change lifecycles, prune un
 - Exercises the reset path to confirm state and sample buffers clear after reporting.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:51.730Z","inputHash":"324270be8974ffd9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T16:08:45.214Z","inputHash":"324270be8974ffd9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -47,8 +47,6 @@ _No public symbols detected_
 - packages/shared/src/inference/llm: [confidenceCalibrator.ts](../../../shared/src/inference/llm/confidenceCalibrator.ts.md), [relationshipExtractor.ts](../../../shared/src/inference/llm/relationshipExtractor.ts.md)
 - packages/shared/src/knowledge: [knowledgeGraphBridge.ts](../../../shared/src/knowledge/knowledgeGraphBridge.ts.md)
 - packages/shared/src/language: [typeScriptAstUtils.ts](../../../shared/src/language/typeScriptAstUtils.ts.md)
-- packages/shared/src/live-docs: [markdown.ts](../../../shared/src/live-docs/markdown.ts.md), [schema.ts](../../../shared/src/live-docs/schema.ts.md), [types.ts](../../../shared/src/live-docs/types.ts.md)
-- packages/shared/src/live-docs/analysis: [coActivation.ts](../../../shared/src/live-docs/analysis/coActivation.ts.md)
 - packages/shared/src/reporting: [testReport.ts](../../../shared/src/reporting/testReport.ts.md)
 - packages/shared/src/rules: [relationshipResolvers.ts](../../../shared/src/rules/relationshipResolvers.ts.md), [relationshipRuleAudit.ts](../../../shared/src/rules/relationshipRuleAudit.ts.md), [relationshipRuleEngine.ts](../../../shared/src/rules/relationshipRuleEngine.ts.md), [relationshipRuleProvider.ts](../../../shared/src/rules/relationshipRuleProvider.ts.md), [relationshipRuleTypes.ts](../../../shared/src/rules/relationshipRuleTypes.ts.md), [symbolCorrectnessProfiles.ts](../../../shared/src/rules/symbolCorrectnessProfiles.ts.md)
 - packages/shared/src/telemetry: [inferenceAccuracy.ts](../../../shared/src/telemetry/inferenceAccuracy.ts.md)

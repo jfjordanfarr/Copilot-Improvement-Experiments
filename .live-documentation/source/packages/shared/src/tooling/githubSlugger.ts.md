@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/githubSlugger.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-githubslugger-ts
-- Generated At: 2025-11-16T02:09:52.105Z
+- Generated At: 2025-11-16T16:08:46.075Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Provides a vendored GitHub-compatible slugger so Live Docs and diagnostics can g
 - Avoids pulling an ESM dependency into the shared workspace, keeping runtime usage compatible with the extension, server, and tests.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:52.105Z","inputHash":"60022c047e8317af"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T16:08:46.075Z","inputHash":"60022c047e8317af"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SlugContext`
@@ -69,11 +69,6 @@ Provides a vendored GitHub-compatible slugger so Live Docs and diagnostics can g
 - [rippleAnalyzer.test.ts](../../../server/src/features/knowledge/rippleAnalyzer.test.ts.md)
 - [scipParser.test.ts](../../../server/src/features/knowledge/scipParser.test.ts.md)
 - [workspaceIndexProvider.test.ts](../../../server/src/features/knowledge/workspaceIndexProvider.test.ts.md)
-- [c.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/c.docstring.test.ts.md)
-- [python.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/python.docstring.test.ts.md)
-- [ruby.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/ruby.docstring.test.ts.md)
-- [rust.docstring.test.ts](../../../server/src/features/live-docs/generation/adapters/rust.docstring.test.ts.md)
-- [core.docstring.test.ts](../../../server/src/features/live-docs/generation/core.docstring.test.ts.md)
 - [generator.test.ts](../../../server/src/features/live-docs/generator.test.ts.md)
 - [renderPublicSymbolLines.test.ts](../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.md)
 - [generator.test.ts](../../../server/src/features/live-docs/system/generator.test.ts.md)
@@ -82,6 +77,11 @@ Provides a vendored GitHub-compatible slugger so Live Docs and diagnostics can g
 - [environment.test.ts](../../../server/src/runtime/environment.test.ts.md)
 - [settings.test.ts](../../../server/src/runtime/settings.test.ts.md)
 - [latencyTracker.test.ts](../../../server/src/telemetry/latencyTracker.test.ts.md)
+- [c.docstring.test.ts](../live-docs/adapters/c.docstring.test.ts.md)
+- [python.docstring.test.ts](../live-docs/adapters/python.docstring.test.ts.md)
+- [ruby.docstring.test.ts](../live-docs/adapters/ruby.docstring.test.ts.md)
+- [rust.docstring.test.ts](../live-docs/adapters/rust.docstring.test.ts.md)
+- [core.docstring.test.ts](../live-docs/core.docstring.test.ts.md)
 - [documentationLinks.test.ts](./documentationLinks.test.ts.md)
 - [githubSlugger.test.ts](./githubSlugger.test.ts.md)
 - [symbolReferences.test.ts](./symbolReferences.test.ts.md)

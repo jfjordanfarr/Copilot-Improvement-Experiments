@@ -23,6 +23,8 @@ const sourceFixture = path.join(
   "workspace"
 );
 
+const TEST_TIMEOUT_MS = 15_000; // CLI spawn and fixture copy can exceed Vitest's 5s default.
+
 async function withFixtureCopy(
   callback: (workspacePath: string) => Promise<void>
 ): Promise<void> {
@@ -78,7 +80,7 @@ describe("SlopCop asset audit fixture", () => {
       expect(payload.scannedFiles).toBeGreaterThan(0);
       expect(payload.issues).toHaveLength(0);
     });
-  });
+  }, TEST_TIMEOUT_MS);
 
   it("reports missing assets when files are removed at runtime", async () => {
     await withFixtureCopy(async workspacePath => {
@@ -95,5 +97,5 @@ describe("SlopCop asset audit fixture", () => {
 
       expect(galleryIssue).toBeTruthy();
     });
-  });
+  }, TEST_TIMEOUT_MS);
 });

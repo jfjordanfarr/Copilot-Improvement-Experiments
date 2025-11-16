@@ -8,10 +8,10 @@ async function main(): Promise<void> {
   const manifest = await loadBenchmarkManifest(repoRoot);
   const docPath = path.join(
     repoRoot,
-    ".mdmd",
-    "layer-4",
+    ".live-documentation",
+    "source",
     "benchmarks",
-    "astAccuracyFixtures.mdmd.md"
+    "astAccuracyFixtures.md"
   );
 
   await ensureVendorSection(docPath, manifest, {

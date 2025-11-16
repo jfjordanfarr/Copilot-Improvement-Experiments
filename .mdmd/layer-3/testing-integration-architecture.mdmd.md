@@ -26,11 +26,13 @@ Supports FR-LD1 through FR-LD6 plus REQ-F1 to REQ-F6 by executing end-to-end sce
 
 ### Harness Strategy & Options
 - **Immediate path (Options 1 + 4)**: retain the VS Code harness for UI/diagnostics flows while carving out a lightweight headless runner that replays the same suites against compiled artifacts using a sandboxed fixture. This preserves UX coverage and gives us a deterministic harness for CLI, generator, and hosted showcase rehearsal without pulling Electron into every scenario.
-- **Durable target (Options 2 + 3)**: promote the Live Docs generator/analyzer stack into a reusable core package that both VS Code and headless/container harnesses consume, and pair it with scenario-specific benchmark suites that validate the hosted showcase container. These options unlock containerisation, Cloudflare demo rehearsals, and multi-IDE harness reuse once the core stabilises.
+- **Option 2 headless harness**: `npm run live-docs:headless -- --scenario <name>` now copies benchmark fixtures into a temp workspace, drives the shared generator/system builders, and writes timestamped reports under `AI-Agent-Workspace/tmp/headless-harness/<scenario>/`. Scenarios (`ruby-cli`, `python-basics`, `csharp-advanced`) live in `packages/server/src/features/live-docs/harness/scenarios.ts`, guaranteeing every language bridge remains green without launching VS Code.
+- **Option 3 container harness**: passing `--container-spec` emits `container-spec.json` beside each headless report describing the Node 22 image, mount expectations, and command invocation so the Cloudflare hosted showcase can replay scenarios verbatim. These specs keep hosted rehearsals honest while remaining optional for local runs.
 - Keep VS Code and headless/container harnesses independent even after the core extraction so regressions in one surface do not mask the other. Hosted showcase validations must point to the headless/container harness to guarantee parity with the Cloudflare runner while acknowledging the marketing-only positioning.
 
 ### Artefact Capture
 - Persist run outputs (snapshot JSON, logs, Live Doc markdown fixtures, provenance files) in per-suite temp directories for inspection and regression comparisons.
+- Headless harness runs deposit `report.json` + optional `container-spec.json` inside `AI-Agent-Workspace/tmp/headless-harness/<scenario>/<timestamp>/` and leave the generated `.live-documentation/` mirrors inside the copied workspace whenever `--keep-workspace` is supplied for manual spot checks.
 
 ## Interfaces
 

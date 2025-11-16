@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-index-ts
-- Generated At: 2025-11-16T02:09:51.797Z
+- Generated At: 2025-11-16T15:28:40.548Z
 
 ## Authored
 ### Purpose
@@ -34,7 +34,7 @@ Re-export of [`createMockOllamaResponse`](./tooling/ollamaMock.ts.md#createmocko
 Convenience alias for [`resolveOllamaEndpoint`](./tooling/ollamaEndpoint.ts.md#resolveollamaendpoint) so extension and server code reference a single package entry.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:51.797Z","inputHash":"7de19b180fdb988a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T15:28:40.548Z","inputHash":"57757939591bfd81"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -73,10 +73,6 @@ _No public symbols detected_
 - [`relationshipExtractor.RelationshipExtractorLogger`](./inference/llm/relationshipExtractor.ts.md#relationshipextractorlogger) (re-export)
 - [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.md) (re-export)
 - [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.md) (re-export)
-- [`coActivation`](./live-docs/analysis/coActivation.ts.md) (re-export)
-- [`markdown`](./live-docs/markdown.ts.md) (re-export)
-- [`schema`](./live-docs/schema.ts.md) (re-export)
-- [`types`](./live-docs/types.ts.md) (re-export)
 - [`testReport`](./reporting/testReport.ts.md) (re-export)
 - [`relationshipResolvers`](./rules/relationshipResolvers.ts.md) (re-export)
 - [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.md) (re-export)

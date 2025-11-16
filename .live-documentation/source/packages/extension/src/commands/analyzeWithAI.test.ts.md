@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/analyzeWithAI.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-analyzewithai-test-ts
-- Generated At: 2025-11-16T02:09:50.941Z
+- Generated At: 2025-11-16T16:08:43.886Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies the `analyzeWithAI` command wiring so AI-assisted diagnostic assessment
 - Simulates a successful diagnostic selection and LLM invocation, asserting that the response is stored via the client, tree views refresh, and user messaging is shown.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:50.941Z","inputHash":"a0799d0f4b159a34"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T16:08:43.886Z","inputHash":"a0799d0f4b159a34"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -38,6 +38,7 @@ _No public symbols detected_
 - packages/extension/src/commands: [analyzeWithAI.ts](./analyzeWithAI.ts.md)
 - packages/extension/src/services: [llmInvoker.ts](../services/llmInvoker.ts.md)
 - packages/extension/src/settings: [configService.ts](../settings/configService.ts.md)
+- packages/extension/src/testUtils: [vscodeMock.ts](../testUtils/vscodeMock.ts.md)
 - packages/shared/src: [src/index.ts](../../../shared/src/index.ts.md)
 - packages/shared/src/config: [liveDocumentationConfig.ts](../../../shared/src/config/liveDocumentationConfig.ts.md)
 - packages/shared/src/contracts: [dependencies.ts](../../../shared/src/contracts/dependencies.ts.md), [diagnostics.ts](../../../shared/src/contracts/diagnostics.ts.md), [llm.ts](../../../shared/src/contracts/llm.ts.md), [lsif.ts](../../../shared/src/contracts/lsif.ts.md), [maintenance.ts](../../../shared/src/contracts/maintenance.ts.md), [overrides.ts](../../../shared/src/contracts/overrides.ts.md)
@@ -51,8 +52,6 @@ _No public symbols detected_
 - packages/shared/src/inference/llm: [confidenceCalibrator.ts](../../../shared/src/inference/llm/confidenceCalibrator.ts.md), [relationshipExtractor.ts](../../../shared/src/inference/llm/relationshipExtractor.ts.md)
 - packages/shared/src/knowledge: [knowledgeGraphBridge.ts](../../../shared/src/knowledge/knowledgeGraphBridge.ts.md)
 - packages/shared/src/language: [typeScriptAstUtils.ts](../../../shared/src/language/typeScriptAstUtils.ts.md)
-- packages/shared/src/live-docs: [markdown.ts](../../../shared/src/live-docs/markdown.ts.md), [schema.ts](../../../shared/src/live-docs/schema.ts.md), [types.ts](../../../shared/src/live-docs/types.ts.md)
-- packages/shared/src/live-docs/analysis: [coActivation.ts](../../../shared/src/live-docs/analysis/coActivation.ts.md)
 - packages/shared/src/reporting: [testReport.ts](../../../shared/src/reporting/testReport.ts.md)
 - packages/shared/src/rules: [relationshipResolvers.ts](../../../shared/src/rules/relationshipResolvers.ts.md), [relationshipRuleAudit.ts](../../../shared/src/rules/relationshipRuleAudit.ts.md), [relationshipRuleEngine.ts](../../../shared/src/rules/relationshipRuleEngine.ts.md), [relationshipRuleProvider.ts](../../../shared/src/rules/relationshipRuleProvider.ts.md), [relationshipRuleTypes.ts](../../../shared/src/rules/relationshipRuleTypes.ts.md), [symbolCorrectnessProfiles.ts](../../../shared/src/rules/symbolCorrectnessProfiles.ts.md)
 - packages/shared/src/telemetry: [inferenceAccuracy.ts](../../../shared/src/telemetry/inferenceAccuracy.ts.md)

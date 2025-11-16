@@ -137,7 +137,7 @@ description: "Task list for Live Documentation"
 - [ ] LD-709 Validate System Layer renders across VS Code preview, CLI `live-docs inspect`, and markdown export, then schedule MDMD Layer‑3 retirement window
 - [ ] LD-710 Parse workflow orchestrators (e.g., `scripts/live-docs/run-all.ts`) to extract stage ordering when dependencies are expressed via string literals rather than imports
 - [ ] LD-711 Hook System Layer derivation into coverage manifests (`coverage/live-docs/targets.json`) once emitted so testing archetypes reflect bidirectional coverage data
-- [x] LD-712 Refactor `packages/server/src/features/live-docs/generator.ts` to extract shared core utilities (target discovery, analysis, merge/write pipeline) into a reusable module under `packages/server/src/features/live-docs/core`. *(Shared helpers emitted in `packages/server/src/features/live-docs/generation/core.ts`; `generator.ts` now consumes them.)*
+- [x] LD-712 Refactor `packages/server/src/features/live-docs/generator.ts` to extract shared core utilities (target discovery, analysis, merge/write pipeline) into a reusable module under `packages/shared/src/live-docs`. *(Shared helpers now live in `packages/shared/src/live-docs/core.ts` and the server generator consumes them.)*
 - [ ] LD-713 Create layer-specific generator entrypoints (`generator.layer4.ts`, `generator.system.ts`) that compose the shared core with layer rules while keeping existing CLI integrations functional
 - [ ] LD-714 Filter build artefacts (e.g., compiled `.js` siblings) out of System Layer `Components` while preserving canonical TypeScript sources.
 - [ ] LD-715 Merge duplicate System Layer interaction/workflow docs when they describe the same orchestrator; ensure topology reflects single-source ordering.

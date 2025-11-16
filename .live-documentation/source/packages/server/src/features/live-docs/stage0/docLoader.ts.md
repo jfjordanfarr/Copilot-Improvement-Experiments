@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/stage0/docLoader.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-stage0-docloader-ts
-- Generated At: 2025-11-16T02:09:51.611Z
+- Generated At: 2025-11-16T15:28:40.342Z
 
 ## Authored
 ### Purpose
@@ -15,24 +15,24 @@ _Pending authored purpose_
 _Pending notes_
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T02:09:51.611Z","inputHash":"b1624dac9e97bedb"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T15:28:40.342Z","inputHash":"e0137ee2e683ea1c"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `loadStage0Docs`
 - Type: function
-- Source: [source](../../../../../../../../packages/server/src/features/live-docs/stage0/docLoader.ts#L38)
+- Source: [source](../../../../../../../../packages/server/src/features/live-docs/stage0/docLoader.ts#L35)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `@copilot-improvement/shared/config/liveDocumentationConfig` - `LIVE_DOCUMENTATION_FILE_EXTENSION`, `LiveDocumentationConfig`
+- `@copilot-improvement/shared/live-docs/core` - `directoryExists`
 - `@copilot-improvement/shared/live-docs/markdown` - `renderBeginMarker`, `renderEndMarker`
 - `@copilot-improvement/shared/live-docs/types` - `Stage0Doc`, `Stage0DocLogger`, `Stage0Symbol` (type-only)
 - `@copilot-improvement/shared/tooling/pathUtils` - `normalizeWorkspacePath`
 - `glob` - `glob`
 - `node:fs/promises` - `fs`
 - `node:path` - `path`
-- [`core.directoryExists`](../generation/core.ts.md#directoryexists)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->
