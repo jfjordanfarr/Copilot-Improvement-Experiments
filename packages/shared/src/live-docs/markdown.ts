@@ -151,13 +151,14 @@ export function defaultAuthoredTemplate(): string {
 export function composeLiveDocPath(
   root: string,
   baseLayer: string,
-  sourcePath: string
+  sourcePath: string,
+  extension = LIVE_DOCUMENTATION_FILE_EXTENSION
 ): string {
   const normalizedRoot = normalizeWorkspacePath(root);
   const normalizedLayer = normalizeWorkspacePath(baseLayer);
   const normalizedSource = normalizeWorkspacePath(sourcePath);
   return path
-    .join(normalizedRoot, normalizedLayer, `${normalizedSource}${LIVE_DOCUMENTATION_FILE_EXTENSION}`)
+    .join(normalizedRoot, normalizedLayer, `${normalizedSource}${extension}`)
     .split(path.sep)
     .join("/");
 }

@@ -7,7 +7,7 @@
 ## Capabilities
 
 ### CAP-001 – Layer‑4 Backbone
-Deliver a repository-embedded corpus of Live Documentation where every tracked asset owns an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata) stored in a mirror tree under `/.live-documentation/source/` (path configurable per workspace). Layer‑4 docs are the only durable artefacts the project promises to maintain; everything else must be derivable from this base ([AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md](../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md)).
+Deliver a repository-embedded corpus of Live Documentation where every tracked asset owns an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata) stored in a mirror tree under `/.mdmd/layer-4/` (path configurable per workspace). Layer‑4 docs are the only durable artefacts the project promises to maintain; everything else must be derivable from this base ([AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md](../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md)).
 Drive parity across the languages we benchmark today by teaching the generator to emit the same sections for repository-hosted Python, C#, Java, Ruby, Rust, and C fixtures before onboarding external codebases, keeping “Layer‑4 everywhere” a falsifiable promise.
 
 ### CAP-002 – Analysis Bridges
@@ -122,9 +122,9 @@ Deliver a stateless, Cloudflare-hosted showcase that clones public GitHub reposi
 
 ## Implementation Touchpoints
 - [Live Documentation Generator](../layer-3/language-server-architecture.mdmd.md) will orchestrate analyzers, docstring bridges, and markdown emitters to refresh generated sections.
-- [Knowledge Feed Manager](../../.live-documentation/source/packages/server/src/features/knowledge/knowledgeFeedManager.ts.md) keeps optional LSIF/SCIP feeds healthy so generated sections remain accurate.
-- [Diagnostics Tree View](../../.live-documentation/source/packages/extension/src/views/diagnosticsTree.ts.md) and [Export Diagnostics Command](../../.live-documentation/source/packages/extension/src/commands/exportDiagnostics.ts.md) consume Live Docs for impact analysis.
-- [SlopCop Markdown Audit](../../.live-documentation/source/scripts/slopcop/check-markdown-links.ts.md) and future Live Doc-specific lint rules enforce authored/generated boundaries and evidence guarantees.
+- [Knowledge Feed Manager](../../.mdmd/layer-4/packages/server/src/features/knowledge/knowledgeFeedManager.ts.mdmd.md) keeps optional LSIF/SCIP feeds healthy so generated sections remain accurate.
+- [Diagnostics Tree View](../../.mdmd/layer-4/packages/extension/src/views/diagnosticsTree.ts.mdmd.md) and [Export Diagnostics Command](../../.mdmd/layer-4/packages/extension/src/commands/exportDiagnostics.ts.mdmd.md) consume Live Docs for impact analysis.
+- [SlopCop Markdown Audit](../../.mdmd/layer-4/scripts/slopcop/check-markdown-links.ts.mdmd.md) and future Live Doc-specific lint rules enforce authored/generated boundaries and evidence guarantees.
 
 ## Code Anchors
 - [`packages/server/src/main.ts`](../../packages/server/src/main.ts) bootstraps the language server runtime that triggers Live Doc regeneration.

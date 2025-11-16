@@ -5,6 +5,7 @@ import * as path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import {
+  DEFAULT_LIVE_DOCUMENTATION_CONFIG,
   LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
@@ -37,8 +38,7 @@ describe("generateLiveDocs pruning", () => {
 
   it("prunes stale docs without authored content while preserving authored stubs", async () => {
     const config = normalizeLiveDocumentationConfig({
-      root: ".live-documentation",
-      baseLayer: "source",
+      ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
       glob: ["packages/foo/src/**/*.ts"]
     });
 
@@ -51,7 +51,11 @@ describe("generateLiveDocs pruning", () => {
     expect(initialResult.deleted).toBe(0);
     expect(initialResult.deletedFiles).toHaveLength(0);
 
-    const docRoot = path.join(workspaceRoot, ".live-documentation", "source");
+    const docRoot = path.join(
+      workspaceRoot,
+      DEFAULT_LIVE_DOCUMENTATION_CONFIG.root,
+      DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer
+    );
     const orphanDocPath = path.join(
       docRoot,
       "packages",
@@ -147,11 +151,18 @@ describe("generateLiveDocs pruning", () => {
     });
 
     expect(result.deleted).toBe(1);
+    const expectedRoot = path.join(
+      DEFAULT_LIVE_DOCUMENTATION_CONFIG.root,
+      DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer,
+      "packages",
+      "foo",
+      "src"
+    );
     expect(result.deletedFiles).toContain(
-      `.live-documentation/source/packages/foo/src/orphan.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+      `${expectedRoot}/orphan.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`.replace(/\\/g, "/")
     );
     expect(result.deletedFiles).not.toContain(
-      `.live-documentation/source/packages/foo/src/preserve.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+      `${expectedRoot}/preserve.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`.replace(/\\/g, "/")
     );
 
     await expect(fs.stat(orphanDocPath)).rejects.toThrowError();

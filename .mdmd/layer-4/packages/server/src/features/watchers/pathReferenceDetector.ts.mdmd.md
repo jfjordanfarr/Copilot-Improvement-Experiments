@@ -1,0 +1,51 @@
+# packages/server/src/features/watchers/pathReferenceDetector.ts
+
+## Metadata
+- Layer: 4
+- Archetype: implementation
+- Code Path: packages/server/src/features/watchers/pathReferenceDetector.ts
+- Live Doc ID: LD-implementation-packages-server-src-features-watchers-pathreferencedetector-ts
+- Generated At: 2025-11-16T22:35:16.293Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.293Z","inputHash":"367036819d5c26f5"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+#### `ArtifactCategory`
+- Type: type
+- Source: [source](../../../../../../../packages/server/src/features/watchers/pathReferenceDetector.ts#L9)
+
+#### `PathReferenceOrigin`
+- Type: type
+- Source: [source](../../../../../../../packages/server/src/features/watchers/pathReferenceDetector.ts#L11)
+
+#### `buildFileReferenceHints`
+- Type: function
+- Source: [source](../../../../../../../packages/server/src/features/watchers/pathReferenceDetector.ts#L56)
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+- `node:fs` - `fs`
+- `node:path` - `path`
+- `node:url` - `fileURLToPath`, `pathToFileURL`
+- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#normalizefileuri)
+- [`index.RelationshipHint`](../../../../shared/src/index.ts.mdmd.md#relationshiphint) (type-only)
+<!-- LIVE-DOC:END Dependencies -->
+
+<!-- LIVE-DOC:BEGIN Observed Evidence -->
+### Observed Evidence
+#### Vitest Unit Tests
+- [saveCodeChange.test.ts](../changeEvents/saveCodeChange.test.ts.mdmd.md)
+- [saveDocumentChange.test.ts](../changeEvents/saveDocumentChange.test.ts.mdmd.md)
+- [publishDocDiagnostics.test.ts](../diagnostics/publishDocDiagnostics.test.ts.mdmd.md)
+- [artifactWatcher.test.ts](./artifactWatcher.test.ts.mdmd.md)
+- [pathReferenceDetector.test.ts](./pathReferenceDetector.test.ts.mdmd.md)
+<!-- LIVE-DOC:END Observed Evidence -->

@@ -1,4 +1,5 @@
 import { promises as fs } from "node:fs";
+import * as path from "node:path";
 
 import {
   BenchmarkFixtureDefinition,
@@ -7,6 +8,7 @@ import {
   FixtureMaterialization,
   FixtureProvenance
 } from "./benchmark-manifest";
+import { DEFAULT_LIVE_DOCUMENTATION_CONFIG } from "../../packages/shared/src/config/liveDocumentationConfig";
 
 export const VENDOR_SECTION_START = "<!-- benchmark-vendor-inventory:start -->";
 export const VENDOR_SECTION_END = "<!-- benchmark-vendor-inventory:end -->";
@@ -14,6 +16,17 @@ export const VENDOR_SECTION_END = "<!-- benchmark-vendor-inventory:end -->";
 export interface RenderOptions {
   repoRoot: string;
   docPath: string;
+}
+
+export function resolveAstFixtureDocPath(repoRoot: string): string {
+  const config = DEFAULT_LIVE_DOCUMENTATION_CONFIG;
+  return path.join(
+    repoRoot,
+    config.root,
+    config.baseLayer,
+    "benchmarks",
+    `astAccuracyFixtures${config.extension}`
+  );
 }
 
 export async function ensureVendorSection(

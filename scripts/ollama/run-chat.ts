@@ -4,13 +4,13 @@
  * Reads a JSON payload from stdin, calls the configured Ollama endpoint, and prints an InvokeLlmResult JSON object.
  */
 
-import type { OllamaChatUsage } from "../../packages/shared/src";
 import {
-  resolveOllamaEndpoint,
   invokeOllamaChat,
   OllamaInvocationError,
-  createMockOllamaResponse
-} from "../../packages/shared/src";
+  type OllamaChatUsage
+} from "../../packages/shared/src/tooling/ollamaClient";
+import { resolveOllamaEndpoint } from "../../packages/shared/src/tooling/ollamaEndpoint";
+import { createMockOllamaResponse } from "../../packages/shared/src/tooling/ollamaMock";
 
 interface CliInput {
   prompt: string;

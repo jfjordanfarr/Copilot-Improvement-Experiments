@@ -60,42 +60,42 @@ Evaluates profile contracts that declare the upstream and downstream guarantees 
 ## Linked Implementations
 
 ### IMP-401 relationshipRuleEngine
-Evaluates link-rule chains during graph snapshot generation and produces evidences. [Relationship Rule Engine](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleEngine.ts.md)
+Evaluates link-rule chains during graph snapshot generation and produces evidences. [Relationship Rule Engine](../../.mdmd/layer-4/packages/shared/src/rules/relationshipRuleEngine.ts.mdmd.md)
 
 Code: [`packages/shared/src/rules/relationshipRuleEngine.ts`](../../packages/shared/src/rules/relationshipRuleEngine.ts)
 
 ### IMP-402 relationshipRuleAudit
-Loads compiled rules within `graph:audit` and maps unsatisfied chains to actionable diagnostics. [Relationship Rule Audit](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleAudit.ts.md)
+Loads compiled rules within `graph:audit` and maps unsatisfied chains to actionable diagnostics. [Relationship Rule Audit](../../.mdmd/layer-4/packages/shared/src/rules/relationshipRuleAudit.ts.mdmd.md)
 
 Code: [`packages/shared/src/rules/relationshipRuleAudit.ts`](../../packages/shared/src/rules/relationshipRuleAudit.ts)
 
 ### IMP-403 relationshipRuleResolvers
-Ships the built-in resolver catalogue (`markdown-links`, `mdmd-code-paths`) that interprets rule hops. [Relationship Rule Resolvers](../../.live-documentation/source/packages/shared/src/rules/relationshipResolvers.ts.md)
+Ships the built-in resolver catalogue (`markdown-links`, `mdmd-code-paths`) that interprets rule hops. [Relationship Rule Resolvers](../../.mdmd/layer-4/packages/shared/src/rules/relationshipResolvers.ts.mdmd.md)
 
 Code: [`packages/shared/src/rules/relationshipResolvers.ts`](../../packages/shared/src/rules/relationshipResolvers.ts)
 
 ### IMP-404 relationshipRuleTypes
-Defines the JSON configuration schema, compiled rule structures, and resolver contracts. [Relationship Rule Types](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleTypes.ts.md)
+Defines the JSON configuration schema, compiled rule structures, and resolver contracts. [Relationship Rule Types](../../.mdmd/layer-4/packages/shared/src/rules/relationshipRuleTypes.ts.mdmd.md)
 
 Code: [`packages/shared/src/rules/relationshipRuleTypes.ts`](../../packages/shared/src/rules/relationshipRuleTypes.ts)
 
 ### IMP-405 relationshipRuleProvider
-Exposes the rule engine as a workspace link provider so snapshots and the language server can emit inferred links. [Relationship Rule Provider](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleProvider.ts.md)
+Exposes the rule engine as a workspace link provider so snapshots and the language server can emit inferred links. [Relationship Rule Provider](../../.mdmd/layer-4/packages/shared/src/rules/relationshipRuleProvider.ts.mdmd.md)
 
 Code: [`packages/shared/src/rules/relationshipRuleProvider.ts`](../../packages/shared/src/rules/relationshipRuleProvider.ts)
 
 ### IMP-406 pathUtils
-Supplies URI and path normalisation helpers shared by the rule engine and auditor. [Workspace Path Utilities](../../.live-documentation/source/packages/shared/src/tooling/pathUtils.ts.md)
+Supplies URI and path normalisation helpers shared by the rule engine and auditor. [Workspace Path Utilities](../../.mdmd/layer-4/packages/shared/src/tooling/pathUtils.ts.mdmd.md)
 
 Code: [`packages/shared/src/tooling/pathUtils.ts`](../../packages/shared/src/tooling/pathUtils.ts)
 
 ### IMP-480 symbolCorrectnessProfiles
-Parses profile definitions, validates identifier formats, and emits compiled profile contracts. [Symbol Correctness Profiles](../../.live-documentation/source/packages/shared/src/rules/symbolCorrectnessProfiles.ts.md)
+Parses profile definitions, validates identifier formats, and emits compiled profile contracts. [Symbol Correctness Profiles](../../.mdmd/layer-4/packages/shared/src/rules/symbolCorrectnessProfiles.ts.mdmd.md)
 
 Code: [`packages/shared/src/rules/symbolCorrectnessProfiles.ts`](../../packages/shared/src/rules/symbolCorrectnessProfiles.ts)
 
 ### IMP-481 symbolCorrectnessValidator
-Evaluates compiled profiles against the persisted graph and surfaces diagnostics. [Symbol Correctness Validator](../../.live-documentation/source/packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts.md)
+Evaluates compiled profiles against the persisted graph and surfaces diagnostics. [Symbol Correctness Validator](../../.mdmd/layer-4/packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts.mdmd.md)
 
 Code: [`packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts`](../../packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts)
 

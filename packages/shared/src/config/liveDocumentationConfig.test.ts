@@ -11,6 +11,7 @@ describe("normalizeLiveDocumentationConfig", () => {
 
     expect(config.root).toBe(DEFAULT_LIVE_DOCUMENTATION_CONFIG.root);
     expect(config.baseLayer).toBe(DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer);
+    expect(config.extension).toBe(DEFAULT_LIVE_DOCUMENTATION_CONFIG.extension);
     expect(config.glob).toEqual(DEFAULT_LIVE_DOCUMENTATION_CONFIG.glob);
     expect(config.archetypeOverrides).toEqual({});
     expect(config.requireRelativeLinks).toBe(true);
@@ -23,6 +24,7 @@ describe("normalizeLiveDocumentationConfig", () => {
     const config = normalizeLiveDocumentationConfig({
       root: "  docs/ld  ",
       baseLayer: "  layer-four  ",
+      extension: " mdmd.md  ",
       glob: [
         "  packages/**/src/**/*.ts  ",
         "packages/**/src/**/*.ts",
@@ -43,6 +45,7 @@ describe("normalizeLiveDocumentationConfig", () => {
 
     expect(config.root).toBe("docs/ld");
     expect(config.baseLayer).toBe("layer-four");
+    expect(config.extension).toBe(".mdmd.md");
     expect(config.glob).toEqual([
       "packages/**/src/**/*.ts",
       "tests/**/integration/**/*.ts"
@@ -61,12 +64,22 @@ describe("normalizeLiveDocumentationConfig", () => {
     const config = normalizeLiveDocumentationConfig({
       root: "   ",
       baseLayer: "",
+      extension: "",
       glob: []
     });
 
     expect(config.root).toBe(DEFAULT_LIVE_DOCUMENTATION_CONFIG.root);
     expect(config.baseLayer).toBe(DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer);
+    expect(config.extension).toBe(DEFAULT_LIVE_DOCUMENTATION_CONFIG.extension);
     expect(config.glob).toEqual(DEFAULT_LIVE_DOCUMENTATION_CONFIG.glob);
     expect(config.evidence.strict).toBe("warning");
+  });
+
+  it("ensures extension values have a leading dot", () => {
+    const config = normalizeLiveDocumentationConfig({
+      extension: "md"
+    });
+
+    expect(config.extension).toBe(".md");
   });
 });

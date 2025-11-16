@@ -233,70 +233,70 @@ Supports REQ-G1. [Live Documentation Pipeline](../layer-3/live-documentation-pip
 ## Linked Implementations
 
 ### IMP-101 docDiagnosticProvider
-Supports REQ-301. [Extension Diagnostic Provider](../../.live-documentation/source/packages/extension/src/diagnostics/docDiagnosticProvider.ts.md)
+Supports REQ-301. [Extension Diagnostic Provider](../../.mdmd/layer-4/packages/extension/src/diagnostics/docDiagnosticProvider.ts.mdmd.md)
 
 ### IMP-102 publishDocDiagnostics
-Supports REQ-301. [Server Diagnostics Publisher](../../.live-documentation/source/packages/server/src/features/diagnostics/publishDocDiagnostics.ts.md)
+Supports REQ-301. [Server Diagnostics Publisher](../../.mdmd/layer-4/packages/server/src/features/diagnostics/publishDocDiagnostics.ts.mdmd.md)
 
 ### IMP-103 changeProcessor
-Supports REQ-101 and REQ-201. [Change Processor Runtime](../../.live-documentation/source/packages/server/src/runtime/changeProcessor.ts.md)
+Supports REQ-101 and REQ-201. [Change Processor Runtime](../../.mdmd/layer-4/packages/server/src/runtime/changeProcessor.ts.mdmd.md)
 
 ### IMP-201 slopcopMarkdownLinks CLI
-Supports REQ-101. [SlopCop Markdown Audit](../../.live-documentation/source/scripts/slopcop/check-markdown-links.ts.md)
+Supports REQ-101. [SlopCop Markdown Audit](../../.mdmd/layer-4/scripts/slopcop/check-markdown-links.ts.mdmd.md)
 
 ### IMP-202 slopcopAssetPaths CLI
-Supports REQ-101. [SlopCop Asset Audit](../../.live-documentation/source/scripts/slopcop/check-asset-paths.ts.md)
+Supports REQ-101. [SlopCop Asset Audit](../../.mdmd/layer-4/scripts/slopcop/check-asset-paths.ts.mdmd.md)
 
 ### IMP-203 documentationBridge Schema
-Supports REQ-201. [Workspace Graph Snapshot](../../.live-documentation/source/scripts/graph-tools/snapshot-workspace.ts.md)
+Supports REQ-201. [Workspace Graph Snapshot](../../.mdmd/layer-4/scripts/graph-tools/snapshot-workspace.ts.mdmd.md)
 
 ### IMP-301 safe-to-commit Orchestrator
 Supports REQ-101 and REQ-301. [Safe to Commit Pipeline](../../scripts/safe-to-commit.mjs)
 
 ### IMP-302 graphCoverageAudit CLI
-Supports REQ-030. [Graph Coverage Audit](../../.live-documentation/source/scripts/graph-tools/audit-doc-coverage.ts.md)
+Supports REQ-030. [Graph Coverage Audit](../../.mdmd/layer-4/scripts/graph-tools/audit-doc-coverage.ts.mdmd.md)
 
 ### IMP-303 inspectSymbolNeighbors CLI
-Supports REQ-030. [Inspect Symbol Neighbors CLI](../../.live-documentation/source/scripts/graph-tools/inspect-symbol.ts.md)
+Supports REQ-030. [Inspect Symbol Neighbors CLI](../../.mdmd/layer-4/scripts/graph-tools/inspect-symbol.ts.mdmd.md)
 
 ### IMP-401 Relationship Rule Engine
-Supports REQ-040. [Relationship Rule Engine](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleEngine.ts.md)
+Supports REQ-040. [Relationship Rule Engine](../../.mdmd/layer-4/packages/shared/src/rules/relationshipRuleEngine.ts.mdmd.md)
 
 ### IMP-402 Relationship Rule Audit
-Supports REQ-040. [Relationship Rule Audit](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleAudit.ts.md)
+Supports REQ-040. [Relationship Rule Audit](../../.mdmd/layer-4/packages/shared/src/rules/relationshipRuleAudit.ts.mdmd.md)
 
 ### IMP-403 Relationship Rule Resolvers
-Supports REQ-040. [Relationship Rule Resolvers](../../.live-documentation/source/packages/shared/src/rules/relationshipResolvers.ts.md)
+Supports REQ-040. [Relationship Rule Resolvers](../../.mdmd/layer-4/packages/shared/src/rules/relationshipResolvers.ts.mdmd.md)
 
 ### IMP-404 Relationship Rule Types
-Supports REQ-040. [Relationship Rule Types](../../.live-documentation/source/packages/shared/src/rules/relationshipRuleTypes.ts.md)
+Supports REQ-040. [Relationship Rule Types](../../.mdmd/layer-4/packages/shared/src/rules/relationshipRuleTypes.ts.mdmd.md)
 
 ### IMP-480 Symbol Correctness Profiles
-Supports REQ-040. [Symbol Correctness Profiles](../../.live-documentation/source/packages/shared/src/rules/symbolCorrectnessProfiles.ts.md)
+Supports REQ-040. [Symbol Correctness Profiles](../../.mdmd/layer-4/packages/shared/src/rules/symbolCorrectnessProfiles.ts.mdmd.md)
 
 ### IMP-481 Symbol Correctness Validator
-Supports REQ-040. [Symbol Correctness Validator](../../.live-documentation/source/packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts.md)
+Supports REQ-040. [Symbol Correctness Validator](../../.mdmd/layer-4/packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts.mdmd.md)
 
 ### IMP-510 Python Fixture Oracle
-Supports REQ-030. [Python Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts.md)
+Supports REQ-030. [Python Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts.mdmd.md)
 
 ### IMP-521 C Fixture Oracle
-Supports REQ-030. [C Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts.md)
+Supports REQ-030. [C Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts.mdmd.md)
 
 ### IMP-522 Rust Fixture Oracle
-Supports REQ-030. [Rust Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts.md)
+Supports REQ-030. [Rust Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts.mdmd.md)
 
 ### IMP-523 Java Fixture Oracle
-Supports REQ-030. [Java Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts.md)
+Supports REQ-030. [Java Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts.mdmd.md)
 
 ### IMP-524 Ruby Fixture Oracle
-Supports REQ-030. [Ruby Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts.md)
+Supports REQ-030. [Ruby Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts.mdmd.md)
 
 ### IMP-541 C# Fixture Oracle
-Supports REQ-050. [CSharp Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts.md)
+Supports REQ-050. [CSharp Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts.mdmd.md)
 
 ### IMP-530 LLM Sampling Harness
-Supports REQ-201 and REQ-301. [LLM Sampling Harness](../../.live-documentation/source/packages/shared/src/inference/llmSampling.ts.md)
+Supports REQ-201 and REQ-301. [LLM Sampling Harness](../../.mdmd/layer-4/packages/shared/src/inference/llmSampling.ts.mdmd.md)
 
 ### IMP-610 liveDocsSystemCli *(planned)*
 Supports REQ-D1. (CLI will be documented alongside the System analytics implementation.)

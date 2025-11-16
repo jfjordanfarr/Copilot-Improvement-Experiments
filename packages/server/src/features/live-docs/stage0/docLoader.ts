@@ -2,10 +2,7 @@ import { glob } from "glob";
 import * as fs from "node:fs/promises";
 import path from "node:path";
 
-import {
-  LIVE_DOCUMENTATION_FILE_EXTENSION,
-  type LiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import { type LiveDocumentationConfig } from "@copilot-improvement/shared/config/liveDocumentationConfig";
 import { directoryExists } from "@copilot-improvement/shared/live-docs/core";
 import {
   renderBeginMarker,
@@ -29,17 +26,19 @@ interface ParseStage0DocArgs {
   absolutePath: string;
   relativeDocPath: string;
   stage0Root: string;
+  docExtension: string;
   logger?: Stage0DocLogger;
 }
 
 export async function loadStage0Docs(args: LoadStage0DocsArgs): Promise<Stage0Doc[]> {
   const stage0Root = path.resolve(args.workspaceRoot, args.config.root, args.config.baseLayer);
+  const docExtension = args.config.extension;
   const exists = await directoryExists(stage0Root);
   if (!exists) {
     return [];
   }
 
-  const files = await glob(`**/*${LIVE_DOCUMENTATION_FILE_EXTENSION}`, {
+  const files = await glob(`**/*${docExtension}`, {
     cwd: stage0Root,
     absolute: true,
     nodir: true,
@@ -58,6 +57,7 @@ export async function loadStage0Docs(args: LoadStage0DocsArgs): Promise<Stage0Do
       absolutePath: absolute,
       relativeDocPath: relative,
       stage0Root,
+      docExtension,
       logger: args.logger
     });
     if (parsed) {
@@ -91,7 +91,8 @@ function parseStage0Doc(args: ParseStage0DocArgs): Stage0Doc | undefined {
     ? parseDependencyLinks({
         block: dependenciesBlock,
         docAbsolutePath: args.absolutePath,
-        stage0Root: args.stage0Root
+        stage0Root: args.stage0Root,
+        docExtension: args.docExtension
       })
     : { stage0Paths: [], externalModules: [] };
 
@@ -163,6 +164,7 @@ function parseDependencyLinks(args: {
   block: string;
   docAbsolutePath: string;
   stage0Root: string;
+  docExtension: string;
 }): { stage0Paths: string[]; externalModules: string[] } {
   const stage0Paths = new Set<string>();
   const externalModules = new Set<string>();
@@ -177,11 +179,11 @@ function parseDependencyLinks(args: {
     const linkMatch = trimmed.match(/\(([^)#]+)(#[^)]+)?\)/);
     if (linkMatch) {
       const reference = linkMatch[1];
-      if (reference.toLowerCase().endsWith(LIVE_DOCUMENTATION_FILE_EXTENSION)) {
+      if (reference.toLowerCase().endsWith(args.docExtension.toLowerCase())) {
         const targetAbsolute = path.resolve(path.dirname(args.docAbsolutePath), reference);
         if (targetAbsolute.startsWith(args.stage0Root)) {
           const stage0Relative = targetAbsolute.slice(args.stage0Root.length + 1).replace(/\\/g, "/");
-          const sourcePath = stage0Relative.slice(0, -LIVE_DOCUMENTATION_FILE_EXTENSION.length);
+          const sourcePath = stage0Relative.slice(0, -args.docExtension.length);
           stage0Paths.add(normalizeWorkspacePath(sourcePath));
           continue;
         }

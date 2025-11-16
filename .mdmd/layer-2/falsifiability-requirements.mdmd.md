@@ -137,22 +137,22 @@ Supports all falsifiability requirements. [Ripple Falsifiability Suite](../layer
 ## Linked Implementations
 
 ### IMP-201 slopcopMarkdownLinks CLI
-Supports REQ-F1 and REQ-F5. [SlopCop Markdown Audit](../../.live-documentation/source/scripts/slopcop/check-markdown-links.ts.md)
+Supports REQ-F1 and REQ-F5. [SlopCop Markdown Audit](../../.mdmd/layer-4/scripts/slopcop/check-markdown-links.ts.mdmd.md)
 
 ### IMP-202 slopcopAssetPaths CLI
-Supports REQ-F5. [SlopCop Asset Audit](../../.live-documentation/source/scripts/slopcop/check-asset-paths.ts.md)
+Supports REQ-F5. [SlopCop Asset Audit](../../.mdmd/layer-4/scripts/slopcop/check-asset-paths.ts.mdmd.md)
 
 ### IMP-204 slopcopSymbols CLI
-Supports REQ-F5. [SlopCop Symbol References](../../.live-documentation/source/scripts/slopcop/check-symbols.ts.md)
+Supports REQ-F5. [SlopCop Symbol References](../../.mdmd/layer-4/scripts/slopcop/check-symbols.ts.mdmd.md)
 
 ### IMP-103 changeProcessor
-Supports REQ-F2, REQ-F3, and REQ-F4. [Change Processor Runtime](../../.live-documentation/source/packages/server/src/runtime/changeProcessor.ts.md)
+Supports REQ-F2, REQ-F3, and REQ-F4. [Change Processor Runtime](../../.mdmd/layer-4/packages/server/src/runtime/changeProcessor.ts.mdmd.md)
 
 ### IMP-310 liveDocumentationGenerator
 Supports REQ-F1 and REQ-F2. (Documented in forthcoming Layer‑4 Live Documentation generator files.)
 
 ### IMP-410 docstringBridgeAdapters
-Supports REQ-F6. [Docstring Bridge Schema](../../.live-documentation/source/scripts/graph-tools/snapshot-workspace.ts.md)
+Supports REQ-F6. [Docstring Bridge Schema](../../.mdmd/layer-4/scripts/graph-tools/snapshot-workspace.ts.mdmd.md)
 
 ## Evidence
 - Safe-to-commit logs (2025-11-08) capture Live Doc structural lint failures resolved after instruction updates.
@@ -165,7 +165,7 @@ Supports REQ-F6. [Docstring Bridge Schema](../../.live-documentation/source/scri
 - Finalise waiver taxonomy (evidence, docstring, asset) before enforcing higher lint severities.
 
 ## Implementation Alignment
-- [FeedCheckpointStore](../../.live-documentation/source/packages/server/src/features/knowledge/feedCheckpointStore.ts.md) and [FeedDiagnosticsGateway](../../.live-documentation/source/packages/server/src/features/knowledge/feedDiagnosticsGateway.ts.md) keep analyzer results and docstring bridge state consistent for REQ-F2 and REQ-F6.
-- [Dependency Quick Pick](../../.live-documentation/source/packages/extension/src/diagnostics/dependencyQuickPick.ts.md) consumes Live Doc metadata to satisfy REQ-F4.
-- [Fallback Inference](../../.live-documentation/source/packages/shared/src/inference/fallbackInference.ts.md) and [Link Inference Orchestrator](../../.live-documentation/source/packages/shared/src/inference/linkInference.ts.md) supply the analyzer inputs verified by these falsifiability tests.
+- [FeedCheckpointStore](../../.mdmd/layer-4/packages/server/src/features/knowledge/feedCheckpointStore.ts.mdmd.md) and [FeedDiagnosticsGateway](../../.mdmd/layer-4/packages/server/src/features/knowledge/feedDiagnosticsGateway.ts.mdmd.md) keep analyzer results and docstring bridge state consistent for REQ-F2 and REQ-F6.
+- [Dependency Quick Pick](../../.mdmd/layer-4/packages/extension/src/diagnostics/dependencyQuickPick.ts.mdmd.md) consumes Live Doc metadata to satisfy REQ-F4.
+- [Fallback Inference](../../.mdmd/layer-4/packages/shared/src/inference/fallbackInference.ts.mdmd.md) and [Link Inference Orchestrator](../../.mdmd/layer-4/packages/shared/src/inference/linkInference.ts.mdmd.md) supply the analyzer inputs verified by these falsifiability tests.
 - SlopCop tooling docs (`slopcopMarkdownLinks.mdmd.md`, `slopcopAssetPaths.mdmd.md`, `slopcopSymbolReferences.mdmd.md`) capture the lint gates enforced by REQ-F1, REQ-F5, and REQ-F6.

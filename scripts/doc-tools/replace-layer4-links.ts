@@ -1,78 +1,106 @@
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 
+import { DEFAULT_LIVE_DOCUMENTATION_CONFIG } from "../../packages/shared/src/config/liveDocumentationConfig";
+
+const liveDocConfig = DEFAULT_LIVE_DOCUMENTATION_CONFIG;
+const liveDocRoot = buildStagePrefix(liveDocConfig.root, liveDocConfig.baseLayer);
+const liveDocExtension = ensureLeadingDot(liveDocConfig.extension);
+
 interface ReplacementResult {
   filePath: string;
   replaced: number;
 }
 
+function toLiveDocPath(relativeSourcePath: string): string {
+  const normalisedSource = relativeSourcePath.replace(/\\/g, "/").replace(/^\.\//, "").replace(/^\//, "");
+  const basePath = `${liveDocRoot}/${normalisedSource}`.replace(/\/+/g, "/");
+  if (basePath.endsWith(liveDocExtension)) {
+    return basePath;
+  }
+  if (basePath.endsWith(".md")) {
+    return basePath.slice(0, -3) + liveDocExtension;
+  }
+  return `${basePath}${liveDocExtension}`;
+}
+
+function buildStagePrefix(root: string, baseLayer: string): string {
+  const normalisedRoot = root.replace(/\\/g, "/").replace(/\/+/g, "/").replace(/\/+$/, "");
+  const normalisedLayer = baseLayer.replace(/\\/g, "/").replace(/\/+/g, "/").replace(/^\//, "");
+  return `${normalisedRoot}/${normalisedLayer}`.replace(/\/+/g, "/");
+}
+
+function ensureLeadingDot(extension: string): string {
+  return extension.startsWith(".") ? extension : `.${extension}`;
+}
+
 const slugMap = new Map<string, string>([
-  ["knowledge-graph-ingestion/knowledgeFeedManager", ".live-documentation/source/packages/server/src/features/knowledge/knowledgeFeedManager.ts.md"],
-  ["extension-views/diagnosticsTree", ".live-documentation/source/packages/extension/src/views/diagnosticsTree.ts.md"],
-  ["extension-commands/exportDiagnostics", ".live-documentation/source/packages/extension/src/commands/exportDiagnostics.ts.md"],
-  ["tooling/slopcopMarkdownLinks", ".live-documentation/source/scripts/slopcop/check-markdown-links.ts.md"],
-  ["tooling/slopcopAssetPaths", ".live-documentation/source/scripts/slopcop/check-asset-paths.ts.md"],
-  ["tooling/slopcopSymbolReferences", ".live-documentation/source/scripts/slopcop/check-symbols.ts.md"],
-  ["language-server-runtime/changeProcessor", ".live-documentation/source/packages/server/src/runtime/changeProcessor.ts.md"],
-  ["tooling/workspaceGraphSnapshot", ".live-documentation/source/scripts/graph-tools/snapshot-workspace.ts.md"],
-  ["knowledge-graph-ingestion/feedCheckpointStore", ".live-documentation/source/packages/server/src/features/knowledge/feedCheckpointStore.ts.md"],
-  ["knowledge-graph-ingestion/feedDiagnosticsGateway", ".live-documentation/source/packages/server/src/features/knowledge/feedDiagnosticsGateway.ts.md"],
-  ["extension-diagnostics/dependencyQuickPick", ".live-documentation/source/packages/extension/src/diagnostics/dependencyQuickPick.ts.md"],
-  ["shared/fallbackInference", ".live-documentation/source/packages/shared/src/inference/fallbackInference.ts.md"],
-  ["language-server-runtime/linkInferenceOrchestrator", ".live-documentation/source/packages/shared/src/inference/linkInference.ts.md"],
-  ["extension-diagnostics/docDiagnosticProvider", ".live-documentation/source/packages/extension/src/diagnostics/docDiagnosticProvider.ts.md"],
-  ["server-diagnostics/publishDocDiagnostics", ".live-documentation/source/packages/server/src/features/diagnostics/publishDocDiagnostics.ts.md"],
-  ["server-diagnostics/publishCodeDiagnostics", ".live-documentation/source/packages/server/src/features/diagnostics/publishCodeDiagnostics.ts.md"],
-  ["tooling/safeToCommit", "scripts/safe-to-commit.mjs"],
-  ["tooling/graphCoverageAudit", ".live-documentation/source/scripts/graph-tools/audit-doc-coverage.ts.md"],
-  ["tooling/inspectSymbolNeighborsCli", ".live-documentation/source/scripts/graph-tools/inspect-symbol.ts.md"],
-  ["tooling/relationshipRuleEngine", ".live-documentation/source/packages/shared/src/rules/relationshipRuleEngine.ts.md"],
-  ["tooling/relationshipRuleAudit", ".live-documentation/source/packages/shared/src/rules/relationshipRuleAudit.ts.md"],
-  ["tooling/relationshipRuleResolvers", ".live-documentation/source/packages/shared/src/rules/relationshipResolvers.ts.md"],
-  ["tooling/relationshipRuleTypes", ".live-documentation/source/packages/shared/src/rules/relationshipRuleTypes.ts.md"],
-  ["tooling/relationshipRuleProvider", ".live-documentation/source/packages/shared/src/rules/relationshipRuleProvider.ts.md"],
-  ["tooling/symbolCorrectnessProfiles", ".live-documentation/source/packages/shared/src/rules/symbolCorrectnessProfiles.ts.md"],
-  ["server-diagnostics/symbolCorrectnessValidator", ".live-documentation/source/packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts.md"],
-  ["testing/benchmarks/pythonFixtureOracle", ".live-documentation/source/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts.md"],
-  ["testing/benchmarks/cFixtureOracle", ".live-documentation/source/packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts.md"],
-  ["testing/benchmarks/rustFixtureOracle", ".live-documentation/source/packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts.md"],
-  ["testing/benchmarks/javaFixtureOracle", ".live-documentation/source/packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts.md"],
-  ["testing/benchmarks/rubyFixtureOracle", ".live-documentation/source/packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts.md"],
-  ["testing/benchmarks/csharpFixtureOracle", ".live-documentation/source/packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts.md"],
-  ["shared/llmSampling", ".live-documentation/source/packages/shared/src/inference/llmSampling.ts.md"],
-  ["tooling/testReportGenerator", ".live-documentation/source/packages/shared/src/reporting/testReport.ts.md"],
-  ["testing/benchmarks/benchmarkRecorder", ".live-documentation/source/tests/integration/benchmarks/utils/benchmarkRecorder.ts.md"],
-  ["telemetry/inferenceAccuracyTracker", ".live-documentation/source/packages/shared/src/telemetry/inferenceAccuracy.ts.md"],
-  ["server-diagnostics/acknowledgementService", ".live-documentation/source/packages/server/src/features/diagnostics/acknowledgementService.ts.md"],
-  ["server-diagnostics/listOutstandingDiagnostics", ".live-documentation/source/packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts.md"],
-  ["language-server-runtime/artifactWatcher", ".live-documentation/source/packages/server/src/features/watchers/artifactWatcher.ts.md"],
-  ["knowledge-graph-ingestion/rippleAnalyzer", ".live-documentation/source/packages/server/src/features/knowledge/rippleAnalyzer.ts.md"],
-  ["testing/integration/us1-codeImpactSuite", ".live-documentation/source/tests/integration/us1/codeImpact.test.ts.md"],
-  ["testing/integration/us2-markdownDriftSuite", ".live-documentation/source/tests/integration/us2/markdownDrift.test.ts.md"],
-  ["testing/integration/us3-acknowledgeDiagnosticsSuite", ".live-documentation/source/tests/integration/us3/acknowledgeDiagnostics.test.ts.md"],
-  ["testing/integration/us4-symbolNeighborsSuite", ".live-documentation/source/tests/integration/us4/inspectSymbolNeighbors.test.ts.md"],
-  ["testing/integration/us5-llmIngestionSuite", ".live-documentation/source/tests/integration/us5/llmIngestionDryRun.test.ts.md"],
-  ["change-events/changeQueue", ".live-documentation/source/packages/server/src/features/changeEvents/changeQueue.ts.md"],
-  ["knowledge-graph-ingestion/knowledgeGraphIngestor", ".live-documentation/source/packages/server/src/features/knowledge/knowledgeGraphIngestor.ts.md"],
-  ["knowledge-graph-ingestion/knowledgeGraphBridge", ".live-documentation/source/packages/server/src/features/knowledge/knowledgeGraphBridge.ts.md"],
-  ["server-settings/providerGuard", ".live-documentation/source/packages/server/src/features/settings/providerGuard.ts.md"],
-  ["dependencies/inspectDependencies", ".live-documentation/source/packages/server/src/features/dependencies/inspectDependencies.ts.md"],
-  ["dependencies/symbolNeighbors", ".live-documentation/source/packages/server/src/features/dependencies/symbolNeighbors.ts.md"],
-  ["llm-ingestion/llmIngestionManager", ".live-documentation/source/packages/server/src/runtime/llmIngestion.ts.md"],
-  ["llm-ingestion/llmIngestionOrchestrator", ".live-documentation/source/packages/server/src/features/knowledge/llmIngestionOrchestrator.ts.md"],
-  ["llm-ingestion/relationshipExtractor", ".live-documentation/source/packages/shared/src/inference/llm/relationshipExtractor.ts.md"],
-  ["llm-ingestion/confidenceCalibrator", ".live-documentation/source/packages/shared/src/inference/llm/confidenceCalibrator.ts.md"],
-  ["tooling/ollamaBridge", ".live-documentation/source/packages/extension/src/services/localOllamaBridge.ts.md"],
-  ["testing/benchmarks/typeScriptFixtureOracle", ".live-documentation/source/packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts.md"],
-  ["tooling/benchmarkFixtureRegenerator", ".live-documentation/source/scripts/fixture-tools/regenerate-benchmarks.ts.md"],
-  ["tooling/pathUtils", ".live-documentation/source/packages/shared/src/tooling/pathUtils.ts.md"],
-  ["testing/integration/vscodeIntegrationHarness", ".live-documentation/source/tests/integration/vscode/runTests.ts.md"],
-  ["testing/integration/simpleWorkspaceFixture", ".live-documentation/source/tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts.md"],
-  ["testing/integration/cleanDistUtility", "tests/integration/clean-dist.mjs"],
-  ["server-telemetry/latencyTracker", ".live-documentation/source/packages/server/src/telemetry/latencyTracker.ts.md"],
-  ["server-settings/settingsBridge", ".live-documentation/source/packages/server/src/features/settings/settingsBridge.ts.md"],
-  ["extension-commands/latencySummary", ".live-documentation/source/packages/extension/src/commands/latencySummary.ts.md"],
-  ["extension-services/llmInvoker", ".live-documentation/source/packages/extension/src/services/llmInvoker.ts.md"]
+  ["knowledge-graph-ingestion/knowledgeFeedManager", toLiveDocPath("packages/server/src/features/knowledge/knowledgeFeedManager.ts")],
+  ["extension-views/diagnosticsTree", toLiveDocPath("packages/extension/src/views/diagnosticsTree.ts")],
+  ["extension-commands/exportDiagnostics", toLiveDocPath("packages/extension/src/commands/exportDiagnostics.ts")],
+  ["tooling/slopcopMarkdownLinks", toLiveDocPath("scripts/slopcop/check-markdown-links.ts")],
+  ["tooling/slopcopAssetPaths", toLiveDocPath("scripts/slopcop/check-asset-paths.ts")],
+  ["tooling/slopcopSymbolReferences", toLiveDocPath("scripts/slopcop/check-symbols.ts")],
+  ["language-server-runtime/changeProcessor", toLiveDocPath("packages/server/src/runtime/changeProcessor.ts")],
+  ["tooling/workspaceGraphSnapshot", toLiveDocPath("scripts/graph-tools/snapshot-workspace.ts")],
+  ["knowledge-graph-ingestion/feedCheckpointStore", toLiveDocPath("packages/server/src/features/knowledge/feedCheckpointStore.ts")],
+  ["knowledge-graph-ingestion/feedDiagnosticsGateway", toLiveDocPath("packages/server/src/features/knowledge/feedDiagnosticsGateway.ts")],
+  ["extension-diagnostics/dependencyQuickPick", toLiveDocPath("packages/extension/src/diagnostics/dependencyQuickPick.ts")],
+  ["shared/fallbackInference", toLiveDocPath("packages/shared/src/inference/fallbackInference.ts")],
+  ["language-server-runtime/linkInferenceOrchestrator", toLiveDocPath("packages/shared/src/inference/linkInference.ts")],
+  ["extension-diagnostics/docDiagnosticProvider", toLiveDocPath("packages/extension/src/diagnostics/docDiagnosticProvider.ts")],
+  ["server-diagnostics/publishDocDiagnostics", toLiveDocPath("packages/server/src/features/diagnostics/publishDocDiagnostics.ts")],
+  ["server-diagnostics/publishCodeDiagnostics", toLiveDocPath("packages/server/src/features/diagnostics/publishCodeDiagnostics.ts")],
+  ["tooling/safeToCommit", toLiveDocPath("scripts/safe-to-commit.mjs")],
+  ["tooling/graphCoverageAudit", toLiveDocPath("scripts/graph-tools/audit-doc-coverage.ts")],
+  ["tooling/inspectSymbolNeighborsCli", toLiveDocPath("scripts/graph-tools/inspect-symbol.ts")],
+  ["tooling/relationshipRuleEngine", toLiveDocPath("packages/shared/src/rules/relationshipRuleEngine.ts")],
+  ["tooling/relationshipRuleAudit", toLiveDocPath("packages/shared/src/rules/relationshipRuleAudit.ts")],
+  ["tooling/relationshipRuleResolvers", toLiveDocPath("packages/shared/src/rules/relationshipResolvers.ts")],
+  ["tooling/relationshipRuleTypes", toLiveDocPath("packages/shared/src/rules/relationshipRuleTypes.ts")],
+  ["tooling/relationshipRuleProvider", toLiveDocPath("packages/shared/src/rules/relationshipRuleProvider.ts")],
+  ["tooling/symbolCorrectnessProfiles", toLiveDocPath("packages/shared/src/rules/symbolCorrectnessProfiles.ts")],
+  ["server-diagnostics/symbolCorrectnessValidator", toLiveDocPath("packages/server/src/features/diagnostics/symbolCorrectnessValidator.ts")],
+  ["testing/benchmarks/pythonFixtureOracle", toLiveDocPath("packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts")],
+  ["testing/benchmarks/cFixtureOracle", toLiveDocPath("packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts")],
+  ["testing/benchmarks/rustFixtureOracle", toLiveDocPath("packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts")],
+  ["testing/benchmarks/javaFixtureOracle", toLiveDocPath("packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts")],
+  ["testing/benchmarks/rubyFixtureOracle", toLiveDocPath("packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts")],
+  ["testing/benchmarks/csharpFixtureOracle", toLiveDocPath("packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts")],
+  ["shared/llmSampling", toLiveDocPath("packages/shared/src/inference/llmSampling.ts")],
+  ["tooling/testReportGenerator", toLiveDocPath("packages/shared/src/reporting/testReport.ts")],
+  ["testing/benchmarks/benchmarkRecorder", toLiveDocPath("tests/integration/benchmarks/utils/benchmarkRecorder.ts")],
+  ["telemetry/inferenceAccuracyTracker", toLiveDocPath("packages/shared/src/telemetry/inferenceAccuracy.ts")],
+  ["server-diagnostics/acknowledgementService", toLiveDocPath("packages/server/src/features/diagnostics/acknowledgementService.ts")],
+  ["server-diagnostics/listOutstandingDiagnostics", toLiveDocPath("packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts")],
+  ["language-server-runtime/artifactWatcher", toLiveDocPath("packages/server/src/features/watchers/artifactWatcher.ts")],
+  ["knowledge-graph-ingestion/rippleAnalyzer", toLiveDocPath("packages/server/src/features/knowledge/rippleAnalyzer.ts")],
+  ["testing/integration/us1-codeImpactSuite", toLiveDocPath("tests/integration/us1/codeImpact.test.ts")],
+  ["testing/integration/us2-markdownDriftSuite", toLiveDocPath("tests/integration/us2/markdownDrift.test.ts")],
+  ["testing/integration/us3-acknowledgeDiagnosticsSuite", toLiveDocPath("tests/integration/us3/acknowledgeDiagnostics.test.ts")],
+  ["testing/integration/us4-symbolNeighborsSuite", toLiveDocPath("tests/integration/us4/inspectSymbolNeighbors.test.ts")],
+  ["testing/integration/us5-llmIngestionSuite", toLiveDocPath("tests/integration/us5/llmIngestionDryRun.test.ts")],
+  ["change-events/changeQueue", toLiveDocPath("packages/server/src/features/changeEvents/changeQueue.ts")],
+  ["knowledge-graph-ingestion/knowledgeGraphIngestor", toLiveDocPath("packages/server/src/features/knowledge/knowledgeGraphIngestor.ts")],
+  ["knowledge-graph-ingestion/knowledgeGraphBridge", toLiveDocPath("packages/server/src/features/knowledge/knowledgeGraphBridge.ts")],
+  ["server-settings/providerGuard", toLiveDocPath("packages/server/src/features/settings/providerGuard.ts")],
+  ["dependencies/inspectDependencies", toLiveDocPath("packages/server/src/features/dependencies/inspectDependencies.ts")],
+  ["dependencies/symbolNeighbors", toLiveDocPath("packages/server/src/features/dependencies/symbolNeighbors.ts")],
+  ["llm-ingestion/llmIngestionManager", toLiveDocPath("packages/server/src/runtime/llmIngestion.ts")],
+  ["llm-ingestion/llmIngestionOrchestrator", toLiveDocPath("packages/server/src/features/knowledge/llmIngestionOrchestrator.ts")],
+  ["llm-ingestion/relationshipExtractor", toLiveDocPath("packages/shared/src/inference/llm/relationshipExtractor.ts")],
+  ["llm-ingestion/confidenceCalibrator", toLiveDocPath("packages/shared/src/inference/llm/confidenceCalibrator.ts")],
+  ["tooling/ollamaBridge", toLiveDocPath("packages/extension/src/services/localOllamaBridge.ts")],
+  ["testing/benchmarks/typeScriptFixtureOracle", toLiveDocPath("packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts")],
+  ["tooling/benchmarkFixtureRegenerator", toLiveDocPath("scripts/fixture-tools/regenerate-benchmarks.ts")],
+  ["tooling/pathUtils", toLiveDocPath("packages/shared/src/tooling/pathUtils.ts")],
+  ["testing/integration/vscodeIntegrationHarness", toLiveDocPath("tests/integration/vscode/runTests.ts")],
+  ["testing/integration/simpleWorkspaceFixture", toLiveDocPath("tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts")],
+  ["testing/integration/cleanDistUtility", toLiveDocPath("tests/integration/clean-dist.mjs")],
+  ["server-telemetry/latencyTracker", toLiveDocPath("packages/server/src/telemetry/latencyTracker.ts")],
+  ["server-settings/settingsBridge", toLiveDocPath("packages/server/src/features/settings/settingsBridge.ts")],
+  ["extension-commands/latencySummary", toLiveDocPath("packages/extension/src/commands/latencySummary.ts")],
+  ["extension-services/llmInvoker", toLiveDocPath("packages/extension/src/services/llmInvoker.ts")]
 ]);
 
 async function main(): Promise<void> {

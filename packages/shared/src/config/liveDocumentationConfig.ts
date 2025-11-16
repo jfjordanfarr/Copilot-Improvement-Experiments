@@ -25,6 +25,8 @@ export interface LiveDocumentationConfig {
   root: string;
   /** Mirror folder inside the root that represents the base layer (Layer-4 by default). */
   baseLayer: string;
+  /** File extension (including suffix) applied to generated Live Docs. */
+  extension: string;
   /** Glob patterns that select source artefacts which should receive Live Docs. */
   glob: string[];
   /** Optional overrides that assign archetypes to matching paths. */
@@ -43,9 +45,9 @@ export type LiveDocumentationConfigInput = Partial<LiveDocumentationConfig> & {
   evidence?: Partial<LiveDocumentationEvidenceConfig>;
 };
 
-export const LIVE_DOCUMENTATION_DEFAULT_ROOT = ".live-documentation";
-export const LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER = "source";
-export const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md";
+export const LIVE_DOCUMENTATION_DEFAULT_ROOT = ".mdmd";
+export const LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER = "layer-4";
+export const LIVE_DOCUMENTATION_FILE_EXTENSION = ".mdmd.md";
 export const LIVE_DOCUMENTATION_DEFAULT_GLOBS = [
   "packages/**/src/**/*.ts",
   "packages/**/src/**/*.tsx",
@@ -65,6 +67,7 @@ export const LIVE_DOCUMENTATION_DEFAULT_GLOBS = [
 export const DEFAULT_LIVE_DOCUMENTATION_CONFIG: LiveDocumentationConfig = {
   root: LIVE_DOCUMENTATION_DEFAULT_ROOT,
   baseLayer: LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER,
+  extension: LIVE_DOCUMENTATION_FILE_EXTENSION,
   glob: [...LIVE_DOCUMENTATION_DEFAULT_GLOBS],
   archetypeOverrides: {},
   requireRelativeLinks: true,
@@ -97,6 +100,10 @@ export function normalizeLiveDocumentationConfig(
       input?.baseLayer,
       DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer
     ),
+    extension: normalizeExtensionOption(
+      input?.extension,
+      DEFAULT_LIVE_DOCUMENTATION_CONFIG.extension
+    ),
     glob,
     archetypeOverrides,
     requireRelativeLinks:
@@ -111,6 +118,16 @@ export function normalizeLiveDocumentationConfig(
 function normalizeStringOption(value: string | undefined, fallback: string): string {
   const normalized = value?.trim();
   return normalized && normalized.length > 0 ? normalized : fallback;
+}
+
+function normalizeExtensionOption(value: string | undefined, fallback: string): string {
+  const normalized = value?.trim();
+  if (!normalized) {
+    return fallback;
+  }
+
+  const ensured = normalized.startsWith(".") ? normalized : `.${normalized}`;
+  return ensured.length > 1 ? ensured : fallback;
 }
 
 function dedupeStrings(source: string[]): string[] {

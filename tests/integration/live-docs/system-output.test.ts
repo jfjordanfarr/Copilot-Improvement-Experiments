@@ -3,8 +3,6 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 
-const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md" as const; // Keep in sync with liveDocumentationConfig
-
 const { generateSystemLiveDocs } = require(
   path.join(
     __dirname,
@@ -14,6 +12,7 @@ const { generateSystemLiveDocs } = require(
 
 const {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig
 } = require(
   path.join(
@@ -21,6 +20,9 @@ const {
     "../../../../packages/shared/dist/config/liveDocumentationConfig"
   )
 ) as typeof import("../../../packages/shared/dist/config/liveDocumentationConfig");
+
+const DEFAULT_LIVE_DOC_ROOT = DEFAULT_LIVE_DOCUMENTATION_CONFIG.root;
+const DEFAULT_LIVE_DOC_LAYER = DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer;
 
 suite("System Live Docs generator", () => {
   test("writes materialised views to a custom output directory", async function () {
@@ -31,8 +33,8 @@ suite("System Live Docs generator", () => {
     try {
       const stage0Root = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "packages",
         "shared",
         "src",
@@ -59,9 +61,7 @@ suite("System Live Docs generator", () => {
       );
 
       const config = normalizeLiveDocumentationConfig({
-        ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-        root: ".live-documentation",
-        baseLayer: "source"
+        ...DEFAULT_LIVE_DOCUMENTATION_CONFIG
       });
 
       const outputDir = path.join(workspaceRoot, "tmp", "system-output");
@@ -79,7 +79,7 @@ suite("System Live Docs generator", () => {
 
       const materialisedDoc = path.join(
         outputDir,
-        ".live-documentation",
+        DEFAULT_LIVE_DOC_ROOT,
         "system",
         "component",
         `packagessharedsrclivedocs${LIVE_DOCUMENTATION_FILE_EXTENSION}`
@@ -90,7 +90,7 @@ suite("System Live Docs generator", () => {
       assert.match(docContent, /live-docs\/a\.ts/);
       assert.match(docContent, /live-docs\/b\.ts/);
 
-      const systemMirror = path.join(workspaceRoot, ".live-documentation", "system");
+      const systemMirror = path.join(workspaceRoot, DEFAULT_LIVE_DOC_ROOT, "system");
       const mirrorExists = await directoryExists(systemMirror);
       assert.strictEqual(mirrorExists, false, "System mirror should not be written under the workspace root");
     } finally {

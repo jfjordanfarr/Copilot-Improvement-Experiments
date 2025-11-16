@@ -32,6 +32,7 @@ const VALUE_FLAGS = new Set([
   "--workspace",
   "--root",
   "--base-layer",
+  "--extension",
   "--glob",
   "--include",
   "--config"

@@ -52,37 +52,37 @@ Supports FR-LD1, FR-LD2, and FR-LD5 by orchestrating workspace change ingestion,
 ## Linked Implementations
 
 ### IMP-102 publishDocDiagnostics
-Diagnostic publisher enforcing hysteresis for markdown ripple. [Server Diagnostics Publisher](../../.live-documentation/source/packages/server/src/features/diagnostics/publishDocDiagnostics.ts.md)
+Diagnostic publisher enforcing hysteresis for markdown ripple. [Server Diagnostics Publisher](../../.mdmd/layer-4/packages/server/src/features/diagnostics/publishDocDiagnostics.ts.mdmd.md)
 
 ### IMP-104 publishCodeDiagnostics
-Diagnostic publisher for code ripple with suppression metrics. [Code Diagnostics Publisher](../../.live-documentation/source/packages/server/src/features/diagnostics/publishCodeDiagnostics.ts.md)
+Diagnostic publisher for code ripple with suppression metrics. [Code Diagnostics Publisher](../../.mdmd/layer-4/packages/server/src/features/diagnostics/publishCodeDiagnostics.ts.mdmd.md)
 
 ### IMP-105 acknowledgementService
-Persist acknowledgement state and suppression lookups. [Acknowledgement Service](../../.live-documentation/source/packages/server/src/features/diagnostics/acknowledgementService.ts.md)
+Persist acknowledgement state and suppression lookups. [Acknowledgement Service](../../.mdmd/layer-4/packages/server/src/features/diagnostics/acknowledgementService.ts.mdmd.md)
 
 ### IMP-111 changeQueue
-Manages debounced change intake before processing. [Change Queue Runtime](../../.live-documentation/source/packages/server/src/features/changeEvents/changeQueue.ts.md)
+Manages debounced change intake before processing. [Change Queue Runtime](../../.mdmd/layer-4/packages/server/src/features/changeEvents/changeQueue.ts.mdmd.md)
 
 ### IMP-112 knowledgeFeedManager
-Validates and persists external feed updates. [Knowledge Feed Manager](../../.live-documentation/source/packages/server/src/features/knowledge/knowledgeFeedManager.ts.md)
+Validates and persists external feed updates. [Knowledge Feed Manager](../../.mdmd/layer-4/packages/server/src/features/knowledge/knowledgeFeedManager.ts.mdmd.md)
 
 ### IMP-205 knowledgeGraphIngestor
-Applies validated feed payloads to the graph store and maintains checkpoints. [Knowledge Graph Ingestor](../../.live-documentation/source/packages/server/src/features/knowledge/knowledgeGraphIngestor.ts.md)
+Applies validated feed payloads to the graph store and maintains checkpoints. [Knowledge Graph Ingestor](../../.mdmd/layer-4/packages/server/src/features/knowledge/knowledgeGraphIngestor.ts.mdmd.md)
 
 ### IMP-211 knowledgeGraphBridgeService
-Bootstraps feed discovery, diagnostics propagation, and lifecycle hooks for ingestion collaborators. [Knowledge Graph Bridge Service](../../.live-documentation/source/packages/server/src/features/knowledge/knowledgeGraphBridge.ts.md)
+Bootstraps feed discovery, diagnostics propagation, and lifecycle hooks for ingestion collaborators. [Knowledge Graph Bridge Service](../../.mdmd/layer-4/packages/server/src/features/knowledge/knowledgeGraphBridge.ts.mdmd.md)
 
 ### IMP-113 providerGuard
-Gates diagnostics until consent is granted. [Provider Guard](../../.live-documentation/source/packages/server/src/features/settings/providerGuard.ts.md)
+Gates diagnostics until consent is granted. [Provider Guard](../../.mdmd/layer-4/packages/server/src/features/settings/providerGuard.ts.mdmd.md)
 
 ### IMP-114 inspectDependencies Handler
-Serves dependency traversal over LSP. [Inspect Dependencies Handler](../../.live-documentation/source/packages/server/src/features/dependencies/inspectDependencies.ts.md)
+Serves dependency traversal over LSP. [Inspect Dependencies Handler](../../.mdmd/layer-4/packages/server/src/features/dependencies/inspectDependencies.ts.mdmd.md)
 
 ### IMP-115 symbolNeighbors Handler
-Returns symbol neighbourhoods for Quick Pick and CLI surfaces. [Symbol Neighbors Handler](../../.live-documentation/source/packages/server/src/features/dependencies/symbolNeighbors.ts.md)
+Returns symbol neighbourhoods for Quick Pick and CLI surfaces. [Symbol Neighbors Handler](../../.mdmd/layer-4/packages/server/src/features/dependencies/symbolNeighbors.ts.mdmd.md)
 
 ### IMP-116 artifactWatcher
-Prepares workspace change events, loads content, and kicks off inference. [Artifact Watcher](../../.live-documentation/source/packages/server/src/features/watchers/artifactWatcher.ts.md)
+Prepares workspace change events, loads content, and kicks off inference. [Artifact Watcher](../../.mdmd/layer-4/packages/server/src/features/watchers/artifactWatcher.ts.mdmd.md)
 
 ## Evidence
 - Unit tests cover change queue, provider guard, diagnostics publishers, and feed managers (`changeQueue.test.ts`, `providerGuard.test.ts`, `publishDocDiagnostics.test.ts`, `publishCodeDiagnostics.test.ts`, `knowledgeFeedManager.test.ts`).

@@ -63,19 +63,19 @@ Supports FR-LD6 and REQ-G1 by translating edits between Live Docs and inline doc
 ## Linked Implementations
 
 ### IMP-301 liveDocsGenerateCli
-Scaffolds the generation CLI entry point. See `.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md` for the Stage-0 mirror and `npm run live-docs:generate -- --help` for usage.
+Scaffolds the generation CLI entry point. See `.mdmd/layer-4/scripts/live-docs/generate.ts.mdmd.mdmd.md` for the Stage-0 mirror and `npm run live-docs:generate -- --help` for usage.
 
 ### IMP-302 liveDocGenerator
-Coordinates analyzers, template parsing, and provenance capture. Implementation detail resides in `.live-documentation/source/packages/server/src/features/live-docs/generator.ts.mdmd.md`.
+Coordinates analyzers, template parsing, and provenance capture. Implementation detail resides in `.mdmd/layer-4/packages/server/src/features/live-docs/generator.ts.mdmd.mdmd.md`.
 
 ### IMP-303 liveDocGraphProjector
-Projects markdown links into the workspace graph for diagnostics and CLI use. The generated view is `.live-documentation/source/packages/server/src/features/live-docs/graphProjector.ts.mdmd.md`.
+Projects markdown links into the workspace graph for diagnostics and CLI use. The generated view is `.mdmd/layer-4/packages/server/src/features/live-docs/graphProjector.ts.mdmd.mdmd.md`.
 
 ### IMP-304 liveDocDiffService
 Produces diff previews for dry-run and UI workflows. The diff helper currently ships inside the generator CLI; standalone materialisation will be regenerated once the service is reinstated.
 
 ### IMP-305 liveDocMetadataStore
-Persists provenance metadata and archetype assignments. Metadata persistence now lives within `.live-documentation/source/packages/shared/src/live-docs/schema.ts.mdmd.md`; a dedicated store will resurface when promotion tooling requires it.
+Persists provenance metadata and archetype assignments. Metadata persistence now lives within `.mdmd/layer-4/packages/shared/src/live-docs/schema.ts.mdmd.mdmd.md`; a dedicated store will resurface when promotion tooling requires it.
 
 ### IMP-306 docstringRoundTripService *(planned)*
 Calculates diffs between Live Docs and inline docstrings, applies updates under feature flag control, and records telemetry for REQ-G1.

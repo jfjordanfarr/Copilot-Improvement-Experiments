@@ -5,11 +5,15 @@ import * as path from "node:path";
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 
 import {
+  DEFAULT_LIVE_DOCUMENTATION_CONFIG,
   LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
 
 import { generateSystemLiveDocs } from "./generator";
+
+const DEFAULT_LIVE_DOC_ROOT = DEFAULT_LIVE_DOCUMENTATION_CONFIG.root;
+const DEFAULT_LIVE_DOC_LAYER = DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer;
 
 describe("generateSystemLiveDocs", () => {
   let workspaceRoot: string;
@@ -25,8 +29,8 @@ describe("generateSystemLiveDocs", () => {
     const last = segments[segments.length - 1];
     return path.join(
       workspaceRoot,
-      ".live-documentation",
-      "source",
+      DEFAULT_LIVE_DOC_ROOT,
+      DEFAULT_LIVE_DOC_LAYER,
       ...parts,
       `${last}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
     );
@@ -34,9 +38,9 @@ describe("generateSystemLiveDocs", () => {
 
   beforeEach(async () => {
     workspaceRoot = await fs.mkdtemp(path.join(os.tmpdir(), "system-live-docs-"));
-    await fs.mkdir(path.join(workspaceRoot, ".live-documentation", "source", "packages", "server", "src", "features", "live-docs", "generation"), { recursive: true });
-    await fs.mkdir(path.join(workspaceRoot, ".live-documentation", "source", "scripts", "live-docs"), { recursive: true });
-    await fs.mkdir(path.join(workspaceRoot, ".live-documentation", "source", "tests", "live-docs"), { recursive: true });
+    await fs.mkdir(path.join(workspaceRoot, DEFAULT_LIVE_DOC_ROOT, DEFAULT_LIVE_DOC_LAYER, "packages", "server", "src", "features", "live-docs", "generation"), { recursive: true });
+    await fs.mkdir(path.join(workspaceRoot, DEFAULT_LIVE_DOC_ROOT, DEFAULT_LIVE_DOC_LAYER, "scripts", "live-docs"), { recursive: true });
+    await fs.mkdir(path.join(workspaceRoot, DEFAULT_LIVE_DOC_ROOT, DEFAULT_LIVE_DOC_LAYER, "tests", "live-docs"), { recursive: true });
     await fs.mkdir(path.join(workspaceRoot, "data", "live-docs"), { recursive: true });
 
     await writeStage0Doc(
@@ -149,8 +153,7 @@ describe("generateSystemLiveDocs", () => {
 
   it("emits Layer 3 docs with component, interaction, workflow, and testing topology", async () => {
     const config = normalizeLiveDocumentationConfig({
-      root: ".live-documentation",
-      baseLayer: "source"
+      ...DEFAULT_LIVE_DOCUMENTATION_CONFIG
     });
 
     const result = await generateSystemLiveDocs({

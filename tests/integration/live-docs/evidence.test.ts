@@ -3,8 +3,6 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 
-const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md" as const; // Keep in sync with liveDocumentationConfig
-
 const { generateLiveDocs } = require(
   path.join(
     __dirname,
@@ -14,6 +12,7 @@ const { generateLiveDocs } = require(
 
 const {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig
 } = require(
   path.join(
@@ -21,6 +20,9 @@ const {
     "../../../../packages/shared/dist/config/liveDocumentationConfig"
   )
 ) as typeof import("../../../packages/shared/dist/config/liveDocumentationConfig");
+
+const DEFAULT_LIVE_DOC_ROOT = DEFAULT_LIVE_DOCUMENTATION_CONFIG.root;
+const DEFAULT_LIVE_DOC_LAYER = DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer;
 
 suite("Live Docs evidence bridge", () => {
   const LIVE_DOC_EXTENSION_PATTERN = LIVE_DOCUMENTATION_FILE_EXTENSION.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
@@ -119,8 +121,6 @@ suite("Live Docs evidence bridge", () => {
 
       const config = normalizeLiveDocumentationConfig({
         ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-        root: ".live-documentation",
-        baseLayer: "source",
         glob: ["packages/**/*.ts", "tests/**/*.ts"]
       });
 
@@ -133,8 +133,8 @@ suite("Live Docs evidence bridge", () => {
 
       const implementationDoc = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "packages",
         "app",
         "src",
@@ -151,8 +151,8 @@ suite("Live Docs evidence bridge", () => {
 
       const testDoc = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "tests",
         "app",
         `example.test.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
@@ -231,8 +231,6 @@ suite("Live Docs evidence bridge", () => {
 
       const config = normalizeLiveDocumentationConfig({
         ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-        root: ".live-documentation",
-        baseLayer: "source",
         glob: ["packages/**/*.ts", "tests/**/*.ts"]
       });
 
@@ -245,8 +243,8 @@ suite("Live Docs evidence bridge", () => {
 
       const testDoc = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "tests",
         "app",
         `example.test.ts${LIVE_DOCUMENTATION_FILE_EXTENSION}`
@@ -276,8 +274,6 @@ suite("Live Docs evidence bridge", () => {
 
       const config = normalizeLiveDocumentationConfig({
         ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-        root: ".live-documentation",
-        baseLayer: "source",
         glob: ["packages/**/*.ts"]
       });
 
@@ -290,8 +286,8 @@ suite("Live Docs evidence bridge", () => {
 
       const implementationDoc = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "packages",
         "app",
         "src",
@@ -341,8 +337,6 @@ suite("Live Docs evidence bridge", () => {
 
       const config = normalizeLiveDocumentationConfig({
         ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-        root: ".live-documentation",
-        baseLayer: "source",
         glob: ["packages/**/*.ts"]
       });
 
@@ -355,8 +349,8 @@ suite("Live Docs evidence bridge", () => {
 
       const implementationDoc = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "packages",
         "app",
         "src",

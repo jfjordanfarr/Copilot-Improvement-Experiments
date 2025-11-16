@@ -1,18 +1,12 @@
 import * as path from "node:path";
 
-import { ensureVendorSection } from "./benchmark-doc";
+import { ensureVendorSection, resolveAstFixtureDocPath } from "./benchmark-doc";
 import { loadBenchmarkManifest } from "./benchmark-manifest";
 
 async function main(): Promise<void> {
   const repoRoot = path.resolve(path.join(__dirname, "..", ".."));
   const manifest = await loadBenchmarkManifest(repoRoot);
-  const docPath = path.join(
-    repoRoot,
-    ".live-documentation",
-    "source",
-    "benchmarks",
-    "astAccuracyFixtures.md"
-  );
+  const docPath = resolveAstFixtureDocPath(repoRoot);
 
   await ensureVendorSection(docPath, manifest, {
     repoRoot,

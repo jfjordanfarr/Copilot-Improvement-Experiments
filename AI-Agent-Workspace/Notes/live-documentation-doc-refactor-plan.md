@@ -12,7 +12,7 @@
   - Copilot instructions & README/Quickstart references.
 - [x] Stage instruction harmonization: update `.github/instructions/mdmd.layer4.instructions.md` first with new authored/generated schema, archetype templates, and generated-section contracts, then cascade changes to other MDMD instruction files.
 - [x] Snapshot current state (`git status`, optional `npm run safe:commit -- --no-graph` dry run) so regressions are obvious. *(2025-11-09: git status captured after adding Live Docs ignore rules; safe-to-commit wired to new lint/report gates before next validation run.)*
-- [x] Treat `/.live-documentation/` as the staging output for generator experiments; place generated docs inside a dedicated subdirectory (e.g., `/.live-documentation/source/`) and defer swapping the existing Layer‑4 tree until parity metrics and lint gates prove the new flow.
+- [x] Treat `/.live-documentation/` as the staging output for generator experiments; place generated docs inside a dedicated subdirectory (e.g., `/.mdmd/layer-4/`) and defer swapping the existing Layer‑4 tree until parity metrics and lint gates prove the new flow.
 
 ## 1. Reframe Top-Level Vision (Layer 1)
 - [x] Rewrite `link-aware-diagnostics-vision.mdmd.md`:
@@ -174,7 +174,7 @@
 - [ ] Document the CLI surface area (generate, lint, inspect, co-activation, forthcoming system views) in a single reference so onboarding copilots know which commands exist and what format they emit.
 
 ## 9. Layer Distribution Strategy
-- [ ] Define the long-term Layer ownership model: Capability stories delivered via a public site (GitHub Pages or similar), Commitment backlog tracked in Spec-Kit / issue trackers, System analytics emitted as materialized views, Implementation Layer rooted in `.live-documentation/source/`. Call out that Stage 8 lands this split before any hosted showcase work (Stage 9) proceeds.
+- [ ] Define the long-term Layer ownership model: Capability stories delivered via a public site (GitHub Pages or similar), Commitment backlog tracked in Spec-Kit / issue trackers, System analytics emitted as materialized views, Implementation Layer rooted in `.mdmd/layer-4/`. Call out that Stage 8 lands this split before any hosted showcase work (Stage 9) proceeds.
 - [ ] Add tasks/spec entries for scaffolding a GitHub Pages (Astro) site sourced from Layer‑1 content, including build script, publish workflow, live preview instructions, and `npm run site:build -- --check` wiring inside `safe:commit`. The site + CI/CD gates must be green before the hosted showcase pipeline earns approval.
 - [ ] Capture expectations for integrating external work-item systems (GitHub Issues/Azure DevOps) as the canonical Layer‑2 home while Live Docs reference them through generated links. Document how Spec-Kit exports map into the public site to keep roadmap + tracker states DRY.
 - [ ] Update rollout comms (Layer‑1 vision, roadmap, quickstart) to describe the distribution model, explicitly stating that the Cloudflare-hosted showcase is a marketing trial that reuses the local generator and links back to offline-first workflows across VS Code, Windsurf, Cursor, and future forks.

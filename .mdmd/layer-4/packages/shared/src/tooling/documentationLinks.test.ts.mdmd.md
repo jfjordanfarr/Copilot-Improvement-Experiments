@@ -1,0 +1,47 @@
+# packages/shared/src/tooling/documentationLinks.test.ts
+
+## Metadata
+- Layer: 4
+- Archetype: test
+- Code Path: packages/shared/src/tooling/documentationLinks.test.ts
+- Live Doc ID: LD-test-packages-shared-src-tooling-documentationlinks-test-ts
+- Generated At: 2025-11-16T22:34:13.526Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.526Z","inputHash":"8ed534b0f96295a7"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+_No public symbols detected_
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+- `node:fs` - `fs`
+- `node:os` - `os`
+- `node:path` - `path`
+- [`documentationLinks.DEFAULT_RULES`](./documentationLinks.ts.mdmd.md#default_rules)
+- [`documentationLinks.DocumentationDocumentAnchors`](./documentationLinks.ts.mdmd.md#documentationdocumentanchors)
+- [`documentationLinks.formatDocumentationLinkComment`](./documentationLinks.ts.mdmd.md#formatdocumentationlinkcomment)
+- [`documentationLinks.parseDocumentationAnchors`](./documentationLinks.ts.mdmd.md#parsedocumentationanchors)
+- [`documentationLinks.resolveCodeToDocumentationMap`](./documentationLinks.ts.mdmd.md#resolvecodetodocumentationmap)
+- [`documentationLinks.runDocumentationLinkEnforcement`](./documentationLinks.ts.mdmd.md#rundocumentationlinkenforcement)
+- `vitest` - `afterEach`, `describe`, `expect`, `it`
+<!-- LIVE-DOC:END Dependencies -->
+
+<!-- LIVE-DOC:BEGIN Targets -->
+### Targets
+#### Vitest Unit Tests
+- packages/shared/src/tooling: [documentationLinks.ts](./documentationLinks.ts.mdmd.md), [githubSlugger.ts](./githubSlugger.ts.mdmd.md), [githubSluggerRegex.ts](./githubSluggerRegex.ts.mdmd.md), [markdownShared.ts](./markdownShared.ts.mdmd.md), [pathUtils.ts](./pathUtils.ts.mdmd.md)
+<!-- LIVE-DOC:END Targets -->
+
+<!-- LIVE-DOC:BEGIN Supporting Fixtures -->
+### Supporting Fixtures
+_No supporting fixtures documented yet_
+<!-- LIVE-DOC:END Supporting Fixtures -->

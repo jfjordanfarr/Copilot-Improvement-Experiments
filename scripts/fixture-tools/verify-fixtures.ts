@@ -5,7 +5,11 @@ import * as os from "node:os";
 import * as path from "node:path";
 import process from "node:process";
 
-import { extractVendorInventory, renderVendorInventory } from "./benchmark-doc";
+import {
+  extractVendorInventory,
+  renderVendorInventory,
+  resolveAstFixtureDocPath
+} from "./benchmark-doc";
 import {
   BenchmarkFixtureDefinition,
   computeIntegrityDigest,
@@ -266,13 +270,7 @@ async function ensureVendorDocsAligned(
   repoRoot: string,
   fixtures: BenchmarkFixtureDefinition[]
 ): Promise<void> {
-  const docPath = path.join(
-    repoRoot,
-    ".live-documentation",
-    "source",
-    "benchmarks",
-    "astAccuracyFixtures.md"
-  );
+  const docPath = resolveAstFixtureDocPath(repoRoot);
 
   const vendorBlock = renderVendorInventory(fixtures, { repoRoot, docPath }).trim();
   const docContent = await fs.readFile(docPath, "utf8");

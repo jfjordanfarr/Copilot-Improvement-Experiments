@@ -19,6 +19,7 @@ interface ParsedArgs {
   workspace?: string;
   root?: string;
   baseLayer?: string;
+  extension?: string;
   globs: string[];
   include: string[];
   configPath?: string;
@@ -71,6 +72,11 @@ function parseArgs(argv: string[]): ParsedArgs {
 
       case "--base-layer": {
         parsed.baseLayer = expectValue(argv, ++index, current);
+        break;
+      }
+
+      case "--extension": {
+        parsed.extension = expectValue(argv, ++index, current);
         break;
       }
 
@@ -147,6 +153,7 @@ function usage(): string {
     `  --workspace <path>        Workspace root (defaults to current directory).\n` +
     `  --root <path>             Override liveDocumentation.root.\n` +
     `  --base-layer <name>       Override liveDocumentation.baseLayer.\n` +
+    `  --extension <suffix>      Override liveDocumentation.extension (default .mdmd.md).\n` +
     `  --glob <pattern>          Additional glob pattern (can repeat).\n` +
     `  --include <pattern>       Target a specific file or glob (can repeat).\n` +
     `  --config <file>           Load configuration from JSON file.\n` +
@@ -198,6 +205,10 @@ async function main(): Promise<void> {
 
   if (args.baseLayer) {
     configInput.baseLayer = args.baseLayer;
+  }
+
+  if (args.extension) {
+    configInput.extension = args.extension;
   }
 
   if (args.globs.length > 0) {

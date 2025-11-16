@@ -39,14 +39,14 @@ Provides an optional, confidence-gated sampling layer that augments deterministi
 - Captures sampling agreement, rejection reasons, and reviewer decisions so operators can triage noisy models quickly.
 
 ## Linked Implementations
-- [IMP-509 TypeScript Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts.md)
-- [IMP-510 Python Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts.md)
-- [IMP-521 C Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts.md)
-- [IMP-522 Rust Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts.md)
-- [IMP-523 Java Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts.md)
-- [IMP-524 Ruby Fixture Oracle](../../.live-documentation/source/packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts.md)
-- [IMP-530 LLM Sampling Harness](../../.live-documentation/source/packages/shared/src/inference/llmSampling.ts.md)
-- [IMP-510 Benchmark Fixture Regenerator](../../.live-documentation/source/scripts/fixture-tools/regenerate-benchmarks.ts.md)
+- [IMP-509 TypeScript Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts.mdmd.md)
+- [IMP-510 Python Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts.mdmd.md)
+- [IMP-521 C Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/cFixtureOracle.ts.mdmd.md)
+- [IMP-522 Rust Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/rustFixtureOracle.ts.mdmd.md)
+- [IMP-523 Java Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts.mdmd.md)
+- [IMP-524 Ruby Fixture Oracle](../../.mdmd/layer-4/packages/shared/src/testing/fixtureOracles/rubyFixtureOracle.ts.mdmd.md)
+- [IMP-530 LLM Sampling Harness](../../.mdmd/layer-4/packages/shared/src/inference/llmSampling.ts.mdmd.md)
+- [IMP-510 Benchmark Fixture Regenerator](../../.mdmd/layer-4/scripts/fixture-tools/regenerate-benchmarks.ts.mdmd.md)
 
 ## Evidence
 - `npm run test:benchmarks -- --suite ast` produces precision/recall figures per language, verifying deterministic oracle parity across curated fixtures.

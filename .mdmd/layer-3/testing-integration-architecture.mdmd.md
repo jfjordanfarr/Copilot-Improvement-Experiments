@@ -47,22 +47,22 @@ Supports FR-LD1 through FR-LD6 plus REQ-F1 to REQ-F6 by executing end-to-end sce
 ## Linked Implementations
 
 ### IMP-401 vscodeIntegrationHarness
-Bootstraps VS Code with compiled artifacts and loads suites. [VS Code Integration Harness](../../.live-documentation/source/tests/integration/vscode/runTests.ts.md)
+Bootstraps VS Code with compiled artifacts and loads suites. [VS Code Integration Harness](../../.mdmd/layer-4/tests/integration/vscode/runTests.ts.mdmd.md)
 
 ### IMP-402 simpleWorkspaceFixture
-Primary workspace assets used across US suites. [Simple Workspace Fixture](../../.live-documentation/source/tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts.md)
+Primary workspace assets used across US suites. [Simple Workspace Fixture](../../.mdmd/layer-4/tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts.mdmd.md)
 
 ### IMP-403 us1ThroughUs5 Suites
-Scenario implementations verifying ripple, writer, developer, scope collision, and transform flows. [US Integration Suites](../../.live-documentation/source/tests/integration/us1/codeImpact.test.ts.md)
+Scenario implementations verifying ripple, writer, developer, scope collision, and transform flows. [US Integration Suites](../../.mdmd/layer-4/tests/integration/us1/codeImpact.test.ts.mdmd.md)
 
 ### IMP-404 cleanDistUtility
 Removes stale bundles before integration runs. [Clean Dist Utility](../../tests/integration/clean-dist.mjs)
 
 ### IMP-405 liveDocsGenerationSuite
-Exercises regeneration CLI, authored preservation, and deterministic output. [Stage‑0 Live Doc](../../.live-documentation/source/tests/integration/live-docs/generation.test.ts.md)
+Exercises regeneration CLI, authored preservation, and deterministic output. [Stage‑0 Live Doc](../../.mdmd/layer-4/tests/integration/live-docs/generation.test.ts.mdmd.md)
 
 ### IMP-406 liveDocsEvidenceSuite
-Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Stage‑0 Live Doc](../../.live-documentation/source/tests/integration/live-docs/evidence.test.ts.md)
+Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Stage‑0 Live Doc](../../.mdmd/layer-4/tests/integration/live-docs/evidence.test.ts.mdmd.md)
 
 ### IMP-407 liveDocsInspectCliSuite
 CLI parity suite remains on the roadmap; capture its responsibility once the corresponding Stage-0 doc materialises.

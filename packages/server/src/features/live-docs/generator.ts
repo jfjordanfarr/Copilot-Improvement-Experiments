@@ -5,7 +5,6 @@ import path from "node:path";
 
 import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-  LIVE_DOCUMENTATION_FILE_EXTENSION,
   type LiveDocumentationArchetype,
   type LiveDocumentationConfig,
   normalizeLiveDocumentationConfig
@@ -21,6 +20,7 @@ import {
   hasMeaningfulAuthoredContent,
   inferScriptKind,
   renderDependencyLines,
+  renderReExportedAnchorLines,
   renderPublicSymbolLines,
   resolveArchetype,
   type SourceAnalysisResult
@@ -133,6 +133,7 @@ export async function generateLiveDocs(
     normalizedConfig.root,
     normalizedConfig.baseLayer
   );
+  const docExtension = normalizedConfig.extension;
 
   for (const absoluteSourcePath of targetFiles) {
     const relativeSourcePath = toWorkspaceRelativePath(
@@ -165,7 +166,12 @@ export async function generateLiveDocs(
 
     const analysis = await analyzeSourceFile(absoluteSourcePath, workspaceRoot);
 
-    const docPaths = resolveLiveDocPaths(workspaceRoot, normalizedConfig, normalizedSourcePath);
+    const docPaths = resolveLiveDocPaths(
+      workspaceRoot,
+      normalizedConfig,
+      normalizedSourcePath,
+      docExtension
+    );
     generatedDocPaths.add(docPaths.relative);
     const existingContent = await readFileIfExists(docPaths.absolute);
     const authoredBlock = extractAuthoredBlock(existingContent);
@@ -180,7 +186,8 @@ export async function generateLiveDocs(
       workspaceRoot,
       sourceRelativePath: normalizedSourcePath,
       evidenceSnapshot,
-      liveDocsRootAbsolute
+      liveDocsRootAbsolute,
+      docExtension
     });
 
     const renderDocument = (generatedAt: string): string => {
@@ -263,12 +270,13 @@ export async function generateLiveDocs(
 function resolveLiveDocPaths(
   workspaceRoot: string,
   config: LiveDocumentationConfig,
-  sourcePath: string
+  sourcePath: string,
+  extension: string
 ): { absolute: string; relative: string } {
   const docRelative = path.join(
     config.root,
     config.baseLayer,
-    `${sourcePath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+    `${sourcePath}${extension}`
   );
   const absolute = path.resolve(workspaceRoot, docRelative);
   return {
@@ -290,7 +298,7 @@ async function pruneStaleLiveDocs(args: {
     return [];
   }
 
-  const files = await glob(`**/*${LIVE_DOCUMENTATION_FILE_EXTENSION}`, {
+  const files = await glob(`**/*${args.config.extension}`, {
     cwd: baseLayerRoot,
     absolute: true,
     nodir: true,
@@ -349,6 +357,7 @@ function buildGeneratedSections(params: {
   sourceRelativePath: string;
   evidenceSnapshot: EvidenceSnapshot;
   liveDocsRootAbsolute: string;
+  docExtension: string;
 }): LiveDocRenderSection[] {
   const docDir = path.dirname(params.docAbsolutePath);
   const sourceAbsolute = path.resolve(params.workspaceRoot, params.sourceRelativePath);
@@ -365,7 +374,8 @@ function buildGeneratedSections(params: {
     analysis: params.analysis,
     docDir,
     workspaceRoot: params.workspaceRoot,
-    liveDocsRootAbsolute: params.liveDocsRootAbsolute
+    liveDocsRootAbsolute: params.liveDocsRootAbsolute,
+    docExtension: params.docExtension
   });
 
   const sections: LiveDocRenderSection[] = [
@@ -386,7 +396,8 @@ function buildGeneratedSections(params: {
     const observedEvidenceLines = renderObservedEvidenceLines({
       implementationEvidence,
       docDir,
-      liveDocsRootAbsolute: params.liveDocsRootAbsolute
+      liveDocsRootAbsolute: params.liveDocsRootAbsolute,
+      docExtension: params.docExtension
     });
 
     if (observedEvidenceLines.length > 0) {
@@ -402,7 +413,8 @@ function buildGeneratedSections(params: {
     const targetLines = renderTargetLines({
       testEvidence,
       docDir,
-      liveDocsRootAbsolute: params.liveDocsRootAbsolute
+      liveDocsRootAbsolute: params.liveDocsRootAbsolute,
+      docExtension: params.docExtension
     });
     const fixtureLines = renderFixtureLines({
       testEvidence,
@@ -421,6 +433,20 @@ function buildGeneratedSections(params: {
     });
   }
 
+  const reExportAnchorLines = renderReExportedAnchorLines({
+    reExports: params.analysis.reExportedSymbols ?? [],
+    docDir,
+    liveDocsRootAbsolute: params.liveDocsRootAbsolute,
+    docExtension: params.docExtension
+  });
+
+  if (reExportAnchorLines.length > 0) {
+    sections.push({
+      name: "Re-Exported Symbol Anchors",
+      lines: reExportAnchorLines
+    });
+  }
+
   return sections;
 }
 
@@ -429,6 +455,7 @@ function renderObservedEvidenceLines(params: {
   implementationEvidence?: ImplementationEvidenceItem[];
   docDir: string;
   liveDocsRootAbsolute: string;
+  docExtension: string;
 }): string[] {
   const evidence = params.implementationEvidence;
   if (!evidence || evidence.length === 0) {
@@ -489,7 +516,7 @@ function renderObservedEvidenceLines(params: {
       seenTests.add(testPath);
       const testDocAbsolute = path.resolve(
         params.liveDocsRootAbsolute,
-        `${testPath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+        `${testPath}${params.docExtension}`
       );
       const relativeDocPath = formatRelativePathFromDoc(params.docDir, testDocAbsolute);
       entries.push(`- [${formatTargetLabel(testPath)}](${relativeDocPath})`);
@@ -549,6 +576,7 @@ function renderTargetLines(params: {
   testEvidence?: TestEvidenceItem;
   docDir: string;
   liveDocsRootAbsolute: string;
+  docExtension: string;
 }): string[] {
   const evidence = params.testEvidence;
   if (!evidence || evidence.targets.length === 0) {
@@ -566,7 +594,7 @@ function renderTargetLines(params: {
 
     const docAbsolute = path.resolve(
       params.liveDocsRootAbsolute,
-      `${target}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+      `${target}${params.docExtension}`
     );
     const relative = formatRelativePathFromDoc(params.docDir, docAbsolute);
     const directory = path.dirname(target);

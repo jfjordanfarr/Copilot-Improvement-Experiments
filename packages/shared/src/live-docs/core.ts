@@ -6,7 +6,6 @@ import ts from "typescript";
 
 import { analyzeWithLanguageAdapters } from "./adapters";
 import {
-  LIVE_DOCUMENTATION_FILE_EXTENSION,
   type LiveDocumentationConfig,
   type LiveDocumentationArchetype
 } from "../config/liveDocumentationConfig";
@@ -16,6 +15,7 @@ import { normalizeWorkspacePath } from "../tooling/pathUtils";
 export interface SourceAnalysisResult {
   symbols: PublicSymbolEntry[];
   dependencies: DependencyEntry[];
+  reExportedSymbols?: ReExportedSymbolInfo[];
 }
 
 export interface PublicSymbolEntry {
@@ -33,6 +33,16 @@ export interface DependencyEntry {
   symbols: string[];
   kind: "import" | "export" | "require";
   isTypeOnly?: boolean;
+  location?: LocationInfo;
+  symbolTargets?: Record<string, string>;
+}
+
+export interface ReExportedSymbolInfo {
+  name: string;
+  kind: string;
+  isTypeOnly?: boolean;
+  location?: LocationInfo;
+  sourceModulePath?: string;
 }
 
 export interface LocationInfo {
@@ -354,16 +364,24 @@ export async function analyzeSourceFile(
     scriptKind
   );
 
-  const symbols = collectExportedSymbols(sourceFile);
+  const directSymbols = collectExportedSymbols(sourceFile);
   const dependencies = await collectDependencies({
     sourceFile,
     absolutePath,
     workspaceRoot
   });
 
+  const { symbols, reExports } = await augmentWithReExportedSymbols({
+    sourceAbsolute: absolutePath,
+    workspaceRoot,
+    dependencies,
+    existingSymbols: directSymbols
+  });
+
   return {
     symbols: sortSymbolsByLocation(symbols),
-    dependencies
+    dependencies,
+    reExportedSymbols: reExports.length > 0 ? reExports : undefined
   };
 }
 
@@ -418,6 +436,23 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
         isDefault: true,
         location: getNodeLocation(statement, sourceFile)
       });
+      continue;
+    }
+
+    if (ts.isExportDeclaration(statement)) {
+      const exportClause = statement.exportClause;
+      if (exportClause && ts.isNamedExports(exportClause)) {
+        for (const specifier of exportClause.elements) {
+          const exportedName = specifier.name.text;
+          const declarationKind = specifier.isTypeOnly ? "type" : "unknown";
+          record({
+            name: exportedName,
+            kind: declarationKind,
+            isTypeOnly: specifier.isTypeOnly,
+            location: getNodeLocation(specifier.name, sourceFile)
+          });
+        }
+      }
       continue;
     }
 
@@ -507,20 +542,6 @@ export function collectExportedSymbols(sourceFile: ts.SourceFile): PublicSymbolE
       continue;
     }
 
-    if (
-      ts.isExportDeclaration(statement) &&
-      statement.exportClause &&
-      ts.isNamedExports(statement.exportClause)
-    ) {
-      for (const specifier of statement.exportClause.elements) {
-        record({
-          name: specifier.name.text,
-          kind: specifier.isTypeOnly ? "type" : "unknown",
-          isTypeOnly: specifier.isTypeOnly,
-          location: getNodeLocation(specifier.name, sourceFile)
-        });
-      }
-    }
   }
 
   return collected;
@@ -601,7 +622,8 @@ export async function collectDependencies(params: {
         resolvedPath,
         symbols,
         kind: "import",
-        isTypeOnly: statement.importClause?.isTypeOnly
+        isTypeOnly: statement.importClause?.isTypeOnly,
+        location: getNodeLocation(statement, params.sourceFile)
       });
       continue;
     }
@@ -612,22 +634,213 @@ export async function collectDependencies(params: {
       ts.isStringLiteral(statement.moduleSpecifier)
     ) {
       const specifier = statement.moduleSpecifier.text;
+      const symbolTargets: Record<string, string> = {};
       const symbols =
         statement.exportClause && ts.isNamedExports(statement.exportClause)
-          ? statement.exportClause.elements.map((e) => e.name.text)
+          ? statement.exportClause.elements.map((element) => {
+              const exportedName = element.name.text;
+              const originalName = element.propertyName?.text ?? exportedName;
+              symbolTargets[exportedName] = originalName;
+              return exportedName;
+            })
           : [];
       const resolvedPath = await resolveDependency(specifier, params.absolutePath, params.workspaceRoot);
+      const exportIsTypeOnly = Boolean(
+        statement.isTypeOnly ||
+          (statement.exportClause &&
+            ts.isNamedExports(statement.exportClause) &&
+            statement.exportClause.elements.length > 0 &&
+            statement.exportClause.elements.every((element) => element.isTypeOnly))
+      );
       entries.push({
         specifier,
         resolvedPath,
         symbols,
-        kind: "export"
+        kind: "export",
+        isTypeOnly: exportIsTypeOnly,
+        location: getNodeLocation(statement, params.sourceFile),
+        symbolTargets: Object.keys(symbolTargets).length > 0 ? symbolTargets : undefined
       });
     }
   }
 
   entries.sort((a, b) => displayDependencyKey(a).localeCompare(displayDependencyKey(b)));
   return entries;
+}
+
+async function augmentWithReExportedSymbols(params: {
+  sourceAbsolute: string;
+  workspaceRoot: string;
+  dependencies: DependencyEntry[];
+  existingSymbols: PublicSymbolEntry[];
+}): Promise<{ symbols: PublicSymbolEntry[]; reExports: ReExportedSymbolInfo[] }> {
+  if (!params.dependencies.some((entry) => entry.kind === "export")) {
+    return { symbols: params.existingSymbols, reExports: [] };
+  }
+
+  const reExports = await collectReExportStarSymbols({
+    sourceAbsolute: params.sourceAbsolute,
+    workspaceRoot: params.workspaceRoot,
+    dependencies: params.dependencies,
+    existingSymbols: params.existingSymbols
+  });
+
+  if (reExports.length === 0) {
+    return { symbols: params.existingSymbols, reExports: [] };
+  }
+
+  if (params.existingSymbols.length === 0) {
+    const additions: PublicSymbolEntry[] = reExports.map((info) => ({
+      name: info.name,
+      kind: info.kind,
+      isDefault: false,
+      isTypeOnly: info.isTypeOnly,
+      documentation: undefined,
+      location: info.location
+    }));
+    return {
+      symbols: [...params.existingSymbols, ...additions],
+      reExports: []
+    };
+  }
+
+  return { symbols: params.existingSymbols, reExports };
+}
+
+async function collectReExportStarSymbols(params: {
+  sourceAbsolute: string;
+  workspaceRoot: string;
+  dependencies: DependencyEntry[];
+  existingSymbols: PublicSymbolEntry[];
+}): Promise<ReExportedSymbolInfo[]> {
+  const results: ReExportedSymbolInfo[] = [];
+  const seen = new Set(params.existingSymbols.map((entry) => entry.name));
+  const cache = new Map<string, PublicSymbolEntry[]>();
+
+  for (const dependency of params.dependencies) {
+    if (dependency.kind !== "export") {
+      continue;
+    }
+
+    if (!dependency.resolvedPath) {
+      continue;
+    }
+
+    if (dependency.symbols.length > 0) {
+      // Named re-exports already contribute symbols via collectExportedSymbols.
+      continue;
+    }
+
+    const targetAbsolute = path.resolve(params.workspaceRoot, dependency.resolvedPath);
+    const stack = new Set<string>([path.resolve(params.sourceAbsolute)]);
+    const exportedSymbols = await gatherExportedSymbolsFromFile({
+      absolutePath: targetAbsolute,
+      workspaceRoot: params.workspaceRoot,
+      cache,
+      stack
+    });
+
+    if (!exportedSymbols.length) {
+      continue;
+    }
+
+    for (const symbol of exportedSymbols) {
+      if (!symbol.name || symbol.isDefault || seen.has(symbol.name)) {
+        continue;
+      }
+
+      results.push({
+        name: symbol.name,
+        kind: symbol.kind,
+        isTypeOnly: symbol.isTypeOnly,
+        location: dependency.location ?? { line: 1, character: 1 },
+        sourceModulePath: dependency.resolvedPath
+      });
+      seen.add(symbol.name);
+    }
+  }
+
+  return results;
+}
+
+async function gatherExportedSymbolsFromFile(params: {
+  absolutePath: string;
+  workspaceRoot: string;
+  cache: Map<string, PublicSymbolEntry[]>;
+  stack: Set<string>;
+}): Promise<PublicSymbolEntry[]> {
+  const normalized = path.resolve(params.absolutePath);
+
+  if (params.cache.has(normalized)) {
+    return params.cache.get(normalized)!;
+  }
+
+  if (params.stack.has(normalized)) {
+    return [];
+  }
+
+  params.stack.add(normalized);
+
+  const extension = path.extname(normalized).toLowerCase();
+  if (!SUPPORTED_SCRIPT_EXTENSIONS.has(extension)) {
+    params.stack.delete(normalized);
+    params.cache.set(normalized, []);
+    return [];
+  }
+
+  let content: string;
+  try {
+    content = await fs.readFile(normalized, "utf8");
+  } catch {
+    params.stack.delete(normalized);
+    params.cache.set(normalized, []);
+    return [];
+  }
+
+  const scriptKind = inferScriptKind(extension);
+  const sourceFile = ts.createSourceFile(
+    normalized,
+    content,
+    ts.ScriptTarget.Latest,
+    true,
+    scriptKind
+  );
+
+  const directSymbols = collectExportedSymbols(sourceFile);
+  const dependencies = await collectDependencies({
+    sourceFile,
+    absolutePath: normalized,
+    workspaceRoot: params.workspaceRoot
+  });
+
+  const aggregated: PublicSymbolEntry[] = [...directSymbols];
+
+  for (const dependency of dependencies) {
+    if (dependency.kind !== "export" || dependency.symbols.length > 0 || !dependency.resolvedPath) {
+      continue;
+    }
+
+    const childAbsolute = path.resolve(params.workspaceRoot, dependency.resolvedPath);
+    const nested = await gatherExportedSymbolsFromFile({
+      absolutePath: childAbsolute,
+      workspaceRoot: params.workspaceRoot,
+      cache: params.cache,
+      stack: params.stack
+    });
+
+    for (const entry of nested) {
+      if (!entry.name || entry.isDefault) {
+        continue;
+      }
+      if (!aggregated.some((candidate) => candidate.name === entry.name)) {
+        aggregated.push(entry);
+      }
+    }
+  }
+
+  params.stack.delete(normalized);
+  params.cache.set(normalized, aggregated);
+  return aggregated;
 }
 
 function extractImportNames(importClause: ts.ImportClause | undefined): string[] {
@@ -652,7 +865,8 @@ function extractImportNames(importClause: ts.ImportClause | undefined): string[]
 
   if (ts.isNamedImports(importClause.namedBindings)) {
     for (const element of importClause.namedBindings.elements) {
-      names.push(element.name.text);
+      const importedName = element.propertyName?.text ?? element.name.text;
+      names.push(importedName);
     }
   }
 
@@ -676,7 +890,7 @@ export async function resolveDependency(
   workspaceRoot: string
 ): Promise<string | undefined> {
   if (!specifier.startsWith(".")) {
-    return undefined;
+    return resolveWorkspaceAlias(specifier, workspaceRoot);
   }
 
   const base = path.resolve(path.dirname(fromFile), specifier);
@@ -686,6 +900,34 @@ export async function resolveDependency(
   }
 
   return normalizeWorkspacePath(path.relative(workspaceRoot, resolved));
+}
+
+async function resolveWorkspaceAlias(
+  specifier: string,
+  workspaceRoot: string
+): Promise<string | undefined> {
+  const prefix = "@copilot-improvement/";
+  if (!specifier.startsWith(prefix)) {
+    return undefined;
+  }
+
+  const remainder = specifier.slice(prefix.length);
+  if (!remainder) {
+    return undefined;
+  }
+
+  const segments = remainder.split("/");
+  const packageName = segments.shift();
+  if (!packageName) {
+    return undefined;
+  }
+
+  const candidateBase = path.resolve(workspaceRoot, "packages", packageName, "src", ...segments);
+  const matched = await resolveWithExtensions(candidateBase);
+  if (!matched) {
+    return undefined;
+  }
+  return normalizeWorkspacePath(path.relative(workspaceRoot, matched));
 }
 
 async function resolveWithExtensions(basePath: string): Promise<string | undefined> {
@@ -976,18 +1218,33 @@ export function renderDependencyLines(args: {
   docDir: string;
   workspaceRoot: string;
   liveDocsRootAbsolute: string;
+  docExtension: string;
 }): string[] {
   if (args.analysis.dependencies.length === 0) {
     return [];
   }
 
-  const grouped = new Map<string, { entry: DependencyEntry; symbols: Set<string> }>();
+  const grouped = new Map<
+    string,
+    { entry: DependencyEntry; symbols: Set<string>; targets: Record<string, string> }
+  >();
 
   for (const dependency of args.analysis.dependencies) {
     const key = displayDependencyKey(dependency);
-    const bucket = grouped.get(key) ?? { entry: dependency, symbols: new Set<string>() };
+    const bucket =
+      grouped.get(key) ?? {
+        entry: dependency,
+        symbols: new Set<string>(),
+        targets: {}
+      };
     for (const symbol of dependency.symbols) {
       bucket.symbols.add(symbol);
+      const targetName = dependency.symbolTargets?.[symbol];
+      if (targetName) {
+        bucket.targets[symbol] = targetName;
+      } else if (!bucket.targets[symbol]) {
+        bucket.targets[symbol] = symbol;
+      }
     }
     grouped.set(key, bucket);
   }
@@ -1004,7 +1261,7 @@ export function renderDependencyLines(args: {
       const moduleLabel = toModuleLabel(dependency.resolvedPath);
       const docAbsolute = path.resolve(
         args.liveDocsRootAbsolute,
-        `${dependency.resolvedPath}${LIVE_DOCUMENTATION_FILE_EXTENSION}`
+        `${dependency.resolvedPath}${args.docExtension}`
       );
       const docRelative = formatRelativePathFromDoc(args.docDir, docAbsolute);
       const symbols = Array.from(bucket.symbols).sort();
@@ -1015,7 +1272,8 @@ export function renderDependencyLines(args: {
       }
 
       for (const symbolName of symbols) {
-        const slug = createSymbolSlug(symbolName);
+        const anchorName = bucket.targets[symbolName] ?? symbolName;
+        const slug = createSymbolSlug(anchorName);
         const fragment = slug ? `#${slug}` : "";
         const label = `${moduleLabel}.${symbolName}`;
         lines.push(`- [${formatInlineCode(label)}](${docRelative}${fragment})${qualifierSuffix}`);
@@ -1028,6 +1286,55 @@ export function renderDependencyLines(args: {
       .map((name) => formatInlineCode(name));
     const symbolSuffix = externalSymbols.length ? ` - ${externalSymbols.join(", ")}` : "";
     lines.push(`- ${formatInlineCode(dependency.specifier)}${symbolSuffix}${qualifierSuffix}`);
+  }
+
+  return lines;
+}
+
+export function renderReExportedAnchorLines(args: {
+  reExports: ReExportedSymbolInfo[];
+  docDir: string;
+  liveDocsRootAbsolute: string;
+  docExtension: string;
+}): string[] {
+  if (args.reExports.length === 0) {
+    return [];
+  }
+
+  const sorted = [...args.reExports].sort((a, b) => a.name.localeCompare(b.name));
+  const lines: string[] = [];
+
+  for (const entry of sorted) {
+    lines.push(`#### \`${entry.name}\``);
+
+    const qualifierParts: string[] = [];
+    if (entry.isTypeOnly) {
+      qualifierParts.push("type-only");
+    }
+
+    if (entry.sourceModulePath) {
+      const moduleDocAbsolute = path.resolve(
+        args.liveDocsRootAbsolute,
+        `${entry.sourceModulePath}${args.docExtension}`
+      );
+      const relative = formatRelativePathFromDoc(args.docDir, moduleDocAbsolute);
+      const moduleLabel = toModuleLabel(entry.sourceModulePath);
+      const slug = createSymbolSlug(entry.name);
+      const fragment = slug ? `#${slug}` : "";
+      const qualifierSuffix = qualifierParts.length ? ` (${qualifierParts.join(", ")})` : "";
+      lines.push(
+        `- Re-exported from [${formatInlineCode(moduleLabel)}](${relative}${fragment})${qualifierSuffix}`
+      );
+    } else {
+      const qualifierSuffix = qualifierParts.length ? ` (${qualifierParts.join(", ")})` : "";
+      lines.push(`- Re-exported from external module${qualifierSuffix}`);
+    }
+
+    lines.push("");
+  }
+
+  while (lines.length > 0 && lines[lines.length - 1] === "") {
+    lines.pop();
   }
 
   return lines;

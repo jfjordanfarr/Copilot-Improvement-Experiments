@@ -25,5 +25,5 @@ Layer 3 documents stored under `.mdmd/layer-3/` are the **permanent authored r
      - `### Topology` (optional) – include Mermaid diagrams only when they are manually curated summaries.  Link each node back to the corresponding Live Doc; note which System CLI snapshot informed the diagram.
   5. `## Evidence` (optional) – reference integration suites, benchmarks, or temp CLIs that validate the architecture.
 - Do not commit raw `.live-documentation/system/**` files.  Instead, record the command and timestamp that produced the snapshot so readers can regenerate it locally.
-- When Layer 3 docs must link to implementation details, point to Stage‑0 Live Docs under `/.live-documentation/source/…` instead of raw source files.  This keeps traceability intact even as implementation files move.
+- When Layer 3 docs must link to implementation details, point to Stage‑0 Live Docs under `/.mdmd/layer-4/…` instead of raw source files.  This keeps traceability intact even as implementation files move.
 - Keep identifiers stable to avoid churn in cross-layer references.

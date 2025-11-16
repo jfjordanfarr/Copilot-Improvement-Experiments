@@ -47,37 +47,37 @@ Supports FR-LD5, FR-LD7, and SC-LD4 by delivering the VS Code UX and CLI surface
 ## Linked Implementations
 
 ### IMP-101 docDiagnosticProvider
-Transforms diagnostics into Problems entries, hovers, and quick actions. Refer to the generated Live Doc at `.live-documentation/source/packages/extension/src/diagnostics/docDiagnosticProvider.ts.mdmd.md` when deeper detail is required.
+Transforms diagnostics into Problems entries, hovers, and quick actions. Refer to the generated Live Doc at `.mdmd/layer-4/packages/extension/src/diagnostics/docDiagnosticProvider.ts.mdmd.mdmd.md` when deeper detail is required.
 
 ### IMP-107 dependencyQuickPick
-Bridges the inspection request into a Quick Pick UX. See `.live-documentation/source/packages/extension/src/diagnostics/dependencyQuickPick.ts.mdmd.md` for the implementation surface.
+Bridges the inspection request into a Quick Pick UX. See `.mdmd/layer-4/packages/extension/src/diagnostics/dependencyQuickPick.ts.mdmd.mdmd.md` for the implementation surface.
 
 ### IMP-108 analyzeWithAI Command
-Collects LLM assessments for outstanding diagnostics. The command’s Live Doc lives at `.live-documentation/source/packages/extension/src/commands/analyzeWithAI.ts.mdmd.md`.
+Collects LLM assessments for outstanding diagnostics. The command’s Live Doc lives at `.mdmd/layer-4/packages/extension/src/commands/analyzeWithAI.ts.mdmd.mdmd.md`.
 
 ### IMP-109 fileMaintenance Watcher
-Debounces rename/delete events and alerts the server. Consult `.live-documentation/source/packages/extension/src/watchers/fileMaintenance.ts.mdmd.md` for operational detail once generated.
+Debounces rename/delete events and alerts the server. Consult `.mdmd/layer-4/packages/extension/src/watchers/fileMaintenance.ts.mdmd.mdmd.md` for operational detail once generated.
 
 ### IMP-110 symbolBridge Service
-Supplies workspace symbols and references to inference pipelines. Implementation intent is captured in `.live-documentation/source/packages/extension/src/services/symbolBridge.ts.mdmd.md`.
+Supplies workspace symbols and references to inference pipelines. Implementation intent is captured in `.mdmd/layer-4/packages/extension/src/services/symbolBridge.ts.mdmd.mdmd.md`.
 
 ### IMP-111 liveDocsCommands
-Registers Live Doc regeneration, inspect, and diff commands. The CLI parity is now expressed through `npm run live-docs:generate` and `npm run live-docs:system`; inspect `.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md` for the generated view.
+Registers Live Doc regeneration, inspect, and diff commands. The CLI parity is now expressed through `npm run live-docs:generate` and `npm run live-docs:system`; inspect `.mdmd/layer-4/scripts/live-docs/generate.ts.mdmd.mdmd.md` for the generated view.
 
 ### IMP-112 liveDocsAuthoringCommands *(planned)*
-Will register preview/apply and scaffolding surfaces for bidirectional authoring once the feature flag enables REQ-G1. Implementation intent will live at `.live-documentation/source/packages/extension/src/commands/liveDocsAuthoring.ts.mdmd.md` when generated.
+Will register preview/apply and scaffolding surfaces for bidirectional authoring once the feature flag enables REQ-G1. Implementation intent will live at `.mdmd/layer-4/packages/extension/src/commands/liveDocsAuthoring.ts.mdmd.mdmd.md` when generated.
 
 ### IMP-302 graphCoverageAudit CLI
-Headless audit ensuring code/docs linkage. Operational detail is sourced from `.live-documentation/source/scripts/graph-tools/audit-doc-coverage.ts.mdmd.md`.
+Headless audit ensuring code/docs linkage. Operational detail is sourced from `.mdmd/layer-4/scripts/graph-tools/audit-doc-coverage.ts.mdmd.mdmd.md`.
 
 ### IMP-303 inspectSymbolNeighbors CLI
-CLI equivalent of dependency explorer. Refer to `.live-documentation/source/scripts/graph-tools/inspect-symbol.ts.mdmd.md` for the materialised view.
+CLI equivalent of dependency explorer. Refer to `.mdmd/layer-4/scripts/graph-tools/inspect-symbol.ts.mdmd.mdmd.md` for the materialised view.
 
 ### IMP-304 graphSnapshot CLI
-Deterministic rebuild of the workspace graph cache. See `.live-documentation/source/scripts/graph-tools/snapshot-workspace.ts.mdmd.md`.
+Deterministic rebuild of the workspace graph cache. See `.mdmd/layer-4/scripts/graph-tools/snapshot-workspace.ts.mdmd.mdmd.md`.
 
 ### IMP-305 liveDocsGenerateCli
-Command palette + CLI entry points for regeneration. The generator surface is documented at `.live-documentation/source/scripts/live-docs/generate.ts.mdmd.md`.
+Command palette + CLI entry points for regeneration. The generator surface is documented at `.mdmd/layer-4/scripts/live-docs/generate.ts.mdmd.mdmd.md`.
 
 ### IMP-306 liveDocsInspectCli
 Headless inspection of Live Doc metadata mirroring the UI. Legacy references now point to on-demand System outputs (`npm run live-docs:system`); the dedicated inspect CLI will return once its materialised view pipeline stabilises.

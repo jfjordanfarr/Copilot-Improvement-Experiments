@@ -3,8 +3,6 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 
-const LIVE_DOCUMENTATION_FILE_EXTENSION = ".md" as const; // Keep in sync with liveDocumentationConfig
-
 const { generateLiveDocs } = require(
   path.join(
     __dirname,
@@ -14,6 +12,7 @@ const { generateLiveDocs } = require(
 
 const {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
+  LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig
 } = require(
   path.join(
@@ -21,6 +20,9 @@ const {
     "../../../../packages/shared/dist/config/liveDocumentationConfig"
   )
 ) as typeof import("../../../packages/shared/dist/config/liveDocumentationConfig");
+
+const DEFAULT_LIVE_DOC_ROOT = DEFAULT_LIVE_DOCUMENTATION_CONFIG.root;
+const DEFAULT_LIVE_DOC_LAYER = DEFAULT_LIVE_DOCUMENTATION_CONFIG.baseLayer;
 
 suite("Live Docs polyglot fixtures", () => {
   test("generates C# docs for advanced fixture", async function () {
@@ -34,8 +36,6 @@ suite("Live Docs polyglot fixtures", () => {
 
       const config = normalizeLiveDocumentationConfig({
         ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-        root: ".live-documentation",
-        baseLayer: "source",
         glob: ["src/**/*.cs"]
       });
 
@@ -51,8 +51,8 @@ suite("Live Docs polyglot fixtures", () => {
 
       const widgetRegistryDoc = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "src",
         "Diagnostics",
         `WidgetRegistry.cs${LIVE_DOCUMENTATION_FILE_EXTENSION}`
@@ -172,8 +172,8 @@ suite("Live Docs polyglot fixtures", () => {
 
       const extensionsDoc = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "src",
         "Diagnostics",
         "Extensions",
@@ -205,8 +205,6 @@ suite("Live Docs polyglot fixtures", () => {
 
       const config = normalizeLiveDocumentationConfig({
         ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-        root: ".live-documentation",
-        baseLayer: "source",
         glob: ["src/**/*.java"]
       });
 
@@ -223,8 +221,8 @@ suite("Live Docs polyglot fixtures", () => {
       const appDoc = await fs.readFile(
         path.join(
           workspaceRoot,
-          ".live-documentation",
-          "source",
+          DEFAULT_LIVE_DOC_ROOT,
+          DEFAULT_LIVE_DOC_LAYER,
           "src",
           "com",
           "example",
@@ -263,8 +261,8 @@ suite("Live Docs polyglot fixtures", () => {
       const readerDoc = await fs.readFile(
         path.join(
           workspaceRoot,
-          ".live-documentation",
-          "source",
+          DEFAULT_LIVE_DOC_ROOT,
+          DEFAULT_LIVE_DOC_LAYER,
           "src",
           "com",
           "example",
@@ -285,8 +283,8 @@ suite("Live Docs polyglot fixtures", () => {
       const recordDoc = await fs.readFile(
         path.join(
           workspaceRoot,
-          ".live-documentation",
-          "source",
+          DEFAULT_LIVE_DOC_ROOT,
+          DEFAULT_LIVE_DOC_LAYER,
           "src",
           "com",
           "example",
@@ -308,8 +306,8 @@ suite("Live Docs polyglot fixtures", () => {
       const catalogDoc = await fs.readFile(
         path.join(
           workspaceRoot,
-          ".live-documentation",
-          "source",
+          DEFAULT_LIVE_DOC_ROOT,
+          DEFAULT_LIVE_DOC_LAYER,
           "src",
           "com",
           "example",
@@ -341,8 +339,6 @@ suite("Live Docs polyglot fixtures", () => {
 
       const config = normalizeLiveDocumentationConfig({
         ...DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-        root: ".live-documentation",
-        baseLayer: "source",
         glob: ["src/**/*.py"]
       });
 
@@ -358,8 +354,8 @@ suite("Live Docs polyglot fixtures", () => {
 
       const mainDocPath = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "src",
         `main.py${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
@@ -369,8 +365,8 @@ suite("Live Docs polyglot fixtures", () => {
 
       const utilDocPath = path.join(
         workspaceRoot,
-        ".live-documentation",
-        "source",
+        DEFAULT_LIVE_DOC_ROOT,
+        DEFAULT_LIVE_DOC_LAYER,
         "src",
         `util.py${LIVE_DOCUMENTATION_FILE_EXTENSION}`
       );
