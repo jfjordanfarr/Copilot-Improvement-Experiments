@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Exercises the export diagnostics command so CSV/JSON generation, cancellation handling, and empty states stay regression-proof after the Oct 22 T045 rollout documented in Turn 03 of [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-03-option-a-execution--t044t045-close-out-lines-521-1180](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-03-option-a-execution--t044t045-close-out-lines-521-1180).
+Exercises the export diagnostics command so CSV/JSON generation, cancellation handling, and empty states stay regression-proof after the Oct 22 T045 rollout documented in Turn 03 of [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-03-option-a-execution--t044t045-close-out-lines-521-1180](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-03-option-a-execution--t044t045-close-out-lines-521-1180).
 
 ### Notes
-- Maintains the VS Code mock coverage captured in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L1460-L1545](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L1460-L1545); mirror any format or prompt changes in these tests before shipping.
-- Pending work to include acknowledgement metadata in exports should extend this suite once the feature lands, matching the open acceptance criteria referenced later that day in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410).
+- Maintains the VS Code mock coverage captured in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L1460-L1545](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L1460-L1545); mirror any format or prompt changes in these tests before shipping.
+- Pending work to include acknowledgement metadata in exports should extend this suite once the feature lands, matching the open acceptance criteria referenced later that day in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.296Z","inputHash":"6028cb53b8f923c4"}]} -->

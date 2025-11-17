@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Registers the extension-side watcher that forwards delete/rename events to the language server, completing the runtime split introduced in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070) so orphaned diagnostics can be cleared immediately.
+Registers the extension-side watcher that forwards delete/rename events to the language server, completing the runtime split introduced in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070) so orphaned diagnostics can be cleared immediately.
 
 ### Notes
-The server-side handlers live in `removeOrphans.ts`; keep the URI serialization (`toString(true)`) aligned with the normalization work captured in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L3048-L3230](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L3048-L3230) to ensure Git-ignored temp files and cross-drive paths do not leak stale diagnostics.
+The server-side handlers live in `removeOrphans.ts`; keep the URI serialization (`toString(true)`) aligned with the normalization work captured in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L3048-L3230](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L3048-L3230) to ensure Git-ignored temp files and cross-drive paths do not leak stale diagnostics.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.079Z","inputHash":"fc5748f35ddc3941"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Surfaces the rename/delete maintenance prompt that landed with T021 so users can repair drift by re-running the `linkDiagnostics.overrideLink` workflow after orphan cleanup detects broken relationships, per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2320-L2363](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2320-L2363).
+Surfaces the rename/delete maintenance prompt that landed with T021 so users can repair drift by re-running the `linkDiagnostics.overrideLink` workflow after orphan cleanup detects broken relationships, per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2320-L2363](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2320-L2363).
 
 ### Notes
-- Triggered by the server’s orphan-removal payload and registered alongside the watcher updates called out in that same T021 delivery, with no automated coverage yet because the infrastructure was still pending; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2320-L2363](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2320-L2363).
+- Triggered by the server’s orphan-removal payload and registered alongside the watcher updates called out in that same T021 delivery, with no automated coverage yet because the infrastructure was still pending; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2320-L2363](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2320-L2363).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.646Z","inputHash":"343945d286992b7f"}]} -->

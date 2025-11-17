@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Executes the AST accuracy benchmark by materialising repo fixtures on disk, running the Live Docs analyzer, and comparing inferred edges against oracle data so precision/recall regressions fail fast ([dynamic fixture harness](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-01.SUMMARIZED.md#turn-38-wire-benchmark-harness-to-materialized-fixtures-lines-5901-6180)).
+Executes the AST accuracy benchmark by materialising repo fixtures on disk, running the Live Docs analyzer, and comparing inferred edges against oracle data so precision/recall regressions fail fast ([dynamic fixture harness](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-01.SUMMARIZED.md#turn-38-wire-benchmark-harness-to-materialized-fixtures-lines-5901-6180)).
 
 ### Notes
-- Relies on the regeneration CLI and oracle pipeline to refresh expected graphs before asserting results, keeping the test aligned with compiler-derived ground truth and producing benchmark reports via `benchmarkRecorder` ([oracle regeneration workflow](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-34-build-regeneration-cli--overrides-lines-3961-4260)).
+- Relies on the regeneration CLI and oracle pipeline to refresh expected graphs before asserting results, keeping the test aligned with compiler-derived ground truth and producing benchmark reports via `benchmarkRecorder` ([oracle regeneration workflow](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-34-build-regeneration-cli--overrides-lines-3961-4260)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.170Z","inputHash":"5a29f248aa3e0b1d"}]} -->

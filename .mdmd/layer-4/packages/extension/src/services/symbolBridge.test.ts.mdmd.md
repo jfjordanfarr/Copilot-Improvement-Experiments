@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Exercised `SymbolBridgeAnalyzer` with mocked VS Code symbol and reference providers to lock down the workspace-symbol ingestion behaviour delivered in Turn 05 of the Oct 20 cycle in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-05-add-symbol-bridge-unit-coverage-lines-942-1185](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-05-add-symbol-bridge-unit-coverage-lines-942-1185).
+Exercised `SymbolBridgeAnalyzer` with mocked VS Code symbol and reference providers to lock down the workspace-symbol ingestion behaviour delivered in Turn 05 of the Oct 20 cycle in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-05-add-symbol-bridge-unit-coverage-lines-942-1185](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-05-add-symbol-bridge-unit-coverage-lines-942-1185).
 
 ### Notes
-- Mocks the VS Code command APIs so we can verify seed deduplication, unsupported-language filtering, and evidence counts without spinning up the extension host, per the actions log in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L920-L949](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L920-L949).
+- Mocks the VS Code command APIs so we can verify seed deduplication, unsupported-language filtering, and evidence counts without spinning up the extension host, per the actions log in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L920-L949](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L920-L949).
 - Coverage reports must stay above the ~80 percent threshold captured that day; if analyzer behaviour changes, extend these tests before relying on integration harness updates to catch regressions.
 
 ## Generated

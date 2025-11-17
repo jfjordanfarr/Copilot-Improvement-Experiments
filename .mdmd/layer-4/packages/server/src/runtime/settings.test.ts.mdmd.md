@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Confirms the runtime settings parser introduced during the modularization work in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070) extracts user configuration correctly.
+Confirms the runtime settings parser introduced during the modularization work in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070) extracts user configuration correctly.
 
 ### Notes
-Tests cover the noise-suppression and ripple overrides layered in T046—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-07-verification-cycle--test-fixes-lines-881-940](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-07-verification-cycle--test-fixes-lines-881-940)—so update these assertions alongside any future settings additions.
+Tests cover the noise-suppression and ripple overrides layered in T046—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-07-verification-cycle--test-fixes-lines-881-940](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-07-verification-cycle--test-fixes-lines-881-940)—so update these assertions alongside any future settings additions.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.251Z","inputHash":"db6e24dac0a0f785"}]} -->

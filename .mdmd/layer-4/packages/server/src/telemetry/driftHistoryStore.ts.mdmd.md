@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Provides the persistence layer for diagnostic drift events added during T059—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-15-drift-history-implementation-phase-lines-1621-1850](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-15-drift-history-implementation-phase-lines-1621-1850)—recording emissions and acknowledgements into the shared graph store.
+Provides the persistence layer for diagnostic drift events added during T059—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-15-drift-history-implementation-phase-lines-1621-1850](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-15-drift-history-implementation-phase-lines-1621-1850)—recording emissions and acknowledgements into the shared graph store.
 
 ### Notes
-The store is invoked by `acknowledgementService` and the drift history integrations delivered in the same tranche; directory fallback behaviour and metadata merging were tuned while stabilising integration tests in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-18-multi-path-lookup--green-tests-lines-2081-2180](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-18-multi-path-lookup--green-tests-lines-2081-2180), so align any future storage changes with those test expectations.
+The store is invoked by `acknowledgementService` and the drift history integrations delivered in the same tranche; directory fallback behaviour and metadata merging were tuned while stabilising integration tests in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-18-multi-path-lookup--green-tests-lines-2081-2180](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-18-multi-path-lookup--green-tests-lines-2081-2180), so align any future storage changes with those test expectations.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.493Z","inputHash":"552b903a02f00fe7"}]} -->

@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Exports outstanding diagnostics to CSV or JSON so leads can archive triage status and acknowledgements outside VS Code, completing T045 as recorded in Turn 03 of [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-03-option-a-execution--t044t045-close-out-lines-521-1180](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-03-option-a-execution--t044t045-close-out-lines-521-1180).
+Exports outstanding diagnostics to CSV or JSON so leads can archive triage status and acknowledgements outside VS Code, completing T045 as recorded in Turn 03 of [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-03-option-a-execution--t044t045-close-out-lines-521-1180](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-03-option-a-execution--t044t045-close-out-lines-521-1180).
 
 ### Notes
-- Implementation details (format selection, save dialog, quick pick wiring, unit coverage) are documented in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L1460-L1545](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L1460-L1545); keep CSV escaping and JSON payloads aligned with that spec.
-- Pending acceptance criteria still call for acknowledgement metadata in exports, as highlighted later that day - track completion against [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410).
+- Implementation details (format selection, save dialog, quick pick wiring, unit coverage) are documented in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L1460-L1545](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L1460-L1545); keep CSV escaping and JSON payloads aligned with that spec.
+- Pending acceptance criteria still call for acknowledgement metadata in exports, as highlighted later that day - track completion against [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.337Z","inputHash":"83d8ad46007abd97"}]} -->

@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Loads the compiled integration suites inside the VS Code harness so Mocha can execute every T0×/US× regression end to end ([harness bootstrap](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-19.md#L1960-L2040)).
+Loads the compiled integration suites inside the VS Code harness so Mocha can execute every T0×/US× regression end to end ([harness bootstrap](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-19.md#L1960-L2040)).
 
 ### Notes
-- Uses the globbed `*.test.js` bundle produced by the dedicated tsconfig so `npm run test:integration` succeeds after the harness build step was added ([harness bootstrap](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-19.md#L1960-L2040)).
-- Filters out nested harness fixtures (vscode/, suite/, slopcop/) to keep the Mocha run focused on real scenarios while CLI-specific Vitest suites run separately ([integration replay](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L5200-L5280)).
+- Uses the globbed `*.test.js` bundle produced by the dedicated tsconfig so `npm run test:integration` succeeds after the harness build step was added ([harness bootstrap](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-19.md#L1960-L2040)).
+- Filters out nested harness fixtures (vscode/, suite/, slopcop/) to keep the Mocha run focused on real scenarios while CLI-specific Vitest suites run separately ([integration replay](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L5200-L5280)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.490Z","inputHash":"bd040168351dcc36"}]} -->

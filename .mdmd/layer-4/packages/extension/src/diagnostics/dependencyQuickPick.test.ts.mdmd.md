@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Locks down the dependency quick pick helpers—`describeEdgePath`, `ParsedEdge`, and the Zod validator—so T039’s UI logic stays deterministic, as captured in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520).
+Locks down the dependency quick pick helpers—`describeEdgePath`, `ParsedEdge`, and the Zod validator—so T039’s UI logic stays deterministic, as captured in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520).
 
 ### Notes
-- Uses a lightweight `vscode` mock to run under Vitest and participates in the lint/unit/build gate that preceded the quick-pick commit; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520).
+- Uses a lightweight `vscode` mock to run under Vitest and participates in the lint/unit/build gate that preceded the quick-pick commit; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:10.752Z","inputHash":"38ac2aa21b6e659a"}]} -->

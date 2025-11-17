@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Serialises benchmark runs into tmp and versioned JSON outputs so rebuild and accuracy suites publish auditable metrics for every mode ([per-mode recorder rollout](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L680-L720)).
+Serialises benchmark runs into tmp and versioned JSON outputs so rebuild and accuracy suites publish auditable metrics for every mode ([per-mode recorder rollout](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L680-L720)).
 
 ### Notes
-- Writes both `AI-Agent-Workspace/tmp/benchmarks` scratch files and `reports/benchmarks/<mode>/` snapshots so reviewers can diff local experiments against committed history ([per-mode recorder rollout](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L680-L720)).
-- Emits fixture-specific diff bundles with precision/recall tallies to speed up triaging false positives/negatives when the AST suite regresses ([fixture diff bundles](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L680-L720)).
+- Writes both `AI-Agent-Workspace/tmp/benchmarks` scratch files and `reports/benchmarks/<mode>/` snapshots so reviewers can diff local experiments against committed history ([per-mode recorder rollout](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L680-L720)).
+- Emits fixture-specific diff bundles with precision/recall tallies to speed up triaging false positives/negatives when the AST suite regresses ([fixture diff bundles](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L680-L720)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.267Z","inputHash":"f2cceb4d3df7af62"}]} -->

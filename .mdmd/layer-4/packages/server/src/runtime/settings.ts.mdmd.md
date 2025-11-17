@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Parses user/workspace configuration into runtime-ready settings, a responsibility carved out when we modularised the server bootstrap in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070).
+Parses user/workspace configuration into runtime-ready settings, a responsibility carved out when we modularised the server bootstrap in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070).
 
 ### Notes
-Noise suppression thresholds, ripple depth caps, and test-mode overrides were added during the T046 noise-filter work in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-06-publisher-integration--runtime-wiring-lines-701-880](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-06-publisher-integration--runtime-wiring-lines-701-880); adjust `providerGuard` and diagnostic publishers in tandem when evolving these shapes.
+Noise suppression thresholds, ripple depth caps, and test-mode overrides were added during the T046 noise-filter work in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-06-publisher-integration--runtime-wiring-lines-701-880](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-06-publisher-integration--runtime-wiring-lines-701-880); adjust `providerGuard` and diagnostic publishers in tandem when evolving these shapes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.481Z","inputHash":"e2e9c414529f983a"}]} -->

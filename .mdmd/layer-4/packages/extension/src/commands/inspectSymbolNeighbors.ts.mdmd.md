@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Provides the US4 “Inspect Symbol Neighbors” palette command that calls `INSPECT_SYMBOL_NEIGHBORS_REQUEST`, groups inbound/outbound edges, and lets maintainers pivot from the active symbol to related artifacts inside VS Code, as delivered on Oct 23 in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.SUMMARIZED.md#turn-24-lsp--command-implementation-kickoff-lines-2701-3000](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.SUMMARIZED.md#turn-24-lsp--command-implementation-kickoff-lines-2701-3000).
+Provides the US4 “Inspect Symbol Neighbors” palette command that calls `INSPECT_SYMBOL_NEIGHBORS_REQUEST`, groups inbound/outbound edges, and lets maintainers pivot from the active symbol to related artifacts inside VS Code, as delivered on Oct 23 in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-24-lsp--command-implementation-kickoff-lines-2701-3000](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-24-lsp--command-implementation-kickoff-lines-2701-3000).
 
 ### Notes
-- Integration stability required dedicated test hooks so the quick pick could be automated; the harness swaps in stubbed `showQuickPick`/`showInformationMessage` calls per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L5240-L5264](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L5240-L5264).
-- Once the stubs landed, `npm run verify` completed end to end and the command shipped as part of commit 558781b (`feat: ship symbol neighbor explorer and harden graph persistence`), confirmed in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944).
+- Integration stability required dedicated test hooks so the quick pick could be automated; the harness swaps in stubbed `showQuickPick`/`showInformationMessage` calls per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L5240-L5264](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L5240-L5264).
+- Once the stubs landed, `npm run verify` completed end to end and the command shipped as part of commit 558781b (`feat: ship symbol neighbor explorer and harden graph persistence`), confirmed in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.406Z","inputHash":"4224aeac0660cf2d"}]} -->

@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Provides the Analyze-with-AI command a reusable wrapper around `vscode.lm` so diagnostics can request summaries, confidence, and recommendations, as introduced in Turn 13 of [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-26.SUMMARIZED.md#turn-13-analyze-with-ai-command-lands-lines-1501-2000](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-26.SUMMARIZED.md#turn-13-analyze-with-ai-command-lands-lines-1501-2000).
+Provides the Analyze-with-AI command a reusable wrapper around `vscode.lm` so diagnostics can request summaries, confidence, and recommendations, as introduced in Turn 13 of [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-26.SUMMARIZED.md#turn-13-analyze-with-ai-command-lands-lines-1501-2000](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-26.SUMMARIZED.md#turn-13-analyze-with-ai-command-lands-lines-1501-2000).
 
 ### Notes
-- Captures the Oct 26 implementation details - caching the last model, interactive quick pick, and routing assessment storage - per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1740-L1795](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1740-L1795).
-- Respects the governance decisions from Oct 21 to default sensitive workspaces to `llmProviderMode: local-only` and to block diagnostics when the provider is disabled, per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L120-L190](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L120-L190); keep the filter and error reasons aligned with those consent requirements.
+- Captures the Oct 26 implementation details - caching the last model, interactive quick pick, and routing assessment storage - per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1740-L1795](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1740-L1795).
+- Respects the governance decisions from Oct 21 to default sensitive workspaces to `llmProviderMode: local-only` and to block diagnostics when the provider is disabled, per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L120-L190](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L120-L190); keep the filter and error reasons aligned with those consent requirements.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:10.892Z","inputHash":"78657987d9b5b3e8"}]} -->

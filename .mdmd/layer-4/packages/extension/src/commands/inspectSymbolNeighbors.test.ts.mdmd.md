@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Exercises the symbol neighbor command through the extension test hooks, stubbing VS Code window APIs so the quick pick can be driven deterministically while asserting the parsed neighbor payloads returned by `INSPECT_SYMBOL_NEIGHBORS_REQUEST`; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.SUMMARIZED.md#turn-29-stub-infrastructure--proxy-discovery-lines-4701-5600](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.SUMMARIZED.md#turn-29-stub-infrastructure--proxy-discovery-lines-4701-5600).
+Exercises the symbol neighbor command through the extension test hooks, stubbing VS Code window APIs so the quick pick can be driven deterministically while asserting the parsed neighbor payloads returned by `INSPECT_SYMBOL_NEIGHBORS_REQUEST`; see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-29-stub-infrastructure--proxy-discovery-lines-4701-5600](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-29-stub-infrastructure--proxy-discovery-lines-4701-5600).
 
 ### Notes
-- The suite patches `vscode.window.showQuickPick`/`showInformationMessage` via `Reflect.set` and verifies the overrides before exercising the command, eliminating the manual timeout called out at [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L5240-L5264](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L5240-L5264).
-- Command automation now runs inside `npm run verify`, which completed cleanly after commit 558781b landed per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944).
+- The suite patches `vscode.window.showQuickPick`/`showInformationMessage` via `Reflect.set` and verifies the overrides before exercising the command, eliminating the manual timeout called out at [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L5240-L5264](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L5240-L5264).
+- Command automation now runs inside `npm run verify`, which completed cleanly after commit 558781b landed per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.368Z","inputHash":"dd0207d2a16d71d1"}]} -->

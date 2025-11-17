@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Implements the shared detector SlopCop uses to spot duplicate heading slugs and unresolved anchors across markdown artifacts ([symbol audit rollout](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L23-L33)).
+Implements the shared detector SlopCop uses to spot duplicate heading slugs and unresolved anchors across markdown artifacts ([symbol audit rollout](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L23-L33)).
 
 ### Notes
-- Exercised via the opt-in `slopcop:symbols` CLI and its integration fixture, which asserts the analyzer raises exit code 3 until the docs are repaired ([fixture validation](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-25.md#L6048-L6073)).
-- Relies on the vendored GitHub slugger and shared markdown parsing helpers so reported slugs match GitHub’s anchor rules when we fix MDMD/spec links ([slug alignment plan](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1089-L1244)).
+- Exercised via the opt-in `slopcop:symbols` CLI and its integration fixture, which asserts the analyzer raises exit code 3 until the docs are repaired ([fixture validation](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-25.md#L6048-L6073)).
+- Relies on the vendored GitHub slugger and shared markdown parsing helpers so reported slugs match GitHub’s anchor rules when we fix MDMD/spec links ([slug alignment plan](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1089-L1244)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.682Z","inputHash":"643186b4c30c5e99"}]} -->

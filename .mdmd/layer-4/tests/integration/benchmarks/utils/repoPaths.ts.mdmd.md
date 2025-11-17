@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Locates the repository root for benchmark suites so rebuild and AST accuracy tests can resolve fixtures and dist bundles even when the VS Code harness runs from nested directories ([benchmark harness creation](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L3986-L4094)).
+Locates the repository root for benchmark suites so rebuild and AST accuracy tests can resolve fixtures and dist bundles even when the VS Code harness runs from nested directories ([benchmark harness creation](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L3986-L4094)).
 
 ### Notes
-- Powers the benchmark refactor that unified repo-relative path lookups across `astAccuracy` and `rebuildStability`, eliminating hard-coded dist locations ([refactor recap](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L100-L170)).
-- Accepts both historical and current workspace names so the helper survives the repo rename from Copilot Improvement Experiments to Live Documentation ([rename fix](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L215-L253)).
+- Powers the benchmark refactor that unified repo-relative path lookups across `astAccuracy` and `rebuildStability`, eliminating hard-coded dist locations ([refactor recap](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L100-L170)).
+- Accepts both historical and current workspace names so the helper survives the repo rename from Copilot Improvement Experiments to Live Documentation ([rename fix](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L215-L253)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.276Z","inputHash":"c53dc70d3d72d578"}]} -->

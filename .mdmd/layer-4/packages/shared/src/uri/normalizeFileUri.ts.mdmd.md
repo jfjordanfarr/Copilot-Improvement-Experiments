@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Centralises file URI canonicalisation so diagnostics, change events, and telemetry compare consistent `file://` strings across platforms ([shared refactor](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L3258-L3277)).
+Centralises file URI canonicalisation so diagnostics, change events, and telemetry compare consistent `file://` strings across platforms ([shared refactor](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L3258-L3277)).
 
 ### Notes
-- Re-exported through the server `uri.ts` shim so every watcher and change processor path goes through the same normaliser instead of ad hoc `pathToFileURL` calls ([shared refactor](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L3258-L3277)).
-- Manually sanity-checked the built helper on Windows to confirm drive-letter casing and whitespace trimming behave as expected during the transitive diagnostics investigation ([debug session](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L2808-L2816)).
+- Re-exported through the server `uri.ts` shim so every watcher and change processor path goes through the same normaliser instead of ad hoc `pathToFileURL` calls ([shared refactor](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L3258-L3277)).
+- Manually sanity-checked the built helper on Windows to confirm drive-letter casing and whitespace trimming behave as expected during the transitive diagnostics investigation ([debug session](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L2808-L2816)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.687Z","inputHash":"02831acba6cbbe81"}]} -->

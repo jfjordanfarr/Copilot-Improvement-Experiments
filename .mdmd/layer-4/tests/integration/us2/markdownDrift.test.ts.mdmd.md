@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Anchors the US2 documentation-drift story by editing the architecture brief and asserting diagnostics, quick actions, and hysteresis on linked code after we split markdown workflows into their own user story during the spec realignment ([US2 drift suite relocation](../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md#turn-19-refocus-on-code-to-code-lines-2140-2215)).
+Anchors the US2 documentation-drift story by editing the architecture brief and asserting diagnostics, quick actions, and hysteresis on linked code after we split markdown workflows into their own user story during the spec realignment ([US2 drift suite relocation](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md#turn-19-refocus-on-code-to-code-lines-2140-2215)).
 
 ### Notes
-- Shares the harness hardening that added deterministic diagnostic flushes and reset calls so markdown-led runs stay stable on Windows CI ([integration cleanup & fixture hygiene](../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-29.SUMMARIZED.md#turn-14-integration-cleanup--fixture-hygiene-lines-1833-2065)).
+- Shares the harness hardening that added deterministic diagnostic flushes and reset calls so markdown-led runs stay stable on Windows CI ([integration cleanup & fixture hygiene](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-29.SUMMARIZED.md#turn-14-integration-cleanup--fixture-hygiene-lines-1833-2065)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.417Z","inputHash":"ef88457869f516ca"}]} -->

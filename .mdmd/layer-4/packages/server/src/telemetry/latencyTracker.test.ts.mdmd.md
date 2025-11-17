@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Exercises the latency recorder scenarios delivered in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-20-continued-instrumentation--unit-coverage-lines-2201-2320](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-20-continued-instrumentation--unit-coverage-lines-2201-2320), confirming enqueue→persist→complete flows supply meaningful telemetry snapshots.
+Exercises the latency recorder scenarios delivered in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-20-continued-instrumentation--unit-coverage-lines-2201-2320](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-20-continued-instrumentation--unit-coverage-lines-2201-2320), confirming enqueue→persist→complete flows supply meaningful telemetry snapshots.
 
 ### Notes
-Coverage ensures queued changes that never persist are ignored and that snapshot resets clear rolling metrics—guardrails the team depended on when wiring the latency command and perf test in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385).
+Coverage ensures queued changes that never persist are ignored and that snapshot resets clear rolling metrics—guardrails the team depended on when wiring the latency command and perf test in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.311Z","inputHash":"f8655427f8758be3"}]} -->

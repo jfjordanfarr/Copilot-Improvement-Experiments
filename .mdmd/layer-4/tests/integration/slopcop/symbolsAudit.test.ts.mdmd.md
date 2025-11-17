@@ -9,11 +9,11 @@
 
 ## Authored
 ### Purpose
-Runs the SlopCop symbol audit against the healed fixture workspace to prove the CLI stays green on baseline content and emits structured issues when duplicate headings or broken anchors are introduced ([fixture harness and integration suites](../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-27.SUMMARIZED.md#turn-22-healing-fixtures-documenting-harnesses--tests-lines-6801-7200)).
+Runs the SlopCop symbol audit against the healed fixture workspace to prove the CLI stays green on baseline content and emits structured issues when duplicate headings or broken anchors are introduced ([fixture harness and integration suites](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-27.SUMMARIZED.md#turn-22-healing-fixtures-documenting-harnesses--tests-lines-6801-7200)).
 
 ### Notes
-- Each scenario copies the fixture into a temp workspace, mutates markdown, and expects JSON diagnostics (`duplicate-heading`, `missing-anchor`) so the audit can fail fast without contaminating the curated corpus ([fixture harness and integration suites](../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-27.SUMMARIZED.md#turn-22-healing-fixtures-documenting-harnesses--tests-lines-6801-7200)).
-- Shared a 20s timeout after Safe Commit uncovered slow spawn/compile phases, keeping the symbol audit reliable across Windows CI runs ([safe commit stabilization](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md)).
+- Each scenario copies the fixture into a temp workspace, mutates markdown, and expects JSON diagnostics (`duplicate-heading`, `missing-anchor`) so the audit can fail fast without contaminating the curated corpus ([fixture harness and integration suites](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-27.SUMMARIZED.md#turn-22-healing-fixtures-documenting-harnesses--tests-lines-6801-7200)).
+- Shared a 20s timeout after Safe Commit uncovered slow spawn/compile phases, keeping the symbol audit reliable across Windows CI runs ([safe commit stabilization](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.375Z","inputHash":"1b07784d1301ccc4"}]} -->

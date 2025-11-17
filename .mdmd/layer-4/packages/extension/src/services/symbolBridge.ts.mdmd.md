@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-Implements the T035 workspace-symbol bridge so the extension can satisfy `COLLECT_WORKSPACE_SYMBOLS_REQUEST` by harvesting VS Code symbol references into ripple hints/seeds for the language server, as shipped in Turn 04 of the Oct 20 build push in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-04-implement-symbol-bridge--commit-lines-687-941](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-04-implement-symbol-bridge--commit-lines-687-941).
+Implements the T035 workspace-symbol bridge so the extension can satisfy `COLLECT_WORKSPACE_SYMBOLS_REQUEST` by harvesting VS Code symbol references into ripple hints/seeds for the language server, as shipped in Turn 04 of the Oct 20 build push in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-04-implement-symbol-bridge--commit-lines-687-941](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-04-implement-symbol-bridge--commit-lines-687-941).
 
 ### Notes
-- Exported `SymbolBridgeAnalyzer` for direct unit coverage while preserving activation behaviour, and documented the harness follow-ups in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L920-L949](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L920-L949); keep the analyzer API stable so the tests and integration plan remain valid.
+- Exported `SymbolBridgeAnalyzer` for direct unit coverage while preserving activation behaviour, and documented the harness follow-ups in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L920-L949](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L920-L949); keep the analyzer API stable so the tests and integration plan remain valid.
 - Maintain the MAX_* limits and workspace-symbols provenance to stay aligned with the ripple diagnostics gating discussed there - future tuning should coordinate with the server's symbolBridgeProvider before widening caps.
 
 ## Generated
