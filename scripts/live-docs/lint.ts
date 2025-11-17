@@ -10,6 +10,7 @@ import {
   normalizeLiveDocumentationConfig,
   type LiveDocumentationEvidenceStrictMode
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import { hasMeaningfulAuthoredContent } from "@copilot-improvement/shared/live-docs/core";
 
 interface LintIssue {
   file: string;
@@ -54,6 +55,7 @@ async function main(): Promise<void> {
       const relativePath = path.relative(workspaceRoot, absolutePath).split(path.sep).join("/");
 
       validateStructure(relativePath, content, issues);
+      validateAuthoredSections(relativePath, content, warnings);
 
       const archetype = detectArchetype(content);
       if (archetype === "implementation") {
@@ -110,6 +112,51 @@ function validateStructure(file: string, content: string, issues: LintIssue[]): 
         message: `missing generated section markers for ${section}`
       });
     }
+  }
+}
+
+function validateAuthoredSections(file: string, content: string, warnings: LintWarning[]): void {
+  const block = extractAuthoredBlock(content);
+  if (!block) {
+    return;
+  }
+
+  const missingPieces: string[] = [];
+
+  const purpose = extractSubsection(block, "Purpose");
+  if (!purpose) {
+    missingPieces.push("Purpose heading missing");
+  } else if (!hasMeaningfulSubsection(purpose, [
+    "_pending authored purpose_",
+    "_pending purpose_",
+    "_pending_"
+  ])) {
+    missingPieces.push("Purpose content pending");
+  }
+
+  const notes = extractSubsection(block, "Notes");
+  if (!notes) {
+    missingPieces.push("Notes heading missing");
+  } else if (!hasMeaningfulSubsection(notes, [
+    "_pending notes_",
+    "_pending_"
+  ])) {
+    missingPieces.push("Notes content pending");
+  }
+
+  if (missingPieces.length > 0) {
+    warnings.push({
+      file,
+      message: `Authored sections missing content: ${missingPieces.join(", ")}`
+    });
+    return;
+  }
+
+  if (!hasMeaningfulAuthoredContent(block)) {
+    warnings.push({
+      file,
+      message: "Authored block still uses placeholder content"
+    });
   }
 }
 
@@ -272,6 +319,57 @@ function detectArchetype(content: string): string {
     return match[1].toLowerCase();
   }
   return "implementation";
+}
+
+function extractAuthoredBlock(content: string): string | undefined {
+  const headingRegex = /^##\s+Authored\s*$/m;
+  const headingMatch = headingRegex.exec(content);
+  if (!headingMatch || headingMatch.index === undefined) {
+    return undefined;
+  }
+
+  const afterHeadingIndex = content.indexOf("\n", headingMatch.index + headingMatch[0].length);
+  if (afterHeadingIndex === -1) {
+    return undefined;
+  }
+
+  const startIndex = afterHeadingIndex + 1;
+  const remainder = content.slice(startIndex);
+  const nextHeadingMatch = /\r?\n##\s+/m.exec(remainder);
+  const endIndex = nextHeadingMatch ? startIndex + nextHeadingMatch.index : content.length;
+
+  return content.slice(startIndex, endIndex).trim();
+}
+
+function extractSubsection(block: string, heading: string): string | undefined {
+  const regex = new RegExp(`###\\s+${heading}\\s*\r?\n`, "i");
+  const match = regex.exec(block);
+  if (!match || match.index === undefined) {
+    return undefined;
+  }
+
+  const start = match.index + match[0].length;
+  const remainder = block.slice(start);
+  const nextHeading = /\r?\n###\s+/i.exec(remainder);
+  const end = nextHeading ? start + nextHeading.index : block.length;
+
+  return block.slice(start, end).trim();
+}
+
+function hasMeaningfulSubsection(section: string, placeholders: string[]): boolean {
+  const trimmed = section.trim();
+  if (!trimmed) {
+    return false;
+  }
+
+  const normalized = trimmed.toLowerCase();
+  for (const placeholder of placeholders) {
+    if (normalized === placeholder) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 main().catch((error) => {

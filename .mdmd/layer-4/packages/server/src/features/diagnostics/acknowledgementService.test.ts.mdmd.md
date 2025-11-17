@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates the acknowledgement persistence and hysteresis gates introduced with T043 so diagnostic emissions stay suppressed until fresh change events, mirroring the behaviour shipped in [2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Exercises temp GraphStore instances to prove acknowledgements survive restarts and honour default runtime throttles before publishers re-emit new ripples.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.206Z","inputHash":"731912a88ac0065e"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Coordinates LLM-assisted relationship ingestion by batching queued artifacts, generating extraction prompts, and persisting calibrated graph links so downstream diagnostics can trust the captured evidence, mirroring the orchestrator delivered during the Oct 24 knowledge ingestion push documented in [2025-10-24 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-24.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+Implements a guarded queue that respects administrator LLM settings, supports dry-run snapshots for auditability, and funnels extraction results through `calibrateConfidence` before storing provenance-rich edges; concurrency and chunk sizing remain tunable to balance throughput against context window limits.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.742Z","inputHash":"1b9792f22957c909"}]} -->

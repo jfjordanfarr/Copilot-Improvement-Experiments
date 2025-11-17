@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Supplies a shared VS Code mock for command/unit tests so we can simulate tree updates and client notifications without duplicating stub logic, introduced while stabilising command suites on [AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-22-diagnose-command-test-failures-lines-3601-3740](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-22-diagnose-command-test-failures-lines-3601-3740).
 
 ### Notes
-_Pending notes_
+Keep the shared mock in sync with the command tests added that day—see [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md#L3609-L3858](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md#L3609-L3858)—so that diagnostics tree, Analyze with AI, and Inspect Symbol Neighbors suites keep reusing the same disposables instead of drifting into bespoke fakes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.032Z","inputHash":"4ecb3b5943888557"}]} -->

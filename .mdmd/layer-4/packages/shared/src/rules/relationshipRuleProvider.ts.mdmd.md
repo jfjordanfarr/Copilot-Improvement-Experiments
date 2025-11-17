@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Loads relationship-rule configs, compiles them, and exposes a workspace link provider so relationship evidence flows into diagnostics and knowledge ingestion.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ### Notes
-_Pending notes_
+- Returns structured warnings and contributions consumed by the language server’s graph builders and symbol-correctness checks introduced alongside the profile compiler.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-26-add-symbol-correctness-profiles--wire-them-into-audits-lines-5711-6120]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.300Z","inputHash":"5e26b88aa51eeab3"}]} -->

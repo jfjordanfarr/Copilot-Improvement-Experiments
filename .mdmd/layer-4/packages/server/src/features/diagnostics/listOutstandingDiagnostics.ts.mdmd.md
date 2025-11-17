@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Transforms persisted diagnostic records into Explorer-friendly summaries for the diagnostics tree view, as implemented during the Oct 21 UI integration in [2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Resolves trigger/target artifacts on demand so the tree view stays synchronized with the GraphStore even as acknowledgements arrive.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.324Z","inputHash":"eb979c4a5d8360fe"}]} -->

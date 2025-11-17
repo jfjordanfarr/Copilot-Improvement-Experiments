@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Buckets raw model confidences into the discrete `high`/`medium`/`low` tiers we planned for the LLM ingestion pipeline so graph diagnostics can key off categorical strength instead of opaque floats <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1782-L1809> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L3122-L3160>.
 
 ### Notes
-_Pending notes_
+- The thresholds and `rawConfidenceLabel` hand-back keep orchestrator tests green and preserve provenance for review tooling—update them in lockstep with prompt or analytics changes <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L3122-L3160> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L6095-L6132>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.905Z","inputHash":"f4d54ae880a0f3ca"}]} -->

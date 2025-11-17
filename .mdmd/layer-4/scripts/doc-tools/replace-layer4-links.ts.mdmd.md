@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Rewrite curated Layer-4 slug links in legacy documentation to the Stage-0 paths produced by the Live Docs generator so Stage-3 specs and notes resolve to the canonical `.md` mirrors ([Stage-0 migration automation](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#L96-L112)).
 
 ### Notes
-_Pending notes_
+- Authored 2025-11-15 while repairing the `.md` transition; batch-ran it to swap knowledge-graph and diagnostics references back to the regenerated Stage-0 files, earning a thumbs-up from the user after the brittle one-off scripts failed ([first rollout](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md#L3280-L3336)).
+- Reapplied repeatedly later that evening to restore the Stage-0 slate after an accidental `git checkout` reverted the new mirror, underscoring that these rewrites must stay scripted ([post-regression recovery](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md#L3980-L4024)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.756Z","inputHash":"a2163c29fa74e2e2"}]} -->

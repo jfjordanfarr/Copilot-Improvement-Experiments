@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Concatenate monthly `*.SUMMARIZED.md` transcripts into a single review stream so we can rehydrate long-running context (or export it) without hand-stitching files ([monthly compilation run](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L552-L568)).
 
 ### Notes
-_Pending notes_
+- Introduced 2025-11-16 to speed up autosummarisation audits; the first invocations emitted combined October/November histories into `AI-Agent-Workspace/tmp/combined-history-*.md` for spot-checking ([initial usage](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L553-L582)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.711Z","inputHash":"861a0c991b83cbaa"}]} -->

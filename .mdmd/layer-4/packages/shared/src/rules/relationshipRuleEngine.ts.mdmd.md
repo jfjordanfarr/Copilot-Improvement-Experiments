@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Loads, compiles, and executes relationship rules to produce link evidence that seeds diagnostics, Live Docs, and knowledge ingestion pipelines.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-26-add-symbol-correctness-profiles--wire-them-into-audits-lines-5711-6120]
 
 ### Notes
-_Pending notes_
+- Introduced alongside symbol correctness work so graph audits could reason about rule provenance and warn on malformed configs before they reach the provider.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.278Z","inputHash":"0b2ddce8d2f11116"}]} -->

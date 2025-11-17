@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Records code edits and their change events in the graph store, feeding the ripple diagnostics loop introduced in [2025-10-19 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Reuses the canonical artifact returned from `GraphStore.upsertArtifact` after the foreign-key fix documented in [2025-10-29 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-29.SUMMARIZED.md) so persisted change events stay relationally valid.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.876Z","inputHash":"aad9601e9a5abd68"}]} -->

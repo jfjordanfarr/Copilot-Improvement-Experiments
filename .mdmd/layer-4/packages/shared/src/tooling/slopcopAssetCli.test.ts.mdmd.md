@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Locks in the SlopCop asset CLI’s fail/repair workflow with a Vitest harness that replays the curated fixture workspace ([asset audit rollout](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-25.md#L4488-L4554)).
 
 ### Notes
-_Pending notes_
+- Verifies the CLI emits exit code 3 and names removed files when images/videos disappear, matching the regression we committed to catch ([commit briefing](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-25.md#L4556-L4568)).
+- Restores the fixture to ensure downstream runs stay green, keeping the asset audit opt-in until maintainers flip it on globally ([asset fixture summary](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-25.md#L4488-L4554)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.654Z","inputHash":"a1efa7d37ba61d9e"}]} -->

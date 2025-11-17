@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Keeps fallback inference aligned with curated JS/TS and Python fixtures by mapping import statements onto workspace artifacts while filtering commented or type-only specifiers so dependency edges stay accurate without regressing benchmark precision <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L2108-L2126> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L2345-L2390> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L1858-L1920>.
 
 ### Notes
-_Pending notes_
+- When onboarding new JS-like fixtures, extend the module extension allowlist so the Java false positives we identified during the OkHttp import sweep stay closed <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L3046-L3070>.
+- Python module resolution relies on the curated helper introduced while reconciling the basics fixture, so re-run the AST benchmarks after any normalization tweaks to ensure the inferred edges still match the oracle <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L1860-L1920>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.733Z","inputHash":"973f4d3263d9ec4b"}]} -->

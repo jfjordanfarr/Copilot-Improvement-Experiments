@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Reads curated JSON feeds under `data/knowledge-feeds/` and converts them into seeds and evidences so offline knowledge can bootstrap the graph when live analyzers are unavailable.
 
 ### Notes
-_Pending notes_
+- Refactored during the static-feed ingestion cleanup noted in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md), which hardened URI resolution and logging.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.867Z","inputHash":"a37bd4bdfebe7270"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the documentation link engine end-to-end—parsing anchors, resolving code targets, formatting comments, and running enforcement—to guard the pipeline that keeps breadcrumb comments synchronized.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-02.SUMMARIZED.md#turn-14-documentation--fixture-repairs]
 
 ### Notes
-_Pending notes_
+- Uses on-disk fixture workspaces so enforcement logic covers backlink detection, rule scoping, and `--fix` behaviour before the CLI wires it into `safe:commit`.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-02.SUMMARIZED.md#turn-15-benchmark-pipeline--cli-test-stabilization]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.526Z","inputHash":"8ed534b0f96295a7"}]} -->

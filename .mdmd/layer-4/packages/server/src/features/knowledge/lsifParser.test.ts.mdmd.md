@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the LSIF parser against representative dumps to ensure documents become artifacts, cross-file references become links, malformed lines are skipped safely, and metadata defaults apply.
 
 ### Notes
-_Pending notes_
+- Shipped with the LSIF/SCIP ingestion feature in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md), keeping the parser regression-tested as feed support evolved.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.751Z","inputHash":"81cb60b7294b60b9"}]} -->

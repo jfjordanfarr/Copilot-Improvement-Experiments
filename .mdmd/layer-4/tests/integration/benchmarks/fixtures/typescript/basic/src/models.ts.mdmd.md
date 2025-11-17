@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Produces runtime widget instances that feed the `ts-basic` benchmark’s import graph, anchoring the oracle-aligned updates recorded in [2025-11-03 summary](../../../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Couples runtime creation with enum imports so regressions that demote these edges to “type-only” status are immediately caught by AST accuracy reports.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.197Z","inputHash":"969e93a3a7d87e85"}]} -->

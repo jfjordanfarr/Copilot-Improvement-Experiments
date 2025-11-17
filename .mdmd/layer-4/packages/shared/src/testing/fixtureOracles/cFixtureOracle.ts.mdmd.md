@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Parses the C benchmark fixtures to infer `#include` and function-call edges so our analyzer’s C pipeline can be diffed against compiler-grounded expectations <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-04.SUMMARIZED.md#turn-34-build-regeneration-cli--overrides-lines-3961-4260>.
 
 ### Notes
-_Pending notes_
+- Early Nov 5 failures around multi-target call graphs led to tightened edge classification; keep the regression suite handy if new macros or includes expand the surface <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L4240-L4320>.
+- Still validated in the Nov 16 unit run, so rerun `npm run test:unit -- cFixtureOracle` after parser or glob changes <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.374Z","inputHash":"628c13333eacedb4"}]} -->

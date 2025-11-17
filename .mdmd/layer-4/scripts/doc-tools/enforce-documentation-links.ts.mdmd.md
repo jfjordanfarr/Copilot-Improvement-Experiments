@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provide the CLI entry point for documentation-link enforcement so `npm run docs:links:enforce` (and `safe:commit`) can audit or auto-fix missing Live Doc breadcrumbs using the shared `documentationLinks` engine ([first commit](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-02.SUMMARIZED.md#L52-L87)).
 
 ### Notes
-_Pending notes_
+- Demonstrated 2025-11-02 by intentionally breaking `main.ts`, running the CLI to catch the `mismatched-breadcrumb`, and landing commit `69d1cf5` that added this tool to the repo ([enforcement demo](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-02.SUMMARIZED.md#L52-L117)).
+- Exported `runCli` on 2025-11-05 so graph audits and other callers could consume it programmatically while keeping exit codes stable across the toolchain ([API hardening](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-05.SUMMARIZED.md#L70-L86)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.732Z","inputHash":"9da8cbd6752e8da6"}]} -->

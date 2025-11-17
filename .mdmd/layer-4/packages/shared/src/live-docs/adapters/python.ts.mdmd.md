@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Implements the Python adapter that normalizes reST, Google, and NumPy docstrings into structured `SymbolDocumentation` while harvesting import edges, matching the Nov 14 ship summary after the docstring feature landed <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L1378-L1414>.
 
 ### Notes
-_Pending notes_
+- Guard rails come from `python.docstring.test.ts` and the `safe:commit -- --benchmarks` run that accompanied the rollout; update those fixtures when extending the parser <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L1378-L1414>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.044Z","inputHash":"3eb164afb46bfc51"}]} -->

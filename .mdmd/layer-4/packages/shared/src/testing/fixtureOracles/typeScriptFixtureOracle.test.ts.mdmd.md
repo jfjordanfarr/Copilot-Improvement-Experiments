@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates the TypeScript fixture oracle against curated fixture samples and manual override scenarios so benchmark regeneration can trust the compiler-derived edges it emits <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-33-rehydrate--add-oracle-tests-lines-3801-3960>.
 
 ### Notes
-_Pending notes_
+- Exercises runtime vs. type-only classifications, override merging, and deterministic serialization, and continues to run green in the Nov 16 unit sweep <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.480Z","inputHash":"0ae51e0a6f88a93d"}]} -->

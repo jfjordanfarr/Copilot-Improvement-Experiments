@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises `generateSystemLiveDocs` end-to-end against a temporary workspace to prove the Stage-0 loader, manifest reader, and statistical filters collaborate correctly before we rely on the CLI ([2025-11-11 summary](../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md)).
 
 ### Notes
-_Pending notes_
+- Uses a throwaway workspace and baseline config to catch regressions in output-directory handling, mirroring the on-demand materialization strategy finalized on 2025-11-11.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.066Z","inputHash":"9a10e798f2466207"}]} -->

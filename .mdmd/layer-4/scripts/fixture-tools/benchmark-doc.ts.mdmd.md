@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Regenerates the AST benchmark documentation by rendering manifest-sourced vendor inventories into `astAccuracyFixtures` so provenance, file counts, and integrity hashes stay in sync with the fixture registry ([doc generator introduction](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L4370-L4476)).
 
 ### Notes
-_Pending notes_
+- Landed 2025-11-01 alongside the manifest/helpers, letting `fixtures:sync-docs` rewrite the vendor sections from structured data instead of hand-maintained tables ([initial automation](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L4440-L4560)).
+- Repointed 2025-11-16 to emit into `.live-documentation/source/benchmarks/astAccuracyFixtures.md`, preserving the Stage-0 `.md` mirror while keeping sync-ast-doc.ts and verify-fixtures.ts aligned with the new location ([mirror alignment](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2700-L2820)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.782Z","inputHash":"4e62f9302b198e59"}]} -->

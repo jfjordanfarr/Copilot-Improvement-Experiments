@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Orchestrates the full Live Documentation pipeline (targets → generate → lint → optional report) so contributors can run the same staged flow locally that `npm run livedocs` executes inside `safe:commit`.
 
 ### Notes
-_Pending notes_
+Created during the Windows CLI migration (Oct 2025) to replace ad-hoc shell chains. The script normalises partial runs by watching for flags such as `--include`, `--changed`, or explicit stage skips and forwards all remaining arguments to `generate.ts`, keeping behaviour identical whether invoked directly, via the npm script, or inside the MDMD migration tooling.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.050Z","inputHash":"e2baa1a700745ed8"}]} -->

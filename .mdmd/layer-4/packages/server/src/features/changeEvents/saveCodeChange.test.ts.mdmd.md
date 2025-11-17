@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Locks in the regression coverage added in [2025-10-29 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-29.SUMMARIZED.md), ensuring `saveCodeChange` reuses canonical artifact IDs and emits relationally sound change events.
 
 ### Notes
-_Pending notes_
+- Fakes GraphStore methods so we can assert on persisted payloads and foreign-key-safe IDs without invoking SQLite.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.853Z","inputHash":"464d54c553423dfa"}]} -->

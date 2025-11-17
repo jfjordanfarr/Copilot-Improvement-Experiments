@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Acts as the negative-control file for the `ts-basic` benchmark so the analyzer proves it no longer fabricates edges to unused helpers, a regression we addressed in [2025-11-03 summary](../../../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Remains unreferenced by design; any dependency surfaced here signals fallback heuristics leaking type-only speculation back into runtime accuracy scores.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:33.373Z","inputHash":"05f77796b235b2cc"}]} -->

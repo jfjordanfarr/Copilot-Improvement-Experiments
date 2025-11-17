@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Traverses the Live Documentation graph to assemble neighbor summaries for a requested artifact, powering the dependency quick pick delivered in [2025-10-23 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md) alongside the US4 diagnostics tooling push.
 
 ### Notes
-_Pending notes_
+- Uses bounded breadth-first traversal with depth and count guards so the `inspectSymbolNeighbors` CLI and extension command stay responsive even on dense workspaces.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.194Z","inputHash":"e2b3d97219d4251e"}]} -->

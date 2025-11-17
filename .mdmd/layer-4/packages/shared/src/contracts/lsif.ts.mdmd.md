@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides TypeScript typings for LSIF vertices, edges, and index metadata so the shared parser can hydrate code-intelligence feeds—created alongside the LSIF/SCIP ingestion work in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-04-option-b-kickoff--lsifscip-ingestion-lines-1181-1950](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-04-option-b-kickoff--lsifscip-ingestion-lines-1181-1950).
 
 ### Notes
-_Pending notes_
+The feed-format detector and `lsifParser.ts` rely on these labels staying in sync with the LSIF 0.6 spec; see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-05-integration-harness--workspace-index-overhaul-lines-1951-2800](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-05-integration-harness--workspace-index-overhaul-lines-1951-2800) for the follow-on parser hardening this contract supports.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:31.433Z","inputHash":"48203a81012d4b91"}]} -->

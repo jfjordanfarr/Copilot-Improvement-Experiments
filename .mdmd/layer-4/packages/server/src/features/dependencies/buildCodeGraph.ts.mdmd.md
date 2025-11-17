@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Performs breadth-first traversal over incoming dependency links to generate the impact edges consumed by the T039 dependency quick pick described in [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Caps traversal depth and link kinds to keep dependency fan-out predictable while still honouring transitive chains for the inspect/quick pick experiences.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.028Z","inputHash":"0c8c05a5e7d7d964"}]} -->

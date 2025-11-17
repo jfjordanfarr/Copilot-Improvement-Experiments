@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Verifies the Java oracle’s import and inheritance extraction plus override support so regenerated graphs remain deterministic for JVM fixtures <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-04.SUMMARIZED.md#turn-34-build-regeneration-cli--overrides-lines-3961-4260>.
 
 ### Notes
-_Pending notes_
+- Aligns with the Nov 9 documentation pass and continues to run in the Nov 16 unit sweep, catching regressions when fixture packages change <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-09.md#L4688-L4710> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.401Z","inputHash":"19f5d92199a357b4"}]} -->

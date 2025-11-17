@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates the relationship rule provider end-to-end—loading configs, compiling rules, and emitting workspace link contributions—so inference diagnostics stay deterministic.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ### Notes
-_Pending notes_
+- Exercises graph-store integration, heuristic lookups, and rule warnings the day the provider was hardened, catching regressions before they impact graph audits.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.291Z","inputHash":"e4510aaa822dbb9b"}]} -->

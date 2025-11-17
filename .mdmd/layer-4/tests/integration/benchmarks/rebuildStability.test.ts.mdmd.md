@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Runs the graph snapshot CLI repeatedly to prove rebuilds stay byte-identical while logging benchmark metrics for the hosted stability report ([benchmark harness creation](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L3096-L3120)).
 
 ### Notes
-_Pending notes_
+- Exercises the shared repo-path helper and Electron spawn flags added to keep benchmark processes stable inside the VS Code harness ([stability refactor](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L4084-L4114)).
+- Persists iteration timings and drift flags through `writeBenchmarkResult` so the reports surface average/max rebuild costs (`rebuild-stability` suite) during integration runs ([harness recap](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L100-L170)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.258Z","inputHash":"381d87f77f5823ff"}]} -->

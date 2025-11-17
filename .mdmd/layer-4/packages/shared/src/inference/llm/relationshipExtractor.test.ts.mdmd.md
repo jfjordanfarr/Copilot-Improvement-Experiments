@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Guards the extractor contract by proving we parse well-formed relationship batches and reject malformed or non-JSON responses before they can reach the ingestion pipeline <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L3668-L3707> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1782-L1794>.
 
 ### Notes
-_Pending notes_
+- Extend these cases whenever the extractor schema grows (new fields, stricter validation) so the dry-run fixtures and prompt templates stay synchronized with what the pipeline accepts <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2457-L2499>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.912Z","inputHash":"14fbf74d65f2595f"}]} -->

@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Centralizes the artifact lookup logic for fallback heuristics, exposing shared helpers that translate raw include/import strings into scored targets once we split the monolith into modular language files on Nov 7 <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L760-L840> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L820-L900>.
 
 ### Notes
-_Pending notes_
+- `resolveIncludeReference` keeps the C benchmarks stable by treating quoted `#include` directives as same-directory lookups; we tightened that behaviour during the modular refactor after the libuv fixture started failing <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L1780-L1820>.
+- If a future heuristic needs bespoke variant scoring, add it here so every language continues reusing the same normalization/weighting rules that we introduced alongside the Phase 8 polyglot heuristics on Nov 5 <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L780-L860>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.798Z","inputHash":"d14e5d1c67e7b897"}]} -->

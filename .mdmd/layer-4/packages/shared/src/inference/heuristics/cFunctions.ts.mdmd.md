@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Resolves C call sites back to their declaring headers so fallback inference can recover the `calls` edges that Phase 8 demanded when the C fixtures started exposing ground-truth relationships <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L583-L590> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L5010-L5032>.
 
 ### Notes
-_Pending notes_
+- Became part of the modular heuristic suite shipped on Nov 8; any scoring or ordering tweaks need to stay benchmark-neutral as captured in that commit summary <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L60-L140>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.702Z","inputHash":"ef5fc6a05228018b"}]} -->

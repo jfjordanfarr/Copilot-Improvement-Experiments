@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the manual override request/response contract introduced with the initial implementation bootstrap in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md#turn-13-implementation-bootstrap-lines-2000-2523](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md#turn-13-implementation-bootstrap-lines-2000-2523), enabling maintainers to correct or annotate inferred graph edges.
 
 ### Notes
-_Pending notes_
+GraphStore dedupe and symbol neighbor work reused these shapes—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-27-graphstore-dedupe-attempt--new-failures-lines-3521-4000](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-27-graphstore-dedupe-attempt--new-failures-lines-3521-4000)—so any field changes must stay consistent with `overrideLink.ts` persistence and associated tests.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.387Z","inputHash":"ddb95c0b76d60db9"}]} -->

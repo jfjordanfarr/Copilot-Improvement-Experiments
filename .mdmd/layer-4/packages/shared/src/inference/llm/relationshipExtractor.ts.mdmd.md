@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Normalizes LLM prompt responses into validated relationship batches so the ingestion orchestrator can persist or preview link edges without trusting raw JSON straight from the model <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1782-L1794> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L6944-L6954>.
 
 ### Notes
-_Pending notes_
+- The dry-run harness and `llmIngestionOrchestrator` tests assert that this extractor raises on malformed payloads and records provenance for calibrated relationships—keep that contract intact when evolving the schema <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L3122-L3160>.
+- We intentionally ship with a stub model invoker (logs once, yields empty relationships) to let the change processor exercise ingestion without mutating the graph; replace it only alongside real `vscode.lm` wiring and updated fixtures <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L6944-L6954>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.924Z","inputHash":"70bb11c050ed289b"}]} -->

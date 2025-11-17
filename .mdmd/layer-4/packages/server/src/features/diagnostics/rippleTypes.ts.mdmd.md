@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the shared hint/impact payloads exchanged across diagnostics ripple analysis so downstream publishers can trace why a document received a warning, aligning with the diagnostics pipeline introduced in [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Keeps ripple metadata lightweight (depth, traversal path) for noise filtering and publisher fan-out without binding to a specific analyzer implementation.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.467Z","inputHash":"e608ecaf1bc16fbd"}]} -->

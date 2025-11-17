@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides deterministic normalization helpers that underpin the simple-workspace fixture’s feature evaluation flow so US1–US3 integration tests can assert graph ripples from structured TypeScript data <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L2779-L2904>.
 
 ### Notes
-_Pending notes_
+- `normalizeValue` and `summarizeShape` must stay stable with `feature.evaluateFeature` to keep the fixture’s dependency chain (`core.ts → feature.ts → util.ts`) reproducible; the trio was last reset together during the Oct 21 fixture cleanup <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L3041-L3238>.
+- The fixture continues to pass the `npm run fixtures:verify` sweep that revalidated simple-workspace behavior on Oct 29, so future edits should rerun that manifest before landing <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L5288-L5320>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:33.546Z","inputHash":"dc7ce304b3cf62eb"}]} -->

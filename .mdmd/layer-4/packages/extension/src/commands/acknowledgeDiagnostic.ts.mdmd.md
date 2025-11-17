@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Registers `linkDiagnostics.acknowledgeDiagnostic` so leads can clear acknowledged ripple/doc diagnostics directly from VS Code, completing the T042/T043 workflow described in Turn 21 of [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-21-extension-acknowledgement-command-lines-4101-4585](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-21-extension-acknowledgement-command-lines-4101-4585).
 
 ### Notes
-_Pending notes_
+- The Oct 21 log captures the quick-fix wiring, record/target/trigger metadata plumbing, and centralized command identifier for this workflow; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L3560-L3645](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L3560-L3645).
+- Keep the command signature aligned with the acknowledgement service contract so integration tests continue to assert end-to-end pruning, per [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-22-integration-test-for-acknowledgement-flow-lines-4101-4585](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-22-integration-test-for-acknowledgement-flow-lines-4101-4585).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.086Z","inputHash":"a8ff0bc110905471"}]} -->

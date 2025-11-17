@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the dependency traversal introduced in [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md) to confirm the quick pick backend emits deterministic edge counts, depth summaries, and URI normalization.
 
 ### Notes
-_Pending notes_
+- Mocks link graphs directly through `GraphStore` so we can regression-test filtering and max-depth behaviour without spinning up the integration harness.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.073Z","inputHash":"e37b5c88341182fd"}]} -->

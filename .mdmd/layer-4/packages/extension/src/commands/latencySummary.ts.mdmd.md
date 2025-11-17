@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Surfaces diagnostic latency telemetry inside VS Code by registering `linkDiagnostics.showLatencySummary`/`linkDiagnostics.getLatencySummary`, giving maintainers a quick pick that fetches the server’s `LATENCY_SUMMARY_REQUEST`, shows the latest percentiles, and optionally resets samples per [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385).
 
 ### Notes
-_Pending notes_
+- The integration perf suite exercises this command to enforce the p95 latency ceiling, so regressions are caught by `tests/integration/perf/diagnosticLatency.test.ts`; see the recorded run in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L2329-L2380](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L2329-L2380).
+- Follow-up doc cleanup on Oct 28 removed inline-code command IDs after SlopCop flagged them, keeping symbol coverage green per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L2700-L2764](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L2700-L2764).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.433Z","inputHash":"3ea537f153d2c107"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Evaluates generated Live Docs against the analyzer to calculate symbol and dependency precision/recall scores, producing `reports/benchmarks/live-docs/precision.json` so we can detect regressions in the documentation pipeline.
 
 ### Notes
-_Pending notes_
+First built for the Live Docs accuracy benchmark (Sep 2024) and tightened during the 2025 re-export fixes. The script mirrors the metrics enforced during `npm run safe:commit`, emitting non-zero exit codes when precision drops below 0.9 for symbols or dependency recall slips under 0.8.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:18.131Z","inputHash":"a9168ae00aeac4c2"}]} -->

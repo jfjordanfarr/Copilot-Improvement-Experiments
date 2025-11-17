@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Declares the `linkDiagnostics/llm/invoke` contract that lets the extension trigger shared LLM ingestion, first exercised when wiring the local Ollama bridge during [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-29.SUMMARIZED.md#turn-12-enabling-real-ollama-models-in-tests-lines-1507-1654](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-29.SUMMARIZED.md#turn-12-enabling-real-ollama-models-in-tests-lines-1507-1654).
 
 ### Notes
-_Pending notes_
+`InvokeLlmResult.usage` mirrors the confidence calibration work from [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-24.SUMMARIZED.md#turn-10-prompt--shared-inference-modules-lines-3721-4460](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-24.SUMMARIZED.md#turn-10-prompt--shared-inference-modules-lines-3721-4460), so any schema changes must stay aligned with the inference accuracy tracker and ingestion orchestrator expectations.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.366Z","inputHash":"8d0605ea52731c7c"}]} -->

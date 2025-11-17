@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates the Python adapter’s handling of reST, Google, and NumPy-style docstrings, asserting structured summaries, parameters, examples, and imports align with the Nov 14 rollout expectations <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L1378-L1414>.
 
 ### Notes
-_Pending notes_
+- Executed during the Nov 14 `safe:commit -- --benchmarks` run; expand its fixtures whenever the adapter learns new docstring dialect features <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L1378-L1414>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.023Z","inputHash":"6e9a4d7e4dfee4fe"}]} -->

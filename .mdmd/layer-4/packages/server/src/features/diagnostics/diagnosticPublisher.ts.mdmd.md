@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Caches and republishes diagnostics over the LSP connection, enabling incremental document reports for the pipeline launched in [2025-10-17 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Tracks result IDs per URI so acknowledgement removals and re-queries stay consistent with VS Code’s diagnostic pull protocol.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.261Z","inputHash":"ead9894892249373"}]} -->

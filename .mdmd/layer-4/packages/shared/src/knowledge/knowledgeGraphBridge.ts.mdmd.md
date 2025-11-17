@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides the shared bridge that normalises external knowledge snapshots and streaming events into GraphStore artifacts/links, fulfilling the October 21 ingestion requirement captured in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L194](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L194).
 
 ### Notes
-_Pending notes_
+The server wiring on October 20 relies on this bridge to bootstrap feeds from `data/knowledge-feeds/bootstrap.json`, so updates here should stay aligned with that runtime pipeline—see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L2334](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L2334) for the operational walkthrough.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.932Z","inputHash":"9bbbf7ce041106b2"}]} -->

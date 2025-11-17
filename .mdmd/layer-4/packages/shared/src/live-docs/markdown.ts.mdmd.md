@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Renders Live Doc sections with deterministic markers, provenance, and authored-block preservation so generators and lint can round-trip markdown safely.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-15-build-evidence-bridge--lint-pipeline-lines-2641-2960]
 
 ### Notes
-_Pending notes_
+- Powers the Stage‑0 generator, evidence bridge, and lint flow introduced during the initial Live Docs rollout.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-15-build-evidence-bridge--lint-pipeline-lines-2641-2960]
+- Updated in the Stage‑0 recovery to adopt the `.md` extension and lint-friendly import order while keeping authored sections intact.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-15-shift-live-docs-to-md-outputs-lines-1401-1820]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.209Z","inputHash":"0b421c6ba58200a0"}]} -->

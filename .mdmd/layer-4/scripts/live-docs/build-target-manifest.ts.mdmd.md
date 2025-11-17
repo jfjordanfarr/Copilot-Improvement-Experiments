@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Generates `data/live-docs/targets.json`, mapping every test to the implementation files and fixtures it exercises so evidence-aware tooling (lint, graph, diagnostics) can reason about coverage without re-parsing the workspace on every run.
 
 ### Notes
-_Pending notes_
+We introduced the manifest-builder while bootstrapping the evidence bridge (Sep 2024) to keep the Live Docs pipeline deterministic. It understands TS path aliases and recursively expands dependencies, which is why it runs inside `npm run livedocs` before linting or the precision report.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:18.037Z","inputHash":"2d2a84cc27bde92b"}]} -->

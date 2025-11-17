@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Translates Markdown links and wiki-link syntax in Layer‑4 docs into fallback graph edges so documentation ripples stay observable—a requirement we spelled out during the October doc-link standardisation work and implemented once the heuristics suite moved into modular files on Nov 7 <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-30.md#L4518-L4725> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L860-L940>.
 
 ### Notes
-_Pending notes_
+- Keep this heuristic aligned with the doc link enforcement tooling (`slopcop:markdown`) and the falsifiability integration tests that watch for doc/code drift; rerun those checks after tweaking link parsing so the bidirectional diagnostics remain trustworthy <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.SUMMARIZED.md#L60-L110>.
+- When we add new link dialects (for example reference-style links or images), extend the shared `resolveReference` path so every documentation heuristic continues sharing the same normalization rules <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L820-L900>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.788Z","inputHash":"af8918260181c179"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides swappable VS Code window APIs so command tests can inject deterministic quick-pick and message handlers, an isolation hook created while unlocking automation in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-07-docs-first-test-hook-infrastructure-lines-1181-1460](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-07-docs-first-test-hook-infrastructure-lines-1181-1460).
 
 ### Notes
-_Pending notes_
+`resolveWindowApis` feeds both the Inspect Symbol Neighbors and Analyze/Export command suites—see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-27.md#L4988-L5034](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-27.md#L4988-L5034)—so keep the stub surface aligned with whichever VS Code prompts the commands exercise (quick picks, information/error messaging, diagnostics actions).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.045Z","inputHash":"b7497ee907fea7e0"}]} -->

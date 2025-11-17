@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the curated headless harness scenarios so automated runs can copy fixture workspaces and drive the Live Docs core deterministically, as outlined in the rollout plan on 2025-11-16 ([chat log](../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L717-L762)).
 
 ### Notes
-_Pending notes_
+- The initial Ruby, Python, and C# entries cover the multilingual fixtures we committed to exercising headlessly; the `system` flag toggles System doc materialization for scenarios that need co-activation coverage.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.029Z","inputHash":"8cd40746385f5192"}]} -->

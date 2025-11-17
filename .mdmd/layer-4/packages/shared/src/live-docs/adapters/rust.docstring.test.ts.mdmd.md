@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Proves the Rust adapter can parse line and block Rustdoc, mapping sections like `# Parameters`, `# Panics`, and fenced examples into structured Live Doc output in line with the Nov 14 scope <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L1843-L1859> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2792-L2808>.
 
 ### Notes
-_Pending notes_
+- Keeps coverage for the manual fixture verification pass we ran after seeding docstrings in `metrics.rs`, so extend these cases whenever the adapter learns a new Rustdoc construct <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2740-L2833>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.091Z","inputHash":"206af995a856a71e"}]} -->

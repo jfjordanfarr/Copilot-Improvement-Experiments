@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Executes Python fixtures through the CPython interpreter to emit ground-truth dependency edges, letting our benchmarks validate analyzer output against real module imports without manual curation <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2694-L2744>.
 
 ### Notes
-_Pending notes_
+- The Nov 4 benchmark sweep reported perfect precision/recall across python-basic, pipeline, and requests scenarios after wiring this oracle, so any future drift should trigger a regeneration and review <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2848-L2884>.
+- Continues to run under the full unit suite (Nov 16) to guard subprocess handling and override merging <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.433Z","inputHash":"bb82d10e2550a87b"}]} -->

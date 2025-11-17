@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Applies confidence, depth, and per-target budgets to ripple diagnostics so publisher batches stay actionable, matching the suppression work logged in [2025-10-23 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Maintains per-change and per-artifact counters to coordinate with acknowledgement and hysteresis layers without duplicating their logic.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.437Z","inputHash":"202ed958c88c6072"}]} -->

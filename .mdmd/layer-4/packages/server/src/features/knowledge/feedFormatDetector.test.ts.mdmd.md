@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises format detection edge cases for LSIF, SCIP, and ExternalSnapshot payloads to anchor the parser strategy delivered in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Asserts precedence rules (ExternalSnapshot over SCIP) and failure paths (legacy static JSON, invalid input) so regressions during the Oct 30 tuning pass would surface immediately ([2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.557Z","inputHash":"21411e4d0c46abff"}]} -->

@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the Live Docs renderer/generator glue to ensure authored blocks, provenance markers, and file naming stay stable across regeneration cycles.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-15-build-evidence-bridge--lint-pipeline-lines-2641-2960]
 
 ### Notes
-_Pending notes_
+- Added with the Stage‑0 tooling rollout to lock down the contract between schema metadata and markdown rendering.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-15-build-evidence-bridge--lint-pipeline-lines-2641-2960]
+- Kept in the `.md` migration to confirm extension changes didn’t alter rendered headings or provenance comments.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-15-shift-live-docs-to-md-outputs-lines-1401-1820]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.197Z","inputHash":"0878c7eb8d8e398a"}]} -->

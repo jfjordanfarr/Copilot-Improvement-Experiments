@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides a server-scoped re-export of `normalizeFileUri` so every feature imports canonical URI logic through the features namespace, keeping watcher, diagnostics, and knowledge ingestion modules aligned on the same normalization contract.
 
 ### Notes
-_Pending notes_
+- Introduced during the URI canonicalization sweep captured in [2025-10-19 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md) after duplicate nodes surfaced in the graph store.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.196Z","inputHash":"11fe19fe9a250599"}]} -->

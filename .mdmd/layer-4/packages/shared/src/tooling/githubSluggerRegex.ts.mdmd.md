@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Packages the vendored GitHub slug sanitiser regex so our slugger matches exactly what the upstream library emits, keeping Live Doc anchors identical to GitHub and VS Code behaviour for multilingual headings.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-25.SUMMARIZED.md#turn-32-vendored-github-slugger]
 
 ### Notes
-_Pending notes_
+- Pulled in alongside the internal `GitHubSlugger` port during the October 25 documentation-alignment push to eliminate dependency on the ESM-only upstream package.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-25.SUMMARIZED.md#turn-32-vendored-github-slugger]
+- Verified repeatedly while tuning doc-link anchors for SlopCop on November 7, ensuring unicode headings slug to `comp003--heuristic-suite` and similar real-world cases.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:32.750Z","inputHash":"047b81693a3d7f2d"}]} -->

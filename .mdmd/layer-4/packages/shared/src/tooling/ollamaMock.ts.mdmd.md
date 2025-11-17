@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides a deterministic Ollama chat payload so the extension and CLI can fall back gracefully when no local model is available ([Local Ollama Bridge rollout](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L1106-L1112)).
 
 ### Notes
-_Pending notes_
+- Supplies the JSON echo/rationale block consumed by `invokeLocalOllamaBridge`, letting integration tests run without real `vscode.lm` registrations ([bridge summary](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L1106-L1109)).
+- Shared with `run-chat.ts` so both manual and automated flows report identical mock usage metadata instead of ad hoc CLI scaffolding ([bridge summary](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L1109-L1112)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.632Z","inputHash":"532fefe0f7f950fb"}]} -->

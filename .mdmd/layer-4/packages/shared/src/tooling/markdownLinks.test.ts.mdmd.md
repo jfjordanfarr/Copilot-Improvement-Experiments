@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the markdown link audit against real filesystem fixtures so the SlopCop CLI keeps catching broken local links while respecting the ignore/target rules introduced during the October 25 SlopCop hardening pass.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-25.SUMMARIZED.md §Turn 11]
 
 ### Notes
-_Pending notes_
+- Verifies the ignore-target patterns added alongside `slopcop.config.json`, ensuring ChatHistory and fixture exemptions never regress.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-25.SUMMARIZED.md §Turn 11]
+- Confirms `findBrokenMarkdownLinks` handles workspace-absolute paths, missing definitions, and non-link generics before the CLI surfaced the suite in safe-to-commit runs on November 2.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-02.md §SlopCop: Markdown]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.575Z","inputHash":"0d5df8a64ff9f45e"}]} -->

@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Locks in the vendored slugger’s behaviour against GitHub’s casing, unicode, and duplicate rules so Live Doc anchors and CLI outputs stay deterministic across the workspace.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-25.SUMMARIZED.md#turn-32-vendored-github-slugger]
 
 ### Notes
-_Pending notes_
+- Covers stateless `slug`, stateful `GitHubSlugger`, and `slugWithContext` so regressions surface before doc tooling diverges from GitHub.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md]
+- Reinforced during the November 7 anchor audit that reproduced real headings like “COMP-003 – Heuristic Suite,” ensuring unicode deduping remains correct.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.548Z","inputHash":"9d992d73529af6a2"}]} -->

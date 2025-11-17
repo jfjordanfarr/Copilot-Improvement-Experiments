@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Bridges integration tooling to a local Ollama server by reading the workspace endpoint, posting chat prompts, and echoing structured JSON so VS Code harnesses can exercise real LLM calls instead of mocks, as planned during the Ollama bridge design session on 2025-10-29 ([chat reference](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L696-L755)).
 
 ### Notes
-_Pending notes_
+- Created 2025-10-29 alongside `ollamaEndpoint.ts` and `ollamaClient.ts` to supply the CLI half of the bridge, with repeated rewrites to stabilise stdin handling and keep the schema aligned with the extension ([chat build log](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L801-L1120)).
+- Onboarded into the new workspace 2025-11-14 when we reconnected qwen3-coder:30b: set persistent environment variables, created the `ollama-traces/` audit directory, invoked this script directly, and reran `npm run test:integration` to confirm real responses flowed through ([environment restore runbook](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L3506-L3579)).
+- Subsequent summary captured the regression-fix outcome: integration tests now consume this CLI during local-only provider runs without the “[ollama-bridge] No model configured” warning ([11-14 recap](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-14.SUMMARIZED.md#turn-14-restore-ollama-bridge-for-integration-tests-lines-3301-3600)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:53:02.070Z","inputHash":"3a2fb41ca1a7c152"}]} -->

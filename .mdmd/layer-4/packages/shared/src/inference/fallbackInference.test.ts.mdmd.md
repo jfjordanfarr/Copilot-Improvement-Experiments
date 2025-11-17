@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Locks in the fallback inference contract from T054–T056—heuristic markdown/code pairing, LLM suggestion merging, and TypeScript module handling—introduced in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md#turn-6-resume-speckitimplement-lines-164-286](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md#turn-6-resume-speckitimplement-lines-164-286).
 
 ### Notes
-_Pending notes_
+Later assertions track the TypeScript runtime/type split and regression fixes from [AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-17-shareable-typescript-ast-utilities-lines-1461-1620](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-17-shareable-typescript-ast-utilities-lines-1461-1620) while leaving room for the language-specific suites captured in `fallbackInference.languages.test.ts`.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.665Z","inputHash":"a7f27157ee9c9e54"}]} -->

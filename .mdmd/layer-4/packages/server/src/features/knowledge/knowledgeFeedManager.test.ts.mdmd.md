@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Regression-tests the knowledge feed coordinator introduced on Oct 20 by validating snapshot bootstrap, healthy-feed caching, and degraded recovery behaviour described in [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Includes a fault-injection stream to verify exponential backoff and removal from the healthy cache, mirroring the resilience guardrails tuned during the Oct 30 follow-up ([2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.570Z","inputHash":"8e707ed340de8a22"}]} -->

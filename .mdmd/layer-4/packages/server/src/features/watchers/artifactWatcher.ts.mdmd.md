@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Coordinates how workspace file updates flow into the server ingestion pipeline by classifying code versus documentation artifacts, harvesting reference hints, and driving link inference before writing results back to the GraphStore.
 
 ### Notes
-_Pending notes_
+- Replaced the legacy markdown watcher so code and doc changes share one queue and telemetry trail; see [2025-10-19 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md) for the refactor narrative.
+- Normalizes file URIs prior to persistence so downstream diagnostics and knowledge feeds address a single canonical node per artifact.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.257Z","inputHash":"85d749170f9b03c1"}]} -->

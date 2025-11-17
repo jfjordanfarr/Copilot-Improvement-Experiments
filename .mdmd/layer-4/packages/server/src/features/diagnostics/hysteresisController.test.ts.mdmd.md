@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Asserts the hysteresis controller blocks reciprocal emissions within the configured window, matching the suppression strategy delivered in [2025-10-19 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Covers acknowledgement resets and LRU trimming so the controller remains bounded under noisy change streams.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.317Z","inputHash":"7ba1c9bd77a7f916"}]} -->

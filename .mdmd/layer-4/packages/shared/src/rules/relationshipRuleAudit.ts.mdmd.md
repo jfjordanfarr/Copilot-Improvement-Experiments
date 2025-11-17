@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Evaluates compiled relationship rules against the graph to surface coverage diagnostics and human-readable gaps, feeding both CLI audits and Live Doc evidence.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-26-add-symbol-correctness-profiles--wire-them-into-audits-lines-5711-6120]
 
 ### Notes
-_Pending notes_
+- Formats JSON and text diagnostics used by `graph-tools/audit-doc-coverage.ts` after symbol-correctness profiles landed, ensuring missing relationships can be triaged quickly.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-26-add-symbol-correctness-profiles--wire-them-into-audits-lines-5711-6120]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.266Z","inputHash":"6d1005a30f30c807"}]} -->

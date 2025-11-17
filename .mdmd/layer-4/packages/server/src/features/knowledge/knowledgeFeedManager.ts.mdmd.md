@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Coordinates snapshot bootstraps and stream consumption for each configured knowledge feed, applying backoff and health reporting so the ingestion stack remains resilient, as implemented during the Oct 20 feed-orchestration work noted in [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Maintains per-feed abort controllers, exponential backoff, and listener notifications, preserving the durability guarantees tightened in [2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md) when we hardened degraded-feed recovery.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.592Z","inputHash":"ffebdc66bd2e8f90"}]} -->

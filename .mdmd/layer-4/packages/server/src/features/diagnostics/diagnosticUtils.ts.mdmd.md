@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides shared helpers for diagnostic publishers, including a path normaliser used throughout the Oct 17 link-aware diagnostics rollout ([2025-10-17 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md)).
 
 ### Notes
-_Pending notes_
+- Keeps URIs human-readable in emitted messages while leaving non-file schemes untouched for remote targets.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.296Z","inputHash":"0262fbfa809b693b"}]} -->

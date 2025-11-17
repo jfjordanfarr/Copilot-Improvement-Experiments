@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Builds dependency fan-out reports for a given artifact, forming the server half of the dependency quick pick shipped in [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md) under task T039.
 
 ### Notes
-_Pending notes_
+- Normalizes URIs and routes through `buildCodeImpactGraph` so CLI and extension surfaces share consistent traversal limits, filtering, and summary math.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.119Z","inputHash":"98495456feab89cf"}]} -->

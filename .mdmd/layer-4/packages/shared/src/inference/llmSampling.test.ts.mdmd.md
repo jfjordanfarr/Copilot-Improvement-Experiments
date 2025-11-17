@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates the sampling harness by pinning vote aggregation, thresholding, collector hooks, and telemetry emission, as captured in [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L4650](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L4650).
 
 ### Notes
-_Pending notes_
+Keep these cases in sync with the follow-up wiring into link inference and telemetry sinks noted in [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L4679](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L4679) once sampling flows graduate from stub to production usage.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.885Z","inputHash":"94bd878fb00b5676"}]} -->

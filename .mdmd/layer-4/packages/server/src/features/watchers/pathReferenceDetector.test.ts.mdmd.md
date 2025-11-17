@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Proves the detector surfaces markdown-to-code links, import edges, and ignores external URLs so the watcher seeds only actionable path hints for the ripple pipeline <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2832-L2864>.
 
 ### Notes
-_Pending notes_
+- Refresh these scenarios whenever we adjust the hint heuristics or indexer globs—tests should mirror the real templates/docs/assets we expect to resolve <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2832-L2864> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L4504-L4572>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.122Z","inputHash":"8bd67aefe700f7b9"}]} -->

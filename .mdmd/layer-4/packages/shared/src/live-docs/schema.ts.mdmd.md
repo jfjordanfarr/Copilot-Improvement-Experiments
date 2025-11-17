@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the normalized metadata/provenance schema every generated Live Doc must satisfy, enabling lint, manifests, and evidence bridges to operate on consistent shapes.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-13-define-schema--falsifiability-waivers-lines-2161-2380]
 
 ### Notes
-_Pending notes_
+- Created with the Stage‑0 Live Doc rollout so config, generator, and lint flows share canonical metadata contracts.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-13-define-schema--falsifiability-waivers-lines-2161-2380]
+- Hardened during the Stage‑0 refactor when docLoader, manifests, and co-activation analytics began relying on these types.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-08-begin-refactor--stage-0-extraction-lines-961-1100]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.227Z","inputHash":"10e5359fdb386965"}]} -->

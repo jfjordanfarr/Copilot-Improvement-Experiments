@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the baseline request/response pipeline that powers the “simple-workspace” fixture used by US1–US3 integration scenarios, giving tests deterministic business logic to exercise graph analysis and Live Doc generation end to end <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-17.md#L468-L517>.
 
 ### Notes
-_Pending notes_
+- Keep the field taxonomy (`Request`, `Response`, and `processRequest` orchestration) stable unless the paired fixture documentation and linked markdown guides are refreshed in tandem; the fixture currently verifies cleanly under `npm run fixtures:verify` as of the Oct 29 validation pass <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L5288-L5320>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.287Z","inputHash":"d03b47b441ad2f90"}]} -->

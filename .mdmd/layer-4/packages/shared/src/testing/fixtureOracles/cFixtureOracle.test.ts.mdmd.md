@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the C oracle against layered fixtures and override scenarios so regenerated graphs capture `#include` chains and cross-module calls exactly before benchmarks assert on them <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-04.SUMMARIZED.md#turn-34-build-regeneration-cli--overrides-lines-3961-4260>.
 
 ### Notes
-_Pending notes_
+- Protects against the Nov 5 regression where multi-target edges diverged from expected graphs, and continues to pass in the Nov 16 unit sweep <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L4240-L4320> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.360Z","inputHash":"6936a517b058924a"}]} -->

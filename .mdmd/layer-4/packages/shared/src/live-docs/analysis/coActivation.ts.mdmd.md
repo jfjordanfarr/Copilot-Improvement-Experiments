@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Computes co-activation graphs from Stage‑0 manifests to surface statistically significant clusters that guide System-layer documentation and analytics.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-09-stand-up-co-activation-infrastructure-lines-1101-1220]
 
 ### Notes
-_Pending notes_
+- Initial implementation powered the on-demand CLI and System generator, emitting node/edge weights for manual review.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-10-initial-analytics-review-lines-1221-1320]
+- Later upgraded with statistical testing (p/q/z scores) so generated docs highlight significant clusters instead of heuristic caps.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-16-implement-statistically-backed-co-activation-lines-1881-2020]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.130Z","inputHash":"431a41599d764ccf"}]} -->

@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Materialises a deterministic workspace graph snapshot by rebuilding the SQLite cache and emitting `workspace.snapshot.json`, giving the graph tooling a reproducible baseline for audits and benchmarks as introduced with the graph snapshot CLI rollout on 2025-10-24 ([chat log](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1210-L1233)).
 
 ### Notes
-_Pending notes_
+- Authored 2025-10-24 while landing `npm run graph:snapshot`; the script added SQLite rebuild handling, timestamp/workspace flags, and lives alongside the documented `workspaceGraphSnapshot` workflow ([implementation notes](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1210-L1233)).
+- Expanded 2025-10-30 to ingest relationship-rule providers so snapshots capture `documents`/`implements` edges sourced from `relationshipRuleProvider.ts`, keeping coverage audits aligned with the live server ([relationship rules upgrade](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-30.md#L5414-L5450)).
+- Refactored 2025-11-04 to expose a reusable `snapshotWorkspace` helper and quiet mode; `audit-doc-coverage.ts` now invokes it automatically before audits to avoid stale caches ([self-refresh change](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2434-L2455)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:18.013Z","inputHash":"3280cacfd20e2862"}]} -->

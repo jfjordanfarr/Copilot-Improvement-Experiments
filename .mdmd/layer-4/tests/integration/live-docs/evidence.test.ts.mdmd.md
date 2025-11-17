@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the evidence bridge end to end so coverage manifests, fixtures, and waiver files produce the expected Live Doc sections before regressions land in Stage-0 ([integration rerun](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-09.md#L930-L1004)).
 
 ### Notes
-_Pending notes_
+- Validates manifest ingestion by asserting Observed Evidence targets and fixture links after generator changes broke the legacy regex assertions ([diagnostic recap](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L6258-L6286)).
+- Covers empty-manifest paths to guarantee Supporting Fixtures defaults remain visible when no artifacts are recorded ([integration rerun](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-09.md#L930-L1004)).
+- Confirms waiver files emit explanatory comments so reviewers can trace manual evidence waivers inside the rendered doc ([integration rerun](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-09.md#L930-L1004)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.317Z","inputHash":"456e25336b41d89d"}]} -->

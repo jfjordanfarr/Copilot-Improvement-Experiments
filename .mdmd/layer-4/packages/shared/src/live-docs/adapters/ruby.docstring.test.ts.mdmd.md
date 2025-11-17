@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Checks the Ruby adapter’s handling of YARD line and block comments, ensuring symbol docs, mixins, and dependency edges mirror the Nov 14 plan and completed implementation <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2999-L3072> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L3308-L3334>.
 
 ### Notes
-_Pending notes_
+- Exercised via repeated `npx vitest run …/ruby.docstring.test.ts` passes and the ruby fixture regeneration noted during the rollout; keep those assets updated when expanding tag coverage <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L3308-L3334>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.059Z","inputHash":"dc2548e4964cbfea"}]} -->

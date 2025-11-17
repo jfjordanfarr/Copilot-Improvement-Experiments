@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Implements the intermediate feature evaluation layer for the simple-workspace integration fixture so code-impact tests can route `core.processRequest` inputs through predictable branches before hitting normalization utilities <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L2779-L2904>.
 
 ### Notes
-_Pending notes_
+- `evaluateFeature` and `executeFeature` orchestrate enum-like branching that the US1 pipeline depends on when asserting dependency fan-out; keep these in sync with the fixture diagrams captured in `docs/architecture.md` <../../../../../../../tests/integration/fixtures/simple-workspace/docs/architecture.md>.
+- The Oct 21 reset kept this module aligned with `core.ts` and `util.ts`, and the arrangement was later validated by the Oct 29 fixture verification run; repeat that manifest if behavior shifts <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L3041-L3238> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L5288-L5320>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.295Z","inputHash":"9cc4b33d99ee071d"}]} -->

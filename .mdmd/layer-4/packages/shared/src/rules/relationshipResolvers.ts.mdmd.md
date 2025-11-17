@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides the built-in resolver catalogue (markdown links, MDMD code paths) that turns documentation hops into concrete rule-engine candidates for diagnostics and audits.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-23-scaffold-relationship-rule-engine--docs-lines-4596-5050]
 
 ### Notes
-_Pending notes_
+- Shipped alongside the initial relationship-rule scaffold so documentation chains could emit `documents` evidence without bespoke code per rule.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-25-convert-layer-3-docs-to-markdown-links--regenerate-evidences-lines-5441-5710]
+- Exercised by the revamped provider tests to ensure both markdown-link and MDMD metadata resolvers return stable targets before rules materialise evidences.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.246Z","inputHash":"06bbace12a8d381f"}]} -->

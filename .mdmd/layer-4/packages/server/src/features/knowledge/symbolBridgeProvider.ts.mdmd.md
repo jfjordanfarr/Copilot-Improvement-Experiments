@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Connects the language server to client-side symbol analysis by forwarding queued seeds over `COLLECT_WORKSPACE_SYMBOLS_REQUEST` and validating the response before merging contributions into the knowledge graph.
 
 ### Notes
-_Pending notes_
+- Introduced with the Oct 20 knowledge ingestion spike (see [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md)) to bridge workspace symbol data back into the server.
+- Layer-4 rationale refreshed during the Oct 30 metadata audit (see [2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md)), reinforcing logging and schema validation expectations.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.885Z","inputHash":"2d6796ba285fbed9"}]} -->

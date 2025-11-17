@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Confirms the Rust oracle captures module `use` edges, honors manual overrides, and serializes deterministically so regenerated fixtures stay aligned with the curated benchmarks <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-04.SUMMARIZED.md#turn-34-build-regeneration-cli--overrides-lines-3961-4260>.
 
 ### Notes
-_Pending notes_
+- Includes assertions covering the Nov 14 doc-comment regression fix and remains part of the Nov 16 unit run; re-execute this suite if parser heuristics are tweaked <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2922-L2952> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.459Z","inputHash":"fd90a10aa5b44ee4"}]} -->

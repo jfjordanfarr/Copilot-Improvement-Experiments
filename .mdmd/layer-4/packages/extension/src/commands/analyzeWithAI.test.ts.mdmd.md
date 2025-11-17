@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates the Analyze-with-AI command’s registration, disabled-provider guard, and happy-path persistence so the Oct 26 feature ship stays covered, matching Turn 13 of [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-26.SUMMARIZED.md#turn-13-analyze-with-ai-command-lands-lines-1501-2000](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-26.SUMMARIZED.md#turn-13-analyze-with-ai-command-lands-lines-1501-2000).
 
 ### Notes
-_Pending notes_
+- Exercised the VS Code mock harness to cover disabled-provider messaging, quick-pick selection, and assessment upload, as summarized in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1740-L1795](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1740-L1795).
+- Coverage reports on Oct 28 kept citing this suite when verifying T047 completion, so maintain these tests as the first line of defense before leaning on integration runs; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L1390-L1475](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L1390-L1475).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:10.479Z","inputHash":"05da8c2414bd07c2"}]} -->

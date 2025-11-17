@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Emits maintenance diagnostics and rebind notifications when tracked artifacts are deleted or renamed so downstream documentation can repair links and the graph store drops stale nodes.
 
 ### Notes
-_Pending notes_
+- Implemented during the initial maintenance pass that delivered delete/rename recovery (spec tasks T020–T021) documented in [2025-10-16 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md).
+- Layer-4 coverage extended as part of the diagnostics pipeline brief noted in [2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.141Z","inputHash":"41c3797bdc365964"}]} -->

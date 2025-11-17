@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Traverses the knowledge graph to produce ripple hints, scoring downstream artifacts by depth and relationship kind so diagnostics and planners can prioritize follow-up work.
 
 ### Notes
-_Pending notes_
+- Integrated into the diagnostics pipeline during the Oct 20 ripple rollout (see [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md)), powering impact calculations.
+- Subsequent ingestion updates on Oct 22 (see [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md)) kept the analyzer aligned with feed-derived artifacts.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.804Z","inputHash":"e104794e14aea91c"}]} -->

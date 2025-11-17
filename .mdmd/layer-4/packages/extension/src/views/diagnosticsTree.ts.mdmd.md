@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Hosts the Link-Aware Diagnostics tree view, listing outstanding issues and acknowledgement actions via the `DiagnosticsTreeDataProvider` introduced alongside the acknowledgement service in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-06-acknowledgement-hysteresis--diagnostic-replay-lines-601-1220](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-06-acknowledgement-hysteresis--diagnostic-replay-lines-601-1220).
 
 ### Notes
-_Pending notes_
+AI summaries and confidence ribbons were threaded into this tree during the Analyze-with-AI rollout—see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1728-L1774](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1728-L1774)—so updates to the data model must stay aligned with `LlmInvoker` payloads and `exportDiagnostics.ts` to keep UI parity.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.821Z","inputHash":"dff2d16f44795f94"}]} -->

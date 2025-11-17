@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Slug candidate headings with the same GitHub dialect the generator uses so we can confirm the exact anchor a Live Doc will emit before patching links ([anchor triage](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md#L3333-L3388)).
 
 ### Notes
-_Pending notes_
+- Introduced beside `show-heading-codepoints.ts` on 2025-11-15 to repair the `REQ-H1 Hosted Showcase Pipeline` anchor without guessing at hyphen rules ([slug helper creation](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#L112-L124)).
+- Reused whenever SlopCop flags header drift so we can validate the canonical slug before mass search-and-replace updates ([follow-up runs](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md#L3335-L3394)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.767Z","inputHash":"4f398252f4838d3f"}]} -->

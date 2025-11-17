@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Detects `require_relative` relationships so Ruby fixtures (cli, analytics, support) emit the `requires` edges Phase 8 called for; we added this heuristic on Nov 5 alongside the other polyglot updates after benchmarks showed those dependencies missing entirely <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2860-L2960> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L780-L860>.
 
 ### Notes
-_Pending notes_
+- Regression coverage for this module lives in `fallbackInference.languages.test.ts`, which we wrote on Nov 7 to lock the Ruby chain behavior—keep that suite green when extending the heuristic <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L600-L676>.
+- Path resolution continues to lean on `normalizePath`; if future fixtures add `require_relative` calls that walk outside the workspace, capture that as technical debt rather than broadening this function to chase absolute filesystem paths blindly <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L780-L860>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.813Z","inputHash":"2c14bfc66e2ed486"}]} -->

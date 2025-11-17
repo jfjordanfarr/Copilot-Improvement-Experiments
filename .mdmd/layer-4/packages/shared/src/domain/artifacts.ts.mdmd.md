@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the cross-layer knowledge-graph domain model—artifacts, links, diagnostics, acknowledgements, drift history—that the GraphStore, server features, and extension commands rely on, originally scaffolded during the implementation bootstrap captured in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md#turn-13-implementation-bootstrap-lines-2000-2523](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md#turn-13-implementation-bootstrap-lines-2000-2523).
 
 ### Notes
-_Pending notes_
+Confidence tiers and drift-history additions arrived alongside the October 23–24 persistence and LLM-ingestion passes, keeping telemetry and ingestion schemas aligned; see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-14-graphstore-enhancements--status-check-lines-1531-1620](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-14-graphstore-enhancements--status-check-lines-1531-1620) and [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-24.SUMMARIZED.md#turn-10-prompt--shared-inference-modules-lines-3721-4460](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-24.SUMMARIZED.md#turn-10-prompt--shared-inference-modules-lines-3721-4460).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:31.544Z","inputHash":"0716ab01f7ce6f70"}]} -->

@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Runs the headless harness pipeline end-to-end—preparing a workspace, invoking Live Docs (and optional System views), and writing reports/containers—so we can validate fixtures without VS Code, per the 2025-11-16 execution log ([chat](../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L1085-L1115)).
 
 ### Notes
-_Pending notes_
+- Builds scenario-specific configs before each run, matching the fixture glob strategy captured earlier that day.
+- Emits optional container specs and timestamped reports so CI and hosted demos can replay the same runs without manual wiring.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.020Z","inputHash":"5f8a0ca097c2b19e"}]} -->

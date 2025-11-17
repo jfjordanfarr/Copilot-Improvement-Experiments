@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the latency telemetry request/response surface emitted during the instrumentation pass in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-19-latency-tracker-implementation-lines-2041-2200](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-19-latency-tracker-implementation-lines-2041-2200), letting the server report queue→publish spans back to the extension.
 
 ### Notes
-_Pending notes_
+The extension command and perf spec consume this schema—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385)—so preserve field semantics when expanding telemetry sinks or thresholds.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:31.502Z","inputHash":"78f6f2dd48080ca8"}]} -->

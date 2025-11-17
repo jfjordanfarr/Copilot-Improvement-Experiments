@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+CLI entry point that applies workspace configuration, resolves include/changed filters, and invokes the server-side Live Doc generator so developers can regenerate Layer‑4 mirrors on demand or during automation.
 
 ### Notes
-_Pending notes_
+The script wraps `generateLiveDocs` from the server package, wiring in JSON config files and `--system` materialisation toggles added during the Stage‑0 retirement (Oct 2025). It also persists the `data/live-docs/targets.json` manifest used by lint, graph, and evidence tooling so that downstream tasks do not have to re-scan the workspace.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:18.096Z","inputHash":"eeb795c066cbef5e"}]} -->

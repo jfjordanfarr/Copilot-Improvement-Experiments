@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Buffers rapid file edits into debounced batches so the inference pipeline can persist and diagnose changes efficiently, matching the persistence flow landed in [2025-10-17 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Reconfigurable debounce windows allow runtime hysteresis tuning (added during the latency instrumentation pass in [2025-10-28 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md)) without dropping queued changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:30.023Z","inputHash":"fcfffda7f859eb83"}]} -->

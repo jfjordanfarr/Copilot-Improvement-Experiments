@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the type-only surface for the `ts-basic` benchmark so the oracle can prove our analyzer distinguishes runtime imports from structural metadata, as captured in [2025-11-03 summary](../../../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Remaining intentionally dependency-free to expose any analyzer that incorrectly emits runtime edges from pure type exports.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:33.406Z","inputHash":"3eab20582ee13464"}]} -->

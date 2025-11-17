@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Parses Java sources to translate Javadoc summaries, tags, and imports into the Live Docs schema, as delivered in the Nov 13 adapter addition and fixture refresh <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-13.md#L1460-L1508>.
 
 ### Notes
-_Pending notes_
+- Keep the polyglot integration test and updated Java fixtures in sync with any parser changes; those assets were extended alongside the original rollout to catch regressions <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-13.md#L1488-L1508>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.009Z","inputHash":"9fbe53204f74e8b8"}]} -->

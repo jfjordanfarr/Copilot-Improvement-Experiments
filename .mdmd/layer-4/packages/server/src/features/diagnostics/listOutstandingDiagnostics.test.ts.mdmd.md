@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates the server-side snapshot powering the diagnostics tree view by checking artifact lookups and LLMAssessment passthrough, mirroring the Explorer integration in [2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Exercises missing-artifact fallbacks to ensure the UI gracefully handles purged records while still refreshing timestamps deterministically.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.291Z","inputHash":"d8c89c4eea46e403"}]} -->

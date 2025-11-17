@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the rebind notification payloads surfaced during the initial maintenance scaffolding in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md#turn-13-implementation-bootstrap-lines-2000-2523](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md#turn-13-implementation-bootstrap-lines-2000-2523), giving the server a standard shape for prompting users to repair broken links.
 
 ### Notes
-_Pending notes_
+Rebind UX and consent documentation rely on these types—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-09-documentation--script-polish-lines-4851-5050](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-09-documentation--script-polish-lines-4851-5050)—so keep the contract stable when updating quickstart guidance or maintenance telemetry.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.381Z","inputHash":"cd25f0520acfcad4"}]} -->

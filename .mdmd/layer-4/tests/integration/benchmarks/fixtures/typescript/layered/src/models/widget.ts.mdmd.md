@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Supplies the shared model definitions for the `ts-layered` benchmark so downstream services share structural types while runtime edges stay traceable, mirroring the evidence cleanup in [2025-11-03 summary](../../../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Remains intentionally dependency-free; any analyzer emitting extra edges here indicates leakage from runtime-bound modules.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:33.440Z","inputHash":"f0dfc5321a6eaad2"}]} -->

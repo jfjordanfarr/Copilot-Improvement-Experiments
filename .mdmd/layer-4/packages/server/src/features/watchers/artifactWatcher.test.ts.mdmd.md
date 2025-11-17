@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Verifies that `ArtifactWatcher` classifies code and documentation changes correctly, hydrates document content, and triggers link inference without surfacing errors when processing a mixed batch.
 
 ### Notes
-_Pending notes_
+- Uses the simple workspace fixture to assert both processed artifacts report the expected layers and that inference wiring remains intact.
+- Added alongside the watcher refactor captured in [2025-10-19 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md) to guard the unified pipeline.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.220Z","inputHash":"72e188081d551d1e"}]} -->

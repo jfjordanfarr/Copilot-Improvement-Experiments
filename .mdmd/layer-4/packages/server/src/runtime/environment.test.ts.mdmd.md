@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the runtime environment helpers so Live Docs staging and graph persistence remain portable, a unit suite we added while triaging lint evidence debts in [AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-22-begin-evidence-triage--add-targeted-tests-lines-4241-4920](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-22-begin-evidence-triage--add-targeted-tests-lines-4241-4920).
 
 ### Notes
-_Pending notes_
+The cases cover UNC-style URIs, database path defaults, and directory creation on Windows—see [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L4492-L4588](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L4492-L4588) for the bug report that prompted them. Update these expectations whenever `resolveDatabasePath` or `fileUriToPath` change, otherwise Live Docs lint will flag missing evidence.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.204Z","inputHash":"5fc5abee29cb94e5"}]} -->

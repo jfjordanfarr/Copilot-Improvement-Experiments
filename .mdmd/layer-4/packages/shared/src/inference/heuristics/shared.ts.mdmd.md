@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides the cross-language path normalisation, comment filtering, and reference scoring helpers that every modular fallback heuristic shares after we split the 2k-line orchestrator into discrete modules on Nov 7 so new languages plug into the same contract without duplicating logic <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L760-L840> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L820-L900>.
 
 ### Notes
-_Pending notes_
+- `isWithinComment` and the variant builders preserve the Ky benchmark fix that stopped commented-out imports from emitting edges, so keep tests guarding that regression in place whenever evolving these helpers <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L2108-L2178>.
+- The extension-swapping logic was introduced to keep `.js` specifiers mapped onto `.ts/.tsx` sources; extend the replacement list in this helper instead of reimplementing it in future heuristics <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L2302-L2315>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.841Z","inputHash":"98cd2314cac724c0"}]} -->

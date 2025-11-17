@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Turns the per-language builders into the default heuristic suite that replaced the monolithic fallbackInference orchestrator on Nov 7, giving the pipeline a single place to register ordering and hydration logic <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L760-L840> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.SUMMARIZED.md#L50-L70>.
 
 ### Notes
-_Pending notes_
+- Maintain the evaluation order here—directive/docs first, then language heuristics—so we preserve the confidence balancing discussed during the modular refactor; shuffle only with a benchmark-backed justification <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L1290-L1485>.
+- When adding a new heuristic module, export it through this registry and update `fallbackInference.languages.test.ts` so the regression suite exercises the new behavior <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L600-L676>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.759Z","inputHash":"46d685bbb4fa7ea4"}]} -->

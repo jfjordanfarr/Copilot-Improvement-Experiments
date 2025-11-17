@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Transforms newline-delimited LSIF dumps into external snapshots with artifact entries and cross-file reference links so non-live index data can seed the knowledge graph.
 
 ### Notes
-_Pending notes_
+- Built during the LSIF/SCIP ingestion effort captured in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md), landing alongside auto-detection and bridge wiring.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.769Z","inputHash":"cf4738cf82b8c2c2"}]} -->

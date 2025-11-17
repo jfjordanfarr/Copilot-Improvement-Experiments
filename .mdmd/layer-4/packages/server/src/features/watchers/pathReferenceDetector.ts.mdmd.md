@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Extracts relative-path references from markdown and code so the watcher pipeline can seed relationship hints linking templates, docs, and assets back to the files that use them <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2832-L2864>.
 
 ### Notes
-_Pending notes_
+- Keep the extension guesses and URI canonicalisation aligned with `normalizeFileUri`—we consolidated that helper on Oct 28 so every watcher emits comparable URIs <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L3160-L3280>.
+- When workspace indexing rules change (new script/doc globs or additional path hint sources) update these heuristics in tandem so seed hints continue to mirror the indexer output <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2832-L2864>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.293Z","inputHash":"367036819d5c26f5"}]} -->

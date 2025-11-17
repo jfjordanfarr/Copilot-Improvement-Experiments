@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Compiles symbol-correctness profiles from relationship-rules config so diagnostics can enforce required inbound/outbound links for documented artifacts.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-26-add-symbol-correctness-profiles--wire-them-into-audits-lines-5711-6120]
 
 ### Notes
-_Pending notes_
+- Emits warnings for malformed profile definitions and returns lookup helpers consumed by the server validator, closing the audit gap identified during the October 30 safe-commit pass.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-26-add-symbol-correctness-profiles--wire-them-into-audits-lines-5711-6120]
+- Continuous runs of `npm run graph:audit` after October 30 rely on these compiled profiles to report satisfied vs missing relationships per artifact.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-10.md]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.332Z","inputHash":"5f08332815ee26b1"}]} -->

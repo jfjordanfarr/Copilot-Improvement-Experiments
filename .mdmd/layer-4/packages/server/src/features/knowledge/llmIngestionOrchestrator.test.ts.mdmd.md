@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the orchestrator’s persistence and dry-run modes end-to-end, confirming calibrated relationships land in the graph with provenance while low-confidence edges remain excluded.
 
 ### Notes
-_Pending notes_
+- Authored alongside the orchestrator rollout captured in [2025-10-24 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-24.SUMMARIZED.md) to lock in the expected auditing surface (edge provenance plus snapshot emission).
+- Keeps regression pressure on ProviderGuard integration by ensuring disabled providers would block work and by asserting dry runs avoid GraphStore mutation even when snapshots are produced.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.724Z","inputHash":"c3d0920cae1ba6dc"}]} -->

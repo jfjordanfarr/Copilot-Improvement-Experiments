@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Runs the Live Docs headless harness scenarios (e.g. seed fixtures, run generator, capture reports) so we can regression-test the pipeline outside of VS Code.
 
 ### Notes
-_Pending notes_
+Created for the 2024 headless smoke tests that reproduce user journeys without the extension UI. Supports multi-scenario runs, container-spec emission, and optional System-layer skips to keep scenario execution aligned with our CI diagnostics flows.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.013Z","inputHash":"42598574f1c6627f"}]} -->

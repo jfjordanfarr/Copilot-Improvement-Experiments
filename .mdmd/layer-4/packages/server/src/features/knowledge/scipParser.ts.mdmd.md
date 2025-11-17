@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Converts Sourcegraph SCIP indexes into external snapshot seeds and link evidence so knowledge feeds can ingest precomputed symbol graphs.
 
 ### Notes
-_Pending notes_
+- Implemented with the LSIF/SCIP ingestion option detailed in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md), landing alongside the auto-detection flow and unit coverage.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.853Z","inputHash":"0183a601aa222e06"}]} -->

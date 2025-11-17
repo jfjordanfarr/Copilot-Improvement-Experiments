@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Proves the `live-docs:system` CLI can materialise Layer-3 system docs either to stdout or a caller-supplied directory without polluting the repo, anchoring the new workflow introduced alongside the system wrapper ([system CLI roll-out](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-26-stand-up-on-demand-cli--integration-coverage-lines-3521-3700)).
 
 ### Notes
-_Pending notes_
+- Confirms the generator no longer tracks `.live-documentation/system/` in git by asserting the temp workspace is discarded after each run, keeping the system view ephemeral for follow-on tooling ([system CLI roll-out](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-26-stand-up-on-demand-cli--integration-coverage-lines-3521-3700)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.341Z","inputHash":"df0ed71f0f7800d7"}]} -->

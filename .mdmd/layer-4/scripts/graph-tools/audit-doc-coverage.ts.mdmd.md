@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Runs the graph coverage audit that compares code artifacts against Layer‑4 docs, emitting structured JSON and human summaries to spotlight undocumented code or doc-only files, first shipped with the maintainer tooling expansion on 2025-10-24 ([chat reference](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1078-L1097)).
 
 ### Notes
-_Pending notes_
+- Initial version (2025-10-24) introduced structured exit codes, package bucketing, and the `graph:audit` npm/VS Code wiring so teams could dogfood coverage gaps immediately ([launch log](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1078-L1097)).
+- Same day follow-up grouped diagnostics by top-level folder and switched human output to relative paths to make remediation queues actionable ([ergonomics update](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1702-L1714)).
+- Refined 2025-11-04 to invoke `snapshotWorkspace` quietly before auditing, guaranteeing fresh caches during CI and local runs ([self-refresh integration](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2434-L2455)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:17.952Z","inputHash":"cf6d41ed70891e3d"}]} -->

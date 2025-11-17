@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides the minimal implementation required for the SlopCop symbol-audit fixture so tooling has a concrete TypeScript export to index, matching the verification passes captured in [2025-11-03 chat](../../../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/03.md).
 
 ### Notes
-_Pending notes_
+- Intentionally trivial; any extra dependencies here would dilute the fixture’s goal of isolating symbol-link validation during SlopCop runs.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:33.557Z","inputHash":"b252be7c51ab072b"}]} -->

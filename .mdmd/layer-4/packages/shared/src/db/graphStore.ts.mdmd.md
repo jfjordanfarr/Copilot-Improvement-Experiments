@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Backs the workspace knowledge graph with a deterministic better-sqlite3 store—bootstrapped during the implementation kickoff to capture artifacts, links, acknowledgements, and maintenance signals per [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md#turn-13-implementation-bootstrap-lines-2000-2523](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-16.SUMMARIZED.md#turn-13-implementation-bootstrap-lines-2000-2523)—so diagnostics, ingestion, and maintenance all share a single source of truth.
 
 ### Notes
-_Pending notes_
+Canonical ID reuse and drift-history projection landed as part of the October 23 persistence hardening, eliminating `artifacts`/`links` uniqueness faults and feeding downstream symbol-neighbor and diagnostics flows; see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-27-graphstore-dedupe-attempt--new-failures-lines-3521-4000](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-27-graphstore-dedupe-attempt--new-failures-lines-3521-4000).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.428Z","inputHash":"85dd6882b8fcf9a9"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Coordinates the runtime pipeline that drains `changeQueue`, persists document/code edits, and republishes diagnostics—work extracted from `main.ts` during the runtime modularisation in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-10-option-review--runtime-modularization-commit-lines-2526-3070) and extended with ripple analysis in Turn 11 of that same log.
 
 ### Notes
-_Pending notes_
+Acknowledgement gating, hysteresis, and ripple-aware publishing were added the following day—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-06-acknowledgement-hysteresis--diagnostic-replay-lines-601-1220](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-06-acknowledgement-hysteresis--diagnostic-replay-lines-601-1220)—so any refactor must keep the sequencing between acknowledgement service, hysteresis controller, and ripple analyzer intact to avoid “stale diagnostic” regressions.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.397Z","inputHash":"36e22a92f01384b7"}]} -->

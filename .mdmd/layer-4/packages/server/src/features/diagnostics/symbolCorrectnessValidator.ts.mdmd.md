@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Evaluates compiled symbol correctness profiles against the workspace graph to surface missing evidence links, anchoring the relationship-rule rollout recorded in [2025-10-31 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-31.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Leverages identifier intersection, target matchers, and directionality checks refined during the Oct 30 design sessions ([2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md)) to keep MDMD-layer expectations measurable.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.493Z","inputHash":"7ce85deb27a412f8"}]} -->

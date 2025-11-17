@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Legacy helper that copies authored sections out of the original `.live-documentation/source` mirror into the permanent `.mdmd` files during the staged MDMD migration.
 
 ### Notes
-_Pending notes_
+This script was used during the Oct 2025 cut-over to preserve human-written Purpose/Notes blocks before the generator began writing directly to `.mdmd/layer-4/`. It is intentionally not part of the current pipeline but remains available for future repos upgrading from the Stage‑0 layout.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.030Z","inputHash":"77caf75da316bc04"}]} -->

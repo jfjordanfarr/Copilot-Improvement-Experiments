@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Tracks LLM benchmark outcomes across repos so shared tooling, server telemetry, and extension commands can analyze precision/recall from a single workspace-friendly collector.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-29-shared-telemetry-relocation--alias-fallout-lines-3202-3335]
 
 ### Notes
-_Pending notes_
+- Moved into `packages/shared` while refactoring the benchmark harness, keeping AST and rebuild suites aligned with the same accuracy calculations.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-29-shared-telemetry-relocation--alias-fallout-lines-3202-3335]
+- Documented during the symbol-coverage remediation pass that pushed telemetry exports to 100 % coverage, confirming audits read the tracker headings.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-34-coverage-scope-trim--graph-audit-remediation-lines-4402-5601]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.345Z","inputHash":"7969be1f27a1997d"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the Python fixture oracle against curated fixtures and override scenarios to guarantee regenerated dependency graphs mirror the interpreter’s view before benchmarks consume them <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2694-L2744>.
 
 ### Notes
-_Pending notes_
+- Keeps asserting perfect precision/recall across python-basic, pipeline, and requests fixtures; Nov 4 reports and the Nov 16 unit sweep confirmed the expectations remain stable <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2848-L2884> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.419Z","inputHash":"1c50be8525db728b"}]} -->

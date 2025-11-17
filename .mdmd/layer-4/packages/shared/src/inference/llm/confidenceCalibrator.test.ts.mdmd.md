@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Verifies the calibrator buckets labelled and numeric confidences into the tiers we specified and flips eligibility when corroboration is present, protecting the ingestion pipeline’s gating rules <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L1782-L1809> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L6047-L6052>.
 
 ### Notes
-_Pending notes_
+- Expand or adjust these scenarios whenever tier thresholds or shadow/eligibility semantics move so dry-run snapshots keep matching the orchestrator output <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L6047-L6052> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L6095-L6132>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.898Z","inputHash":"ebf3b3bd2e4b9e8f"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Checks every staged Live Doc for structural markers, section completeness, evidence waivers, and relative-link hygiene so the workspace fails fast before docs drift from the conventions consumed by the Live Docs graph.
 
 ### Notes
-_Pending notes_
+Introduced alongside the first Live Docs CLI (Aug 2024) and expanded repeatedly through the MDMD migration. In Nov 2025 we added authored-section warnings to surface pending “Purpose/Notes” placeholders without blocking commits, keeping the guardrail lightweight while nudging documentation quality forward.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:18.116Z","inputHash":"af04a36e6ff6ead3"}]} -->

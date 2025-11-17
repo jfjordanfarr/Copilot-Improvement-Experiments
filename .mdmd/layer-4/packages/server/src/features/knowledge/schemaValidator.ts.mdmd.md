@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates incoming knowledge snapshots and stream events so ingestion rejects malformed artifacts, relationships, or metadata before touching the graph.
 
 ### Notes
-_Pending notes_
+- Added with the knowledge schema spike documented in [2025-10-17 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md) alongside SpecKit requirements.
+- Layer-4 notes refreshed during the Oct 30 metadata audit (see [2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md)) when validation guidance was woven into architecture docs.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.815Z","inputHash":"37f4ca7e0d29222f"}]} -->

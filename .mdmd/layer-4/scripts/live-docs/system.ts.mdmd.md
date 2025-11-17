@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+CLI wrapper for `generateSystemLiveDocs`, producing Layer‑3 “System” documentation bundles on demand so architecture views can be materialised outside the workspace mirror.
 
 ### Notes
-_Pending notes_
+We added this helper when commissioning the System doc generator (Nov 2024) to give designers a repeatable way to export markdown to `AI-Agent-Workspace/tmp/system-cli-output`. It supports `--clean` and `--dry-run` flags so CI and human runs can avoid clobbering curated exports.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:18.147Z","inputHash":"c30eba8eb1602beb"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Analyzes `.cs` artifacts to link `using` directives, symbol usages, and partial type peers—work we tightened while integrating the Roslyn benchmarks and eliminating partial-class false positives on Nov 8 <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L90-L135>.
 
 ### Notes
-_Pending notes_
+- Tailored to the WebForms + analyzer scenarios requested on Nov 6; keep the namespace/partial heuristics in sync with those fixtures whenever we extend legacy coverage <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L3298-L3340>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.710Z","inputHash":"154d6e688a2739e4"}]} -->

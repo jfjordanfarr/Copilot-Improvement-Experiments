@@ -2,17 +2,19 @@
 
 ## Metadata
 - Layer: 4
-- Archetype: asset
+- Archetype: implementation
 - Code Path: scripts/fixture-tools/verify-fixtures.ts
-- Live Doc ID: LD-asset-scripts-fixture-tools-verify-fixtures-ts
+- Live Doc ID: LD-implementation-scripts-fixture-tools-verify-fixtures-ts
 - Generated At: 2025-11-16T22:34:13.915Z
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Verifies every benchmark fixture declared in `fixtures.manifest.json` by materialising the workspace, running `graph:snapshot`, `graph:audit`, and SlopCop suites so the `safe:commit` pipeline catches regressions before they land ([manifest verifier launch](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-27.md#L6200-L7179)).
 
 ### Notes
-_Pending notes_
+- Added 2025-10-27 alongside `npm run fixtures:verify` to replace ad-hoc manual fixture checks with a deterministic loop that records audit output per workspace ([initial rollout](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-27.md#L6336-L7179)).
+- Extended 2025-10-28 with optional `slopcopSuites` manifest entries so asset/symbol fixtures skip redundant lint runners, trimming iteration time while keeping coverage intact ([suite filtering update](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L1268-L1334)).
+- Integrated 2025-10-30 into the broader fixture maintenance guide and safe commit workflow, ensuring `verify-fixtures.ts` executes automatically during pre-commit validation ([safe commit wiring](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-30.md#L5348-L5453)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.915Z","inputHash":"10853f0a4605c212"}]} -->

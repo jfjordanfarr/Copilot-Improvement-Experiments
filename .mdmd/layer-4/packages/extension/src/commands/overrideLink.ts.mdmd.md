@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Registers the `linkDiagnostics.overrideLink` command so maintainers can manually create or rebind graph edges from VS Code by issuing `OverrideLinkRequest` payloads to the language server, completing T027 as recorded in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2799-L2836](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2799-L2836).
 
 ### Notes
-_Pending notes_
+- The Oct 16 implementation added layer/kind pickers, file selection, and rebind progress reporting so rename-driven prompts can reuse the same command surface; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2802-L2836](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2802-L2836).
+- That change landed without automated coverage because the Node 22 toolchain blocked `npm run lint` and follow-on test runs; the gap is noted in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2804-L2836](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-16.md#L2804-L2836).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.470Z","inputHash":"420e96dc3a3f0d37"}]} -->

@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Uses Roslyn-style parsing via regex and include analysis to map `using` directives and project references in our C# fixtures, giving the benchmark suite language-native edges without invoking MSBuild <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L3220-L3270>.
 
 ### Notes
-_Pending notes_
+- The Nov 6 regression where type-usage edges miscounted references drove additional assertions in its unit suite; keep the fix in mind when adjusting namespace heuristics <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L3588-L3776>.
+- Continues to pass under the Nov 16 unit sweep, so re-run `npm run test:unit -- csharpFixtureOracle` after parser updates <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.395Z","inputHash":"e0efb8655869d945"}]} -->

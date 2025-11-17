@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Loads the optional `data/live-docs/targets.json` manifest so the System generator can align Stage-0 docs with curator-chosen targets before rendering, as carved out during the Stage-0 extraction pass on 2025-11-11 ([chat summary](../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md)).
 
 ### Notes
-_Pending notes_
+- Returns `undefined` when the manifest is absent, letting CLI and headless harness runs proceed without bespoke fixtures while still honoring curated views when present.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.122Z","inputHash":"8988bee16bcc71b5"}]} -->

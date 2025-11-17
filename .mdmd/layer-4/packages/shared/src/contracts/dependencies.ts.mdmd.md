@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the shared request/response contract that powers dependency traversal over LSP—introduced while delivering the dependency quick pick in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-06-deliver-t039-dependency-quick-pick-lines-1186-1548](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-06-deliver-t039-dependency-quick-pick-lines-1186-1548).
 
 ### Notes
-_Pending notes_
+Server handlers (`packages/server/src/features/dependencies/inspectDependencies.ts`) and the VS Code dependency quick pick share these shapes; later wiring and integration hardening are captured in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-24-lsp--command-implementation-kickoff-lines-2701-3000](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-24-lsp--command-implementation-kickoff-lines-2701-3000), so any schema change requires coordinated updates across those surfaces and their tests.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.342Z","inputHash":"176dce59cd9be8d3"}]} -->

@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Implements the Doxygen-aware analyzer for `.c` and `.h` sources, binding doc comments and include dependencies into Live Doc symbol and dependency sets as laid out in the Nov 14 C adapter plan and delivered in the same-day rollout notes <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L3620-L3705> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L4028-L4088>.
 
 ### Notes
-_Pending notes_
+- Guarded by `c.docstring.test.ts` plus regenerated benchmark fixtures to ensure doc metadata and import resolution stay deterministic after the Nov 14 ship <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L4028-L4088>.
+- Extend both the parser and its test scenarios when onboarding new Doxygen tags, following the coverage matrix captured in the adapter plan <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L3620-L3705>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.954Z","inputHash":"bf8a05802076a639"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the shared LSP contracts (`collectWorkspaceSymbols`, `inspectSymbolNeighbors`) that power the symbol-ingestion pipeline delivered in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-03-hydrate-for-t035-symbol-ingestion-lines-361-686](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md#turn-03-hydrate-for-t035-symbol-ingestion-lines-361-686), giving the server and extension a common vocabulary for symbol queries.
 
 ### Notes
-_Pending notes_
+Later symbol-neighbor work (server provider + quick pick) depends on these shapes—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-24-lsp--command-implementation-kickoff-lines-2701-3000](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-24-lsp--command-implementation-kickoff-lines-2701-3000)—so any schema changes must ripple through both the server handlers and extension consumers in lockstep.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.405Z","inputHash":"6fde1f6f0e360794"}]} -->

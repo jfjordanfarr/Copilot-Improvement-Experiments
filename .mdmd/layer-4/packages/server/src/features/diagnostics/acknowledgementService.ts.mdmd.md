@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Persists diagnostic acknowledgements, decides whether follow-up alerts should emit, and records drift history, matching the Explorer workflow delivered in [2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Coordinates with hysteresis release and noise-suppression runtime settings so manual acknowledgements immediately quiet reciprocal ripples.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.235Z","inputHash":"d1a89141b449296e"}]} -->

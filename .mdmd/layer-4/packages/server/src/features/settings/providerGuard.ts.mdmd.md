@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures extension-scoped consent and configuration flags coming from the client and exposes a guarded view so the server only activates diagnostics and ripple features when the provider has explicitly opted in.
 
 ### Notes
-_Pending notes_
+- Emits console guidance when diagnostics remain disabled, preventing silent failures during automated runs; see [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md).
+- Works in tandem with `settingsBridge` to supply sanitized runtime defaults, a pairing reinforced in [2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.159Z","inputHash":"ff2342c8158f3bfa"}]} -->

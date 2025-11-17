@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the repository layer for the `ts-layered` benchmark so the analyzer must follow class-based imports into `models/widget.ts`, reflecting the stack decomposition described in [2025-11-03 summary](../../../../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Returns hard-coded metric records to isolate dependency traversal from data variability while still proving constructor-level runtime edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.228Z","inputHash":"6a401894dd9b71b3"}]} -->

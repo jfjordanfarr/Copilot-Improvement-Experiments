@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Verifies the ripple noise filter trims low-confidence, deep, and over-budget impacts, echoing the suppression safeguards introduced in [2025-10-23 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Focuses on deterministic counter increments (confidence/depth/change/artifact) so diagnostics publishers inherit precise telemetry when thresholds shift.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.409Z","inputHash":"08454056f7d7b03b"}]} -->

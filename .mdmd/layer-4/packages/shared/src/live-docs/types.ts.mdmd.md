@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Centralizes Stage‑0 Live Doc manifest and symbol structures so the generator, system CLI, and analysis pipelines share a stable schema.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-08-begin-refactor--stage-0-extraction-lines-961-1100]
 
 ### Notes
-_Pending notes_
+- Introduced while splitting Stage‑0 tooling out of the monolithic generator, enabling reusable manifest typing for docLoader and co-activation analytics.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-08-begin-refactor--stage-0-extraction-lines-961-1100]
+- Survived the Nov 15 Stage‑0 recovery by migrating authored content into the new `.md` Live Docs surface and retargeting all diagnostics to this schema file.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-19-automate-the-stage-0-migration-lines-2621-2760]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:32.344Z","inputHash":"5f9b131ee7fc34a2"}]} -->

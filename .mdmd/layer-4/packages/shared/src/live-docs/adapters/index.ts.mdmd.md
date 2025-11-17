@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Owns the shared language-adapter registry and `analyzeWithLanguageAdapters`, letting the Live Docs generator dispatch polyglot analysis across the C, C#, Java, Python, Ruby, and Rust bridges envisioned when we stood up the abstraction on Nov 12 <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-12.md#L330-L372>.
 
 ### Notes
-_Pending notes_
+- Migrated from the server generator into `packages/shared` on Nov 16 so both the CLI and extension consume the same registry surface <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L878-L918>.
+- Docstring harnesses for each adapter exercise this entry point, keeping registry coverage visible during the Nov 14 verification sweep <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2792-L2808>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.989Z","inputHash":"803a24e5f7432d6c"}]} -->

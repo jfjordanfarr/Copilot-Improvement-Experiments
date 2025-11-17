@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the canonical-ID reuse implemented in GraphStore so fallback inference and change persistence stop tripping SQLite uniqueness guards, as captured in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-27-graphstore-dedupe-attempt--new-failures-lines-3521-4000](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-27-graphstore-dedupe-attempt--new-failures-lines-3521-4000).
 
 ### Notes
-_Pending notes_
+Coverage locks the regression we saw during the US1 pipeline run where repeated inference writes hit `links.source_id/target_id/kind` collisions—see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L3710](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-23.md#L3710)—guarding the integration harness from silently dropping persisted edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.417Z","inputHash":"4e77caa4ba5c9127"}]} -->

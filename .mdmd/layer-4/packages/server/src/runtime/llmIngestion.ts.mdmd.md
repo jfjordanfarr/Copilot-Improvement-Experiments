@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Runs the language-server side of the Analyze-with-AI pipeline, queuing artifacts for `LlmIngestionOrchestrator` and relaying `INVOKE_LLM_REQUEST` calls back to the extension so AI assessments get persisted, a workflow introduced in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-26.SUMMARIZED.md#turn-13-analyze-with-ai-command-lands-lines-1501-2000](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-26.SUMMARIZED.md#turn-13-analyze-with-ai-command-lands-lines-1501-2000).
 
 ### Notes
-_Pending notes_
+`createDefaultRelationshipExtractor` gates remote invocation behind `providerGuard` so disabled or local-only modes short-circuit gracefully; tune the provider policy alongside the analyzer contract touched in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1754-L1789](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1754-L1789) to avoid regressions. Logging only emits the first successful dispatch per session to keep the extension host output readable while still surfacing failures during the ingestion loop.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.453Z","inputHash":"b335f1dc67a2812c"}]} -->

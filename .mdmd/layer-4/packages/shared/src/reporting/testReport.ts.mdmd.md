@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Formats benchmark telemetry (AST accuracy, rebuild stability, future suites) into human-auditable Markdown sections consumed by `generateTestReport.ts` and reporting pipelines.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-31.SUMMARIZED.md#turn-08-new-language-fixtures--documentation-sweep-lines-1821-2200]
 
 ### Notes
-_Pending notes_
+- Introduced with the benchmark reporting push so `safe-to-commit` could publish test reports alongside fixture docs and manifest updates.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-31.SUMMARIZED.md#turn-09-full-verify-run--commit-prep-lines-2201-2400]
+- Expanded on Nov 3 to support per-mode reports when benchmarks began emitting distinct AST and self-similarity outputs.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-09-implement-per-mode-benchmark-reporting-lines-821-1030]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:32.357Z","inputHash":"36a5ca5f9dce4c6d"}]} -->

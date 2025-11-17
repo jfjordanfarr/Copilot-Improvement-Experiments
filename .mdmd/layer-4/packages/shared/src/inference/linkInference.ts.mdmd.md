@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Implements the link inference orchestrator from US1 task T028, unifying fallback heuristics, workspace providers, and knowledge feeds into deduplicated link evidence with provenance as documented in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-17.md#L645](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-17.md#L645).
 
 ### Notes
-_Pending notes_
+The markdown watcher streams saved documents through this orchestrator to capture seeds and hints before diagnostics publish, per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L343](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L343), and later work plans to route its output into the live knowledge feed manager under the guarded ingestion roadmap in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1306](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1306).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.875Z","inputHash":"4646d8e00620428a"}]} -->

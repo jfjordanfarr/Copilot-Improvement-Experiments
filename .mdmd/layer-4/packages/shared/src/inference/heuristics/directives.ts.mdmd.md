@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Scans documentation artifacts for `@link` directives so fallback inference can honour the authored cross-file hints we started embedding in specs and OpenAPI docs during the Oct 25 documentation traceability push <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-25.md#L1-L140>.
 
 ### Notes
-_Pending notes_
+- Part of the Nov 7 modular heuristic refactor; keep alignment with `resolveReference` and the directive taxonomy captured in that pass when expanding the syntax surface <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L972-L1240>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.716Z","inputHash":"985cef4b414e84b9"}]} -->

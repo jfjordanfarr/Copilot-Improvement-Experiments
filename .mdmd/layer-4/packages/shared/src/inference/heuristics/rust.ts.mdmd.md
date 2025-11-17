@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Encodes the Rust module/use heuristics that recovered the AST benchmarks on Nov 5 by turning `mod`, `use`, and path references into `use` edges for the rust-basics, rust-analytics, and rust-log fixtures after we iterated with the recorder until the lingering false imports disappeared <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L1478-L1544> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.SUMMARIZED.md#L44-L76>.
 
 ### Notes
-_Pending notes_
+- The module lives inside the shared heuristic suite introduced on Nov 7; extend this file instead of reviving the pre-refactor monolith whenever new Rust patterns surface <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L760-L840>.
+- Keep the fallback fixture recorder (`npm run fixtures:record-fallback -- --lang rust`) in the loop after edits so rust-log and friends stay aligned with the curated expected graphs <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L1478-L1544>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.831Z","inputHash":"9ae56c5b8996b1f8"}]} -->

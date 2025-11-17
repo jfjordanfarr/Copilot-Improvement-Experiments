@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates the co-activation analytics report so dependency edges, shared test weights, and threshold tuning stay deterministic for Live Docs impact analysis workflows. See `AI-Agent-Workspace/ChatHistory/2025/11/2025-11-11.md` for the original test pass that grounded these scenarios.
 
 ### Notes
-_Pending notes_
+Updated alongside the November 15 telemetry sweep that aligned Live Docs analytics with the canonical `.mdmd.md` extension handling; the same pass re-ran this suite under Vitest 4 to confirm compatibility. Provenance: `AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md`.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.116Z","inputHash":"06f168bec8e87dff"}]} -->

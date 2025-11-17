@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Rebuilds the AST benchmark Live Doc from `fixtures.manifest.json`, ensuring the vendored Ky/libuv inventories stay synchronised with their recorded SHA-256 digests and upstream provenance so fixture audits remain deterministic ([fixture integrity rollout](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L4372-L4440)).
 
 ### Notes
-_Pending notes_
+- Created 2025-11-01 to automate regenerating `astAccuracyFixtures` after we codified per-file hashes and provenance inside the benchmark manifest, removing manual markdown edits ([automation step](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L4372-L4440)).
+- Updated 2025-11-03 while validating benchmark deltas so fixture regeneration could run alongside snapshot comparisons without reintroducing stale inventories ([benchmark follow-up](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L1300-L1460)).
+- Repointed 2025-11-16 to the `.live-documentation/source` mirror after the Stage‑0 cleanup, keeping manifest-driven docs intact without reviving the deprecated `.mdmd/layer-4` tree ([mirror alignment](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2680-L2840)).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.899Z","inputHash":"214c7c16e8de3a9b"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Proves the C# oracle correctly distinguishes runtime versus type-only `using` directives and honors overrides, keeping regenerated graphs faithful to the curated diagnostics fixtures <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L3220-L3270>.
 
 ### Notes
-_Pending notes_
+- Captured the Nov 6 failure around duplicate edges and now safeguards the fix; the suite has been green through the Nov 16 unit run <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L3588-L3776> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.383Z","inputHash":"756ac6b2ebf0a0c2"}]} -->

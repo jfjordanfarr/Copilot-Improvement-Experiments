@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Produces the co-activation graph that correlates implementation files through shared dependencies and test coverage, giving the diagnostics engine weighted hints about ripple risk.
 
 ### Notes
-_Pending notes_
+Initially written for the Live Docs “Ripple Intelligence” experiments (mid‑2024). It still consumes legacy Stage‑0 docs until the last consumers migrate, which is why it keeps the Stage‑0 loader alongside the modern target manifest.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:18.058Z","inputHash":"52d14b0362bcdedd"}]} -->

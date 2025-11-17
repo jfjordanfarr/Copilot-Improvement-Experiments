@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Guards the markdown renderer’s marker and provenance handling so authored sections survive regeneration without corrupting tests or lint rules.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-14-pare-duplicate-tests--fix-vitest-failures-lines-2401-2640]
 
 ### Notes
-_Pending notes_
+- Slimmed to focus on the rendering pipeline after the Stage‑0 rollout refactored redundant assertions; kept as a regression harness for begin/end marker behavior.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-14-pare-duplicate-tests--fix-vitest-failures-lines-2401-2640]
+- Continues to validate `.md` output after the Nov 15 migration so lint and generator steps observe the same markers.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-15-shift-live-docs-to-md-outputs-lines-1401-1820]
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.201Z","inputHash":"5d560c3a7462b88d"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Collects the Live Diagnostics LSP contracts—acknowledgement, outstanding diagnostics, assessments, export, and feed readiness—added while delivering the acknowledgement service in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-20-implement-t043-acknowledgement-service-lines-4101-4585-continued](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md#turn-20-implement-t043-acknowledgement-service-lines-4101-4585-continued).
 
 ### Notes
-_Pending notes_
+Feed readiness telemetry and export workflows extend these shapes; see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-06-better-sqlite3-rebuild-discipline--feed-readiness-lines-2801-3600](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-06-better-sqlite3-rebuild-discipline--feed-readiness-lines-2801-3600) for the readiness gating and [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-23-documentation-expansion-lines-2581-2700](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-23-documentation-expansion-lines-2581-2700) for the drift-history acknowledgement hardening that depends on this contract.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.356Z","inputHash":"4550041eb4e6995f"}]} -->

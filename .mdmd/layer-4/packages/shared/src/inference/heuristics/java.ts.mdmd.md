@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Recovers `imports`/`uses` edges for the Phase 8 Java fixtures by mapping import statements to package-class pairs and classifying whether the symbol is instantiated or referenced—work we landed on Nov 5 while chasing the java-service benchmark regression <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L780-L860> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L1340-L1420>.
 
 ### Notes
-_Pending notes_
+- Extend this module (rather than the orchestrator) when handling new `import static` or wildcard patterns; the modular heuristic layout from Nov 7 expects language-specific parsing to live here <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L760-L840>.
+- After adjustments, regenerate the Java fallback fixtures (`npm run fixtures:record-fallback -- --lang java`) so java-service and java-basic stay aligned with the oracle edges <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L1340-L1420>.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.772Z","inputHash":"627bf16b072e9cfc"}]} -->

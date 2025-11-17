@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Applies validated knowledge feed snapshots and stream events into the workspace graph, enforcing per-feed sequencing so the bridge and GraphStore stay consistent with upstream sources documented during the Oct 20 ingestion build recorded in [2025-10-20 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-20.SUMMARIZED.md).
 
 ### Notes
-_Pending notes_
+- Serialises feed processing via lightweight locks, prunes artifacts that disappear from provider snapshots, and normalises URIs/IDs before delegating to `KnowledgeGraphBridge`, reflecting the hardening pass called out in [2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.705Z","inputHash":"410a0b824a5f63ac"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Validates that the link inference orchestrator fuses fallback heuristics, workspace providers, and external knowledge feeds into coherent artifacts, links, and provenance—the coverage added when T028 shipped in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md#turn-11-build-link-inference-orchestrator-lines-515-657](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md#turn-11-build-link-inference-orchestrator-lines-515-657).
 
 ### Notes
-_Pending notes_
+Keeps the orchestrator’s provider/feed summaries and trace outputs aligned with the pipeline expectations that the markdown watcher and diagnostics publisher consume—codified across the US1 plumbing captured in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md#turn-12-stand-up-markdown-watcher-lines-658-824](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md#turn-12-stand-up-markdown-watcher-lines-658-824).
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.860Z","inputHash":"4870139ed04d0a9a"}]} -->
