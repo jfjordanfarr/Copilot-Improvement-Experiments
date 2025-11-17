@@ -8,10 +8,9 @@ import ts from "typescript";
 import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
   LIVE_DOCUMENTATION_FILE_EXTENSION,
-  normalizeLiveDocumentationConfig,
-  type LiveDocumentationConfig
+  normalizeLiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
+import { parseLiveDocMarkdown } from "@copilot-improvement/shared/live-docs/parse";
 
 import { __testUtils } from "../../packages/server/src/features/live-docs/generator";
 
@@ -50,13 +49,6 @@ interface Report {
   skipped: string[];
 }
 
-interface ParsedDoc {
-  metadataPath: string;
-  archetype: string;
-  publicSymbols: Set<string>;
-  dependencies: Set<string>;
-}
-
 async function main(): Promise<void> {
   const workspaceRoot = process.cwd();
   const config = normalizeLiveDocumentationConfig({
@@ -90,15 +82,15 @@ async function main(): Promise<void> {
 
   for (const docAbsolutePath of docs) {
     const content = await fs.readFile(docAbsolutePath, "utf8");
-    const parsedDoc = parseLiveDoc(content, docAbsolutePath, workspaceRoot, config);
+    const parsedDoc = parseLiveDocMarkdown(content, docAbsolutePath, workspaceRoot, config);
     if (!parsedDoc) {
       skipped.push(relativize(workspaceRoot, docAbsolutePath));
       continue;
     }
 
-    const sourceAbsolutePath = path.resolve(workspaceRoot, parsedDoc.metadataPath);
+    const sourceAbsolutePath = path.resolve(workspaceRoot, parsedDoc.sourcePath);
     if (!SUPPORTED_EXTENSIONS.has(path.extname(sourceAbsolutePath))) {
-      skipped.push(parsedDoc.metadataPath);
+      skipped.push(parsedDoc.sourcePath);
       continue;
     }
 
@@ -106,7 +98,7 @@ async function main(): Promise<void> {
     try {
       sourceContent = await fs.readFile(sourceAbsolutePath, "utf8");
     } catch {
-      skipped.push(parsedDoc.metadataPath);
+      skipped.push(parsedDoc.sourcePath);
       continue;
     }
 
@@ -132,11 +124,14 @@ async function main(): Promise<void> {
       analyzerDependenciesRaw.map((entry) => entry.resolvedPath ?? entry.specifier)
     );
 
-    const symbolsMetrics = compareSets(analyzerSymbols, parsedDoc.publicSymbols);
-    const dependencyMetrics = compareSets(analyzerDependencies, parsedDoc.dependencies);
+    const docSymbols = new Set(parsedDoc.publicSymbols);
+    const docDependencies = new Set(parsedDoc.dependencies);
+
+    const symbolsMetrics = compareSets(analyzerSymbols, docSymbols);
+    const dependencyMetrics = compareSets(analyzerDependencies, docDependencies);
 
     files.push({
-      sourcePath: parsedDoc.metadataPath,
+      sourcePath: parsedDoc.sourcePath,
       symbols: symbolsMetrics,
       dependencies: dependencyMetrics
     });
@@ -213,168 +208,6 @@ const SUPPORTED_EXTENSIONS = new Set([
   ".cjs"
 ]);
 
-function parseLiveDoc(
-  content: string,
-  docAbsolutePath: string,
-  workspaceRoot: string,
-  config: LiveDocumentationConfig
-): ParsedDoc | undefined {
-  const metadataPathMatch = content.match(/-\s+Code Path:\s+(.+)/);
-  if (!metadataPathMatch) {
-    return undefined;
-  }
-
-  const archetypeMatch = content.match(/-\s+Archetype:\s+(\w+)/);
-  const archetype = archetypeMatch ? archetypeMatch[1].toLowerCase() : "implementation";
-
-  const publicSymbolsSection = extractSection(content, "Public Symbols");
-  const dependenciesSection = extractSection(content, "Dependencies");
-
-  const docDir = path.dirname(docAbsolutePath);
-
-  return {
-    metadataPath: metadataPathMatch[1].trim(),
-    archetype,
-    publicSymbols: parseSymbolSection(publicSymbolsSection),
-    dependencies: parseDependencySection(dependenciesSection, docDir, workspaceRoot, config)
-  };
-}
-
-function parseSymbolSection(section: string): Set<string> {
-  const symbols = new Set<string>();
-  const lines = section.split(/\r?\n/);
-  for (const line of lines) {
-    const bulletMatch = line.match(/-\s+`([^`]+)`/);
-    if (bulletMatch) {
-      symbols.add(bulletMatch[1]);
-      continue;
-    }
-
-    const headingMatch = line.match(/^####\s+`([^`]+)`/);
-    if (headingMatch) {
-      symbols.add(headingMatch[1]);
-    }
-  }
-  return symbols;
-}
-
-function parseDependencySection(
-  section: string,
-  docDir: string,
-  workspaceRoot: string,
-  config: LiveDocumentationConfig
-): Set<string> {
-  const dependencies = new Set<string>();
-  const lines = section.split(/\r?\n/);
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (!trimmed.startsWith("- ")) {
-      continue;
-    }
-    const remainder = trimmed.slice(2).trim();
-    if (!remainder || remainder.startsWith("_")) {
-      continue;
-    }
-
-    const linkMatch = remainder.match(/^\[([^\]]+)\]\(([^)]+)\)/);
-    if (linkMatch) {
-      const [, label, target] = linkMatch;
-      const resolvedTarget = resolveDependencyTarget(target, docDir, workspaceRoot, config);
-      if (resolvedTarget) {
-        dependencies.add(resolvedTarget);
-        continue;
-      }
-
-      const sanitizedLabel = stripInlineCode(label);
-      if (sanitizedLabel) {
-        dependencies.add(sanitizedLabel);
-      }
-      continue;
-    }
-
-    const [firstToken] = remainder.split(/\s+/);
-    if (!firstToken) {
-      continue;
-    }
-
-    const sanitizedToken = stripInlineCode(firstToken);
-    if (!sanitizedToken) {
-      continue;
-    }
-
-    if (sanitizedToken.startsWith(".")) {
-      const resolved = resolveDependencyTarget(sanitizedToken, docDir, workspaceRoot, config);
-      if (resolved) {
-        dependencies.add(resolved);
-      }
-      continue;
-    }
-
-    dependencies.add(sanitizedToken);
-  }
-  return dependencies;
-}
-
-function stripInlineCode(token: string): string {
-  let value = token.trim();
-  while (value.startsWith("`")) {
-    value = value.slice(1);
-  }
-  while (value.endsWith("`")) {
-    value = value.slice(0, -1);
-  }
-  return value.trim();
-}
-
-function resolveDependencyTarget(
-  rawTarget: string,
-  docDir: string,
-  workspaceRoot: string,
-  config: LiveDocumentationConfig
-): string | undefined {
-  const target = rawTarget.trim();
-  if (!target || /^[a-z]+:\/\//i.test(target)) {
-    return undefined;
-  }
-
-  const pathComponent = target.split("#", 1)[0];
-  if (!pathComponent) {
-    return undefined;
-  }
-
-  const absolute = path.resolve(docDir, pathComponent);
-  const workspaceResolved = path.resolve(workspaceRoot);
-  const absoluteResolved = path.resolve(absolute);
-  if (
-    absoluteResolved !== workspaceResolved &&
-    !absoluteResolved.startsWith(`${workspaceResolved}${path.sep}`)
-  ) {
-    return undefined;
-  }
-
-  const relative = path.relative(workspaceRoot, absoluteResolved);
-  if (!relative) {
-    return undefined;
-  }
-
-  const normalizedRelative = normalizeWorkspacePath(relative);
-  const liveDocsPrefix = normalizeWorkspacePath(path.join(config.root, config.baseLayer));
-
-  if (normalizedRelative === liveDocsPrefix) {
-    return undefined;
-  }
-
-  if (normalizedRelative.startsWith(`${liveDocsPrefix}/`)) {
-    const withoutPrefix = normalizedRelative.slice(liveDocsPrefix.length + 1);
-    if (!withoutPrefix.endsWith(LIVE_DOCUMENTATION_FILE_EXTENSION)) {
-      return undefined;
-    }
-    return withoutPrefix.slice(0, -LIVE_DOCUMENTATION_FILE_EXTENSION.length);
-  }
-
-  return normalizedRelative;
-}
-
 function initializeMetrics(): ComparisonMetrics {
   return {
     tp: 0,
@@ -439,17 +272,6 @@ function finalizeMetrics(metrics: ComparisonMetrics): ComparisonMetrics {
 
 function relativize(root: string, absolute: string): string {
   return path.relative(root, absolute).split(path.sep).join("/");
-}
-
-function extractSection(content: string, section: string): string {
-  const begin = `<!-- LIVE-DOC:BEGIN ${section} -->`;
-  const end = `<!-- LIVE-DOC:END ${section} -->`;
-  const startIndex = content.indexOf(begin);
-  const endIndex = content.indexOf(end);
-  if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
-    return "";
-  }
-  return content.slice(startIndex + begin.length, endIndex).trim();
 }
 
 main().catch((error) => {

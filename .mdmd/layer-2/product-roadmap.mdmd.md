@@ -64,8 +64,8 @@ Supports CAP-003 by making Live Documentation the backbone of diagnostics, CLI t
 - Provide diff previews comparing authored versus generated changes before accepting regeneration.
 
 #### Stream LD3-B – CLI & Export Surfaces *(planned)*
-- Ship CLI commands (e.g., `npm run live-docs:inspect`) that answer “what else does this touch?” by traversing markdown links and returning shareable markdown or JSON.
-- Generate ASCII/markdown narratives and lightweight architecture diagrams consumable by humans and copilots.
+- Ship CLI commands (e.g., `npm run live-docs:inspect`) that compute the dependency path between a `--from` and `--to` artifact or symbol, fall back to the nearest terminal roots when only one endpoint is supplied, and return shareable markdown or JSON.
+- Generate ASCII/markdown narratives that spell out each hop in the chain (artifact, edge kind, justification) so humans and copilots can replay impact reasoning without spelunking raw markdown.
 - Support shareable codemap snapshots similar to Windsurf Codemaps but grounded entirely in markdown.
 
 #### Stream LD3-C – Enforcement & Linting *(planned)*
@@ -158,7 +158,7 @@ Supports CAP-007 by delivering a stateless Cloudflare (or equivalent) runner tha
 - Unmapped docstring tags appear in Live Docs under `rawFragments` with actionable telemetry so adapters can be extended without silently dropping content.
 
 ### REQ-L3 Acceptance Criteria
-- Diagnostics, CLI, and narrative commands reference Live Docs as the single source of truth (no bespoke graph queries).
+- Diagnostics, CLI, and narrative commands reference Live Docs as the single source of truth (no bespoke graph queries), and `live-docs:inspect` emits deterministic hop sequences for `--from/--to` queries while surfacing terminal roots when only one endpoint is provided.
 - Safe-commit and CI pipelines block merges when Live Doc regeneration or lint checks fail.
 - CLI exports and diagnostics respond within target latency (≤2 s for repos under 10k files).
 - Every UI interaction (diagnostics, diff previews, tree views) exposes an equivalent CLI or LLM-accessible command so automation matches human capabilities.

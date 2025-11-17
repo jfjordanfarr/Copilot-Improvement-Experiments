@@ -62,8 +62,9 @@ Leads export impact reports, Copilot prompts, or diagnostics sourced from the Li
 **Acceptance Scenarios**:
 
 1. **Given** a developer saving a file, **When** diagnostics appear, **Then** entries include links to the relevant Live Docs with evidence counts.
-2. **Given** a CLI command `live-docs inspect packages/.../file.ts`, **When** executed, **Then** it renders markdown summarising public symbols, dependencies, and evidence identical to the Live Doc file.
-3. **Given** a CLI command `live-docs system --cluster <id>`, **When** executed, **Then** it streams the analytics to stdout (or a temp file when requested) and leaves `.live-documentation/system/` unchanged.
+2. **Given** a CLI command `live-docs inspect --from packages/server/src/runtime/environment.ts --to packages/extension/src/commands/exportDiagnostics.ts`, **When** executed, **Then** it emits a deterministic hop-by-hop narrative (edge kind, source, justification) showing the dependency path between the two artifacts.
+3. **Given** a CLI command `live-docs inspect --from packages/server/src/runtime/environment.ts`, **When** executed, **Then** it automatically walks toward the nearest terminal roots (tests, config, docs) and reports the chain so maintainers can see where the signal ultimately originates.
+4. **Given** a CLI command `live-docs system --cluster <id>`, **When** executed, **Then** it streams the analytics to stdout (or a temp file when requested) and leaves `.live-documentation/system/` unchanged.
 
 ---
 
@@ -192,7 +193,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **FR-LD2**: Generator MUST emit `Public Symbols`, `Dependencies`, and archetype-specific sections (Implementation: `Observed Evidence`; Test: `Targets`, `Supporting Fixtures`; Asset: `Consumers`) using analyzer output and coverage data.
 - **FR-LD3**: Regeneration MUST record provenance metadata (analyzer id, timestamp, benchmark hash) within generated blocks for auditability.
 - **FR-LD4**: Safe-commit pipeline MUST lint Live Docs for structural completeness, analyzer parity, and evidence presence, failing merges when violations occur unless explicit waivers are present.
-- **FR-LD5**: Diagnostics, CLI, and Copilot surfaces MUST consume Live Docs as their single source of truth, embedding links back to the originating documents.
+- **FR-LD5**: Diagnostics, CLI, and Copilot surfaces MUST consume Live Docs as their single source of truth, embedding links back to the originating documents, and the `live-docs inspect` CLI MUST support `--from/--to` path discovery plus single-endpoint root tracing with deterministic hop output.
 - **FR-LD6**: Docstring bridges MUST reconcile inline documentation with Live Doc summaries, map multi-tag payloads into a canonical schema (`summary`, `remarks`, `parameters`, `typeParameters`, `returns`, `exceptions`, `examples`, `links`), render deterministic `##### `Symbol` — Field` subheadings with `_Not documented_` placeholders when data is missing, retain provenance for unmapped fragments, and raise drift diagnostics when mismatches persist beyond one regeneration cycle.
 - **FR-LD7**: Migration tooling MUST compare existing Layer‑4 MDMD docs to generated Live Docs, producing diff reports and updating references (Layer‑3/Layer‑1) once parity is confirmed.
 - **FR-LD8**: External feeds (LSIF, SCIP, GitLab Knowledge Graph) and optional LLM augmentations MUST tag generated sections with confidence tiers; low-confidence edges require manual promotion before appearing in diagnostics.

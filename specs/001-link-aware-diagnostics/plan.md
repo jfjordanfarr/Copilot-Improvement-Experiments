@@ -94,7 +94,7 @@ TBD — populate if future scope deviates from Constitution constraints.
 
 ### Phase 4 – Consumption Surfaces & CLI Parity
 - Pivot diagnostics, tree views, and quick pick commands to read from staged Live Docs.
-- Ship CLI counterparts (`live-docs inspect`, `live-docs evidence`, etc.) delivering equivalent data for LLM automation.
+- Ship CLI counterparts (`live-docs inspect`, `live-docs evidence`, etc.) where `live-docs inspect` traces the dependency path between `--from` and `--to` artifacts (or locates terminal roots when only one endpoint is provided) and emits hop-by-hop markdown/JSON for LLM automation.
 - Provide diff and dry-run modes to review regeneration impacts before applying.
 
 ### Phase 5 – Docstring Bridges & Bidirectional Authoring

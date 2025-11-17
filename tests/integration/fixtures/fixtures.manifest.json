@@ -33,5 +33,13 @@
     "languages": ["C#", "Markdown"],
     "slopcopConfig": "slopcop.config.json",
     "slopcopSuites": ["markdown", "symbols"]
+  },
+  {
+    "id": "webforms-appsettings",
+    "label": "WebForms instrumentation key chain",
+    "path": "tests/integration/fixtures/webforms-appsettings/workspace",
+    "stories": ["CLI"],
+    "languages": ["C#", "JavaScript", "ASP.NET", "XML", "Markdown"],
+    "slopcopConfig": "slopcop.config.json"
   }
 ]

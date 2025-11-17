@@ -120,7 +120,8 @@ const KNOWN_ROOT_SEGMENTS = new Set([
 
 const CODE_ARTIFACT_IGNORE_PATTERNS: RegExp[] = [
   /\/tests\/integration\/benchmarks\/fixtures\//,
-  /\/scripts\/fixture-tools\//
+  /\/scripts\/fixture-tools\//,
+  /\/tests\/integration\/fixtures\/webforms-appsettings\//
 ];
 
 const DOCUMENT_ARTIFACT_IGNORE_PATTERNS: RegExp[] = [

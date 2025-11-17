@@ -83,10 +83,7 @@ description: "Task list for Live Documentation"
 
 **Purpose**: Ensure diagnostics, CLI tooling, and Copilot prompts read from staged Live Docs while retaining legacy fallback during migration.
 
-- [ ] LD-400 Pivot diagnostics publishers (`packages/server/src/features/diagnostics/*`) to resolve metadata from Live Docs, preserving legacy mode via feature flag
-- [ ] LD-401 Update VS Code extension views/commands (`packages/extension/src/views/diagnosticsTree.ts`, `commands/exportDiagnostics.ts`) to embed Live Doc links + evidence counts
-- [ ] LD-402 Ship CLI `scripts/live-docs/inspect.ts` mirroring UI output; add integration test `tests/integration/live-docs/inspect-cli.test.ts`
-- [ ] LD-403 [P] Provide Copilot prompt helper referencing Live Docs (`packages/shared/src/live-docs/copilotContext.ts`)
+ [ ] LD-402 Ship CLI `scripts/live-docs/inspect.ts` that resolves the dependency chain between a `--from` and `--to` artifact (file or symbol), surfaces terminal roots when only one endpoint is supplied, and snapshots the hop-by-hop output via `tests/integration/live-docs/inspect-cli.test.ts`
 - [ ] LD-404 Implement regeneration watcher so safe-commit or file save triggers targeted updates without full repo sweep
 - [ ] LD-405 Document legacy-parity strategy in `specs/001-link-aware-diagnostics/quickstart.md` and Layer‑3 docs, including rollback toggles
 

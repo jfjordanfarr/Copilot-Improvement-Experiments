@@ -1,21 +1,21 @@
-# scripts/live-docs/report-precision.ts
+# scripts/live-docs/inspect.ts
 
 ## Metadata
 - Layer: 4
 - Archetype: implementation
-- Code Path: scripts/live-docs/report-precision.ts
-- Live Doc ID: LD-implementation-scripts-live-docs-report-precision-ts
-- Generated At: 2025-11-17T19:46:00.692Z
+- Code Path: scripts/live-docs/inspect.ts
+- Live Doc ID: LD-implementation-scripts-live-docs-inspect-ts
+- Generated At: 2025-11-17T19:44:57.565Z
 
 ## Authored
 ### Purpose
-Evaluates generated Live Docs against the analyzer to calculate symbol and dependency precision/recall scores, producing `reports/benchmarks/live-docs/precision.json` so we can detect regressions in the documentation pipeline.
+Provide a CLI entry point that inspects the staged Live Documentation graph and either finds a dependency path between two artefacts or lists the furthest reachable nodes from a starting point.
 
 ### Notes
-First built for the Live Docs accuracy benchmark (Sep 2024) and tightened during the 2025 re-export fixes. The script mirrors the metrics enforced during `npm run safe:commit`, emitting non-zero exit codes when precision drops below 0.9 for symbols or dependency recall slips under 0.8.
+Supports both text and JSON output. When no path exists, the CLI reports the closest reachable frontier, including unresolved dependencies, so path-finding gaps can be closed.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-17T19:46:00.692Z","inputHash":"53586289dd480736"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-17T19:44:57.565Z","inputHash":"886d4c14893bc8f7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -27,10 +27,10 @@ _No public symbols detected_
 - `node:fs/promises` - `fs`
 - `node:path` - `path`
 - `node:process` - `process`
-- [`generator.__testUtils`](../../packages/server/src/features/live-docs/generator.ts.mdmd.md#__testutils)
 - [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#default_live_documentation_config)
 - [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#live_documentation_file_extension)
+- [`liveDocumentationConfig.LiveDocumentationConfig`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#livedocumentationconfig)
 - [`liveDocumentationConfig.normalizeLiveDocumentationConfig`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#normalizelivedocumentationconfig)
 - [`parse.parseLiveDocMarkdown`](../../packages/shared/src/live-docs/parse.ts.mdmd.md#parselivedocmarkdown)
-- `typescript` - `ts`
+- [`pathUtils.normalizeWorkspacePath`](../../packages/shared/src/tooling/pathUtils.ts.mdmd.md#normalizeworkspacepath)
 <!-- LIVE-DOC:END Dependencies -->
