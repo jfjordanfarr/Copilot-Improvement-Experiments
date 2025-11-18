@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Mocks a SPA entrypoint that hydrates telemetry settings by calling into the alias-mapped runtime config module, giving the inspect CLI a concrete import chain to resolve.
 
 ### Notes
-_Pending notes_
+- Pairs with `src/config/runtime.ts` to demonstrate how Live Docs should collapse custom module aliases back to disk paths during LD-402 runs.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:11:29.012Z","inputHash":"8d57c0677f7c2c73"}]} -->

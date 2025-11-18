@@ -2,8 +2,8 @@
   "generatedAt": "2025-01-01T00:00:00.000Z",
   "workspace": "D:\\Projects\\Live-Documentation",
   "totals": {
-    "artifacts": 693,
-    "links": 1261
+    "artifacts": 702,
+    "links": 1266
   },
   "artifacts": [
     {
@@ -3177,6 +3177,23 @@
       }
     },
     {
+      "id": "orchestrated-artifact-534445e7",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/packages/shared/src/live-docs/adapters/aspnet.test.ts.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "packages/shared/src/live-docs/adapters/aspnet.test.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-bbf14665",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/packages/shared/src/live-docs/adapters/aspnet.ts.mdmd.md",
       "layer": "implementation",
@@ -5302,6 +5319,74 @@
       }
     },
     {
+      "id": "orchestrated-artifact-9786d369",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/blazor-telemetry/workspace/appsettings.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/blazor-telemetry/workspace/appsettings.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9b9ae62c",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/blazor-telemetry/workspace/Pages/_Host.cshtml.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/blazor-telemetry/workspace/Pages/_Host.cshtml.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-a73d3b64",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/blazor-telemetry/workspace/Pages/_Host.cshtml.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/blazor-telemetry/workspace/Pages/_Host.cshtml"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-025b518c",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/blazor-telemetry/workspace/wwwroot/js/blazor-telemetry.js.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/blazor-telemetry/workspace/wwwroot/js/blazor-telemetry.js"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-e88f73f8",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-reflection/workspace/Services/ReflectionFactory.cs.mdmd.md",
       "layer": "implementation",
@@ -5550,6 +5635,23 @@
           "identifiers": [],
           "codePaths": [
             "tests/integration/live-docs/generation.test.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-14bf0c8e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/live-docs/inspect-cli.test.ts.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/live-docs/inspect-cli.test.ts"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -9189,6 +9291,12 @@
       }
     },
     {
+      "id": "orchestrated-artifact-a7c03e48",
+      "uri": "file:///D:/Projects/Live-Documentation/packages/shared/src/live-docs/adapters/aspnet.test.ts",
+      "layer": "code",
+      "language": "typescript"
+    },
+    {
       "id": "orchestrated-artifact-95998572",
       "uri": "file:///D:/Projects/Live-Documentation/packages/shared/src/live-docs/adapters/aspnet.ts",
       "layer": "code",
@@ -12048,6 +12156,18 @@
       "language": "javascript"
     },
     {
+      "id": "orchestrated-artifact-ec97900d",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/blazor-telemetry/workspace/Pages/_Host.cshtml.cs",
+      "layer": "code",
+      "language": "csharp"
+    },
+    {
+      "id": "orchestrated-artifact-d614c499",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/blazor-telemetry/workspace/wwwroot/js/blazor-telemetry.js",
+      "layer": "code",
+      "language": "javascript"
+    },
+    {
       "id": "orchestrated-artifact-c2a3d1db",
       "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/csharp-advanced-symbols/docs/index.md",
       "layer": "requirements",
@@ -12642,6 +12762,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-840babe8",
+      "sourceId": "orchestrated-artifact-025b518c",
+      "targetId": "orchestrated-artifact-d614c499",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-7d9411e0",
       "sourceId": "orchestrated-artifact-0297b634",
       "targetId": "orchestrated-artifact-003e73a0",
@@ -13158,6 +13287,15 @@
       "id": "orchestrated-link-7f1f431f",
       "sourceId": "orchestrated-artifact-1407325d",
       "targetId": "orchestrated-artifact-0176e96a",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-2b1416ab",
+      "sourceId": "orchestrated-artifact-14bf0c8e",
+      "targetId": "orchestrated-artifact-ad704b6f",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -15831,6 +15969,15 @@
       "id": "orchestrated-link-3fcfeea2",
       "sourceId": "orchestrated-artifact-5302d355",
       "targetId": "orchestrated-artifact-42716cb6",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-a6e25800",
+      "sourceId": "orchestrated-artifact-534445e7",
+      "targetId": "orchestrated-artifact-a7c03e48",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -18636,6 +18783,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-e0d687ac",
+      "sourceId": "orchestrated-artifact-9b9ae62c",
+      "targetId": "orchestrated-artifact-ec97900d",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-c62948a5",
       "sourceId": "orchestrated-artifact-9bde31e9",
       "targetId": "orchestrated-artifact-00dea9f6",
@@ -19152,6 +19308,15 @@
       "id": "orchestrated-link-4c5939a4",
       "sourceId": "orchestrated-artifact-a7af942b",
       "targetId": "orchestrated-artifact-2b55fb6c",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-984aaebc",
+      "sourceId": "orchestrated-artifact-a7c03e48",
+      "targetId": "orchestrated-artifact-95998572",
       "kind": "depends_on",
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -23869,9 +24034,9 @@
     {
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
-      "seedCount": 737,
-      "hintCount": 449,
-      "evidenceCount": 521
+      "seedCount": 746,
+      "hintCount": 455,
+      "evidenceCount": 522
     },
     {
       "id": "relationship-rules",

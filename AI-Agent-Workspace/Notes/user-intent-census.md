@@ -457,6 +457,14 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L4029-L4055` — Harden `.github/copilot-instructions.md` with an evergreen Stage‑0 preservation rule: never use bulk `git checkout`/`git restore` on `.live-documentation/**` or `.mdmd/**`; stage or stash first and reference today’s log as the cautionary tale.
 - `2025-11-15.md:L4229-L4357` — When updating .github/copilot-instructions.md, express the Stage‑0 safeguard as the behaviour bullet “Git Commands Need Extra Care” (linking to `2025-11-15.SUMMARIZED.md`) and add “Safeguard In-Flight Work” so bulk git commands only run after commits/stashes/branches and outstanding work stays staged before destructive actions.
 
+## 2025-11-17 (Dev Day 26)
+- `2025-11-17.md:L433-L505` — Re-scope LD-402 into a dependency pathfinder: accept `--from/--to` (or single-endpoint) inputs, emit the hop-by-hop chain “Oracle of Bacon” style, and default to tracing terminal roots when only one endpoint is provided.
+- `L519-L538` — Document the inspect CLI’s mission across Layer 1, Layer 2, and the spec before continuing implementation so future readers understand the tool’s purpose without reading the chat log.
+- `L593-L606` — Materialise a test fixture that proves the WebForms hidden-field scenario end-to-end (JavaScript variable back to Web.config AppSettings) to validate the CLI’s pathfinding claims.
+- `L1752-L1776` — Update `.github/copilot-instructions.md` to remind future sessions the inspect CLI exists, highlight JSON mode and inbound/outbound usage, and reinforce that Copilot should dogfood the tool routinely.
+- `L1854-L1890` — Plan enhancements to cover Razor pages, SPA runtime configs, and reflection flows, keeping LLM assistance optional but available for ambiguous edges so deterministic heuristics stay primary.
+- `L1901-L1906` — Operate with elevated agency, minimising chatter while escalating only when forks or roadblocks arise, to conserve context for the ongoing inspect CLI expansion.
+
 ## Usage Notes
 - Treat this census as the canonical index of stakeholder intent; cross-link relevant bullets into Layer-1/Layer-2 MDMD documents as needed.
 - When future autosummarization truncates context, rehydrate by locating the referenced `ChatHistory/YYYY-MM-DD.md` line ranges.

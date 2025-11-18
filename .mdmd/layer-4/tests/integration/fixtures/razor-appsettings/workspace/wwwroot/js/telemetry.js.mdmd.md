@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Simulates a Razor-backed telemetry bootstrapper that scrapes hidden fields from `Index.cshtml` so we can prove DOM heuristics recover the configuration hop.
 
 ### Notes
-_Pending notes_
+- Shares structure with the Blazor telemetry script; together they exercise the selector heuristics across both Razor pages and the Blazor host shell.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:11:29.005Z","inputHash":"b1fb52dfdf177ca3"}]} -->

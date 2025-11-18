@@ -46,6 +46,14 @@ const fixtures = {
     "fixtures",
     "csharp-reflection",
     "workspace"
+  ),
+  blazor: path.join(
+    repoRoot,
+    "tests",
+    "integration",
+    "fixtures",
+    "blazor-telemetry",
+    "workspace"
   )
 } as const;
 
@@ -194,6 +202,37 @@ suite("Live Docs inspect CLI", () => {
         "wwwroot/js/telemetry.js",
         "Pages/Index.cshtml",
         "Pages/Index.cshtml.cs",
+        "appsettings.json"
+      ]
+    );
+  });
+
+  test("resolves Blazor host telemetry chain", () => {
+    const run = runInspectCli(fixtures.blazor, [
+      "--from",
+      "wwwroot/js/blazor-telemetry.js",
+      "--to",
+      "appsettings.json",
+      "--json"
+    ]);
+
+    assert.strictEqual(run.exitCode, 0, `inspect exited ${run.exitCode}:\n${run.stderr || run.stdout}`);
+    const payload = JSON.parse(run.stdout) as {
+      kind: string;
+      direction: string;
+      length: number;
+      nodes: Array<{ codePath: string }>;
+    };
+
+    assert.strictEqual(payload.kind, "path");
+    assert.strictEqual(payload.direction, "outbound");
+    assert.strictEqual(payload.length, 3);
+    assert.deepStrictEqual(
+      payload.nodes.map(node => node.codePath),
+      [
+        "wwwroot/js/blazor-telemetry.js",
+        "Pages/_Host.cshtml",
+        "Pages/_Host.cshtml.cs",
         "appsettings.json"
       ]
     );

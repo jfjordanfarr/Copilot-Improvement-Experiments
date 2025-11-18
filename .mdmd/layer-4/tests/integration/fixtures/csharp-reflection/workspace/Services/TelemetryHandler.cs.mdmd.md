@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the reflection-only handler that the LD-402 pathfinder must rediscover when traversing factory-constructed telemetry processors.
 
 ### Notes
-_Pending notes_
+- Served alongside `ReflectionFactory.cs` to validate that reflection metadata emitted by the generator keeps dependencies precise even without explicit `new` expressions.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:11:28.984Z","inputHash":"d1dc3f73a0bba280"}]} -->

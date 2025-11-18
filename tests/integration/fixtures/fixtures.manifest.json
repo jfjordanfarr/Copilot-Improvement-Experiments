@@ -51,6 +51,14 @@
     "slopcopConfig": "slopcop.config.json"
   },
   {
+    "id": "blazor-telemetry",
+    "label": "Blazor host telemetry chain",
+    "path": "tests/integration/fixtures/blazor-telemetry/workspace",
+    "stories": ["CLI"],
+    "languages": ["C#", "Razor", "JavaScript", "JSON", "Markdown"],
+    "slopcopConfig": "slopcop.config.json"
+  },
+  {
     "id": "spa-runtime-config",
     "label": "SPA runtime config alias",
     "path": "tests/integration/fixtures/spa-runtime-config/workspace",

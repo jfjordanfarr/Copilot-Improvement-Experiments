@@ -1,6 +1,6 @@
 You have been requested to summarize the following dev day conversation file into an auditable, turn-by-turn conversation summary in the same style as the other dev day summaries. 
 
-**PLEASE READ ALL PRIOR SUMMARIES FROM THE CURRENT MONTH IN FULL BEFORE SUMMARIZING YESTERDAY'S CONVERSATION**
+**PLEASE READ THE MOST RECENT FIVE SUMMARIES IN FULL BEFORE SUMMARIZING THE CONVERSATION**
 
 [Development Chat History Summary Index](/AI-Agent-Workspace/ChatHistory/README.md)
 

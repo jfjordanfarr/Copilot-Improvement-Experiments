@@ -9,10 +9,11 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Exercises the `npm run live-docs:inspect` CLI against representative workspaces so we guarantee the pathfinder resolves telemetry chains across WebForms, Razor, Blazor, SPA aliasing, and reflection-driven handlers.
 
 ### Notes
-_Pending notes_
+- Uses fixture-local workspaces to avoid mutating the main repo; each test shells out via `tsx` to mirror the way users run the CLI.
+- Blazor coverage was added on 2025-11-18 to lock in the `.razor` → partial class → `appsettings.json` chain discussed during the LD-402 expansion.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:40:48.983Z","inputHash":"db7766b4950b61f0"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Represents the concrete runtime configuration module that SPA bootstrap code should reach once alias resolution succeeds.
 
 ### Notes
-_Pending notes_
+- Intentionally has no outbound dependencies so the inspect CLI path terminates here, matching expectations in `inspect-cli.test.ts`.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:11:29.018Z","inputHash":"4eb73e51616b173f"}]} -->
