@@ -5,6 +5,7 @@ import path from "node:path";
 import ts from "typescript";
 
 import { analyzeWithLanguageAdapters } from "./adapters";
+import { inferDomDependencies } from "./heuristics/dom";
 import {
   type LiveDocumentationConfig,
   type LiveDocumentationArchetype
@@ -365,11 +366,22 @@ export async function analyzeSourceFile(
   );
 
   const directSymbols = collectExportedSymbols(sourceFile);
-  const dependencies = await collectDependencies({
+  let dependencies = await collectDependencies({
     sourceFile,
     absolutePath,
     workspaceRoot
   });
+
+  if (shouldInferDomDependencies(extension)) {
+    const domDependencies = await inferDomDependencies({
+      absolutePath,
+      workspaceRoot,
+      content
+    });
+    if (domDependencies.length > 0) {
+      dependencies = mergeDependencyEntries(dependencies, domDependencies);
+    }
+  }
 
   const { symbols, reExports } = await augmentWithReExportedSymbols({
     sourceAbsolute: absolutePath,
@@ -668,6 +680,92 @@ export async function collectDependencies(params: {
   return entries;
 }
 
+function mergeDependencyEntries(
+  base: DependencyEntry[],
+  extras: DependencyEntry[]
+): DependencyEntry[] {
+  if (extras.length === 0) {
+    return base;
+  }
+
+  const map = new Map<string, DependencyEntry>();
+
+  for (const entry of base) {
+    const clone = cloneDependency(entry);
+    map.set(displayDependencyKey(clone), clone);
+  }
+
+  for (const entry of extras) {
+    const key = displayDependencyKey(entry);
+    const existing = map.get(key);
+    if (existing) {
+      for (const symbol of entry.symbols) {
+        if (!existing.symbols.includes(symbol)) {
+          existing.symbols.push(symbol);
+        }
+      }
+      existing.symbols.sort();
+
+      if (!existing.resolvedPath && entry.resolvedPath) {
+        existing.resolvedPath = entry.resolvedPath;
+      }
+
+      if (entry.symbolTargets) {
+        existing.symbolTargets = mergeSymbolTargets(existing.symbolTargets, entry.symbolTargets);
+      }
+
+      if (entry.isTypeOnly && !existing.isTypeOnly) {
+        existing.isTypeOnly = entry.isTypeOnly;
+      }
+
+      if (!existing.location && entry.location) {
+        existing.location = { ...entry.location };
+      }
+      continue;
+    }
+
+    map.set(key, cloneDependency(entry));
+  }
+
+  const merged = Array.from(map.values());
+  merged.sort((a, b) => displayDependencyKey(a).localeCompare(displayDependencyKey(b)));
+  return merged;
+}
+
+function cloneDependency(entry: DependencyEntry): DependencyEntry {
+  return {
+    specifier: entry.specifier,
+    resolvedPath: entry.resolvedPath,
+    symbols: [...entry.symbols],
+    kind: entry.kind,
+    isTypeOnly: entry.isTypeOnly,
+    location: entry.location ? { ...entry.location } : undefined,
+    symbolTargets: entry.symbolTargets ? { ...entry.symbolTargets } : undefined
+  };
+}
+
+function mergeSymbolTargets(
+  existing: Record<string, string> | undefined,
+  incoming: Record<string, string>
+): Record<string, string> {
+  if (!existing) {
+    return { ...incoming };
+  }
+  return { ...existing, ...incoming };
+}
+
+function shouldInferDomDependencies(extension: string): boolean {
+  switch (extension) {
+    case ".ts":
+    case ".tsx":
+    case ".js":
+    case ".jsx":
+      return true;
+    default:
+      return false;
+  }
+}
+
 async function augmentWithReExportedSymbols(params: {
   sourceAbsolute: string;
   workspaceRoot: string;
@@ -908,6 +1006,37 @@ async function resolveWorkspaceAlias(
 ): Promise<string | undefined> {
   const prefix = "@copilot-improvement/";
   if (!specifier.startsWith(prefix)) {
+    if (specifier.startsWith("@/")) {
+      const remainder = specifier.slice(2);
+      return resolveAliasCandidates(workspaceRoot, [path.resolve(workspaceRoot, "src", remainder)]);
+    }
+
+    if (specifier.startsWith("~/")) {
+      const remainder = specifier.slice(2);
+      return resolveAliasCandidates(workspaceRoot, [path.resolve(workspaceRoot, "src", remainder)]);
+    }
+
+    const aliasMatch = specifier.match(/^@([^/]+)\/?(.*)$/);
+    if (aliasMatch) {
+      const [, aliasName, rawRemainder] = aliasMatch;
+      const remainder = rawRemainder ?? "";
+      const candidates: string[] = [];
+      candidates.push(path.resolve(workspaceRoot, "packages", aliasName, "src", remainder));
+      candidates.push(path.resolve(workspaceRoot, "src", aliasName, remainder));
+      if (remainder) {
+        candidates.push(path.resolve(workspaceRoot, "src", remainder));
+      }
+
+      const resolved = await resolveAliasCandidates(workspaceRoot, candidates);
+      if (resolved) {
+        return resolved;
+      }
+    }
+
+    if (specifier.startsWith("src/")) {
+      return resolveAliasCandidates(workspaceRoot, [path.resolve(workspaceRoot, specifier)]);
+    }
+
     return undefined;
   }
 
@@ -928,6 +1057,19 @@ async function resolveWorkspaceAlias(
     return undefined;
   }
   return normalizeWorkspacePath(path.relative(workspaceRoot, matched));
+}
+
+async function resolveAliasCandidates(
+  workspaceRoot: string,
+  candidates: string[]
+): Promise<string | undefined> {
+  for (const candidate of candidates) {
+    const matched = await resolveWithExtensions(candidate);
+    if (matched) {
+      return normalizeWorkspacePath(path.relative(workspaceRoot, matched));
+    }
+  }
+  return undefined;
 }
 
 async function resolveWithExtensions(basePath: string): Promise<string | undefined> {

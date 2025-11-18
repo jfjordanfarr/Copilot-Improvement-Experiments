@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/core.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-core-ts
-- Generated At: 2025-11-17T18:11:41.757Z
+- Generated At: 2025-11-18T00:40:47.778Z
 
 ## Authored
 ### Purpose
@@ -17,68 +17,68 @@ Implements the shared Live Docs extraction engine—scanning source trees, colle
 - Enriched with docstring extraction work that guarantees Live Docs capture structured JSDoc output for downstream evidence.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-14.SUMMARIZED.md#turn-14-instructions-drift--legacy-layer-4-cleanup-lines-1321-1400]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-17T18:11:41.757Z","inputHash":"8b70e36e3d921338"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:40:47.778Z","inputHash":"111b9322e95b34e7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SourceAnalysisResult`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L15)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L16)
 
 #### `PublicSymbolEntry`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L21)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L22)
 
 #### `DependencyEntry`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L30)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L31)
 
 #### `ReExportedSymbolInfo`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L40)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L41)
 
 #### `LocationInfo`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L48)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L49)
 
 #### `SymbolDocumentationField`
 - Type: type
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L53)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L54)
 
 #### `SymbolDocumentationParameter`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L65)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L66)
 
 #### `SymbolDocumentationException`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L70)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L71)
 
 #### `SymbolDocumentationExample`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L75)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L76)
 
 #### `SymbolDocumentationLinkKind`
 - Type: type
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L81)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L82)
 
 #### `SymbolDocumentationLink`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L83)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L84)
 
 #### `SymbolDocumentation`
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L89)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L90)
 
 #### `SUPPORTED_SCRIPT_EXTENSIONS`
 - Type: const
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L104)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L105)
 
 #### `MODULE_RESOLUTION_EXTENSIONS`
 - Type: const
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L115)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L116)
 
 #### `discoverTargetFiles`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L166)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L167)
 
 ##### `discoverTargetFiles` — Summary
 Locates workspace files that should receive Live Documentation generation.
@@ -112,7 +112,7 @@ const files = await discoverTargetFiles({
 
 #### `resolveArchetype`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L220)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L221)
 
 ##### `resolveArchetype` — Summary
 Determines which Live Documentation archetype applies to a given source file.
@@ -137,7 +137,7 @@ const archetype = resolveArchetype("packages/app/src/main.test.ts", config);
 
 #### `hasMeaningfulAuthoredContent`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L249)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L250)
 
 ##### `hasMeaningfulAuthoredContent` — Summary
 Checks whether an authored markdown block carries information beyond the default placeholders.
@@ -150,11 +150,11 @@ Checks whether an authored markdown block carries information beyond the default
 
 #### `directoryExists`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L271)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L272)
 
 #### `cleanupEmptyParents`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L291)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L292)
 
 ##### `cleanupEmptyParents` — Summary
 Recursively removes empty directories from `startDir` up to (but excluding) `stopDir`.
@@ -170,7 +170,7 @@ Doc mirror.
 
 #### `analyzeSourceFile`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L338)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L339)
 
 ##### `analyzeSourceFile` — Summary
 Produces symbol and dependency analysis for a single source artifact.
@@ -197,7 +197,7 @@ if (analysis.symbols.length === 0) {
 
 #### `inferScriptKind`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L395)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L407)
 
 ##### `inferScriptKind` — Summary
 Maps a file extension to the TypeScript compiler script kind used for parsing.
@@ -210,7 +210,7 @@ The matching `ts.ScriptKind`, defaulting to `Unknown` for unsupported types.
 
 #### `collectExportedSymbols`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L421)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L433)
 
 ##### `collectExportedSymbols` — Summary
 Scans a TypeScript source file for exported declarations and captures their metadata.
@@ -223,7 +223,7 @@ A location-sorted list of exported symbols suitable for Live Doc rendering.
 
 #### `collectDependencies`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L608)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L620)
 
 ##### `collectDependencies` — Summary
 Enumerates import and export dependencies declared within a TypeScript source file.
@@ -245,7 +245,7 @@ A sorted list of dependency entries describing specifiers and imported symbols.
 
 #### `resolveDependency`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L887)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L985)
 
 ##### `resolveDependency` — Summary
 Resolves a relative module specifier to a workspace-relative file path.
@@ -263,7 +263,7 @@ The normalised relative path when resolution succeeds, otherwise `undefined`.
 
 #### `renderPublicSymbolLines`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L999)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1141)
 
 ##### `renderPublicSymbolLines` — Summary
 Renders the markdown lines that populate the `Public Symbols` section for a Live Doc.
@@ -301,7 +301,7 @@ const lines = renderPublicSymbolLines({
 
 #### `renderDependencyLines`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1216)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1358)
 
 ##### `renderDependencyLines` — Summary
 Renders the markdown bullet list for a Live Doc's `Dependencies` section.
@@ -325,67 +325,67 @@ Markdown lines suitable for the `Dependencies` section, or an empty array when n
 
 #### `renderReExportedAnchorLines`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1294)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1436)
 
 #### `formatSourceLink`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1343)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1485)
 
 #### `formatRelativePathFromDoc`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1348)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1490)
 
 #### `createSymbolSlug`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1356)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1498)
 
 #### `toModuleLabel`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1361)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1503)
 
 #### `formatInlineCode`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1367)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1509)
 
 #### `formatDependencyQualifier`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1372)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1514)
 
 #### `resolveExportAssignmentName`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1386)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1528)
 
 #### `hasExportModifier`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1396)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1538)
 
 #### `hasDefaultModifier`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1404)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1546)
 
 #### `getNodeLocation`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1412)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1554)
 
 #### `extractJsDocDocumentation`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1421)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1563)
 
 #### `displayDependencyKey`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1743)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1885)
 
 #### `detectChangedFiles`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1747)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1889)
 
 #### `parsePorcelainLine`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1769)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1911)
 
 #### `execFileAsync`
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1791)
+- Source: [source](../../../../../../packages/shared/src/live-docs/core.ts#L1933)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -397,6 +397,7 @@ Markdown lines suitable for the `Dependencies` section, or an empty array when n
 - [`liveDocumentationConfig.LiveDocumentationArchetype`](../config/liveDocumentationConfig.ts.mdmd.md#livedocumentationarchetype)
 - [`liveDocumentationConfig.LiveDocumentationConfig`](../config/liveDocumentationConfig.ts.mdmd.md#livedocumentationconfig)
 - [`index.analyzeWithLanguageAdapters`](./adapters/index.ts.mdmd.md#analyzewithlanguageadapters)
+- [`dom.inferDomDependencies`](./heuristics/dom.ts.mdmd.md#inferdomdependencies)
 - [`githubSlugger.slug`](../tooling/githubSlugger.ts.mdmd.md#slug)
 - [`pathUtils.normalizeWorkspacePath`](../tooling/pathUtils.ts.mdmd.md#normalizeworkspacepath)
 - `typescript` - `ts`

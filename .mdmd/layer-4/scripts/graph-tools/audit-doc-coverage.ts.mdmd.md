@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/graph-tools/audit-doc-coverage.ts
 - Live Doc ID: LD-implementation-scripts-graph-tools-audit-doc-coverage-ts
-- Generated At: 2025-11-16T22:35:17.952Z
+- Generated At: 2025-11-18T00:40:48.543Z
 
 ## Authored
 ### Purpose
@@ -17,24 +17,24 @@ Runs the graph coverage audit that compares code artifacts against Layer‑4 doc
 - Refined 2025-11-04 to invoke `snapshotWorkspace` quietly before auditing, guaranteeing fresh caches during CI and local runs ([self-refresh integration](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2434-L2455)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:17.952Z","inputHash":"cf6d41ed70891e3d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:40:48.543Z","inputHash":"d9d16da60bbd2bfb"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `parseArgs`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L161)
+- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L162)
 
 #### `auditCoverage`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L306)
+- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L307)
 
 #### `printReport`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L492)
+- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L493)
 
 #### `main`
 - Type: function
-- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L673)
+- Source: [source](../../../../scripts/graph-tools/audit-doc-coverage.ts#L674)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

@@ -1,4 +1,6 @@
+import { glob } from "glob";
 import { promises as fs } from "node:fs";
+import path from "node:path";
 
 import type {
   DependencyEntry,
@@ -12,6 +14,7 @@ import type {
   SymbolDocumentationParameter
 } from "../core";
 import type { LanguageAdapter } from "./index";
+import { normalizeWorkspacePath } from "../../tooling/pathUtils";
 
 interface CSharpTypeMatch {
   kind: string;
@@ -42,14 +45,22 @@ const PROPERTY_DECLARATION_PATTERN = new RegExp(
 const FIELD_DECLARATION_PATTERN = new RegExp(
   `^\\s*(?:${ACCESS_MODIFIER_FRAGMENT})\\s+(?:${FIELD_MODIFIER_FRAGMENT}\\s+)*[\\w<>\\[\\],?.]+\\s+([A-Za-z_][A-Za-z0-9_]*)\\s*(?:=|;)`
 );
+const APP_SETTINGS_PATTERN = /ConfigurationManager\.AppSettings\s*\[\s*"([^"]+)"\s*\]/g;
+const CONFIGURATION_INDEXER_PATTERN = /\b([A-Za-z_][A-Za-z0-9_]*)\s*\[\s*"([^"]+)"\s*\]/g;
+const TYPE_GET_TYPE_PATTERN = /Type\.GetType\s*\(\s*"([^"]+)"\s*\)/g;
+const TYPE_NAME_LITERAL_PATTERN = /"([A-Z][A-Za-z0-9_]*(?:\.[A-Z][A-Za-z0-9_]*)+)"/g;
 
 export const csharpAdapter: LanguageAdapter = {
   id: "csharp-basic",
   extensions: [".cs"],
-  async analyze({ absolutePath, workspaceRoot: _workspaceRoot }): Promise<SourceAnalysisResult | null> {
+  async analyze({ absolutePath, workspaceRoot }): Promise<SourceAnalysisResult | null> {
     const content = await fs.readFile(absolutePath, "utf8");
     const symbols = extractSymbols(content);
-    const dependencies = extractDependencies(content);
+    const dependencies = await extractDependencies({
+      content,
+      absolutePath,
+      workspaceRoot
+    });
 
     if (symbols.length === 0 && dependencies.length === 0) {
       return {
@@ -113,7 +124,12 @@ function extractSymbols(content: string): PublicSymbolEntry[] {
   return combined;
 }
 
-function extractDependencies(content: string): DependencyEntry[] {
+async function extractDependencies(params: {
+  content: string;
+  absolutePath: string;
+  workspaceRoot: string;
+}): Promise<DependencyEntry[]> {
+  const { content, absolutePath, workspaceRoot } = params;
   const namespaces = new Set<string>();
   let match: RegExpExecArray | null;
 
@@ -149,7 +165,218 @@ function extractDependencies(content: string): DependencyEntry[] {
       kind: "import"
     })) as DependencyEntry[];
 
+  const appSettingsMatches = collectConfigKeys(APP_SETTINGS_PATTERN, content);
+  if (appSettingsMatches.size > 0) {
+    const configPath = await locateNearestFile(absolutePath, workspaceRoot, ["Web.config", "web.config", "App.config", "app.config"]);
+    if (configPath) {
+      dependencies.push({
+        specifier: configPath,
+        resolvedPath: configPath,
+        symbols: Array.from(appSettingsMatches).sort(),
+        kind: "import"
+      });
+    }
+  }
+
+  const configurationKeys = collectConfigurationIndexerKeys(content);
+  if (configurationKeys.size > 0) {
+    const appsettingsPath = await locateNearestFile(absolutePath, workspaceRoot, [
+      "appsettings.json",
+      "appsettings.Development.json",
+      "appsettings.Production.json"
+    ]);
+    if (appsettingsPath) {
+      dependencies.push({
+        specifier: appsettingsPath,
+        resolvedPath: appsettingsPath,
+        symbols: Array.from(configurationKeys).sort(),
+        kind: "import"
+      });
+    }
+  }
+
+  const reflectionTypes = collectConfigKeys(TYPE_GET_TYPE_PATTERN, content);
+  const literalTypeNames = collectTypeNameLiterals(content);
+  const combinedTypeNames = new Set<string>([...reflectionTypes, ...literalTypeNames]);
+  if (combinedTypeNames.size > 0) {
+    const resolvedTypes = await resolveReflectionTargets(Array.from(combinedTypeNames), workspaceRoot);
+    for (const resolved of resolvedTypes) {
+      dependencies.push(resolved);
+    }
+  }
+
   return dependencies;
+}
+
+function collectConfigKeys(pattern: RegExp, content: string): Set<string> {
+  const results = new Set<string>();
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(content)) !== null) {
+    const value = match[1]?.trim();
+    if (value) {
+      results.add(value);
+    }
+  }
+
+  pattern.lastIndex = 0;
+  return results;
+}
+
+function collectConfigurationIndexerKeys(content: string): Set<string> {
+  const results = new Set<string>();
+  let match: RegExpExecArray | null;
+
+  while ((match = CONFIGURATION_INDEXER_PATTERN.exec(content)) !== null) {
+    const identifier = match[1]?.trim();
+    const key = match[2]?.trim();
+    if (!key) {
+      continue;
+    }
+
+    if (identifier && /config/i.test(identifier)) {
+      results.add(key);
+    }
+  }
+
+  CONFIGURATION_INDEXER_PATTERN.lastIndex = 0;
+  return results;
+}
+
+function collectTypeNameLiterals(content: string): Set<string> {
+  const results = new Set<string>();
+  let match: RegExpExecArray | null;
+
+  while ((match = TYPE_NAME_LITERAL_PATTERN.exec(content)) !== null) {
+    const literal = match[1]?.trim();
+    if (!literal) {
+      continue;
+    }
+
+    const segments = literal.split(".");
+    if (segments.length < 2) {
+      continue;
+    }
+
+    if (!segments.every((segment) => /^[A-Z]/.test(segment))) {
+      continue;
+    }
+
+    const preceding = content[match.index - 1];
+    if (preceding && /[A-Za-z0-9_]/.test(preceding)) {
+      continue;
+    }
+
+    results.add(literal);
+  }
+
+  TYPE_NAME_LITERAL_PATTERN.lastIndex = 0;
+  return results;
+}
+
+async function locateNearestFile(
+  sourcePath: string,
+  workspaceRoot: string,
+  candidates: string[]
+): Promise<string | undefined> {
+  const workspaceResolved = path.resolve(workspaceRoot);
+  let current = path.resolve(path.dirname(sourcePath));
+
+  while (true) {
+    for (const candidate of candidates) {
+      const absoluteCandidate = path.join(current, candidate);
+      if (await fileExists(absoluteCandidate)) {
+        return normalizeWorkspacePath(path.relative(workspaceRoot, absoluteCandidate));
+      }
+    }
+
+    if (current === workspaceResolved) {
+      break;
+    }
+
+    const parent = path.dirname(current);
+    if (parent === current) {
+      break;
+    }
+    current = parent;
+  }
+
+  return undefined;
+}
+
+async function fileExists(candidate: string): Promise<boolean> {
+  try {
+    const stats = await fs.stat(candidate);
+    return stats.isFile();
+  } catch {
+    return false;
+  }
+}
+
+async function resolveReflectionTargets(
+  typeNames: string[],
+  workspaceRoot: string
+): Promise<DependencyEntry[]> {
+  const results: DependencyEntry[] = [];
+
+  for (const typeName of typeNames) {
+    const resolved = await resolveReflectionTarget(typeName, workspaceRoot);
+    if (resolved) {
+      results.push(resolved);
+    }
+  }
+
+  return results;
+}
+
+async function resolveReflectionTarget(
+  typeName: string,
+  workspaceRoot: string
+): Promise<DependencyEntry | undefined> {
+  const segments = typeName.split(".").filter(Boolean);
+  if (segments.length === 0) {
+    return undefined;
+  }
+
+  const simpleName = segments[segments.length - 1];
+  const namespacePrefix = segments.slice(0, -1).join(".");
+
+  const pattern = `**/${simpleName}.cs`;
+  const matches = await glob(pattern, {
+    cwd: workspaceRoot,
+    absolute: true,
+    nodir: true,
+    windowsPathsNoEscape: true
+  });
+
+  for (const candidate of matches) {
+    const content = await readFileSafe(candidate);
+    if (!content) {
+      continue;
+    }
+
+    if (namespacePrefix && !content.includes(`namespace ${namespacePrefix}`)) {
+      continue;
+    }
+
+    const relative = normalizeWorkspacePath(path.relative(workspaceRoot, candidate));
+    return {
+      specifier: relative,
+      resolvedPath: relative,
+      symbols: [typeName],
+      kind: "import"
+    };
+  }
+
+  return undefined;
+}
+
+async function readFileSafe(filePath: string): Promise<string | undefined> {
+  try {
+    return await fs.readFile(filePath, "utf8");
+  } catch {
+    return undefined;
+  }
 }
 
 function computeLineNumber(content: string, index: number): number {

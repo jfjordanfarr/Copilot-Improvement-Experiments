@@ -41,5 +41,29 @@
     "stories": ["CLI"],
     "languages": ["C#", "JavaScript", "ASP.NET", "XML", "Markdown"],
     "slopcopConfig": "slopcop.config.json"
+  },
+  {
+    "id": "razor-appsettings",
+    "label": "Razor telemetry hydration chain",
+    "path": "tests/integration/fixtures/razor-appsettings/workspace",
+    "stories": ["CLI"],
+    "languages": ["C#", "Razor", "JavaScript", "JSON", "Markdown"],
+    "slopcopConfig": "slopcop.config.json"
+  },
+  {
+    "id": "spa-runtime-config",
+    "label": "SPA runtime config alias",
+    "path": "tests/integration/fixtures/spa-runtime-config/workspace",
+    "stories": ["CLI"],
+    "languages": ["TypeScript", "JSON", "Markdown"],
+    "slopcopConfig": "slopcop.config.json"
+  },
+  {
+    "id": "csharp-reflection",
+    "label": "C# reflection handler chain",
+    "path": "tests/integration/fixtures/csharp-reflection/workspace",
+    "stories": ["CLI"],
+    "languages": ["C#", "Markdown"],
+    "slopcopConfig": "slopcop.config.json"
   }
 ]

@@ -1,0 +1,18 @@
+@page
+@model IndexModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Razor Telemetry Injection</title>
+    <script src="~/js/telemetry.js"></script>
+</head>
+<body>
+    <input id="app-insights-key" type="hidden" value="@Model.InstrumentationKey" />
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initializeTelemetry();
+        });
+    </script>
+</body>
+</html>

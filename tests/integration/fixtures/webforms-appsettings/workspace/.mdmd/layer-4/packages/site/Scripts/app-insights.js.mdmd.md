@@ -5,18 +5,22 @@
 - Archetype: implementation
 - Code Path: packages/site/Scripts/app-insights.js
 - Live Doc ID: LD-implementation-packages-site-scripts-app-insights-js
+- Generated At: 2025-11-17T22:35:54.302Z
 
 ## Authored
 ### Purpose
 Bootstrap client-side telemetry by reading the instrumentation key that the server renders into the DOM.
 
 ## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-17T22:35:54.302Z","inputHash":"53a1d829f4ac0f77"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-- `initializeTelemetry(): void` — exposes the App Insights configuration to the browser runtime.
+#### `initializeTelemetry`
+- Type: unknown
+- Source: [source](../../../../../packages/site/Scripts/app-insights.js#L12)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [../Default.aspx.mdmd.md](../Default.aspx.mdmd.md) — depends on the page to render the hidden field that supplies the instrumentation key.
+- [`Default.AppInsightsInstrumentationKey`](../Default.aspx.mdmd.md#appinsightsinstrumentationkey)
 <!-- LIVE-DOC:END Dependencies -->

@@ -13,16 +13,43 @@ const repoRoot = findRepoRoot(__dirname);
 const tsxCli = path.join(repoRoot, "node_modules", "tsx", "dist", "cli.mjs");
 const tsconfigPath = path.join(repoRoot, "tsconfig.base.json");
 const inspectScript = path.join(repoRoot, "scripts", "live-docs", "inspect.ts");
-const fixtureWorkspace = path.join(
-  repoRoot,
-  "tests",
-  "integration",
-  "fixtures",
-  "webforms-appsettings",
-  "workspace"
-);
 
-function runInspectCli(args: string[]): InspectRunResult {
+const fixtures = {
+  webforms: path.join(
+    repoRoot,
+    "tests",
+    "integration",
+    "fixtures",
+    "webforms-appsettings",
+    "workspace"
+  ),
+  razor: path.join(
+    repoRoot,
+    "tests",
+    "integration",
+    "fixtures",
+    "razor-appsettings",
+    "workspace"
+  ),
+  spa: path.join(
+    repoRoot,
+    "tests",
+    "integration",
+    "fixtures",
+    "spa-runtime-config",
+    "workspace"
+  ),
+  reflection: path.join(
+    repoRoot,
+    "tests",
+    "integration",
+    "fixtures",
+    "csharp-reflection",
+    "workspace"
+  )
+} as const;
+
+function runInspectCli(workspace: string, args: string[]): InspectRunResult {
   const result = spawnSync(
     process.execPath,
     [
@@ -31,7 +58,7 @@ function runInspectCli(args: string[]): InspectRunResult {
       tsconfigPath,
       inspectScript,
       "--workspace",
-      fixtureWorkspace,
+      workspace,
       ...args
     ],
     {
@@ -73,7 +100,7 @@ function findRepoRoot(startDir: string): string {
 
 suite("Live Docs inspect CLI", () => {
   test("finds a dependency path from the WebForms telemetry script to Web.config", () => {
-    const run = runInspectCli([
+    const run = runInspectCli(fixtures.webforms, [
       "--from",
       "packages/site/Scripts/app-insights.js",
       "--to",
@@ -106,7 +133,7 @@ suite("Live Docs inspect CLI", () => {
   });
 
   test("enumerates terminal outbound paths when no --to target is supplied", () => {
-    const run = runInspectCli([
+    const run = runInspectCli(fixtures.webforms, [
       "--from",
       "packages/site/Scripts/app-insights.js",
       "--direction",
@@ -138,6 +165,85 @@ suite("Live Docs inspect CLI", () => {
         "packages/site/Default.aspx.cs",
         "Web.config"
       ]
+    );
+  });
+
+  test("traces Razor telemetry chain back to appsettings", () => {
+    const run = runInspectCli(fixtures.razor, [
+      "--from",
+      "wwwroot/js/telemetry.js",
+      "--to",
+      "appsettings.json",
+      "--json"
+    ]);
+
+    assert.strictEqual(run.exitCode, 0, `inspect exited ${run.exitCode}:\n${run.stderr || run.stdout}`);
+    const payload = JSON.parse(run.stdout) as {
+      kind: string;
+      direction: string;
+      length: number;
+      nodes: Array<{ codePath: string }>;
+    };
+
+    assert.strictEqual(payload.kind, "path");
+    assert.strictEqual(payload.direction, "outbound");
+    assert.strictEqual(payload.length, 3);
+    assert.deepStrictEqual(
+      payload.nodes.map(node => node.codePath),
+      [
+        "wwwroot/js/telemetry.js",
+        "Pages/Index.cshtml",
+        "Pages/Index.cshtml.cs",
+        "appsettings.json"
+      ]
+    );
+  });
+
+  test("resolves SPA alias imports to concrete modules", () => {
+    const run = runInspectCli(fixtures.spa, [
+      "--from",
+      "src/bootstrap.ts",
+      "--to",
+      "src/config/runtime.ts",
+      "--json"
+    ]);
+
+    assert.strictEqual(run.exitCode, 0, `inspect exited ${run.exitCode}:\n${run.stderr || run.stdout}`);
+    const payload = JSON.parse(run.stdout) as {
+      kind: string;
+      length: number;
+      nodes: Array<{ codePath: string }>;
+    };
+
+    assert.strictEqual(payload.kind, "path");
+    assert.strictEqual(payload.length, 1);
+    assert.deepStrictEqual(
+      payload.nodes.map(node => node.codePath),
+      ["src/bootstrap.ts", "src/config/runtime.ts"]
+    );
+  });
+
+  test("follows reflection-based handlers to their implementation", () => {
+    const run = runInspectCli(fixtures.reflection, [
+      "--from",
+      "Services/ReflectionFactory.cs",
+      "--to",
+      "Services/TelemetryHandler.cs",
+      "--json"
+    ]);
+
+    assert.strictEqual(run.exitCode, 0, `inspect exited ${run.exitCode}:\n${run.stderr || run.stdout}`);
+    const payload = JSON.parse(run.stdout) as {
+      kind: string;
+      length: number;
+      nodes: Array<{ codePath: string }>;
+    };
+
+    assert.strictEqual(payload.kind, "path");
+    assert.strictEqual(payload.length, 1);
+    assert.deepStrictEqual(
+      payload.nodes.map(node => node.codePath),
+      ["Services/ReflectionFactory.cs", "Services/TelemetryHandler.cs"]
     );
   });
 });

@@ -45,6 +45,8 @@
       "tests/integration/fixtures/simple-workspace/**",
       "AI-Agent-Workspace/tmp/**"
     ],
-    "ignoreTargets": []
+    "ignoreTargets": [
+      "^indexmodel(?:-\\d+)?$"
+    ]
   }
 }

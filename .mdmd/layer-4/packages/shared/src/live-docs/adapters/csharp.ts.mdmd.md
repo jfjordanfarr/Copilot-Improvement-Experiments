@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/csharp.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-csharp-ts
-- Generated At: 2025-11-16T22:34:12.974Z
+- Generated At: 2025-11-18T00:40:47.591Z
 
 ## Authored
 ### Purpose
@@ -15,17 +15,19 @@ Harvests public symbols, XML doc comments, and dependency edges from C# sources,
 - Backed by the `polyglot-fixtures` integration harness and manual inspection scripts created during the C# deployment, so changes here should re-run those checks <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-12.md#L554-L715>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.974Z","inputHash":"2baac897f65e0954"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:40:47.591Z","inputHash":"7826535fcbc6f5bb"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `csharpAdapter`
 - Type: const
-- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/csharp.ts#L46)
+- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/csharp.ts#L53)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
+- `glob` - `glob`
 - `node:fs` - `promises`
+- `node:path` - `path`
 - [`index.LanguageAdapter`](./index.ts.mdmd.md#languageadapter) (type-only)
 - [`core.DependencyEntry`](../core.ts.mdmd.md#dependencyentry) (type-only)
 - [`core.PublicSymbolEntry`](../core.ts.mdmd.md#publicsymbolentry) (type-only)
@@ -36,6 +38,7 @@ Harvests public symbols, XML doc comments, and dependency edges from C# sources,
 - [`core.SymbolDocumentationLink`](../core.ts.mdmd.md#symboldocumentationlink) (type-only)
 - [`core.SymbolDocumentationLinkKind`](../core.ts.mdmd.md#symboldocumentationlinkkind) (type-only)
 - [`core.SymbolDocumentationParameter`](../core.ts.mdmd.md#symboldocumentationparameter) (type-only)
+- [`pathUtils.normalizeWorkspacePath`](../../tooling/pathUtils.ts.mdmd.md#normalizeworkspacepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

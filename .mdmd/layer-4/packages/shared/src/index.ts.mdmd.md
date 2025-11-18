@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-index-ts
-- Generated At: 2025-11-16T23:18:48.958Z
+- Generated At: 2025-11-18T00:40:47.221Z
 
 ## Authored
 ### Purpose
@@ -15,68 +15,68 @@ Provides the single `@copilot-improvement/shared` entrypoint that re-exports inf
 - Carries new Live Documentation configuration exports introduced during the Stage 0 adoption push, letting downstream commands honour the configurable base layer without bespoke wiring ([Stage 0 configuration pass](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-12-stage-0-complete-with-config--staging-tree-lines-2021-2160)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T23:18:48.958Z","inputHash":"9f4be42d418fc877"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:40:47.221Z","inputHash":"55760e4636e167cf"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `RelationshipExtractor`
 - Type: unknown
-- Source: [source](../../../../../packages/shared/src/index.ts#L27)
+- Source: [source](../../../../../packages/shared/src/index.ts#L28)
 
 #### `RelationshipExtractorError`
 - Type: unknown
-- Source: [source](../../../../../packages/shared/src/index.ts#L28)
+- Source: [source](../../../../../packages/shared/src/index.ts#L29)
 
 #### `RelationshipExtractorLogger`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L29)
+- Source: [source](../../../../../packages/shared/src/index.ts#L30)
 
 #### `RelationshipExtractionBatch`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L30)
+- Source: [source](../../../../../packages/shared/src/index.ts#L31)
 
 #### `RelationshipExtractionPrompt`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L31)
+- Source: [source](../../../../../packages/shared/src/index.ts#L32)
 
 #### `RelationshipExtractionRequest`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L32)
+- Source: [source](../../../../../packages/shared/src/index.ts#L33)
 
 #### `RawRelationshipCandidate`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L33)
+- Source: [source](../../../../../packages/shared/src/index.ts#L34)
 
 #### `ModelInvocationRequest`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L34)
+- Source: [source](../../../../../packages/shared/src/index.ts#L35)
 
 #### `ModelInvocationResult`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L35)
+- Source: [source](../../../../../packages/shared/src/index.ts#L36)
 
 #### `ModelInvoker`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L36)
+- Source: [source](../../../../../packages/shared/src/index.ts#L37)
 
 #### `ModelUsage`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L37)
+- Source: [source](../../../../../packages/shared/src/index.ts#L38)
 
 #### `calibrateConfidence`
 - Type: unknown
-- Source: [source](../../../../../packages/shared/src/index.ts#L41)
+- Source: [source](../../../../../packages/shared/src/index.ts#L42)
 
 #### `CalibratedRelationship`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L42)
+- Source: [source](../../../../../packages/shared/src/index.ts#L43)
 
 #### `LlmConfidenceTier`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L43)
+- Source: [source](../../../../../packages/shared/src/index.ts#L44)
 
 #### `CalibrationContext`
 - Type: type (type-only)
-- Source: [source](../../../../../packages/shared/src/index.ts#L44)
+- Source: [source](../../../../../packages/shared/src/index.ts#L45)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -112,6 +112,7 @@ Provides the single `@copilot-improvement/shared` entrypoint that re-exports inf
 - [`relationshipExtractor.RelationshipExtractorLogger`](./inference/llm/relationshipExtractor.ts.mdmd.md#relationshipextractorlogger) (re-export)
 - [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md) (re-export)
 - [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md) (re-export)
+- [`parse`](./live-docs/parse.ts.mdmd.md) (re-export)
 - [`testReport`](./reporting/testReport.ts.mdmd.md) (re-export)
 - [`relationshipResolvers`](./rules/relationshipResolvers.ts.mdmd.md) (re-export)
 - [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md) (re-export)
@@ -703,11 +704,17 @@ Provides the single `@copilot-improvement/shared` entrypoint that re-exports inf
 #### `OverrideLinkResponse`
 - Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#overridelinkresponse)
 
+#### `ParsedLiveDoc`
+- Re-exported from [`parse`](./live-docs/parse.ts.mdmd.md#parsedlivedoc)
+
 #### `ParsedLSIFIndex`
 - Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#parsedlsifindex)
 
 #### `ParsedSCIPIndex`
 - Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#parsedscipindex)
+
+#### `parseLiveDocMarkdown`
+- Re-exported from [`parse`](./live-docs/parse.ts.mdmd.md#parselivedocmarkdown)
 
 #### `RebindImpactedArtifact`
 - Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#rebindimpactedartifact)

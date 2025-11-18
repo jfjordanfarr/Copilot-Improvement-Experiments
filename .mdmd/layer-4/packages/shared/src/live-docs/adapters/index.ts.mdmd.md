@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-index-ts
-- Generated At: 2025-11-16T22:34:12.989Z
+- Generated At: 2025-11-18T00:40:47.610Z
 
 ## Authored
 ### Purpose
@@ -16,16 +16,16 @@ Owns the shared language-adapter registry and `analyzeWithLanguageAdapters`, let
 - Docstring harnesses for each adapter exercise this entry point, keeping registry coverage visible during the Nov 14 verification sweep <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2792-L2808>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.989Z","inputHash":"803a24e5f7432d6c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:40:47.610Z","inputHash":"f5f58aeec33ca92d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LanguageAdapter`
 - Type: interface
-- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/index.ts#L11)
+- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/index.ts#L12)
 
 #### `analyzeWithLanguageAdapters`
 - Type: function
-- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/index.ts#L27)
+- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/index.ts#L36)
 
 ##### `analyzeWithLanguageAdapters` — Summary
 Attempts to analyse a source file using the configured language adapters.
@@ -41,6 +41,7 @@ Analyzer output when an adapter understands the file extension, otherwise `null`
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
+- [`aspnet.aspNetMarkupAdapter`](./aspnet.ts.mdmd.md#aspnetmarkupadapter)
 - [`c.cAdapter`](./c.ts.mdmd.md#cadapter)
 - [`csharp.csharpAdapter`](./csharp.ts.mdmd.md#csharpadapter)
 - [`java.javaAdapter`](./java.ts.mdmd.md#javaadapter)

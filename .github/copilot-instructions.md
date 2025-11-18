@@ -79,10 +79,11 @@ On the way to full adoption we continue to land incremental wins that boost obse
 
 ---
 
-## Primary Tooling/Stack
+### Primary Tooling/Stack
 - VS Code Extension API with `vscode-languageclient` / `vscode-languageserver`
 - SQLite via `better-sqlite3`
 - Live Documentation generator + lint CLIs under `scripts/live-docs/` (generate, inspect, migrate, lint)
+- `npm run live-docs:inspect` (LD-402) for dependency path finding; ALWAYS consider running this when assessing change impact or tracing value origins. Prefer JSON mode for prompt fuel and keep outbound/inbound searches in mind.
 - Optional LLM access through `vscode.lm`
 
 ---
@@ -92,6 +93,7 @@ On the way to full adoption we continue to land incremental wins that boost obse
 - `npm run live-docs:generate`: regenerates Live Documentation into the staged mirror (`/.live-documentation/<baseLayer>/`), preserving authored sections and updating generated metadata. Supports `--dry-run`, `--changed`, and System-layer materialisation via `--system`, `--system-output`, and `--system-clean`.
 - `npm run live-docs:system`: materialises System views on demand (default output `AI-Agent-Workspace/tmp/system-cli-output`); accepts `--output`, `--clean`, `--dry-run`, and `--config`.
 - `npm run live-docs:inspect -- <path>`: emits markdown/JSON summaries for a given artifact; mirrors the Copilot prompt helper behaviour.
+- `npm run live-docs:inspect -- --from <path> [--to <path>]`: Live Docs pathfinder. Use this before and after risky edits to enumerate actual hop chains (Oracle-of-Bacon style). Remember `--direction inbound` for reverse lookups and `--json` for automation. If no `--to` is provided, review the terminal fan-out to see where data ultimately lands.
 - `npm run live-docs:lint`: validates structural markers, relative-link hygiene, slug dialect compliance, and evidence placeholders inside staged Live Docs.
 - `npm run live-docs:migrate -- --dry-run`: (planned) compares staged Live Docs to `.mdmd/layer-4/` and prepares promotion.
 
