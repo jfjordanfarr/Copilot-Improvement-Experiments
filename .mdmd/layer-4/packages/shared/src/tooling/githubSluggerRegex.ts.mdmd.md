@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/githubSluggerRegex.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-githubsluggerregex-ts
-- Generated At: 2025-11-16T20:43:32.750Z
+- Generated At: 2025-11-18T14:53:53.182Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Packages the vendored GitHub slug sanitiser regex so our slugger matches exactly
 - Verified repeatedly while tuning doc-link anchors for SlopCop on November 7, ensuring unicode headings slug to `comp003--heuristic-suite` and similar real-world cases.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:32.750Z","inputHash":"047b81693a3d7f2d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:53.182Z","inputHash":"047b81693a3d7f2d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `GITHUB_SLUG_REMOVE_PATTERN`
@@ -64,7 +64,9 @@ _No dependencies documented yet_
 - [environment.test.ts](../../../server/src/runtime/environment.test.ts.mdmd.md)
 - [settings.test.ts](../../../server/src/runtime/settings.test.ts.mdmd.md)
 - [latencyTracker.test.ts](../../../server/src/telemetry/latencyTracker.test.ts.mdmd.md)
+- [aspnet.test.ts](../live-docs/adapters/aspnet.test.ts.mdmd.md)
 - [c.docstring.test.ts](../live-docs/adapters/c.docstring.test.ts.mdmd.md)
+- [csharp.hangfire.test.ts](../live-docs/adapters/csharp.hangfire.test.ts.mdmd.md)
 - [python.docstring.test.ts](../live-docs/adapters/python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](../live-docs/adapters/ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](../live-docs/adapters/rust.docstring.test.ts.mdmd.md)

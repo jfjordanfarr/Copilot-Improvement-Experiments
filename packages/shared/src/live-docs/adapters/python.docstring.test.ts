@@ -4,7 +4,7 @@ import * as path from "node:path";
 
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
-import { renderPublicSymbolLines } from "../core";
+import { computePublicSymbolHeadingInfo, renderPublicSymbolLines } from "../core";
 import { pythonAdapter } from "./python";
 
 describe("pythonAdapter docstring bridging", () => {
@@ -65,12 +65,15 @@ def compute(value: int) -> int:
     const docDir = path.join(workspaceRoot, ".live-documentation", "source");
     await fs.mkdir(docDir, { recursive: true });
 
+    const headings = computePublicSymbolHeadingInfo(analysis!.symbols);
+
     const lines = renderPublicSymbolLines({
       analysis: analysis!,
       docDir,
       sourceAbsolute: filePath,
       workspaceRoot,
-      sourceRelativePath: path.relative(workspaceRoot, filePath)
+      sourceRelativePath: path.relative(workspaceRoot, filePath),
+      headings
     });
 
     expect(lines).toContain("##### `compute` — Parameters");
@@ -84,25 +87,25 @@ def compute(value: int) -> int:
     await fs.writeFile(
       filePath,
       `
-  def summarize(items: list[int], limit: int | None = None) -> str:
+def summarize(items: list[int], limit: int | None = None) -> str:
     """Summarize a sequence into a string.
 
     Args:
-      items (list[int]): Sequence to summarize.
-      limit: Optional soft limit for the number of items.
+        items: Sequence to summarize.
+        limit: Optional soft limit for the number of items.
 
     Returns:
-      str: Joined summary string.
+        str: Joined summary string.
 
     Raises:
-      ValueError: When limit is negative.
+        ValueError: When limit is negative.
 
     Examples:
-      >>> summarize([1, 2, 3])
-      '1,2,3'
+        >>> summarize([1, 2, 3])
+        '1,2,3'
     """
     if limit is not None and limit < 0:
-      raise ValueError("limit")
+        raise ValueError("limit")
     result = items if limit is None else items[:limit]
     return ",".join(str(item) for item in result)
   `.trimStart(),
@@ -116,7 +119,7 @@ def compute(value: int) -> int:
     expect(symbol.documentation?.parameters).toEqual([
       {
         name: "items",
-        description: "Sequence to summarize. (type: list[int])"
+        description: "Sequence to summarize."
       },
       {
         name: "limit",
@@ -137,28 +140,28 @@ def compute(value: int) -> int:
     await fs.writeFile(
       filePath,
       `
-  def scale(values, factor):
+def scale(values, factor):
     """Scale values by a factor.
 
     Parameters
     ----------
     values : Sequence[float]
-      Values to scale.
+        Values to scale.
     factor : float
-      Scaling factor.
+        Scaling factor.
 
     Returns
     -------
     list[float]
-      Scaled values.
+        Scaled values.
 
     Raises
     ------
     ValueError
-      When factor is zero.
+        When factor is zero.
     """
     if factor == 0:
-      raise ValueError("factor")
+        raise ValueError("factor")
     return [item * factor for item in values]
   `.trimStart(),
       "utf8"

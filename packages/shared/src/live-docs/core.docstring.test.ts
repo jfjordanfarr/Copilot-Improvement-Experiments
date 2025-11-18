@@ -4,7 +4,11 @@ import { describe, expect, it } from "vitest";
 
 import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "../config/liveDocumentationConfig";
 
-import { collectExportedSymbols, renderPublicSymbolLines } from "./core";
+import {
+  collectExportedSymbols,
+  computePublicSymbolHeadingInfo,
+  renderPublicSymbolLines
+} from "./core";
 
 describe("TypeScript docstring bridging", () => {
   it("captures structured metadata from JSDoc blocks", () => {
@@ -116,6 +120,8 @@ export async function orchestrate<T>(options: { workspaceRoot: string; includePa
     );
     const docDir = path.dirname(docAbsolute);
 
+    const headings = computePublicSymbolHeadingInfo(symbols);
+
     const rendered = renderPublicSymbolLines({
       analysis: {
         symbols,
@@ -124,7 +130,8 @@ export async function orchestrate<T>(options: { workspaceRoot: string; includePa
       docDir,
       sourceAbsolute,
       workspaceRoot,
-      sourceRelativePath
+      sourceRelativePath,
+      headings
     });
 
     const summaryIndex = rendered.indexOf("##### `orchestrate` — Summary");

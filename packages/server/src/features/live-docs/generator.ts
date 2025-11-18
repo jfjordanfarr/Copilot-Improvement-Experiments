@@ -19,6 +19,7 @@ import {
   formatRelativePathFromDoc,
   hasMeaningfulAuthoredContent,
   inferScriptKind,
+  computePublicSymbolHeadingInfo,
   renderDependencyLines,
   renderReExportedAnchorLines,
   renderPublicSymbolLines,
@@ -361,13 +362,15 @@ function buildGeneratedSections(params: {
 }): LiveDocRenderSection[] {
   const docDir = path.dirname(params.docAbsolutePath);
   const sourceAbsolute = path.resolve(params.workspaceRoot, params.sourceRelativePath);
+  const headings = computePublicSymbolHeadingInfo(params.analysis.symbols);
 
   const symbolLines = renderPublicSymbolLines({
     analysis: params.analysis,
     docDir,
     sourceAbsolute,
     workspaceRoot: params.workspaceRoot,
-    sourceRelativePath: params.sourceRelativePath
+    sourceRelativePath: params.sourceRelativePath,
+    headings
   });
 
   const dependencyLines = renderDependencyLines({
@@ -375,7 +378,8 @@ function buildGeneratedSections(params: {
     docDir,
     workspaceRoot: params.workspaceRoot,
     liveDocsRootAbsolute: params.liveDocsRootAbsolute,
-    docExtension: params.docExtension
+    docExtension: params.docExtension,
+    headings
   });
 
   const sections: LiveDocRenderSection[] = [

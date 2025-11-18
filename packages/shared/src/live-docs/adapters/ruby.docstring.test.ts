@@ -4,7 +4,7 @@ import * as path from "node:path";
 
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
-import { renderPublicSymbolLines } from "../core";
+import { computePublicSymbolHeadingInfo, renderPublicSymbolLines } from "../core";
 import { rubyAdapter } from "./ruby";
 
 describe("rubyAdapter docstring bridging", () => {
@@ -88,12 +88,14 @@ end
 
     const docDir = path.join(workspaceRoot, ".live-documentation", "source");
     await fs.mkdir(docDir, { recursive: true });
+    const headings = computePublicSymbolHeadingInfo(analysis!.symbols);
     const lines = renderPublicSymbolLines({
       analysis: analysis!,
       docDir,
       sourceAbsolute: filePath,
       workspaceRoot,
-      sourceRelativePath: path.relative(workspaceRoot, filePath)
+      sourceRelativePath: path.relative(workspaceRoot, filePath),
+      headings
     });
 
     expect(lines).toContain("##### `self.build` — Parameters");

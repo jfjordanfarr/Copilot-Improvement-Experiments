@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/rust.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-rust-ts
-- Generated At: 2025-11-16T22:34:13.106Z
+- Generated At: 2025-11-18T14:53:52.938Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Parses Rust sources to collect public symbols, structured Rustdoc sections, and 
 - Keep new Rustdoc heading or tag support aligned with the regression tests before re-running the Live Docs generator <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2792-L2808>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.106Z","inputHash":"54513601620f1145"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.938Z","inputHash":"54513601620f1145"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `rustAdapter`
@@ -44,7 +44,9 @@ Parses Rust sources to collect public symbols, structured Rustdoc sections, and 
 - [generator.test.ts](../../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
 - [generator.test.ts](../../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
+- [aspnet.test.ts](./aspnet.test.ts.mdmd.md)
 - [c.docstring.test.ts](./c.docstring.test.ts.mdmd.md)
+- [csharp.hangfire.test.ts](./csharp.hangfire.test.ts.mdmd.md)
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](./ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](./rust.docstring.test.ts.mdmd.md)

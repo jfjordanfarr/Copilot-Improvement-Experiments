@@ -26,6 +26,7 @@ export interface PublicSymbolEntry {
   isTypeOnly?: boolean;
   location?: LocationInfo;
   documentation?: SymbolDocumentation;
+  qualifiedName?: string;
 }
 
 export interface DependencyEntry {
@@ -1138,17 +1139,67 @@ async function fileExists(candidate: string): Promise<boolean> {
  *
  * @see renderDependencyLines
  */
+export interface PublicSymbolHeadingInfo {
+  symbol: PublicSymbolEntry;
+  displayName: string;
+  slug: string;
+}
+
+export function computePublicSymbolHeadingInfo(symbols: PublicSymbolEntry[]): PublicSymbolHeadingInfo[] {
+  const infos: PublicSymbolHeadingInfo[] = [];
+  const nameCounts = new Map<string, number>();
+  const nameKindCounts = new Map<string, number>();
+
+  for (const symbol of symbols) {
+    nameCounts.set(symbol.name, (nameCounts.get(symbol.name) ?? 0) + 1);
+    const kindKey = `${symbol.name}::${symbol.kind ?? "symbol"}`;
+    nameKindCounts.set(kindKey, (nameKindCounts.get(kindKey) ?? 0) + 1);
+  }
+
+  const kindOccurrences = new Map<string, number>();
+
+  for (const symbol of symbols) {
+    const kindKey = `${symbol.name}::${symbol.kind ?? "symbol"}`;
+    const occurrence = (kindOccurrences.get(kindKey) ?? 0) + 1;
+    kindOccurrences.set(kindKey, occurrence);
+
+    const duplicateNameCount = nameCounts.get(symbol.name) ?? 0;
+    const duplicateKindCount = nameKindCounts.get(kindKey) ?? 0;
+
+    let displayName = symbol.name;
+    if (duplicateNameCount > 1) {
+      if (duplicateKindCount === 1 && symbol.kind) {
+        displayName = `${symbol.name} (${symbol.kind})`;
+      } else {
+        const labelBase = symbol.kind ? `${symbol.kind} overload` : "variant";
+        displayName = `${symbol.name} (${labelBase} ${occurrence})`;
+      }
+    }
+
+    const slugValue = createSymbolSlug(displayName) ?? createSymbolSlug(symbol.name) ?? "";
+    infos.push({
+      symbol,
+      displayName,
+      slug: slugValue
+    });
+  }
+
+  return infos;
+}
+
 export function renderPublicSymbolLines(args: {
   analysis: SourceAnalysisResult;
   docDir: string;
   sourceAbsolute: string;
   workspaceRoot: string;
   sourceRelativePath: string;
+  headings: PublicSymbolHeadingInfo[];
 }): string[] {
   const lines: string[] = [];
 
-  for (const symbol of args.analysis.symbols) {
-    lines.push(`#### \`${symbol.name}\``);
+  for (const info of args.headings) {
+    const symbol = info.symbol;
+    lines.push(`#### \`${info.displayName}\``);
 
     const detailLines: string[] = [];
     const displayKind = symbol.kind ? symbol.kind : "symbol";
@@ -1176,7 +1227,7 @@ export function renderPublicSymbolLines(args: {
       lines.push(...detailLines);
     }
 
-    const documentationLines = renderSymbolDocumentationSections(symbol);
+    const documentationLines = renderSymbolDocumentationSections(symbol, info.displayName);
     if (documentationLines.length > 0) {
       lines.push("", ...documentationLines);
     }
@@ -1191,7 +1242,7 @@ export function renderPublicSymbolLines(args: {
   return lines;
 }
 
-function renderSymbolDocumentationSections(symbol: PublicSymbolEntry): string[] {
+function renderSymbolDocumentationSections(symbol: PublicSymbolEntry, displayName: string): string[] {
   const documentation = symbol.documentation;
   if (!documentation) {
     return [];
@@ -1299,7 +1350,7 @@ function renderSymbolDocumentationSections(symbol: PublicSymbolEntry): string[] 
     return [];
   }
 
-  const headingPrefix = `##### \`${symbol.name}\` — `;
+  const headingPrefix = `##### \`${displayName}\` — `;
   const lines: string[] = [];
 
   for (const section of sections) {
@@ -1361,11 +1412,13 @@ export function renderDependencyLines(args: {
   workspaceRoot: string;
   liveDocsRootAbsolute: string;
   docExtension: string;
+  headings: PublicSymbolHeadingInfo[];
 }): string[] {
   if (args.analysis.dependencies.length === 0) {
     return [];
   }
 
+  const slugIndex = buildSymbolSlugIndex(args.headings);
   const grouped = new Map<
     string,
     { entry: DependencyEntry; symbols: Set<string>; targets: Record<string, string> }
@@ -1415,7 +1468,7 @@ export function renderDependencyLines(args: {
 
       for (const symbolName of symbols) {
         const anchorName = bucket.targets[symbolName] ?? symbolName;
-        const slug = createSymbolSlug(anchorName);
+        const slug = resolveSymbolSlug(anchorName, slugIndex) ?? createSymbolSlug(anchorName);
         const fragment = slug ? `#${slug}` : "";
         const label = `${moduleLabel}.${symbolName}`;
         lines.push(`- [${formatInlineCode(label)}](${docRelative}${fragment})${qualifierSuffix}`);
@@ -1431,6 +1484,61 @@ export function renderDependencyLines(args: {
   }
 
   return lines;
+}
+
+function buildSymbolSlugIndex(headings: PublicSymbolHeadingInfo[]): Map<string, string> {
+  const index = new Map<string, string>();
+
+  for (const info of headings) {
+    registerSymbolAlias(index, info.displayName, info.slug);
+    registerSymbolAlias(index, info.symbol.name, info.slug);
+    if (info.symbol.qualifiedName) {
+      registerSymbolAlias(index, info.symbol.qualifiedName, info.slug);
+    }
+  }
+
+  return index;
+}
+
+function registerSymbolAlias(index: Map<string, string>, alias: string | undefined, slugValue: string): void {
+  if (!alias || !slugValue) {
+    return;
+  }
+
+  const trimmed = alias.trim();
+  if (!trimmed) {
+    return;
+  }
+
+  const lower = trimmed.toLowerCase();
+  if (!index.has(trimmed)) {
+    index.set(trimmed, slugValue);
+  }
+  if (!index.has(lower)) {
+    index.set(lower, slugValue);
+  }
+}
+
+function resolveSymbolSlug(alias: string | undefined, index: Map<string, string>): string | undefined {
+  if (!alias) {
+    return undefined;
+  }
+
+  const direct = index.get(alias) ?? index.get(alias.toLowerCase());
+  if (direct) {
+    return direct;
+  }
+
+  const segments = alias.split(".");
+  if (segments.length > 1) {
+    const last = segments[segments.length - 1];
+    const resolved = index.get(last) ?? index.get(last.toLowerCase());
+    if (resolved) {
+      return resolved;
+    }
+  }
+
+  return undefined;
 }
 
 export function renderReExportedAnchorLines(args: {

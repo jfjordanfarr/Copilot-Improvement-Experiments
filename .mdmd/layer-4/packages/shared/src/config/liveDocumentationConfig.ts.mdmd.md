@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/config/liveDocumentationConfig.ts
 - Live Doc ID: LD-implementation-packages-shared-src-config-livedocumentationconfig-ts
-- Generated At: 2025-11-16T20:43:31.398Z
+- Generated At: 2025-11-18T14:53:52.519Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Centralizes Live Documentation defaults—root, base layer, slug dialect, eviden
 Upcoming `.mdmd` mirroring requires extending these defaults (root/baseLayer/extension overrides); see the follow-up plan captured in [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L3310](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L3310) for the design work queued to widen `normalizeLiveDocumentationConfig` and the CLI flags.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:31.398Z","inputHash":"0f09d2f125f551e9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.519Z","inputHash":"0f09d2f125f551e9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LiveDocumentationSlugDialect`
@@ -108,7 +108,9 @@ _No dependencies documented yet_
 - [settings.test.ts](../../../server/src/runtime/settings.test.ts.mdmd.md)
 - [latencyTracker.test.ts](../../../server/src/telemetry/latencyTracker.test.ts.mdmd.md)
 - [liveDocumentationConfig.test.ts](./liveDocumentationConfig.test.ts.mdmd.md)
+- [aspnet.test.ts](../live-docs/adapters/aspnet.test.ts.mdmd.md)
 - [c.docstring.test.ts](../live-docs/adapters/c.docstring.test.ts.mdmd.md)
+- [csharp.hangfire.test.ts](../live-docs/adapters/csharp.hangfire.test.ts.mdmd.md)
 - [python.docstring.test.ts](../live-docs/adapters/python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](../live-docs/adapters/ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](../live-docs/adapters/rust.docstring.test.ts.mdmd.md)

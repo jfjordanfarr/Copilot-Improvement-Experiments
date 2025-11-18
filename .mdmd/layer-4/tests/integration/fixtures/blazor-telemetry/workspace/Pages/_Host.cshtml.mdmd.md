@@ -25,3 +25,10 @@ _No public symbols detected_
 ### Dependencies
 - [`_Host.cshtml`](./_Host.cshtml.cs.mdmd.md)
 <!-- LIVE-DOC:END Dependencies -->
+
+## Appendix
+### TelemetryEndpoint
+`data-endpoint` attribute exposing the telemetry ingestion URL consumed by `blazor-telemetry.js`.
+
+### TelemetryInstrumentation
+`data-instrumentation` attribute mirroring the Application Insights key for client bootstrap logic.

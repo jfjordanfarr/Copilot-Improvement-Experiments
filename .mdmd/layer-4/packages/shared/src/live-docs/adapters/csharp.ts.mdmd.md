@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/csharp.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-csharp-ts
-- Generated At: 2025-11-18T00:40:47.591Z
+- Generated At: 2025-11-18T14:53:52.879Z
 
 ## Authored
 ### Purpose
@@ -15,12 +15,12 @@ Harvests public symbols, XML doc comments, and dependency edges from C# sources,
 - Backed by the `polyglot-fixtures` integration harness and manual inspection scripts created during the C# deployment, so changes here should re-run those checks <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-12.md#L554-L715>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:40:47.591Z","inputHash":"7826535fcbc6f5bb"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.879Z","inputHash":"99282f3d96435639"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `csharpAdapter`
 - Type: const
-- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/csharp.ts#L53)
+- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/csharp.ts#L54)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -47,7 +47,9 @@ Harvests public symbols, XML doc comments, and dependency edges from C# sources,
 - [generator.test.ts](../../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
 - [generator.test.ts](../../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
+- [aspnet.test.ts](./aspnet.test.ts.mdmd.md)
 - [c.docstring.test.ts](./c.docstring.test.ts.mdmd.md)
+- [csharp.hangfire.test.ts](./csharp.hangfire.test.ts.mdmd.md)
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](./ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](./rust.docstring.test.ts.mdmd.md)

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/c.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-c-ts
-- Generated At: 2025-11-16T22:34:12.954Z
+- Generated At: 2025-11-18T14:53:52.861Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Implements the Doxygen-aware analyzer for `.c` and `.h` sources, binding doc com
 - Extend both the parser and its test scenarios when onboarding new Doxygen tags, following the coverage matrix captured in the adapter plan <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L3620-L3705>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.954Z","inputHash":"bf8a05802076a639"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.861Z","inputHash":"bf8a05802076a639"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `cAdapter`
@@ -45,7 +45,9 @@ Implements the Doxygen-aware analyzer for `.c` and `.h` sources, binding doc com
 - [generator.test.ts](../../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
 - [generator.test.ts](../../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
+- [aspnet.test.ts](./aspnet.test.ts.mdmd.md)
 - [c.docstring.test.ts](./c.docstring.test.ts.mdmd.md)
+- [csharp.hangfire.test.ts](./csharp.hangfire.test.ts.mdmd.md)
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](./ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](./rust.docstring.test.ts.mdmd.md)

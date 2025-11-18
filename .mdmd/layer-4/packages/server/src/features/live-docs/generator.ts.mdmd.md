@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/generator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-generator-ts
-- Generated At: 2025-11-16T23:18:48.330Z
+- Generated At: 2025-11-18T16:28:50.960Z
 
 ## Authored
 ### Purpose
@@ -16,24 +16,24 @@ Coordinates Live Documentation generation by analyzing source files, merging aut
 - Exposes `__testUtils` hooks to validate rendering behaviour as documented in [2025-11-08 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T23:18:48.330Z","inputHash":"b66301f1ed943a0b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T16:28:50.960Z","inputHash":"a59602a736f22c26"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `LiveDocGeneratorResult`
 - Type: interface
-- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L69)
+- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L70)
 
 #### `generateLiveDocs`
 - Type: function
-- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L92)
+- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L93)
 
 #### `__testUtils`
 - Type: const
-- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L758)
+- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L762)
 
 #### `withDefaultConfig`
 - Type: function
-- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L767)
+- Source: [source](../../../../../../../packages/server/src/features/live-docs/generator.ts#L771)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -56,6 +56,7 @@ Coordinates Live Documentation generation by analyzing source files, merging aut
 - [`core.cleanupEmptyParents`](../../../../shared/src/live-docs/core.ts.mdmd.md#cleanupemptyparents)
 - [`core.collectDependencies`](../../../../shared/src/live-docs/core.ts.mdmd.md#collectdependencies)
 - [`core.collectExportedSymbols`](../../../../shared/src/live-docs/core.ts.mdmd.md#collectexportedsymbols)
+- [`core.computePublicSymbolHeadingInfo`](../../../../shared/src/live-docs/core.ts.mdmd.md#computepublicsymbolheadinginfo)
 - [`core.directoryExists`](../../../../shared/src/live-docs/core.ts.mdmd.md#directoryexists)
 - [`core.discoverTargetFiles`](../../../../shared/src/live-docs/core.ts.mdmd.md#discovertargetfiles)
 - [`core.formatRelativePathFromDoc`](../../../../shared/src/live-docs/core.ts.mdmd.md#formatrelativepathfromdoc)

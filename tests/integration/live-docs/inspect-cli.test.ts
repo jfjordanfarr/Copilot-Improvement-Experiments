@@ -54,6 +54,14 @@ const fixtures = {
     "fixtures",
     "blazor-telemetry",
     "workspace"
+  ),
+  queueWorker: path.join(
+    repoRoot,
+    "tests",
+    "integration",
+    "fixtures",
+    "queue-worker",
+    "workspace"
   )
 } as const;
 
@@ -233,6 +241,36 @@ suite("Live Docs inspect CLI", () => {
         "wwwroot/js/blazor-telemetry.js",
         "Pages/_Host.cshtml",
         "Pages/_Host.cshtml.cs",
+        "appsettings.json"
+      ]
+    );
+  });
+
+  test("links queue enqueue calls to workers and configuration", () => {
+    const run = runInspectCli(fixtures.queueWorker, [
+      "--from",
+      "Controllers/TelemetryController.cs",
+      "--to",
+      "appsettings.json",
+      "--json"
+    ]);
+
+    assert.strictEqual(run.exitCode, 0, `inspect exited ${run.exitCode}:\n${run.stderr || run.stdout}`);
+    const payload = JSON.parse(run.stdout) as {
+      kind: string;
+      direction: string;
+      length: number;
+      nodes: Array<{ codePath: string }>;
+    };
+
+    assert.strictEqual(payload.kind, "path");
+    assert.strictEqual(payload.direction, "outbound");
+    assert.strictEqual(payload.length, 2);
+    assert.deepStrictEqual(
+      payload.nodes.map(node => node.codePath),
+      [
+        "Controllers/TelemetryController.cs",
+        "Workers/TelemetryWorker.cs",
         "appsettings.json"
       ]
     );

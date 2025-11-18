@@ -25,3 +25,10 @@ _No public symbols detected_
 ### Dependencies
 _No dependencies documented yet_
 <!-- LIVE-DOC:END Dependencies -->
+
+## Appendix
+### Telemetry:Endpoint
+Captures the Application Insights telemetry ingestion endpoint consumed by the Blazor host page.
+
+### Telemetry:InstrumentationKey
+Stores the instrumentation key bound into Razor markup and forwarded to client telemetry scripts.

@@ -1,0 +1,79 @@
+{
+  "generatedAt": "2025-01-01T00:00:00.000Z",
+  "workspace": "D:\\Projects\\Live-Documentation\\tests\\integration\\fixtures\\queue-worker\\workspace",
+  "totals": {
+    "artifacts": 3,
+    "links": 0
+  },
+  "artifacts": [
+    {
+      "id": "orchestrated-artifact-0ca38541",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/queue-worker/workspace/.mdmd/layer-4/appsettings.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "appsettings.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-b2357f30",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/queue-worker/workspace/.mdmd/layer-4/Controllers/TelemetryController.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "Controllers/TelemetryController.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-70d14470",
+      "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/queue-worker/workspace/.mdmd/layer-4/Workers/TelemetryWorker.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "Workers/TelemetryWorker.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    }
+  ],
+  "links": [],
+  "providerSummaries": [
+    {
+      "id": "workspace-index",
+      "label": "Workspace Implementation Index",
+      "seedCount": 3,
+      "hintCount": 3,
+      "evidenceCount": 0
+    },
+    {
+      "id": "relationship-rules",
+      "label": "Relationship Rule Engine",
+      "seedCount": 0,
+      "hintCount": 0,
+      "evidenceCount": 0
+    }
+  ],
+  "errors": []
+}

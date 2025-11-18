@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/watchers/artifactWatcher.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-watchers-artifactwatcher-test-ts
-- Generated At: 2025-11-16T22:35:16.220Z
+- Generated At: 2025-11-18T14:53:39.192Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies that `ArtifactWatcher` classifies code and documentation changes correc
 - Added alongside the watcher refactor captured in [2025-10-19 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md) to guard the unified pipeline.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.220Z","inputHash":"72e188081d551d1e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:39.192Z","inputHash":"72e188081d551d1e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -53,6 +53,7 @@ _No public symbols detected_
 - packages/shared/src/inference/llm: [confidenceCalibrator.ts](../../../../shared/src/inference/llm/confidenceCalibrator.ts.mdmd.md), [relationshipExtractor.ts](../../../../shared/src/inference/llm/relationshipExtractor.ts.mdmd.md)
 - packages/shared/src/knowledge: [knowledgeGraphBridge.ts](../../../../shared/src/knowledge/knowledgeGraphBridge.ts.mdmd.md)
 - packages/shared/src/language: [typeScriptAstUtils.ts](../../../../shared/src/language/typeScriptAstUtils.ts.mdmd.md)
+- packages/shared/src/live-docs: [parse.ts](../../../../shared/src/live-docs/parse.ts.mdmd.md)
 - packages/shared/src/reporting: [testReport.ts](../../../../shared/src/reporting/testReport.ts.mdmd.md)
 - packages/shared/src/rules: [relationshipResolvers.ts](../../../../shared/src/rules/relationshipResolvers.ts.mdmd.md), [relationshipRuleAudit.ts](../../../../shared/src/rules/relationshipRuleAudit.ts.mdmd.md), [relationshipRuleEngine.ts](../../../../shared/src/rules/relationshipRuleEngine.ts.mdmd.md), [relationshipRuleProvider.ts](../../../../shared/src/rules/relationshipRuleProvider.ts.mdmd.md), [relationshipRuleTypes.ts](../../../../shared/src/rules/relationshipRuleTypes.ts.mdmd.md), [symbolCorrectnessProfiles.ts](../../../../shared/src/rules/symbolCorrectnessProfiles.ts.mdmd.md)
 - packages/shared/src/telemetry: [inferenceAccuracy.ts](../../../../shared/src/telemetry/inferenceAccuracy.ts.mdmd.md)

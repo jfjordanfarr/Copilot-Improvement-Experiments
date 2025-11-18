@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/python.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-python-ts
-- Generated At: 2025-11-16T22:34:13.044Z
+- Generated At: 2025-11-18T14:53:52.918Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Implements the Python adapter that normalizes reST, Google, and NumPy docstrings
 - Guard rails come from `python.docstring.test.ts` and the `safe:commit -- --benchmarks` run that accompanied the rollout; update those fixtures when extending the parser <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L1378-L1414>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.044Z","inputHash":"3eb164afb46bfc51"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.918Z","inputHash":"3eb164afb46bfc51"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `pythonAdapter`
@@ -49,7 +49,9 @@ on Python runtime introspection.
 - [generator.test.ts](../../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
 - [renderPublicSymbolLines.test.ts](../../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
 - [generator.test.ts](../../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
+- [aspnet.test.ts](./aspnet.test.ts.mdmd.md)
 - [c.docstring.test.ts](./c.docstring.test.ts.mdmd.md)
+- [csharp.hangfire.test.ts](./csharp.hangfire.test.ts.mdmd.md)
 - [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
 - [ruby.docstring.test.ts](./ruby.docstring.test.ts.mdmd.md)
 - [rust.docstring.test.ts](./rust.docstring.test.ts.mdmd.md)

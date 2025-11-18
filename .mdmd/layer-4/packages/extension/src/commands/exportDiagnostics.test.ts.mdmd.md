@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/exportDiagnostics.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-exportdiagnostics-test-ts
-- Generated At: 2025-11-16T22:35:14.296Z
+- Generated At: 2025-11-18T14:53:38.265Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the export diagnostics command so CSV/JSON generation, cancellation ha
 - Pending work to include acknowledgement metadata in exports should extend this suite once the feature lands, matching the open acceptance criteria referenced later that day in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.296Z","inputHash":"6028cb53b8f923c4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.265Z","inputHash":"6028cb53b8f923c4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -48,6 +48,7 @@ _No public symbols detected_
 - packages/shared/src/inference/llm: [confidenceCalibrator.ts](../../../shared/src/inference/llm/confidenceCalibrator.ts.mdmd.md), [relationshipExtractor.ts](../../../shared/src/inference/llm/relationshipExtractor.ts.mdmd.md)
 - packages/shared/src/knowledge: [knowledgeGraphBridge.ts](../../../shared/src/knowledge/knowledgeGraphBridge.ts.mdmd.md)
 - packages/shared/src/language: [typeScriptAstUtils.ts](../../../shared/src/language/typeScriptAstUtils.ts.mdmd.md)
+- packages/shared/src/live-docs: [parse.ts](../../../shared/src/live-docs/parse.ts.mdmd.md)
 - packages/shared/src/reporting: [testReport.ts](../../../shared/src/reporting/testReport.ts.mdmd.md)
 - packages/shared/src/rules: [relationshipResolvers.ts](../../../shared/src/rules/relationshipResolvers.ts.mdmd.md), [relationshipRuleAudit.ts](../../../shared/src/rules/relationshipRuleAudit.ts.mdmd.md), [relationshipRuleEngine.ts](../../../shared/src/rules/relationshipRuleEngine.ts.mdmd.md), [relationshipRuleProvider.ts](../../../shared/src/rules/relationshipRuleProvider.ts.mdmd.md), [relationshipRuleTypes.ts](../../../shared/src/rules/relationshipRuleTypes.ts.mdmd.md), [symbolCorrectnessProfiles.ts](../../../shared/src/rules/symbolCorrectnessProfiles.ts.mdmd.md)
 - packages/shared/src/telemetry: [inferenceAccuracy.ts](../../../shared/src/telemetry/inferenceAccuracy.ts.mdmd.md)

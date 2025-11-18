@@ -49,6 +49,7 @@ const APP_SETTINGS_PATTERN = /ConfigurationManager\.AppSettings\s*\[\s*"([^"]+)"
 const CONFIGURATION_INDEXER_PATTERN = /\b([A-Za-z_][A-Za-z0-9_]*)\s*\[\s*"([^"]+)"\s*\]/g;
 const TYPE_GET_TYPE_PATTERN = /Type\.GetType\s*\(\s*"([^"]+)"\s*\)/g;
 const TYPE_NAME_LITERAL_PATTERN = /"([A-Z][A-Za-z0-9_]*(?:\.[A-Z][A-Za-z0-9_]*)+)"/g;
+const BACKGROUND_JOB_ENQUEUE_PATTERN = /\b(?:BackgroundJob|IBackgroundJobClient)\s*\.\s*Enqueue\s*<\s*([^>\s]+)\s*>/g;
 
 export const csharpAdapter: LanguageAdapter = {
   id: "csharp-basic",
@@ -205,6 +206,12 @@ async function extractDependencies(params: {
     }
   }
 
+  const hangfireTargets = collectHangfireTargets(content);
+  if (hangfireTargets.size > 0) {
+    const resolved = await resolveReflectionTargets(Array.from(hangfireTargets), workspaceRoot);
+    dependencies.push(...resolved);
+  }
+
   return dependencies;
 }
 
@@ -271,6 +278,26 @@ function collectTypeNameLiterals(content: string): Set<string> {
   }
 
   TYPE_NAME_LITERAL_PATTERN.lastIndex = 0;
+  return results;
+}
+
+function collectHangfireTargets(content: string): Set<string> {
+  const results = new Set<string>();
+  let match: RegExpExecArray | null;
+
+  while ((match = BACKGROUND_JOB_ENQUEUE_PATTERN.exec(content)) !== null) {
+    const raw = match[1]?.trim();
+    if (!raw) {
+      continue;
+    }
+    const candidate = raw.replace(/\s+/g, "");
+    if (candidate.includes("(")) {
+      continue;
+    }
+    results.add(candidate);
+  }
+
+  BACKGROUND_JOB_ENQUEUE_PATTERN.lastIndex = 0;
   return results;
 }
 
@@ -360,11 +387,23 @@ async function resolveReflectionTarget(
     }
 
     const relative = normalizeWorkspacePath(path.relative(workspaceRoot, candidate));
+    let symbolTargets: Record<string, string> | undefined;
+
+    const symbolEntries = extractSymbols(content);
+    const targetSymbol = symbolEntries.find((entry) => entry.name === simpleName && entry.kind);
+    if (targetSymbol?.kind) {
+      const normalizedKind = targetSymbol.kind.toLowerCase();
+      symbolTargets = {
+        [typeName]: `${targetSymbol.name} (${normalizedKind})`
+      };
+    }
+
     return {
       specifier: relative,
       resolvedPath: relative,
       symbols: [typeName],
-      kind: "import"
+      kind: "import",
+      symbolTargets
     };
   }
 

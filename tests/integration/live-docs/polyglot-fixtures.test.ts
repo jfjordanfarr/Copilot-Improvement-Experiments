@@ -59,7 +59,7 @@ suite("Live Docs polyglot fixtures", () => {
       );
       const widgetDocContent = await fs.readFile(widgetRegistryDoc, "utf8");
       assert.match(widgetDocContent, /#### `WidgetRegistry`/);
-      assert.match(widgetDocContent, /#### `WidgetRegisteredEventArgs`/);
+      assert.match(widgetDocContent, /#### `WidgetRegisteredEventArgs \(class\)`/);
       assert.match(widgetDocContent, /_No dependencies documented yet_/);
       assert.match(
         widgetDocContent,

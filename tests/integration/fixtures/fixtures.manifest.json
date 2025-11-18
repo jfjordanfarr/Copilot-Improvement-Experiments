@@ -59,6 +59,14 @@
     "slopcopConfig": "slopcop.config.json"
   },
   {
+    "id": "queue-worker",
+    "label": "Background queue telemetry pipeline",
+    "path": "tests/integration/fixtures/queue-worker/workspace",
+    "stories": ["CLI"],
+    "languages": ["C#", "JSON", "Markdown"],
+    "slopcopConfig": "slopcop.config.json"
+  },
+  {
     "id": "spa-runtime-config",
     "label": "SPA runtime config alias",
     "path": "tests/integration/fixtures/spa-runtime-config/workspace",

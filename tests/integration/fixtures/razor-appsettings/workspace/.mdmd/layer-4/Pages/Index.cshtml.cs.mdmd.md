@@ -11,15 +11,19 @@
 ### Purpose
 Load the telemetry instrumentation key from configuration and expose it to the Razor page.
 
+### Notes
+#### appsettings.Telemetry:InstrumentationKey
+Provides the configuration-backed value surfaced to the Razor template.
+
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-17T23:27:28.687Z","inputHash":"fa59e19b34863b9b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `IndexModel`
+#### `IndexModel (class)`
 - Type: class
 - Source: [source](../../../Pages/Index.cshtml.cs#L2)
 
-#### `IndexModel`
+#### `IndexModel (constructor)`
 - Type: constructor
 - Source: [source](../../../Pages/Index.cshtml.cs#L8)
 

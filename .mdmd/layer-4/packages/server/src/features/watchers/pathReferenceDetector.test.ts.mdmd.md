@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/watchers/pathReferenceDetector.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-watchers-pathreferencedetector-test-ts
-- Generated At: 2025-11-16T22:34:12.122Z
+- Generated At: 2025-11-18T14:53:39.208Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Proves the detector surfaces markdown-to-code links, import edges, and ignores e
 - Refresh these scenarios whenever we adjust the hint heuristics or indexer globs—tests should mirror the real templates/docs/assets we expect to resolve <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2832-L2864> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L4504-L4572>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.122Z","inputHash":"8bd67aefe700f7b9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:39.208Z","inputHash":"8bd67aefe700f7b9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -48,6 +48,7 @@ _No public symbols detected_
 - packages/shared/src/inference/llm: [confidenceCalibrator.ts](../../../../shared/src/inference/llm/confidenceCalibrator.ts.mdmd.md), [relationshipExtractor.ts](../../../../shared/src/inference/llm/relationshipExtractor.ts.mdmd.md)
 - packages/shared/src/knowledge: [knowledgeGraphBridge.ts](../../../../shared/src/knowledge/knowledgeGraphBridge.ts.mdmd.md)
 - packages/shared/src/language: [typeScriptAstUtils.ts](../../../../shared/src/language/typeScriptAstUtils.ts.mdmd.md)
+- packages/shared/src/live-docs: [parse.ts](../../../../shared/src/live-docs/parse.ts.mdmd.md)
 - packages/shared/src/reporting: [testReport.ts](../../../../shared/src/reporting/testReport.ts.mdmd.md)
 - packages/shared/src/rules: [relationshipResolvers.ts](../../../../shared/src/rules/relationshipResolvers.ts.mdmd.md), [relationshipRuleAudit.ts](../../../../shared/src/rules/relationshipRuleAudit.ts.mdmd.md), [relationshipRuleEngine.ts](../../../../shared/src/rules/relationshipRuleEngine.ts.mdmd.md), [relationshipRuleProvider.ts](../../../../shared/src/rules/relationshipRuleProvider.ts.mdmd.md), [relationshipRuleTypes.ts](../../../../shared/src/rules/relationshipRuleTypes.ts.mdmd.md), [symbolCorrectnessProfiles.ts](../../../../shared/src/rules/symbolCorrectnessProfiles.ts.mdmd.md)
 - packages/shared/src/telemetry: [inferenceAccuracy.ts](../../../../shared/src/telemetry/inferenceAccuracy.ts.mdmd.md)

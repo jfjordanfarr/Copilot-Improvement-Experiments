@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/telemetry/latencyTracker.test.ts
 - Live Doc ID: LD-test-packages-server-src-telemetry-latencytracker-test-ts
-- Generated At: 2025-11-16T22:34:12.311Z
+- Generated At: 2025-11-18T14:53:39.320Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises the latency recorder scenarios delivered in [AI-Agent-Workspace/ChatHi
 Coverage ensures queued changes that never persist are ignored and that snapshot resets clear rolling metrics—guardrails the team depended on when wiring the latency command and perf test in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-21-latency-command--perf-test-lines-2321-2385).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.311Z","inputHash":"f8655427f8758be3"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:39.320Z","inputHash":"f8655427f8758be3"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -45,6 +45,7 @@ _No public symbols detected_
 - packages/shared/src/inference/llm: [confidenceCalibrator.ts](../../../shared/src/inference/llm/confidenceCalibrator.ts.mdmd.md), [relationshipExtractor.ts](../../../shared/src/inference/llm/relationshipExtractor.ts.mdmd.md)
 - packages/shared/src/knowledge: [knowledgeGraphBridge.ts](../../../shared/src/knowledge/knowledgeGraphBridge.ts.mdmd.md)
 - packages/shared/src/language: [typeScriptAstUtils.ts](../../../shared/src/language/typeScriptAstUtils.ts.mdmd.md)
+- packages/shared/src/live-docs: [parse.ts](../../../shared/src/live-docs/parse.ts.mdmd.md)
 - packages/shared/src/reporting: [testReport.ts](../../../shared/src/reporting/testReport.ts.mdmd.md)
 - packages/shared/src/rules: [relationshipResolvers.ts](../../../shared/src/rules/relationshipResolvers.ts.mdmd.md), [relationshipRuleAudit.ts](../../../shared/src/rules/relationshipRuleAudit.ts.mdmd.md), [relationshipRuleEngine.ts](../../../shared/src/rules/relationshipRuleEngine.ts.mdmd.md), [relationshipRuleProvider.ts](../../../shared/src/rules/relationshipRuleProvider.ts.mdmd.md), [relationshipRuleTypes.ts](../../../shared/src/rules/relationshipRuleTypes.ts.mdmd.md), [symbolCorrectnessProfiles.ts](../../../shared/src/rules/symbolCorrectnessProfiles.ts.mdmd.md)
 - packages/shared/src/telemetry: [inferenceAccuracy.ts](../../../shared/src/telemetry/inferenceAccuracy.ts.mdmd.md)

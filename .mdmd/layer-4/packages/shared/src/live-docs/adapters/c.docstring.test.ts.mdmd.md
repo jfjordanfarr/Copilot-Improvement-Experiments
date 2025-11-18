@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/adapters/c.docstring.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-adapters-c-docstring-test-ts
-- Generated At: 2025-11-16T22:34:12.944Z
+- Generated At: 2025-11-18T16:28:51.511Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises `cAdapter` against synthetic `.c/.h` fixtures to confirm Doxygen summa
 - Runs as part of the Nov 14 `safe:commit -- --benchmarks` sweep to lock the adapter’s behaviour, and should grow alongside any new Doxygen tag support <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L4028-L4088>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.944Z","inputHash":"1a2b609e410ec68c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T16:28:51.511Z","inputHash":"040d0ccea5a4da2b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -27,6 +27,7 @@ _No public symbols detected_
 - `node:os` - `os`
 - `node:path` - `path`
 - [`c.cAdapter`](./c.ts.mdmd.md#cadapter)
+- [`core.computePublicSymbolHeadingInfo`](../core.ts.mdmd.md#computepublicsymbolheadinginfo)
 - [`core.renderPublicSymbolLines`](../core.ts.mdmd.md#renderpublicsymbollines)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
@@ -36,8 +37,9 @@ _No public symbols detected_
 #### Vitest Unit Tests
 - packages/shared/src/config: [liveDocumentationConfig.ts](../../config/liveDocumentationConfig.ts.mdmd.md)
 - packages/shared/src/live-docs: [core.ts](../core.ts.mdmd.md)
-- packages/shared/src/live-docs/adapters: [adapters/index.ts](./index.ts.mdmd.md), [c.ts](./c.ts.mdmd.md), [csharp.ts](./csharp.ts.mdmd.md), [java.ts](./java.ts.mdmd.md), [python.ts](./python.ts.mdmd.md), [ruby.ts](./ruby.ts.mdmd.md)
-  [rust.ts](./rust.ts.mdmd.md)
+- packages/shared/src/live-docs/adapters: [adapters/index.ts](./index.ts.mdmd.md), [aspnet.ts](./aspnet.ts.mdmd.md), [c.ts](./c.ts.mdmd.md), [csharp.ts](./csharp.ts.mdmd.md), [java.ts](./java.ts.mdmd.md), [python.ts](./python.ts.mdmd.md)
+  [ruby.ts](./ruby.ts.mdmd.md), [rust.ts](./rust.ts.mdmd.md)
+- packages/shared/src/live-docs/heuristics: [dom.ts](../heuristics/dom.ts.mdmd.md)
 - packages/shared/src/tooling: [githubSlugger.ts](../../tooling/githubSlugger.ts.mdmd.md), [githubSluggerRegex.ts](../../tooling/githubSluggerRegex.ts.mdmd.md), [pathUtils.ts](../../tooling/pathUtils.ts.mdmd.md)
 <!-- LIVE-DOC:END Targets -->
 

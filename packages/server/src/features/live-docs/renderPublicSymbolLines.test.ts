@@ -2,6 +2,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import { computePublicSymbolHeadingInfo } from "@copilot-improvement/shared/live-docs/core";
 
 import { __testUtils } from "./generator";
 
@@ -38,12 +39,14 @@ describe("renderPublicSymbolLines", () => {
       dependencies: []
     };
 
+    const headings = computePublicSymbolHeadingInfo(analysis.symbols);
     const lines = __testUtils.renderPublicSymbolLines({
       analysis,
       docDir,
       sourceAbsolute,
       workspaceRoot,
-      sourceRelativePath
+      sourceRelativePath,
+      headings
     });
 
     expect(lines).toContain("#### `DependencyGraphEdge`");
