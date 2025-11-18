@@ -72,4 +72,98 @@ describe("csharpAdapter Hangfire heuristics", () => {
       ])
     );
   });
+
+  it("links scheduled and recurring Hangfire jobs to worker implementations", async () => {
+    const controllersDir = path.join(workspaceRoot, "Controllers");
+    const servicesDir = path.join(workspaceRoot, "Services");
+    const workersDir = path.join(workspaceRoot, "Workers");
+    await fs.mkdir(controllersDir, { recursive: true });
+    await fs.mkdir(servicesDir, { recursive: true });
+    await fs.mkdir(workersDir, { recursive: true });
+
+    const workerPath = path.join(workersDir, "TelemetryWorker.cs");
+    await fs.writeFile(
+      workerPath,
+      [
+        "namespace Example.Workers;",
+        "public class TelemetryWorker",
+        "{",
+        "    public void Process(string payload) { }",
+        "}",
+        ""
+      ].join("\n"),
+      "utf8"
+    );
+
+    const controllerPath = path.join(controllersDir, "TelemetryController.cs");
+    await fs.writeFile(
+      controllerPath,
+      [
+        "using System;",
+        "using Hangfire;",
+        "namespace Example.Controllers;",
+        "public class TelemetryController",
+        "{",
+        "    public void Schedule()",
+        "    {",
+        "        BackgroundJob.Schedule<Example.Workers.TelemetryWorker>(worker => worker.Process(\"future\"), TimeSpan.FromMinutes(5));",
+        "    }",
+        "}",
+        ""
+      ].join("\n"),
+      "utf8"
+    );
+
+    const schedulerPath = path.join(servicesDir, "TelemetryScheduler.cs");
+    await fs.writeFile(
+      schedulerPath,
+      [
+        "using Hangfire;",
+        "namespace Example.Services;",
+        "public class TelemetryScheduler",
+        "{",
+        "    private readonly IRecurringJobManager _recurring;",
+        "    public TelemetryScheduler(IRecurringJobManager recurring)",
+        "    {",
+        "        _recurring = recurring;",
+        "    }",
+        "    public void Configure()",
+        "    {",
+        "        _recurring.AddOrUpdate<Example.Workers.TelemetryWorker>(\"telemetry\", job => job.Process(\"baseline\"), Cron.Daily);",
+        "    }",
+        "}",
+        ""
+      ].join("\n"),
+      "utf8"
+    );
+
+    const scheduleAnalysis = await csharpAdapter.analyze({
+      absolutePath: controllerPath,
+      workspaceRoot
+    });
+    const recurringAnalysis = await csharpAdapter.analyze({
+      absolutePath: schedulerPath,
+      workspaceRoot
+    });
+
+    const expectedDependency = path
+      .relative(workspaceRoot, workerPath)
+      .replace(/\\/g, "/");
+
+    expect(scheduleAnalysis?.dependencies).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          resolvedPath: expectedDependency
+        })
+      ])
+    );
+
+    expect(recurringAnalysis?.dependencies).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          resolvedPath: expectedDependency
+        })
+      ])
+    );
+  });
 });

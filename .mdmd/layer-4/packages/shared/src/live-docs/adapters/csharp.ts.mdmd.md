@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/csharp.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-csharp-ts
-- Generated At: 2025-11-18T14:53:52.879Z
+- Generated At: 2025-11-18T18:41:02.372Z
 
 ## Authored
 ### Purpose
@@ -13,14 +13,15 @@ Harvests public symbols, XML doc comments, and dependency edges from C# sources,
 
 ### Notes
 - Backed by the `polyglot-fixtures` integration harness and manual inspection scripts created during the C# deployment, so changes here should re-run those checks <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-12.md#L554-L715>.
+- Extends Hangfire heuristics to capture scheduled and recurring jobs, mirroring the LD-402 queue-worker fixture coverage.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.879Z","inputHash":"99282f3d96435639"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T18:41:02.372Z","inputHash":"24d65a4067e55d6d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `csharpAdapter`
 - Type: const
-- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/csharp.ts#L54)
+- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/csharp.ts#L55)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

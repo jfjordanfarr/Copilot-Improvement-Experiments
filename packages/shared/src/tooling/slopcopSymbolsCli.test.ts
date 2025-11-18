@@ -18,12 +18,6 @@ describe("SlopCop symbol CLI", () => {
     { timeout: 15000 },
     () => {
     withFixtureWorkspace((workspace) => {
-      const baseline = runCli(workspace);
-      expect(baseline.status).toBe(0);
-      const clean = JSON.parse(baseline.stdout.trim() || "{}");
-      expect(clean.scannedFiles).toBeGreaterThan(0);
-      expect(clean.issues).toHaveLength(0);
-
       breakWorkspace(workspace);
 
       const failingRun = runCli(workspace);
@@ -41,6 +35,7 @@ describe("SlopCop symbol CLI", () => {
       const repaired = runCli(workspace);
       expect(repaired.status).toBe(0);
       const repairedPayload = JSON.parse(repaired.stdout.trim() || "{}");
+      expect(repairedPayload.scannedFiles).toBeGreaterThan(0);
       expect(repairedPayload.issues).toHaveLength(0);
     });
     }

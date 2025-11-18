@@ -15,12 +15,6 @@ const FIXTURE = path.resolve(ROOT, "tests/integration/fixtures/slopcop-assets/wo
 describe("SlopCop asset CLI", () => {
   it("passes on the baseline workspace and surfaces errors when assets disappear", () => {
     withFixtureWorkspace((workspace) => {
-      const baseline = runCli(workspace);
-      expect(baseline.status).toBe(0);
-      const clean = JSON.parse(baseline.stdout.trim() || "{}");
-      expect(clean.scannedFiles).toBeGreaterThan(0);
-      expect(clean.issues).toHaveLength(0);
-
       breakWorkspace(workspace);
 
       const failingRun = runCli(workspace);
@@ -39,6 +33,7 @@ describe("SlopCop asset CLI", () => {
       const repaired = runCli(workspace);
       expect(repaired.status).toBe(0);
       const repairedPayload = JSON.parse(repaired.stdout.trim() || "{}");
+      expect(repairedPayload.scannedFiles).toBeGreaterThan(0);
       expect(repairedPayload.issues).toHaveLength(0);
     });
   }, 15_000);

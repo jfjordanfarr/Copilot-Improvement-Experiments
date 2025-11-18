@@ -49,7 +49,8 @@ const APP_SETTINGS_PATTERN = /ConfigurationManager\.AppSettings\s*\[\s*"([^"]+)"
 const CONFIGURATION_INDEXER_PATTERN = /\b([A-Za-z_][A-Za-z0-9_]*)\s*\[\s*"([^"]+)"\s*\]/g;
 const TYPE_GET_TYPE_PATTERN = /Type\.GetType\s*\(\s*"([^"]+)"\s*\)/g;
 const TYPE_NAME_LITERAL_PATTERN = /"([A-Z][A-Za-z0-9_]*(?:\.[A-Z][A-Za-z0-9_]*)+)"/g;
-const BACKGROUND_JOB_ENQUEUE_PATTERN = /\b(?:BackgroundJob|IBackgroundJobClient)\s*\.\s*Enqueue\s*<\s*([^>\s]+)\s*>/g;
+const HANGFIRE_GENERIC_CALL_PATTERN = /\b(?:BackgroundJob|IBackgroundJobClient|RecurringJob|IRecurringJobManager)\s*\.\s*(?:Enqueue|Schedule|AddOrUpdate)\s*<\s*([^>\s]+)\s*>/g;
+const HANGFIRE_INSTANCE_GENERIC_CALL_PATTERN = /\b([A-Za-z_][A-Za-z0-9_]*)\s*\.\s*(Enqueue|Schedule|AddOrUpdate)\s*<\s*([^>\s]+)\s*>/g;
 
 export const csharpAdapter: LanguageAdapter = {
   id: "csharp-basic",
@@ -285,7 +286,7 @@ function collectHangfireTargets(content: string): Set<string> {
   const results = new Set<string>();
   let match: RegExpExecArray | null;
 
-  while ((match = BACKGROUND_JOB_ENQUEUE_PATTERN.exec(content)) !== null) {
+  while ((match = HANGFIRE_GENERIC_CALL_PATTERN.exec(content)) !== null) {
     const raw = match[1]?.trim();
     if (!raw) {
       continue;
@@ -297,7 +298,53 @@ function collectHangfireTargets(content: string): Set<string> {
     results.add(candidate);
   }
 
-  BACKGROUND_JOB_ENQUEUE_PATTERN.lastIndex = 0;
+  HANGFIRE_GENERIC_CALL_PATTERN.lastIndex = 0;
+
+  const recurringManagers = collectTypeIdentifiers(content, "IRecurringJobManager");
+  const backgroundClients = collectTypeIdentifiers(content, "IBackgroundJobClient");
+  const aliasCandidates = new Set<string>([...recurringManagers, ...backgroundClients]);
+
+  while ((match = HANGFIRE_INSTANCE_GENERIC_CALL_PATTERN.exec(content)) !== null) {
+    const alias = match[1]?.trim();
+    const method = match[2]?.trim();
+    const raw = match[3]?.trim();
+    if (!alias || !raw) {
+      continue;
+    }
+
+    if (!aliasCandidates.has(alias)) {
+      continue;
+    }
+
+    if (method === "AddOrUpdate" && !recurringManagers.has(alias)) {
+      continue;
+    }
+
+    const candidate = raw.replace(/\s+/g, "");
+    if (candidate.includes("(")) {
+      continue;
+    }
+
+    results.add(candidate);
+  }
+
+  HANGFIRE_INSTANCE_GENERIC_CALL_PATTERN.lastIndex = 0;
+  return results;
+}
+
+function collectTypeIdentifiers(content: string, typeName: string): Set<string> {
+  const results = new Set<string>();
+  const pattern = new RegExp(`\\b${typeName}\\s+([A-Za-z_][A-Za-z0-9_]*)`, "g");
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(content)) !== null) {
+    const identifier = match[1]?.trim();
+    if (identifier) {
+      results.add(identifier);
+    }
+  }
+
+  pattern.lastIndex = 0;
   return results;
 }
 
