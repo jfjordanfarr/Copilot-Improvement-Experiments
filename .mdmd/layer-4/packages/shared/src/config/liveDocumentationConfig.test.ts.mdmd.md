@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/config/liveDocumentationConfig.test.ts
 - Live Doc ID: LD-test-packages-shared-src-config-livedocumentationconfig-test-ts
-- Generated At: 2025-11-16T22:34:12.332Z
+- Generated At: 2025-11-19T15:01:34.619Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises `normalizeLiveDocumentationConfig` so Live Docs tooling respects trimm
 Coverage anchors the upcoming `.mdmd` migration work by proving the extension/root/base-layer overrides behave—context tracked in [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L3310](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L3310).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.332Z","inputHash":"c63010f48d36bdce"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.619Z","inputHash":"c63010f48d36bdce"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,8 +23,8 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](./liveDocumentationConfig.ts.mdmd.md#default_live_documentation_config)
-- [`liveDocumentationConfig.normalizeLiveDocumentationConfig`](./liveDocumentationConfig.ts.mdmd.md#normalizelivedocumentationconfig)
+- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](./liveDocumentationConfig.ts.mdmd.md#symbol-default_live_documentation_config)
+- [`liveDocumentationConfig.normalizeLiveDocumentationConfig`](./liveDocumentationConfig.ts.mdmd.md#symbol-normalizelivedocumentationconfig)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/benchmarks/utils/repoPaths.ts
 - Live Doc ID: LD-test-tests-integration-benchmarks-utils-repopaths-ts
-- Generated At: 2025-11-16T22:34:14.276Z
+- Generated At: 2025-11-19T15:01:36.387Z
 
 ## Authored
 ### Purpose
@@ -16,14 +16,14 @@ Locates the repository root for benchmark suites so rebuild and AST accuracy tes
 - Accepts both historical and current workspace names so the helper survives the repo rename from Copilot Improvement Experiments to Live Documentation ([rename fix](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L215-L253)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.276Z","inputHash":"c53dc70d3d72d578"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.387Z","inputHash":"c53dc70d3d72d578"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `getRepoRoot`
+#### `getRepoRoot` {#symbol-getreporoot}
 - Type: function
 - Source: [source](../../../../../../tests/integration/benchmarks/utils/repoPaths.ts#L8)
 
-#### `resolveRepoPath`
+#### `resolveRepoPath` {#symbol-resolverepopath}
 - Type: function
 - Source: [source](../../../../../../tests/integration/benchmarks/utils/repoPaths.ts#L30)
 <!-- LIVE-DOC:END Public Symbols -->

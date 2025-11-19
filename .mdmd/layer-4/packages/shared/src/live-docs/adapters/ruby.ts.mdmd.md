@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/ruby.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-ruby-ts
-- Generated At: 2025-11-18T14:53:52.929Z
+- Generated At: 2025-11-19T15:01:35.232Z
 
 ## Authored
 ### Purpose
@@ -15,27 +15,28 @@ Provides the Ruby analyzer that maps YARD-style line and block comments, mixins,
 - Keep YARD tag coverage aligned with `ruby.docstring.test.ts` and the regenerated ruby fixtures that shipped with the adapter <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L3308-L3334>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.929Z","inputHash":"3c21d6da89c90e4d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.232Z","inputHash":"ddf14d025e303b40"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `rubyAdapter`
+#### `rubyAdapter` {#symbol-rubyadapter}
 - Type: const
-- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/ruby.ts#L31)
+- Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/ruby.ts#L32)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- `node:fs` - `promises`
+- `node:fs` - `promises`, `statSync`
 - `node:path` - `path`
-- [`index.LanguageAdapter`](./index.ts.mdmd.md#languageadapter) (type-only)
-- [`core.DependencyEntry`](../core.ts.mdmd.md#dependencyentry) (type-only)
-- [`core.PublicSymbolEntry`](../core.ts.mdmd.md#publicsymbolentry) (type-only)
-- [`core.SourceAnalysisResult`](../core.ts.mdmd.md#sourceanalysisresult) (type-only)
-- [`core.SymbolDocumentation`](../core.ts.mdmd.md#symboldocumentation) (type-only)
-- [`core.SymbolDocumentationExample`](../core.ts.mdmd.md#symboldocumentationexample) (type-only)
-- [`core.SymbolDocumentationException`](../core.ts.mdmd.md#symboldocumentationexception) (type-only)
-- [`core.SymbolDocumentationLink`](../core.ts.mdmd.md#symboldocumentationlink) (type-only)
-- [`core.SymbolDocumentationParameter`](../core.ts.mdmd.md#symboldocumentationparameter) (type-only)
+- [`index.LanguageAdapter`](./index.ts.mdmd.md#symbol-languageadapter) (type-only)
+- [`core.DependencyEntry`](../core.ts.mdmd.md#symbol-dependencyentry) (type-only)
+- [`core.PublicSymbolEntry`](../core.ts.mdmd.md#symbol-publicsymbolentry) (type-only)
+- [`core.SourceAnalysisResult`](../core.ts.mdmd.md#symbol-sourceanalysisresult) (type-only)
+- [`core.SymbolDocumentation`](../core.ts.mdmd.md#symbol-symboldocumentation) (type-only)
+- [`core.SymbolDocumentationExample`](../core.ts.mdmd.md#symbol-symboldocumentationexample) (type-only)
+- [`core.SymbolDocumentationException`](../core.ts.mdmd.md#symbol-symboldocumentationexception) (type-only)
+- [`core.SymbolDocumentationLink`](../core.ts.mdmd.md#symbol-symboldocumentationlink) (type-only)
+- [`core.SymbolDocumentationLinkKind`](../core.ts.mdmd.md#symbol-symboldocumentationlinkkind) (type-only)
+- [`core.SymbolDocumentationParameter`](../core.ts.mdmd.md#symbol-symboldocumentationparameter) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

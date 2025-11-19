@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/queue-worker/workspace/Services/TelemetryScheduler.cs
 - Live Doc ID: LD-asset-tests-integration-fixtures-queue-worker-workspace-services-telemetryscheduler-cs
-- Generated At: 2025-11-18T16:45:00.000Z
+- Generated At: 2025-11-19T15:01:37.018Z
 
 ## Authored
 ### Purpose
@@ -15,25 +15,25 @@ Document the recurring Hangfire registration so LD-402 captures scheduled teleme
 Calls the Hangfire recurring manager directly to keep the pathfinder's inbound edges honest when configuration feeds the worker and controller through scheduled hops.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T16:45:00.000Z","inputHash":"manual-telemetry-scheduler"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:37.018Z","inputHash":"f890d82085ec19d7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `TelemetryScheduler (class)`
+#### `TelemetryScheduler (class)` {#symbol-telemetryscheduler-class}
 - Type: class
-- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Services/TelemetryScheduler.cs#L5)
+- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Services/TelemetryScheduler.cs#L4)
 
-#### `TelemetryScheduler (constructor)`
+#### `TelemetryScheduler (constructor)` {#symbol-telemetryscheduler-constructor}
 - Type: constructor
-- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Services/TelemetryScheduler.cs#L9)
+- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Services/TelemetryScheduler.cs#L10)
 
-#### `Configure`
+#### `Configure` {#symbol-configure}
 - Type: method
-- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Services/TelemetryScheduler.cs#L14)
+- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Services/TelemetryScheduler.cs#L15)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `Hangfire`
 - `QueueWorker.Workers`
-- [`TelemetryWorker.TelemetryWorker`](../Workers/TelemetryWorker.cs.mdmd.md#telemetryworker-class)
+- [`TelemetryWorker.TelemetryWorker`](../Workers/TelemetryWorker.cs.mdmd.md#symbol-telemetryworker-class)
 <!-- LIVE-DOC:END Dependencies -->

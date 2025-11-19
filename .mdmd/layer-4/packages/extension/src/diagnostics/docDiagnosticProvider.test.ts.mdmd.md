@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/diagnostics/docDiagnosticProvider.test.ts
 - Live Doc ID: LD-test-packages-extension-src-diagnostics-docdiagnosticprovider-test-ts
-- Generated At: 2025-11-18T14:53:38.372Z
+- Generated At: 2025-11-19T15:01:33.470Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises the doc diagnostic provider’s helper utilities so the Problems quick
 - Added alongside the ripple metadata regression fix and runs in the same unit/integration sweep captured at [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L1380-L1460](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L1380-L1460), keeping the quick-fix labels and summaries under regression test.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.372Z","inputHash":"306873c7f5ad580c"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.470Z","inputHash":"b6d8d5cd32902a18"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,10 +23,9 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`docDiagnosticProvider.buildOpenActionTitle`](./docDiagnosticProvider.ts.mdmd.md#buildopenactiontitle)
-- [`docDiagnosticProvider.buildRippleSummary`](./docDiagnosticProvider.ts.mdmd.md#buildripplesummary)
-- [`docDiagnosticProvider.formatConfidenceLabel`](./docDiagnosticProvider.ts.mdmd.md#formatconfidencelabel)
-- `vitest` - `describe`, `expect`, `it`, `vi`
+- [`vscodeMock.SharedVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#symbol-sharedvscodemock)
+- [`vscodeMock.createVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#symbol-createvscodemock)
+- `vitest` - `afterAll`, `beforeAll`, `beforeEach`, `describe`, `expect`, `it`, `vi`
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Targets -->
@@ -34,6 +33,7 @@ _No public symbols detected_
 #### Vitest Unit Tests
 - packages/extension/src/commands: [acknowledgeDiagnostic.ts](../commands/acknowledgeDiagnostic.ts.mdmd.md)
 - packages/extension/src/diagnostics: [docDiagnosticProvider.ts](./docDiagnosticProvider.ts.mdmd.md)
+- packages/extension/src/testUtils: [vscodeMock.ts](../testUtils/vscodeMock.ts.mdmd.md)
 - packages/shared/src: [src/index.ts](../../../shared/src/index.ts.mdmd.md)
 - packages/shared/src/config: [liveDocumentationConfig.ts](../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md)
 - packages/shared/src/contracts: [dependencies.ts](../../../shared/src/contracts/dependencies.ts.mdmd.md), [diagnostics.ts](../../../shared/src/contracts/diagnostics.ts.mdmd.md), [llm.ts](../../../shared/src/contracts/llm.ts.mdmd.md), [lsif.ts](../../../shared/src/contracts/lsif.ts.mdmd.md), [maintenance.ts](../../../shared/src/contracts/maintenance.ts.mdmd.md), [overrides.ts](../../../shared/src/contracts/overrides.ts.mdmd.md)

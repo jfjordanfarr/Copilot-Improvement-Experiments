@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/queue-worker/workspace/Controllers/TelemetryController.cs
 - Live Doc ID: LD-asset-tests-integration-fixtures-queue-worker-workspace-controllers-telemetrycontroller-cs
-- Generated At: 2025-11-18T16:40:14.786Z
+- Generated At: 2025-11-19T15:01:36.920Z
 
 ## Authored
 ### Purpose
@@ -15,16 +15,16 @@ Capture the enqueue boundary for the Hangfire-style telemetry pipeline so LD-402
 Mirrors the fixture-local doc but keeps repository-relative links, making the inspect CLI and graph audit share a single authoritative description while covering both the immediate enqueue and delayed maintenance schedule.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T16:40:14.786Z","inputHash":"e272a11c1402e37b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.920Z","inputHash":"3b2c50a995fbd524"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `TelemetryController`
+#### `TelemetryController` {#symbol-telemetrycontroller}
 - Type: class
-- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Controllers/TelemetryController.cs#L8)
+- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Controllers/TelemetryController.cs#L9)
 
-#### `Record`
+#### `Record` {#symbol-record}
 - Type: method
-- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Controllers/TelemetryController.cs#L12)
+- Source: [source](../../../../../../../../tests/integration/fixtures/queue-worker/workspace/Controllers/TelemetryController.cs#L13)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -32,5 +32,5 @@ Mirrors the fixture-local doc but keeps repository-relative links, making the in
 - `Hangfire`
 - `Microsoft.AspNetCore.Mvc`
 - `QueueWorker.Workers`
-- [`TelemetryWorker.TelemetryWorker`](../Workers/TelemetryWorker.cs.mdmd.md#telemetryworker-class)
+- [`TelemetryWorker.TelemetryWorker`](../Workers/TelemetryWorker.cs.mdmd.md#symbol-telemetryworker-class)
 <!-- LIVE-DOC:END Dependencies -->

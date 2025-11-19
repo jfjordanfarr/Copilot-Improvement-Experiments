@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/fixture-tools/record-fallback-inference.ts
 - Live Doc ID: LD-implementation-scripts-fixture-tools-record-fallback-inference-ts
-- Generated At: 2025-11-16T22:34:13.834Z
+- Generated At: 2025-11-19T15:01:35.794Z
 
 ## Authored
 ### Purpose
@@ -17,10 +17,10 @@ Captures deterministic fallback-inference graphs for benchmark fixtures by mater
 - Expanded 2025-11-06 with `--lang csharp`, dynamic language listings, and `.cs` defaults so the new C# fixtures slot into the same verification pipeline as other languages ([C# support update](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L3520-L3600)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.834Z","inputHash":"14bebf649af2dcde"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.794Z","inputHash":"14bebf649af2dcde"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `runCli`
+#### `runCli` {#symbol-runcli}
 - Type: function
 - Source: [source](../../../../scripts/fixture-tools/record-fallback-inference.ts#L97)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -32,12 +32,12 @@ Captures deterministic fallback-inference graphs for benchmark fixtures by mater
 - `node:path` - `path`
 - `node:process` - `process`
 - `node:url` - `fileURLToPath`, `pathToFileURL`
-- [`artifacts.LinkRelationshipKind`](../../packages/shared/src/domain/artifacts.ts.mdmd.md#linkrelationshipkind)
-- [`fallbackInference.ArtifactSeed`](../../packages/shared/src/inference/fallbackInference.ts.mdmd.md#artifactseed)
-- [`fallbackInference.FallbackInferenceResult`](../../packages/shared/src/inference/fallbackInference.ts.mdmd.md#fallbackinferenceresult)
-- [`fallbackInference.inferFallbackGraph`](../../packages/shared/src/inference/fallbackInference.ts.mdmd.md#inferfallbackgraph)
-- [`benchmark-manifest.BENCHMARK_MANIFEST_SEGMENTS`](./benchmark-manifest.ts.mdmd.md#benchmark_manifest_segments)
-- [`benchmark-manifest.BenchmarkFixtureDefinition`](./benchmark-manifest.ts.mdmd.md#benchmarkfixturedefinition)
-- [`benchmark-manifest.loadBenchmarkManifest`](./benchmark-manifest.ts.mdmd.md#loadbenchmarkmanifest)
-- [`fixtureMaterializer.materializeFixture`](./fixtureMaterializer.ts.mdmd.md#materializefixture)
+- [`artifacts.LinkRelationshipKind`](../../packages/shared/src/domain/artifacts.ts.mdmd.md#symbol-linkrelationshipkind)
+- [`fallbackInference.ArtifactSeed`](../../packages/shared/src/inference/fallbackInference.ts.mdmd.md#symbol-artifactseed)
+- [`fallbackInference.FallbackInferenceResult`](../../packages/shared/src/inference/fallbackInference.ts.mdmd.md#symbol-fallbackinferenceresult)
+- [`fallbackInference.inferFallbackGraph`](../../packages/shared/src/inference/fallbackInference.ts.mdmd.md#symbol-inferfallbackgraph)
+- [`benchmark-manifest.BENCHMARK_MANIFEST_SEGMENTS`](./benchmark-manifest.ts.mdmd.md#symbol-benchmark_manifest_segments)
+- [`benchmark-manifest.BenchmarkFixtureDefinition`](./benchmark-manifest.ts.mdmd.md#symbol-benchmarkfixturedefinition)
+- [`benchmark-manifest.loadBenchmarkManifest`](./benchmark-manifest.ts.mdmd.md#symbol-loadbenchmarkmanifest)
+- [`fixtureMaterializer.materializeFixture`](./fixtureMaterializer.ts.mdmd.md#symbol-materializefixture)
 <!-- LIVE-DOC:END Dependencies -->

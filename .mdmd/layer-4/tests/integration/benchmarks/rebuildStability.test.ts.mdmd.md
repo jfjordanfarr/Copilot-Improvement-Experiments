@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/benchmarks/rebuildStability.test.ts
 - Live Doc ID: LD-test-tests-integration-benchmarks-rebuildstability-test-ts
-- Generated At: 2025-11-16T22:34:14.258Z
+- Generated At: 2025-11-19T15:01:36.375Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Runs the graph snapshot CLI repeatedly to prove rebuilds stay byte-identical whi
 - Persists iteration timings and drift flags through `writeBenchmarkResult` so the reports surface average/max rebuild costs (`rebuild-stability` suite) during integration runs ([harness recap](../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L100-L170)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.258Z","inputHash":"381d87f77f5823ff"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.375Z","inputHash":"381d87f77f5823ff"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -29,9 +29,9 @@ _No public symbols detected_
 - `node:fs` - `promises`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`benchmarkRecorder.writeBenchmarkResult`](./utils/benchmarkRecorder.ts.mdmd.md#writebenchmarkresult)
-- [`repoPaths.getRepoRoot`](./utils/repoPaths.ts.mdmd.md#getreporoot)
-- [`repoPaths.resolveRepoPath`](./utils/repoPaths.ts.mdmd.md#resolverepopath)
+- [`benchmarkRecorder.writeBenchmarkResult`](./utils/benchmarkRecorder.ts.mdmd.md#symbol-writebenchmarkresult)
+- [`repoPaths.getRepoRoot`](./utils/repoPaths.ts.mdmd.md#symbol-getreporoot)
+- [`repoPaths.resolveRepoPath`](./utils/repoPaths.ts.mdmd.md#symbol-resolverepopath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Targets -->

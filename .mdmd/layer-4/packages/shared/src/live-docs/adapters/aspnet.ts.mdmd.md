@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/aspnet.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-aspnet-ts
-- Generated At: 2025-11-18T14:53:52.850Z
+- Generated At: 2025-11-19T15:01:35.118Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Surfaces script and code-behind dependencies for ASP.NET markup assets so the LD
 - Intentional filesystem probes ensure we only yield dependencies for files that actually exist, preventing noisy edges during Stage-0 regeneration.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.850Z","inputHash":"0be4e1d30982127d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.118Z","inputHash":"0be4e1d30982127d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `aspNetMarkupAdapter`
+#### `aspNetMarkupAdapter` {#symbol-aspnetmarkupadapter}
 - Type: const
 - Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/aspnet.ts#L12)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -28,10 +28,10 @@ Surfaces script and code-behind dependencies for ASP.NET markup assets so the LD
 ### Dependencies
 - `node:fs` - `promises`, `statSync`
 - `node:path` - `path`
-- [`index.LanguageAdapter`](./index.ts.mdmd.md#languageadapter) (type-only)
-- [`core.DependencyEntry`](../core.ts.mdmd.md#dependencyentry) (type-only)
-- [`core.SourceAnalysisResult`](../core.ts.mdmd.md#sourceanalysisresult) (type-only)
-- [`pathUtils.normalizeWorkspacePath`](../../tooling/pathUtils.ts.mdmd.md#normalizeworkspacepath)
+- [`index.LanguageAdapter`](./index.ts.mdmd.md#symbol-languageadapter) (type-only)
+- [`core.DependencyEntry`](../core.ts.mdmd.md#symbol-dependencyentry) (type-only)
+- [`core.SourceAnalysisResult`](../core.ts.mdmd.md#symbol-sourceanalysisresult) (type-only)
+- [`pathUtils.normalizeWorkspacePath`](../../tooling/pathUtils.ts.mdmd.md#symbol-normalizeworkspacepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

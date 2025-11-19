@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/diagnosticPublisher.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-diagnosticpublisher-ts
-- Generated At: 2025-11-16T22:34:11.261Z
+- Generated At: 2025-11-19T15:01:33.800Z
 
 ## Authored
 ### Purpose
@@ -15,16 +15,16 @@ Caches and republishes diagnostics over the LSP connection, enabling incremental
 - Tracks result IDs per URI so acknowledgement removals and re-queries stay consistent with VS Code’s diagnostic pull protocol.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.261Z","inputHash":"ead9894892249373"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.800Z","inputHash":"ead9894892249373"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `DiagnosticPublisher`
+#### `DiagnosticPublisher` {#symbol-diagnosticpublisher}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/diagnosticPublisher.ts#L17)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`diagnosticUtils.DiagnosticSender`](./diagnosticUtils.ts.mdmd.md#diagnosticsender) (type-only)
+- [`diagnosticUtils.DiagnosticSender`](./diagnosticUtils.ts.mdmd.md#symbol-diagnosticsender) (type-only)
 - `vscode-languageserver/node` - `Connection`, `Diagnostic`, `DocumentDiagnosticReport`, `DocumentDiagnosticReportKind`, `PublishDiagnosticsParams`
 <!-- LIVE-DOC:END Dependencies -->

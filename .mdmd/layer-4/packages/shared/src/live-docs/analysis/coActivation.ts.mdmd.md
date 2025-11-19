@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/analysis/coActivation.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-analysis-coactivation-ts
-- Generated At: 2025-11-16T22:34:13.130Z
+- Generated At: 2025-11-19T15:01:35.270Z
 
 ## Authored
 ### Purpose
@@ -16,42 +16,42 @@ Computes co-activation graphs from Stage‑0 manifests to surface statistically 
 - Later upgraded with statistical testing (p/q/z scores) so generated docs highlight significant clusters instead of heuristic caps.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-11.SUMMARIZED.md#turn-16-implement-statistically-backed-co-activation-lines-1881-2020]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.130Z","inputHash":"431a41599d764ccf"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.270Z","inputHash":"431a41599d764ccf"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `CoActivationBuildArgs`
+#### `CoActivationBuildArgs` {#symbol-coactivationbuildargs}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/live-docs/analysis/coActivation.ts#L7)
 
-#### `CoActivationEdge`
+#### `CoActivationEdge` {#symbol-coactivationedge}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/live-docs/analysis/coActivation.ts#L17)
 
-#### `CoActivationNode`
+#### `CoActivationNode` {#symbol-coactivationnode}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/live-docs/analysis/coActivation.ts#L31)
 
-#### `CoActivationCluster`
+#### `CoActivationCluster` {#symbol-coactivationcluster}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/live-docs/analysis/coActivation.ts#L41)
 
-#### `CoActivationReport`
+#### `CoActivationReport` {#symbol-coactivationreport}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/live-docs/analysis/coActivation.ts#L53)
 
-#### `buildCoActivationReport`
+#### `buildCoActivationReport` {#symbol-buildcoactivationreport}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/live-docs/analysis/coActivation.ts#L93)
 
-#### `serializeCoActivationReport`
+#### `serializeCoActivationReport` {#symbol-serializecoactivationreport}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/live-docs/analysis/coActivation.ts#L304)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`types.Stage0Doc`](../types.ts.mdmd.md#stage0doc) (type-only)
-- [`types.TargetManifest`](../types.ts.mdmd.md#targetmanifest) (type-only)
+- [`types.Stage0Doc`](../types.ts.mdmd.md#symbol-stage0doc) (type-only)
+- [`types.TargetManifest`](../types.ts.mdmd.md#symbol-targetmanifest) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

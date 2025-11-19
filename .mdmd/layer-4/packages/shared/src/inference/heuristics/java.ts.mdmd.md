@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/java.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-java-ts
-- Generated At: 2025-11-16T22:34:12.772Z
+- Generated At: 2025-11-19T15:01:34.980Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Recovers `imports`/`uses` edges for the Phase 8 Java fixtures by mapping impor
 - After adjustments, regenerate the Java fallback fixtures (`npm run fixtures:record-fallback -- --lang java`) so java-service and java-basic stay aligned with the oracle edges <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L1340-L1420>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.772Z","inputHash":"627bf16b072e9cfc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.980Z","inputHash":"627bf16b072e9cfc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createJavaHeuristic`
+#### `createJavaHeuristic` {#symbol-createjavaheuristic}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/java.ts#L12)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -27,9 +27,9 @@ Recovers `imports`/`uses` edges for the Phase 8 Java fixtures by mapping impor
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#fallbackheuristic) (type-only)
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#isimplementationlayer)
+- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-fallbackheuristic) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#symbol-isimplementationlayer)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

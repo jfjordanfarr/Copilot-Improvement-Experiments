@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/shared/artifactSchemas.ts
 - Live Doc ID: LD-implementation-packages-extension-src-shared-artifactschemas-ts
-- Generated At: 2025-11-16T22:34:11.019Z
+- Generated At: 2025-11-19T15:01:33.614Z
 
 ## Authored
 ### Purpose
@@ -15,30 +15,30 @@ Centralises Zod schemas for artifact layers, knowledge artifacts, and relationsh
 When we added Live Doc metadata to the quick pick outputs on 2025-11-01 ([AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L5908-L6070](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L5908-L6070)), these schemas kept the client aligned with the shared contracts—extend them in tandem with `packages/shared/src/contracts/diagnostics.ts` anytime new relationship kinds appear.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.019Z","inputHash":"96b611c6b3ad8a3b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.614Z","inputHash":"96b611c6b3ad8a3b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ArtifactLayerSchema`
+#### `ArtifactLayerSchema` {#symbol-artifactlayerschema}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/shared/artifactSchemas.ts#L3)
 
-#### `ArtifactLayer`
+#### `ArtifactLayer` {#symbol-artifactlayer}
 - Type: type
 - Source: [source](../../../../../../packages/extension/src/shared/artifactSchemas.ts#L11)
 
-#### `KnowledgeArtifactSchema`
+#### `KnowledgeArtifactSchema` {#symbol-knowledgeartifactschema}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/shared/artifactSchemas.ts#L13)
 
-#### `KnowledgeArtifact`
+#### `KnowledgeArtifact` {#symbol-knowledgeartifact}
 - Type: type
 - Source: [source](../../../../../../packages/extension/src/shared/artifactSchemas.ts#L24)
 
-#### `LinkRelationshipKindSchema`
+#### `LinkRelationshipKindSchema` {#symbol-linkrelationshipkindschema}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/shared/artifactSchemas.ts#L26)
 
-#### `LinkRelationshipKind`
+#### `LinkRelationshipKind` {#symbol-linkrelationshipkind}
 - Type: type
 - Source: [source](../../../../../../packages/extension/src/shared/artifactSchemas.ts#L34)
 <!-- LIVE-DOC:END Public Symbols -->

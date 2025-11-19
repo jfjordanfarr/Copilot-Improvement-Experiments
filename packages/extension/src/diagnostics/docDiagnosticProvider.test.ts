@@ -1,19 +1,32 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("vscode", () => ({
-  workspace: {
-    asRelativePath: vi.fn((value: unknown) => String(value))
-  },
-  Uri: {
-    parse: (value: string) => ({ toString: () => value, fsPath: value })
-  }
-}));
+import { createVscodeMock, type SharedVscodeMock } from "../testUtils/vscodeMock";
 
-import {
-  buildOpenActionTitle,
-  buildRippleSummary,
-  formatConfidenceLabel
-} from "./docDiagnosticProvider";
+let vscodeMock: SharedVscodeMock;
+let buildOpenActionTitle: typeof import("./docDiagnosticProvider").buildOpenActionTitle;
+let buildRippleSummary: typeof import("./docDiagnosticProvider").buildRippleSummary;
+let formatConfidenceLabel: typeof import("./docDiagnosticProvider").formatConfidenceLabel;
+
+beforeAll(async () => {
+  vscodeMock = createVscodeMock();
+  vi.doMock("vscode", () => vscodeMock.module);
+  ({ buildOpenActionTitle, buildRippleSummary, formatConfidenceLabel } = await import(
+    "./docDiagnosticProvider"
+  ));
+}, 30000);
+
+afterAll(() => {
+  vi.doUnmock("vscode");
+});
+
+beforeEach(() => {
+  vi.clearAllMocks();
+  vscodeMock.workspace.asRelativePath.mockImplementation((value: unknown) => String(value));
+  vscodeMock.Uri.parse.mockImplementation((value: string) => ({
+    toString: () => value,
+    fsPath: value
+  }));
+});
 
 describe("buildOpenActionTitle", () => {
   it("returns explicit titles for known relationships", () => {

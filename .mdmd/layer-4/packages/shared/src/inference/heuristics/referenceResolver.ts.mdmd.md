@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/referenceResolver.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-referenceresolver-ts
-- Generated At: 2025-11-16T22:34:12.798Z
+- Generated At: 2025-11-19T15:01:34.994Z
 
 ## Authored
 ### Purpose
@@ -16,18 +16,18 @@ Centralizes the artifact lookup logic for fallback heuristics, exposing shared h
 - If a future heuristic needs bespoke variant scoring, add it here so every language continues reusing the same normalization/weighting rules that we introduced alongside the Phase 8 polyglot heuristics on Nov 5 <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L780-L860>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.798Z","inputHash":"d14e5d1c67e7b897"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.994Z","inputHash":"d14e5d1c67e7b897"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ReferenceResolution`
+#### `ReferenceResolution` {#symbol-referenceresolution}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/referenceResolver.ts#L12)
 
-#### `resolveReference`
+#### `resolveReference` {#symbol-resolvereference}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/referenceResolver.ts#L18)
 
-#### `resolveIncludeReference`
+#### `resolveIncludeReference` {#symbol-resolveincludereference}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/referenceResolver.ts#L59)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -35,12 +35,12 @@ Centralizes the artifact lookup logic for fallback heuristics, exposing shared h
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`shared.buildReferenceVariants`](./shared.ts.mdmd.md#buildreferencevariants)
-- [`shared.cleanupReference`](./shared.ts.mdmd.md#cleanupreference)
-- [`shared.evaluateVariantMatch`](./shared.ts.mdmd.md#evaluatevariantmatch)
-- [`shared.isExternalLink`](./shared.ts.mdmd.md#isexternallink)
-- [`shared.toComparablePath`](./shared.ts.mdmd.md#tocomparablepath)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`shared.buildReferenceVariants`](./shared.ts.mdmd.md#symbol-buildreferencevariants)
+- [`shared.cleanupReference`](./shared.ts.mdmd.md#symbol-cleanupreference)
+- [`shared.evaluateVariantMatch`](./shared.ts.mdmd.md#symbol-evaluatevariantmatch)
+- [`shared.isExternalLink`](./shared.ts.mdmd.md#symbol-isexternallink)
+- [`shared.toComparablePath`](./shared.ts.mdmd.md#symbol-tocomparablepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

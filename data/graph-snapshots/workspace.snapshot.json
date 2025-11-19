@@ -2,8 +2,8 @@
   "generatedAt": "2025-01-01T00:00:00.000Z",
   "workspace": "D:\\Projects\\Live-Documentation",
   "totals": {
-    "artifacts": 713,
-    "links": 1271
+    "artifacts": 859,
+    "links": 1308
   },
   "artifacts": [
     {
@@ -5098,6 +5098,1774 @@
       }
     },
     {
+      "id": "orchestrated-artifact-cf02c8b1",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/basics/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/basics/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-e33cb3c6",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/basics/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/basics/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-d67cb338",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/basics/src/main.c.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/basics/src/main.c"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-6f5b1641",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/basics/src/util.c.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/basics/src/util.c"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-54b14146",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/basics/src/util.h.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/basics/src/util.h"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-1cf537ea",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/libuv/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/libuv/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-312f22ff",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/libuv/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/libuv/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-a7ff050e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-bc38f023",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-d19e6212",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/src/logger.c.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/src/logger.c"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-b6f48d17",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/src/logger.h.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/src/logger.h"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-f2401bfb",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/src/main.c.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/src/main.c"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ebf82b3d",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/src/metrics.c.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/src/metrics.c"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-d14e5642",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/src/metrics.h.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/src/metrics.h"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-7c339fa4",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/src/pipeline.c.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/src/pipeline.c"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-6189caa9",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/c/modular/src/pipeline.h.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/c/modular/src/pipeline.h"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-3f93ff46",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/basic/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/basic/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-53cdea5b",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/basic/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/basic/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-fbf30cb5",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/App.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/App.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-1e68c0a7",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Data/Repository.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Data/Repository.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-2848648d",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/FormattedReport.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/FormattedReport.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9f4f6913",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Formatter.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Formatter.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ef64d540",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Record.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Models/Record.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-a3e25fe8",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Services/ReportService.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/basic/src/Diagnostics/Services/ReportService.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-12851faa",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/roslyn-compilers/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/roslyn-compilers/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-26bf0abf",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/roslyn-compilers/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/roslyn-compilers/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-f37d400b",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/roslyn-compilers/oracle.overrides.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/roslyn-compilers/oracle.overrides.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9d5b24f3",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/webforms/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/webforms/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-b1951008",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/webforms/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/webforms/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-e601ec54",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/webforms/oracle.overrides.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/webforms/oracle.overrides.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9ea542fc",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/webforms/src/App_Code/Globals.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/webforms/src/App_Code/Globals.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-90070d96",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-7770c31f",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ad2ee9a3",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/csharp/webforms/src/Scripts/appConfig.js.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/csharp/webforms/src/Scripts/appConfig.js"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-097e6194",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/fixtures.manifest.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/fixtures.manifest.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ccf0ff81",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/basic/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/basic/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-e12aea96",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/basic/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/basic/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-32cdc72a",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/basic/src/com/example/app/App.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/basic/src/com/example/app/App.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-6d260e01",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/basic/src/com/example/data/Catalog.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/basic/src/com/example/data/Catalog.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-8dfa5575",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/basic/src/com/example/data/Reader.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/basic/src/com/example/data/Reader.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9828abbe",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/basic/src/com/example/format/ReportWriter.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/basic/src/com/example/format/ReportWriter.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-5633e75e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/basic/src/com/example/model/Record.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/basic/src/com/example/model/Record.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-072fea61",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/okhttp/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/okhttp/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-1b69d576",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/okhttp/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/okhttp/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-de1ca808",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-f256931d",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-307ea1b3",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/src/com/example/service/analytics/Analyzer.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/src/com/example/service/analytics/Analyzer.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-0e13568e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/src/com/example/service/AppService.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/src/com/example/service/AppService.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-fb398681",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/src/com/example/service/data/Repository.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/src/com/example/service/data/Repository.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-1d875213",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/src/com/example/service/data/SourceRegistry.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/src/com/example/service/data/SourceRegistry.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-6abaffa1",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/src/com/example/service/metrics/SummaryBuilder.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/src/com/example/service/metrics/SummaryBuilder.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-309ec3d2",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/src/com/example/service/model/Sample.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/src/com/example/service/model/Sample.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-05bd9430",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/src/com/example/service/model/Summary.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/src/com/example/service/model/Summary.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-b3810b53",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/java/service/src/com/example/service/util/Logger.java.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/java/service/src/com/example/service/util/Logger.java"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-00fda2c8",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/basics/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/basics/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-15378ddd",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/basics/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/basics/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-4ec7c529",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/basics/oracle.overrides.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/basics/oracle.overrides.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-49a98825",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/basics/src/helpers.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/basics/src/helpers.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-b0124cdd",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/basics/src/main.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/basics/src/main.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-33004af4",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/basics/src/util.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/basics/src/util.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-1f2c90e5",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-33667bfa",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-c9e94646",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/oracle.overrides.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/oracle.overrides.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-6380fd43",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/src/__init__.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/src/__init__.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ee701e3a",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/src/main.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/src/main.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-164150aa",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/src/metrics.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/src/metrics.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-80ea6c31",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/src/pipeline.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/src/pipeline.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-bb31ec2b",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/src/repositories.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/src/repositories.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-110fd952",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/pipeline/src/validators.py.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/pipeline/src/validators.py"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-14d9e087",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/requests/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/requests/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-2913cb9c",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/requests/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/requests/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-b425d3e8",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/python/requests/oracle.overrides.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/python/requests/oracle.overrides.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-82a2a739",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/basic/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/basic/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-96dc924e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/basic/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/basic/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-1a41c723",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/basic/lib/data_store.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/basic/lib/data_store.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-a085fb55",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/basic/lib/formatter.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/basic/lib/formatter.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-8c592556",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/basic/lib/main.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/basic/lib/main.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-d0cfa92e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/basic/lib/reporter.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/basic/lib/reporter.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-6b895d86",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/basic/lib/templates.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/basic/lib/templates.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-e3d50b6b",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/cli/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/cli/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-f80ef680",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/cli/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/cli/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-480e744d",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/cli/lib/cli.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/cli/lib/cli.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-3a959ef2",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/cli/lib/commands/report.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/cli/lib/commands/report.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-e181bf56",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/cli/lib/services/analyzer.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/cli/lib/services/analyzer.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-63188db0",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-84523eea",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/cli/lib/services/data_loader.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/cli/lib/services/data_loader.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-22612711",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-5f53151b",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/analytics/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/analytics/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-738d0030",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/analytics/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/analytics/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-4046d709",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/analytics/src/analytics.rs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/analytics/src/analytics.rs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9d98c8db",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/analytics/src/io.rs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/analytics/src/io.rs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-d6ae8028",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/analytics/src/main.rs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/analytics/src/main.rs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-49e39b6c",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/analytics/src/metrics.rs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/analytics/src/metrics.rs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-a9cd3c97",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/analytics/src/models.rs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/analytics/src/models.rs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-78beb6c0",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/basics/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/basics/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-8cf8a1d5",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/basics/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/basics/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9970470d",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/basics/src/main.rs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/basics/src/main.rs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-aae7ae5e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/basics/src/math.rs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/basics/src/math.rs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-349dd239",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/basics/src/utils.rs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/basics/src/utils.rs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-c8756419",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/log/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/log/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-dcaf4f2e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/rust/log/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/rust/log/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9f663964",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/basic/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/typescript/basic/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-b3a02479",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/basic/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/typescript/basic/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-77edffc5",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/basic/oracle.overrides.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/typescript/basic/oracle.overrides.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-cfdeef7f",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/basic/src/helpers.ts.mdmd.md",
       "layer": "implementation",
@@ -5176,6 +6944,91 @@
           "identifiers": [],
           "codePaths": [
             "tests/integration/benchmarks/fixtures/typescript/basic/src/util.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-c6269f68",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/ky/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/typescript/ky/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-da608a7d",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/ky/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/typescript/ky/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-c904c1e6",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/layered/expected.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/typescript/layered/expected.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-dd3eacfb",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/layered/inferred.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/typescript/layered/inferred.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-c944e647",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/benchmarks/fixtures/typescript/layered/oracle.overrides.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/benchmarks/fixtures/typescript/layered/oracle.overrides.json"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -5336,6 +7189,23 @@
       }
     },
     {
+      "id": "orchestrated-artifact-c8b312b7",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/clean-dist.mjs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/clean-dist.mjs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-9786d369",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/blazor-telemetry/workspace/appsettings.json.mdmd.md",
       "layer": "implementation",
@@ -5346,6 +7216,23 @@
           "identifiers": [],
           "codePaths": [
             "tests/integration/fixtures/blazor-telemetry/workspace/appsettings.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9b738c4c",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/blazor-telemetry/workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/blazor-telemetry/workspace/data/graph-snapshots/workspace.snapshot.json"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -5404,6 +7291,193 @@
       }
     },
     {
+      "id": "orchestrated-artifact-8ce01080",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/data/graph-snapshots/workspace.snapshot.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-1ad1f502",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/BaseWidget.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/BaseWidget.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-3abf77e4",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/Extensions/WidgetExtensions.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/Extensions/WidgetExtensions.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-4121571e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/RenderContext.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/RenderContext.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-65090524",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-403e3b56",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetRegistry.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetRegistry.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-4ea3aaec",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/Widgets/CompositeWidget.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/Widgets/CompositeWidget.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-eb51d921",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/Widgets/LatencyProbeWidget.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/Widgets/LatencyProbeWidget.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-6e57c1c2",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/Widgets/SymbolDriftWidget.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/Widgets/SymbolDriftWidget.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-b5a4ab6f",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetSnapshot.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetSnapshot.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ade4791f",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-reflection/workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/csharp-reflection/workspace/data/graph-snapshots/workspace.snapshot.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-e88f73f8",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/csharp-reflection/workspace/Services/ReflectionFactory.cs.mdmd.md",
       "layer": "implementation",
@@ -5438,6 +7512,23 @@
       }
     },
     {
+      "id": "orchestrated-artifact-06d9da55",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/fixtures.manifest.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/fixtures.manifest.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-fd452401",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/queue-worker/workspace/appsettings.json.mdmd.md",
       "layer": "implementation",
@@ -5465,6 +7556,23 @@
           "identifiers": [],
           "codePaths": [
             "tests/integration/fixtures/queue-worker/workspace/Controllers/TelemetryController.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-970988e4",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/queue-worker/workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/queue-worker/workspace/data/graph-snapshots/workspace.snapshot.json"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -5523,6 +7631,23 @@
       }
     },
     {
+      "id": "orchestrated-artifact-0cd6ddab",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/razor-appsettings/workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/razor-appsettings/workspace/data/graph-snapshots/workspace.snapshot.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-0435bcf8",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/razor-appsettings/workspace/Pages/Index.cshtml.cs.mdmd.md",
       "layer": "implementation",
@@ -5567,6 +7692,57 @@
           "identifiers": [],
           "codePaths": [
             "tests/integration/fixtures/razor-appsettings/workspace/wwwroot/js/telemetry.js"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-6cc9fcaa",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/simple-workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/simple-workspace/data/graph-snapshots/workspace.snapshot.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-7c1ba8d9",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/simple-workspace/data/knowledge-feeds/001-doc-links.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/simple-workspace/data/knowledge-feeds/001-doc-links.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-e8a18830",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/simple-workspace/data/knowledge-feeds/002-transform.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/simple-workspace/data/knowledge-feeds/002-transform.json"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -5676,6 +7852,142 @@
       }
     },
     {
+      "id": "orchestrated-artifact-6fd40198",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/simple-workspace/tmp.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/simple-workspace/tmp.snapshot.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-adc5eff8",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/slopcop-assets/workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/slopcop-assets/workspace/data/graph-snapshots/workspace.snapshot.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-8092b035",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/slopcop-assets/workspace/pages/index.html.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/slopcop-assets/workspace/pages/index.html"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-4deb7f03",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/slopcop-assets/workspace/public/styles/missing.css.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/slopcop-assets/workspace/public/styles/missing.css"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-002f5fbf",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/slopcop-assets/workspace/slopcop.config.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/slopcop-assets/workspace/slopcop.config.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ca813db8",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/slopcop-assets/workspace/styles/site.css.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/slopcop-assets/workspace/styles/site.css"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-66221a78",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/slopcop-symbols/workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/slopcop-symbols/workspace/data/graph-snapshots/workspace.snapshot.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-9bbc653f",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/slopcop-symbols/workspace/slopcop.config.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/slopcop-symbols/workspace/slopcop.config.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-f01dfe9e",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/slopcop-symbols/workspace/src/component.ts.mdmd.md",
       "layer": "implementation",
@@ -5686,6 +7998,23 @@
           "identifiers": [],
           "codePaths": [
             "tests/integration/fixtures/slopcop-symbols/workspace/src/component.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-0dada87e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/spa-runtime-config/workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/spa-runtime-config/workspace/data/graph-snapshots/workspace.snapshot.json"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -5720,6 +8049,108 @@
           "identifiers": [],
           "codePaths": [
             "tests/integration/fixtures/spa-runtime-config/workspace/src/config/runtime.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-05bca63e",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/spa-runtime-config/workspace/tsconfig.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/spa-runtime-config/workspace/tsconfig.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ec2c82cc",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/webforms-appsettings/workspace/data/graph-snapshots/workspace.snapshot.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/webforms-appsettings/workspace/data/graph-snapshots/workspace.snapshot.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-192b34ec",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/webforms-appsettings/workspace/packages/site/Default.aspx.cs.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/webforms-appsettings/workspace/packages/site/Default.aspx.cs"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-ae6d64a4",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/webforms-appsettings/workspace/packages/site/Default.aspx.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/webforms-appsettings/workspace/packages/site/Default.aspx"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-e95897fe",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/webforms-appsettings/workspace/packages/site/Scripts/app-insights.js.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/webforms-appsettings/workspace/packages/site/Scripts/app-insights.js"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-db3a3253",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/fixtures/webforms-appsettings/workspace/Web.config.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/fixtures/webforms-appsettings/workspace/Web.config"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -5863,6 +8294,23 @@
       }
     },
     {
+      "id": "orchestrated-artifact-82a7f082",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/tsconfig.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/tsconfig.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-5d74c5c1",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/us1/codeImpact.test.ts.mdmd.md",
       "layer": "implementation",
@@ -5982,6 +8430,23 @@
       }
     },
     {
+      "id": "orchestrated-artifact-58d00394",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/us5/__fixtures__/llm-ingestion/dry-run.sample.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/us5/__fixtures__/llm-ingestion/dry-run.sample.json"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
       "id": "orchestrated-artifact-8093ec21",
       "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/us5/llmIngestionDryRun.test.ts.mdmd.md",
       "layer": "implementation",
@@ -6043,6 +8508,23 @@
           "identifiers": [],
           "codePaths": [
             "tests/integration/vscode/suite/index.ts"
+          ],
+          "exports": [],
+          "sectionSymbols": []
+        }
+      }
+    },
+    {
+      "id": "orchestrated-artifact-4b835795",
+      "uri": "file:///D:/Projects/Live-Documentation/.mdmd/layer-4/tests/integration/vscode/tsconfig.json.mdmd.md",
+      "layer": "implementation",
+      "language": "markdown",
+      "metadata": {
+        "mdmd": {
+          "layer": "4",
+          "identifiers": [],
+          "codePaths": [
+            "tests/integration/vscode/tsconfig.json"
           ],
           "exports": [],
           "sectionSymbols": []
@@ -6500,7 +8982,21 @@
       "metadata": {
         "exportedSymbols": [
           {
+            "name": "SharedVscodeMock",
+            "kind": "interface"
+          },
+          {
+            "name": "createVscodeMock",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
             "name": "getSharedVscodeMock",
+            "kind": "function",
+            "isDefault": false
+          },
+          {
+            "name": "resetSharedVscodeMock",
             "kind": "function",
             "isDefault": false
           }
@@ -13121,9 +15617,9 @@
       "createdBy": "workspace-index"
     },
     {
-      "id": "orchestrated-link-85ec3b44",
+      "id": "orchestrated-link-f3bcf537",
       "sourceId": "orchestrated-artifact-0683f32d",
-      "targetId": "orchestrated-artifact-269f7d1f",
+      "targetId": "orchestrated-artifact-269f7d24",
       "kind": "depends_on",
       "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -13697,6 +16193,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-dcc53a77",
+      "sourceId": "orchestrated-artifact-192b34ec",
+      "targetId": "orchestrated-artifact-efcf5fcd",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-cd98aa2c",
       "sourceId": "orchestrated-artifact-19956c29",
       "targetId": "orchestrated-artifact-ad7b5036",
@@ -13718,6 +16223,15 @@
       "id": "orchestrated-link-f06dd120",
       "sourceId": "orchestrated-artifact-1ac74ffb",
       "targetId": "orchestrated-artifact-3ac09008",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-a41f3984",
+      "sourceId": "orchestrated-artifact-1ad1f502",
+      "targetId": "orchestrated-artifact-fd1ac90f",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -13772,6 +16286,15 @@
       "id": "orchestrated-link-d4cdf66a",
       "sourceId": "orchestrated-artifact-1e654d69",
       "targetId": "orchestrated-artifact-0bd879f6",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-ff657822",
+      "sourceId": "orchestrated-artifact-1e68c0a7",
+      "targetId": "orchestrated-artifact-fce6d108",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -14087,6 +16610,15 @@
       "id": "orchestrated-link-254e0503",
       "sourceId": "orchestrated-artifact-2830bea0",
       "targetId": "orchestrated-artifact-0683f32d",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-c27ba2e0",
+      "sourceId": "orchestrated-artifact-2848648d",
+      "targetId": "orchestrated-artifact-c9f6d29a",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -14597,6 +17129,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-c121d472",
+      "sourceId": "orchestrated-artifact-3abf77e4",
+      "targetId": "orchestrated-artifact-cb429645",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-6db51d5a",
       "sourceId": "orchestrated-artifact-3ac09008",
       "targetId": "orchestrated-artifact-b83971ab",
@@ -14928,6 +17469,24 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-c71ccd4a",
+      "sourceId": "orchestrated-artifact-403e3b56",
+      "targetId": "orchestrated-artifact-2bfb1863",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-0b40cd0a",
+      "sourceId": "orchestrated-artifact-4121571e",
+      "targetId": "orchestrated-artifact-0b1a68ff",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-aa167e6b",
@@ -15803,6 +18362,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-618ea17e",
+      "sourceId": "orchestrated-artifact-4befd746",
+      "targetId": "orchestrated-artifact-c1f0b8f5",
+      "kind": "depends_on",
+      "confidence": 0.95,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "workspace-index"
+    },
+    {
       "id": "orchestrated-link-8ce341a6",
       "sourceId": "orchestrated-artifact-4befd746",
       "targetId": "orchestrated-artifact-d731c5b4",
@@ -15972,6 +18540,15 @@
       "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-2d986b85",
+      "sourceId": "orchestrated-artifact-4ea3aaec",
+      "targetId": "orchestrated-artifact-f076a64d",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-b8501406",
@@ -16283,6 +18860,15 @@
       "id": "orchestrated-link-c1a6403a",
       "sourceId": "orchestrated-artifact-549d2837",
       "targetId": "orchestrated-artifact-dba29a98",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-8ab9412f",
+      "sourceId": "orchestrated-artifact-54b14146",
+      "targetId": "orchestrated-artifact-e8f0b3a7",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -16766,6 +19352,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-7cf0e517",
+      "sourceId": "orchestrated-artifact-6189caa9",
+      "targetId": "orchestrated-artifact-9cee3736",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-84e62482",
       "sourceId": "orchestrated-artifact-61929a0e",
       "targetId": "orchestrated-artifact-15707e6f",
@@ -16841,6 +19436,15 @@
       "id": "orchestrated-link-8d5c2f17",
       "sourceId": "orchestrated-artifact-64b3c6d4",
       "targetId": "orchestrated-artifact-2e8e42b5",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-a8cbb72c",
+      "sourceId": "orchestrated-artifact-65090524",
+      "targetId": "orchestrated-artifact-521b9031",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -17108,6 +19712,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-568cd85f",
+      "sourceId": "orchestrated-artifact-6e57c1c2",
+      "targetId": "orchestrated-artifact-276378a3",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-b9a391df",
       "sourceId": "orchestrated-artifact-6e5baefa",
       "targetId": "orchestrated-artifact-2cd3aedb",
@@ -17120,6 +19733,15 @@
       "id": "orchestrated-link-8db046fa",
       "sourceId": "orchestrated-artifact-6e87ad79",
       "targetId": "orchestrated-artifact-c2b59f06",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-9e8a1ab8",
+      "sourceId": "orchestrated-artifact-6f5b1641",
+      "targetId": "orchestrated-artifact-e8f0b3a2",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -17594,6 +20216,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-0aba03fd",
+      "sourceId": "orchestrated-artifact-7770c31f",
+      "targetId": "orchestrated-artifact-15fe6e2c",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-feb0cfea",
       "sourceId": "orchestrated-artifact-7799cc1a",
       "targetId": "orchestrated-artifact-e94bfa27",
@@ -17909,6 +20540,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-84aaa9f8",
+      "sourceId": "orchestrated-artifact-7c339fa4",
+      "targetId": "orchestrated-artifact-9cee3731",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-08021f3c",
       "sourceId": "orchestrated-artifact-7cf6b133",
       "targetId": "orchestrated-artifact-4588b594",
@@ -18139,6 +20779,15 @@
       "targetId": "orchestrated-artifact-c1bb2523",
       "kind": "depends_on",
       "confidence": 0.7,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
+    },
+    {
+      "id": "orchestrated-link-6e994d17",
+      "sourceId": "orchestrated-artifact-819940aa",
+      "targetId": "orchestrated-artifact-a8692030",
+      "kind": "depends_on",
+      "confidence": 0.8,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "heuristic"
     },
@@ -18710,6 +21359,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-2c6eaca0",
+      "sourceId": "orchestrated-artifact-90070d96",
+      "targetId": "orchestrated-artifact-0d0b2c77",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-df1c96a0",
       "sourceId": "orchestrated-artifact-901abe11",
       "targetId": "orchestrated-artifact-52ddde1e",
@@ -19034,6 +21692,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-8dfa84fb",
+      "sourceId": "orchestrated-artifact-9bf9eb77",
+      "targetId": "orchestrated-artifact-a8692030",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
+    },
+    {
       "id": "orchestrated-link-698b4257",
       "sourceId": "orchestrated-artifact-9bf9eb77",
       "targetId": "orchestrated-artifact-a8692166",
@@ -19196,6 +21863,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-6d367705",
+      "sourceId": "orchestrated-artifact-9ea542fc",
+      "targetId": "orchestrated-artifact-f273a25d",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-7c42b5cb",
       "sourceId": "orchestrated-artifact-9ecfee6b",
       "targetId": "orchestrated-artifact-5dfcf2b1",
@@ -19232,6 +21908,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-14a39f5d",
+      "sourceId": "orchestrated-artifact-9ecfee6b",
+      "targetId": "orchestrated-artifact-a8692030",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
+    },
+    {
       "id": "orchestrated-link-f0345cb9",
       "sourceId": "orchestrated-artifact-9ecfee6b",
       "targetId": "orchestrated-artifact-a8692166",
@@ -19253,6 +21938,15 @@
       "id": "orchestrated-link-cbad9b2f",
       "sourceId": "orchestrated-artifact-9eea8371",
       "targetId": "orchestrated-artifact-5d5418fe",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-1538532f",
+      "sourceId": "orchestrated-artifact-9f4f6913",
+      "targetId": "orchestrated-artifact-bcaa9da0",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -19379,6 +22073,15 @@
       "id": "orchestrated-link-2355969d",
       "sourceId": "orchestrated-artifact-a2ee871d",
       "targetId": "orchestrated-artifact-a8c89f2a",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-9327de49",
+      "sourceId": "orchestrated-artifact-a3e25fe8",
+      "targetId": "orchestrated-artifact-ab2358f5",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -19590,6 +22293,15 @@
       "confidence": 0.75,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-1263d036",
+      "sourceId": "orchestrated-artifact-a830e95a",
+      "targetId": "orchestrated-artifact-a8692030",
+      "kind": "depends_on",
+      "confidence": 0.8,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "heuristic"
     },
     {
       "id": "orchestrated-link-edf48d92",
@@ -19842,6 +22554,15 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-f4116cb7",
+      "sourceId": "orchestrated-artifact-ad2ee9a3",
+      "targetId": "orchestrated-artifact-d1eec430",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-a37b86e0",
@@ -20501,6 +23222,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-511c0218",
+      "sourceId": "orchestrated-artifact-b5a4ab6f",
+      "targetId": "orchestrated-artifact-a05bb17c",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-38a5a990",
       "sourceId": "orchestrated-artifact-b5ec03b3",
       "targetId": "orchestrated-artifact-fe653794",
@@ -20526,6 +23256,15 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-94d35764",
+      "sourceId": "orchestrated-artifact-b6f48d17",
+      "targetId": "orchestrated-artifact-269f7d24",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-a963a5d5",
@@ -21392,6 +24131,15 @@
       "createdBy": "hint"
     },
     {
+      "id": "orchestrated-link-4dda372f",
+      "sourceId": "orchestrated-artifact-c8b312b7",
+      "targetId": "orchestrated-artifact-27eaefc4",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-c890cd2b",
       "sourceId": "orchestrated-artifact-c9f6d29a",
       "targetId": "orchestrated-artifact-61072921",
@@ -21626,9 +24374,27 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-b4ee30bb",
+      "sourceId": "orchestrated-artifact-d14e5642",
+      "targetId": "orchestrated-artifact-f571afa3",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-d364550c",
       "sourceId": "orchestrated-artifact-d15e3ae6",
       "targetId": "orchestrated-artifact-f83b94c7",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-ecebe535",
+      "sourceId": "orchestrated-artifact-d19e6212",
+      "targetId": "orchestrated-artifact-269f7d1f",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -21759,6 +24525,15 @@
       "confidence": 0.85,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-e807e537",
+      "sourceId": "orchestrated-artifact-d67cb338",
+      "targetId": "orchestrated-artifact-da3e3799",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-0a38e157",
@@ -22346,9 +25121,9 @@
       "createdBy": "hint"
     },
     {
-      "id": "orchestrated-link-4765ca1d",
+      "id": "orchestrated-link-b5368410",
       "sourceId": "orchestrated-artifact-e181ef3f",
-      "targetId": "orchestrated-artifact-269f7d1f",
+      "targetId": "orchestrated-artifact-269f7d24",
       "kind": "depends_on",
       "confidence": 0.6,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -22625,6 +25400,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-cb93b527",
+      "sourceId": "orchestrated-artifact-e95897fe",
+      "targetId": "orchestrated-artifact-274c4adf",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-6744aa05",
       "sourceId": "orchestrated-artifact-e9783eeb",
       "targetId": "orchestrated-artifact-71c6a3b4",
@@ -22695,6 +25479,24 @@
       "confidence": 0.95,
       "createdAt": "2025-01-01T00:00:00.000Z",
       "createdBy": "workspace-index"
+    },
+    {
+      "id": "orchestrated-link-b7a8f96b",
+      "sourceId": "orchestrated-artifact-eb51d921",
+      "targetId": "orchestrated-artifact-899f102e",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-3a443322",
+      "sourceId": "orchestrated-artifact-ebf82b3d",
+      "targetId": "orchestrated-artifact-f571af9e",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
     },
     {
       "id": "orchestrated-link-f04baa9a",
@@ -22949,6 +25751,15 @@
       "createdBy": "heuristic"
     },
     {
+      "id": "orchestrated-link-824904d4",
+      "sourceId": "orchestrated-artifact-ef64d540",
+      "targetId": "orchestrated-artifact-61072921",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-94cc7603",
       "sourceId": "orchestrated-artifact-ef76616f",
       "targetId": "orchestrated-artifact-b33ae07c",
@@ -22997,6 +25808,15 @@
       "id": "orchestrated-link-718fa7ac",
       "sourceId": "orchestrated-artifact-f1f2132b",
       "targetId": "orchestrated-artifact-d31fe38c",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
+      "id": "orchestrated-link-66b03433",
+      "sourceId": "orchestrated-artifact-f2401bfb",
+      "targetId": "orchestrated-artifact-ec77c588",
       "kind": "documents",
       "confidence": 0.9,
       "createdAt": "2025-01-01T00:00:00.000Z",
@@ -24002,6 +26822,15 @@
       "createdBy": "workspace-index"
     },
     {
+      "id": "orchestrated-link-05416276",
+      "sourceId": "orchestrated-artifact-fbf30cb5",
+      "targetId": "orchestrated-artifact-b9440a16",
+      "kind": "documents",
+      "confidence": 0.9,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "createdBy": "hint"
+    },
+    {
       "id": "orchestrated-link-75ab3550",
       "sourceId": "orchestrated-artifact-fcc5180a",
       "targetId": "orchestrated-artifact-22219a80",
@@ -24231,9 +27060,9 @@
     {
       "id": "workspace-index",
       "label": "Workspace Implementation Index",
-      "seedCount": 757,
-      "hintCount": 462,
-      "evidenceCount": 523
+      "seedCount": 903,
+      "hintCount": 609,
+      "evidenceCount": 524
     },
     {
       "id": "relationship-rules",

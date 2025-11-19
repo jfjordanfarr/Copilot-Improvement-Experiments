@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/analysis/mdmd-layer-audit.ts
 - Live Doc ID: LD-implementation-scripts-analysis-mdmd-layer-audit-ts
-- Generated At: 2025-11-16T22:34:13.700Z
+- Generated At: 2025-11-19T15:01:35.710Z
 
 ## Authored
 ### Purpose
@@ -16,22 +16,22 @@ Scan the `.mdmd/layer-*` directories, learn the canonical `##` sections per laye
 - Later the same day we exported the CLI helpers (`parseArgs`, `main`) so instructions and Live Docs could reference concrete surfaces, keeping the script ready for reuse in other automation ([documentation alignment](../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#L108-L129)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.700Z","inputHash":"6c2428665763c750"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.710Z","inputHash":"6c2428665763c750"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `collectLayerReport`
+#### `collectLayerReport` {#symbol-collectlayerreport}
 - Type: function
 - Source: [source](../../../../scripts/analysis/mdmd-layer-audit.ts#L54)
 
-#### `parseArgs`
+#### `parseArgs` {#symbol-parseargs}
 - Type: function
 - Source: [source](../../../../scripts/analysis/mdmd-layer-audit.ts#L109)
 
-#### `logLayerReport`
+#### `logLayerReport` {#symbol-loglayerreport}
 - Type: function
 - Source: [source](../../../../scripts/analysis/mdmd-layer-audit.ts#L193)
 
-#### `main`
+#### `main` {#symbol-main}
 - Type: function
 - Source: [source](../../../../scripts/analysis/mdmd-layer-audit.ts#L231)
 <!-- LIVE-DOC:END Public Symbols -->

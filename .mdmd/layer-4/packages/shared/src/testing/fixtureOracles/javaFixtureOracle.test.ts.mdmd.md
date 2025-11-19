@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/javaFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-javafixtureoracle-test-ts
-- Generated At: 2025-11-16T22:34:13.401Z
+- Generated At: 2025-11-19T15:01:35.511Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Verifies the Java oracle’s import and inheritance extraction plus override sup
 - Aligns with the Nov 9 documentation pass and continues to run in the Nov 16 unit sweep, catching regressions when fixture packages change <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-09.md#L4688-L4710> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.401Z","inputHash":"19f5d92199a357b4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.511Z","inputHash":"19f5d92199a357b4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,14 +24,14 @@ _No public symbols detected_
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`javaFixtureOracle.JavaFixtureOracleOptions`](./javaFixtureOracle.ts.mdmd.md#javafixtureoracleoptions)
-- [`javaFixtureOracle.JavaOracleEdge`](./javaFixtureOracle.ts.mdmd.md#javaoracleedge)
-- [`javaFixtureOracle.JavaOracleEdgeRecord`](./javaFixtureOracle.ts.mdmd.md#javaoracleedgerecord)
-- [`javaFixtureOracle.JavaOracleOverrideConfig`](./javaFixtureOracle.ts.mdmd.md#javaoracleoverrideconfig)
-- [`javaFixtureOracle.generateJavaFixtureGraph`](./javaFixtureOracle.ts.mdmd.md#generatejavafixturegraph)
-- [`javaFixtureOracle.mergeJavaOracleEdges`](./javaFixtureOracle.ts.mdmd.md#mergejavaoracleedges)
-- [`javaFixtureOracle.partitionJavaOracleSegments`](./javaFixtureOracle.ts.mdmd.md#partitionjavaoraclesegments)
-- [`javaFixtureOracle.serializeJavaOracleEdges`](./javaFixtureOracle.ts.mdmd.md#serializejavaoracleedges)
+- [`javaFixtureOracle.JavaFixtureOracleOptions`](./javaFixtureOracle.ts.mdmd.md#symbol-javafixtureoracleoptions)
+- [`javaFixtureOracle.JavaOracleEdge`](./javaFixtureOracle.ts.mdmd.md#symbol-javaoracleedge)
+- [`javaFixtureOracle.JavaOracleEdgeRecord`](./javaFixtureOracle.ts.mdmd.md#symbol-javaoracleedgerecord)
+- [`javaFixtureOracle.JavaOracleOverrideConfig`](./javaFixtureOracle.ts.mdmd.md#symbol-javaoracleoverrideconfig)
+- [`javaFixtureOracle.generateJavaFixtureGraph`](./javaFixtureOracle.ts.mdmd.md#symbol-generatejavafixturegraph)
+- [`javaFixtureOracle.mergeJavaOracleEdges`](./javaFixtureOracle.ts.mdmd.md#symbol-mergejavaoracleedges)
+- [`javaFixtureOracle.partitionJavaOracleSegments`](./javaFixtureOracle.ts.mdmd.md#symbol-partitionjavaoraclesegments)
+- [`javaFixtureOracle.serializeJavaOracleEdges`](./javaFixtureOracle.ts.mdmd.md#symbol-serializejavaoracleedges)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

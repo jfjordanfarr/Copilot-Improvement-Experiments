@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/simple-workspace/src/dataBeta.ts
 - Live Doc ID: LD-asset-tests-integration-fixtures-simple-workspace-src-databeta-ts
-- Generated At: 2025-11-16T20:43:33.533Z
+- Generated At: 2025-11-19T15:01:37.056Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Acts as the contrasting “beta” dataset for simple-workspace so integration t
 - Continue validating this generator through `npm run fixtures:verify`, which last confirmed both datasets in the Oct 29 sweep <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L5288-L5320>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:33.533Z","inputHash":"5118a3c3972c79ef"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:37.056Z","inputHash":"5118a3c3972c79ef"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createBetaPayload`
+#### `createBetaPayload` {#symbol-createbetapayload}
 - Type: function
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/dataBeta.ts#L1)
 <!-- LIVE-DOC:END Public Symbols -->

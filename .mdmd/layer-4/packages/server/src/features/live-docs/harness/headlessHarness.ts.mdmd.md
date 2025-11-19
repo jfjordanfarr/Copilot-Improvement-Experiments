@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/harness/headlessHarness.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-harness-headlessharness-ts
-- Generated At: 2025-11-16T22:35:16.020Z
+- Generated At: 2025-11-19T15:01:34.322Z
 
 ## Authored
 ### Purpose
@@ -16,22 +16,22 @@ Runs the headless harness pipeline end-to-end—preparing a workspace, invoking 
 - Emits optional container specs and timestamped reports so CI and hosted demos can replay the same runs without manual wiring.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.020Z","inputHash":"5f8a0ca097c2b19e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.322Z","inputHash":"5f8a0ca097c2b19e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `HeadlessHarnessLogger`
+#### `HeadlessHarnessLogger` {#symbol-headlessharnesslogger}
 - Type: interface
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/harness/headlessHarness.ts#L18)
 
-#### `HeadlessHarnessRunOptions`
+#### `HeadlessHarnessRunOptions` {#symbol-headlessharnessrunoptions}
 - Type: interface
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/harness/headlessHarness.ts#L28)
 
-#### `HeadlessHarnessRunResult`
+#### `HeadlessHarnessRunResult` {#symbol-headlessharnessrunresult}
 - Type: interface
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/harness/headlessHarness.ts#L41)
 
-#### `runHeadlessHarness`
+#### `runHeadlessHarness` {#symbol-runheadlessharness}
 - Type: function
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/harness/headlessHarness.ts#L56)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -41,13 +41,13 @@ Runs the headless harness pipeline end-to-end—preparing a workspace, invoking 
 - `node:fs/promises` - `fs`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`generator.LiveDocGeneratorResult`](../generator.ts.mdmd.md#livedocgeneratorresult) (type-only)
-- [`generator.generateLiveDocs`](../generator.ts.mdmd.md#generatelivedocs) (type-only)
-- [`scenarios.HeadlessHarnessScenario`](./scenarios.ts.mdmd.md#headlessharnessscenario) (type-only)
-- [`generator.SystemLiveDocGeneratorResult`](../system/generator.ts.mdmd.md#systemlivedocgeneratorresult) (type-only)
-- [`generator.generateSystemLiveDocs`](../system/generator.ts.mdmd.md#generatesystemlivedocs) (type-only)
-- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#default_live_documentation_config)
-- [`liveDocumentationConfig.LiveDocumentationConfig`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#livedocumentationconfig)
-- [`liveDocumentationConfig.LiveDocumentationConfigInput`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#livedocumentationconfiginput)
-- [`liveDocumentationConfig.normalizeLiveDocumentationConfig`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#normalizelivedocumentationconfig)
+- [`generator.LiveDocGeneratorResult`](../generator.ts.mdmd.md#symbol-livedocgeneratorresult) (type-only)
+- [`generator.generateLiveDocs`](../generator.ts.mdmd.md#symbol-generatelivedocs) (type-only)
+- [`scenarios.HeadlessHarnessScenario`](./scenarios.ts.mdmd.md#symbol-headlessharnessscenario) (type-only)
+- [`generator.SystemLiveDocGeneratorResult`](../system/generator.ts.mdmd.md#symbol-systemlivedocgeneratorresult) (type-only)
+- [`generator.generateSystemLiveDocs`](../system/generator.ts.mdmd.md#symbol-generatesystemlivedocs) (type-only)
+- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-default_live_documentation_config)
+- [`liveDocumentationConfig.LiveDocumentationConfig`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationconfig)
+- [`liveDocumentationConfig.LiveDocumentationConfigInput`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationconfiginput)
+- [`liveDocumentationConfig.normalizeLiveDocumentationConfig`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-normalizelivedocumentationconfig)
 <!-- LIVE-DOC:END Dependencies -->

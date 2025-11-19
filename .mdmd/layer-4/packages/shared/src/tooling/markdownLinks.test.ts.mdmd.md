@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/markdownLinks.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-markdownlinks-test-ts
-- Generated At: 2025-11-16T22:34:13.575Z
+- Generated At: 2025-11-19T15:01:35.637Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the markdown link audit against real filesystem fixtures so the SlopCo
 - Confirms `findBrokenMarkdownLinks` handles workspace-absolute paths, missing definitions, and non-link generics before the CLI surfaced the suite in safe-to-commit runs on November 2.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-02.md §SlopCop: Markdown]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.575Z","inputHash":"0d5df8a64ff9f45e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.637Z","inputHash":"0d5df8a64ff9f45e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -27,7 +27,7 @@ _No public symbols detected_
 - `node:fs` - `mkdirSync`, `mkdtempSync`, `rmSync`, `writeFileSync`
 - `node:os` - `tmpdir`
 - `node:path` - `path`
-- [`markdownLinks.findBrokenMarkdownLinks`](./markdownLinks.ts.mdmd.md#findbrokenmarkdownlinks)
+- [`markdownLinks.findBrokenMarkdownLinks`](./markdownLinks.ts.mdmd.md#symbol-findbrokenmarkdownlinks)
 - `vitest` - `afterEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

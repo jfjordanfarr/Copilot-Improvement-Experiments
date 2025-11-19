@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/runtime/settings.ts
 - Live Doc ID: LD-implementation-packages-server-src-runtime-settings-ts
-- Generated At: 2025-11-16T22:35:16.481Z
+- Generated At: 2025-11-19T15:01:34.576Z
 
 ## Authored
 ### Purpose
@@ -15,26 +15,26 @@ Parses user/workspace configuration into runtime-ready settings, a responsibilit
 Noise suppression thresholds, ripple depth caps, and test-mode overrides were added during the T046 noise-filter work in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-06-publisher-integration--runtime-wiring-lines-701-880](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-06-publisher-integration--runtime-wiring-lines-701-880); adjust `providerGuard` and diagnostic publishers in tandem when evolving these shapes.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.481Z","inputHash":"e2e9c414529f983a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.576Z","inputHash":"e2e9c414529f983a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `extractExtensionSettings`
+#### `extractExtensionSettings` {#symbol-extractextensionsettings}
 - Type: function
 - Source: [source](../../../../../../packages/server/src/runtime/settings.ts#L69)
 
-#### `extractTestModeOverrides`
+#### `extractTestModeOverrides` {#symbol-extracttestmodeoverrides}
 - Type: function
 - Source: [source](../../../../../../packages/server/src/runtime/settings.ts#L156)
 
-#### `mergeExtensionSettings`
+#### `mergeExtensionSettings` {#symbol-mergeextensionsettings}
 - Type: function
 - Source: [source](../../../../../../packages/server/src/runtime/settings.ts#L219)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`providerGuard.ExtensionSettings`](../features/settings/providerGuard.ts.mdmd.md#extensionsettings)
-- [`index.LinkRelationshipKind`](../../../shared/src/index.ts.mdmd.md#linkrelationshipkind) (type-only)
+- [`providerGuard.ExtensionSettings`](../features/settings/providerGuard.ts.mdmd.md#symbol-extensionsettings)
+- [`index.LinkRelationshipKind`](../../../shared/src/index.ts.mdmd.md#symbol-linkrelationshipkind) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

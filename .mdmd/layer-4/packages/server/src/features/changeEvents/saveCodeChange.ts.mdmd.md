@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/changeEvents/saveCodeChange.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-changeevents-savecodechange-ts
-- Generated At: 2025-11-16T22:35:14.876Z
+- Generated At: 2025-11-19T15:01:33.676Z
 
 ## Authored
 ### Purpose
@@ -15,18 +15,18 @@ Records code edits and their change events in the graph store, feeding the rippl
 - Reuses the canonical artifact returned from `GraphStore.upsertArtifact` after the foreign-key fix documented in [2025-10-29 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-29.SUMMARIZED.md) so persisted change events stay relationally valid.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.876Z","inputHash":"aad9601e9a5abd68"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.676Z","inputHash":"aad9601e9a5abd68"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `PersistedCodeChange`
+#### `PersistedCodeChange` {#symbol-persistedcodechange}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/changeEvents/saveCodeChange.ts#L8)
 
-#### `SaveCodeChangeOptions`
+#### `SaveCodeChangeOptions` {#symbol-savecodechangeoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/changeEvents/saveCodeChange.ts#L13)
 
-#### `saveCodeChange`
+#### `saveCodeChange` {#symbol-savecodechange}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/changeEvents/saveCodeChange.ts#L21)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -34,10 +34,10 @@ Records code edits and their change events in the graph store, feeding the rippl
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:crypto` - `randomUUID`
-- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#normalizefileuri)
-- [`artifactWatcher.CodeTrackedArtifactChange`](../watchers/artifactWatcher.ts.mdmd.md#codetrackedartifactchange) (type-only)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
-- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#knowledgeartifact)
+- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#symbol-normalizefileuri)
+- [`artifactWatcher.CodeTrackedArtifactChange`](../watchers/artifactWatcher.ts.mdmd.md#symbol-codetrackedartifactchange) (type-only)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgeartifact)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/doc-tools/enforce-documentation-links.ts
 - Live Doc ID: LD-implementation-scripts-doc-tools-enforce-documentation-links-ts
-- Generated At: 2025-11-16T22:34:13.732Z
+- Generated At: 2025-11-19T15:01:35.730Z
 
 ## Authored
 ### Purpose
@@ -16,14 +16,14 @@ Provide the CLI entry point for documentation-link enforcement so `npm run docs:
 - Exported `runCli` on 2025-11-05 so graph audits and other callers could consume it programmatically while keeping exit codes stable across the toolchain ([API hardening](../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-05.SUMMARIZED.md#L70-L86)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.732Z","inputHash":"9da8cbd6752e8da6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.730Z","inputHash":"9da8cbd6752e8da6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `EXIT_CODES`
+#### `EXIT_CODES` {#symbol-exit_codes}
 - Type: const
 - Source: [source](../../../../scripts/doc-tools/enforce-documentation-links.ts#L32)
 
-#### `runCli`
+#### `runCli` {#symbol-runcli}
 - Type: function
 - Source: [source](../../../../scripts/doc-tools/enforce-documentation-links.ts#L38)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -33,12 +33,12 @@ Provide the CLI entry point for documentation-link enforcement so `npm run docs:
 - `node:fs` - `fs`
 - `node:path` - `path`
 - `node:process` - `process`
-- [`documentationLinks.DEFAULT_RULES`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#default_rules)
-- [`documentationLinks.DocumentationLinkEnforcementResult`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#documentationlinkenforcementresult)
-- [`documentationLinks.DocumentationLinkViolation`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#documentationlinkviolation)
-- [`documentationLinks.DocumentationRule`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#documentationrule)
-- [`documentationLinks.runDocumentationLinkEnforcement`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#rundocumentationlinkenforcement)
-- [`pathUtils.normalizeWorkspacePath`](../../packages/shared/src/tooling/pathUtils.ts.mdmd.md#normalizeworkspacepath)
+- [`documentationLinks.DEFAULT_RULES`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#symbol-default_rules)
+- [`documentationLinks.DocumentationLinkEnforcementResult`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#symbol-documentationlinkenforcementresult)
+- [`documentationLinks.DocumentationLinkViolation`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#symbol-documentationlinkviolation)
+- [`documentationLinks.DocumentationRule`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#symbol-documentationrule)
+- [`documentationLinks.runDocumentationLinkEnforcement`](../../packages/shared/src/tooling/documentationLinks.ts.mdmd.md#symbol-rundocumentationlinkenforcement)
+- [`pathUtils.normalizeWorkspacePath`](../../packages/shared/src/tooling/pathUtils.ts.mdmd.md#symbol-normalizeworkspacepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

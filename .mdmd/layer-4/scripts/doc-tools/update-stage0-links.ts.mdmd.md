@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/doc-tools/update-stage0-links.ts
 - Live Doc ID: LD-implementation-scripts-doc-tools-update-stage0-links-ts
-- Generated At: 2025-11-16T22:53:01.773Z
+- Generated At: 2025-11-19T15:01:35.755Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Mass-rewrite Stage-0 Live Documentation links so every reference adopts the conf
 - Extended and rerun on 2025-11-16 across all `.mdmd/**/*.mdmd.md` mirrors and notes via the `--glob` option so the Stage-0 tree stayed synchronized once the extension setting moved back to `.mdmd.md` ([global sweep](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L4418-L4446)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:53:01.773Z","inputHash":"88b06223ad7dd787"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.755Z","inputHash":"88b06223ad7dd787"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -27,5 +27,5 @@ _No public symbols detected_
 - `glob` - `globSync`
 - `node:fs` - `fs`
 - `node:path` - `path`
-- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#default_live_documentation_config)
+- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-default_live_documentation_config)
 <!-- LIVE-DOC:END Dependencies -->

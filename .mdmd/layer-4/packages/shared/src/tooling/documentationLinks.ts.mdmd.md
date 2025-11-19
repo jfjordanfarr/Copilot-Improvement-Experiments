@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/documentationLinks.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-documentationlinks-ts
-- Generated At: 2025-11-16T22:34:13.541Z
+- Generated At: 2025-11-19T15:01:35.610Z
 
 ## Authored
 ### Purpose
@@ -16,62 +16,62 @@ Supplies the shared engine that parses Live Doc anchors, maps code files to docu
 - Powers `npm run docs:links:enforce` and the `safe:commit` gate, with follow-up runs on November 3 and beyond confirming zero violations once anchors were repaired.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.541Z","inputHash":"97bb7ced96a8291b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.610Z","inputHash":"97bb7ced96a8291b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `DocumentationRule`
+#### `DocumentationRule` {#symbol-documentationrule}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L16)
 
-#### `DEFAULT_RULES`
+#### `DEFAULT_RULES` {#symbol-default_rules}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L22)
 
-#### `DocumentationAnchorSummary`
+#### `DocumentationAnchorSummary` {#symbol-documentationanchorsummary}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L37)
 
-#### `DocumentationDocumentAnchors`
+#### `DocumentationDocumentAnchors` {#symbol-documentationdocumentanchors}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L52)
 
-#### `ResolvedDocumentationTarget`
+#### `ResolvedDocumentationTarget` {#symbol-resolveddocumentationtarget}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L56)
 
-#### `DocumentationTargetMap`
+#### `DocumentationTargetMap` {#symbol-documentationtargetmap}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L66)
 
-#### `ParseDocumentationAnchorsOptions`
+#### `ParseDocumentationAnchorsOptions` {#symbol-parsedocumentationanchorsoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L68)
 
-#### `DocumentationLinkViolation`
+#### `DocumentationLinkViolation` {#symbol-documentationlinkviolation}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L73)
 
-#### `DocumentationLinkEnforcementResult`
+#### `DocumentationLinkEnforcementResult` {#symbol-documentationlinkenforcementresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L90)
 
-#### `RunDocumentationLinkEnforcementOptions`
+#### `RunDocumentationLinkEnforcementOptions` {#symbol-rundocumentationlinkenforcementoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L97)
 
-#### `parseDocumentationAnchors`
+#### `parseDocumentationAnchors` {#symbol-parsedocumentationanchors}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L104)
 
-#### `resolveCodeToDocumentationMap`
+#### `resolveCodeToDocumentationMap` {#symbol-resolvecodetodocumentationmap}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L161)
 
-#### `formatDocumentationLinkComment`
+#### `formatDocumentationLinkComment` {#symbol-formatdocumentationlinkcomment}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L195)
 
-#### `runDocumentationLinkEnforcement`
+#### `runDocumentationLinkEnforcement` {#symbol-rundocumentationlinkenforcement}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/documentationLinks.ts#L208)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -81,9 +81,9 @@ Supplies the shared engine that parses Live Doc anchors, maps code files to docu
 - `glob` - `globSync`
 - `node:fs` - `fs`
 - `node:path` - `path`
-- [`githubSlugger.createSlugger`](./githubSlugger.ts.mdmd.md#createslugger)
-- [`markdownShared.extractReferenceDefinitions`](./markdownShared.ts.mdmd.md#extractreferencedefinitions)
-- [`pathUtils.normalizeWorkspacePath`](./pathUtils.ts.mdmd.md#normalizeworkspacepath)
+- [`githubSlugger.createSlugger`](./githubSlugger.ts.mdmd.md#symbol-createslugger)
+- [`markdownShared.extractReferenceDefinitions`](./markdownShared.ts.mdmd.md#symbol-extractreferencedefinitions)
+- [`pathUtils.normalizeWorkspacePath`](./pathUtils.ts.mdmd.md#symbol-normalizeworkspacepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-csharpfixtureoracle-ts
-- Generated At: 2025-11-16T22:34:13.395Z
+- Generated At: 2025-11-19T15:01:35.505Z
 
 ## Authored
 ### Purpose
@@ -16,58 +16,58 @@ Uses Roslyn-style parsing via regex and include analysis to map `using` directiv
 - Continues to pass under the Nov 16 unit sweep, so re-run `npm run test:unit -- csharpFixtureOracle` after parser updates <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.395Z","inputHash":"e0efb8655869d945"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.505Z","inputHash":"e0efb8655869d945"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `CSharpOracleEdgeRelation`
+#### `CSharpOracleEdgeRelation` {#symbol-csharporacleedgerelation}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L4)
 
-#### `CSharpOracleProvenance`
+#### `CSharpOracleProvenance` {#symbol-csharporacleprovenance}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L6)
 
-#### `CSharpOracleEdge`
+#### `CSharpOracleEdge` {#symbol-csharporacleedge}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L8)
 
-#### `CSharpOracleEdgeRecord`
+#### `CSharpOracleEdgeRecord` {#symbol-csharporacleedgerecord}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L15)
 
-#### `CSharpFixtureOracleOptions`
+#### `CSharpFixtureOracleOptions` {#symbol-csharpfixtureoracleoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L21)
 
-#### `CSharpOracleOverrideEntry`
+#### `CSharpOracleOverrideEntry` {#symbol-csharporacleoverrideentry}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L27)
 
-#### `CSharpOracleOverrideConfig`
+#### `CSharpOracleOverrideConfig` {#symbol-csharporacleoverrideconfig}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L33)
 
-#### `CSharpOracleSegmentPartition`
+#### `CSharpOracleSegmentPartition` {#symbol-csharporaclesegmentpartition}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L37)
 
-#### `CSharpOracleMergeResult`
+#### `CSharpOracleMergeResult` {#symbol-csharporaclemergeresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L44)
 
-#### `generateCSharpFixtureGraph`
+#### `generateCSharpFixtureGraph` {#symbol-generatecsharpfixturegraph}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L110)
 
-#### `serializeCSharpOracleEdges`
+#### `serializeCSharpOracleEdges` {#symbol-serializecsharporacleedges}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L141)
 
-#### `partitionCSharpOracleSegments`
+#### `partitionCSharpOracleSegments` {#symbol-partitioncsharporaclesegments}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L146)
 
-#### `mergeCSharpOracleEdges`
+#### `mergeCSharpOracleEdges` {#symbol-mergecsharporacleedges}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/csharpFixtureOracle.ts#L182)
 <!-- LIVE-DOC:END Public Symbols -->

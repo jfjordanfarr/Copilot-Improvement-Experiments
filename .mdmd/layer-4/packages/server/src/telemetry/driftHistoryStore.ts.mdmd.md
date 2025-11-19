@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/telemetry/driftHistoryStore.ts
 - Live Doc ID: LD-implementation-packages-server-src-telemetry-drifthistorystore-ts
-- Generated At: 2025-11-16T22:35:16.493Z
+- Generated At: 2025-11-19T15:01:34.584Z
 
 ## Authored
 ### Purpose
@@ -15,22 +15,22 @@ Provides the persistence layer for diagnostic drift events added during T059—s
 The store is invoked by `acknowledgementService` and the drift history integrations delivered in the same tranche; directory fallback behaviour and metadata merging were tuned while stabilising integration tests in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-18-multi-path-lookup--green-tests-lines-2081-2180](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-18-multi-path-lookup--green-tests-lines-2081-2180), so align any future storage changes with those test expectations.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.493Z","inputHash":"552b903a02f00fe7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.584Z","inputHash":"552b903a02f00fe7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `DriftHistoryStoreOptions`
+#### `DriftHistoryStoreOptions` {#symbol-drifthistorystoreoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/server/src/telemetry/driftHistoryStore.ts#L11)
 
-#### `RecordDriftEmissionParams`
+#### `RecordDriftEmissionParams` {#symbol-recorddriftemissionparams}
 - Type: type
 - Source: [source](../../../../../../packages/server/src/telemetry/driftHistoryStore.ts#L26)
 
-#### `RecordDriftAcknowledgementParams`
+#### `RecordDriftAcknowledgementParams` {#symbol-recorddriftacknowledgementparams}
 - Type: interface
 - Source: [source](../../../../../../packages/server/src/telemetry/driftHistoryStore.ts#L28)
 
-#### `DriftHistoryStore`
+#### `DriftHistoryStore` {#symbol-drifthistorystore}
 - Type: class
 - Source: [source](../../../../../../packages/server/src/telemetry/driftHistoryStore.ts#L33)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -38,11 +38,11 @@ The store is invoked by `acknowledgementService` and the drift history integrati
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:crypto` - `randomUUID`
-- [`index.DiagnosticSeverity`](../../../shared/src/index.ts.mdmd.md#diagnosticseverity) (type-only)
-- [`index.DriftHistoryEntry`](../../../shared/src/index.ts.mdmd.md#drifthistoryentry) (type-only)
-- [`index.DriftHistorySummary`](../../../shared/src/index.ts.mdmd.md#drifthistorysummary) (type-only)
-- [`index.GraphStore`](../../../shared/src/index.ts.mdmd.md#graphstore) (type-only)
-- [`index.ListDriftHistoryOptions`](../../../shared/src/index.ts.mdmd.md#listdrifthistoryoptions) (type-only)
+- [`index.DiagnosticSeverity`](../../../shared/src/index.ts.mdmd.md#symbol-diagnosticseverity) (type-only)
+- [`index.DriftHistoryEntry`](../../../shared/src/index.ts.mdmd.md#symbol-drifthistoryentry) (type-only)
+- [`index.DriftHistorySummary`](../../../shared/src/index.ts.mdmd.md#symbol-drifthistorysummary) (type-only)
+- [`index.GraphStore`](../../../shared/src/index.ts.mdmd.md#symbol-graphstore) (type-only)
+- [`index.ListDriftHistoryOptions`](../../../shared/src/index.ts.mdmd.md#symbol-listdrifthistoryoptions) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/simple-workspace/src/feature.ts
 - Live Doc ID: LD-asset-tests-integration-fixtures-simple-workspace-src-feature-ts
-- Generated At: 2025-11-16T22:34:14.295Z
+- Generated At: 2025-11-19T15:01:37.060Z
 
 ## Authored
 ### Purpose
@@ -16,24 +16,24 @@ Implements the intermediate feature evaluation layer for the simple-workspace in
 - The Oct 21 reset kept this module aligned with `core.ts` and `util.ts`, and the arrangement was later validated by the Oct 29 fixture verification run; repeat that manifest if behavior shifts <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L3041-L3238> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L5288-L5320>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.295Z","inputHash":"9cc4b33d99ee071d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:37.060Z","inputHash":"9cc4b33d99ee071d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `FeatureEvaluation`
+#### `FeatureEvaluation` {#symbol-featureevaluation}
 - Type: interface
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/feature.ts#L3)
 
-#### `evaluateFeature`
+#### `evaluateFeature` {#symbol-evaluatefeature}
 - Type: function
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/feature.ts#L9)
 
-#### `executeFeature`
+#### `executeFeature` {#symbol-executefeature}
 - Type: function
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/feature.ts#L19)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`util.normalizeValue`](./util.ts.mdmd.md#normalizevalue)
-- [`util.summarizeShape`](./util.ts.mdmd.md#summarizeshape)
+- [`util.normalizeValue`](./util.ts.mdmd.md#symbol-normalizevalue)
+- [`util.summarizeShape`](./util.ts.mdmd.md#symbol-summarizeshape)
 <!-- LIVE-DOC:END Dependencies -->

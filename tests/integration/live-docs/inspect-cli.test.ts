@@ -355,4 +355,52 @@ suite("Live Docs inspect CLI", () => {
       ["Services/ReflectionFactory.cs", "Services/TelemetryHandler.cs"]
     );
   });
+
+  test("reports when no path connects disconnected artefacts", () => {
+    const run = runInspectCli(fixtures.queueWorker, [
+      "--from",
+      "Services/TelemetryScheduler.cs",
+      "--to",
+      "Controllers/TelemetryController.cs",
+      "--json"
+    ]);
+
+    assert.strictEqual(run.exitCode, 1, `inspect exited ${run.exitCode}:\n${run.stderr || run.stdout}`);
+    const payload = JSON.parse(run.stdout) as {
+      kind: string;
+      frontier: Array<{ reason: string }>;
+    };
+
+    assert.strictEqual(payload.kind, "not-found");
+    assert.ok(
+      payload.frontier.some(entry => entry.reason === "terminal"),
+      "expected to surface terminal frontier entries"
+    );
+  });
+
+  test("honours max-depth limits when searching", () => {
+    const run = runInspectCli(fixtures.queueWorker, [
+      "--from",
+      "Controllers/TelemetryController.cs",
+      "--to",
+      "appsettings.json",
+      "--direction",
+      "outbound",
+      "--max-depth",
+      "1",
+      "--json"
+    ]);
+
+    assert.strictEqual(run.exitCode, 1, `inspect exited ${run.exitCode}:\n${run.stderr || run.stdout}`);
+    const payload = JSON.parse(run.stdout) as {
+      kind: string;
+      frontier: Array<{ reason: string }>;
+    };
+
+    assert.strictEqual(payload.kind, "not-found");
+    assert.ok(
+      payload.frontier.some(entry => entry.reason === "max-depth"),
+      "expected max-depth frontier marker"
+    );
+  });
 });

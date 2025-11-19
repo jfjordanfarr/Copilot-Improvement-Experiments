@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/adapters/python.docstring.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-adapters-python-docstring-test-ts
-- Generated At: 2025-11-18T16:28:51.555Z
+- Generated At: 2025-11-19T15:01:35.189Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates the Python adapter’s handling of reST, Google, and NumPy-style docst
 - Executed during the Nov 14 `safe:commit -- --benchmarks` run; expand its fixtures whenever the adapter learns new docstring dialect features <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L1378-L1414>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T16:28:51.555Z","inputHash":"5789d56d8dce7774"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.189Z","inputHash":"5789d56d8dce7774"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,9 +26,9 @@ _No public symbols detected_
 - `node:fs/promises` - `fs`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`python.pythonAdapter`](./python.ts.mdmd.md#pythonadapter)
-- [`core.computePublicSymbolHeadingInfo`](../core.ts.mdmd.md#computepublicsymbolheadinginfo)
-- [`core.renderPublicSymbolLines`](../core.ts.mdmd.md#renderpublicsymbollines)
+- [`python.pythonAdapter`](./python.ts.mdmd.md#symbol-pythonadapter)
+- [`core.computePublicSymbolHeadingInfo`](../core.ts.mdmd.md#symbol-computepublicsymbolheadinginfo)
+- [`core.renderPublicSymbolLines`](../core.ts.mdmd.md#symbol-renderpublicsymbollines)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

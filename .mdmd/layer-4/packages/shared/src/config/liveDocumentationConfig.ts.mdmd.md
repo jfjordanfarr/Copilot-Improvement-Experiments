@@ -5,66 +5,66 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/config/liveDocumentationConfig.ts
 - Live Doc ID: LD-implementation-packages-shared-src-config-livedocumentationconfig-ts
-- Generated At: 2025-11-18T14:53:52.519Z
+- Generated At: 2025-11-19T15:01:34.625Z
 
 ## Authored
 ### Purpose
 Centralizes Live Documentation defaults—root, base layer, slug dialect, evidence strictness—so the generator, lint, and CLI flows share one configuration contract, as hardened during the Live Docs pipeline work in [AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-19-config--schema-hardening-lines-3561-3760](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-19-config--schema-hardening-lines-3561-3760).
 
 ### Notes
-Upcoming `.mdmd` mirroring requires extending these defaults (root/baseLayer/extension overrides); see the follow-up plan captured in [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L3310](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L3310) for the design work queued to widen `normalizeLiveDocumentationConfig` and the CLI flags.
+Default globs now cover scripts and cross-language test fixtures so Live Docs remain authoritative for integration workspaces (e.g., the LD-402 queue-worker Hangfire scenario). Keep the follow-up plan in [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L3310](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L3310) handy—the same switches will power future `.mdmd` mirroring and CLI overrides.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.519Z","inputHash":"0f09d2f125f551e9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.625Z","inputHash":"c08128ae95190db4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `LiveDocumentationSlugDialect`
+#### `LiveDocumentationSlugDialect` {#symbol-livedocumentationslugdialect}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L3)
 
-#### `LiveDocumentationArchetype`
+#### `LiveDocumentationArchetype` {#symbol-livedocumentationarchetype}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L5)
 
-#### `LiveDocumentationEvidenceStrictMode`
+#### `LiveDocumentationEvidenceStrictMode` {#symbol-livedocumentationevidencestrictmode}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L17)
 
-#### `LiveDocumentationEvidenceConfig`
+#### `LiveDocumentationEvidenceConfig` {#symbol-livedocumentationevidenceconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L19)
 
-#### `LiveDocumentationConfig`
+#### `LiveDocumentationConfig` {#symbol-livedocumentationconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L23)
 
-#### `LiveDocumentationConfigInput`
+#### `LiveDocumentationConfigInput` {#symbol-livedocumentationconfiginput}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L44)
 
-#### `LIVE_DOCUMENTATION_DEFAULT_ROOT`
+#### `LIVE_DOCUMENTATION_DEFAULT_ROOT` {#symbol-live_documentation_default_root}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L48)
 
-#### `LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER`
+#### `LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER` {#symbol-live_documentation_default_base_layer}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L49)
 
-#### `LIVE_DOCUMENTATION_FILE_EXTENSION`
+#### `LIVE_DOCUMENTATION_FILE_EXTENSION` {#symbol-live_documentation_file_extension}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L50)
 
-#### `LIVE_DOCUMENTATION_DEFAULT_GLOBS`
+#### `LIVE_DOCUMENTATION_DEFAULT_GLOBS` {#symbol-live_documentation_default_globs}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L51)
 
-#### `DEFAULT_LIVE_DOCUMENTATION_CONFIG`
+#### `DEFAULT_LIVE_DOCUMENTATION_CONFIG` {#symbol-default_live_documentation_config}
 - Type: const
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L67)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L86)
 
-#### `normalizeLiveDocumentationConfig`
+#### `normalizeLiveDocumentationConfig` {#symbol-normalizelivedocumentationconfig}
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L81)
+- Source: [source](../../../../../../packages/shared/src/config/liveDocumentationConfig.ts#L100)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

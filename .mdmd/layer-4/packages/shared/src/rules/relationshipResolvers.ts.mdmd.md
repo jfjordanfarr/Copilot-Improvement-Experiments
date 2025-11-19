@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/relationshipResolvers.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-relationshipresolvers-ts
-- Generated At: 2025-11-16T22:34:13.246Z
+- Generated At: 2025-11-19T15:01:35.409Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Provides the built-in resolver catalogue (markdown links, MDMD code paths) that 
 - Exercised by the revamped provider tests to ensure both markdown-link and MDMD metadata resolvers return stable targets before rules materialise evidences.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.246Z","inputHash":"06bbace12a8d381f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.409Z","inputHash":"06bbace12a8d381f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createBuiltInResolvers`
+#### `createBuiltInResolvers` {#symbol-createbuiltinresolvers}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipResolvers.ts#L24)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -29,11 +29,11 @@ Provides the built-in resolver catalogue (markdown links, MDMD code paths) that 
 - `node:fs` - `fs`
 - `node:path` - `path`
 - `node:url` - `fileURLToPath`, `pathToFileURL`
-- [`relationshipRuleTypes.RelationshipResolver`](./relationshipRuleTypes.ts.mdmd.md#relationshipresolver) (type-only)
-- [`relationshipRuleTypes.RelationshipResolverOptions`](./relationshipRuleTypes.ts.mdmd.md#relationshipresolveroptions) (type-only)
-- [`relationshipRuleTypes.RelationshipResolverResult`](./relationshipRuleTypes.ts.mdmd.md#relationshipresolverresult) (type-only)
-- [`markdownShared.extractReferenceDefinitions`](../tooling/markdownShared.ts.mdmd.md#extractreferencedefinitions)
-- [`markdownShared.parseLinkTarget`](../tooling/markdownShared.ts.mdmd.md#parselinktarget)
+- [`relationshipRuleTypes.RelationshipResolver`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshipresolver) (type-only)
+- [`relationshipRuleTypes.RelationshipResolverOptions`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshipresolveroptions) (type-only)
+- [`relationshipRuleTypes.RelationshipResolverResult`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshipresolverresult) (type-only)
+- [`markdownShared.extractReferenceDefinitions`](../tooling/markdownShared.ts.mdmd.md#symbol-extractreferencedefinitions)
+- [`markdownShared.parseLinkTarget`](../tooling/markdownShared.ts.mdmd.md#symbol-parselinktarget)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -32,10 +32,9 @@ Add the following settings to your workspace (e.g., `.vscode/settings.json`) to 
   "liveDocumentation.slugDialect": "github",
   "liveDocumentation.requireRelativeLinks": true,
   "liveDocumentation.glob": [
-    "packages/**/*.ts",
-    "packages/**/*.tsx",
-    "packages/**/*.js",
-    "tests/**/*.ts"
+      "packages/**/src/**/*.{ts,tsx,js,jsx,mjs,cjs,mts,cts}",
+      "scripts/**/*.{ts,tsx,mjs,cjs}",
+      "tests/**/*.{ts,tsx,js,jsx,mjs,cjs,mts,cts,cs,cshtml,cshtml.cs,py,java,rb,rs,c,cpp,html,css,json}"
   ]
 }
 ```
@@ -49,6 +48,7 @@ Add the following settings to your workspace (e.g., `.vscode/settings.json`) to 
 | `liveDocumentation.slugDialect` | `github` | Header slug strategy. Supports `github`, `azure-devops`, and `gitlab`. |
 | `liveDocumentation.requireRelativeLinks` | `true` | Forces generated and authored markdown links to remain relative, enabling repo-backed wikis. |
 | `liveDocumentation.glob` | `[]` | Glob patterns defining which assets receive Live Docs. Honour the one-doc-per-source rule. |
+| `liveDocumentation.enableDocstringBridge` | `false` | Enables bidirectional updates between Live Docs and inline docstrings once bridges stabilise. |
 | `liveDocumentation.archetypeOverrides` | `{}` | Optional map for assigning non-default archetypes (e.g., treat `tests/**` as `test`). |
 
 ## Stage 0 – Observe
@@ -63,6 +63,23 @@ Add the following settings to your workspace (e.g., `.vscode/settings.json`) to 
    - Generated sections marked by HTML fences (`<!-- LIVE-DOC:BEGIN Public Symbols -->`). Editing inside these blocks raises lint failures.
 3. **Track regeneration latency:** After running `npm run safe:commit`, copy the Live Documentation timings from the log into `reports/benchmarks/live-docs/latency.md`. These numbers anchor performance budgets before promotion.
 4. **Prototype diff tooling:** Use the VS Code diff viewer or `git diff -- .live-documentation/source` to confirm generated sections change deterministically when source files update.
+
+## Trace dependency paths with the inspect CLI
+1. **Walk outbound or inbound chains:**
+   ```powershell
+   npm run live-docs:inspect -- --from Controllers/TelemetryController.cs --to appsettings.json --json
+   ```
+   The CLI emits `kind: "path"` with a `nodes` array tracing each hop plus a `hops` collection that mirrors the rendered markdown edges. Add `--direction inbound` to reverse the traversal.
+2. **List terminal fan-out:**
+   ```powershell
+   npm run live-docs:inspect -- --from Services/TelemetryScheduler.cs --direction outbound --json
+   ```
+   Omitting `--to` returns `kind: "fanout"` alongside `terminalPaths` up to the configured `maxDepth` (defaults to 25). Each terminal path lists the artefacts encountered so prompt tooling can highlight downstream impact.
+3. **Diagnose missing edges:**
+   ```powershell
+   npm run live-docs:inspect -- --from Services/TelemetryScheduler.cs --to Controllers/TelemetryController.cs --json
+   ```
+   When no chain exists the CLI exits with code 1, reports `kind: "not-found"`, and enumerates a `frontier` array with reasons such as `terminal`, `max-depth`, or `missing-doc`. LD-402 regression tests assert these payloads to keep failure diagnostics stable.
 
 ## Stage 1 – Guard
 1. **Update authored headers:** Replace placeholder text in the staged docs with human-curated intent. Keep entries concise—LLMs ingest the authored block before generated sections.
@@ -90,7 +107,7 @@ Add the following settings to your workspace (e.g., `.vscode/settings.json`) to 
 
 ## Maintenance Cheat-Sheet
 - **Regenerate after source edits:** `npm run live-docs:generate -- --changed` scopes regeneration to recently modified files (watch mode forthcoming).
-- **Inspect a doc:** `npm run live-docs:inspect -- packages/server/src/foo.ts` outputs the authored preamble plus generated metadata for quick reviews or prompt injection (`@{live-doc ...}`).
+- **Inspect dependencies:** `npm run live-docs:inspect -- --from packages/server/src/foo.ts --to packages/server/src/bar.ts --json` traces the Live Doc graph. Drop `--to` to enumerate terminal fan-out or add `--direction inbound` to reverse the search.
 - **Sync docstrings:** `npm run live-docs:sync-docstrings -- packages/server/src/foo.ts` reconciles inline comments with the Live Doc summary.
 - **Report coverage gaps:** `npm run live-docs:report -- --format markdown` produces dashboards summarising evidence waivers and dependency fan-out.
 

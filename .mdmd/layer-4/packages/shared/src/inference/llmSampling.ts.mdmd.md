@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/llmSampling.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-llmsampling-ts
-- Generated At: 2025-11-16T20:43:31.842Z
+- Generated At: 2025-11-19T15:01:35.063Z
 
 ## Authored
 ### Purpose
@@ -15,66 +15,66 @@ Defines the shared LLM sampling harness—request/result contracts, vote aggrega
 Link inference will eventually call `runSamplingSession` once the sampling pipeline is ready; the same change log outlines the follow-up to wire in telemetry sinks, so keep this module in sync with [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L4679](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L4679).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:31.842Z","inputHash":"49fa9e45e4573adc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.063Z","inputHash":"49fa9e45e4573adc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `SamplingPromptVariant`
+#### `SamplingPromptVariant` {#symbol-samplingpromptvariant}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L1)
 
-#### `SamplingEdge`
+#### `SamplingEdge` {#symbol-samplingedge}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L8)
 
-#### `SamplingVote`
+#### `SamplingVote` {#symbol-samplingvote}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L14)
 
-#### `SamplingRequest`
+#### `SamplingRequest` {#symbol-samplingrequest}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L22)
 
-#### `SamplingVoteCollector`
+#### `SamplingVoteCollector` {#symbol-samplingvotecollector}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L32)
 
-#### `AggregatedVote`
+#### `AggregatedVote` {#symbol-aggregatedvote}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L36)
 
-#### `SamplingEvaluation`
+#### `SamplingEvaluation` {#symbol-samplingevaluation}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L42)
 
-#### `SamplingResult`
+#### `SamplingResult` {#symbol-samplingresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L48)
 
-#### `SamplingTelemetryOptions`
+#### `SamplingTelemetryOptions` {#symbol-samplingtelemetryoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L56)
 
-#### `SamplingTelemetry`
+#### `SamplingTelemetry` {#symbol-samplingtelemetry}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L61)
 
-#### `SamplingTelemetrySink`
+#### `SamplingTelemetrySink` {#symbol-samplingtelemetrysink}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L71)
 
-#### `aggregateVotes`
+#### `aggregateVotes` {#symbol-aggregatevotes}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L75)
 
-#### `scoreSamples`
+#### `scoreSamples` {#symbol-scoresamples}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L124)
 
-#### `runSamplingSession`
+#### `runSamplingSession` {#symbol-runsamplingsession}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L151)
 
-#### `emitSamplingTelemetry`
+#### `emitSamplingTelemetry` {#symbol-emitsamplingtelemetry}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/inference/llmSampling.ts#L176)
 <!-- LIVE-DOC:END Public Symbols -->

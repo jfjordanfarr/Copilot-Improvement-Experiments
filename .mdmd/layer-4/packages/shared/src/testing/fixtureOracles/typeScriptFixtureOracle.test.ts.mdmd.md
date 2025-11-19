@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-typescriptfixtureoracle-test-ts
-- Generated At: 2025-11-16T22:34:13.480Z
+- Generated At: 2025-11-19T15:01:35.567Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates the TypeScript fixture oracle against curated fixture samples and manu
 - Exercises runtime vs. type-only classifications, override merging, and deterministic serialization, and continues to run green in the Nov 16 unit sweep <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.480Z","inputHash":"0ae51e0a6f88a93d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.567Z","inputHash":"0ae51e0a6f88a93d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,13 +24,13 @@ _No public symbols detected_
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`typeScriptFixtureOracle.OracleEdge`](./typeScriptFixtureOracle.ts.mdmd.md#oracleedge)
-- [`typeScriptFixtureOracle.OracleEdgeRecord`](./typeScriptFixtureOracle.ts.mdmd.md#oracleedgerecord)
-- [`typeScriptFixtureOracle.OracleOverrideConfig`](./typeScriptFixtureOracle.ts.mdmd.md#oracleoverrideconfig)
-- [`typeScriptFixtureOracle.generateTypeScriptFixtureGraph`](./typeScriptFixtureOracle.ts.mdmd.md#generatetypescriptfixturegraph)
-- [`typeScriptFixtureOracle.mergeOracleEdges`](./typeScriptFixtureOracle.ts.mdmd.md#mergeoracleedges)
-- [`typeScriptFixtureOracle.partitionOracleSegments`](./typeScriptFixtureOracle.ts.mdmd.md#partitionoraclesegments)
-- [`typeScriptFixtureOracle.serializeOracleEdges`](./typeScriptFixtureOracle.ts.mdmd.md#serializeoracleedges)
+- [`typeScriptFixtureOracle.OracleEdge`](./typeScriptFixtureOracle.ts.mdmd.md#symbol-oracleedge)
+- [`typeScriptFixtureOracle.OracleEdgeRecord`](./typeScriptFixtureOracle.ts.mdmd.md#symbol-oracleedgerecord)
+- [`typeScriptFixtureOracle.OracleOverrideConfig`](./typeScriptFixtureOracle.ts.mdmd.md#symbol-oracleoverrideconfig)
+- [`typeScriptFixtureOracle.generateTypeScriptFixtureGraph`](./typeScriptFixtureOracle.ts.mdmd.md#symbol-generatetypescriptfixturegraph)
+- [`typeScriptFixtureOracle.mergeOracleEdges`](./typeScriptFixtureOracle.ts.mdmd.md#symbol-mergeoracleedges)
+- [`typeScriptFixtureOracle.partitionOracleSegments`](./typeScriptFixtureOracle.ts.mdmd.md#symbol-partitionoraclesegments)
+- [`typeScriptFixtureOracle.serializeOracleEdges`](./typeScriptFixtureOracle.ts.mdmd.md#symbol-serializeoracleedges)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

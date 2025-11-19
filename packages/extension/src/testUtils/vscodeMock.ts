@@ -1,7 +1,7 @@
 import { vi } from "vitest";
 import type * as vscode from "vscode";
 
-interface SharedVscodeMock {
+export interface SharedVscodeMock {
   module: typeof import("vscode");
   commands: {
     registerCommand: ReturnType<typeof vi.fn>;
@@ -30,9 +30,7 @@ interface SharedVscodeMock {
   CancellationError: typeof vscode.CancellationError;
 }
 
-const globalAny = globalThis as { __sharedVscodeMock?: SharedVscodeMock };
-
-function createVscodeMock(): SharedVscodeMock {
+export function createVscodeMock(): SharedVscodeMock {
   const commands = {
     registerCommand: vi.fn(),
     executeCommand: vi.fn()
@@ -106,10 +104,17 @@ function createVscodeMock(): SharedVscodeMock {
   };
 }
 
+const globalAny = globalThis as { __sharedVscodeMock?: SharedVscodeMock };
+
 export function getSharedVscodeMock(): SharedVscodeMock {
   if (!globalAny.__sharedVscodeMock) {
     globalAny.__sharedVscodeMock = createVscodeMock();
   }
 
+  return globalAny.__sharedVscodeMock;
+}
+
+export function resetSharedVscodeMock(): SharedVscodeMock {
+  globalAny.__sharedVscodeMock = createVscodeMock();
   return globalAny.__sharedVscodeMock;
 }

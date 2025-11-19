@@ -89,6 +89,46 @@ describe("findSymbolReferenceAnomalies", () => {
       expect(issues).toHaveLength(0);
     });
   });
+
+  it("recognises explicitly defined heading anchors", () => {
+    withWorkspace((workspace) => {
+      writeFile(
+        workspace,
+        "docs/guide.md",
+        [
+          "# Intro {#custom-intro}",
+          "## Details {#custom-details}",
+          "Guidance."
+        ].join("\n")
+      );
+
+      writeFile(
+        workspace,
+        "docs/index.md",
+        [
+          "See the [intro](guide.md#custom-intro).",
+          "Check [details](guide.md#custom-details).",
+          "Missing [section](guide.md#missing-anchor).",
+          "# Index"
+        ].join("\n")
+      );
+
+      const guide = path.join(workspace, "docs/guide.md");
+      const indexDoc = path.join(workspace, "docs/index.md");
+
+      const issues = findSymbolReferenceAnomalies({
+        workspaceRoot: workspace,
+        files: [guide, indexDoc]
+      });
+
+      expect(issues).toHaveLength(1);
+      expect(issues[0]).toMatchObject({
+        kind: "missing-anchor",
+        targetFile: guide,
+        slug: "missing-anchor"
+      });
+    });
+  });
 });
 
 function withWorkspace(callback: (workspace: string) => void): void {

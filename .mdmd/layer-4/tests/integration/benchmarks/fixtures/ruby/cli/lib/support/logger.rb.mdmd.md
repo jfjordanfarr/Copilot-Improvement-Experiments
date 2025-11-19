@@ -1,0 +1,63 @@
+# tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb
+
+## Metadata
+- Layer: 4
+- Archetype: asset
+- Code Path: tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb
+- Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-ruby-cli-lib-support-logger-rb
+- Generated At: 2025-11-19T15:01:36.274Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.274Z","inputHash":"c227cdecfe41f0e7"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+#### `BenchmarkCLI` {#symbol-benchmarkcli}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb#L3)
+
+#### `Support` {#symbol-support}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb#L4)
+
+#### `Logger` {#symbol-logger}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb#L5)
+
+#### `info` {#symbol-info}
+- Type: method
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb#L12)
+
+##### `info` — Summary
+Emits an informational message.
+
+##### `info` — Parameters
+- `message`: Text to print.
+
+##### `info` — Returns
+[void]
+
+#### `warn` {#symbol-warn}
+- Type: method
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/support/logger.rb#L20)
+
+##### `warn` — Summary
+Emits a warning message.
+
+##### `warn` — Parameters
+- `message`: Text to print.
+
+##### `warn` — Returns
+[void]
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+_No dependencies documented yet_
+<!-- LIVE-DOC:END Dependencies -->

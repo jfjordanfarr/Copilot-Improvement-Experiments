@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/webforms.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-webforms-ts
-- Generated At: 2025-11-16T22:34:12.853Z
+- Generated At: 2025-11-19T15:01:35.030Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Captures the WebForms-specific fallback logic we added while wiring the csharp-w
 - Keep the fixture-driven expectations in sync with `tests/integration/benchmarks/fixtures/csharp/webforms/**`; regenerate the oracle after adjusting heuristics to ensure the hidden-field → JS ripple still scores correctly <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L4028-L4052>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.853Z","inputHash":"146b5876763abfca"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.030Z","inputHash":"146b5876763abfca"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createWebFormsHeuristic`
+#### `createWebFormsHeuristic` {#symbol-createwebformsheuristic}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/webforms.ts#L19)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -27,11 +27,11 @@ Captures the WebForms-specific fallback logic we added while wiring the csharp-w
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#fallbackheuristic) (type-only)
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#isimplementationlayer)
-- [`shared.isExternalLink`](./shared.ts.mdmd.md#isexternallink)
-- [`shared.normalizePath`](./shared.ts.mdmd.md#normalizepath)
+- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-fallbackheuristic) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#symbol-isimplementationlayer)
+- [`shared.isExternalLink`](./shared.ts.mdmd.md#symbol-isexternallink)
+- [`shared.normalizePath`](./shared.ts.mdmd.md#symbol-normalizepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

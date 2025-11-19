@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/uri/normalizeFileUri.ts
 - Live Doc ID: LD-implementation-packages-shared-src-uri-normalizefileuri-ts
-- Generated At: 2025-11-16T22:34:13.687Z
+- Generated At: 2025-11-19T15:01:35.702Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Centralises file URI canonicalisation so diagnostics, change events, and telemet
 - Manually sanity-checked the built helper on Windows to confirm drive-letter casing and whitespace trimming behave as expected during the transitive diagnostics investigation ([debug session](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L2808-L2816)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.687Z","inputHash":"02831acba6cbbe81"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.702Z","inputHash":"02831acba6cbbe81"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `normalizeFileUri`
+#### `normalizeFileUri` {#symbol-normalizefileuri}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/uri/normalizeFileUri.ts#L8)
 

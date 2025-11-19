@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/diagnostics/dependencyQuickPick.ts
 - Live Doc ID: LD-implementation-packages-extension-src-diagnostics-dependencyquickpick-ts
-- Generated At: 2025-11-16T22:35:14.511Z
+- Generated At: 2025-11-19T15:01:33.462Z
 
 ## Authored
 ### Purpose
@@ -16,36 +16,36 @@ Implements the T039 dependency inspection quick pick so the extension can call `
 - The same change set validated lint, unit, and integration runs (`npm run lint`, `npm run test:unit`, `npm run test:integration`), ensuring the quick pick stays regression-tested; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1500-L1568](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1500-L1568).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.511Z","inputHash":"5a958ca8e04082c9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.462Z","inputHash":"5a958ca8e04082c9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `registerDependencyQuickPick`
+#### `registerDependencyQuickPick` {#symbol-registerdependencyquickpick}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L20)
 
-#### `DependencyQuickPickController`
+#### `DependencyQuickPickController` {#symbol-dependencyquickpickcontroller}
 - Type: class
 - Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L31)
 
-#### `describeEdgePath`
+#### `describeEdgePath` {#symbol-describeedgepath}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L159)
 
-#### `InspectDependenciesResultValidator`
+#### `InspectDependenciesResultValidator` {#symbol-inspectdependenciesresultvalidator}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L176)
 
-#### `ParsedEdge`
+#### `ParsedEdge` {#symbol-parsededge}
 - Type: unknown
 - Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L178)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`artifactSchemas.KnowledgeArtifactSchema`](../shared/artifactSchemas.ts.mdmd.md#knowledgeartifactschema)
-- [`artifactSchemas.LinkRelationshipKindSchema`](../shared/artifactSchemas.ts.mdmd.md#linkrelationshipkindschema)
-- [`index.INSPECT_DEPENDENCIES_REQUEST`](../../../shared/src/index.ts.mdmd.md#inspect_dependencies_request)
-- [`index.InspectDependenciesParams`](../../../shared/src/index.ts.mdmd.md#inspectdependenciesparams)
+- [`artifactSchemas.KnowledgeArtifactSchema`](../shared/artifactSchemas.ts.mdmd.md#symbol-knowledgeartifactschema)
+- [`artifactSchemas.LinkRelationshipKindSchema`](../shared/artifactSchemas.ts.mdmd.md#symbol-linkrelationshipkindschema)
+- [`index.INSPECT_DEPENDENCIES_REQUEST`](../../../shared/src/index.ts.mdmd.md#symbol-inspect_dependencies_request)
+- [`index.InspectDependenciesParams`](../../../shared/src/index.ts.mdmd.md#symbol-inspectdependenciesparams)
 - `vscode` - `vscode`
 - `vscode-languageclient/node` - `LanguageClient`
 - `zod` - `z`

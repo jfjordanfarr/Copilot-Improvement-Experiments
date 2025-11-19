@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/harness/scenarios.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-harness-scenarios-ts
-- Generated At: 2025-11-16T22:35:16.029Z
+- Generated At: 2025-11-19T15:01:34.328Z
 
 ## Authored
 ### Purpose
@@ -15,27 +15,27 @@ Defines the curated headless harness scenarios so automated runs can copy fixtur
 - The initial Ruby, Python, and C# entries cover the multilingual fixtures we committed to exercising headlessly; the `system` flag toggles System doc materialization for scenarios that need co-activation coverage.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.029Z","inputHash":"8cd40746385f5192"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.328Z","inputHash":"8cd40746385f5192"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `HeadlessHarnessScenario`
+#### `HeadlessHarnessScenario` {#symbol-headlessharnessscenario}
 - Type: interface
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/harness/scenarios.ts#L3)
 
-#### `HEADLESS_HARNESS_SCENARIOS`
+#### `HEADLESS_HARNESS_SCENARIOS` {#symbol-headless_harness_scenarios}
 - Type: const
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/harness/scenarios.ts#L18)
 
-#### `listScenarios`
+#### `listScenarios` {#symbol-listscenarios}
 - Type: function
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/harness/scenarios.ts#L43)
 
-#### `getScenarioByName`
+#### `getScenarioByName` {#symbol-getscenariobyname}
 - Type: function
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/harness/scenarios.ts#L47)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`liveDocumentationConfig.LiveDocumentationConfigInput`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#livedocumentationconfiginput) (type-only)
+- [`liveDocumentationConfig.LiveDocumentationConfigInput`](../../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationconfiginput) (type-only)
 <!-- LIVE-DOC:END Dependencies -->

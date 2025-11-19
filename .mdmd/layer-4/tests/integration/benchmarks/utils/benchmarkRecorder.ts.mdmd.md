@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: tests/integration/benchmarks/utils/benchmarkRecorder.ts
 - Live Doc ID: LD-test-tests-integration-benchmarks-utils-benchmarkrecorder-ts
-- Generated At: 2025-11-16T22:34:14.267Z
+- Generated At: 2025-11-19T15:01:36.383Z
 
 ## Authored
 ### Purpose
@@ -16,26 +16,26 @@ Serialises benchmark runs into tmp and versioned JSON outputs so rebuild and acc
 - Emits fixture-specific diff bundles with precision/recall tallies to speed up triaging false positives/negatives when the AST suite regresses ([fixture diff bundles](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L680-L720)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.267Z","inputHash":"f2cceb4d3df7af62"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.383Z","inputHash":"f2cceb4d3df7af62"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `EdgeRecord`
+#### `EdgeRecord` {#symbol-edgerecord}
 - Type: interface
 - Source: [source](../../../../../../tests/integration/benchmarks/utils/benchmarkRecorder.ts#L9)
 
-#### `FixtureTotalsSummary`
+#### `FixtureTotalsSummary` {#symbol-fixturetotalssummary}
 - Type: interface
 - Source: [source](../../../../../../tests/integration/benchmarks/utils/benchmarkRecorder.ts#L15)
 
-#### `FixtureDiffReport`
+#### `FixtureDiffReport` {#symbol-fixturediffreport}
 - Type: interface
 - Source: [source](../../../../../../tests/integration/benchmarks/utils/benchmarkRecorder.ts#L24)
 
-#### `writeBenchmarkResult`
+#### `writeBenchmarkResult` {#symbol-writebenchmarkresult}
 - Type: function
 - Source: [source](../../../../../../tests/integration/benchmarks/utils/benchmarkRecorder.ts#L43)
 
-#### `writeBenchmarkFixtureReport`
+#### `writeBenchmarkFixtureReport` {#symbol-writebenchmarkfixturereport}
 - Type: function
 - Source: [source](../../../../../../tests/integration/benchmarks/utils/benchmarkRecorder.ts#L80)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -44,7 +44,7 @@ Serialises benchmark runs into tmp and versioned JSON outputs so rebuild and acc
 ### Dependencies
 - `node:fs` - `promises`
 - `node:path` - `path`
-- [`repoPaths.resolveRepoPath`](./repoPaths.ts.mdmd.md#resolverepopath)
+- [`repoPaths.resolveRepoPath`](./repoPaths.ts.mdmd.md#symbol-resolverepopath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Targets -->

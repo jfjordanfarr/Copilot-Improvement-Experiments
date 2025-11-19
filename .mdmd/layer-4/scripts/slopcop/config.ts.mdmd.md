@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/slopcop/config.ts
 - Live Doc ID: LD-implementation-scripts-slopcop-config-ts
-- Generated At: 2025-11-16T22:34:14.139Z
+- Generated At: 2025-11-19T15:01:36.023Z
 
 ## Authored
 ### Purpose
@@ -17,46 +17,46 @@ Centralises SlopCop configuration parsing so the markdown, asset, and symbol aud
 - `CONFIG_FILE_NAME` remains fixed so `npm run slopcop:*` commands and `safe-to-commit.mjs` can rely on workspace-relative resolution, with `--config` allowing targeted regression tests.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.139Z","inputHash":"94a5527508e962ce"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.023Z","inputHash":"94a5527508e962ce"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `SeveritySetting`
+#### `SeveritySetting` {#symbol-severitysetting}
 - Type: type
 - Source: [source](../../../../scripts/slopcop/config.ts#L4)
 
-#### `SlopcopConfigSection`
+#### `SlopcopConfigSection` {#symbol-slopcopconfigsection}
 - Type: interface
 - Source: [source](../../../../scripts/slopcop/config.ts#L6)
 
-#### `SlopcopSymbolConfig`
+#### `SlopcopSymbolConfig` {#symbol-slopcopsymbolconfig}
 - Type: interface
 - Source: [source](../../../../scripts/slopcop/config.ts#L13)
 
-#### `SlopcopConfig`
+#### `SlopcopConfig` {#symbol-slopcopconfig}
 - Type: interface
 - Source: [source](../../../../scripts/slopcop/config.ts#L19)
 
-#### `CONFIG_FILE_NAME`
+#### `CONFIG_FILE_NAME` {#symbol-config_file_name}
 - Type: const
 - Source: [source](../../../../scripts/slopcop/config.ts#L29)
 
-#### `loadSlopcopConfig`
+#### `loadSlopcopConfig` {#symbol-loadslopcopconfig}
 - Type: function
 - Source: [source](../../../../scripts/slopcop/config.ts#L33)
 
-#### `resolveIgnoreGlobs`
+#### `resolveIgnoreGlobs` {#symbol-resolveignoreglobs}
 - Type: function
 - Source: [source](../../../../scripts/slopcop/config.ts#L56)
 
-#### `resolveIncludeGlobs`
+#### `resolveIncludeGlobs` {#symbol-resolveincludeglobs}
 - Type: function
 - Source: [source](../../../../scripts/slopcop/config.ts#L66)
 
-#### `compileIgnorePatterns`
+#### `compileIgnorePatterns` {#symbol-compileignorepatterns}
 - Type: function
 - Source: [source](../../../../scripts/slopcop/config.ts#L78)
 
-#### `resolveRootDirectories`
+#### `resolveRootDirectories` {#symbol-resolverootdirectories}
 - Type: function
 - Source: [source](../../../../scripts/slopcop/config.ts#L103)
 <!-- LIVE-DOC:END Public Symbols -->

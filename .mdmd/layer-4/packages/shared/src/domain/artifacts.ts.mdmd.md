@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/domain/artifacts.ts
 - Live Doc ID: LD-implementation-packages-shared-src-domain-artifacts-ts
-- Generated At: 2025-11-16T20:43:31.544Z
+- Generated At: 2025-11-19T15:01:34.702Z
 
 ## Authored
 ### Purpose
@@ -15,86 +15,86 @@ Defines the cross-layer knowledge-graph domain model—artifacts, links, diagnos
 Confidence tiers and drift-history additions arrived alongside the October 23–24 persistence and LLM-ingestion passes, keeping telemetry and ingestion schemas aligned; see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-14-graphstore-enhancements--status-check-lines-1531-1620](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md#turn-14-graphstore-enhancements--status-check-lines-1531-1620) and [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-24.SUMMARIZED.md#turn-10-prompt--shared-inference-modules-lines-3721-4460](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-24.SUMMARIZED.md#turn-10-prompt--shared-inference-modules-lines-3721-4460).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:31.544Z","inputHash":"0716ab01f7ce6f70"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.702Z","inputHash":"0716ab01f7ce6f70"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ArtifactLayer`
+#### `ArtifactLayer` {#symbol-artifactlayer}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L1)
 
-#### `KnowledgeArtifact`
+#### `KnowledgeArtifact` {#symbol-knowledgeartifact}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L8)
 
-#### `LinkRelationshipKind`
+#### `LinkRelationshipKind` {#symbol-linkrelationshipkind}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L19)
 
-#### `LinkRelationship`
+#### `LinkRelationship` {#symbol-linkrelationship}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L26)
 
-#### `LlmConfidenceTier`
+#### `LlmConfidenceTier` {#symbol-llmconfidencetier}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L36)
 
-#### `LlmEdgeProvenance`
+#### `LlmEdgeProvenance` {#symbol-llmedgeprovenance}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L38)
 
-#### `ChangeEventType`
+#### `ChangeEventType` {#symbol-changeeventtype}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L56)
 
-#### `ChangeEventProvenance`
+#### `ChangeEventProvenance` {#symbol-changeeventprovenance}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L58)
 
-#### `ChangeEventRange`
+#### `ChangeEventRange` {#symbol-changeeventrange}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L60)
 
-#### `ChangeEvent`
+#### `ChangeEvent` {#symbol-changeevent}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L65)
 
-#### `DiagnosticSeverity`
+#### `DiagnosticSeverity` {#symbol-diagnosticseverity}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L75)
 
-#### `DiagnosticStatus`
+#### `DiagnosticStatus` {#symbol-diagnosticstatus}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L77)
 
-#### `LlmModelMetadata`
+#### `LlmModelMetadata` {#symbol-llmmodelmetadata}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L79)
 
-#### `LlmAssessment`
+#### `LlmAssessment` {#symbol-llmassessment}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L87)
 
-#### `DiagnosticRecord`
+#### `DiagnosticRecord` {#symbol-diagnosticrecord}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L98)
 
-#### `KnowledgeSnapshot`
+#### `KnowledgeSnapshot` {#symbol-knowledgesnapshot}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L113)
 
-#### `AcknowledgementActionType`
+#### `AcknowledgementActionType` {#symbol-acknowledgementactiontype}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L123)
 
-#### `AcknowledgementAction`
+#### `AcknowledgementAction` {#symbol-acknowledgementaction}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L125)
 
-#### `DriftHistoryStatus`
+#### `DriftHistoryStatus` {#symbol-drifthistorystatus}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L134)
 
-#### `DriftHistoryEntry`
+#### `DriftHistoryEntry` {#symbol-drifthistoryentry}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/domain/artifacts.ts#L136)
 <!-- LIVE-DOC:END Public Symbols -->

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/relationshipRuleEngine.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-relationshipruleengine-ts
-- Generated At: 2025-11-16T22:34:13.278Z
+- Generated At: 2025-11-19T15:01:35.431Z
 
 ## Authored
 ### Purpose
@@ -15,26 +15,26 @@ Loads, compiles, and executes relationship rules to produce link evidence that s
 - Introduced alongside symbol correctness work so graph audits could reason about rule provenance and warn on malformed configs before they reach the provider.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.278Z","inputHash":"0b2ddce8d2f11116"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.431Z","inputHash":"0b2ddce8d2f11116"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `loadRelationshipRuleConfig`
+#### `loadRelationshipRuleConfig` {#symbol-loadrelationshipruleconfig}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleEngine.ts#L30)
 
-#### `compileRelationshipRules`
+#### `compileRelationshipRules` {#symbol-compilerelationshiprules}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleEngine.ts#L105)
 
-#### `GenerateRelationshipEvidencesOptions`
+#### `GenerateRelationshipEvidencesOptions` {#symbol-generaterelationshipevidencesoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleEngine.ts#L128)
 
-#### `RelationshipEvidenceGenerationResult`
+#### `RelationshipEvidenceGenerationResult` {#symbol-relationshipevidencegenerationresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleEngine.ts#L135)
 
-#### `generateRelationshipEvidences`
+#### `generateRelationshipEvidences` {#symbol-generaterelationshipevidences}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleEngine.ts#L140)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -44,22 +44,22 @@ Loads, compiles, and executes relationship rules to produce link evidence that s
 - `minimatch` - `Minimatch`
 - `node:fs` - `fs`
 - `node:path` - `path`
-- [`fallbackInference.ArtifactSeed`](../inference/fallbackInference.ts.mdmd.md#artifactseed) (type-only)
-- [`linkInference.LinkEvidence`](../inference/linkInference.ts.mdmd.md#linkevidence) (type-only)
-- [`relationshipResolvers.createBuiltInResolvers`](./relationshipResolvers.ts.mdmd.md#createbuiltinresolvers)
-- [`relationshipRuleTypes.CompiledRelationshipRule`](./relationshipRuleTypes.ts.mdmd.md#compiledrelationshiprule) (type-only)
-- [`relationshipRuleTypes.CompiledRelationshipRulePropagation`](./relationshipRuleTypes.ts.mdmd.md#compiledrelationshiprulepropagation) (type-only)
-- [`relationshipRuleTypes.CompiledRelationshipRuleStep`](./relationshipRuleTypes.ts.mdmd.md#compiledrelationshiprulestep) (type-only)
-- [`relationshipRuleTypes.CompiledRelationshipRules`](./relationshipRuleTypes.ts.mdmd.md#compiledrelationshiprules) (type-only)
-- [`relationshipRuleTypes.RelationshipResolver`](./relationshipRuleTypes.ts.mdmd.md#relationshipresolver) (type-only)
-- [`relationshipRuleTypes.RelationshipRuleChain`](./relationshipRuleTypes.ts.mdmd.md#relationshiprulechain) (type-only)
-- [`relationshipRuleTypes.RelationshipRuleConfig`](./relationshipRuleTypes.ts.mdmd.md#relationshipruleconfig) (type-only)
-- [`relationshipRuleTypes.RelationshipRuleConfigLoadResult`](./relationshipRuleTypes.ts.mdmd.md#relationshipruleconfigloadresult) (type-only)
-- [`relationshipRuleTypes.RelationshipRulePropagationConfig`](./relationshipRuleTypes.ts.mdmd.md#relationshiprulepropagationconfig) (type-only)
-- [`relationshipRuleTypes.RelationshipRuleStepConfig`](./relationshipRuleTypes.ts.mdmd.md#relationshiprulestepconfig) (type-only)
-- [`relationshipRuleTypes.RelationshipRuleWarning`](./relationshipRuleTypes.ts.mdmd.md#relationshiprulewarning) (type-only)
-- [`relationshipRuleTypes.RelationshipRulesConfig`](./relationshipRuleTypes.ts.mdmd.md#relationshiprulesconfig) (type-only)
-- [`pathUtils.toWorkspaceRelativePath`](../tooling/pathUtils.ts.mdmd.md#toworkspacerelativepath)
+- [`fallbackInference.ArtifactSeed`](../inference/fallbackInference.ts.mdmd.md#symbol-artifactseed) (type-only)
+- [`linkInference.LinkEvidence`](../inference/linkInference.ts.mdmd.md#symbol-linkevidence) (type-only)
+- [`relationshipResolvers.createBuiltInResolvers`](./relationshipResolvers.ts.mdmd.md#symbol-createbuiltinresolvers)
+- [`relationshipRuleTypes.CompiledRelationshipRule`](./relationshipRuleTypes.ts.mdmd.md#symbol-compiledrelationshiprule) (type-only)
+- [`relationshipRuleTypes.CompiledRelationshipRulePropagation`](./relationshipRuleTypes.ts.mdmd.md#symbol-compiledrelationshiprulepropagation) (type-only)
+- [`relationshipRuleTypes.CompiledRelationshipRuleStep`](./relationshipRuleTypes.ts.mdmd.md#symbol-compiledrelationshiprulestep) (type-only)
+- [`relationshipRuleTypes.CompiledRelationshipRules`](./relationshipRuleTypes.ts.mdmd.md#symbol-compiledrelationshiprules) (type-only)
+- [`relationshipRuleTypes.RelationshipResolver`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshipresolver) (type-only)
+- [`relationshipRuleTypes.RelationshipRuleChain`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulechain) (type-only)
+- [`relationshipRuleTypes.RelationshipRuleConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshipruleconfig) (type-only)
+- [`relationshipRuleTypes.RelationshipRuleConfigLoadResult`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshipruleconfigloadresult) (type-only)
+- [`relationshipRuleTypes.RelationshipRulePropagationConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulepropagationconfig) (type-only)
+- [`relationshipRuleTypes.RelationshipRuleStepConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulestepconfig) (type-only)
+- [`relationshipRuleTypes.RelationshipRuleWarning`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulewarning) (type-only)
+- [`relationshipRuleTypes.RelationshipRulesConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulesconfig) (type-only)
+- [`pathUtils.toWorkspaceRelativePath`](../tooling/pathUtils.ts.mdmd.md#symbol-toworkspacerelativepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

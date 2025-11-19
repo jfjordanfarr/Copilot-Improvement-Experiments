@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/fixture-tools/sync-ast-doc.ts
 - Live Doc ID: LD-implementation-scripts-fixture-tools-sync-ast-doc-ts
-- Generated At: 2025-11-16T22:34:13.899Z
+- Generated At: 2025-11-19T15:01:35.827Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Rebuilds the AST benchmark Live Doc from `fixtures.manifest.json`, ensuring the 
 - Repointed 2025-11-16 to the `.live-documentation/source` mirror after the Stage‑0 cleanup, keeping manifest-driven docs intact without reviving the deprecated `.mdmd/layer-4` tree ([mirror alignment](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2680-L2840)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.899Z","inputHash":"214c7c16e8de3a9b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.827Z","inputHash":"214c7c16e8de3a9b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,7 +26,7 @@ _No public symbols detected_
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`benchmark-doc.ensureVendorSection`](./benchmark-doc.ts.mdmd.md#ensurevendorsection)
-- [`benchmark-doc.resolveAstFixtureDocPath`](./benchmark-doc.ts.mdmd.md#resolveastfixturedocpath)
-- [`benchmark-manifest.loadBenchmarkManifest`](./benchmark-manifest.ts.mdmd.md#loadbenchmarkmanifest)
+- [`benchmark-doc.ensureVendorSection`](./benchmark-doc.ts.mdmd.md#symbol-ensurevendorsection)
+- [`benchmark-doc.resolveAstFixtureDocPath`](./benchmark-doc.ts.mdmd.md#symbol-resolveastfixturedocpath)
+- [`benchmark-manifest.loadBenchmarkManifest`](./benchmark-manifest.ts.mdmd.md#symbol-loadbenchmarkmanifest)
 <!-- LIVE-DOC:END Dependencies -->

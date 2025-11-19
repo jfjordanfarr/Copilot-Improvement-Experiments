@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/ollamaMock.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-ollamamock-ts
-- Generated At: 2025-11-16T22:34:13.632Z
+- Generated At: 2025-11-19T15:01:35.672Z
 
 ## Authored
 ### Purpose
@@ -16,29 +16,29 @@ Provides a deterministic Ollama chat payload so the extension and CLI can fall b
 - Shared with `run-chat.ts` so both manual and automated flows report identical mock usage metadata instead of ad hoc CLI scaffolding ([bridge summary](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L1109-L1112)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.632Z","inputHash":"532fefe0f7f950fb"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.672Z","inputHash":"532fefe0f7f950fb"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `MockOllamaResponse`
+#### `MockOllamaResponse` {#symbol-mockollamaresponse}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaMock.ts#L6)
 
-#### `CreateMockOllamaResponseOptions`
+#### `CreateMockOllamaResponseOptions` {#symbol-createmockollamaresponseoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaMock.ts#L12)
 
-#### `createMockOllamaResponse`
+#### `createMockOllamaResponse` {#symbol-createmockollamaresponse}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaMock.ts#L17)
 
-#### `MOCK_OLLAMA_MODEL_ID`
+#### `MOCK_OLLAMA_MODEL_ID` {#symbol-mock_ollama_model_id}
 - Type: unknown
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaMock.ts#L45)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`ollamaClient.OllamaChatUsage`](./ollamaClient.ts.mdmd.md#ollamachatusage) (type-only)
+- [`ollamaClient.OllamaChatUsage`](./ollamaClient.ts.mdmd.md#symbol-ollamachatusage) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

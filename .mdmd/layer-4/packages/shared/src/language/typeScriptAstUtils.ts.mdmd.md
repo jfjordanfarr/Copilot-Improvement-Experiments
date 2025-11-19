@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/language/typeScriptAstUtils.ts
 - Live Doc ID: LD-implementation-packages-shared-src-language-typescriptastutils-ts
-- Generated At: 2025-11-16T22:34:12.938Z
+- Generated At: 2025-11-19T15:01:35.104Z
 
 ## Authored
 ### Purpose
@@ -15,30 +15,30 @@ Tracks TypeScript identifier usage so fallback inference and workspace indexing 
 The ripple semantics review the same day captured why we route TypeScript compiler events through these helpers instead of trusting raw LSIF output—see [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L3504](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md#L3504) for the rationale that guides future adjustments.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.938Z","inputHash":"f9014bb8cd438040"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.104Z","inputHash":"f9014bb8cd438040"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `IdentifierUsage`
+#### `IdentifierUsage` {#symbol-identifierusage}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/language/typeScriptAstUtils.ts#L3)
 
-#### `extractLocalImportNames`
+#### `extractLocalImportNames` {#symbol-extractlocalimportnames}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/language/typeScriptAstUtils.ts#L8)
 
-#### `collectIdentifierUsage`
+#### `collectIdentifierUsage` {#symbol-collectidentifierusage}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/language/typeScriptAstUtils.ts#L34)
 
-#### `hasRuntimeUsage`
+#### `hasRuntimeUsage` {#symbol-hasruntimeusage}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/language/typeScriptAstUtils.ts#L64)
 
-#### `hasTypeUsage`
+#### `hasTypeUsage` {#symbol-hastypeusage}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/language/typeScriptAstUtils.ts#L75)
 
-#### `isLikelyTypeDefinitionSpecifier`
+#### `isLikelyTypeDefinitionSpecifier` {#symbol-islikelytypedefinitionspecifier}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/language/typeScriptAstUtils.ts#L86)
 <!-- LIVE-DOC:END Public Symbols -->

@@ -1,0 +1,51 @@
+# tests/integration/benchmarks/fixtures/ruby/basic/lib/formatter.rb
+
+## Metadata
+- Layer: 4
+- Archetype: asset
+- Code Path: tests/integration/benchmarks/fixtures/ruby/basic/lib/formatter.rb
+- Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-ruby-basic-lib-formatter-rb
+- Generated At: 2025-11-19T15:01:36.236Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.236Z","inputHash":"9f002883746e3c99"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+#### `BenchmarkApp` {#symbol-benchmarkapp}
+- Type: module
+- Source: [source](../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/basic/lib/formatter.rb#L5)
+
+#### `Formatter` {#symbol-formatter}
+- Type: module
+- Source: [source](../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/basic/lib/formatter.rb#L6)
+
+#### `to_text` {#symbol-to_text}
+- Type: method
+- Source: [source](../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/basic/lib/formatter.rb#L21)
+
+##### `to_text` — Summary
+Renders a statistical snapshot using the configured templates.
+
+##### `to_text` — Parameters
+- `data`: Numeric samples to summarise.
+
+##### `to_text` — Returns
+- String describing the totals.
+
+##### `to_text` — Examples
+```ruby
+Formatter.to_text([10, 20])
+```
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+- [`templates`](./templates.rb.mdmd.md)
+<!-- LIVE-DOC:END Dependencies -->

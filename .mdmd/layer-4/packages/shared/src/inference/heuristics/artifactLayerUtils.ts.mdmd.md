@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/artifactLayerUtils.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-artifactlayerutils-ts
-- Generated At: 2025-11-16T22:34:12.695Z
+- Generated At: 2025-11-19T15:01:34.922Z
 
 ## Authored
 ### Purpose
@@ -15,21 +15,21 @@ Defines the layer guards (`isDocumentLayer`, `isImplementationLayer`) that the N
 - Shared by all language heuristics after the modularization commit that landed on Nov 8; keep these helpers stable unless roadmap updates redefine the layer taxonomy consumed by `FallbackHeuristic` ordering <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L60-L140>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.695Z","inputHash":"fdee95ae8c7d28d6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.922Z","inputHash":"fdee95ae8c7d28d6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `isDocumentLayer`
+#### `isDocumentLayer` {#symbol-isdocumentlayer}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/artifactLayerUtils.ts#L3)
 
-#### `isImplementationLayer`
+#### `isImplementationLayer` {#symbol-isimplementationlayer}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/artifactLayerUtils.ts#L7)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`artifacts.ArtifactLayer`](../../domain/artifacts.ts.mdmd.md#artifactlayer) (type-only)
+- [`artifacts.ArtifactLayer`](../../domain/artifacts.ts.mdmd.md#symbol-artifactlayer) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

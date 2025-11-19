@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/adapters/csharp.hangfire.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-adapters-csharp-hangfire-test-ts
-- Generated At: 2025-11-18T14:53:52.867Z
+- Generated At: 2025-11-19T15:01:35.141Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Verify the C# adapter resolves Hangfire `BackgroundJob.Enqueue<T>` calls to thei
 Exercises the queue pipeline path in an isolated temp workspace to guard the LD-402 dependency hop.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.867Z","inputHash":"abf3669b1f7aac11"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.141Z","inputHash":"abf3669b1f7aac11"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,7 +26,7 @@ _No public symbols detected_
 - `node:fs/promises` - `fs`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`csharp.csharpAdapter`](./csharp.ts.mdmd.md#csharpadapter)
+- [`csharp.csharpAdapter`](./csharp.ts.mdmd.md#symbol-csharpadapter)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

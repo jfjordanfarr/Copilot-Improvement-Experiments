@@ -1,26 +1,50 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import type * as vscode from "vscode";
 
 import type { InspectSymbolNeighborsParams } from "@copilot-improvement/shared";
-import { getSharedVscodeMock } from "../testUtils/vscodeMock";
+import { createVscodeMock, type SharedVscodeMock } from "../testUtils/vscodeMock";
 import type { ParsedInspectSymbolNeighborsResult } from "./inspectSymbolNeighbors";
 
-const vscodeMock = getSharedVscodeMock();
-const mockCommands = vscodeMock.commands;
-const mockWindow = vscodeMock.window;
-const mockWorkspace = vscodeMock.workspace;
-const mockUri = vscodeMock.Uri;
-
-const showQuickPickMock = mockWindow.showQuickPick as ReturnType<typeof vi.fn>;
-const showInformationMessageMock = mockWindow.showInformationMessage as ReturnType<typeof vi.fn>;
-const showErrorMessageMock = mockWindow.showErrorMessage as ReturnType<typeof vi.fn>;
-const showTextDocumentMock = mockWindow.showTextDocument as ReturnType<typeof vi.fn>;
-
-vi.mock("vscode", () => vscodeMock.module);
+let vscodeMock: SharedVscodeMock;
+let mockCommands: SharedVscodeMock["commands"];
+let mockWindow: SharedVscodeMock["window"];
+let mockWorkspace: SharedVscodeMock["workspace"];
+let mockUri: SharedVscodeMock["Uri"];
+let showQuickPickMock: ReturnType<typeof vi.fn>;
+let showInformationMessageMock: ReturnType<typeof vi.fn>;
+let showErrorMessageMock: ReturnType<typeof vi.fn>;
+let showTextDocumentMock: ReturnType<typeof vi.fn>;
+let registerInspectSymbolNeighborsCommand: typeof import("./inspectSymbolNeighbors").registerInspectSymbolNeighborsCommand;
 
 describe("inspectSymbolNeighbors command", () => {
+  beforeAll(async () => {
+    vscodeMock = createVscodeMock();
+    vi.doMock("vscode", () => vscodeMock.module);
+    ({ registerInspectSymbolNeighborsCommand } = await import("./inspectSymbolNeighbors"));
+    mockCommands = vscodeMock.commands;
+    mockWindow = vscodeMock.window;
+    mockWorkspace = vscodeMock.workspace;
+    mockUri = vscodeMock.Uri;
+    showQuickPickMock = mockWindow.showQuickPick as ReturnType<typeof vi.fn>;
+    showInformationMessageMock = mockWindow.showInformationMessage as ReturnType<typeof vi.fn>;
+    showErrorMessageMock = mockWindow.showErrorMessage as ReturnType<typeof vi.fn>;
+    showTextDocumentMock = mockWindow.showTextDocument as ReturnType<typeof vi.fn>;
+  }, 30000);
+
+  afterAll(() => {
+    vi.doUnmock("vscode");
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
+    mockCommands.registerCommand.mockReset();
+    mockWindow.showQuickPick.mockReset();
+    mockWindow.showInformationMessage.mockReset();
+    mockWindow.showErrorMessage.mockReset();
+    mockWindow.showTextDocument.mockReset();
+    mockWorkspace.openTextDocument.mockReset();
+
+    mockCommands.registerCommand.mockReturnValue({ dispose: vi.fn() });
     showQuickPickMock.mockResolvedValue(undefined);
     showInformationMessageMock.mockResolvedValue(undefined);
     showErrorMessageMock.mockResolvedValue(undefined);
@@ -31,7 +55,6 @@ describe("inspectSymbolNeighbors command", () => {
   });
 
   it("registers the inspect symbol neighbors command", async () => {
-    const { registerInspectSymbolNeighborsCommand } = await import("./inspectSymbolNeighbors");
     const mockClient = {
       sendRequest: vi.fn()
     } as unknown;
@@ -45,9 +68,8 @@ describe("inspectSymbolNeighbors command", () => {
   }, 15000);
 
   it("shows an informational message when no editor is active", async () => {
-  mockWindow.activeTextEditor = undefined;
+    mockWindow.activeTextEditor = undefined;
 
-    const { registerInspectSymbolNeighborsCommand } = await import("./inspectSymbolNeighbors");
     const mockClient = {
       sendRequest: vi.fn()
     };
@@ -64,7 +86,6 @@ describe("inspectSymbolNeighbors command", () => {
   });
 
   it("parses neighbor results and opens the selected artifact", async () => {
-    const { registerInspectSymbolNeighborsCommand } = await import("./inspectSymbolNeighbors");
     const mockResult = {
       origin: {
         id: "artifact-origin",
@@ -110,7 +131,7 @@ describe("inspectSymbolNeighbors command", () => {
       }
     } satisfies ParsedInspectSymbolNeighborsResult;
 
-  showQuickPickMock.mockResolvedValue(undefined);
+    showQuickPickMock.mockResolvedValue(undefined);
 
     const mockClient = {
       sendRequest: vi.fn().mockResolvedValue(mockResult)
@@ -119,7 +140,7 @@ describe("inspectSymbolNeighbors command", () => {
     registerInspectSymbolNeighborsCommand(mockClient as never);
     const handler = mockCommands.registerCommand.mock.calls[0][1] as () => Promise<void>;
 
-  showQuickPickMock.mockResolvedValueOnce({
+    showQuickPickMock.mockResolvedValueOnce({
       target: mockUri.parse("file:///workspace/src/peer.ts"),
       neighbor: mockResult.groups[0].neighbors[0],
       groupKind: "depends_on",
@@ -132,15 +153,14 @@ describe("inspectSymbolNeighbors command", () => {
       "linkDiagnostics/symbols/inspectNeighbors",
       expect.objectContaining<InspectSymbolNeighborsParams>({ uri: "file:///workspace/src/origin.ts" })
     );
-  expect(showQuickPickMock).toHaveBeenCalled();
-  expect(mockWorkspace.openTextDocument).toHaveBeenCalledWith(
+    expect(showQuickPickMock).toHaveBeenCalled();
+    expect(mockWorkspace.openTextDocument).toHaveBeenCalledWith(
       expect.objectContaining({ toString: expect.any(Function) })
     );
-  expect(showTextDocumentMock).toHaveBeenCalled();
+    expect(showTextDocumentMock).toHaveBeenCalled();
   });
 
   it("reports validation errors from the language server", async () => {
-    const { registerInspectSymbolNeighborsCommand } = await import("./inspectSymbolNeighbors");
     const mockClient = {
       sendRequest: vi.fn().mockResolvedValue({})
     };
@@ -150,7 +170,7 @@ describe("inspectSymbolNeighbors command", () => {
 
     await handler();
 
-  expect(showErrorMessageMock).toHaveBeenCalledWith(
+    expect(showErrorMessageMock).toHaveBeenCalledWith(
       expect.stringContaining("Unable to inspect symbol neighbors")
     );
   });

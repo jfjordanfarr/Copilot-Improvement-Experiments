@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/diagnostics/listOutstandingDiagnostics.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-diagnostics-listoutstandingdiagnostics-test-ts
-- Generated At: 2025-11-18T14:53:38.670Z
+- Generated At: 2025-11-19T15:01:33.833Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates the server-side snapshot powering the diagnostics tree view by checkin
 - Exercises missing-artifact fallbacks to ensure the UI gracefully handles purged records while still refreshing timestamps deterministically.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.670Z","inputHash":"d8c89c4eea46e403"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.833Z","inputHash":"d8c89c4eea46e403"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,9 +26,9 @@ _No public symbols detected_
 - `node:fs` - `mkdtempSync`, `rmSync`
 - `node:os` - `tmpdir`
 - `node:path` - `join`
-- [`listOutstandingDiagnostics.buildOutstandingDiagnosticsResult`](./listOutstandingDiagnostics.ts.mdmd.md#buildoutstandingdiagnosticsresult)
-- [`index.DiagnosticRecord`](../../../../shared/src/index.ts.mdmd.md#diagnosticrecord)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
+- [`listOutstandingDiagnostics.buildOutstandingDiagnosticsResult`](./listOutstandingDiagnostics.ts.mdmd.md#symbol-buildoutstandingdiagnosticsresult)
+- [`index.DiagnosticRecord`](../../../../shared/src/index.ts.mdmd.md#symbol-diagnosticrecord)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

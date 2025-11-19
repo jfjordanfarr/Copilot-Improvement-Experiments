@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/watchers/artifactWatcher.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-watchers-artifactwatcher-test-ts
-- Generated At: 2025-11-18T14:53:39.192Z
+- Generated At: 2025-11-19T15:01:34.442Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies that `ArtifactWatcher` classifies code and documentation changes correc
 - Added alongside the watcher refactor captured in [2025-10-19 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-19.SUMMARIZED.md) to guard the unified pipeline.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:39.192Z","inputHash":"72e188081d551d1e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.442Z","inputHash":"72e188081d551d1e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,10 +26,10 @@ _No public symbols detected_
 ### Dependencies
 - `node:path` - `path`
 - `node:url` - `pathToFileURL`
-- [`changeQueue.QueuedChange`](../changeEvents/changeQueue.ts.mdmd.md#queuedchange) (type-only)
-- [`artifactWatcher.ArtifactWatcher`](./artifactWatcher.ts.mdmd.md#artifactwatcher)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
-- [`index.LinkInferenceOrchestrator`](../../../../shared/src/index.ts.mdmd.md#linkinferenceorchestrator)
+- [`changeQueue.QueuedChange`](../changeEvents/changeQueue.ts.mdmd.md#symbol-queuedchange) (type-only)
+- [`artifactWatcher.ArtifactWatcher`](./artifactWatcher.ts.mdmd.md#symbol-artifactwatcher)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.LinkInferenceOrchestrator`](../../../../shared/src/index.ts.mdmd.md#symbol-linkinferenceorchestrator)
 - `vitest` - `describe`, `expect`, `it`, `vi`
 - `vscode-languageserver-textdocument` - `TextDocument`
 <!-- LIVE-DOC:END Dependencies -->

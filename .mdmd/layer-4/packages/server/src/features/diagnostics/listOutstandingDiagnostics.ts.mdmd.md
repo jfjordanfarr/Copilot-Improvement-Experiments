@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-listoutstandingdiagnostics-ts
-- Generated At: 2025-11-16T22:35:15.324Z
+- Generated At: 2025-11-19T15:01:33.843Z
 
 ## Authored
 ### Purpose
@@ -15,25 +15,25 @@ Transforms persisted diagnostic records into Explorer-friendly summaries for the
 - Resolves trigger/target artifacts on demand so the tree view stays synchronized with the GraphStore even as acknowledgements arrive.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.324Z","inputHash":"eb979c4a5d8360fe"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.843Z","inputHash":"eb979c4a5d8360fe"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `buildOutstandingDiagnosticsResult`
+#### `buildOutstandingDiagnosticsResult` {#symbol-buildoutstandingdiagnosticsresult}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts#L9)
 
-#### `mapOutstandingDiagnostic`
+#### `mapOutstandingDiagnostic` {#symbol-mapoutstandingdiagnostic}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/listOutstandingDiagnostics.ts#L22)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`index.DiagnosticRecord`](../../../../shared/src/index.ts.mdmd.md#diagnosticrecord)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
-- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#knowledgeartifact)
-- [`index.ListOutstandingDiagnosticsResult`](../../../../shared/src/index.ts.mdmd.md#listoutstandingdiagnosticsresult)
-- [`index.OutstandingDiagnosticSummary`](../../../../shared/src/index.ts.mdmd.md#outstandingdiagnosticsummary)
+- [`index.DiagnosticRecord`](../../../../shared/src/index.ts.mdmd.md#symbol-diagnosticrecord)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgeartifact)
+- [`index.ListOutstandingDiagnosticsResult`](../../../../shared/src/index.ts.mdmd.md#symbol-listoutstandingdiagnosticsresult)
+- [`index.OutstandingDiagnosticSummary`](../../../../shared/src/index.ts.mdmd.md#symbol-outstandingdiagnosticsummary)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

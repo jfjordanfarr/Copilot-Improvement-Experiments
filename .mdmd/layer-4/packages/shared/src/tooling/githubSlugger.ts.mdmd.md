@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/githubSlugger.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-githubslugger-ts
-- Generated At: 2025-11-18T14:53:53.176Z
+- Generated At: 2025-11-19T15:01:35.624Z
 
 ## Authored
 ### Purpose
@@ -16,29 +16,29 @@ Provides a fully vendored GitHub-compatible slugger (function + stateful class) 
 - November 7 anchor-audit confirmed the maintainCase flag and unicode handling stay aligned with GitHub after targeting mis-slugged `COMP-003 – Heuristic Suite` references.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:53.176Z","inputHash":"320c0fa674ca5a53"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.624Z","inputHash":"320c0fa674ca5a53"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `SlugContext`
+#### `SlugContext` {#symbol-slugcontext}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/githubSlugger.ts#L11)
 
-#### `GitHubSlugger`
+#### `GitHubSlugger` {#symbol-githubslugger}
 - Type: class
 - Source: [source](../../../../../../packages/shared/src/tooling/githubSlugger.ts#L17)
 
-#### `slug`
+#### `slug` {#symbol-slug}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/githubSlugger.ts#L54)
 
-#### `createSlugger`
+#### `createSlugger` {#symbol-createslugger}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/githubSlugger.ts#L63)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`githubSluggerRegex.GITHUB_SLUG_REMOVE_PATTERN`](./githubSluggerRegex.ts.mdmd.md#github_slug_remove_pattern)
+- [`githubSluggerRegex.GITHUB_SLUG_REMOVE_PATTERN`](./githubSluggerRegex.ts.mdmd.md#symbol-github_slug_remove_pattern)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

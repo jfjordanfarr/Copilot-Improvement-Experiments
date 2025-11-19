@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/knowledgeGraphBridge.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-knowledgegraphbridge-ts
-- Generated At: 2025-11-16T22:35:15.651Z
+- Generated At: 2025-11-19T15:01:34.062Z
 
 ## Authored
 ### Purpose
@@ -15,26 +15,26 @@ Bootstraps knowledge feed ingestion for the workspace by discovering static feed
 - Hosts the feed manager, diagnostics gateway, and derived child loggers so per-feed health surfaces cleanly, incorporating the follow-up logging and discovery tweaks tracked in [2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.651Z","inputHash":"c9a0104f2f8b78e3"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.062Z","inputHash":"c9a0104f2f8b78e3"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `KnowledgeGraphBridgeLogger`
+#### `KnowledgeGraphBridgeLogger` {#symbol-knowledgegraphbridgelogger}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts#L36)
 
-#### `KnowledgeGraphBridgeServiceOptions`
+#### `KnowledgeGraphBridgeServiceOptions` {#symbol-knowledgegraphbridgeserviceoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts#L42)
 
-#### `KnowledgeGraphBridgeStartResult`
+#### `KnowledgeGraphBridgeStartResult` {#symbol-knowledgegraphbridgestartresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts#L55)
 
-#### `KnowledgeGraphBridgeDisposable`
+#### `KnowledgeGraphBridgeDisposable` {#symbol-knowledgegraphbridgedisposable}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts#L59)
 
-#### `KnowledgeGraphBridgeService`
+#### `KnowledgeGraphBridgeService` {#symbol-knowledgegraphbridgeservice}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphBridge.ts#L63)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -45,25 +45,25 @@ Bootstraps knowledge feed ingestion for the workspace by discovering static feed
 - `node:fs` - `fs`, `promises`
 - `node:path` - `path`
 - `node:url` - `pathToFileURL`
-- [`feedCheckpointStore.FileFeedCheckpointStore`](./feedCheckpointStore.ts.mdmd.md#filefeedcheckpointstore)
-- [`feedDiagnosticsGateway.FeedDiagnosticsGateway`](./feedDiagnosticsGateway.ts.mdmd.md#feeddiagnosticsgateway)
-- [`feedDiagnosticsGateway.FeedDiagnosticsGatewayOptions`](./feedDiagnosticsGateway.ts.mdmd.md#feeddiagnosticsgatewayoptions)
-- [`feedDiagnosticsGateway.FeedStatusSummary`](./feedDiagnosticsGateway.ts.mdmd.md#feedstatussummary)
-- [`feedFormatDetector.parseFeedFile`](./feedFormatDetector.ts.mdmd.md#parsefeedfile)
-- [`knowledgeFeedManager.BackoffOptions`](./knowledgeFeedManager.ts.mdmd.md#backoffoptions)
-- [`knowledgeFeedManager.Disposable`](./knowledgeFeedManager.ts.mdmd.md#disposable)
-- [`knowledgeFeedManager.FeedConfiguration`](./knowledgeFeedManager.ts.mdmd.md#feedconfiguration)
-- [`knowledgeFeedManager.KnowledgeFeedManager`](./knowledgeFeedManager.ts.mdmd.md#knowledgefeedmanager)
-- [`knowledgeGraphIngestor.KnowledgeGraphIngestor`](./knowledgeGraphIngestor.ts.mdmd.md#knowledgegraphingestor)
-- [`knowledgeGraphIngestor.KnowledgeGraphIngestorLogger`](./knowledgeGraphIngestor.ts.mdmd.md#knowledgegraphingestorlogger)
-- [`index.ArtifactLayer`](../../../../shared/src/index.ts.mdmd.md#artifactlayer)
-- [`index.ExternalArtifact`](../../../../shared/src/index.ts.mdmd.md#externalartifact)
-- [`index.ExternalLink`](../../../../shared/src/index.ts.mdmd.md#externallink)
-- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#externalsnapshot)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
-- [`index.KnowledgeFeed`](../../../../shared/src/index.ts.mdmd.md#knowledgefeed)
-- [`index.KnowledgeGraphBridge`](../../../../shared/src/index.ts.mdmd.md#knowledgegraphbridge)
-- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#linkrelationshipkind)
+- [`feedCheckpointStore.FileFeedCheckpointStore`](./feedCheckpointStore.ts.mdmd.md#symbol-filefeedcheckpointstore)
+- [`feedDiagnosticsGateway.FeedDiagnosticsGateway`](./feedDiagnosticsGateway.ts.mdmd.md#symbol-feeddiagnosticsgateway)
+- [`feedDiagnosticsGateway.FeedDiagnosticsGatewayOptions`](./feedDiagnosticsGateway.ts.mdmd.md#symbol-feeddiagnosticsgatewayoptions)
+- [`feedDiagnosticsGateway.FeedStatusSummary`](./feedDiagnosticsGateway.ts.mdmd.md#symbol-feedstatussummary)
+- [`feedFormatDetector.parseFeedFile`](./feedFormatDetector.ts.mdmd.md#symbol-parsefeedfile)
+- [`knowledgeFeedManager.BackoffOptions`](./knowledgeFeedManager.ts.mdmd.md#symbol-backoffoptions)
+- [`knowledgeFeedManager.Disposable`](./knowledgeFeedManager.ts.mdmd.md#symbol-disposable)
+- [`knowledgeFeedManager.FeedConfiguration`](./knowledgeFeedManager.ts.mdmd.md#symbol-feedconfiguration)
+- [`knowledgeFeedManager.KnowledgeFeedManager`](./knowledgeFeedManager.ts.mdmd.md#symbol-knowledgefeedmanager)
+- [`knowledgeGraphIngestor.KnowledgeGraphIngestor`](./knowledgeGraphIngestor.ts.mdmd.md#symbol-knowledgegraphingestor)
+- [`knowledgeGraphIngestor.KnowledgeGraphIngestorLogger`](./knowledgeGraphIngestor.ts.mdmd.md#symbol-knowledgegraphingestorlogger)
+- [`index.ArtifactLayer`](../../../../shared/src/index.ts.mdmd.md#symbol-artifactlayer)
+- [`index.ExternalArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-externalartifact)
+- [`index.ExternalLink`](../../../../shared/src/index.ts.mdmd.md#symbol-externallink)
+- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#symbol-externalsnapshot)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.KnowledgeFeed`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgefeed)
+- [`index.KnowledgeGraphBridge`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgegraphbridge)
+- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#symbol-linkrelationshipkind)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

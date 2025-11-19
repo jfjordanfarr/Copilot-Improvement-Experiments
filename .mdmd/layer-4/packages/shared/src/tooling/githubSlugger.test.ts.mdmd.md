@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/githubSlugger.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-githubslugger-test-ts
-- Generated At: 2025-11-16T22:34:13.548Z
+- Generated At: 2025-11-19T15:01:35.617Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Locks in the vendored slugger’s behaviour against GitHub’s casing, unicode, 
 - Reinforced during the November 7 anchor audit that reproduced real headings like “COMP-003 – Heuristic Suite,” ensuring unicode deduping remains correct.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.548Z","inputHash":"9d992d73529af6a2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.617Z","inputHash":"9d992d73529af6a2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,9 +24,9 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`githubSlugger.GitHubSlugger`](./githubSlugger.ts.mdmd.md#githubslugger)
-- [`githubSlugger.createSlugger`](./githubSlugger.ts.mdmd.md#createslugger)
-- [`githubSlugger.slug`](./githubSlugger.ts.mdmd.md#slug)
+- [`githubSlugger.GitHubSlugger`](./githubSlugger.ts.mdmd.md#symbol-githubslugger)
+- [`githubSlugger.createSlugger`](./githubSlugger.ts.mdmd.md#symbol-createslugger)
+- [`githubSlugger.slug`](./githubSlugger.ts.mdmd.md#symbol-slug)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

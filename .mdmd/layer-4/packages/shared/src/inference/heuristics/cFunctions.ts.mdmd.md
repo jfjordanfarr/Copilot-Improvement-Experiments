@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/cFunctions.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-cfunctions-ts
-- Generated At: 2025-11-16T22:34:12.702Z
+- Generated At: 2025-11-19T15:01:34.929Z
 
 ## Authored
 ### Purpose
@@ -15,19 +15,19 @@ Resolves C call sites back to their declaring headers so fallback inference can 
 - Became part of the modular heuristic suite shipped on Nov 8; any scoring or ordering tweaks need to stay benchmark-neutral as captured in that commit summary <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L60-L140>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.702Z","inputHash":"ef5fc6a05228018b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.929Z","inputHash":"ef5fc6a05228018b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createCFunctionHeuristic`
+#### `createCFunctionHeuristic` {#symbol-createcfunctionheuristic}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/cFunctions.ts#L23)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#fallbackheuristic) (type-only)
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#isimplementationlayer)
+- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-fallbackheuristic) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#symbol-isimplementationlayer)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/doc-tools/slug-heading.ts
 - Live Doc ID: LD-implementation-scripts-doc-tools-slug-heading-ts
-- Generated At: 2025-11-16T22:34:13.767Z
+- Generated At: 2025-11-19T15:01:35.748Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Slug candidate headings with the same GitHub dialect the generator uses so we ca
 - Reused whenever SlopCop flags header drift so we can validate the canonical slug before mass search-and-replace updates ([follow-up runs](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md#L3335-L3394)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.767Z","inputHash":"4f398252f4838d3f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.748Z","inputHash":"4f398252f4838d3f"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -25,5 +25,5 @@ _No public symbols detected_
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:fs` - `fs`
-- [`githubSlugger.createSlugger`](../../packages/shared/src/tooling/githubSlugger.ts.mdmd.md#createslugger)
+- [`githubSlugger.createSlugger`](../../packages/shared/src/tooling/githubSlugger.ts.mdmd.md#symbol-createslugger)
 <!-- LIVE-DOC:END Dependencies -->

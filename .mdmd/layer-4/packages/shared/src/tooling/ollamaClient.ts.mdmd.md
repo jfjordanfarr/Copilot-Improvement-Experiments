@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/ollamaClient.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-ollamaclient-ts
-- Generated At: 2025-11-16T22:34:13.615Z
+- Generated At: 2025-11-19T15:01:35.661Z
 
 ## Authored
 ### Purpose
@@ -16,26 +16,26 @@ Implements the shared HTTP client for Ollama chat requests—handling timeouts, 
 - Captures raw responses and timing data into per-run traces when `LINK_AWARE_OLLAMA_TRACE_DIR` is set, supporting the telemetry/benchmark reporting workstream called out during the rollout ([runtime hardening](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L5520-L5530)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.615Z","inputHash":"3929400aed0a55d7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.661Z","inputHash":"3929400aed0a55d7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `OllamaChatRequest`
+#### `OllamaChatRequest` {#symbol-ollamachatrequest}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaClient.ts#L5)
 
-#### `OllamaChatUsage`
+#### `OllamaChatUsage` {#symbol-ollamachatusage}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaClient.ts#L15)
 
-#### `OllamaChatResult`
+#### `OllamaChatResult` {#symbol-ollamachatresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaClient.ts#L21)
 
-#### `OllamaInvocationError`
+#### `OllamaInvocationError` {#symbol-ollamainvocationerror}
 - Type: class
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaClient.ts#L38)
 
-#### `invokeOllamaChat`
+#### `invokeOllamaChat` {#symbol-invokeollamachat}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaClient.ts#L45)
 <!-- LIVE-DOC:END Public Symbols -->

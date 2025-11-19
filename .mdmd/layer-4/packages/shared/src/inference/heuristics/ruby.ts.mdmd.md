@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/ruby.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-ruby-ts
-- Generated At: 2025-11-16T22:34:12.813Z
+- Generated At: 2025-11-19T15:01:35.001Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Detects `require_relative` relationships so Ruby fixtures (cli, analytics, suppo
 - Path resolution continues to lean on `normalizePath`; if future fixtures add `require_relative` calls that walk outside the workspace, capture that as technical debt rather than broadening this function to chase absolute filesystem paths blindly <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L780-L860>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.813Z","inputHash":"2c14bfc66e2ed486"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.001Z","inputHash":"2c14bfc66e2ed486"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createRubyHeuristic`
+#### `createRubyHeuristic` {#symbol-createrubyheuristic}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/ruby.ts#L9)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -27,10 +27,10 @@ Detects `require_relative` relationships so Ruby fixtures (cli, analytics, suppo
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#fallbackheuristic) (type-only)
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#isimplementationlayer)
-- [`shared.normalizePath`](./shared.ts.mdmd.md#normalizepath)
+- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-fallbackheuristic) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#symbol-isimplementationlayer)
+- [`shared.normalizePath`](./shared.ts.mdmd.md#symbol-normalizepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/markdown.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-markdown-ts
-- Generated At: 2025-11-16T22:34:12.788Z
+- Generated At: 2025-11-19T15:01:34.987Z
 
 ## Authored
 ### Purpose
@@ -16,22 +16,22 @@ Translates Markdown links and wiki-link syntax in Layer‑4 docs into fallback g
 - When we add new link dialects (for example reference-style links or images), extend the shared `resolveReference` path so every documentation heuristic continues sharing the same normalization rules <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L820-L900>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.788Z","inputHash":"af8918260181c179"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.987Z","inputHash":"af8918260181c179"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createMarkdownHeuristic`
+#### `createMarkdownHeuristic` {#symbol-createmarkdownheuristic}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/markdown.ts#L9)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#fallbackheuristic) (type-only)
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`fallbackHeuristicTypes.MatchEmitter`](../fallbackHeuristicTypes.ts.mdmd.md#matchemitter) (type-only)
-- [`artifactLayerUtils.isDocumentLayer`](./artifactLayerUtils.ts.mdmd.md#isdocumentlayer)
-- [`referenceResolver.resolveReference`](./referenceResolver.ts.mdmd.md#resolvereference)
-- [`shared.cleanupReference`](./shared.ts.mdmd.md#cleanupreference)
+- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-fallbackheuristic) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`fallbackHeuristicTypes.MatchEmitter`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-matchemitter) (type-only)
+- [`artifactLayerUtils.isDocumentLayer`](./artifactLayerUtils.ts.mdmd.md#symbol-isdocumentlayer)
+- [`referenceResolver.resolveReference`](./referenceResolver.ts.mdmd.md#symbol-resolvereference)
+- [`shared.cleanupReference`](./shared.ts.mdmd.md#symbol-cleanupreference)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

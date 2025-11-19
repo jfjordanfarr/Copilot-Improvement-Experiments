@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/imports.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-imports-ts
-- Generated At: 2025-11-16T22:34:12.733Z
+- Generated At: 2025-11-19T15:01:34.957Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Keeps fallback inference aligned with curated JS/TS and Python fixtures by mappi
 - Python module resolution relies on the curated helper introduced while reconciling the basics fixture, so re-run the AST benchmarks after any normalization tweaks to ensure the inferred edges still match the oracle <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L1860-L1920>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.733Z","inputHash":"973f4d3263d9ec4b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.957Z","inputHash":"973f4d3263d9ec4b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createImportHeuristic`
+#### `createImportHeuristic` {#symbol-createimportheuristic}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/imports.ts#L23)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -27,18 +27,18 @@ Keeps fallback inference aligned with curated JS/TS and Python fixtures by mappi
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#fallbackheuristic) (type-only)
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`fallbackHeuristicTypes.MatchEmitter`](../fallbackHeuristicTypes.ts.mdmd.md#matchemitter) (type-only)
-- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#isimplementationlayer)
-- [`referenceResolver.resolveReference`](./referenceResolver.ts.mdmd.md#resolvereference)
-- [`shared.cleanupReference`](./shared.ts.mdmd.md#cleanupreference)
-- [`shared.computeReferenceStart`](./shared.ts.mdmd.md#computereferencestart)
-- [`shared.isWithinComment`](./shared.ts.mdmd.md#iswithincomment)
-- [`typeScriptAstUtils.collectIdentifierUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#collectidentifierusage)
-- [`typeScriptAstUtils.extractLocalImportNames`](../../language/typeScriptAstUtils.ts.mdmd.md#extractlocalimportnames)
-- [`typeScriptAstUtils.hasRuntimeUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#hasruntimeusage)
-- [`typeScriptAstUtils.isLikelyTypeDefinitionSpecifier`](../../language/typeScriptAstUtils.ts.mdmd.md#islikelytypedefinitionspecifier)
+- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-fallbackheuristic) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`fallbackHeuristicTypes.MatchEmitter`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-matchemitter) (type-only)
+- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#symbol-isimplementationlayer)
+- [`referenceResolver.resolveReference`](./referenceResolver.ts.mdmd.md#symbol-resolvereference)
+- [`shared.cleanupReference`](./shared.ts.mdmd.md#symbol-cleanupreference)
+- [`shared.computeReferenceStart`](./shared.ts.mdmd.md#symbol-computereferencestart)
+- [`shared.isWithinComment`](./shared.ts.mdmd.md#symbol-iswithincomment)
+- [`typeScriptAstUtils.collectIdentifierUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-collectidentifierusage)
+- [`typeScriptAstUtils.extractLocalImportNames`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-extractlocalimportnames)
+- [`typeScriptAstUtils.hasRuntimeUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-hasruntimeusage)
+- [`typeScriptAstUtils.isLikelyTypeDefinitionSpecifier`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-islikelytypedefinitionspecifier)
 - `typescript` - `ts`
 <!-- LIVE-DOC:END Dependencies -->
 

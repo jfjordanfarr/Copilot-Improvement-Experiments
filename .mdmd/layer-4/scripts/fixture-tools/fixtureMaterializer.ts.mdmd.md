@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/fixture-tools/fixtureMaterializer.ts
 - Live Doc ID: LD-implementation-scripts-fixture-tools-fixturematerializer-ts
-- Generated At: 2025-11-16T22:34:13.817Z
+- Generated At: 2025-11-19T15:01:35.780Z
 
 ## Authored
 ### Purpose
@@ -17,18 +17,18 @@ Creates ephemeral benchmark workspaces by cloning or copying fixtures defined in
 - On 2025-11-06 we validated the helper across new fixtures (e.g., java-okhttp) while computing integrity digests, proving ephemeral mode cleans up after multi-repo clones ([ephemeral verification](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L1910-L1913)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.817Z","inputHash":"3a1c3e8199ed52f9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.780Z","inputHash":"3a1c3e8199ed52f9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `MaterializeResult`
+#### `MaterializeResult` {#symbol-materializeresult}
 - Type: interface
 - Source: [source](../../../../scripts/fixture-tools/fixtureMaterializer.ts#L12)
 
-#### `materializeFixture`
+#### `materializeFixture` {#symbol-materializefixture}
 - Type: function
 - Source: [source](../../../../scripts/fixture-tools/fixtureMaterializer.ts#L18)
 
-#### `MaterializeOptions`
+#### `MaterializeOptions` {#symbol-materializeoptions}
 - Type: interface
 - Source: [source](../../../../scripts/fixture-tools/fixtureMaterializer.ts#L159)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -39,7 +39,7 @@ Creates ephemeral benchmark workspaces by cloning or copying fixtures defined in
 - `node:fs` - `promises`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`benchmark-manifest.BenchmarkFixtureDefinition`](./benchmark-manifest.ts.mdmd.md#benchmarkfixturedefinition)
-- [`benchmark-manifest.FixtureGitMaterialization`](./benchmark-manifest.ts.mdmd.md#fixturegitmaterialization)
-- [`benchmark-manifest.FixtureMaterialization`](./benchmark-manifest.ts.mdmd.md#fixturematerialization)
+- [`benchmark-manifest.BenchmarkFixtureDefinition`](./benchmark-manifest.ts.mdmd.md#symbol-benchmarkfixturedefinition)
+- [`benchmark-manifest.FixtureGitMaterialization`](./benchmark-manifest.ts.mdmd.md#symbol-fixturegitmaterialization)
+- [`benchmark-manifest.FixtureMaterialization`](./benchmark-manifest.ts.mdmd.md#symbol-fixturematerialization)
 <!-- LIVE-DOC:END Dependencies -->

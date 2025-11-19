@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-index-ts
-- Generated At: 2025-11-18T14:53:52.889Z
+- Generated At: 2025-11-19T15:01:35.169Z
 
 ## Authored
 ### Purpose
@@ -16,14 +16,14 @@ Owns the shared language-adapter registry and `analyzeWithLanguageAdapters`, let
 - Docstring harnesses for each adapter exercise this entry point, keeping registry coverage visible during the Nov 14 verification sweep <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2792-L2808>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.889Z","inputHash":"f5f58aeec33ca92d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.169Z","inputHash":"f5f58aeec33ca92d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `LanguageAdapter`
+#### `LanguageAdapter` {#symbol-languageadapter}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/index.ts#L12)
 
-#### `analyzeWithLanguageAdapters`
+#### `analyzeWithLanguageAdapters` {#symbol-analyzewithlanguageadapters}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/index.ts#L36)
 
@@ -41,14 +41,14 @@ Analyzer output when an adapter understands the file extension, otherwise `null`
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`aspnet.aspNetMarkupAdapter`](./aspnet.ts.mdmd.md#aspnetmarkupadapter)
-- [`c.cAdapter`](./c.ts.mdmd.md#cadapter)
-- [`csharp.csharpAdapter`](./csharp.ts.mdmd.md#csharpadapter)
-- [`java.javaAdapter`](./java.ts.mdmd.md#javaadapter)
-- [`python.pythonAdapter`](./python.ts.mdmd.md#pythonadapter)
-- [`ruby.rubyAdapter`](./ruby.ts.mdmd.md#rubyadapter)
-- [`rust.rustAdapter`](./rust.ts.mdmd.md#rustadapter)
-- [`core.SourceAnalysisResult`](../core.ts.mdmd.md#sourceanalysisresult) (type-only)
+- [`aspnet.aspNetMarkupAdapter`](./aspnet.ts.mdmd.md#symbol-aspnetmarkupadapter)
+- [`c.cAdapter`](./c.ts.mdmd.md#symbol-cadapter)
+- [`csharp.csharpAdapter`](./csharp.ts.mdmd.md#symbol-csharpadapter)
+- [`java.javaAdapter`](./java.ts.mdmd.md#symbol-javaadapter)
+- [`python.pythonAdapter`](./python.ts.mdmd.md#symbol-pythonadapter)
+- [`ruby.rubyAdapter`](./ruby.ts.mdmd.md#symbol-rubyadapter)
+- [`rust.rustAdapter`](./rust.ts.mdmd.md#symbol-rustadapter)
+- [`core.SourceAnalysisResult`](../core.ts.mdmd.md#symbol-sourceanalysisresult) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

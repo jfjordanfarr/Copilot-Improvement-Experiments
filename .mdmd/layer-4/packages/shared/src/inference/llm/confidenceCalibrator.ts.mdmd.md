@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/llm/confidenceCalibrator.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-llm-confidencecalibrator-ts
-- Generated At: 2025-11-16T22:34:12.905Z
+- Generated At: 2025-11-19T15:01:35.075Z
 
 ## Authored
 ### Purpose
@@ -15,29 +15,29 @@ Buckets raw model confidences into the discrete `high`/`medium`/`low` tiers we p
 - The thresholds and `rawConfidenceLabel` hand-back keep orchestrator tests green and preserve provenance for review tooling—update them in lockstep with prompt or analytics changes <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L3122-L3160> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L6095-L6132>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.905Z","inputHash":"f4d54ae880a0f3ca"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.075Z","inputHash":"f4d54ae880a0f3ca"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ConfidenceTier`
+#### `ConfidenceTier` {#symbol-confidencetier}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/inference/llm/confidenceCalibrator.ts#L3)
 
-#### `CalibratedRelationship`
+#### `CalibratedRelationship` {#symbol-calibratedrelationship}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/inference/llm/confidenceCalibrator.ts#L5)
 
-#### `CalibrationContext`
+#### `CalibrationContext` {#symbol-calibrationcontext}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/inference/llm/confidenceCalibrator.ts#L14)
 
-#### `calibrateConfidence`
+#### `calibrateConfidence` {#symbol-calibrateconfidence}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/llm/confidenceCalibrator.ts#L35)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`relationshipExtractor.RawRelationshipCandidate`](./relationshipExtractor.ts.mdmd.md#rawrelationshipcandidate) (type-only)
+- [`relationshipExtractor.RawRelationshipCandidate`](./relationshipExtractor.ts.mdmd.md#symbol-rawrelationshipcandidate) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

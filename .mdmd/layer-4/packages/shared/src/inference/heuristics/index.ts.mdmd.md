@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-index-ts
-- Generated At: 2025-11-16T22:34:12.759Z
+- Generated At: 2025-11-19T15:01:34.973Z
 
 ## Authored
 ### Purpose
@@ -16,27 +16,27 @@ Turns the per-language builders into the default heuristic suite that replaced t
 - When adding a new heuristic module, export it through this registry and update `fallbackInference.languages.test.ts` so the regression suite exercises the new behavior <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L600-L676>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.759Z","inputHash":"46d685bbb4fa7ea4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.973Z","inputHash":"46d685bbb4fa7ea4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createDefaultHeuristics`
+#### `createDefaultHeuristics` {#symbol-createdefaultheuristics}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/index.ts#L13)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#fallbackheuristic) (type-only)
-- [`cFunctions.createCFunctionHeuristic`](./cFunctions.ts.mdmd.md#createcfunctionheuristic)
-- [`csharp.createCSharpHeuristic`](./csharp.ts.mdmd.md#createcsharpheuristic)
-- [`directives.createDirectiveHeuristic`](./directives.ts.mdmd.md#createdirectiveheuristic)
-- [`imports.createImportHeuristic`](./imports.ts.mdmd.md#createimportheuristic)
-- [`includes.createIncludeHeuristic`](./includes.ts.mdmd.md#createincludeheuristic)
-- [`java.createJavaHeuristic`](./java.ts.mdmd.md#createjavaheuristic)
-- [`markdown.createMarkdownHeuristic`](./markdown.ts.mdmd.md#createmarkdownheuristic)
-- [`ruby.createRubyHeuristic`](./ruby.ts.mdmd.md#createrubyheuristic)
-- [`rust.createRustHeuristic`](./rust.ts.mdmd.md#createrustheuristic)
-- [`webforms.createWebFormsHeuristic`](./webforms.ts.mdmd.md#createwebformsheuristic)
+- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-fallbackheuristic) (type-only)
+- [`cFunctions.createCFunctionHeuristic`](./cFunctions.ts.mdmd.md#symbol-createcfunctionheuristic)
+- [`csharp.createCSharpHeuristic`](./csharp.ts.mdmd.md#symbol-createcsharpheuristic)
+- [`directives.createDirectiveHeuristic`](./directives.ts.mdmd.md#symbol-createdirectiveheuristic)
+- [`imports.createImportHeuristic`](./imports.ts.mdmd.md#symbol-createimportheuristic)
+- [`includes.createIncludeHeuristic`](./includes.ts.mdmd.md#symbol-createincludeheuristic)
+- [`java.createJavaHeuristic`](./java.ts.mdmd.md#symbol-createjavaheuristic)
+- [`markdown.createMarkdownHeuristic`](./markdown.ts.mdmd.md#symbol-createmarkdownheuristic)
+- [`ruby.createRubyHeuristic`](./ruby.ts.mdmd.md#symbol-createrubyheuristic)
+- [`rust.createRustHeuristic`](./rust.ts.mdmd.md#symbol-createrustheuristic)
+- [`webforms.createWebFormsHeuristic`](./webforms.ts.mdmd.md#symbol-createwebformsheuristic)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

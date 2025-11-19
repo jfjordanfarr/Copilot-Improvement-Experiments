@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/maintenance.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-maintenance-ts
-- Generated At: 2025-11-16T22:34:12.381Z
+- Generated At: 2025-11-19T15:01:34.651Z
 
 ## Authored
 ### Purpose
@@ -15,30 +15,30 @@ Defines the rebind notification payloads surfaced during the initial maintenance
 Rebind UX and consent documentation rely on these types—see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-09-documentation--script-polish-lines-4851-5050](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-09-documentation--script-polish-lines-4851-5050)—so keep the contract stable when updating quickstart guidance or maintenance telemetry.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.381Z","inputHash":"cd25f0520acfcad4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.651Z","inputHash":"cd25f0520acfcad4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `RebindReason`
+#### `RebindReason` {#symbol-rebindreason}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/contracts/maintenance.ts#L3)
 
-#### `RebindRequiredArtifact`
+#### `RebindRequiredArtifact` {#symbol-rebindrequiredartifact}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/maintenance.ts#L5)
 
-#### `RebindImpactedArtifact`
+#### `RebindImpactedArtifact` {#symbol-rebindimpactedartifact}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/maintenance.ts#L10)
 
-#### `RebindRequiredPayload`
+#### `RebindRequiredPayload` {#symbol-rebindrequiredpayload}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/maintenance.ts#L15)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`artifacts.ArtifactLayer`](../domain/artifacts.ts.mdmd.md#artifactlayer)
-- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#linkrelationshipkind)
+- [`artifacts.ArtifactLayer`](../domain/artifacts.ts.mdmd.md#symbol-artifactlayer)
+- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationshipkind)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

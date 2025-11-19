@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/feedDiagnosticsGateway.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-feeddiagnosticsgateway-ts
-- Generated At: 2025-11-16T22:35:15.524Z
+- Generated At: 2025-11-19T15:01:33.974Z
 
 ## Authored
 ### Purpose
@@ -15,29 +15,29 @@ Tracks per-feed health transitions and emits structured status notifications for
 - Logs severity-aware messages while caching the latest status so listeners (bridge service, tests) can observe health changes without re-running ingestion.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.524Z","inputHash":"0b73d838aa9f73b2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.974Z","inputHash":"0b73d838aa9f73b2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `FeedHealthStatus`
+#### `FeedHealthStatus` {#symbol-feedhealthstatus}
 - Type: type
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts#L3)
 
-#### `FeedStatusSummary`
+#### `FeedStatusSummary` {#symbol-feedstatussummary}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts#L5)
 
-#### `FeedDiagnosticsGatewayOptions`
+#### `FeedDiagnosticsGatewayOptions` {#symbol-feeddiagnosticsgatewayoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts#L14)
 
-#### `FeedDiagnosticsGateway`
+#### `FeedDiagnosticsGateway` {#symbol-feeddiagnosticsgateway}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/feedDiagnosticsGateway.ts#L23)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`index.KnowledgeFeedSummary`](../../../../shared/src/index.ts.mdmd.md#knowledgefeedsummary)
+- [`index.KnowledgeFeedSummary`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgefeedsummary)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

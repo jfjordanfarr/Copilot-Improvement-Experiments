@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/live-docs/lint.ts
 - Live Doc ID: LD-implementation-scripts-live-docs-lint-ts
-- Generated At: 2025-11-17T18:11:42.337Z
+- Generated At: 2025-11-19T15:01:35.939Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Checks every staged Live Doc for structural markers, section completeness, evide
 Introduced alongside the first Live Docs CLI (Aug 2024) and expanded repeatedly through the MDMD migration. In Nov 2025 we added authored-section warnings to surface pending “Purpose/Notes” placeholders without blocking commits, keeping the guardrail lightweight while nudging documentation quality forward.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-17T18:11:42.337Z","inputHash":"7c89ee6528b30ac2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.939Z","inputHash":"7c89ee6528b30ac2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -27,9 +27,9 @@ _No public symbols detected_
 - `node:fs/promises` - `fs`
 - `node:path` - `path`
 - `node:process` - `process`
-- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#default_live_documentation_config)
-- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#live_documentation_file_extension)
-- [`liveDocumentationConfig.LiveDocumentationEvidenceStrictMode`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#livedocumentationevidencestrictmode)
-- [`liveDocumentationConfig.normalizeLiveDocumentationConfig`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#normalizelivedocumentationconfig)
-- [`core.hasMeaningfulAuthoredContent`](../../packages/shared/src/live-docs/core.ts.mdmd.md#hasmeaningfulauthoredcontent)
+- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-default_live_documentation_config)
+- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_file_extension)
+- [`liveDocumentationConfig.LiveDocumentationEvidenceStrictMode`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationevidencestrictmode)
+- [`liveDocumentationConfig.normalizeLiveDocumentationConfig`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-normalizelivedocumentationconfig)
+- [`core.hasMeaningfulAuthoredContent`](../../packages/shared/src/live-docs/core.ts.mdmd.md#symbol-hasmeaningfulauthoredcontent)
 <!-- LIVE-DOC:END Dependencies -->

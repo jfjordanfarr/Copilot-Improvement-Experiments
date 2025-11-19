@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/knowledgeFeedManager.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-knowledgefeedmanager-ts
-- Generated At: 2025-11-16T22:35:15.592Z
+- Generated At: 2025-11-19T15:01:34.029Z
 
 ## Authored
 ### Purpose
@@ -15,38 +15,38 @@ Coordinates snapshot bootstraps and stream consumption for each configured knowl
 - Maintains per-feed abort controllers, exponential backoff, and listener notifications, preserving the durability guarantees tightened in [2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md) when we hardened degraded-feed recovery.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.592Z","inputHash":"ffebdc66bd2e8f90"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.029Z","inputHash":"ffebdc66bd2e8f90"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `Disposable`
+#### `Disposable` {#symbol-disposable}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts#L17)
 
-#### `KnowledgeFeedManagerLogger`
+#### `KnowledgeFeedManagerLogger` {#symbol-knowledgefeedmanagerlogger}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts#L21)
 
-#### `FeedSnapshotSource`
+#### `FeedSnapshotSource` {#symbol-feedsnapshotsource}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts#L27)
 
-#### `FeedStreamSource`
+#### `FeedStreamSource` {#symbol-feedstreamsource}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts#L32)
 
-#### `FeedConfiguration`
+#### `FeedConfiguration` {#symbol-feedconfiguration}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts#L37)
 
-#### `BackoffOptions`
+#### `BackoffOptions` {#symbol-backoffoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts#L44)
 
-#### `KnowledgeFeedManagerOptions`
+#### `KnowledgeFeedManagerOptions` {#symbol-knowledgefeedmanageroptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts#L50)
 
-#### `KnowledgeFeedManager`
+#### `KnowledgeFeedManager` {#symbol-knowledgefeedmanager}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeFeedManager.ts#L140)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -54,15 +54,15 @@ Coordinates snapshot bootstraps and stream consumption for each configured knowl
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:timers/promises` - `setTimeout`
-- [`feedDiagnosticsGateway.FeedDiagnosticsGateway`](./feedDiagnosticsGateway.ts.mdmd.md#feeddiagnosticsgateway)
-- [`feedDiagnosticsGateway.FeedStatusSummary`](./feedDiagnosticsGateway.ts.mdmd.md#feedstatussummary)
-- [`knowledgeGraphIngestor.KnowledgeGraphIngestor`](./knowledgeGraphIngestor.ts.mdmd.md#knowledgegraphingestor)
-- [`knowledgeGraphIngestor.SnapshotIngestResult`](./knowledgeGraphIngestor.ts.mdmd.md#snapshotingestresult)
-- [`knowledgeGraphIngestor.StreamIngestResult`](./knowledgeGraphIngestor.ts.mdmd.md#streamingestresult)
-- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#externalsnapshot)
-- [`index.ExternalStreamEvent`](../../../../shared/src/index.ts.mdmd.md#externalstreamevent)
-- [`index.KnowledgeFeed`](../../../../shared/src/index.ts.mdmd.md#knowledgefeed)
-- [`index.KnowledgeFeedSnapshotSource`](../../../../shared/src/index.ts.mdmd.md#knowledgefeedsnapshotsource)
+- [`feedDiagnosticsGateway.FeedDiagnosticsGateway`](./feedDiagnosticsGateway.ts.mdmd.md#symbol-feeddiagnosticsgateway)
+- [`feedDiagnosticsGateway.FeedStatusSummary`](./feedDiagnosticsGateway.ts.mdmd.md#symbol-feedstatussummary)
+- [`knowledgeGraphIngestor.KnowledgeGraphIngestor`](./knowledgeGraphIngestor.ts.mdmd.md#symbol-knowledgegraphingestor)
+- [`knowledgeGraphIngestor.SnapshotIngestResult`](./knowledgeGraphIngestor.ts.mdmd.md#symbol-snapshotingestresult)
+- [`knowledgeGraphIngestor.StreamIngestResult`](./knowledgeGraphIngestor.ts.mdmd.md#symbol-streamingestresult)
+- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#symbol-externalsnapshot)
+- [`index.ExternalStreamEvent`](../../../../shared/src/index.ts.mdmd.md#symbol-externalstreamevent)
+- [`index.KnowledgeFeed`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgefeed)
+- [`index.KnowledgeFeedSnapshotSource`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgefeedsnapshotsource)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

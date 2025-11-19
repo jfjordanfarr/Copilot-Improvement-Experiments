@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/rust.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-rust-ts
-- Generated At: 2025-11-18T14:53:52.938Z
+- Generated At: 2025-11-19T15:01:35.251Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Parses Rust sources to collect public symbols, structured Rustdoc sections, and 
 - Keep new Rustdoc heading or tag support aligned with the regression tests before re-running the Live Docs generator <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2792-L2808>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:52.938Z","inputHash":"54513601620f1145"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.251Z","inputHash":"54513601620f1145"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `rustAdapter`
+#### `rustAdapter` {#symbol-rustadapter}
 - Type: const
 - Source: [source](../../../../../../../packages/shared/src/live-docs/adapters/rust.ts#L32)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -27,15 +27,15 @@ Parses Rust sources to collect public symbols, structured Rustdoc sections, and 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:fs` - `promises`
-- [`index.LanguageAdapter`](./index.ts.mdmd.md#languageadapter) (type-only)
-- [`core.DependencyEntry`](../core.ts.mdmd.md#dependencyentry) (type-only)
-- [`core.PublicSymbolEntry`](../core.ts.mdmd.md#publicsymbolentry) (type-only)
-- [`core.SourceAnalysisResult`](../core.ts.mdmd.md#sourceanalysisresult) (type-only)
-- [`core.SymbolDocumentation`](../core.ts.mdmd.md#symboldocumentation) (type-only)
-- [`core.SymbolDocumentationExample`](../core.ts.mdmd.md#symboldocumentationexample) (type-only)
-- [`core.SymbolDocumentationException`](../core.ts.mdmd.md#symboldocumentationexception) (type-only)
-- [`core.SymbolDocumentationLink`](../core.ts.mdmd.md#symboldocumentationlink) (type-only)
-- [`core.SymbolDocumentationParameter`](../core.ts.mdmd.md#symboldocumentationparameter) (type-only)
+- [`index.LanguageAdapter`](./index.ts.mdmd.md#symbol-languageadapter) (type-only)
+- [`core.DependencyEntry`](../core.ts.mdmd.md#symbol-dependencyentry) (type-only)
+- [`core.PublicSymbolEntry`](../core.ts.mdmd.md#symbol-publicsymbolentry) (type-only)
+- [`core.SourceAnalysisResult`](../core.ts.mdmd.md#symbol-sourceanalysisresult) (type-only)
+- [`core.SymbolDocumentation`](../core.ts.mdmd.md#symbol-symboldocumentation) (type-only)
+- [`core.SymbolDocumentationExample`](../core.ts.mdmd.md#symbol-symboldocumentationexample) (type-only)
+- [`core.SymbolDocumentationException`](../core.ts.mdmd.md#symbol-symboldocumentationexception) (type-only)
+- [`core.SymbolDocumentationLink`](../core.ts.mdmd.md#symbol-symboldocumentationlink) (type-only)
+- [`core.SymbolDocumentationParameter`](../core.ts.mdmd.md#symbol-symboldocumentationparameter) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

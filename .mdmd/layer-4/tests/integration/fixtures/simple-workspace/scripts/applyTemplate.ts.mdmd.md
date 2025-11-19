@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts
 - Live Doc ID: LD-asset-tests-integration-fixtures-simple-workspace-scripts-applytemplate-ts
-- Generated At: 2025-11-16T22:34:14.283Z
+- Generated At: 2025-11-19T15:01:37.045Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Renders the simple-workspace configuration template into concrete config files d
 - Continue invoking this helper via `npm run fixtures:verify` (Oct 29 run) whenever environment knobs change, ensuring rendered files stay synchronized with the template <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L5288-L5320>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.283Z","inputHash":"19492e4a5ca3c1fe"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:37.045Z","inputHash":"19492e4a5ca3c1fe"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `applyTemplate`
+#### `applyTemplate` {#symbol-applytemplate}
 - Type: function
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts#L4)
 <!-- LIVE-DOC:END Public Symbols -->

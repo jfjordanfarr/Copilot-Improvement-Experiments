@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/noiseFilter.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-noisefilter-ts
-- Generated At: 2025-11-16T22:34:11.437Z
+- Generated At: 2025-11-19T15:01:33.863Z
 
 ## Authored
 ### Purpose
@@ -15,30 +15,30 @@ Applies confidence, depth, and per-target budgets to ripple diagnostics so publi
 - Maintains per-change and per-artifact counters to coordinate with acknowledgement and hysteresis layers without duplicating their logic.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.437Z","inputHash":"202ed958c88c6072"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.863Z","inputHash":"202ed958c88c6072"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `NoiseFilterTotals`
+#### `NoiseFilterTotals` {#symbol-noisefiltertotals}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/noiseFilter.ts#L4)
 
-#### `ZERO_NOISE_FILTER_TOTALS`
+#### `ZERO_NOISE_FILTER_TOTALS` {#symbol-zero_noise_filter_totals}
 - Type: const
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/noiseFilter.ts#L11)
 
-#### `NoiseFilterResult`
+#### `NoiseFilterResult` {#symbol-noisefilterresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/noiseFilter.ts#L46)
 
-#### `applyNoiseFilter`
+#### `applyNoiseFilter` {#symbol-applynoisefilter}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/noiseFilter.ts#L51)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`rippleTypes.RippleImpact`](./rippleTypes.ts.mdmd.md#rippleimpact) (type-only)
-- [`settingsBridge.NoiseFilterRuntimeConfig`](../settings/settingsBridge.ts.mdmd.md#noisefilterruntimeconfig) (type-only)
+- [`rippleTypes.RippleImpact`](./rippleTypes.ts.mdmd.md#symbol-rippleimpact) (type-only)
+- [`settingsBridge.NoiseFilterRuntimeConfig`](../settings/settingsBridge.ts.mdmd.md#symbol-noisefilterruntimeconfig) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

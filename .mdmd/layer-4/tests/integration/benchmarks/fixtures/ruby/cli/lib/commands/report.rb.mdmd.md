@@ -1,0 +1,48 @@
+# tests/integration/benchmarks/fixtures/ruby/cli/lib/commands/report.rb
+
+## Metadata
+- Layer: 4
+- Archetype: asset
+- Code Path: tests/integration/benchmarks/fixtures/ruby/cli/lib/commands/report.rb
+- Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-ruby-cli-lib-commands-report-rb
+- Generated At: 2025-11-19T15:01:36.259Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.259Z","inputHash":"db70eacab928aa73"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+#### `BenchmarkCLI` {#symbol-benchmarkcli}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/commands/report.rb#L6)
+
+#### `Commands` {#symbol-commands}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/commands/report.rb#L7)
+
+#### `Report` {#symbol-report}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/commands/report.rb#L8)
+
+#### `run` {#symbol-run}
+- Type: method
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/commands/report.rb#L14)
+
+##### `run` — Summary
+Generates the default benchmark report.
+
+##### `run` — Returns
+[void]
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+- [`analyzer`](../services/analyzer.rb.mdmd.md)
+- [`data_loader`](../services/data_loader.rb.mdmd.md)
+<!-- LIVE-DOC:END Dependencies -->

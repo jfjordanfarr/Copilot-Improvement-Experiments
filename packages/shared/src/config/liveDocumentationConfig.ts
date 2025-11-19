@@ -61,7 +61,26 @@ export const LIVE_DOCUMENTATION_DEFAULT_GLOBS = [
   "scripts/**/*.tsx",
   "scripts/**/*.mjs",
   "scripts/**/*.cjs",
-  "tests/**/*.ts"
+  "tests/**/*.ts",
+  "tests/**/*.tsx",
+  "tests/**/*.js",
+  "tests/**/*.jsx",
+  "tests/**/*.mjs",
+  "tests/**/*.cjs",
+  "tests/**/*.mts",
+  "tests/**/*.cts",
+  "tests/**/*.cs",
+  "tests/**/*.cshtml",
+  "tests/**/*.cshtml.cs",
+  "tests/**/*.py",
+  "tests/**/*.java",
+  "tests/**/*.rb",
+  "tests/**/*.rs",
+  "tests/**/*.c",
+  "tests/**/*.cpp",
+  "tests/**/*.html",
+  "tests/**/*.css",
+  "tests/**/*.json"
 ];
 
 export const DEFAULT_LIVE_DOCUMENTATION_CONFIG: LiveDocumentationConfig = {

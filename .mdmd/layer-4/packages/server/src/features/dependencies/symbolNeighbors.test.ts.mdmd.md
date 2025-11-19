@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/dependencies/symbolNeighbors.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-dependencies-symbolneighbors-test-ts
-- Generated At: 2025-11-18T14:53:38.589Z
+- Generated At: 2025-11-19T15:01:33.749Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Proves the neighbor traversal created for the dependency quick pick in [2025-10-
 - Builds in-memory graph fixtures so regressions surface quickly without touching the on-disk cache, mirroring the integration coverage in `tests/integration/us4/inspectSymbolNeighbors.test.ts`.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.589Z","inputHash":"648fe7a19685e039"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.749Z","inputHash":"648fe7a19685e039"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,11 +23,11 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`symbolNeighbors.inspectSymbolNeighbors`](./symbolNeighbors.ts.mdmd.md#inspectsymbolneighbors)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
-- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#knowledgeartifact)
-- [`index.LinkRelationship`](../../../../shared/src/index.ts.mdmd.md#linkrelationship)
-- [`index.SymbolNeighborGroup`](../../../../shared/src/index.ts.mdmd.md#symbolneighborgroup)
+- [`symbolNeighbors.inspectSymbolNeighbors`](./symbolNeighbors.ts.mdmd.md#symbol-inspectsymbolneighbors)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgeartifact)
+- [`index.LinkRelationship`](../../../../shared/src/index.ts.mdmd.md#symbol-linkrelationship)
+- [`index.SymbolNeighborGroup`](../../../../shared/src/index.ts.mdmd.md#symbol-symbolneighborgroup)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

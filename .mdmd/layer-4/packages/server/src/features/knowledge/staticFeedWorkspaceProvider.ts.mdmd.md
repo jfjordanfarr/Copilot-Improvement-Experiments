@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-staticfeedworkspaceprovider-ts
-- Generated At: 2025-11-16T22:35:15.867Z
+- Generated At: 2025-11-19T15:01:34.223Z
 
 ## Authored
 ### Purpose
@@ -15,14 +15,14 @@ Reads curated JSON feeds under `data/knowledge-feeds/` and converts them into se
 - Refactored during the static-feed ingestion cleanup noted in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md), which hardened URI resolution and logging.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.867Z","inputHash":"a37bd4bdfebe7270"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.223Z","inputHash":"a37bd4bdfebe7270"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `StaticFeedWorkspaceProviderOptions`
+#### `StaticFeedWorkspaceProviderOptions` {#symbol-staticfeedworkspaceprovideroptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts#L20)
 
-#### `createStaticFeedWorkspaceProvider`
+#### `createStaticFeedWorkspaceProvider` {#symbol-createstaticfeedworkspaceprovider}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts#L61)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -32,9 +32,9 @@ Reads curated JSON feeds under `data/knowledge-feeds/` and converts them into se
 - `node:fs` - `fs`, `promises`
 - `node:path` - `path`
 - `node:url` - `pathToFileURL`
-- [`index.ArtifactSeed`](../../../../shared/src/index.ts.mdmd.md#artifactseed) (type-only)
-- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#linkrelationshipkind) (type-only)
-- [`index.WorkspaceLinkContribution`](../../../../shared/src/index.ts.mdmd.md#workspacelinkcontribution) (type-only)
-- [`index.WorkspaceLinkProvider`](../../../../shared/src/index.ts.mdmd.md#workspacelinkprovider) (type-only)
-- [`index.WorkspaceLinkProviderContext`](../../../../shared/src/index.ts.mdmd.md#workspacelinkprovidercontext) (type-only)
+- [`index.ArtifactSeed`](../../../../shared/src/index.ts.mdmd.md#symbol-artifactseed) (type-only)
+- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#symbol-linkrelationshipkind) (type-only)
+- [`index.WorkspaceLinkContribution`](../../../../shared/src/index.ts.mdmd.md#symbol-workspacelinkcontribution) (type-only)
+- [`index.WorkspaceLinkProvider`](../../../../shared/src/index.ts.mdmd.md#symbol-workspacelinkprovider) (type-only)
+- [`index.WorkspaceLinkProviderContext`](../../../../shared/src/index.ts.mdmd.md#symbol-workspacelinkprovidercontext) (type-only)
 <!-- LIVE-DOC:END Dependencies -->

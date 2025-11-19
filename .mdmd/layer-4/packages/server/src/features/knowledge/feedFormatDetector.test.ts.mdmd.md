@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/feedFormatDetector.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-feedformatdetector-test-ts
-- Generated At: 2025-11-18T14:53:38.823Z
+- Generated At: 2025-11-19T15:01:33.982Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises format detection edge cases for LSIF, SCIP, and ExternalSnapshot paylo
 - Asserts precedence rules (ExternalSnapshot over SCIP) and failure paths (legacy static JSON, invalid input) so regressions during the Oct 30 tuning pass would surface immediately ([2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.823Z","inputHash":"21411e4d0c46abff"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.982Z","inputHash":"21411e4d0c46abff"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,7 +23,7 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`feedFormatDetector.detectFormat`](./feedFormatDetector.ts.mdmd.md#detectformat)
+- [`feedFormatDetector.detectFormat`](./feedFormatDetector.ts.mdmd.md#symbol-detectformat)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

@@ -1,0 +1,49 @@
+# tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs
+
+## Metadata
+- Layer: 4
+- Archetype: asset
+- Code Path: tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs
+- Live Doc ID: LD-asset-tests-integration-fixtures-csharp-advanced-symbols-src-diagnostics-widgetmetadata-cs
+- Generated At: 2025-11-19T15:01:36.612Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.612Z","inputHash":"bd5e259104a4cc3a"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+#### `WidgetMetadata (struct)` {#symbol-widgetmetadata-struct}
+- Type: struct
+- Source: [source](../../../../../../../../tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs#L5)
+
+#### `WidgetMetadata (constructor)` {#symbol-widgetmetadata-constructor}
+- Type: constructor
+- Source: [source](../../../../../../../../tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs#L9)
+
+#### `Category` {#symbol-category}
+- Type: property
+- Source: [source](../../../../../../../../tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs#L16)
+
+#### `Description` {#symbol-description}
+- Type: property
+- Source: [source](../../../../../../../../tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs#L18)
+
+#### `Tags` {#symbol-tags}
+- Type: property
+- Source: [source](../../../../../../../../tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs#L20)
+
+#### `WithTag` {#symbol-withtag}
+- Type: method
+- Source: [source](../../../../../../../../tests/integration/fixtures/csharp-advanced-symbols/src/Diagnostics/WidgetMetadata.cs#L24)
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+_No dependencies documented yet_
+<!-- LIVE-DOC:END Dependencies -->

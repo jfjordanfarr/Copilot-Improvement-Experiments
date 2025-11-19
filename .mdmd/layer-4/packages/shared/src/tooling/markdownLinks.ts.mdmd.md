@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/markdownLinks.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-markdownlinks-ts
-- Generated At: 2025-11-16T22:34:13.593Z
+- Generated At: 2025-11-19T15:01:35.644Z
 
 ## Authored
 ### Purpose
@@ -16,18 +16,18 @@ Detects broken local markdown links for the SlopCop markdown audit by walking in
 - Feeds MDMD relationship analysis too—relationship resolvers reuse the detected targets to wire documentation ↔ code edges without reimplementing link parsing ([shared helper extraction](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L23-L33)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.593Z","inputHash":"dbd19120ce00affe"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.644Z","inputHash":"dbd19120ce00affe"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `MarkdownLinkIssue`
+#### `MarkdownLinkIssue` {#symbol-markdownlinkissue}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/markdownLinks.ts#L11)
 
-#### `MarkdownLinkAuditOptions`
+#### `MarkdownLinkAuditOptions` {#symbol-markdownlinkauditoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/markdownLinks.ts#L19)
 
-#### `findBrokenMarkdownLinks`
+#### `findBrokenMarkdownLinks` {#symbol-findbrokenmarkdownlinks}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/markdownLinks.ts#L29)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -36,10 +36,10 @@ Detects broken local markdown links for the SlopCop markdown audit by walking in
 ### Dependencies
 - `node:fs` - `fs`
 - `node:path` - `path`
-- [`markdownShared.computeLineStarts`](./markdownShared.ts.mdmd.md#computelinestarts)
-- [`markdownShared.extractReferenceDefinitions`](./markdownShared.ts.mdmd.md#extractreferencedefinitions)
-- [`markdownShared.parseLinkTarget`](./markdownShared.ts.mdmd.md#parselinktarget)
-- [`markdownShared.toLineAndColumn`](./markdownShared.ts.mdmd.md#tolineandcolumn)
+- [`markdownShared.computeLineStarts`](./markdownShared.ts.mdmd.md#symbol-computelinestarts)
+- [`markdownShared.extractReferenceDefinitions`](./markdownShared.ts.mdmd.md#symbol-extractreferencedefinitions)
+- [`markdownShared.parseLinkTarget`](./markdownShared.ts.mdmd.md#symbol-parselinktarget)
+- [`markdownShared.toLineAndColumn`](./markdownShared.ts.mdmd.md#symbol-tolineandcolumn)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/githubSluggerRegex.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-githubsluggerregex-ts
-- Generated At: 2025-11-18T14:53:53.182Z
+- Generated At: 2025-11-19T15:01:35.629Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Packages the vendored GitHub slug sanitiser regex so our slugger matches exactly
 - Verified repeatedly while tuning doc-link anchors for SlopCop on November 7, ensuring unicode headings slug to `comp003--heuristic-suite` and similar real-world cases.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:53.182Z","inputHash":"047b81693a3d7f2d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.629Z","inputHash":"047b81693a3d7f2d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `GITHUB_SLUG_REMOVE_PATTERN`
+#### `GITHUB_SLUG_REMOVE_PATTERN` {#symbol-github_slug_remove_pattern}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/tooling/githubSluggerRegex.ts#L3)
 <!-- LIVE-DOC:END Public Symbols -->

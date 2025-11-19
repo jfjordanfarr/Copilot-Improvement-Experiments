@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/pathUtils.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-pathutils-ts
-- Generated At: 2025-11-18T14:53:53.220Z
+- Generated At: 2025-11-19T15:01:35.677Z
 
 ## Authored
 ### Purpose
@@ -16,10 +16,10 @@ Unifies workspace path handling by converting between file URIs, absolute paths,
 - Chosen over ad hoc normalisation so Windows drive letters and separator differences collapse to the same canonical representation used by Live Docs and link audits ([upgrade summary](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-30.md#L5428-L5454)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:53.220Z","inputHash":"dafc9f3e22eaf56d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.677Z","inputHash":"dafc9f3e22eaf56d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `toWorkspaceRelativePath`
+#### `toWorkspaceRelativePath` {#symbol-toworkspacerelativepath}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/pathUtils.ts#L8)
 
@@ -27,14 +27,14 @@ Unifies workspace path handling by converting between file URIs, absolute paths,
 Convert a file URI into a workspace-relative path using POSIX-style separators.
 Returns undefined when the URI is outside the workspace or cannot be resolved.
 
-#### `toWorkspaceFileUri`
+#### `toWorkspaceFileUri` {#symbol-toworkspacefileuri}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/pathUtils.ts#L31)
 
 ##### `toWorkspaceFileUri` — Summary
 Resolve a workspace-relative path (or absolute path) to a file URI.
 
-#### `normalizeWorkspacePath`
+#### `normalizeWorkspacePath` {#symbol-normalizeworkspacepath}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/pathUtils.ts#L41)
 

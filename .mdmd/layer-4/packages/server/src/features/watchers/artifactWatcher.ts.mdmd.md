@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/watchers/artifactWatcher.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-watchers-artifactwatcher-ts
-- Generated At: 2025-11-16T22:35:16.257Z
+- Generated At: 2025-11-19T15:01:34.456Z
 
 ## Authored
 ### Purpose
@@ -16,46 +16,46 @@ Coordinates how workspace file updates flow into the server ingestion pipeline b
 - Normalizes file URIs prior to persistence so downstream diagnostics and knowledge feeds address a single canonical node per artifact.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.257Z","inputHash":"85d749170f9b03c1"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.456Z","inputHash":"85d749170f9b03c1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ArtifactCategory`
+#### `ArtifactCategory` {#symbol-artifactcategory}
 - Type: type
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L24)
 
-#### `DocumentStore`
+#### `DocumentStore` {#symbol-documentstore}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L26)
 
-#### `ArtifactWatcherLogger`
+#### `ArtifactWatcherLogger` {#symbol-artifactwatcherlogger}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L30)
 
-#### `ArtifactWatcherOptions`
+#### `ArtifactWatcherOptions` {#symbol-artifactwatcheroptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L36)
 
-#### `TrackedArtifactChange`
+#### `TrackedArtifactChange` {#symbol-trackedartifactchange}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L48)
 
-#### `DocumentTrackedArtifactChange`
+#### `DocumentTrackedArtifactChange` {#symbol-documenttrackedartifactchange}
 - Type: type
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L60)
 
-#### `CodeTrackedArtifactChange`
+#### `CodeTrackedArtifactChange` {#symbol-codetrackedartifactchange}
 - Type: type
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L61)
 
-#### `SkippedArtifactChange`
+#### `SkippedArtifactChange` {#symbol-skippedartifactchange}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L63)
 
-#### `ArtifactWatcherResult`
+#### `ArtifactWatcherResult` {#symbol-artifactwatcherresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L68)
 
-#### `ArtifactWatcher`
+#### `ArtifactWatcher` {#symbol-artifactwatcher}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/watchers/artifactWatcher.ts#L89)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -65,20 +65,20 @@ Coordinates how workspace file updates flow into the server ingestion pipeline b
 - `node:fs` - `promises`
 - `node:path` - `path`
 - `node:url` - `fileURLToPath`
-- [`changeQueue.QueuedChange`](../changeEvents/changeQueue.ts.mdmd.md#queuedchange) (type-only)
-- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#normalizefileuri)
-- [`pathReferenceDetector.buildFileReferenceHints`](./pathReferenceDetector.ts.mdmd.md#buildfilereferencehints)
-- [`index.ArtifactLayer`](../../../../shared/src/index.ts.mdmd.md#artifactlayer)
-- [`index.ArtifactSeed`](../../../../shared/src/index.ts.mdmd.md#artifactseed)
-- [`index.FallbackLLMBridge`](../../../../shared/src/index.ts.mdmd.md#fallbackllmbridge)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
-- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#knowledgeartifact)
-- [`index.KnowledgeFeed`](../../../../shared/src/index.ts.mdmd.md#knowledgefeed)
-- [`index.LinkInferenceOrchestrator`](../../../../shared/src/index.ts.mdmd.md#linkinferenceorchestrator)
-- [`index.LinkInferenceRunResult`](../../../../shared/src/index.ts.mdmd.md#linkinferencerunresult)
-- [`index.LinkedArtifactSummary`](../../../../shared/src/index.ts.mdmd.md#linkedartifactsummary)
-- [`index.RelationshipHint`](../../../../shared/src/index.ts.mdmd.md#relationshiphint)
-- [`index.WorkspaceLinkProvider`](../../../../shared/src/index.ts.mdmd.md#workspacelinkprovider)
+- [`changeQueue.QueuedChange`](../changeEvents/changeQueue.ts.mdmd.md#symbol-queuedchange) (type-only)
+- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#symbol-normalizefileuri)
+- [`pathReferenceDetector.buildFileReferenceHints`](./pathReferenceDetector.ts.mdmd.md#symbol-buildfilereferencehints)
+- [`index.ArtifactLayer`](../../../../shared/src/index.ts.mdmd.md#symbol-artifactlayer)
+- [`index.ArtifactSeed`](../../../../shared/src/index.ts.mdmd.md#symbol-artifactseed)
+- [`index.FallbackLLMBridge`](../../../../shared/src/index.ts.mdmd.md#symbol-fallbackllmbridge)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgeartifact)
+- [`index.KnowledgeFeed`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgefeed)
+- [`index.LinkInferenceOrchestrator`](../../../../shared/src/index.ts.mdmd.md#symbol-linkinferenceorchestrator)
+- [`index.LinkInferenceRunResult`](../../../../shared/src/index.ts.mdmd.md#symbol-linkinferencerunresult)
+- [`index.LinkedArtifactSummary`](../../../../shared/src/index.ts.mdmd.md#symbol-linkedartifactsummary)
+- [`index.RelationshipHint`](../../../../shared/src/index.ts.mdmd.md#symbol-relationshiphint)
+- [`index.WorkspaceLinkProvider`](../../../../shared/src/index.ts.mdmd.md#symbol-workspacelinkprovider)
 - `vscode-languageserver-textdocument` - `TextDocument`
 <!-- LIVE-DOC:END Dependencies -->
 

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-javafixtureoracle-ts
-- Generated At: 2025-11-16T22:34:13.410Z
+- Generated At: 2025-11-19T15:01:35.519Z
 
 ## Authored
 ### Purpose
@@ -16,58 +16,58 @@ Analyzes Java fixtures to emit import and inheritance edges, giving our polyglot
 - Verified within the Nov 16 unit sweep; rerun `npm run test:unit -- javaFixtureOracle` after parser or override changes <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.410Z","inputHash":"6388a4ae4d25dd17"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.519Z","inputHash":"6388a4ae4d25dd17"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `JavaOracleEdgeRelation`
+#### `JavaOracleEdgeRelation` {#symbol-javaoracleedgerelation}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L4)
 
-#### `JavaOracleProvenance`
+#### `JavaOracleProvenance` {#symbol-javaoracleprovenance}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L6)
 
-#### `JavaOracleEdge`
+#### `JavaOracleEdge` {#symbol-javaoracleedge}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L8)
 
-#### `JavaOracleEdgeRecord`
+#### `JavaOracleEdgeRecord` {#symbol-javaoracleedgerecord}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L15)
 
-#### `JavaFixtureOracleOptions`
+#### `JavaFixtureOracleOptions` {#symbol-javafixtureoracleoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L21)
 
-#### `JavaOracleOverrideEntry`
+#### `JavaOracleOverrideEntry` {#symbol-javaoracleoverrideentry}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L27)
 
-#### `JavaOracleOverrideConfig`
+#### `JavaOracleOverrideConfig` {#symbol-javaoracleoverrideconfig}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L33)
 
-#### `JavaOracleSegmentPartition`
+#### `JavaOracleSegmentPartition` {#symbol-javaoraclesegmentpartition}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L37)
 
-#### `JavaOracleMergeResult`
+#### `JavaOracleMergeResult` {#symbol-javaoraclemergeresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L44)
 
-#### `generateJavaFixtureGraph`
+#### `generateJavaFixtureGraph` {#symbol-generatejavafixturegraph}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L67)
 
-#### `serializeJavaOracleEdges`
+#### `serializeJavaOracleEdges` {#symbol-serializejavaoracleedges}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L86)
 
-#### `partitionJavaOracleSegments`
+#### `partitionJavaOracleSegments` {#symbol-partitionjavaoraclesegments}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L91)
 
-#### `mergeJavaOracleEdges`
+#### `mergeJavaOracleEdges` {#symbol-mergejavaoracleedges}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/javaFixtureOracle.ts#L127)
 <!-- LIVE-DOC:END Public Symbols -->

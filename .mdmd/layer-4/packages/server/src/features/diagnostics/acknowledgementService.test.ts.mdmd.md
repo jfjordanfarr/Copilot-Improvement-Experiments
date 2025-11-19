@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/diagnostics/acknowledgementService.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-diagnostics-acknowledgementservice-test-ts
-- Generated At: 2025-11-18T14:53:38.610Z
+- Generated At: 2025-11-19T15:01:33.777Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates the acknowledgement persistence and hysteresis gates introduced with T
 - Exercises temp GraphStore instances to prove acknowledgements survive restarts and honour default runtime throttles before publishers re-emit new ripples.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.610Z","inputHash":"731912a88ac0065e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.777Z","inputHash":"731912a88ac0065e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,11 +26,11 @@ _No public symbols detected_
 - `node:fs` - `mkdtempSync`, `rmSync`
 - `node:os` - `tmpdir`
 - `node:path` - `join`
-- [`acknowledgementService.AcknowledgementService`](./acknowledgementService.ts.mdmd.md#acknowledgementservice)
-- [`hysteresisController.HysteresisController`](./hysteresisController.ts.mdmd.md#hysteresiscontroller) (type-only)
-- [`settingsBridge.DEFAULT_RUNTIME_SETTINGS`](../settings/settingsBridge.ts.mdmd.md#default_runtime_settings)
-- [`driftHistoryStore.DriftHistoryStore`](../../telemetry/driftHistoryStore.ts.mdmd.md#drifthistorystore)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
+- [`acknowledgementService.AcknowledgementService`](./acknowledgementService.ts.mdmd.md#symbol-acknowledgementservice)
+- [`hysteresisController.HysteresisController`](./hysteresisController.ts.mdmd.md#symbol-hysteresiscontroller) (type-only)
+- [`settingsBridge.DEFAULT_RUNTIME_SETTINGS`](../settings/settingsBridge.ts.mdmd.md#symbol-default_runtime_settings)
+- [`driftHistoryStore.DriftHistoryStore`](../../telemetry/driftHistoryStore.ts.mdmd.md#symbol-drifthistorystore)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

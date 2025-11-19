@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/inference/linkInference.test.ts
 - Live Doc ID: LD-test-packages-shared-src-inference-linkinference-test-ts
-- Generated At: 2025-11-16T22:34:12.860Z
+- Generated At: 2025-11-19T15:01:35.037Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates that the link inference orchestrator fuses fallback heuristics, worksp
 Keeps the orchestrator’s provider/feed summaries and trace outputs aligned with the pipeline expectations that the markdown watcher and diagnostics publisher consume—codified across the US1 plumbing captured in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md#turn-12-stand-up-markdown-watcher-lines-658-824](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-17.SUMMARIZED.md#turn-12-stand-up-markdown-watcher-lines-658-824).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.860Z","inputHash":"4870139ed04d0a9a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.037Z","inputHash":"4870139ed04d0a9a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,11 +23,11 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`fallbackInference.ArtifactSeed`](./fallbackInference.ts.mdmd.md#artifactseed) (type-only)
-- [`linkInference.KnowledgeFeed`](./linkInference.ts.mdmd.md#knowledgefeed)
-- [`linkInference.LinkInferenceOrchestrator`](./linkInference.ts.mdmd.md#linkinferenceorchestrator)
-- [`linkInference.WorkspaceLinkProvider`](./linkInference.ts.mdmd.md#workspacelinkprovider)
-- [`knowledgeGraphBridge.ExternalSnapshot`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#externalsnapshot) (type-only)
+- [`fallbackInference.ArtifactSeed`](./fallbackInference.ts.mdmd.md#symbol-artifactseed) (type-only)
+- [`linkInference.KnowledgeFeed`](./linkInference.ts.mdmd.md#symbol-knowledgefeed)
+- [`linkInference.LinkInferenceOrchestrator`](./linkInference.ts.mdmd.md#symbol-linkinferenceorchestrator)
+- [`linkInference.WorkspaceLinkProvider`](./linkInference.ts.mdmd.md#symbol-workspacelinkprovider)
+- [`knowledgeGraphBridge.ExternalSnapshot`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externalsnapshot) (type-only)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

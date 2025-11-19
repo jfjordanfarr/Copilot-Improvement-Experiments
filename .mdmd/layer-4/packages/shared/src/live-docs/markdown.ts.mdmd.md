@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/markdown.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-markdown-ts
-- Generated At: 2025-11-16T22:34:13.209Z
+- Generated At: 2025-11-19T15:01:35.360Z
 
 ## Authored
 ### Purpose
@@ -16,58 +16,58 @@ Renders Live Doc sections with deterministic markers, provenance, and authored-b
 - Updated in the Stage‑0 recovery to adopt the `.md` extension and lint-friendly import order while keeping authored sections intact.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-15-shift-live-docs-to-md-outputs-lines-1401-1820]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.209Z","inputHash":"0b421c6ba58200a0"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.360Z","inputHash":"0b421c6ba58200a0"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `LIVE_DOC_BEGIN_MARKER_PREFIX`
+#### `LIVE_DOC_BEGIN_MARKER_PREFIX` {#symbol-live_doc_begin_marker_prefix}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L7)
 
-#### `LIVE_DOC_END_MARKER_PREFIX`
+#### `LIVE_DOC_END_MARKER_PREFIX` {#symbol-live_doc_end_marker_prefix}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L8)
 
-#### `LIVE_DOC_PROVENANCE_MARKER`
+#### `LIVE_DOC_PROVENANCE_MARKER` {#symbol-live_doc_provenance_marker}
 - Type: const
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L9)
 
-#### `LiveDocRenderSection`
+#### `LiveDocRenderSection` {#symbol-livedocrendersection}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L11)
 
-#### `RenderLiveDocOptions`
+#### `RenderLiveDocOptions` {#symbol-renderlivedocoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L17)
 
-#### `renderLiveDocMarkdown`
+#### `renderLiveDocMarkdown` {#symbol-renderlivedocmarkdown}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L33)
 
-#### `renderBeginMarker`
+#### `renderBeginMarker` {#symbol-renderbeginmarker}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L72)
 
-#### `renderEndMarker`
+#### `renderEndMarker` {#symbol-renderendmarker}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L76)
 
-#### `renderProvenanceComment`
+#### `renderProvenanceComment` {#symbol-renderprovenancecomment}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L80)
 
-#### `extractAuthoredBlock`
+#### `extractAuthoredBlock` {#symbol-extractauthoredblock}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L85)
 
-#### `defaultAuthoredTemplate`
+#### `defaultAuthoredTemplate` {#symbol-defaultauthoredtemplate}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L147)
 
-#### `composeLiveDocPath`
+#### `composeLiveDocPath` {#symbol-composelivedocpath}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L151)
 
-#### `composeLiveDocId`
+#### `composeLiveDocId` {#symbol-composelivedocid}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/live-docs/markdown.ts#L166)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -75,10 +75,10 @@ Renders Live Doc sections with deterministic markers, provenance, and authored-b
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../config/liveDocumentationConfig.ts.mdmd.md#live_documentation_file_extension)
-- [`schema.LiveDocMetadata`](./schema.ts.mdmd.md#livedocmetadata) (type-only)
-- [`schema.LiveDocProvenance`](./schema.ts.mdmd.md#livedocprovenance) (type-only)
-- [`pathUtils.normalizeWorkspacePath`](../tooling/pathUtils.ts.mdmd.md#normalizeworkspacepath)
+- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_file_extension)
+- [`schema.LiveDocMetadata`](./schema.ts.mdmd.md#symbol-livedocmetadata) (type-only)
+- [`schema.LiveDocProvenance`](./schema.ts.mdmd.md#symbol-livedocprovenance) (type-only)
+- [`pathUtils.normalizeWorkspacePath`](../tooling/pathUtils.ts.mdmd.md#symbol-normalizeworkspacepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

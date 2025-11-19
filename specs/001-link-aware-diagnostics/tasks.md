@@ -83,7 +83,7 @@ description: "Task list for Live Documentation"
 
 **Purpose**: Ensure diagnostics, CLI tooling, and Copilot prompts read from staged Live Docs while retaining legacy fallback during migration.
 
- [ ] LD-402 Ship CLI `scripts/live-docs/inspect.ts` that resolves the dependency chain between a `--from` and `--to` artifact (file or symbol), surfaces terminal roots when only one endpoint is supplied, and snapshots the hop-by-hop output via `tests/integration/live-docs/inspect-cli.test.ts`
+[x] LD-402 Ship CLI `scripts/live-docs/inspect.ts` that resolves outbound or inbound dependency chains between `--from`/`--to` artefacts, surfaces terminal roots (fan-out) when only a starting point is supplied, and captures both success and not-found payloads via `tests/integration/live-docs/inspect-cli.test.ts`
 - [ ] LD-404 Implement regeneration watcher so safe-commit or file save triggers targeted updates without full repo sweep
 - [ ] LD-405 Document legacy-parity strategy in `specs/001-link-aware-diagnostics/quickstart.md` and Layer‑3 docs, including rollback toggles
 

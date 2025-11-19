@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/diagnostics/publishDocDiagnostics.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-diagnostics-publishdocdiagnostics-test-ts
-- Generated At: 2025-11-18T14:53:38.779Z
+- Generated At: 2025-11-19T15:01:33.902Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises the document diagnostic publisher across emission, suppression, and ac
 - Tracks later resilience work by verifying hysteresis guards ([2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md)) and noise filter/acknowledgement suppression ([2025-10-23 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-23.SUMMARIZED.md)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.779Z","inputHash":"cac1d39478a0e68d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.902Z","inputHash":"cac1d39478a0e68d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,16 +23,16 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`acknowledgementService.AcknowledgementService`](./acknowledgementService.ts.mdmd.md#acknowledgementservice) (type-only)
-- [`hysteresisController.HysteresisController`](./hysteresisController.ts.mdmd.md#hysteresiscontroller)
-- [`noiseFilter.ZERO_NOISE_FILTER_TOTALS`](./noiseFilter.ts.mdmd.md#zero_noise_filter_totals)
-- [`publishDocDiagnostics.DocumentChangeContext`](./publishDocDiagnostics.ts.mdmd.md#documentchangecontext)
-- [`publishDocDiagnostics.publishDocDiagnostics`](./publishDocDiagnostics.ts.mdmd.md#publishdocdiagnostics)
-- [`rippleTypes.RippleImpact`](./rippleTypes.ts.mdmd.md#rippleimpact) (type-only)
-- [`settingsBridge.RuntimeSettings`](../settings/settingsBridge.ts.mdmd.md#runtimesettings) (type-only)
-- [`artifactWatcher.DocumentTrackedArtifactChange`](../watchers/artifactWatcher.ts.mdmd.md#documenttrackedartifactchange) (type-only)
-- [`index.DiagnosticRecord`](../../../../shared/src/index.ts.mdmd.md#diagnosticrecord) (type-only)
-- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#knowledgeartifact) (type-only)
+- [`acknowledgementService.AcknowledgementService`](./acknowledgementService.ts.mdmd.md#symbol-acknowledgementservice) (type-only)
+- [`hysteresisController.HysteresisController`](./hysteresisController.ts.mdmd.md#symbol-hysteresiscontroller)
+- [`noiseFilter.ZERO_NOISE_FILTER_TOTALS`](./noiseFilter.ts.mdmd.md#symbol-zero_noise_filter_totals)
+- [`publishDocDiagnostics.DocumentChangeContext`](./publishDocDiagnostics.ts.mdmd.md#symbol-documentchangecontext)
+- [`publishDocDiagnostics.publishDocDiagnostics`](./publishDocDiagnostics.ts.mdmd.md#symbol-publishdocdiagnostics)
+- [`rippleTypes.RippleImpact`](./rippleTypes.ts.mdmd.md#symbol-rippleimpact) (type-only)
+- [`settingsBridge.RuntimeSettings`](../settings/settingsBridge.ts.mdmd.md#symbol-runtimesettings) (type-only)
+- [`artifactWatcher.DocumentTrackedArtifactChange`](../watchers/artifactWatcher.ts.mdmd.md#symbol-documenttrackedartifactchange) (type-only)
+- [`index.DiagnosticRecord`](../../../../shared/src/index.ts.mdmd.md#symbol-diagnosticrecord) (type-only)
+- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgeartifact) (type-only)
 - `vitest` - `describe`, `expect`, `it`, `vi`
 - `vscode-languageserver/node` - `Diagnostic` (type-only)
 <!-- LIVE-DOC:END Dependencies -->

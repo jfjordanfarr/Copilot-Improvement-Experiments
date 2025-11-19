@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/testing/testHooks.ts
 - Live Doc ID: LD-implementation-packages-extension-src-testing-testhooks-ts
-- Generated At: 2025-11-16T22:34:11.045Z
+- Generated At: 2025-11-19T15:01:33.628Z
 
 ## Authored
 ### Purpose
@@ -15,10 +15,10 @@ Provides swappable VS Code window APIs so command tests can inject deterministic
 `resolveWindowApis` feeds both the Inspect Symbol Neighbors and Analyze/Export command suites—see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-27.md#L4988-L5034](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-27.md#L4988-L5034)—so keep the stub surface aligned with whichever VS Code prompts the commands exercise (quick picks, information/error messaging, diagnostics actions).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.045Z","inputHash":"b7497ee907fea7e0"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.628Z","inputHash":"b7497ee907fea7e0"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `resolveWindowApis`
+#### `resolveWindowApis` {#symbol-resolvewindowapis}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/testing/testHooks.ts#L21)
 <!-- LIVE-DOC:END Public Symbols -->

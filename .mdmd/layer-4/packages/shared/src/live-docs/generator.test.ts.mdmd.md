@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/generator.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-generator-test-ts
-- Generated At: 2025-11-16T22:34:13.197Z
+- Generated At: 2025-11-19T15:01:35.342Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the Live Docs renderer/generator glue to ensure authored blocks, prove
 - Kept in the `.md` migration to confirm extension changes didn’t alter rendered headings or provenance comments.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-15-shift-live-docs-to-md-outputs-lines-1401-1820]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.197Z","inputHash":"0878c7eb8d8e398a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.342Z","inputHash":"0878c7eb8d8e398a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,15 +24,15 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../config/liveDocumentationConfig.ts.mdmd.md#live_documentation_file_extension)
-- [`markdown.composeLiveDocId`](./markdown.ts.mdmd.md#composelivedocid)
-- [`markdown.composeLiveDocPath`](./markdown.ts.mdmd.md#composelivedocpath)
-- [`markdown.defaultAuthoredTemplate`](./markdown.ts.mdmd.md#defaultauthoredtemplate)
-- [`markdown.extractAuthoredBlock`](./markdown.ts.mdmd.md#extractauthoredblock)
-- [`markdown.renderLiveDocMarkdown`](./markdown.ts.mdmd.md#renderlivedocmarkdown)
-- [`markdown.renderProvenanceComment`](./markdown.ts.mdmd.md#renderprovenancecomment)
-- [`schema.LiveDocMetadata`](./schema.ts.mdmd.md#livedocmetadata) (type-only)
-- [`schema.LiveDocProvenance`](./schema.ts.mdmd.md#livedocprovenance) (type-only)
+- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_file_extension)
+- [`markdown.composeLiveDocId`](./markdown.ts.mdmd.md#symbol-composelivedocid)
+- [`markdown.composeLiveDocPath`](./markdown.ts.mdmd.md#symbol-composelivedocpath)
+- [`markdown.defaultAuthoredTemplate`](./markdown.ts.mdmd.md#symbol-defaultauthoredtemplate)
+- [`markdown.extractAuthoredBlock`](./markdown.ts.mdmd.md#symbol-extractauthoredblock)
+- [`markdown.renderLiveDocMarkdown`](./markdown.ts.mdmd.md#symbol-renderlivedocmarkdown)
+- [`markdown.renderProvenanceComment`](./markdown.ts.mdmd.md#symbol-renderprovenancecomment)
+- [`schema.LiveDocMetadata`](./schema.ts.mdmd.md#symbol-livedocmetadata) (type-only)
+- [`schema.LiveDocProvenance`](./schema.ts.mdmd.md#symbol-livedocprovenance) (type-only)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

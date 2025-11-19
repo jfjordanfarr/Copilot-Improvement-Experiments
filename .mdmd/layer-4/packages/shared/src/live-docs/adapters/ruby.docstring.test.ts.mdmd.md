@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/adapters/ruby.docstring.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-adapters-ruby-docstring-test-ts
-- Generated At: 2025-11-18T16:28:51.578Z
+- Generated At: 2025-11-19T15:01:35.218Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Checks the Ruby adapter’s handling of YARD line and block comments, ensuring s
 - Exercised via repeated `npx vitest run …/ruby.docstring.test.ts` passes and the ruby fixture regeneration noted during the rollout; keep those assets updated when expanding tag coverage <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L3308-L3334>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T16:28:51.578Z","inputHash":"a12fcfdf9259557d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.218Z","inputHash":"a12fcfdf9259557d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,9 +26,9 @@ _No public symbols detected_
 - `node:fs/promises` - `fs`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`ruby.rubyAdapter`](./ruby.ts.mdmd.md#rubyadapter)
-- [`core.computePublicSymbolHeadingInfo`](../core.ts.mdmd.md#computepublicsymbolheadinginfo)
-- [`core.renderPublicSymbolLines`](../core.ts.mdmd.md#renderpublicsymbollines)
+- [`ruby.rubyAdapter`](./ruby.ts.mdmd.md#symbol-rubyadapter)
+- [`core.computePublicSymbolHeadingInfo`](../core.ts.mdmd.md#symbol-computepublicsymbolheadinginfo)
+- [`core.renderPublicSymbolLines`](../core.ts.mdmd.md#symbol-renderpublicsymbollines)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

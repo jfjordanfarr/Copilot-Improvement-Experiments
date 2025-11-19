@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/fallbackInference.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-fallbackinference-ts
-- Generated At: 2025-11-16T22:34:12.685Z
+- Generated At: 2025-11-19T15:01:34.917Z
 
 ## Authored
 ### Purpose
@@ -15,50 +15,50 @@ Implements the cross-language fallback inference pipeline—seed normalization, 
 Subsequent passes layered in AST-backed type filtering and deeper language heuristics—see [AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-17-shareable-typescript-ast-utilities-lines-1461-1620](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-17-shareable-typescript-ast-utilities-lines-1461-1620) for the TypeScript runtime/type split and [AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-06.SUMMARIZED.md#turn-26-benchmarks-fail-on-new-c-fixtures-lines-4121-4520](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-06.SUMMARIZED.md#turn-26-benchmarks-fail-on-new-c-fixtures-lines-4121-4520) for the C#/WebForms heuristics that stabilized benchmark precision.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.685Z","inputHash":"576eece32901821b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.917Z","inputHash":"576eece32901821b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ArtifactSeed`
+#### `ArtifactSeed` {#symbol-artifactseed}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L14)
 
-#### `RelationshipHint`
+#### `RelationshipHint` {#symbol-relationshiphint}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L26)
 
-#### `LLMRelationshipSuggestion`
+#### `LLMRelationshipSuggestion` {#symbol-llmrelationshipsuggestion}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L36)
 
-#### `LLMRelationshipRequest`
+#### `LLMRelationshipRequest` {#symbol-llmrelationshiprequest}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L44)
 
-#### `FallbackLLMBridge`
+#### `FallbackLLMBridge` {#symbol-fallbackllmbridge}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L51)
 
-#### `FallbackGraphInput`
+#### `FallbackGraphInput` {#symbol-fallbackgraphinput}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L56)
 
-#### `FallbackGraphOptions`
+#### `FallbackGraphOptions` {#symbol-fallbackgraphoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L62)
 
-#### `InferenceTraceOrigin`
+#### `InferenceTraceOrigin` {#symbol-inferencetraceorigin}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L68)
 
-#### `InferenceTraceEntry`
+#### `InferenceTraceEntry` {#symbol-inferencetraceentry}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L70)
 
-#### `FallbackInferenceResult`
+#### `FallbackInferenceResult` {#symbol-fallbackinferenceresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L82)
 
-#### `inferFallbackGraph`
+#### `inferFallbackGraph` {#symbol-inferfallbackgraph}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackInference.ts#L97)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -66,18 +66,18 @@ Subsequent passes layered in AST-backed type filtering and deeper language heuri
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`artifacts.ArtifactLayer`](../domain/artifacts.ts.mdmd.md#artifactlayer) (type-only)
-- [`artifacts.KnowledgeArtifact`](../domain/artifacts.ts.mdmd.md#knowledgeartifact) (type-only)
-- [`artifacts.LinkRelationship`](../domain/artifacts.ts.mdmd.md#linkrelationship) (type-only)
-- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#linkrelationshipkind) (type-only)
-- [`fallbackHeuristicTypes.HeuristicArtifact`](./fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`fallbackHeuristicTypes.MatchCandidate`](./fallbackHeuristicTypes.ts.mdmd.md#matchcandidate) (type-only)
-- [`fallbackHeuristicTypes.MatchContext`](./fallbackHeuristicTypes.ts.mdmd.md#matchcontext) (type-only)
-- [`artifactLayerUtils.isDocumentLayer`](./heuristics/artifactLayerUtils.ts.mdmd.md#isdocumentlayer)
-- [`artifactLayerUtils.isImplementationLayer`](./heuristics/artifactLayerUtils.ts.mdmd.md#isimplementationlayer)
-- [`index.createDefaultHeuristics`](./heuristics/index.ts.mdmd.md#createdefaultheuristics)
-- [`shared.stem`](./heuristics/shared.ts.mdmd.md#stem)
-- [`shared.toComparablePath`](./heuristics/shared.ts.mdmd.md#tocomparablepath)
+- [`artifacts.ArtifactLayer`](../domain/artifacts.ts.mdmd.md#symbol-artifactlayer) (type-only)
+- [`artifacts.KnowledgeArtifact`](../domain/artifacts.ts.mdmd.md#symbol-knowledgeartifact) (type-only)
+- [`artifacts.LinkRelationship`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationship) (type-only)
+- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationshipkind) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](./fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`fallbackHeuristicTypes.MatchCandidate`](./fallbackHeuristicTypes.ts.mdmd.md#symbol-matchcandidate) (type-only)
+- [`fallbackHeuristicTypes.MatchContext`](./fallbackHeuristicTypes.ts.mdmd.md#symbol-matchcontext) (type-only)
+- [`artifactLayerUtils.isDocumentLayer`](./heuristics/artifactLayerUtils.ts.mdmd.md#symbol-isdocumentlayer)
+- [`artifactLayerUtils.isImplementationLayer`](./heuristics/artifactLayerUtils.ts.mdmd.md#symbol-isimplementationlayer)
+- [`index.createDefaultHeuristics`](./heuristics/index.ts.mdmd.md#symbol-createdefaultheuristics)
+- [`shared.stem`](./heuristics/shared.ts.mdmd.md#symbol-stem)
+- [`shared.toComparablePath`](./heuristics/shared.ts.mdmd.md#symbol-tocomparablepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

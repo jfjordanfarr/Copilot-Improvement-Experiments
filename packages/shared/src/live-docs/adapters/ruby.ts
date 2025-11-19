@@ -1,4 +1,4 @@
-import { promises as fs } from "node:fs";
+import { promises as fs, statSync } from "node:fs";
 import path from "node:path";
 
 import type {
@@ -9,6 +9,7 @@ import type {
   SymbolDocumentationException,
   SymbolDocumentationExample,
   SymbolDocumentationLink,
+  SymbolDocumentationLinkKind,
   SymbolDocumentationParameter
 } from "../core";
 import type { LanguageAdapter } from "./index";
@@ -255,14 +256,31 @@ function resolveRequirePath(directory: string, workspaceRoot: string, specifier:
   if (!isRelative) {
     return undefined;
   }
+
   const baseCandidate = path.resolve(directory, specifier);
   const candidates = [baseCandidate, `${baseCandidate}.rb`, path.join(baseCandidate, "init.rb")];
+
   for (const candidate of candidates) {
-    if (candidate.startsWith(workspaceRoot)) {
-      return path.relative(workspaceRoot, candidate).replace(/\\/g, "/");
+    if (!candidate.startsWith(workspaceRoot)) {
+      continue;
     }
+
+    if (!isFile(candidate)) {
+      continue;
+    }
+
+    return path.relative(workspaceRoot, candidate).replace(/\\/g, "/");
   }
+
   return undefined;
+}
+
+function isFile(candidate: string): boolean {
+  try {
+    return statSync(candidate).isFile();
+  } catch {
+    return false;
+  }
 }
 
 function parseRubyDocumentation(rawLines: string[]): SymbolDocumentation | undefined {
@@ -506,9 +524,10 @@ function parseLinkTag(payload: string): SymbolDocumentationLink | undefined {
     return undefined;
   }
   if (segments.length === 1) {
+    const target = segments[0];
     return {
-      kind: "href",
-      target: segments[0]
+      kind: inferLinkKind(target),
+      target
     };
   }
   const target = segments.pop();
@@ -516,10 +535,27 @@ function parseLinkTag(payload: string): SymbolDocumentationLink | undefined {
     return undefined;
   }
   return {
-    kind: "href",
+    kind: inferLinkKind(target),
     target,
     text: segments.join(" ") || undefined
   };
+}
+
+function inferLinkKind(target: string): SymbolDocumentationLinkKind {
+  const normalized = target.trim();
+  if (!normalized) {
+    return "unknown";
+  }
+
+  if (/^[a-z][a-z0-9+.-]*:\/\//i.test(normalized)) {
+    return "href";
+  }
+
+  if (normalized.startsWith("#") || normalized.startsWith("./") || normalized.startsWith("../") || normalized.startsWith("/")) {
+    return "href";
+  }
+
+  return "cref";
 }
 
 function parseParameterList(lines: string[]): SymbolDocumentationParameter[] {

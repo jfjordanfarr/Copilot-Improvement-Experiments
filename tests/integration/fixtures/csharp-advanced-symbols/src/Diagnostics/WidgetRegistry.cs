@@ -11,7 +11,7 @@ namespace LinkAware.Diagnostics;
 /// <para>Widget registries coordinate cross-module widget discovery.</para>
 /// <para>Thread-safety is provided by a concurrent dictionary shared by all callers.</para>
 /// </remarks>
-/// <seealso href="https://example.com/widgets">Widget architecture</seealso>
+/// <seealso href="../../docs/registry.md">Widget architecture</seealso>
 public sealed class WidgetRegistry
 {
     private readonly ConcurrentDictionary<string, BaseWidget> _widgets = new(StringComparer.OrdinalIgnoreCase);

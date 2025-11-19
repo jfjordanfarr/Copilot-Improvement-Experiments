@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/lsif.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-lsif-ts
-- Generated At: 2025-11-16T20:43:31.433Z
+- Generated At: 2025-11-19T15:01:34.646Z
 
 ## Authored
 ### Purpose
@@ -15,10 +15,10 @@ Provides TypeScript typings for LSIF vertices, edges, and index metadata so the 
 The feed-format detector and `lsifParser.ts` rely on these labels staying in sync with the LSIF 0.6 spec; see [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-05-integration-harness--workspace-index-overhaul-lines-1951-2800](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-05-integration-harness--workspace-index-overhaul-lines-1951-2800) for the follow-on parser hardening this contract supports.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:31.433Z","inputHash":"48203a81012d4b91"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.646Z","inputHash":"48203a81012d4b91"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `LSIFVertexLabel`
+#### `LSIFVertexLabel` {#symbol-lsifvertexlabel}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L9)
 
@@ -29,78 +29,78 @@ definitions, references, and their relationships.
 
 Spec: https://microsoft.github.io/language-server-protocol/specifications/lsif/0.6.0/specification/
 
-#### `LSIFEdgeLabel`
+#### `LSIFEdgeLabel` {#symbol-lsifedgelabel}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L20)
 
-#### `LSIFElement`
+#### `LSIFElement` {#symbol-lsifelement}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L28)
 
-#### `LSIFVertex`
+#### `LSIFVertex` {#symbol-lsifvertex}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L34)
 
-#### `LSIFEdge`
+#### `LSIFEdge` {#symbol-lsifedge}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L38)
 
-#### `LSIFMetaData`
+#### `LSIFMetaData` {#symbol-lsifmetadata}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L44)
 
-#### `LSIFProject`
+#### `LSIFProject` {#symbol-lsifproject}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L55)
 
-#### `LSIFDocument`
+#### `LSIFDocument` {#symbol-lsifdocument}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L62)
 
-#### `LSIFRange`
+#### `LSIFRange` {#symbol-lsifrange}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L69)
 
-#### `LSIFResultSet`
+#### `LSIFResultSet` {#symbol-lsifresultset}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L90)
 
-#### `LSIFDefinitionResult`
+#### `LSIFDefinitionResult` {#symbol-lsifdefinitionresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L94)
 
-#### `LSIFReferenceResult`
+#### `LSIFReferenceResult` {#symbol-lsifreferenceresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L98)
 
-#### `LSIFContainsEdge`
+#### `LSIFContainsEdge` {#symbol-lsifcontainsedge}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L102)
 
-#### `LSIFItemEdge`
+#### `LSIFItemEdge` {#symbol-lsifitemedge}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L107)
 
-#### `LSIFNextEdge`
+#### `LSIFNextEdge` {#symbol-lsifnextedge}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L113)
 
-#### `LSIFDefinitionEdge`
+#### `LSIFDefinitionEdge` {#symbol-lsifdefinitionedge}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L117)
 
-#### `LSIFReferencesEdge`
+#### `LSIFReferencesEdge` {#symbol-lsifreferencesedge}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L121)
 
-#### `LSIFEntry`
+#### `LSIFEntry` {#symbol-lsifentry}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L128)
 
 ##### `LSIFEntry` — Summary
 LSIF dump is a newline-delimited JSON stream where each line is a vertex or edge
 
-#### `ParsedLSIFIndex`
+#### `ParsedLSIFIndex` {#symbol-parsedlsifindex}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/lsif.ts#L143)
 <!-- LIVE-DOC:END Public Symbols -->

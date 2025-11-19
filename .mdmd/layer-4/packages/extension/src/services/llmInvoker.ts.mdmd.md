@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/services/llmInvoker.ts
 - Live Doc ID: LD-implementation-packages-extension-src-services-llminvoker-ts
-- Generated At: 2025-11-16T22:34:10.892Z
+- Generated At: 2025-11-19T15:01:33.533Z
 
 ## Authored
 ### Purpose
@@ -16,37 +16,37 @@ Provides the Analyze-with-AI command a reusable wrapper around `vscode.lm` so di
 - Respects the governance decisions from Oct 21 to default sensitive workspaces to `llmProviderMode: local-only` and to block diagnostics when the provider is disabled, per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L120-L190](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L120-L190); keep the filter and error reasons aligned with those consent requirements.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:10.892Z","inputHash":"78657987d9b5b3e8"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.533Z","inputHash":"78657987d9b5b3e8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `LlmProviderMode`
+#### `LlmProviderMode` {#symbol-llmprovidermode}
 - Type: type
 - Source: [source](../../../../../../packages/extension/src/services/llmInvoker.ts#L5)
 
-#### `LlmInvocationFailureReason`
+#### `LlmInvocationFailureReason` {#symbol-llminvocationfailurereason}
 - Type: type
 - Source: [source](../../../../../../packages/extension/src/services/llmInvoker.ts#L7)
 
-#### `LlmInvocationError`
+#### `LlmInvocationError` {#symbol-llminvocationerror}
 - Type: class
 - Source: [source](../../../../../../packages/extension/src/services/llmInvoker.ts#L9)
 
-#### `InvokeChatOptions`
+#### `InvokeChatOptions` {#symbol-invokechatoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/extension/src/services/llmInvoker.ts#L16)
 
-#### `InvokeChatResult`
+#### `InvokeChatResult` {#symbol-invokechatresult}
 - Type: interface
 - Source: [source](../../../../../../packages/extension/src/services/llmInvoker.ts#L25)
 
-#### `LlmInvoker`
+#### `LlmInvoker` {#symbol-llminvoker}
 - Type: class
 - Source: [source](../../../../../../packages/extension/src/services/llmInvoker.ts#L30)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`configService.LinkDiagnosticsSettings`](../settings/configService.ts.mdmd.md#linkdiagnosticssettings) (type-only)
+- [`configService.LinkDiagnosticsSettings`](../settings/configService.ts.mdmd.md#symbol-linkdiagnosticssettings) (type-only)
 - `vscode` - `vscode`
 <!-- LIVE-DOC:END Dependencies -->
 

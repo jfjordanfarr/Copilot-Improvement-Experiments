@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/graph-tools/snapshot-workspace.ts
 - Live Doc ID: LD-implementation-scripts-graph-tools-snapshot-workspace-ts
-- Generated At: 2025-11-16T22:35:18.013Z
+- Generated At: 2025-11-19T15:01:35.883Z
 
 ## Authored
 ### Purpose
@@ -17,38 +17,38 @@ Materialises a deterministic workspace graph snapshot by rebuilding the SQLite c
 - Refactored 2025-11-04 to expose a reusable `snapshotWorkspace` helper and quiet mode; `audit-doc-coverage.ts` now invokes it automatically before audits to avoid stale caches ([self-refresh change](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2434-L2455)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:18.013Z","inputHash":"3280cacfd20e2862"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.883Z","inputHash":"3280cacfd20e2862"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `DEFAULT_DB`
+#### `DEFAULT_DB` {#symbol-default_db}
 - Type: const
 - Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L72)
 
-#### `DEFAULT_OUTPUT`
+#### `DEFAULT_OUTPUT` {#symbol-default_output}
 - Type: const
 - Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L73)
 
-#### `SnapshotWorkspaceOptions`
+#### `SnapshotWorkspaceOptions` {#symbol-snapshotworkspaceoptions}
 - Type: interface
 - Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L75)
 
-#### `SnapshotWorkspaceResult`
+#### `SnapshotWorkspaceResult` {#symbol-snapshotworkspaceresult}
 - Type: interface
 - Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L84)
 
-#### `parseArgs`
+#### `parseArgs` {#symbol-parseargs}
 - Type: function
 - Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L92)
 
-#### `writeDatabaseWithRecovery`
+#### `writeDatabaseWithRecovery` {#symbol-writedatabasewithrecovery}
 - Type: function
 - Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L320)
 
-#### `snapshotWorkspace`
+#### `snapshotWorkspace` {#symbol-snapshotworkspace}
 - Type: function
 - Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L372)
 
-#### `main`
+#### `main` {#symbol-main}
 - Type: function
 - Source: [source](../../../../scripts/graph-tools/snapshot-workspace.ts#L481)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -60,14 +60,14 @@ Materialises a deterministic workspace graph snapshot by rebuilding the SQLite c
 - `node:path` - `path`
 - `node:process` - `process`
 - `node:url` - `fileURLToPath`
-- [`workspaceIndexProvider.createWorkspaceIndexProvider`](../../packages/server/src/features/knowledge/workspaceIndexProvider.ts.mdmd.md#createworkspaceindexprovider)
-- [`index.ExternalArtifact`](../../packages/shared/src/index.ts.mdmd.md#externalartifact)
-- [`index.ExternalLink`](../../packages/shared/src/index.ts.mdmd.md#externallink)
-- [`index.ExternalSnapshot`](../../packages/shared/src/index.ts.mdmd.md#externalsnapshot)
-- [`index.GraphStore`](../../packages/shared/src/index.ts.mdmd.md#graphstore)
-- [`index.KnowledgeArtifact`](../../packages/shared/src/index.ts.mdmd.md#knowledgeartifact)
-- [`index.KnowledgeGraphBridge`](../../packages/shared/src/index.ts.mdmd.md#knowledgegraphbridge)
-- [`index.LinkInferenceOrchestrator`](../../packages/shared/src/index.ts.mdmd.md#linkinferenceorchestrator)
-- [`index.LinkRelationship`](../../packages/shared/src/index.ts.mdmd.md#linkrelationship)
-- [`index.createRelationshipRuleProvider`](../../packages/shared/src/index.ts.mdmd.md#createrelationshipruleprovider)
+- [`workspaceIndexProvider.createWorkspaceIndexProvider`](../../packages/server/src/features/knowledge/workspaceIndexProvider.ts.mdmd.md#symbol-createworkspaceindexprovider)
+- [`index.ExternalArtifact`](../../packages/shared/src/index.ts.mdmd.md#symbol-externalartifact)
+- [`index.ExternalLink`](../../packages/shared/src/index.ts.mdmd.md#symbol-externallink)
+- [`index.ExternalSnapshot`](../../packages/shared/src/index.ts.mdmd.md#symbol-externalsnapshot)
+- [`index.GraphStore`](../../packages/shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.KnowledgeArtifact`](../../packages/shared/src/index.ts.mdmd.md#symbol-knowledgeartifact)
+- [`index.KnowledgeGraphBridge`](../../packages/shared/src/index.ts.mdmd.md#symbol-knowledgegraphbridge)
+- [`index.LinkInferenceOrchestrator`](../../packages/shared/src/index.ts.mdmd.md#symbol-linkinferenceorchestrator)
+- [`index.LinkRelationship`](../../packages/shared/src/index.ts.mdmd.md#symbol-linkrelationship)
+- [`index.createRelationshipRuleProvider`](../../packages/shared/src/index.ts.mdmd.md#symbol-createrelationshipruleprovider)
 <!-- LIVE-DOC:END Dependencies -->

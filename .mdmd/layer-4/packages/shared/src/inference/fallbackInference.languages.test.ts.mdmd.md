@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/inference/fallbackInference.languages.test.ts
 - Live Doc ID: LD-test-packages-shared-src-inference-fallbackinference-languages-test-ts
-- Generated At: 2025-11-16T22:34:12.654Z
+- Generated At: 2025-11-19T15:01:34.895Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Regression suite covering the per-language fallback heuristics (C, Rust, Java, R
 Pairs with the heuristic refactor and shared contract wiring finalized in [AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-07.SUMMARIZED.md#turn-12-rebuild-fallback-orchestrator-lines-2381-2740](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-07.SUMMARIZED.md#turn-12-rebuild-fallback-orchestrator-lines-2381-2740), providing a guardrail while additional languages (for example, WebForms from [2025-11-06](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-06.SUMMARIZED.md#turn-26-benchmarks-fail-on-new-c-fixtures-lines-4121-4520)) plug into the shared heuristics registry.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.654Z","inputHash":"56bd7a2a35de2d32"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.895Z","inputHash":"56bd7a2a35de2d32"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,8 +23,8 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#linkrelationshipkind)
-- [`fallbackInference.inferFallbackGraph`](./fallbackInference.ts.mdmd.md#inferfallbackgraph)
+- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationshipkind)
+- [`fallbackInference.inferFallbackGraph`](./fallbackInference.ts.mdmd.md#symbol-inferfallbackgraph)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

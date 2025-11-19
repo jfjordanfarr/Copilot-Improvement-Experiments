@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-pythonfixtureoracle-test-ts
-- Generated At: 2025-11-16T22:34:13.419Z
+- Generated At: 2025-11-19T15:01:35.525Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises the Python fixture oracle against curated fixtures and override scenar
 - Keeps asserting perfect precision/recall across python-basic, pipeline, and requests fixtures; Nov 4 reports and the Nov 16 unit sweep confirmed the expectations remain stable <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L2848-L2884> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.419Z","inputHash":"1c50be8525db728b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.525Z","inputHash":"1c50be8525db728b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,11 +23,11 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`pythonFixtureOracle.PythonOracleEdge`](./pythonFixtureOracle.ts.mdmd.md#pythonoracleedge)
-- [`pythonFixtureOracle.PythonOracleOverrideConfig`](./pythonFixtureOracle.ts.mdmd.md#pythonoracleoverrideconfig)
-- [`pythonFixtureOracle.mergePythonOracleEdges`](./pythonFixtureOracle.ts.mdmd.md#mergepythonoracleedges)
-- [`pythonFixtureOracle.partitionPythonOracleSegments`](./pythonFixtureOracle.ts.mdmd.md#partitionpythonoraclesegments)
-- [`pythonFixtureOracle.serializePythonOracleEdges`](./pythonFixtureOracle.ts.mdmd.md#serializepythonoracleedges)
+- [`pythonFixtureOracle.PythonOracleEdge`](./pythonFixtureOracle.ts.mdmd.md#symbol-pythonoracleedge)
+- [`pythonFixtureOracle.PythonOracleOverrideConfig`](./pythonFixtureOracle.ts.mdmd.md#symbol-pythonoracleoverrideconfig)
+- [`pythonFixtureOracle.mergePythonOracleEdges`](./pythonFixtureOracle.ts.mdmd.md#symbol-mergepythonoracleedges)
+- [`pythonFixtureOracle.partitionPythonOracleSegments`](./pythonFixtureOracle.ts.mdmd.md#symbol-partitionpythonoraclesegments)
+- [`pythonFixtureOracle.serializePythonOracleEdges`](./pythonFixtureOracle.ts.mdmd.md#symbol-serializepythonoracleedges)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

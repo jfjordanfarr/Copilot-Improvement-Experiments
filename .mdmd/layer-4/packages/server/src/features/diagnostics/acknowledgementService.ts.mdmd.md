@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/acknowledgementService.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-acknowledgementservice-ts
-- Generated At: 2025-11-16T22:35:15.235Z
+- Generated At: 2025-11-19T15:01:33.792Z
 
 ## Authored
 ### Purpose
@@ -15,30 +15,30 @@ Persists diagnostic acknowledgements, decides whether follow-up alerts should em
 - Coordinates with hysteresis release and noise-suppression runtime settings so manual acknowledgements immediately quiet reciprocal ripples.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.235Z","inputHash":"d1a89141b449296e"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.792Z","inputHash":"d1a89141b449296e"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `AcknowledgementServiceOptions`
+#### `AcknowledgementServiceOptions` {#symbol-acknowledgementserviceoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/acknowledgementService.ts#L40)
 
-#### `AcknowledgeDiagnosticInput`
+#### `AcknowledgeDiagnosticInput` {#symbol-acknowledgediagnosticinput}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/acknowledgementService.ts#L49)
 
-#### `ShouldEmitDiagnosticInput`
+#### `ShouldEmitDiagnosticInput` {#symbol-shouldemitdiagnosticinput}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/acknowledgementService.ts#L55)
 
-#### `RegisterDiagnosticEmissionInput`
+#### `RegisterDiagnosticEmissionInput` {#symbol-registerdiagnosticemissioninput}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/acknowledgementService.ts#L61)
 
-#### `AcknowledgeOutcome`
+#### `AcknowledgeOutcome` {#symbol-acknowledgeoutcome}
 - Type: type
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/acknowledgementService.ts#L67)
 
-#### `AcknowledgementService`
+#### `AcknowledgementService` {#symbol-acknowledgementservice}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/acknowledgementService.ts#L72)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -46,12 +46,12 @@ Persists diagnostic acknowledgements, decides whether follow-up alerts should em
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:crypto` - `randomUUID`
-- [`hysteresisController.HysteresisController`](./hysteresisController.ts.mdmd.md#hysteresiscontroller) (type-only)
-- [`settingsBridge.RuntimeSettings`](../settings/settingsBridge.ts.mdmd.md#runtimesettings) (type-only)
-- [`index.AcknowledgementAction`](../../../../shared/src/index.ts.mdmd.md#acknowledgementaction) (type-only)
-- [`index.DiagnosticRecord`](../../../../shared/src/index.ts.mdmd.md#diagnosticrecord) (type-only)
-- [`index.DiagnosticSeverity`](../../../../shared/src/index.ts.mdmd.md#diagnosticseverity) (type-only)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore) (type-only)
+- [`hysteresisController.HysteresisController`](./hysteresisController.ts.mdmd.md#symbol-hysteresiscontroller) (type-only)
+- [`settingsBridge.RuntimeSettings`](../settings/settingsBridge.ts.mdmd.md#symbol-runtimesettings) (type-only)
+- [`index.AcknowledgementAction`](../../../../shared/src/index.ts.mdmd.md#symbol-acknowledgementaction) (type-only)
+- [`index.DiagnosticRecord`](../../../../shared/src/index.ts.mdmd.md#symbol-diagnosticrecord) (type-only)
+- [`index.DiagnosticSeverity`](../../../../shared/src/index.ts.mdmd.md#symbol-diagnosticseverity) (type-only)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

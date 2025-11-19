@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/telemetry/inferenceAccuracy.ts
 - Live Doc ID: LD-implementation-packages-shared-src-telemetry-inferenceaccuracy-ts
-- Generated At: 2025-11-16T22:34:13.345Z
+- Generated At: 2025-11-19T15:01:35.472Z
 
 ## Authored
 ### Purpose
@@ -16,45 +16,45 @@ Tracks LLM benchmark outcomes across repos so shared tooling, server telemetry, 
 - Documented during the symbol-coverage remediation pass that pushed telemetry exports to 100 % coverage, confirming audits read the tracker headings.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-34-coverage-scope-trim--graph-audit-remediation-lines-4402-5601]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.345Z","inputHash":"7969be1f27a1997d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.472Z","inputHash":"7969be1f27a1997d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `InferenceOutcome`
+#### `InferenceOutcome` {#symbol-inferenceoutcome}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/telemetry/inferenceAccuracy.ts#L3)
 
-#### `RecordOutcomeOptions`
+#### `RecordOutcomeOptions` {#symbol-recordoutcomeoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/telemetry/inferenceAccuracy.ts#L5)
 
-#### `InferenceAccuracyTrackerOptions`
+#### `InferenceAccuracyTrackerOptions` {#symbol-inferenceaccuracytrackeroptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/telemetry/inferenceAccuracy.ts#L15)
 
-#### `AccuracySample`
+#### `AccuracySample` {#symbol-accuracysample}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/telemetry/inferenceAccuracy.ts#L23)
 
-#### `AccuracyTotals`
+#### `AccuracyTotals` {#symbol-accuracytotals}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/telemetry/inferenceAccuracy.ts#L33)
 
-#### `BenchmarkAccuracySummary`
+#### `BenchmarkAccuracySummary` {#symbol-benchmarkaccuracysummary}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/telemetry/inferenceAccuracy.ts#L43)
 
-#### `InferenceAccuracySummary`
+#### `InferenceAccuracySummary` {#symbol-inferenceaccuracysummary}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/telemetry/inferenceAccuracy.ts#L47)
 
-#### `InferenceAccuracyTracker`
+#### `InferenceAccuracyTracker` {#symbol-inferenceaccuracytracker}
 - Type: class
 - Source: [source](../../../../../../packages/shared/src/telemetry/inferenceAccuracy.ts#L64)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`normalizeFileUri.normalizeFileUri`](../uri/normalizeFileUri.ts.mdmd.md#normalizefileuri)
+- [`normalizeFileUri.normalizeFileUri`](../uri/normalizeFileUri.ts.mdmd.md#symbol-normalizefileuri)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/exportDiagnostics.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-exportdiagnostics-test-ts
-- Generated At: 2025-11-18T14:53:38.265Z
+- Generated At: 2025-11-19T15:01:33.336Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the export diagnostics command so CSV/JSON generation, cancellation ha
 - Pending work to include acknowledgement metadata in exports should extend this suite once the feature lands, matching the open acceptance criteria referenced later that day in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.265Z","inputHash":"6028cb53b8f923c4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.336Z","inputHash":"ff9a59b0f0c752fc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,10 +24,10 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`vscodeMock.getSharedVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#getsharedvscodemock)
-- [`index.ListOutstandingDiagnosticsResult`](../../../shared/src/index.ts.mdmd.md#listoutstandingdiagnosticsresult) (type-only)
-- `vitest` - `beforeEach`, `describe`, `expect`, `it`, `vi`
-- `vscode` - `vscode` (type-only)
+- [`vscodeMock.SharedVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#symbol-sharedvscodemock)
+- [`vscodeMock.createVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#symbol-createvscodemock)
+- [`index.ListOutstandingDiagnosticsResult`](../../../shared/src/index.ts.mdmd.md#symbol-listoutstandingdiagnosticsresult) (type-only)
+- `vitest` - `afterAll`, `beforeAll`, `beforeEach`, `describe`, `expect`, `it`, `vi`
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Targets -->

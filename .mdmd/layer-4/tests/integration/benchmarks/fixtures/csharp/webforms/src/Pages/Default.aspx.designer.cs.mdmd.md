@@ -1,0 +1,37 @@
+# tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs
+
+## Metadata
+- Layer: 4
+- Archetype: asset
+- Code Path: tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs
+- Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-csharp-webforms-src-pages-default-aspx-designer-cs
+- Generated At: 2025-11-19T15:01:36.117Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.117Z","inputHash":"ca6b43a0e53008bd"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+#### `Default` {#symbol-default}
+- Type: class
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs#L3)
+
+#### `WidgetToggleHidden` {#symbol-widgettogglehidden}
+- Type: field
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs#L7)
+
+#### `ClientConfigHidden` {#symbol-clientconfighidden}
+- Type: field
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/csharp/webforms/src/Pages/Default.aspx.designer.cs#L8)
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+_No dependencies documented yet_
+<!-- LIVE-DOC:END Dependencies -->

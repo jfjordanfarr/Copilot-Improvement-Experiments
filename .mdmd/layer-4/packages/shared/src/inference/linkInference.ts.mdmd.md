@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/linkInference.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-linkinference-ts
-- Generated At: 2025-11-16T22:34:12.875Z
+- Generated At: 2025-11-19T15:01:35.050Z
 
 ## Authored
 ### Purpose
@@ -15,84 +15,84 @@ Implements the link inference orchestrator from US1 task T028, unifying fallback
 The markdown watcher streams saved documents through this orchestrator to capture seeds and hints before diagnostics publish, per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L343](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L343), and later work plans to route its output into the live knowledge feed manager under the guarded ingestion roadmap in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1306](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L1306).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.875Z","inputHash":"4646d8e00620428a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.050Z","inputHash":"4646d8e00620428a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `LinkInferenceTraceOrigin`
+#### `LinkInferenceTraceOrigin` {#symbol-linkinferencetraceorigin}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L26)
 
-#### `LinkInferenceTraceEntry`
+#### `LinkInferenceTraceEntry` {#symbol-linkinferencetraceentry}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L28)
 
-#### `LinkEvidence`
+#### `LinkEvidence` {#symbol-linkevidence}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L38)
 
-#### `WorkspaceLinkContribution`
+#### `WorkspaceLinkContribution` {#symbol-workspacelinkcontribution}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L47)
 
-#### `WorkspaceLinkProviderContext`
+#### `WorkspaceLinkProviderContext` {#symbol-workspacelinkprovidercontext}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L53)
 
-#### `WorkspaceLinkProvider`
+#### `WorkspaceLinkProvider` {#symbol-workspacelinkprovider}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L57)
 
-#### `WorkspaceProviderSummary`
+#### `WorkspaceProviderSummary` {#symbol-workspaceprovidersummary}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L63)
 
-#### `KnowledgeFeedSnapshotSource`
+#### `KnowledgeFeedSnapshotSource` {#symbol-knowledgefeedsnapshotsource}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L71)
 
-#### `KnowledgeFeedStreamSource`
+#### `KnowledgeFeedStreamSource` {#symbol-knowledgefeedstreamsource}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L76)
 
-#### `KnowledgeFeed`
+#### `KnowledgeFeed` {#symbol-knowledgefeed}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L81)
 
-#### `KnowledgeFeedSummary`
+#### `KnowledgeFeedSummary` {#symbol-knowledgefeedsummary}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L87)
 
-#### `LinkInferenceRunInput`
+#### `LinkInferenceRunInput` {#symbol-linkinferenceruninput}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L95)
 
-#### `LinkInferenceError`
+#### `LinkInferenceError` {#symbol-linkinferenceerror}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L106)
 
-#### `LinkInferenceRunResult`
+#### `LinkInferenceRunResult` {#symbol-linkinferencerunresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L112)
 
-#### `LinkInferenceOrchestrator`
+#### `LinkInferenceOrchestrator` {#symbol-linkinferenceorchestrator}
 - Type: class
 - Source: [source](../../../../../../packages/shared/src/inference/linkInference.ts#L386)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`artifacts.KnowledgeArtifact`](../domain/artifacts.ts.mdmd.md#knowledgeartifact)
-- [`artifacts.LinkRelationship`](../domain/artifacts.ts.mdmd.md#linkrelationship)
-- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#linkrelationshipkind)
-- [`fallbackInference.ArtifactSeed`](./fallbackInference.ts.mdmd.md#artifactseed)
-- [`fallbackInference.FallbackLLMBridge`](./fallbackInference.ts.mdmd.md#fallbackllmbridge)
-- [`fallbackInference.InferenceTraceEntry`](./fallbackInference.ts.mdmd.md#inferencetraceentry)
-- [`fallbackInference.RelationshipHint`](./fallbackInference.ts.mdmd.md#relationshiphint)
-- [`fallbackInference.inferFallbackGraph`](./fallbackInference.ts.mdmd.md#inferfallbackgraph)
-- [`knowledgeGraphBridge.ExternalArtifact`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#externalartifact) (type-only)
-- [`knowledgeGraphBridge.ExternalLink`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#externallink) (type-only)
-- [`knowledgeGraphBridge.ExternalSnapshot`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#externalsnapshot) (type-only)
-- [`knowledgeGraphBridge.ExternalStreamEvent`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#externalstreamevent) (type-only)
+- [`artifacts.KnowledgeArtifact`](../domain/artifacts.ts.mdmd.md#symbol-knowledgeartifact)
+- [`artifacts.LinkRelationship`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationship)
+- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationshipkind)
+- [`fallbackInference.ArtifactSeed`](./fallbackInference.ts.mdmd.md#symbol-artifactseed)
+- [`fallbackInference.FallbackLLMBridge`](./fallbackInference.ts.mdmd.md#symbol-fallbackllmbridge)
+- [`fallbackInference.InferenceTraceEntry`](./fallbackInference.ts.mdmd.md#symbol-inferencetraceentry)
+- [`fallbackInference.RelationshipHint`](./fallbackInference.ts.mdmd.md#symbol-relationshiphint)
+- [`fallbackInference.inferFallbackGraph`](./fallbackInference.ts.mdmd.md#symbol-inferfallbackgraph)
+- [`knowledgeGraphBridge.ExternalArtifact`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externalartifact) (type-only)
+- [`knowledgeGraphBridge.ExternalLink`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externallink) (type-only)
+- [`knowledgeGraphBridge.ExternalSnapshot`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externalsnapshot) (type-only)
+- [`knowledgeGraphBridge.ExternalStreamEvent`](../knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externalstreamevent) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

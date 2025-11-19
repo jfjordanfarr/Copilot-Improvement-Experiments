@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/workspaceIndexProvider.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-workspaceindexprovider-test-ts
-- Generated At: 2025-11-18T14:53:39.043Z
+- Generated At: 2025-11-19T15:01:34.238Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the workspace indexer against a miniature TypeScript project to confir
 - Remained relevant after the metadata expansion on Oct 30 (see [2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md)), ensuring dependency capture stayed intact while MDMD parsing grew more sophisticated.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:39.043Z","inputHash":"ca86e0efff9b2e35"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.238Z","inputHash":"ca86e0efff9b2e35"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -28,7 +28,7 @@ _No public symbols detected_
 - `node:os` - `tmpdir`
 - `node:path` - `path`
 - `node:url` - `fileURLToPath`
-- [`workspaceIndexProvider.createWorkspaceIndexProvider`](./workspaceIndexProvider.ts.mdmd.md#createworkspaceindexprovider)
+- [`workspaceIndexProvider.createWorkspaceIndexProvider`](./workspaceIndexProvider.ts.mdmd.md#symbol-createworkspaceindexprovider)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

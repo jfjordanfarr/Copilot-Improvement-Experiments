@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/knowledgeGraphIngestor.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-knowledgegraphingestor-ts
-- Generated At: 2025-11-16T22:35:15.705Z
+- Generated At: 2025-11-19T15:01:34.094Z
 
 ## Authored
 ### Purpose
@@ -15,26 +15,26 @@ Applies validated knowledge feed snapshots and stream events into the workspace 
 - Serialises feed processing via lightweight locks, prunes artifacts that disappear from provider snapshots, and normalises URIs/IDs before delegating to `KnowledgeGraphBridge`, reflecting the hardening pass called out in [2025-10-30 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.705Z","inputHash":"410a0b824a5f63ac"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.094Z","inputHash":"410a0b824a5f63ac"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `KnowledgeGraphIngestorLogger`
+#### `KnowledgeGraphIngestorLogger` {#symbol-knowledgegraphingestorlogger}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts#L22)
 
-#### `KnowledgeGraphIngestorOptions`
+#### `KnowledgeGraphIngestorOptions` {#symbol-knowledgegraphingestoroptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts#L28)
 
-#### `SnapshotIngestResult`
+#### `SnapshotIngestResult` {#symbol-snapshotingestresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts#L37)
 
-#### `StreamIngestResult`
+#### `StreamIngestResult` {#symbol-streamingestresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts#L43)
 
-#### `KnowledgeGraphIngestor`
+#### `KnowledgeGraphIngestor` {#symbol-knowledgegraphingestor}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/knowledgeGraphIngestor.ts#L49)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -42,20 +42,20 @@ Applies validated knowledge feed snapshots and stream events into the workspace 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:crypto` - `createHash`
-- [`feedCheckpointStore.FeedCheckpointStore`](./feedCheckpointStore.ts.mdmd.md#feedcheckpointstore)
-- [`feedDiagnosticsGateway.FeedDiagnosticsGateway`](./feedDiagnosticsGateway.ts.mdmd.md#feeddiagnosticsgateway)
-- [`feedDiagnosticsGateway.FeedHealthStatus`](./feedDiagnosticsGateway.ts.mdmd.md#feedhealthstatus)
-- [`schemaValidator.assertValidSnapshot`](./schemaValidator.ts.mdmd.md#assertvalidsnapshot)
-- [`schemaValidator.assertValidStreamEvent`](./schemaValidator.ts.mdmd.md#assertvalidstreamevent)
-- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#normalizefileuri)
-- [`index.ExternalArtifact`](../../../../shared/src/index.ts.mdmd.md#externalartifact)
-- [`index.ExternalLink`](../../../../shared/src/index.ts.mdmd.md#externallink)
-- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#externalsnapshot)
-- [`index.ExternalStreamEvent`](../../../../shared/src/index.ts.mdmd.md#externalstreamevent)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
-- [`index.KnowledgeGraphBridge`](../../../../shared/src/index.ts.mdmd.md#knowledgegraphbridge)
-- [`index.KnowledgeSnapshot`](../../../../shared/src/index.ts.mdmd.md#knowledgesnapshot)
-- [`index.StreamCheckpoint`](../../../../shared/src/index.ts.mdmd.md#streamcheckpoint)
+- [`feedCheckpointStore.FeedCheckpointStore`](./feedCheckpointStore.ts.mdmd.md#symbol-feedcheckpointstore)
+- [`feedDiagnosticsGateway.FeedDiagnosticsGateway`](./feedDiagnosticsGateway.ts.mdmd.md#symbol-feeddiagnosticsgateway)
+- [`feedDiagnosticsGateway.FeedHealthStatus`](./feedDiagnosticsGateway.ts.mdmd.md#symbol-feedhealthstatus)
+- [`schemaValidator.assertValidSnapshot`](./schemaValidator.ts.mdmd.md#symbol-assertvalidsnapshot)
+- [`schemaValidator.assertValidStreamEvent`](./schemaValidator.ts.mdmd.md#symbol-assertvalidstreamevent)
+- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#symbol-normalizefileuri)
+- [`index.ExternalArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-externalartifact)
+- [`index.ExternalLink`](../../../../shared/src/index.ts.mdmd.md#symbol-externallink)
+- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#symbol-externalsnapshot)
+- [`index.ExternalStreamEvent`](../../../../shared/src/index.ts.mdmd.md#symbol-externalstreamevent)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.KnowledgeGraphBridge`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgegraphbridge)
+- [`index.KnowledgeSnapshot`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgesnapshot)
+- [`index.StreamCheckpoint`](../../../../shared/src/index.ts.mdmd.md#symbol-streamcheckpoint)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

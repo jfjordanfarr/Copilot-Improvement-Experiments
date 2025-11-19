@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/rules/relationshipRuleProvider.test.ts
 - Live Doc ID: LD-test-packages-shared-src-rules-relationshipruleprovider-test-ts
-- Generated At: 2025-11-16T22:34:13.291Z
+- Generated At: 2025-11-19T15:01:35.441Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates the relationship rule provider end-to-end—loading configs, compiling
 - Exercises graph-store integration, heuristic lookups, and rule warnings the day the provider was hardened, catching regressions before they impact graph audits.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.291Z","inputHash":"e4510aaa822dbb9b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.441Z","inputHash":"e4510aaa822dbb9b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -27,12 +27,12 @@ _No public symbols detected_
 - `node:os` - `tmpdir`
 - `node:path` - `path`
 - `node:url` - `pathToFileURL`
-- [`fallbackInference.ArtifactSeed`](../inference/fallbackInference.ts.mdmd.md#artifactseed) (type-only)
-- [`relationshipRuleEngine.compileRelationshipRules`](./relationshipRuleEngine.ts.mdmd.md#compilerelationshiprules)
-- [`relationshipRuleEngine.generateRelationshipEvidences`](./relationshipRuleEngine.ts.mdmd.md#generaterelationshipevidences)
-- [`relationshipRuleEngine.loadRelationshipRuleConfig`](./relationshipRuleEngine.ts.mdmd.md#loadrelationshipruleconfig)
-- [`relationshipRuleProvider.createRelationshipRuleProvider`](./relationshipRuleProvider.ts.mdmd.md#createrelationshipruleprovider)
-- [`pathUtils.toWorkspaceRelativePath`](../tooling/pathUtils.ts.mdmd.md#toworkspacerelativepath)
+- [`fallbackInference.ArtifactSeed`](../inference/fallbackInference.ts.mdmd.md#symbol-artifactseed) (type-only)
+- [`relationshipRuleEngine.compileRelationshipRules`](./relationshipRuleEngine.ts.mdmd.md#symbol-compilerelationshiprules)
+- [`relationshipRuleEngine.generateRelationshipEvidences`](./relationshipRuleEngine.ts.mdmd.md#symbol-generaterelationshipevidences)
+- [`relationshipRuleEngine.loadRelationshipRuleConfig`](./relationshipRuleEngine.ts.mdmd.md#symbol-loadrelationshipruleconfig)
+- [`relationshipRuleProvider.createRelationshipRuleProvider`](./relationshipRuleProvider.ts.mdmd.md#symbol-createrelationshipruleprovider)
+- [`pathUtils.toWorkspaceRelativePath`](../tooling/pathUtils.ts.mdmd.md#symbol-toworkspacerelativepath)
 - `vitest` - `afterEach`, `beforeEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

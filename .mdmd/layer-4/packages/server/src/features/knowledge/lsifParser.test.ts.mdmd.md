@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/lsifParser.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-lsifparser-test-ts
-- Generated At: 2025-11-18T14:53:38.948Z
+- Generated At: 2025-11-19T15:01:34.134Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises the LSIF parser against representative dumps to ensure documents becom
 - Shipped with the LSIF/SCIP ingestion feature in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md), keeping the parser regression-tested as feed support evolved.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.948Z","inputHash":"81cb60b7294b60b9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.134Z","inputHash":"81cb60b7294b60b9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,7 +23,7 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`lsifParser.parseLSIF`](./lsifParser.ts.mdmd.md#parselsif)
+- [`lsifParser.parseLSIF`](./lsifParser.ts.mdmd.md#symbol-parselsif)
 - `vitest` - `describe`, `expect`, `it`, `vi`
 <!-- LIVE-DOC:END Dependencies -->
 

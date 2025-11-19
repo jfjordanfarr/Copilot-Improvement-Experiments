@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/runtime/environment.ts
 - Live Doc ID: LD-implementation-packages-server-src-runtime-environment-ts
-- Generated At: 2025-11-16T22:34:12.212Z
+- Generated At: 2025-11-19T15:01:34.540Z
 
 ## Authored
 ### Purpose
@@ -15,26 +15,26 @@ Provides shared runtime utilities for the language server—resolving database l
 `describeError` and `fileUriToPath` gained Windows path handling during that pass—see [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L4405-L4602](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-08.md#L4405-L4602)—so any future refactor must preserve UNC safety and drive-by evidence in `environment.test.ts`.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.212Z","inputHash":"991f2d459d64d1b5"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.540Z","inputHash":"991f2d459d64d1b5"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `resolveDatabasePath`
+#### `resolveDatabasePath` {#symbol-resolvedatabasepath}
 - Type: function
 - Source: [source](../../../../../../packages/server/src/runtime/environment.ts#L10)
 
-#### `resolveWorkspaceRoot`
+#### `resolveWorkspaceRoot` {#symbol-resolveworkspaceroot}
 - Type: function
 - Source: [source](../../../../../../packages/server/src/runtime/environment.ts#L24)
 
-#### `fileUriToPath`
+#### `fileUriToPath` {#symbol-fileuritopath}
 - Type: function
 - Source: [source](../../../../../../packages/server/src/runtime/environment.ts#L40)
 
-#### `ensureDirectory`
+#### `ensureDirectory` {#symbol-ensuredirectory}
 - Type: function
 - Source: [source](../../../../../../packages/server/src/runtime/environment.ts#L60)
 
-#### `describeError`
+#### `describeError` {#symbol-describeerror}
 - Type: function
 - Source: [source](../../../../../../packages/server/src/runtime/environment.ts#L66)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -45,7 +45,7 @@ Provides shared runtime utilities for the language server—resolving database l
 - `node:os` - `os`
 - `node:path` - `path`
 - `node:url` - `fileURLToPath`
-- [`providerGuard.ExtensionSettings`](../features/settings/providerGuard.ts.mdmd.md#extensionsettings)
+- [`providerGuard.ExtensionSettings`](../features/settings/providerGuard.ts.mdmd.md#symbol-extensionsettings)
 - `vscode-languageserver/node` - `InitializeParams`
 <!-- LIVE-DOC:END Dependencies -->
 

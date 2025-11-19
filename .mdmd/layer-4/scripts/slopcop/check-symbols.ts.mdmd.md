@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/slopcop/check-symbols.ts
 - Live Doc ID: LD-implementation-scripts-slopcop-check-symbols-ts
-- Generated At: 2025-11-16T22:34:14.133Z
+- Generated At: 2025-11-19T15:01:36.017Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Validates markdown symbol anchors across the workspace, flagging duplicate headi
 - The `--json` flag mirrors what the integration tests expect, allowing fixture runs to assert on specific issues while the human-readable formatter groups results by top-level folder for triage.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.133Z","inputHash":"ba8f344a5b1a6ed8"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.017Z","inputHash":"ba8f344a5b1a6ed8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -29,12 +29,12 @@ _No public symbols detected_
 - `node:fs` - `fs`
 - `node:path` - `path`
 - `node:process` - `process`
-- [`symbolReferences.SymbolReferenceIssue`](../../packages/shared/src/tooling/symbolReferences.ts.mdmd.md#symbolreferenceissue)
-- [`symbolReferences.SymbolRuleSetting`](../../packages/shared/src/tooling/symbolReferences.ts.mdmd.md#symbolrulesetting)
-- [`symbolReferences.findSymbolReferenceAnomalies`](../../packages/shared/src/tooling/symbolReferences.ts.mdmd.md#findsymbolreferenceanomalies)
-- [`config.SlopcopSymbolConfig`](./config.ts.mdmd.md#slopcopsymbolconfig)
-- [`config.compileIgnorePatterns`](./config.ts.mdmd.md#compileignorepatterns)
-- [`config.loadSlopcopConfig`](./config.ts.mdmd.md#loadslopcopconfig)
-- [`config.resolveIgnoreGlobs`](./config.ts.mdmd.md#resolveignoreglobs)
-- [`config.resolveIncludeGlobs`](./config.ts.mdmd.md#resolveincludeglobs)
+- [`symbolReferences.SymbolReferenceIssue`](../../packages/shared/src/tooling/symbolReferences.ts.mdmd.md#symbol-symbolreferenceissue)
+- [`symbolReferences.SymbolRuleSetting`](../../packages/shared/src/tooling/symbolReferences.ts.mdmd.md#symbol-symbolrulesetting)
+- [`symbolReferences.findSymbolReferenceAnomalies`](../../packages/shared/src/tooling/symbolReferences.ts.mdmd.md#symbol-findsymbolreferenceanomalies)
+- [`config.SlopcopSymbolConfig`](./config.ts.mdmd.md#symbol-slopcopsymbolconfig)
+- [`config.compileIgnorePatterns`](./config.ts.mdmd.md#symbol-compileignorepatterns)
+- [`config.loadSlopcopConfig`](./config.ts.mdmd.md#symbol-loadslopcopconfig)
+- [`config.resolveIgnoreGlobs`](./config.ts.mdmd.md#symbol-resolveignoreglobs)
+- [`config.resolveIncludeGlobs`](./config.ts.mdmd.md#symbol-resolveincludeglobs)
 <!-- LIVE-DOC:END Dependencies -->

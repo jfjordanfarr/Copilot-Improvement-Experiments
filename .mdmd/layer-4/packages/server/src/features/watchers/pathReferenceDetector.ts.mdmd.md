@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/watchers/pathReferenceDetector.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-watchers-pathreferencedetector-ts
-- Generated At: 2025-11-16T22:35:16.293Z
+- Generated At: 2025-11-19T15:01:34.473Z
 
 ## Authored
 ### Purpose
@@ -16,18 +16,18 @@ Extracts relative-path references from markdown and code so the watcher pipeline
 - When workspace indexing rules change (new script/doc globs or additional path hint sources) update these heuristics in tandem so seed hints continue to mirror the indexer output <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2832-L2864>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.293Z","inputHash":"367036819d5c26f5"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.473Z","inputHash":"367036819d5c26f5"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ArtifactCategory`
+#### `ArtifactCategory` {#symbol-artifactcategory}
 - Type: type
 - Source: [source](../../../../../../../packages/server/src/features/watchers/pathReferenceDetector.ts#L9)
 
-#### `PathReferenceOrigin`
+#### `PathReferenceOrigin` {#symbol-pathreferenceorigin}
 - Type: type
 - Source: [source](../../../../../../../packages/server/src/features/watchers/pathReferenceDetector.ts#L11)
 
-#### `buildFileReferenceHints`
+#### `buildFileReferenceHints` {#symbol-buildfilereferencehints}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/watchers/pathReferenceDetector.ts#L56)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -37,8 +37,8 @@ Extracts relative-path references from markdown and code so the watcher pipeline
 - `node:fs` - `fs`
 - `node:path` - `path`
 - `node:url` - `fileURLToPath`, `pathToFileURL`
-- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#normalizefileuri)
-- [`index.RelationshipHint`](../../../../shared/src/index.ts.mdmd.md#relationshiphint) (type-only)
+- [`uri.normalizeFileUri`](../utils/uri.ts.mdmd.md#symbol-normalizefileuri)
+- [`index.RelationshipHint`](../../../../shared/src/index.ts.mdmd.md#symbol-relationshiphint) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/core.docstring.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-core-docstring-test-ts
-- Generated At: 2025-11-18T16:28:51.621Z
+- Generated At: 2025-11-19T15:01:35.277Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies the Live Docs extraction engine emits structured docstrings for TypeScr
 - Works in concert with the polyglot adapter tests landed the same week, ensuring the shared core honors language-specific docstring structures.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-12.SUMMARIZED.md#turn-08-stand-up-co-activation-infrastructure-lines-1101-1220]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T16:28:51.621Z","inputHash":"07a58707d305d488"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.277Z","inputHash":"07a58707d305d488"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -25,10 +25,10 @@ _No public symbols detected_
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../config/liveDocumentationConfig.ts.mdmd.md#live_documentation_file_extension)
-- [`core.collectExportedSymbols`](./core.ts.mdmd.md#collectexportedsymbols)
-- [`core.computePublicSymbolHeadingInfo`](./core.ts.mdmd.md#computepublicsymbolheadinginfo)
-- [`core.renderPublicSymbolLines`](./core.ts.mdmd.md#renderpublicsymbollines)
+- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_file_extension)
+- [`core.collectExportedSymbols`](./core.ts.mdmd.md#symbol-collectexportedsymbols)
+- [`core.computePublicSymbolHeadingInfo`](./core.ts.mdmd.md#symbol-computepublicsymbolheadinginfo)
+- [`core.renderPublicSymbolLines`](./core.ts.mdmd.md#symbol-renderpublicsymbollines)
 - `typescript` - `ts`
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->

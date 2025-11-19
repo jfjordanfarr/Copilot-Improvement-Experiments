@@ -1,0 +1,64 @@
+# tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb
+
+## Metadata
+- Layer: 4
+- Archetype: asset
+- Code Path: tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb
+- Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-ruby-cli-lib-services-cache-rb
+- Generated At: 2025-11-19T15:01:36.267Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.267Z","inputHash":"071058bcf10dd6ee"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+#### `BenchmarkCLI` {#symbol-benchmarkcli}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb#L3)
+
+#### `Services` {#symbol-services}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb#L4)
+
+#### `Cache` {#symbol-cache}
+- Type: module
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb#L5)
+
+#### `fetch` {#symbol-fetch}
+- Type: method
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb#L15)
+
+##### `fetch` — Summary
+Retrieves a cached entry.
+
+##### `fetch` — Parameters
+- `key`: Lookup key (the dataset itself).
+
+##### `fetch` — Returns
+[Hash, nil] Cached summary when available.
+
+#### `store` {#symbol-store}
+- Type: method
+- Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/cli/lib/services/cache.rb#L24)
+
+##### `store` — Summary
+Persists a cached entry.
+
+##### `store` — Parameters
+- `key`: Dataset used to compute the summary.
+- `value`: Summary payload produced by Analyzer.
+
+##### `store` — Returns
+[void]
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+_No dependencies documented yet_
+<!-- LIVE-DOC:END Dependencies -->

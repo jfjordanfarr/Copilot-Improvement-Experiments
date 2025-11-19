@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/shared.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-shared-ts
-- Generated At: 2025-11-16T22:34:12.841Z
+- Generated At: 2025-11-19T15:01:35.020Z
 
 ## Authored
 ### Purpose
@@ -16,46 +16,46 @@ Provides the cross-language path normalisation, comment filtering, and reference
 - The extension-swapping logic was introduced to keep `.js` specifiers mapped onto `.ts/.tsx` sources; extend the replacement list in this helper instead of reimplementing it in future heuristics <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-01.md#L2302-L2315>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.841Z","inputHash":"98cd2314cac724c0"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.020Z","inputHash":"98cd2314cac724c0"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `cleanupReference`
+#### `cleanupReference` {#symbol-cleanupreference}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L6)
 
-#### `isExternalLink`
+#### `isExternalLink` {#symbol-isexternallink}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L10)
 
-#### `normalizePath`
+#### `normalizePath` {#symbol-normalizepath}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L14)
 
-#### `stem`
+#### `stem` {#symbol-stem}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L18)
 
-#### `toComparablePath`
+#### `toComparablePath` {#symbol-tocomparablepath}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L24)
 
-#### `computeReferenceStart`
+#### `computeReferenceStart` {#symbol-computereferencestart}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L36)
 
-#### `isWithinComment`
+#### `isWithinComment` {#symbol-iswithincomment}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L49)
 
-#### `buildReferenceVariants`
+#### `buildReferenceVariants` {#symbol-buildreferencevariants}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L88)
 
-#### `VariantMatchScore`
+#### `VariantMatchScore` {#symbol-variantmatchscore}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L132)
 
-#### `evaluateVariantMatch`
+#### `evaluateVariantMatch` {#symbol-evaluatevariantmatch}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/shared.ts#L137)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -64,7 +64,7 @@ Provides the cross-language path normalisation, comment filtering, and reference
 ### Dependencies
 - `node:path` - `path`
 - `node:url` - `fileURLToPath`
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

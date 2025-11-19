@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-index-ts
-- Generated At: 2025-11-18T00:40:47.221Z
+- Generated At: 2025-11-19T15:09:34.121Z
 
 ## Authored
 ### Purpose
@@ -15,66 +15,66 @@ Provides the single `@copilot-improvement/shared` entrypoint that re-exports inf
 - Carries new Live Documentation configuration exports introduced during the Stage 0 adoption push, letting downstream commands honour the configurable base layer without bespoke wiring ([Stage 0 configuration pass](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-08.SUMMARIZED.md#turn-12-stage-0-complete-with-config--staging-tree-lines-2021-2160)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:40:47.221Z","inputHash":"55760e4636e167cf"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:09:34.121Z","inputHash":"55760e4636e167cf"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `RelationshipExtractor`
+#### `RelationshipExtractor` {#symbol-relationshipextractor}
 - Type: unknown
 - Source: [source](../../../../../packages/shared/src/index.ts#L28)
 
-#### `RelationshipExtractorError`
+#### `RelationshipExtractorError` {#symbol-relationshipextractorerror}
 - Type: unknown
 - Source: [source](../../../../../packages/shared/src/index.ts#L29)
 
-#### `RelationshipExtractorLogger`
+#### `RelationshipExtractorLogger` {#symbol-relationshipextractorlogger}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L30)
 
-#### `RelationshipExtractionBatch`
+#### `RelationshipExtractionBatch` {#symbol-relationshipextractionbatch}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L31)
 
-#### `RelationshipExtractionPrompt`
+#### `RelationshipExtractionPrompt` {#symbol-relationshipextractionprompt}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L32)
 
-#### `RelationshipExtractionRequest`
+#### `RelationshipExtractionRequest` {#symbol-relationshipextractionrequest}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L33)
 
-#### `RawRelationshipCandidate`
+#### `RawRelationshipCandidate` {#symbol-rawrelationshipcandidate}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L34)
 
-#### `ModelInvocationRequest`
+#### `ModelInvocationRequest` {#symbol-modelinvocationrequest}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L35)
 
-#### `ModelInvocationResult`
+#### `ModelInvocationResult` {#symbol-modelinvocationresult}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L36)
 
-#### `ModelInvoker`
+#### `ModelInvoker` {#symbol-modelinvoker}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L37)
 
-#### `ModelUsage`
+#### `ModelUsage` {#symbol-modelusage}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L38)
 
-#### `calibrateConfidence`
+#### `calibrateConfidence` {#symbol-calibrateconfidence}
 - Type: unknown
 - Source: [source](../../../../../packages/shared/src/index.ts#L42)
 
-#### `CalibratedRelationship`
+#### `CalibratedRelationship` {#symbol-calibratedrelationship}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L43)
 
-#### `LlmConfidenceTier`
+#### `LlmConfidenceTier` {#symbol-llmconfidencetier}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L44)
 
-#### `CalibrationContext`
+#### `CalibrationContext` {#symbol-calibrationcontext}
 - Type: type (type-only)
 - Source: [source](../../../../../packages/shared/src/index.ts#L45)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -95,21 +95,21 @@ Provides the single `@copilot-improvement/shared` entrypoint that re-exports inf
 - [`artifacts`](./domain/artifacts.ts.mdmd.md) (re-export)
 - [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md) (re-export)
 - [`linkInference`](./inference/linkInference.ts.mdmd.md) (re-export)
-- [`confidenceCalibrator.CalibratedRelationship`](./inference/llm/confidenceCalibrator.ts.mdmd.md#calibratedrelationship) (re-export)
-- [`confidenceCalibrator.CalibrationContext`](./inference/llm/confidenceCalibrator.ts.mdmd.md#calibrationcontext) (re-export)
-- [`confidenceCalibrator.LlmConfidenceTier`](./inference/llm/confidenceCalibrator.ts.mdmd.md#confidencetier) (re-export)
-- [`confidenceCalibrator.calibrateConfidence`](./inference/llm/confidenceCalibrator.ts.mdmd.md#calibrateconfidence) (re-export)
-- [`relationshipExtractor.ModelInvocationRequest`](./inference/llm/relationshipExtractor.ts.mdmd.md#modelinvocationrequest) (re-export)
-- [`relationshipExtractor.ModelInvocationResult`](./inference/llm/relationshipExtractor.ts.mdmd.md#modelinvocationresult) (re-export)
-- [`relationshipExtractor.ModelInvoker`](./inference/llm/relationshipExtractor.ts.mdmd.md#modelinvoker) (re-export)
-- [`relationshipExtractor.ModelUsage`](./inference/llm/relationshipExtractor.ts.mdmd.md#modelusage) (re-export)
-- [`relationshipExtractor.RawRelationshipCandidate`](./inference/llm/relationshipExtractor.ts.mdmd.md#rawrelationshipcandidate) (re-export)
-- [`relationshipExtractor.RelationshipExtractionBatch`](./inference/llm/relationshipExtractor.ts.mdmd.md#relationshipextractionbatch) (re-export)
-- [`relationshipExtractor.RelationshipExtractionPrompt`](./inference/llm/relationshipExtractor.ts.mdmd.md#relationshipextractionprompt) (re-export)
-- [`relationshipExtractor.RelationshipExtractionRequest`](./inference/llm/relationshipExtractor.ts.mdmd.md#relationshipextractionrequest) (re-export)
-- [`relationshipExtractor.RelationshipExtractor`](./inference/llm/relationshipExtractor.ts.mdmd.md#relationshipextractor) (re-export)
-- [`relationshipExtractor.RelationshipExtractorError`](./inference/llm/relationshipExtractor.ts.mdmd.md#relationshipextractorerror) (re-export)
-- [`relationshipExtractor.RelationshipExtractorLogger`](./inference/llm/relationshipExtractor.ts.mdmd.md#relationshipextractorlogger) (re-export)
+- [`confidenceCalibrator.CalibratedRelationship`](./inference/llm/confidenceCalibrator.ts.mdmd.md#symbol-calibratedrelationship) (re-export)
+- [`confidenceCalibrator.CalibrationContext`](./inference/llm/confidenceCalibrator.ts.mdmd.md#symbol-calibrationcontext) (re-export)
+- [`confidenceCalibrator.LlmConfidenceTier`](./inference/llm/confidenceCalibrator.ts.mdmd.md#symbol-confidencetier) (re-export)
+- [`confidenceCalibrator.calibrateConfidence`](./inference/llm/confidenceCalibrator.ts.mdmd.md#symbol-calibrateconfidence) (re-export)
+- [`relationshipExtractor.ModelInvocationRequest`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-modelinvocationrequest) (re-export)
+- [`relationshipExtractor.ModelInvocationResult`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-modelinvocationresult) (re-export)
+- [`relationshipExtractor.ModelInvoker`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-modelinvoker) (re-export)
+- [`relationshipExtractor.ModelUsage`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-modelusage) (re-export)
+- [`relationshipExtractor.RawRelationshipCandidate`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-rawrelationshipcandidate) (re-export)
+- [`relationshipExtractor.RelationshipExtractionBatch`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-relationshipextractionbatch) (re-export)
+- [`relationshipExtractor.RelationshipExtractionPrompt`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-relationshipextractionprompt) (re-export)
+- [`relationshipExtractor.RelationshipExtractionRequest`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-relationshipextractionrequest) (re-export)
+- [`relationshipExtractor.RelationshipExtractor`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-relationshipextractor) (re-export)
+- [`relationshipExtractor.RelationshipExtractorError`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-relationshipextractorerror) (re-export)
+- [`relationshipExtractor.RelationshipExtractorLogger`](./inference/llm/relationshipExtractor.ts.mdmd.md#symbol-relationshipextractorlogger) (re-export)
 - [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md) (re-export)
 - [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md) (re-export)
 - [`parse`](./live-docs/parse.ts.mdmd.md) (re-export)
@@ -167,762 +167,762 @@ Provides the single `@copilot-improvement/shared` entrypoint that re-exports inf
 
 <!-- LIVE-DOC:BEGIN Re-Exported Symbol Anchors -->
 ### Re-Exported Symbol Anchors
-#### `AccuracySample`
-- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#accuracysample)
+#### `AccuracySample` {#symbol-accuracysample}
+- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#symbol-accuracysample)
 
-#### `AccuracyTotals`
-- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#accuracytotals)
+#### `AccuracyTotals` {#symbol-accuracytotals}
+- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#symbol-accuracytotals)
 
-#### `ACKNOWLEDGE_DIAGNOSTIC_REQUEST`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#acknowledge_diagnostic_request)
+#### `ACKNOWLEDGE_DIAGNOSTIC_REQUEST` {#symbol-acknowledge_diagnostic_request}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-acknowledge_diagnostic_request)
 
-#### `AcknowledgeDiagnosticParams`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#acknowledgediagnosticparams)
+#### `AcknowledgeDiagnosticParams` {#symbol-acknowledgediagnosticparams}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-acknowledgediagnosticparams)
 
-#### `AcknowledgeDiagnosticResult`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#acknowledgediagnosticresult)
+#### `AcknowledgeDiagnosticResult` {#symbol-acknowledgediagnosticresult}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-acknowledgediagnosticresult)
 
-#### `AcknowledgeDiagnosticStatus`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#acknowledgediagnosticstatus)
+#### `AcknowledgeDiagnosticStatus` {#symbol-acknowledgediagnosticstatus}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-acknowledgediagnosticstatus)
 
-#### `AcknowledgementAction`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#acknowledgementaction)
+#### `AcknowledgementAction` {#symbol-acknowledgementaction}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-acknowledgementaction)
 
-#### `AcknowledgementActionType`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#acknowledgementactiontype)
+#### `AcknowledgementActionType` {#symbol-acknowledgementactiontype}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-acknowledgementactiontype)
 
-#### `ArtifactLayer`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#artifactlayer)
+#### `ArtifactLayer` {#symbol-artifactlayer}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-artifactlayer)
 
-#### `ArtifactSeed`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#artifactseed)
+#### `ArtifactSeed` {#symbol-artifactseed}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-artifactseed)
 
-#### `AssetAuditOptions`
-- Re-exported from [`assetPaths`](./tooling/assetPaths.ts.mdmd.md#assetauditoptions)
+#### `AssetAuditOptions` {#symbol-assetauditoptions}
+- Re-exported from [`assetPaths`](./tooling/assetPaths.ts.mdmd.md#symbol-assetauditoptions)
 
-#### `AssetReferenceIssue`
-- Re-exported from [`assetPaths`](./tooling/assetPaths.ts.mdmd.md#assetreferenceissue)
+#### `AssetReferenceIssue` {#symbol-assetreferenceissue}
+- Re-exported from [`assetPaths`](./tooling/assetPaths.ts.mdmd.md#symbol-assetreferenceissue)
 
-#### `AstAccuracyData`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#astaccuracydata)
+#### `AstAccuracyData` {#symbol-astaccuracydata}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-astaccuracydata)
 
-#### `AstAccuracyFixture`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#astaccuracyfixture)
+#### `AstAccuracyFixture` {#symbol-astaccuracyfixture}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-astaccuracyfixture)
 
-#### `AstAccuracyTotals`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#astaccuracytotals)
+#### `AstAccuracyTotals` {#symbol-astaccuracytotals}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-astaccuracytotals)
 
-#### `BenchmarkAccuracySummary`
-- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#benchmarkaccuracysummary)
+#### `BenchmarkAccuracySummary` {#symbol-benchmarkaccuracysummary}
+- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#symbol-benchmarkaccuracysummary)
 
-#### `BenchmarkEnvironment`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#benchmarkenvironment)
+#### `BenchmarkEnvironment` {#symbol-benchmarkenvironment}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-benchmarkenvironment)
 
-#### `BenchmarkRecord`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#benchmarkrecord)
+#### `BenchmarkRecord` {#symbol-benchmarkrecord}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-benchmarkrecord)
 
-#### `buildTestReportMarkdown`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#buildtestreportmarkdown)
+#### `buildTestReportMarkdown` {#symbol-buildtestreportmarkdown}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-buildtestreportmarkdown)
 
-#### `ChangeEvent`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#changeevent)
+#### `ChangeEvent` {#symbol-changeevent}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-changeevent)
 
-#### `ChangeEventProvenance`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#changeeventprovenance)
+#### `ChangeEventProvenance` {#symbol-changeeventprovenance}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-changeeventprovenance)
 
-#### `ChangeEventRange`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#changeeventrange)
+#### `ChangeEventRange` {#symbol-changeeventrange}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-changeeventrange)
 
-#### `ChangeEventType`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#changeeventtype)
+#### `ChangeEventType` {#symbol-changeeventtype}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-changeeventtype)
 
-#### `COLLECT_WORKSPACE_SYMBOLS_REQUEST`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#collect_workspace_symbols_request)
+#### `COLLECT_WORKSPACE_SYMBOLS_REQUEST` {#symbol-collect_workspace_symbols_request}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-collect_workspace_symbols_request)
 
-#### `collectIdentifierUsage`
-- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#collectidentifierusage)
+#### `collectIdentifierUsage` {#symbol-collectidentifierusage}
+- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#symbol-collectidentifierusage)
 
-#### `CollectWorkspaceSymbolsParams`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#collectworkspacesymbolsparams)
+#### `CollectWorkspaceSymbolsParams` {#symbol-collectworkspacesymbolsparams}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-collectworkspacesymbolsparams)
 
-#### `CollectWorkspaceSymbolsResult`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#collectworkspacesymbolsresult)
+#### `CollectWorkspaceSymbolsResult` {#symbol-collectworkspacesymbolsresult}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-collectworkspacesymbolsresult)
 
-#### `CollectWorkspaceSymbolsResultSummary`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#collectworkspacesymbolsresultsummary)
+#### `CollectWorkspaceSymbolsResultSummary` {#symbol-collectworkspacesymbolsresultsummary}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-collectworkspacesymbolsresultsummary)
 
-#### `CompiledRelationshipRule`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#compiledrelationshiprule)
+#### `CompiledRelationshipRule` {#symbol-compiledrelationshiprule}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-compiledrelationshiprule)
 
-#### `CompiledRelationshipRulePropagation`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#compiledrelationshiprulepropagation)
+#### `CompiledRelationshipRulePropagation` {#symbol-compiledrelationshiprulepropagation}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-compiledrelationshiprulepropagation)
 
-#### `CompiledRelationshipRules`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#compiledrelationshiprules)
+#### `CompiledRelationshipRules` {#symbol-compiledrelationshiprules}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-compiledrelationshiprules)
 
-#### `CompiledRelationshipRuleStep`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#compiledrelationshiprulestep)
+#### `CompiledRelationshipRuleStep` {#symbol-compiledrelationshiprulestep}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-compiledrelationshiprulestep)
 
-#### `CompiledSymbolProfile`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#compiledsymbolprofile)
+#### `CompiledSymbolProfile` {#symbol-compiledsymbolprofile}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-compiledsymbolprofile)
 
-#### `CompiledSymbolProfileRequirement`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#compiledsymbolprofilerequirement)
+#### `CompiledSymbolProfileRequirement` {#symbol-compiledsymbolprofilerequirement}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-compiledsymbolprofilerequirement)
 
-#### `CompiledSymbolProfileSource`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#compiledsymbolprofilesource)
+#### `CompiledSymbolProfileSource` {#symbol-compiledsymbolprofilesource}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-compiledsymbolprofilesource)
 
-#### `CompiledSymbolProfileTarget`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#compiledsymbolprofiletarget)
+#### `CompiledSymbolProfileTarget` {#symbol-compiledsymbolprofiletarget}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-compiledsymbolprofiletarget)
 
-#### `compileRelationshipRules`
-- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#compilerelationshiprules)
+#### `compileRelationshipRules` {#symbol-compilerelationshiprules}
+- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#symbol-compilerelationshiprules)
 
-#### `compileSymbolProfiles`
-- Re-exported from [`symbolCorrectnessProfiles`](./rules/symbolCorrectnessProfiles.ts.mdmd.md#compilesymbolprofiles)
+#### `compileSymbolProfiles` {#symbol-compilesymbolprofiles}
+- Re-exported from [`symbolCorrectnessProfiles`](./rules/symbolCorrectnessProfiles.ts.mdmd.md#symbol-compilesymbolprofiles)
 
-#### `CompileSymbolProfilesResult`
-- Re-exported from [`symbolCorrectnessProfiles`](./rules/symbolCorrectnessProfiles.ts.mdmd.md#compilesymbolprofilesresult)
+#### `CompileSymbolProfilesResult` {#symbol-compilesymbolprofilesresult}
+- Re-exported from [`symbolCorrectnessProfiles`](./rules/symbolCorrectnessProfiles.ts.mdmd.md#symbol-compilesymbolprofilesresult)
 
-#### `createBuiltInResolvers`
-- Re-exported from [`relationshipResolvers`](./rules/relationshipResolvers.ts.mdmd.md#createbuiltinresolvers)
+#### `createBuiltInResolvers` {#symbol-createbuiltinresolvers}
+- Re-exported from [`relationshipResolvers`](./rules/relationshipResolvers.ts.mdmd.md#symbol-createbuiltinresolvers)
 
-#### `createMockOllamaResponse`
-- Re-exported from [`ollamaMock`](./tooling/ollamaMock.ts.mdmd.md#createmockollamaresponse)
+#### `createMockOllamaResponse` {#symbol-createmockollamaresponse}
+- Re-exported from [`ollamaMock`](./tooling/ollamaMock.ts.mdmd.md#symbol-createmockollamaresponse)
 
-#### `CreateMockOllamaResponseOptions`
-- Re-exported from [`ollamaMock`](./tooling/ollamaMock.ts.mdmd.md#createmockollamaresponseoptions)
+#### `CreateMockOllamaResponseOptions` {#symbol-createmockollamaresponseoptions}
+- Re-exported from [`ollamaMock`](./tooling/ollamaMock.ts.mdmd.md#symbol-createmockollamaresponseoptions)
 
-#### `createRelationshipRuleProvider`
-- Re-exported from [`relationshipRuleProvider`](./rules/relationshipRuleProvider.ts.mdmd.md#createrelationshipruleprovider)
+#### `createRelationshipRuleProvider` {#symbol-createrelationshipruleprovider}
+- Re-exported from [`relationshipRuleProvider`](./rules/relationshipRuleProvider.ts.mdmd.md#symbol-createrelationshipruleprovider)
 
-#### `DEFAULT_LIVE_DOCUMENTATION_CONFIG`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#default_live_documentation_config)
+#### `DEFAULT_LIVE_DOCUMENTATION_CONFIG` {#symbol-default_live_documentation_config}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-default_live_documentation_config)
 
-#### `DEFAULT_OLLAMA_ENDPOINT`
-- Re-exported from [`ollamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#default_ollama_endpoint)
+#### `DEFAULT_OLLAMA_ENDPOINT` {#symbol-default_ollama_endpoint}
+- Re-exported from [`ollamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#symbol-default_ollama_endpoint)
 
-#### `DependencyGraphEdge`
-- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#dependencygraphedge)
+#### `DependencyGraphEdge` {#symbol-dependencygraphedge}
+- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#symbol-dependencygraphedge)
 
-#### `DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#diagnostic_acknowledged_notification)
+#### `DIAGNOSTIC_ACKNOWLEDGED_NOTIFICATION` {#symbol-diagnostic_acknowledged_notification}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-diagnostic_acknowledged_notification)
 
-#### `DiagnosticAcknowledgedPayload`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#diagnosticacknowledgedpayload)
+#### `DiagnosticAcknowledgedPayload` {#symbol-diagnosticacknowledgedpayload}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-diagnosticacknowledgedpayload)
 
-#### `DiagnosticArtifactSummary`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#diagnosticartifactsummary)
+#### `DiagnosticArtifactSummary` {#symbol-diagnosticartifactsummary}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-diagnosticartifactsummary)
 
-#### `DiagnosticRecord`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#diagnosticrecord)
+#### `DiagnosticRecord` {#symbol-diagnosticrecord}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-diagnosticrecord)
 
-#### `DiagnosticSeverity`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#diagnosticseverity)
+#### `DiagnosticSeverity` {#symbol-diagnosticseverity}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-diagnosticseverity)
 
-#### `DiagnosticStatus`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#diagnosticstatus)
+#### `DiagnosticStatus` {#symbol-diagnosticstatus}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-diagnosticstatus)
 
-#### `DriftHistoryEntry`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#drifthistoryentry)
+#### `DriftHistoryEntry` {#symbol-drifthistoryentry}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-drifthistoryentry)
 
-#### `DriftHistoryStatus`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#drifthistorystatus)
+#### `DriftHistoryStatus` {#symbol-drifthistorystatus}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-drifthistorystatus)
 
-#### `DriftHistorySummary`
-- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#drifthistorysummary)
+#### `DriftHistorySummary` {#symbol-drifthistorysummary}
+- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#symbol-drifthistorysummary)
 
-#### `evaluateRelationshipCoverage`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#evaluaterelationshipcoverage)
+#### `evaluateRelationshipCoverage` {#symbol-evaluaterelationshipcoverage}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-evaluaterelationshipcoverage)
 
-#### `EvaluateRelationshipCoverageOptions`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#evaluaterelationshipcoverageoptions)
+#### `EvaluateRelationshipCoverageOptions` {#symbol-evaluaterelationshipcoverageoptions}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-evaluaterelationshipcoverageoptions)
 
-#### `EXPORT_DIAGNOSTICS_REQUEST`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#export_diagnostics_request)
+#### `EXPORT_DIAGNOSTICS_REQUEST` {#symbol-export_diagnostics_request}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-export_diagnostics_request)
 
-#### `ExportDiagnosticsResult`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#exportdiagnosticsresult)
+#### `ExportDiagnosticsResult` {#symbol-exportdiagnosticsresult}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-exportdiagnosticsresult)
 
-#### `ExternalArtifact`
-- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#externalartifact)
+#### `ExternalArtifact` {#symbol-externalartifact}
+- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externalartifact)
 
-#### `ExternalLink`
-- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#externallink)
+#### `ExternalLink` {#symbol-externallink}
+- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externallink)
 
-#### `ExternalSnapshot`
-- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#externalsnapshot)
+#### `ExternalSnapshot` {#symbol-externalsnapshot}
+- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externalsnapshot)
 
-#### `ExternalStreamEvent`
-- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#externalstreamevent)
+#### `ExternalStreamEvent` {#symbol-externalstreamevent}
+- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-externalstreamevent)
 
-#### `extractLocalImportNames`
-- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#extractlocalimportnames)
+#### `extractLocalImportNames` {#symbol-extractlocalimportnames}
+- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#symbol-extractlocalimportnames)
 
-#### `FallbackGraphInput`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#fallbackgraphinput)
+#### `FallbackGraphInput` {#symbol-fallbackgraphinput}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-fallbackgraphinput)
 
-#### `FallbackGraphOptions`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#fallbackgraphoptions)
+#### `FallbackGraphOptions` {#symbol-fallbackgraphoptions}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-fallbackgraphoptions)
 
-#### `FallbackInferenceResult`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#fallbackinferenceresult)
+#### `FallbackInferenceResult` {#symbol-fallbackinferenceresult}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-fallbackinferenceresult)
 
-#### `FallbackLLMBridge`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#fallbackllmbridge)
+#### `FallbackLLMBridge` {#symbol-fallbackllmbridge}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-fallbackllmbridge)
 
-#### `FEEDS_READY_REQUEST`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#feeds_ready_request)
+#### `FEEDS_READY_REQUEST` {#symbol-feeds_ready_request}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-feeds_ready_request)
 
-#### `FeedsReadyResult`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#feedsreadyresult)
+#### `FeedsReadyResult` {#symbol-feedsreadyresult}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-feedsreadyresult)
 
-#### `findBrokenAssetReferences`
-- Re-exported from [`assetPaths`](./tooling/assetPaths.ts.mdmd.md#findbrokenassetreferences)
+#### `findBrokenAssetReferences` {#symbol-findbrokenassetreferences}
+- Re-exported from [`assetPaths`](./tooling/assetPaths.ts.mdmd.md#symbol-findbrokenassetreferences)
 
-#### `findBrokenMarkdownLinks`
-- Re-exported from [`markdownLinks`](./tooling/markdownLinks.ts.mdmd.md#findbrokenmarkdownlinks)
+#### `findBrokenMarkdownLinks` {#symbol-findbrokenmarkdownlinks}
+- Re-exported from [`markdownLinks`](./tooling/markdownLinks.ts.mdmd.md#symbol-findbrokenmarkdownlinks)
 
-#### `findSymbolReferenceAnomalies`
-- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#findsymbolreferenceanomalies)
+#### `findSymbolReferenceAnomalies` {#symbol-findsymbolreferenceanomalies}
+- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbol-findsymbolreferenceanomalies)
 
-#### `formatRelationshipDiagnostics`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#formatrelationshipdiagnostics)
+#### `formatRelationshipDiagnostics` {#symbol-formatrelationshipdiagnostics}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-formatrelationshipdiagnostics)
 
-#### `generateRelationshipEvidences`
-- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#generaterelationshipevidences)
+#### `generateRelationshipEvidences` {#symbol-generaterelationshipevidences}
+- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#symbol-generaterelationshipevidences)
 
-#### `GenerateRelationshipEvidencesOptions`
-- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#generaterelationshipevidencesoptions)
+#### `GenerateRelationshipEvidencesOptions` {#symbol-generaterelationshipevidencesoptions}
+- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#symbol-generaterelationshipevidencesoptions)
 
-#### `GraphStore`
-- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#graphstore)
+#### `GraphStore` {#symbol-graphstore}
+- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#symbol-graphstore)
 
-#### `GraphStoreOptions`
-- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#graphstoreoptions)
+#### `GraphStoreOptions` {#symbol-graphstoreoptions}
+- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#symbol-graphstoreoptions)
 
-#### `hasRuntimeUsage`
-- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#hasruntimeusage)
+#### `hasRuntimeUsage` {#symbol-hasruntimeusage}
+- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#symbol-hasruntimeusage)
 
-#### `hasTypeUsage`
-- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#hastypeusage)
+#### `hasTypeUsage` {#symbol-hastypeusage}
+- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#symbol-hastypeusage)
 
-#### `IdentifierUsage`
-- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#identifierusage)
+#### `IdentifierUsage` {#symbol-identifierusage}
+- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#symbol-identifierusage)
 
-#### `InferenceAccuracySummary`
-- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#inferenceaccuracysummary)
+#### `InferenceAccuracySummary` {#symbol-inferenceaccuracysummary}
+- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#symbol-inferenceaccuracysummary)
 
-#### `InferenceAccuracyTracker`
-- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#inferenceaccuracytracker)
+#### `InferenceAccuracyTracker` {#symbol-inferenceaccuracytracker}
+- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#symbol-inferenceaccuracytracker)
 
-#### `InferenceAccuracyTrackerOptions`
-- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#inferenceaccuracytrackeroptions)
+#### `InferenceAccuracyTrackerOptions` {#symbol-inferenceaccuracytrackeroptions}
+- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#symbol-inferenceaccuracytrackeroptions)
 
-#### `InferenceOutcome`
-- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#inferenceoutcome)
+#### `InferenceOutcome` {#symbol-inferenceoutcome}
+- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#symbol-inferenceoutcome)
 
-#### `InferenceTraceEntry`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#inferencetraceentry)
+#### `InferenceTraceEntry` {#symbol-inferencetraceentry}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-inferencetraceentry)
 
-#### `InferenceTraceOrigin`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#inferencetraceorigin)
+#### `InferenceTraceOrigin` {#symbol-inferencetraceorigin}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-inferencetraceorigin)
 
-#### `inferFallbackGraph`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#inferfallbackgraph)
+#### `inferFallbackGraph` {#symbol-inferfallbackgraph}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-inferfallbackgraph)
 
-#### `INSPECT_DEPENDENCIES_REQUEST`
-- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#inspect_dependencies_request)
+#### `INSPECT_DEPENDENCIES_REQUEST` {#symbol-inspect_dependencies_request}
+- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#symbol-inspect_dependencies_request)
 
-#### `INSPECT_SYMBOL_NEIGHBORS_REQUEST`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#inspect_symbol_neighbors_request)
+#### `INSPECT_SYMBOL_NEIGHBORS_REQUEST` {#symbol-inspect_symbol_neighbors_request}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-inspect_symbol_neighbors_request)
 
-#### `InspectDependenciesParams`
-- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#inspectdependenciesparams)
+#### `InspectDependenciesParams` {#symbol-inspectdependenciesparams}
+- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#symbol-inspectdependenciesparams)
 
-#### `InspectDependenciesResult`
-- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#inspectdependenciesresult)
+#### `InspectDependenciesResult` {#symbol-inspectdependenciesresult}
+- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#symbol-inspectdependenciesresult)
 
-#### `InspectDependenciesSummary`
-- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#inspectdependenciessummary)
+#### `InspectDependenciesSummary` {#symbol-inspectdependenciessummary}
+- Re-exported from [`dependencies`](./contracts/dependencies.ts.mdmd.md#symbol-inspectdependenciessummary)
 
-#### `InspectSymbolNeighborsParams`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#inspectsymbolneighborsparams)
+#### `InspectSymbolNeighborsParams` {#symbol-inspectsymbolneighborsparams}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-inspectsymbolneighborsparams)
 
-#### `InspectSymbolNeighborsResult`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#inspectsymbolneighborsresult)
+#### `InspectSymbolNeighborsResult` {#symbol-inspectsymbolneighborsresult}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-inspectsymbolneighborsresult)
 
-#### `InspectSymbolNeighborsSummary`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#inspectsymbolneighborssummary)
+#### `InspectSymbolNeighborsSummary` {#symbol-inspectsymbolneighborssummary}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-inspectsymbolneighborssummary)
 
-#### `INVOKE_LLM_REQUEST`
-- Re-exported from [`llm`](./contracts/llm.ts.mdmd.md#invoke_llm_request)
+#### `INVOKE_LLM_REQUEST` {#symbol-invoke_llm_request}
+- Re-exported from [`llm`](./contracts/llm.ts.mdmd.md#symbol-invoke_llm_request)
 
-#### `InvokeLlmRequest`
-- Re-exported from [`llm`](./contracts/llm.ts.mdmd.md#invokellmrequest)
+#### `InvokeLlmRequest` {#symbol-invokellmrequest}
+- Re-exported from [`llm`](./contracts/llm.ts.mdmd.md#symbol-invokellmrequest)
 
-#### `InvokeLlmResult`
-- Re-exported from [`llm`](./contracts/llm.ts.mdmd.md#invokellmresult)
+#### `InvokeLlmResult` {#symbol-invokellmresult}
+- Re-exported from [`llm`](./contracts/llm.ts.mdmd.md#symbol-invokellmresult)
 
-#### `invokeOllamaChat`
-- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#invokeollamachat)
+#### `invokeOllamaChat` {#symbol-invokeollamachat}
+- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#symbol-invokeollamachat)
 
-#### `isLikelyTypeDefinitionSpecifier`
-- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#islikelytypedefinitionspecifier)
+#### `isLikelyTypeDefinitionSpecifier` {#symbol-islikelytypedefinitionspecifier}
+- Re-exported from [`typeScriptAstUtils`](./language/typeScriptAstUtils.ts.mdmd.md#symbol-islikelytypedefinitionspecifier)
 
-#### `KnowledgeArtifact`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#knowledgeartifact)
+#### `KnowledgeArtifact` {#symbol-knowledgeartifact}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-knowledgeartifact)
 
-#### `KnowledgeFeed`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#knowledgefeed)
+#### `KnowledgeFeed` {#symbol-knowledgefeed}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-knowledgefeed)
 
-#### `KnowledgeFeedSnapshotSource`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#knowledgefeedsnapshotsource)
+#### `KnowledgeFeedSnapshotSource` {#symbol-knowledgefeedsnapshotsource}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-knowledgefeedsnapshotsource)
 
-#### `KnowledgeFeedStreamSource`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#knowledgefeedstreamsource)
+#### `KnowledgeFeedStreamSource` {#symbol-knowledgefeedstreamsource}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-knowledgefeedstreamsource)
 
-#### `KnowledgeFeedSummary`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#knowledgefeedsummary)
+#### `KnowledgeFeedSummary` {#symbol-knowledgefeedsummary}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-knowledgefeedsummary)
 
-#### `KnowledgeGraphBridge`
-- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#knowledgegraphbridge)
+#### `KnowledgeGraphBridge` {#symbol-knowledgegraphbridge}
+- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-knowledgegraphbridge)
 
-#### `KnowledgeSnapshot`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#knowledgesnapshot)
+#### `KnowledgeSnapshot` {#symbol-knowledgesnapshot}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-knowledgesnapshot)
 
-#### `LATENCY_SUMMARY_REQUEST`
-- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#latency_summary_request)
+#### `LATENCY_SUMMARY_REQUEST` {#symbol-latency_summary_request}
+- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#symbol-latency_summary_request)
 
-#### `LatencyChangeKind`
-- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#latencychangekind)
+#### `LatencyChangeKind` {#symbol-latencychangekind}
+- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#symbol-latencychangekind)
 
-#### `LatencySample`
-- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#latencysample)
+#### `LatencySample` {#symbol-latencysample}
+- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#symbol-latencysample)
 
-#### `LatencySummary`
-- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#latencysummary)
+#### `LatencySummary` {#symbol-latencysummary}
+- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#symbol-latencysummary)
 
-#### `LatencySummaryRequest`
-- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#latencysummaryrequest)
+#### `LatencySummaryRequest` {#symbol-latencysummaryrequest}
+- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#symbol-latencysummaryrequest)
 
-#### `LatencySummaryResponse`
-- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#latencysummaryresponse)
+#### `LatencySummaryResponse` {#symbol-latencysummaryresponse}
+- Re-exported from [`telemetry`](./contracts/telemetry.ts.mdmd.md#symbol-latencysummaryresponse)
 
-#### `LinkedArtifactSummary`
-- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#linkedartifactsummary)
+#### `LinkedArtifactSummary` {#symbol-linkedartifactsummary}
+- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#symbol-linkedartifactsummary)
 
-#### `LinkEvidence`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#linkevidence)
+#### `LinkEvidence` {#symbol-linkevidence}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-linkevidence)
 
-#### `LinkInferenceError`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#linkinferenceerror)
+#### `LinkInferenceError` {#symbol-linkinferenceerror}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-linkinferenceerror)
 
-#### `LinkInferenceOrchestrator`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#linkinferenceorchestrator)
+#### `LinkInferenceOrchestrator` {#symbol-linkinferenceorchestrator}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-linkinferenceorchestrator)
 
-#### `LinkInferenceRunInput`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#linkinferenceruninput)
+#### `LinkInferenceRunInput` {#symbol-linkinferenceruninput}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-linkinferenceruninput)
 
-#### `LinkInferenceRunResult`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#linkinferencerunresult)
+#### `LinkInferenceRunResult` {#symbol-linkinferencerunresult}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-linkinferencerunresult)
 
-#### `LinkInferenceTraceEntry`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#linkinferencetraceentry)
+#### `LinkInferenceTraceEntry` {#symbol-linkinferencetraceentry}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-linkinferencetraceentry)
 
-#### `LinkInferenceTraceOrigin`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#linkinferencetraceorigin)
+#### `LinkInferenceTraceOrigin` {#symbol-linkinferencetraceorigin}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-linkinferencetraceorigin)
 
-#### `LinkOverrideReason`
-- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#linkoverridereason)
+#### `LinkOverrideReason` {#symbol-linkoverridereason}
+- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#symbol-linkoverridereason)
 
-#### `LinkRelationship`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#linkrelationship)
+#### `LinkRelationship` {#symbol-linkrelationship}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-linkrelationship)
 
-#### `LinkRelationshipKind`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#linkrelationshipkind)
+#### `LinkRelationshipKind` {#symbol-linkrelationshipkind}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-linkrelationshipkind)
 
-#### `LIST_OUTSTANDING_DIAGNOSTICS_REQUEST`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#list_outstanding_diagnostics_request)
+#### `LIST_OUTSTANDING_DIAGNOSTICS_REQUEST` {#symbol-list_outstanding_diagnostics_request}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-list_outstanding_diagnostics_request)
 
-#### `ListDriftHistoryOptions`
-- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#listdrifthistoryoptions)
+#### `ListDriftHistoryOptions` {#symbol-listdrifthistoryoptions}
+- Re-exported from [`graphStore`](./db/graphStore.ts.mdmd.md#symbol-listdrifthistoryoptions)
 
-#### `ListOutstandingDiagnosticsResult`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#listoutstandingdiagnosticsresult)
+#### `ListOutstandingDiagnosticsResult` {#symbol-listoutstandingdiagnosticsresult}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-listoutstandingdiagnosticsresult)
 
-#### `LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#live_documentation_default_base_layer)
+#### `LIVE_DOCUMENTATION_DEFAULT_BASE_LAYER` {#symbol-live_documentation_default_base_layer}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_default_base_layer)
 
-#### `LIVE_DOCUMENTATION_DEFAULT_GLOBS`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#live_documentation_default_globs)
+#### `LIVE_DOCUMENTATION_DEFAULT_GLOBS` {#symbol-live_documentation_default_globs}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_default_globs)
 
-#### `LIVE_DOCUMENTATION_DEFAULT_ROOT`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#live_documentation_default_root)
+#### `LIVE_DOCUMENTATION_DEFAULT_ROOT` {#symbol-live_documentation_default_root}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_default_root)
 
-#### `LIVE_DOCUMENTATION_FILE_EXTENSION`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#live_documentation_file_extension)
+#### `LIVE_DOCUMENTATION_FILE_EXTENSION` {#symbol-live_documentation_file_extension}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_file_extension)
 
-#### `LiveDocumentationArchetype`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#livedocumentationarchetype)
+#### `LiveDocumentationArchetype` {#symbol-livedocumentationarchetype}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationarchetype)
 
-#### `LiveDocumentationConfig`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#livedocumentationconfig)
+#### `LiveDocumentationConfig` {#symbol-livedocumentationconfig}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationconfig)
 
-#### `LiveDocumentationConfigInput`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#livedocumentationconfiginput)
+#### `LiveDocumentationConfigInput` {#symbol-livedocumentationconfiginput}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationconfiginput)
 
-#### `LiveDocumentationEvidenceConfig`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#livedocumentationevidenceconfig)
+#### `LiveDocumentationEvidenceConfig` {#symbol-livedocumentationevidenceconfig}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationevidenceconfig)
 
-#### `LiveDocumentationEvidenceStrictMode`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#livedocumentationevidencestrictmode)
+#### `LiveDocumentationEvidenceStrictMode` {#symbol-livedocumentationevidencestrictmode}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationevidencestrictmode)
 
-#### `LiveDocumentationSlugDialect`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#livedocumentationslugdialect)
+#### `LiveDocumentationSlugDialect` {#symbol-livedocumentationslugdialect}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-livedocumentationslugdialect)
 
-#### `LlmAssessment`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#llmassessment)
+#### `LlmAssessment` {#symbol-llmassessment}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-llmassessment)
 
-#### `LlmEdgeProvenance`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#llmedgeprovenance)
+#### `LlmEdgeProvenance` {#symbol-llmedgeprovenance}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-llmedgeprovenance)
 
-#### `LlmModelMetadata`
-- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#llmmodelmetadata)
+#### `LlmModelMetadata` {#symbol-llmmodelmetadata}
+- Re-exported from [`artifacts`](./domain/artifacts.ts.mdmd.md#symbol-llmmodelmetadata)
 
-#### `LLMRelationshipRequest`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#llmrelationshiprequest)
+#### `LLMRelationshipRequest` {#symbol-llmrelationshiprequest}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-llmrelationshiprequest)
 
-#### `LLMRelationshipSuggestion`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#llmrelationshipsuggestion)
+#### `LLMRelationshipSuggestion` {#symbol-llmrelationshipsuggestion}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-llmrelationshipsuggestion)
 
-#### `loadRelationshipRuleConfig`
-- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#loadrelationshipruleconfig)
+#### `loadRelationshipRuleConfig` {#symbol-loadrelationshipruleconfig}
+- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#symbol-loadrelationshipruleconfig)
 
-#### `loadSymbolCorrectnessProfiles`
-- Re-exported from [`symbolCorrectnessProfiles`](./rules/symbolCorrectnessProfiles.ts.mdmd.md#loadsymbolcorrectnessprofiles)
+#### `loadSymbolCorrectnessProfiles` {#symbol-loadsymbolcorrectnessprofiles}
+- Re-exported from [`symbolCorrectnessProfiles`](./rules/symbolCorrectnessProfiles.ts.mdmd.md#symbol-loadsymbolcorrectnessprofiles)
 
-#### `LSIFContainsEdge`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifcontainsedge)
+#### `LSIFContainsEdge` {#symbol-lsifcontainsedge}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifcontainsedge)
 
-#### `LSIFDefinitionEdge`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifdefinitionedge)
+#### `LSIFDefinitionEdge` {#symbol-lsifdefinitionedge}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifdefinitionedge)
 
-#### `LSIFDefinitionResult`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifdefinitionresult)
+#### `LSIFDefinitionResult` {#symbol-lsifdefinitionresult}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifdefinitionresult)
 
-#### `LSIFDocument`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifdocument)
+#### `LSIFDocument` {#symbol-lsifdocument}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifdocument)
 
-#### `LSIFEdge`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifedge)
+#### `LSIFEdge` {#symbol-lsifedge}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifedge)
 
-#### `LSIFEdgeLabel`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifedgelabel)
+#### `LSIFEdgeLabel` {#symbol-lsifedgelabel}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifedgelabel)
 
-#### `LSIFElement`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifelement)
+#### `LSIFElement` {#symbol-lsifelement}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifelement)
 
-#### `LSIFEntry`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifentry)
+#### `LSIFEntry` {#symbol-lsifentry}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifentry)
 
-#### `LSIFItemEdge`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifitemedge)
+#### `LSIFItemEdge` {#symbol-lsifitemedge}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifitemedge)
 
-#### `LSIFMetaData`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifmetadata)
+#### `LSIFMetaData` {#symbol-lsifmetadata}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifmetadata)
 
-#### `LSIFNextEdge`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifnextedge)
+#### `LSIFNextEdge` {#symbol-lsifnextedge}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifnextedge)
 
-#### `LSIFProject`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifproject)
+#### `LSIFProject` {#symbol-lsifproject}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifproject)
 
-#### `LSIFRange`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifrange)
+#### `LSIFRange` {#symbol-lsifrange}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifrange)
 
-#### `LSIFReferenceResult`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifreferenceresult)
+#### `LSIFReferenceResult` {#symbol-lsifreferenceresult}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifreferenceresult)
 
-#### `LSIFReferencesEdge`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifreferencesedge)
+#### `LSIFReferencesEdge` {#symbol-lsifreferencesedge}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifreferencesedge)
 
-#### `LSIFResultSet`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifresultset)
+#### `LSIFResultSet` {#symbol-lsifresultset}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifresultset)
 
-#### `LSIFVertex`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifvertex)
+#### `LSIFVertex` {#symbol-lsifvertex}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifvertex)
 
-#### `LSIFVertexLabel`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#lsifvertexlabel)
+#### `LSIFVertexLabel` {#symbol-lsifvertexlabel}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-lsifvertexlabel)
 
-#### `MarkdownLinkAuditOptions`
-- Re-exported from [`markdownLinks`](./tooling/markdownLinks.ts.mdmd.md#markdownlinkauditoptions)
+#### `MarkdownLinkAuditOptions` {#symbol-markdownlinkauditoptions}
+- Re-exported from [`markdownLinks`](./tooling/markdownLinks.ts.mdmd.md#symbol-markdownlinkauditoptions)
 
-#### `MarkdownLinkIssue`
-- Re-exported from [`markdownLinks`](./tooling/markdownLinks.ts.mdmd.md#markdownlinkissue)
+#### `MarkdownLinkIssue` {#symbol-markdownlinkissue}
+- Re-exported from [`markdownLinks`](./tooling/markdownLinks.ts.mdmd.md#symbol-markdownlinkissue)
 
-#### `MOCK_OLLAMA_MODEL_ID`
-- Re-exported from [`ollamaMock`](./tooling/ollamaMock.ts.mdmd.md#mock_ollama_model_id)
+#### `MOCK_OLLAMA_MODEL_ID` {#symbol-mock_ollama_model_id}
+- Re-exported from [`ollamaMock`](./tooling/ollamaMock.ts.mdmd.md#symbol-mock_ollama_model_id)
 
-#### `MockOllamaResponse`
-- Re-exported from [`ollamaMock`](./tooling/ollamaMock.ts.mdmd.md#mockollamaresponse)
+#### `MockOllamaResponse` {#symbol-mockollamaresponse}
+- Re-exported from [`ollamaMock`](./tooling/ollamaMock.ts.mdmd.md#symbol-mockollamaresponse)
 
-#### `normalizeFileUri`
-- Re-exported from [`normalizeFileUri`](./uri/normalizeFileUri.ts.mdmd.md#normalizefileuri)
+#### `normalizeFileUri` {#symbol-normalizefileuri}
+- Re-exported from [`normalizeFileUri`](./uri/normalizeFileUri.ts.mdmd.md#symbol-normalizefileuri)
 
-#### `normalizeLiveDocumentationConfig`
-- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#normalizelivedocumentationconfig)
+#### `normalizeLiveDocumentationConfig` {#symbol-normalizelivedocumentationconfig}
+- Re-exported from [`liveDocumentationConfig`](./config/liveDocumentationConfig.ts.mdmd.md#symbol-normalizelivedocumentationconfig)
 
-#### `normalizeWorkspacePath`
-- Re-exported from [`pathUtils`](./tooling/pathUtils.ts.mdmd.md#normalizeworkspacepath)
+#### `normalizeWorkspacePath` {#symbol-normalizeworkspacepath}
+- Re-exported from [`pathUtils`](./tooling/pathUtils.ts.mdmd.md#symbol-normalizeworkspacepath)
 
-#### `OllamaChatRequest`
-- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#ollamachatrequest)
+#### `OllamaChatRequest` {#symbol-ollamachatrequest}
+- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#symbol-ollamachatrequest)
 
-#### `OllamaChatResult`
-- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#ollamachatresult)
+#### `OllamaChatResult` {#symbol-ollamachatresult}
+- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#symbol-ollamachatresult)
 
-#### `OllamaChatUsage`
-- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#ollamachatusage)
+#### `OllamaChatUsage` {#symbol-ollamachatusage}
+- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#symbol-ollamachatusage)
 
-#### `OllamaInvocationError`
-- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#ollamainvocationerror)
+#### `OllamaInvocationError` {#symbol-ollamainvocationerror}
+- Re-exported from [`ollamaClient`](./tooling/ollamaClient.ts.mdmd.md#symbol-ollamainvocationerror)
 
-#### `OutstandingDiagnosticSummary`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#outstandingdiagnosticsummary)
+#### `OutstandingDiagnosticSummary` {#symbol-outstandingdiagnosticsummary}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-outstandingdiagnosticsummary)
 
-#### `OVERRIDE_LINK_REQUEST`
-- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#override_link_request)
+#### `OVERRIDE_LINK_REQUEST` {#symbol-override_link_request}
+- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#symbol-override_link_request)
 
-#### `OverrideLinkArtifactInput`
-- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#overridelinkartifactinput)
+#### `OverrideLinkArtifactInput` {#symbol-overridelinkartifactinput}
+- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#symbol-overridelinkartifactinput)
 
-#### `OverrideLinkRequest`
-- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#overridelinkrequest)
+#### `OverrideLinkRequest` {#symbol-overridelinkrequest}
+- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#symbol-overridelinkrequest)
 
-#### `OverrideLinkResponse`
-- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#overridelinkresponse)
+#### `OverrideLinkResponse` {#symbol-overridelinkresponse}
+- Re-exported from [`overrides`](./contracts/overrides.ts.mdmd.md#symbol-overridelinkresponse)
 
-#### `ParsedLiveDoc`
-- Re-exported from [`parse`](./live-docs/parse.ts.mdmd.md#parsedlivedoc)
+#### `ParsedLiveDoc` {#symbol-parsedlivedoc}
+- Re-exported from [`parse`](./live-docs/parse.ts.mdmd.md#symbol-parsedlivedoc)
 
-#### `ParsedLSIFIndex`
-- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#parsedlsifindex)
+#### `ParsedLSIFIndex` {#symbol-parsedlsifindex}
+- Re-exported from [`lsif`](./contracts/lsif.ts.mdmd.md#symbol-parsedlsifindex)
 
-#### `ParsedSCIPIndex`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#parsedscipindex)
+#### `ParsedSCIPIndex` {#symbol-parsedscipindex}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-parsedscipindex)
 
-#### `parseLiveDocMarkdown`
-- Re-exported from [`parse`](./live-docs/parse.ts.mdmd.md#parselivedocmarkdown)
+#### `parseLiveDocMarkdown` {#symbol-parselivedocmarkdown}
+- Re-exported from [`parse`](./live-docs/parse.ts.mdmd.md#symbol-parselivedocmarkdown)
 
-#### `RebindImpactedArtifact`
-- Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#rebindimpactedartifact)
+#### `RebindImpactedArtifact` {#symbol-rebindimpactedartifact}
+- Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#symbol-rebindimpactedartifact)
 
-#### `RebindReason`
-- Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#rebindreason)
+#### `RebindReason` {#symbol-rebindreason}
+- Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#symbol-rebindreason)
 
-#### `RebindRequiredArtifact`
-- Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#rebindrequiredartifact)
+#### `RebindRequiredArtifact` {#symbol-rebindrequiredartifact}
+- Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#symbol-rebindrequiredartifact)
 
-#### `RebindRequiredPayload`
-- Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#rebindrequiredpayload)
+#### `RebindRequiredPayload` {#symbol-rebindrequiredpayload}
+- Re-exported from [`maintenance`](./contracts/maintenance.ts.mdmd.md#symbol-rebindrequiredpayload)
 
-#### `RebuildStabilityData`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#rebuildstabilitydata)
+#### `RebuildStabilityData` {#symbol-rebuildstabilitydata}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-rebuildstabilitydata)
 
-#### `RecordOutcomeOptions`
-- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#recordoutcomeoptions)
+#### `RecordOutcomeOptions` {#symbol-recordoutcomeoptions}
+- Re-exported from [`inferenceAccuracy`](./telemetry/inferenceAccuracy.ts.mdmd.md#symbol-recordoutcomeoptions)
 
-#### `RelationshipCoverageChain`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#relationshipcoveragechain)
+#### `RelationshipCoverageChain` {#symbol-relationshipcoveragechain}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-relationshipcoveragechain)
 
-#### `RelationshipCoverageDiagnostic`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#relationshipcoveragediagnostic)
+#### `RelationshipCoverageDiagnostic` {#symbol-relationshipcoveragediagnostic}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-relationshipcoveragediagnostic)
 
-#### `RelationshipCoverageIssue`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#relationshipcoverageissue)
+#### `RelationshipCoverageIssue` {#symbol-relationshipcoverageissue}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-relationshipcoverageissue)
 
-#### `RelationshipCoverageIssueKind`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#relationshipcoverageissuekind)
+#### `RelationshipCoverageIssueKind` {#symbol-relationshipcoverageissuekind}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-relationshipcoverageissuekind)
 
-#### `RelationshipCoverageResult`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#relationshipcoverageresult)
+#### `RelationshipCoverageResult` {#symbol-relationshipcoverageresult}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-relationshipcoverageresult)
 
-#### `RelationshipCoverageRuleResult`
-- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#relationshipcoverageruleresult)
+#### `RelationshipCoverageRuleResult` {#symbol-relationshipcoverageruleresult}
+- Re-exported from [`relationshipRuleAudit`](./rules/relationshipRuleAudit.ts.mdmd.md#symbol-relationshipcoverageruleresult)
 
-#### `RelationshipEvidenceGenerationResult`
-- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#relationshipevidencegenerationresult)
+#### `RelationshipEvidenceGenerationResult` {#symbol-relationshipevidencegenerationresult}
+- Re-exported from [`relationshipRuleEngine`](./rules/relationshipRuleEngine.ts.mdmd.md#symbol-relationshipevidencegenerationresult)
 
-#### `RelationshipHint`
-- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#relationshiphint)
+#### `RelationshipHint` {#symbol-relationshiphint}
+- Re-exported from [`fallbackInference`](./inference/fallbackInference.ts.mdmd.md#symbol-relationshiphint)
 
-#### `RelationshipResolver`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshipresolver)
+#### `RelationshipResolver` {#symbol-relationshipresolver}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshipresolver)
 
-#### `RelationshipResolverOptions`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshipresolveroptions)
+#### `RelationshipResolverOptions` {#symbol-relationshipresolveroptions}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshipresolveroptions)
 
-#### `RelationshipResolverResult`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshipresolverresult)
+#### `RelationshipResolverResult` {#symbol-relationshipresolverresult}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshipresolverresult)
 
-#### `RelationshipRuleChain`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshiprulechain)
+#### `RelationshipRuleChain` {#symbol-relationshiprulechain}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulechain)
 
-#### `RelationshipRuleChainStep`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshiprulechainstep)
+#### `RelationshipRuleChainStep` {#symbol-relationshiprulechainstep}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulechainstep)
 
-#### `RelationshipRuleConfig`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshipruleconfig)
+#### `RelationshipRuleConfig` {#symbol-relationshipruleconfig}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshipruleconfig)
 
-#### `RelationshipRuleConfigLoadResult`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshipruleconfigloadresult)
+#### `RelationshipRuleConfigLoadResult` {#symbol-relationshipruleconfigloadresult}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshipruleconfigloadresult)
 
-#### `RelationshipRulePropagationConfig`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshiprulepropagationconfig)
+#### `RelationshipRulePropagationConfig` {#symbol-relationshiprulepropagationconfig}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulepropagationconfig)
 
-#### `RelationshipRuleProviderLogger`
-- Re-exported from [`relationshipRuleProvider`](./rules/relationshipRuleProvider.ts.mdmd.md#relationshipruleproviderlogger)
+#### `RelationshipRuleProviderLogger` {#symbol-relationshipruleproviderlogger}
+- Re-exported from [`relationshipRuleProvider`](./rules/relationshipRuleProvider.ts.mdmd.md#symbol-relationshipruleproviderlogger)
 
-#### `RelationshipRuleProviderOptions`
-- Re-exported from [`relationshipRuleProvider`](./rules/relationshipRuleProvider.ts.mdmd.md#relationshipruleprovideroptions)
+#### `RelationshipRuleProviderOptions` {#symbol-relationshipruleprovideroptions}
+- Re-exported from [`relationshipRuleProvider`](./rules/relationshipRuleProvider.ts.mdmd.md#symbol-relationshipruleprovideroptions)
 
-#### `RelationshipRulesConfig`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshiprulesconfig)
+#### `RelationshipRulesConfig` {#symbol-relationshiprulesconfig}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulesconfig)
 
-#### `RelationshipRuleStepConfig`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshiprulestepconfig)
+#### `RelationshipRuleStepConfig` {#symbol-relationshiprulestepconfig}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulestepconfig)
 
-#### `RelationshipRuleWarning`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#relationshiprulewarning)
+#### `RelationshipRuleWarning` {#symbol-relationshiprulewarning}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulewarning)
 
-#### `ReportSection`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#reportsection)
+#### `ReportSection` {#symbol-reportsection}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-reportsection)
 
-#### `RESET_DIAGNOSTIC_STATE_NOTIFICATION`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#reset_diagnostic_state_notification)
+#### `RESET_DIAGNOSTIC_STATE_NOTIFICATION` {#symbol-reset_diagnostic_state_notification}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-reset_diagnostic_state_notification)
 
-#### `resolveOllamaEndpoint`
-- Re-exported from [`ollamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#resolveollamaendpoint)
+#### `resolveOllamaEndpoint` {#symbol-resolveollamaendpoint}
+- Re-exported from [`ollamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#symbol-resolveollamaendpoint)
 
-#### `ResolveOllamaEndpointOptions`
-- Re-exported from [`ollamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#resolveollamaendpointoptions)
+#### `ResolveOllamaEndpointOptions` {#symbol-resolveollamaendpointoptions}
+- Re-exported from [`ollamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#symbol-resolveollamaendpointoptions)
 
-#### `SCIPDiagnostic`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipdiagnostic)
+#### `SCIPDiagnostic` {#symbol-scipdiagnostic}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipdiagnostic)
 
-#### `SCIPDocument`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipdocument)
+#### `SCIPDocument` {#symbol-scipdocument}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipdocument)
 
-#### `SCIPIndex`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipindex)
+#### `SCIPIndex` {#symbol-scipindex}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipindex)
 
-#### `SCIPMetadata`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipmetadata)
+#### `SCIPMetadata` {#symbol-scipmetadata}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipmetadata)
 
-#### `SCIPOccurrence`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipoccurrence)
+#### `SCIPOccurrence` {#symbol-scipoccurrence}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipoccurrence)
 
-#### `SCIPRelationship`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#sciprelationship)
+#### `SCIPRelationship` {#symbol-sciprelationship}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-sciprelationship)
 
-#### `SCIPSignature`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipsignature)
+#### `SCIPSignature` {#symbol-scipsignature}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipsignature)
 
-#### `SCIPSymbolInformation`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipsymbolinformation)
+#### `SCIPSymbolInformation` {#symbol-scipsymbolinformation}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipsymbolinformation)
 
-#### `SCIPSymbolKind`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipsymbolkind)
+#### `SCIPSymbolKind` {#symbol-scipsymbolkind}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipsymbolkind)
 
-#### `SCIPSymbolRole`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#scipsymbolrole)
+#### `SCIPSymbolRole` {#symbol-scipsymbolrole}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-scipsymbolrole)
 
-#### `SCIPToolInfo`
-- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#sciptoolinfo)
+#### `SCIPToolInfo` {#symbol-sciptoolinfo}
+- Re-exported from [`scip`](./contracts/scip.ts.mdmd.md#symbol-sciptoolinfo)
 
-#### `SET_DIAGNOSTIC_ASSESSMENT_REQUEST`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#set_diagnostic_assessment_request)
+#### `SET_DIAGNOSTIC_ASSESSMENT_REQUEST` {#symbol-set_diagnostic_assessment_request}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-set_diagnostic_assessment_request)
 
-#### `SetDiagnosticAssessmentParams`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#setdiagnosticassessmentparams)
+#### `SetDiagnosticAssessmentParams` {#symbol-setdiagnosticassessmentparams}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-setdiagnosticassessmentparams)
 
-#### `SetDiagnosticAssessmentResult`
-- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#setdiagnosticassessmentresult)
+#### `SetDiagnosticAssessmentResult` {#symbol-setdiagnosticassessmentresult}
+- Re-exported from [`diagnostics`](./contracts/diagnostics.ts.mdmd.md#symbol-setdiagnosticassessmentresult)
 
-#### `StreamCheckpoint`
-- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#streamcheckpoint)
+#### `StreamCheckpoint` {#symbol-streamcheckpoint}
+- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-streamcheckpoint)
 
-#### `StreamEventKind`
-- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#streameventkind)
+#### `StreamEventKind` {#symbol-streameventkind}
+- Re-exported from [`knowledgeGraphBridge`](./knowledge/knowledgeGraphBridge.ts.mdmd.md#symbol-streameventkind)
 
-#### `SymbolAuditOptions`
-- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbolauditoptions)
+#### `SymbolAuditOptions` {#symbol-symbolauditoptions}
+- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbol-symbolauditoptions)
 
-#### `SymbolCorrectnessProfileConfig`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbolcorrectnessprofileconfig)
+#### `SymbolCorrectnessProfileConfig` {#symbol-symbolcorrectnessprofileconfig}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-symbolcorrectnessprofileconfig)
 
-#### `SymbolIssueKind`
-- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbolissuekind)
+#### `SymbolIssueKind` {#symbol-symbolissuekind}
+- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbol-symbolissuekind)
 
-#### `SymbolIssueSeverity`
-- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbolissueseverity)
+#### `SymbolIssueSeverity` {#symbol-symbolissueseverity}
+- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbol-symbolissueseverity)
 
-#### `SymbolNeighborGroup`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbolneighborgroup)
+#### `SymbolNeighborGroup` {#symbol-symbolneighborgroup}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-symbolneighborgroup)
 
-#### `SymbolNeighborNode`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbolneighbornode)
+#### `SymbolNeighborNode` {#symbol-symbolneighbornode}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-symbolneighbornode)
 
-#### `SymbolNeighborPath`
-- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbolneighborpath)
+#### `SymbolNeighborPath` {#symbol-symbolneighborpath}
+- Re-exported from [`symbols`](./contracts/symbols.ts.mdmd.md#symbol-symbolneighborpath)
 
-#### `SymbolProfileLoadResult`
-- Re-exported from [`symbolCorrectnessProfiles`](./rules/symbolCorrectnessProfiles.ts.mdmd.md#symbolprofileloadresult)
+#### `SymbolProfileLoadResult` {#symbol-symbolprofileloadresult}
+- Re-exported from [`symbolCorrectnessProfiles`](./rules/symbolCorrectnessProfiles.ts.mdmd.md#symbol-symbolprofileloadresult)
 
-#### `SymbolProfileLookup`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbolprofilelookup)
+#### `SymbolProfileLookup` {#symbol-symbolprofilelookup}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilelookup)
 
-#### `SymbolProfileRequirementConfig`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbolprofilerequirementconfig)
+#### `SymbolProfileRequirementConfig` {#symbol-symbolprofilerequirementconfig}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilerequirementconfig)
 
-#### `SymbolProfileRequirementDirection`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbolprofilerequirementdirection)
+#### `SymbolProfileRequirementDirection` {#symbol-symbolprofilerequirementdirection}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilerequirementdirection)
 
-#### `SymbolProfileSourceConfig`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbolprofilesourceconfig)
+#### `SymbolProfileSourceConfig` {#symbol-symbolprofilesourceconfig}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilesourceconfig)
 
-#### `SymbolProfileTargetConfig`
-- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbolprofiletargetconfig)
+#### `SymbolProfileTargetConfig` {#symbol-symbolprofiletargetconfig}
+- Re-exported from [`relationshipRuleTypes`](./rules/relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofiletargetconfig)
 
-#### `SymbolReferenceIssue`
-- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbolreferenceissue)
+#### `SymbolReferenceIssue` {#symbol-symbolreferenceissue}
+- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbol-symbolreferenceissue)
 
-#### `SymbolRuleSetting`
-- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbolrulesetting)
+#### `SymbolRuleSetting` {#symbol-symbolrulesetting}
+- Re-exported from [`symbolReferences`](./tooling/symbolReferences.ts.mdmd.md#symbol-symbolrulesetting)
 
-#### `TestReportContext`
-- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#testreportcontext)
+#### `TestReportContext` {#symbol-testreportcontext}
+- Re-exported from [`testReport`](./reporting/testReport.ts.mdmd.md#symbol-testreportcontext)
 
-#### `toWorkspaceFileUri`
-- Re-exported from [`pathUtils`](./tooling/pathUtils.ts.mdmd.md#toworkspacefileuri)
+#### `toWorkspaceFileUri` {#symbol-toworkspacefileuri}
+- Re-exported from [`pathUtils`](./tooling/pathUtils.ts.mdmd.md#symbol-toworkspacefileuri)
 
-#### `toWorkspaceRelativePath`
-- Re-exported from [`pathUtils`](./tooling/pathUtils.ts.mdmd.md#toworkspacerelativepath)
+#### `toWorkspaceRelativePath` {#symbol-toworkspacerelativepath}
+- Re-exported from [`pathUtils`](./tooling/pathUtils.ts.mdmd.md#symbol-toworkspacerelativepath)
 
-#### `WorkspaceConfigurationLike`
-- Re-exported from [`ollamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#workspaceconfigurationlike)
+#### `WorkspaceConfigurationLike` {#symbol-workspaceconfigurationlike}
+- Re-exported from [`ollamaEndpoint`](./tooling/ollamaEndpoint.ts.mdmd.md#symbol-workspaceconfigurationlike)
 
-#### `WorkspaceLinkContribution`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#workspacelinkcontribution)
+#### `WorkspaceLinkContribution` {#symbol-workspacelinkcontribution}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-workspacelinkcontribution)
 
-#### `WorkspaceLinkProvider`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#workspacelinkprovider)
+#### `WorkspaceLinkProvider` {#symbol-workspacelinkprovider}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-workspacelinkprovider)
 
-#### `WorkspaceLinkProviderContext`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#workspacelinkprovidercontext)
+#### `WorkspaceLinkProviderContext` {#symbol-workspacelinkprovidercontext}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-workspacelinkprovidercontext)
 
-#### `WorkspaceProviderSummary`
-- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#workspaceprovidersummary)
+#### `WorkspaceProviderSummary` {#symbol-workspaceprovidersummary}
+- Re-exported from [`linkInference`](./inference/linkInference.ts.mdmd.md#symbol-workspaceprovidersummary)
 <!-- LIVE-DOC:END Re-Exported Symbol Anchors -->

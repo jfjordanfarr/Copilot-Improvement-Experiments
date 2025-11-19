@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/knowledge/llmIngestionOrchestrator.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-knowledge-llmingestionorchestrator-test-ts
-- Generated At: 2025-11-18T14:53:38.934Z
+- Generated At: 2025-11-19T15:01:34.108Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the orchestrator’s persistence and dry-run modes end-to-end, confirm
 - Keeps regression pressure on ProviderGuard integration by ensuring disabled providers would block work and by asserting dry runs avoid GraphStore mutation even when snapshots are produced.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.934Z","inputHash":"c3d0920cae1ba6dc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.108Z","inputHash":"c3d0920cae1ba6dc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -28,9 +28,9 @@ _No public symbols detected_
 - `node:os` - `tmpdir`
 - `node:path` - `path`
 - `node:url` - `pathToFileURL`
-- [`llmIngestionOrchestrator.LlmIngestionOrchestrator`](./llmIngestionOrchestrator.ts.mdmd.md#llmingestionorchestrator)
-- [`providerGuard.ProviderGuard`](../settings/providerGuard.ts.mdmd.md#providerguard)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
+- [`llmIngestionOrchestrator.LlmIngestionOrchestrator`](./llmIngestionOrchestrator.ts.mdmd.md#symbol-llmingestionorchestrator)
+- [`providerGuard.ProviderGuard`](../settings/providerGuard.ts.mdmd.md#symbol-providerguard)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
 - `vitest` - `afterEach`, `describe`, `expect`, `it`
 - `vscode-languageserver` - `Connection` (type-only)
 <!-- LIVE-DOC:END Dependencies -->

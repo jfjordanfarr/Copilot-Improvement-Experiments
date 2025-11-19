@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/scipParser.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-scipparser-ts
-- Generated At: 2025-11-16T22:35:15.853Z
+- Generated At: 2025-11-19T15:01:34.212Z
 
 ## Authored
 ### Purpose
@@ -15,14 +15,14 @@ Converts Sourcegraph SCIP indexes into external snapshot seeds and link evidence
 - Implemented with the LSIF/SCIP ingestion option detailed in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md), landing alongside the auto-detection flow and unit coverage.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.853Z","inputHash":"0183a601aa222e06"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.212Z","inputHash":"0183a601aa222e06"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `SCIPParserOptions`
+#### `SCIPParserOptions` {#symbol-scipparseroptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/scipParser.ts#L11)
 
-#### `SCIPParser`
+#### `SCIPParser` {#symbol-scipparser}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/scipParser.ts#L24)
 
@@ -33,7 +33,7 @@ SCIP is a language-agnostic protocol for code intelligence developed by Sourcegr
 Documents contain occurrences (symbol usages) and symbols (definitions/declarations).
 Reference: Sourcegraph SCIP protocol repository.
 
-#### `parseSCIP`
+#### `parseSCIP` {#symbol-parsescip}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/scipParser.ts#L202)
 
@@ -44,11 +44,11 @@ Parse SCIP index into an ExternalSnapshot
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:url` - `pathToFileURL`
-- [`index.ExternalArtifact`](../../../../shared/src/index.ts.mdmd.md#externalartifact) (type-only)
-- [`index.ExternalLink`](../../../../shared/src/index.ts.mdmd.md#externallink) (type-only)
-- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#externalsnapshot) (type-only)
-- [`index.SCIPIndex`](../../../../shared/src/index.ts.mdmd.md#scipindex) (type-only)
-- [`index.SCIPOccurrence`](../../../../shared/src/index.ts.mdmd.md#scipoccurrence) (type-only)
+- [`index.ExternalArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-externalartifact) (type-only)
+- [`index.ExternalLink`](../../../../shared/src/index.ts.mdmd.md#symbol-externallink) (type-only)
+- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#symbol-externalsnapshot) (type-only)
+- [`index.SCIPIndex`](../../../../shared/src/index.ts.mdmd.md#symbol-scipindex) (type-only)
+- [`index.SCIPOccurrence`](../../../../shared/src/index.ts.mdmd.md#symbol-scipoccurrence) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

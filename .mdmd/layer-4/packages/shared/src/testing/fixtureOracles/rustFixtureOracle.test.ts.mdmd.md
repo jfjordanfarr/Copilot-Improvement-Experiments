@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/testing/fixtureOracles/rustFixtureOracle.test.ts
 - Live Doc ID: LD-test-packages-shared-src-testing-fixtureoracles-rustfixtureoracle-test-ts
-- Generated At: 2025-11-16T22:34:13.459Z
+- Generated At: 2025-11-19T15:01:35.552Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Confirms the Rust oracle captures module `use` edges, honors manual overrides, a
 - Includes assertions covering the Nov 14 doc-comment regression fix and remains part of the Nov 16 unit run; re-execute this suite if parser heuristics are tweaked <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-14.md#L2922-L2952> <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.459Z","inputHash":"fd90a10aa5b44ee4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.552Z","inputHash":"fd90a10aa5b44ee4"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,14 +24,14 @@ _No public symbols detected_
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`rustFixtureOracle.RustFixtureOracleOptions`](./rustFixtureOracle.ts.mdmd.md#rustfixtureoracleoptions)
-- [`rustFixtureOracle.RustOracleEdge`](./rustFixtureOracle.ts.mdmd.md#rustoracleedge)
-- [`rustFixtureOracle.RustOracleEdgeRecord`](./rustFixtureOracle.ts.mdmd.md#rustoracleedgerecord)
-- [`rustFixtureOracle.RustOracleOverrideConfig`](./rustFixtureOracle.ts.mdmd.md#rustoracleoverrideconfig)
-- [`rustFixtureOracle.generateRustFixtureGraph`](./rustFixtureOracle.ts.mdmd.md#generaterustfixturegraph)
-- [`rustFixtureOracle.mergeRustOracleEdges`](./rustFixtureOracle.ts.mdmd.md#mergerustoracleedges)
-- [`rustFixtureOracle.partitionRustOracleSegments`](./rustFixtureOracle.ts.mdmd.md#partitionrustoraclesegments)
-- [`rustFixtureOracle.serializeRustOracleEdges`](./rustFixtureOracle.ts.mdmd.md#serializerustoracleedges)
+- [`rustFixtureOracle.RustFixtureOracleOptions`](./rustFixtureOracle.ts.mdmd.md#symbol-rustfixtureoracleoptions)
+- [`rustFixtureOracle.RustOracleEdge`](./rustFixtureOracle.ts.mdmd.md#symbol-rustoracleedge)
+- [`rustFixtureOracle.RustOracleEdgeRecord`](./rustFixtureOracle.ts.mdmd.md#symbol-rustoracleedgerecord)
+- [`rustFixtureOracle.RustOracleOverrideConfig`](./rustFixtureOracle.ts.mdmd.md#symbol-rustoracleoverrideconfig)
+- [`rustFixtureOracle.generateRustFixtureGraph`](./rustFixtureOracle.ts.mdmd.md#symbol-generaterustfixturegraph)
+- [`rustFixtureOracle.mergeRustOracleEdges`](./rustFixtureOracle.ts.mdmd.md#symbol-mergerustoracleedges)
+- [`rustFixtureOracle.partitionRustOracleSegments`](./rustFixtureOracle.ts.mdmd.md#symbol-partitionrustoraclesegments)
+- [`rustFixtureOracle.serializeRustOracleEdges`](./rustFixtureOracle.ts.mdmd.md#symbol-serializerustoracleedges)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

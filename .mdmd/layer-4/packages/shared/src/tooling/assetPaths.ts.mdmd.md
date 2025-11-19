@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/assetPaths.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-assetpaths-ts
-- Generated At: 2025-11-16T22:34:13.506Z
+- Generated At: 2025-11-19T15:01:35.592Z
 
 ## Authored
 ### Purpose
@@ -16,18 +16,18 @@ Detects broken HTML/CSS asset references (images, scripts, stylesheets) across t
 - Regularly exercised through the `slopcop-assets` fixture and repo-wide audits (for example November 3) to ensure new docs or Live Doc outputs never leave dangling asset links.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-03.md]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.506Z","inputHash":"1c977c7c64919eb9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.592Z","inputHash":"1c977c7c64919eb9"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `AssetReferenceIssue`
+#### `AssetReferenceIssue` {#symbol-assetreferenceissue}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/assetPaths.ts#L4)
 
-#### `AssetAuditOptions`
+#### `AssetAuditOptions` {#symbol-assetauditoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/assetPaths.ts#L13)
 
-#### `findBrokenAssetReferences`
+#### `findBrokenAssetReferences` {#symbol-findbrokenassetreferences}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/assetPaths.ts#L27)
 <!-- LIVE-DOC:END Public Symbols -->

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/live-docs/renderPublicSymbolLines.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-live-docs-renderpublicsymbollines-test-ts
-- Generated At: 2025-11-18T16:28:50.976Z
+- Generated At: 2025-11-19T15:01:34.334Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Ensures the public symbol renderer emits heading blocks with type metadata, sour
 - Expanded again during the docstring normalization push outlined in [2025-11-12 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-12.SUMMARIZED.md) to keep tests aligned with richer metadata.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T16:28:50.976Z","inputHash":"6acac6816ec123d8"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.334Z","inputHash":"6acac6816ec123d8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -25,9 +25,9 @@ _No public symbols detected_
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:path` - `path`
-- [`generator.__testUtils`](./generator.ts.mdmd.md#__testutils)
-- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#live_documentation_file_extension)
-- [`core.computePublicSymbolHeadingInfo`](../../../../shared/src/live-docs/core.ts.mdmd.md#computepublicsymbolheadinginfo)
+- [`generator.__testUtils`](./generator.ts.mdmd.md#symbol-__testutils)
+- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../../../../shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_file_extension)
+- [`core.computePublicSymbolHeadingInfo`](../../../../shared/src/live-docs/core.ts.mdmd.md#symbol-computepublicsymbolheadinginfo)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

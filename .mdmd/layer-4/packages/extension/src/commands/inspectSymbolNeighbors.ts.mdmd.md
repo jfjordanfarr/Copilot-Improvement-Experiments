@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/inspectSymbolNeighbors.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-inspectsymbolneighbors-ts
-- Generated At: 2025-11-16T22:35:14.406Z
+- Generated At: 2025-11-19T15:01:33.399Z
 
 ## Authored
 ### Purpose
@@ -16,37 +16,37 @@ Provides the US4 “Inspect Symbol Neighbors” palette command that calls `INSP
 - Once the stubs landed, `npm run verify` completed end to end and the command shipped as part of commit 558781b (`feat: ship symbol neighbor explorer and harden graph persistence`), confirmed in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.406Z","inputHash":"4224aeac0660cf2d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.399Z","inputHash":"4224aeac0660cf2d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `registerInspectSymbolNeighborsCommand`
+#### `registerInspectSymbolNeighborsCommand` {#symbol-registerinspectsymbolneighborscommand}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/commands/inspectSymbolNeighbors.ts#L28)
 
-#### `SymbolNeighborQuickPickController`
+#### `SymbolNeighborQuickPickController` {#symbol-symbolneighborquickpickcontroller}
 - Type: class
 - Source: [source](../../../../../../packages/extension/src/commands/inspectSymbolNeighbors.ts#L39)
 
-#### `ParsedInspectSymbolNeighborsResult`
+#### `ParsedInspectSymbolNeighborsResult` {#symbol-parsedinspectsymbolneighborsresult}
 - Type: type
 - Source: [source](../../../../../../packages/extension/src/commands/inspectSymbolNeighbors.ts#L251)
 
-#### `ParsedNeighborNode`
+#### `ParsedNeighborNode` {#symbol-parsedneighbornode}
 - Type: type
 - Source: [source](../../../../../../packages/extension/src/commands/inspectSymbolNeighbors.ts#L254)
 
-#### `InspectSymbolNeighborsResultValidator`
+#### `InspectSymbolNeighborsResultValidator` {#symbol-inspectsymbolneighborsresultvalidator}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/commands/inspectSymbolNeighbors.ts#L256)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`artifactSchemas.KnowledgeArtifactSchema`](../shared/artifactSchemas.ts.mdmd.md#knowledgeartifactschema)
-- [`artifactSchemas.LinkRelationshipKindSchema`](../shared/artifactSchemas.ts.mdmd.md#linkrelationshipkindschema)
-- [`testHooks.resolveWindowApis`](../testing/testHooks.ts.mdmd.md#resolvewindowapis)
-- [`index.INSPECT_SYMBOL_NEIGHBORS_REQUEST`](../../../shared/src/index.ts.mdmd.md#inspect_symbol_neighbors_request)
-- [`index.InspectSymbolNeighborsParams`](../../../shared/src/index.ts.mdmd.md#inspectsymbolneighborsparams)
+- [`artifactSchemas.KnowledgeArtifactSchema`](../shared/artifactSchemas.ts.mdmd.md#symbol-knowledgeartifactschema)
+- [`artifactSchemas.LinkRelationshipKindSchema`](../shared/artifactSchemas.ts.mdmd.md#symbol-linkrelationshipkindschema)
+- [`testHooks.resolveWindowApis`](../testing/testHooks.ts.mdmd.md#symbol-resolvewindowapis)
+- [`index.INSPECT_SYMBOL_NEIGHBORS_REQUEST`](../../../shared/src/index.ts.mdmd.md#symbol-inspect_symbol_neighbors_request)
+- [`index.InspectSymbolNeighborsParams`](../../../shared/src/index.ts.mdmd.md#symbol-inspectsymbolneighborsparams)
 - `vscode` - `vscode`
 - `vscode-languageclient/node` - `LanguageClient`
 - `zod` - `z`

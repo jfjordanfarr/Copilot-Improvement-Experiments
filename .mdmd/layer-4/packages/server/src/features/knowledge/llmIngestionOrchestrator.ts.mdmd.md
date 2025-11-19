@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/llmIngestionOrchestrator.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-llmingestionorchestrator-ts
-- Generated At: 2025-11-16T22:35:15.742Z
+- Generated At: 2025-11-19T15:01:34.126Z
 
 ## Authored
 ### Purpose
@@ -15,26 +15,26 @@ Coordinates LLM-assisted relationship ingestion by batching queued artifacts, ge
 Implements a guarded queue that respects administrator LLM settings, supports dry-run snapshots for auditability, and funnels extraction results through `calibrateConfidence` before storing provenance-rich edges; concurrency and chunk sizing remain tunable to balance throughput against context window limits.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.742Z","inputHash":"1b9792f22957c909"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.126Z","inputHash":"1b9792f22957c909"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `LlmIngestionLogger`
+#### `LlmIngestionLogger` {#symbol-llmingestionlogger}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts#L35)
 
-#### `EnqueueOptions`
+#### `EnqueueOptions` {#symbol-enqueueoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts#L41)
 
-#### `LlmIngestionResult`
+#### `LlmIngestionResult` {#symbol-llmingestionresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts#L45)
 
-#### `LlmIngestionOrchestratorOptions`
+#### `LlmIngestionOrchestratorOptions` {#symbol-llmingestionorchestratoroptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts#L53)
 
-#### `LlmIngestionOrchestrator`
+#### `LlmIngestionOrchestrator` {#symbol-llmingestionorchestrator}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/llmIngestionOrchestrator.ts#L76)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -45,22 +45,22 @@ Implements a guarded queue that respects administrator LLM settings, supports dr
 - `node:fs` - `promises`
 - `node:path` - `path`
 - `node:url` - `fileURLToPath`
-- [`providerGuard.ProviderGuard`](../settings/providerGuard.ts.mdmd.md#providerguard)
-- [`relationshipTemplate.PromptArtifactSummary`](../../prompts/llm-ingestion/relationshipTemplate.ts.mdmd.md#promptartifactsummary)
-- [`relationshipTemplate.PromptChunkSummary`](../../prompts/llm-ingestion/relationshipTemplate.ts.mdmd.md#promptchunksummary)
-- [`relationshipTemplate.RELATIONSHIP_RESPONSE_SCHEMA`](../../prompts/llm-ingestion/relationshipTemplate.ts.mdmd.md#relationship_response_schema)
-- [`relationshipTemplate.renderRelationshipExtractionPrompt`](../../prompts/llm-ingestion/relationshipTemplate.ts.mdmd.md#renderrelationshipextractionprompt)
-- [`index.CalibratedRelationship`](../../../../shared/src/index.ts.mdmd.md#calibratedrelationship)
-- [`index.CalibrationContext`](../../../../shared/src/index.ts.mdmd.md#calibrationcontext)
-- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#graphstore)
-- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#knowledgeartifact)
-- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#linkrelationshipkind)
-- [`index.RawRelationshipCandidate`](../../../../shared/src/index.ts.mdmd.md#rawrelationshipcandidate)
-- [`index.RelationshipExtractionBatch`](../../../../shared/src/index.ts.mdmd.md#relationshipextractionbatch)
-- [`index.RelationshipExtractionPrompt`](../../../../shared/src/index.ts.mdmd.md#relationshipextractionprompt)
-- [`index.RelationshipExtractionRequest`](../../../../shared/src/index.ts.mdmd.md#relationshipextractionrequest)
-- [`index.RelationshipExtractor`](../../../../shared/src/index.ts.mdmd.md#relationshipextractor)
-- [`index.calibrateConfidence`](../../../../shared/src/index.ts.mdmd.md#calibrateconfidence)
+- [`providerGuard.ProviderGuard`](../settings/providerGuard.ts.mdmd.md#symbol-providerguard)
+- [`relationshipTemplate.PromptArtifactSummary`](../../prompts/llm-ingestion/relationshipTemplate.ts.mdmd.md#symbol-promptartifactsummary)
+- [`relationshipTemplate.PromptChunkSummary`](../../prompts/llm-ingestion/relationshipTemplate.ts.mdmd.md#symbol-promptchunksummary)
+- [`relationshipTemplate.RELATIONSHIP_RESPONSE_SCHEMA`](../../prompts/llm-ingestion/relationshipTemplate.ts.mdmd.md#symbol-relationship_response_schema)
+- [`relationshipTemplate.renderRelationshipExtractionPrompt`](../../prompts/llm-ingestion/relationshipTemplate.ts.mdmd.md#symbol-renderrelationshipextractionprompt)
+- [`index.CalibratedRelationship`](../../../../shared/src/index.ts.mdmd.md#symbol-calibratedrelationship)
+- [`index.CalibrationContext`](../../../../shared/src/index.ts.mdmd.md#symbol-calibrationcontext)
+- [`index.GraphStore`](../../../../shared/src/index.ts.mdmd.md#symbol-graphstore)
+- [`index.KnowledgeArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-knowledgeartifact)
+- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#symbol-linkrelationshipkind)
+- [`index.RawRelationshipCandidate`](../../../../shared/src/index.ts.mdmd.md#symbol-rawrelationshipcandidate)
+- [`index.RelationshipExtractionBatch`](../../../../shared/src/index.ts.mdmd.md#symbol-relationshipextractionbatch)
+- [`index.RelationshipExtractionPrompt`](../../../../shared/src/index.ts.mdmd.md#symbol-relationshipextractionprompt)
+- [`index.RelationshipExtractionRequest`](../../../../shared/src/index.ts.mdmd.md#symbol-relationshipextractionrequest)
+- [`index.RelationshipExtractor`](../../../../shared/src/index.ts.mdmd.md#symbol-relationshipextractor)
+- [`index.calibrateConfidence`](../../../../shared/src/index.ts.mdmd.md#symbol-calibrateconfidence)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

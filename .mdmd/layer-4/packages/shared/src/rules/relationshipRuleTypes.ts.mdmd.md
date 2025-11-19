@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/relationshipRuleTypes.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-relationshipruletypes-ts
-- Generated At: 2025-11-16T22:34:13.317Z
+- Generated At: 2025-11-19T15:01:35.455Z
 
 ## Authored
 ### Purpose
@@ -15,115 +15,115 @@ Defines the configuration and compiled contract types that power relationship ru
 - Shared by both the profile compiler and the relationship rule engine so audits and the language server evaluate identical structures.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-30.SUMMARIZED.md#turn-27-harden-relationship-rule-provider-tests-lines-6121-6420]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.317Z","inputHash":"d5d57fa7af0327a7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.455Z","inputHash":"d5d57fa7af0327a7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `SymbolProfileRequirementDirection`
+#### `SymbolProfileRequirementDirection` {#symbol-symbolprofilerequirementdirection}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L4)
 
-#### `RelationshipRuleStepConfig`
+#### `RelationshipRuleStepConfig` {#symbol-relationshiprulestepconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L6)
 
-#### `RelationshipRulePropagationConfig`
+#### `RelationshipRulePropagationConfig` {#symbol-relationshiprulepropagationconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L16)
 
-#### `RelationshipRuleConfig`
+#### `RelationshipRuleConfig` {#symbol-relationshipruleconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L23)
 
-#### `RelationshipRulesConfig`
+#### `RelationshipRulesConfig` {#symbol-relationshiprulesconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L31)
 
-#### `RelationshipRuleConfigLoadResult`
+#### `RelationshipRuleConfigLoadResult` {#symbol-relationshipruleconfigloadresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L38)
 
-#### `RelationshipRuleWarning`
+#### `RelationshipRuleWarning` {#symbol-relationshiprulewarning}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L44)
 
-#### `RelationshipResolverResult`
+#### `RelationshipResolverResult` {#symbol-relationshipresolverresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L50)
 
-#### `RelationshipResolverOptions`
+#### `RelationshipResolverOptions` {#symbol-relationshipresolveroptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L55)
 
-#### `RelationshipResolver`
+#### `RelationshipResolver` {#symbol-relationshipresolver}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L63)
 
-#### `CompiledRelationshipRuleStep`
+#### `CompiledRelationshipRuleStep` {#symbol-compiledrelationshiprulestep}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L68)
 
-#### `CompiledRelationshipRulePropagation`
+#### `CompiledRelationshipRulePropagation` {#symbol-compiledrelationshiprulepropagation}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L79)
 
-#### `CompiledRelationshipRule`
+#### `CompiledRelationshipRule` {#symbol-compiledrelationshiprule}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L86)
 
-#### `CompiledRelationshipRules`
+#### `CompiledRelationshipRules` {#symbol-compiledrelationshiprules}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L94)
 
-#### `RelationshipRuleChain`
+#### `RelationshipRuleChain` {#symbol-relationshiprulechain}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L100)
 
-#### `RelationshipRuleChainStep`
+#### `RelationshipRuleChainStep` {#symbol-relationshiprulechainstep}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L105)
 
-#### `SymbolProfileSourceConfig`
+#### `SymbolProfileSourceConfig` {#symbol-symbolprofilesourceconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L111)
 
-#### `SymbolProfileTargetConfig`
+#### `SymbolProfileTargetConfig` {#symbol-symbolprofiletargetconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L119)
 
-#### `SymbolProfileRequirementConfig`
+#### `SymbolProfileRequirementConfig` {#symbol-symbolprofilerequirementconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L125)
 
-#### `SymbolCorrectnessProfileConfig`
+#### `SymbolCorrectnessProfileConfig` {#symbol-symbolcorrectnessprofileconfig}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L136)
 
-#### `CompiledSymbolProfileTarget`
+#### `CompiledSymbolProfileTarget` {#symbol-compiledsymbolprofiletarget}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L145)
 
-#### `CompiledSymbolProfileRequirement`
+#### `CompiledSymbolProfileRequirement` {#symbol-compiledsymbolprofilerequirement}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L152)
 
-#### `CompiledSymbolProfileSource`
+#### `CompiledSymbolProfileSource` {#symbol-compiledsymbolprofilesource}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L163)
 
-#### `CompiledSymbolProfile`
+#### `CompiledSymbolProfile` {#symbol-compiledsymbolprofile}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L171)
 
-#### `SymbolProfileLookup`
+#### `SymbolProfileLookup` {#symbol-symbolprofilelookup}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/relationshipRuleTypes.ts#L180)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`artifacts.ArtifactLayer`](../domain/artifacts.ts.mdmd.md#artifactlayer) (type-only)
-- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#linkrelationshipkind) (type-only)
-- [`fallbackInference.ArtifactSeed`](../inference/fallbackInference.ts.mdmd.md#artifactseed) (type-only)
+- [`artifacts.ArtifactLayer`](../domain/artifacts.ts.mdmd.md#symbol-artifactlayer) (type-only)
+- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationshipkind) (type-only)
+- [`fallbackInference.ArtifactSeed`](../inference/fallbackInference.ts.mdmd.md#symbol-artifactseed) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

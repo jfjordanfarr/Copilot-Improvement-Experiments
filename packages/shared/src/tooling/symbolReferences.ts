@@ -47,6 +47,7 @@ interface HeadingInfo {
   duplicateIndex: number;
   line: number;
   column: number;
+  explicitSlug?: string;
 }
 
 interface AnchorReference {
@@ -167,16 +168,19 @@ function analyzeFile(filePath: string, workspaceRoot: string): FileAnalysis {
 
     const atx = line.match(/^ {0,3}(#{1,6})(?:[ \t]+|$)(.*)$/);
     if (atx) {
-      const rawText = sanitizeAtxText(atx[2]);
+      const sanitized = sanitizeAtxText(atx[2]);
+      const { text: headingText, anchorSlug } = stripExplicitHeadingAnchor(sanitized);
+      const finalText = headingText.length > 0 ? headingText : sanitized.trim();
       const column = leadingWhitespaceWidth(line) + 1;
-      const slugContext = slugger.slugWithContext(rawText, false);
+      const slugContext = slugger.slugWithContext(finalText, false);
       headings.push({
-        text: rawText,
+        text: finalText,
         slug: slugContext.slug,
         base: slugContext.base,
         duplicateIndex: slugContext.index,
         line: index + 1,
-        column
+        column,
+        explicitSlug: anchorSlug
       });
       continue;
     }
@@ -185,23 +189,34 @@ function analyzeFile(filePath: string, workspaceRoot: string): FileAnalysis {
       const underline = lines[index + 1];
       const setext = underline.match(/^ {0,3}(=+|-+)\s*$/);
       if (setext && line.trim().length > 0) {
-        const rawText = line.trim();
+        const sanitized = line.trim();
+        const { text: headingText, anchorSlug } = stripExplicitHeadingAnchor(sanitized);
+        const finalText = headingText.length > 0 ? headingText : sanitized;
         const column = leadingWhitespaceWidth(line) + 1;
-        const slugContext = slugger.slugWithContext(rawText, false);
+        const slugContext = slugger.slugWithContext(finalText, false);
         headings.push({
-          text: rawText,
+          text: finalText,
           slug: slugContext.slug,
           base: slugContext.base,
           duplicateIndex: slugContext.index,
           line: index + 1,
-          column
+          column,
+          explicitSlug: anchorSlug
         });
         index += 1;
       }
     }
   }
 
-  const slugs = new Set(headings.map((heading) => heading.slug));
+  const slugs = new Set<string>();
+  for (const heading of headings) {
+    if (heading.slug) {
+      slugs.add(heading.slug.toLowerCase());
+    }
+    if (heading.explicitSlug) {
+      slugs.add(heading.explicitSlug);
+    }
+  }
   const anchors = extractAnchorReferences(content, filePath, workspaceRoot, lineStarts);
 
   return { headings, slugs, anchors };
@@ -359,6 +374,26 @@ function sanitizeAtxText(text: string): string {
     return "";
   }
   return text.replace(/[ \t]+#+\s*$/, "").trim();
+}
+
+const EXPLICIT_HEADING_ANCHOR = /\s*\{#([^\s}]+)\}\s*$/;
+
+function stripExplicitHeadingAnchor(text: string): { text: string; anchorSlug?: string } {
+  if (!text) {
+    return { text: "" };
+  }
+
+  const match = EXPLICIT_HEADING_ANCHOR.exec(text);
+  if (!match) {
+    return { text: text.trim() };
+  }
+
+  const withoutAnchor = text.slice(0, match.index).trim();
+  const normalized = normalizeSlug(match[1]);
+  return {
+    text: withoutAnchor,
+    anchorSlug: normalized
+  };
 }
 
 function leadingWhitespaceWidth(line: string): number {

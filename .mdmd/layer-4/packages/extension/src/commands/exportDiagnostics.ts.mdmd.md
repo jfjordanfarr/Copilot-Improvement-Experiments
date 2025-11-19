@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/exportDiagnostics.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-exportdiagnostics-ts
-- Generated At: 2025-11-16T22:35:14.337Z
+- Generated At: 2025-11-19T15:01:33.353Z
 
 ## Authored
 ### Purpose
@@ -16,14 +16,14 @@ Exports outstanding diagnostics to CSV or JSON so leads can archive triage statu
 - Pending acceptance criteria still call for acknowledgement metadata in exports, as highlighted later that day - track completion against [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.337Z","inputHash":"83d8ad46007abd97"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.353Z","inputHash":"83d8ad46007abd97"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `EXPORT_DIAGNOSTICS_COMMAND`
+#### `EXPORT_DIAGNOSTICS_COMMAND` {#symbol-export_diagnostics_command}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/commands/exportDiagnostics.ts#L11)
 
-#### `registerExportDiagnosticsCommand`
+#### `registerExportDiagnosticsCommand` {#symbol-registerexportdiagnosticscommand}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/commands/exportDiagnostics.ts#L67)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -32,8 +32,8 @@ Exports outstanding diagnostics to CSV or JSON so leads can archive triage statu
 ### Dependencies
 - `node:fs/promises` - `fs`
 - `node:path` - `path`
-- [`index.LIST_OUTSTANDING_DIAGNOSTICS_REQUEST`](../../../shared/src/index.ts.mdmd.md#list_outstanding_diagnostics_request)
-- [`index.ListOutstandingDiagnosticsResult`](../../../shared/src/index.ts.mdmd.md#listoutstandingdiagnosticsresult)
+- [`index.LIST_OUTSTANDING_DIAGNOSTICS_REQUEST`](../../../shared/src/index.ts.mdmd.md#symbol-list_outstanding_diagnostics_request)
+- [`index.ListOutstandingDiagnosticsResult`](../../../shared/src/index.ts.mdmd.md#symbol-listoutstandingdiagnosticsresult)
 - `vscode` - `vscode`
 - `vscode-languageclient/node` - `LanguageClient`
 <!-- LIVE-DOC:END Dependencies -->

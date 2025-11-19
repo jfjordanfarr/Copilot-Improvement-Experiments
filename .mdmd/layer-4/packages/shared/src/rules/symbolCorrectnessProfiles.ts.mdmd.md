@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/symbolCorrectnessProfiles.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-symbolcorrectnessprofiles-ts
-- Generated At: 2025-11-16T22:34:13.332Z
+- Generated At: 2025-11-19T15:01:35.465Z
 
 ## Authored
 ### Purpose
@@ -16,22 +16,22 @@ Compiles symbol-correctness profiles from relationship-rules config so diagnosti
 - Continuous runs of `npm run graph:audit` after October 30 rely on these compiled profiles to report satisfied vs missing relationships per artifact.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-10.md]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.332Z","inputHash":"5f08332815ee26b1"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.465Z","inputHash":"5f08332815ee26b1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `SymbolProfileLoadResult`
+#### `SymbolProfileLoadResult` {#symbol-symbolprofileloadresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L21)
 
-#### `CompileSymbolProfilesResult`
+#### `CompileSymbolProfilesResult` {#symbol-compilesymbolprofilesresult}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L26)
 
-#### `loadSymbolCorrectnessProfiles`
+#### `loadSymbolCorrectnessProfiles` {#symbol-loadsymbolcorrectnessprofiles}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L32)
 
-#### `compileSymbolProfiles`
+#### `compileSymbolProfiles` {#symbol-compilesymbolprofiles}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L53)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -39,19 +39,19 @@ Compiles symbol-correctness profiles from relationship-rules config so diagnosti
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `minimatch` - `Minimatch`
-- [`relationshipRuleTypes.CompiledSymbolProfile`](./relationshipRuleTypes.ts.mdmd.md#compiledsymbolprofile) (type-only)
-- [`relationshipRuleTypes.CompiledSymbolProfileRequirement`](./relationshipRuleTypes.ts.mdmd.md#compiledsymbolprofilerequirement) (type-only)
-- [`relationshipRuleTypes.CompiledSymbolProfileSource`](./relationshipRuleTypes.ts.mdmd.md#compiledsymbolprofilesource) (type-only)
-- [`relationshipRuleTypes.CompiledSymbolProfileTarget`](./relationshipRuleTypes.ts.mdmd.md#compiledsymbolprofiletarget) (type-only)
-- [`relationshipRuleTypes.RelationshipRuleWarning`](./relationshipRuleTypes.ts.mdmd.md#relationshiprulewarning) (type-only)
-- [`relationshipRuleTypes.RelationshipRulesConfig`](./relationshipRuleTypes.ts.mdmd.md#relationshiprulesconfig) (type-only)
-- [`relationshipRuleTypes.SymbolCorrectnessProfileConfig`](./relationshipRuleTypes.ts.mdmd.md#symbolcorrectnessprofileconfig) (type-only)
-- [`relationshipRuleTypes.SymbolProfileLookup`](./relationshipRuleTypes.ts.mdmd.md#symbolprofilelookup) (type-only)
-- [`relationshipRuleTypes.SymbolProfileRequirementConfig`](./relationshipRuleTypes.ts.mdmd.md#symbolprofilerequirementconfig) (type-only)
-- [`relationshipRuleTypes.SymbolProfileRequirementDirection`](./relationshipRuleTypes.ts.mdmd.md#symbolprofilerequirementdirection) (type-only)
-- [`relationshipRuleTypes.SymbolProfileSourceConfig`](./relationshipRuleTypes.ts.mdmd.md#symbolprofilesourceconfig) (type-only)
-- [`relationshipRuleTypes.SymbolProfileTargetConfig`](./relationshipRuleTypes.ts.mdmd.md#symbolprofiletargetconfig) (type-only)
-- [`pathUtils.toWorkspaceRelativePath`](../tooling/pathUtils.ts.mdmd.md#toworkspacerelativepath)
+- [`relationshipRuleTypes.CompiledSymbolProfile`](./relationshipRuleTypes.ts.mdmd.md#symbol-compiledsymbolprofile) (type-only)
+- [`relationshipRuleTypes.CompiledSymbolProfileRequirement`](./relationshipRuleTypes.ts.mdmd.md#symbol-compiledsymbolprofilerequirement) (type-only)
+- [`relationshipRuleTypes.CompiledSymbolProfileSource`](./relationshipRuleTypes.ts.mdmd.md#symbol-compiledsymbolprofilesource) (type-only)
+- [`relationshipRuleTypes.CompiledSymbolProfileTarget`](./relationshipRuleTypes.ts.mdmd.md#symbol-compiledsymbolprofiletarget) (type-only)
+- [`relationshipRuleTypes.RelationshipRuleWarning`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulewarning) (type-only)
+- [`relationshipRuleTypes.RelationshipRulesConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulesconfig) (type-only)
+- [`relationshipRuleTypes.SymbolCorrectnessProfileConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolcorrectnessprofileconfig) (type-only)
+- [`relationshipRuleTypes.SymbolProfileLookup`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilelookup) (type-only)
+- [`relationshipRuleTypes.SymbolProfileRequirementConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilerequirementconfig) (type-only)
+- [`relationshipRuleTypes.SymbolProfileRequirementDirection`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilerequirementdirection) (type-only)
+- [`relationshipRuleTypes.SymbolProfileSourceConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilesourceconfig) (type-only)
+- [`relationshipRuleTypes.SymbolProfileTargetConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofiletargetconfig) (type-only)
+- [`pathUtils.toWorkspaceRelativePath`](../tooling/pathUtils.ts.mdmd.md#symbol-toworkspacerelativepath)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

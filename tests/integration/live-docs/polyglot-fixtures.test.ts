@@ -71,7 +71,7 @@ suite("Live Docs polyglot fixtures", () => {
       );
       assert.match(
         widgetDocContent,
-        /##### `WidgetRegistry` — Links[\s\S]*- \[Widget architecture]\(https:\/\/example\.com\/widgets\)/
+        /##### `WidgetRegistry` — Links[\s\S]*- `\.\.\/\.\.\/docs\/registry\.md` — Widget architecture/
       );
       assert.match(
         widgetDocContent,

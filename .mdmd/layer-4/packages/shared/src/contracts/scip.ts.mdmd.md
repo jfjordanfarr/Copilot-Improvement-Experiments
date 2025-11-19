@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/contracts/scip.ts
 - Live Doc ID: LD-implementation-packages-shared-src-contracts-scip-ts
-- Generated At: 2025-11-16T20:43:31.476Z
+- Generated At: 2025-11-19T15:01:34.662Z
 
 ## Authored
 ### Purpose
@@ -15,10 +15,10 @@ Provides TypeScript shapes for SCIP indices so the ingestion pipeline can parse 
 `scipParser.ts` and the feed format detector depend on these enums/records; refer to [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-05-integration-harness--workspace-index-overhaul-lines-1951-2800](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md#turn-05-integration-harness--workspace-index-overhaul-lines-1951-2800) for the parser fixes that keep this contract aligned with ingest reality.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:31.476Z","inputHash":"e50248c0ce243485"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.662Z","inputHash":"e50248c0ce243485"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `SCIPIndex`
+#### `SCIPIndex` {#symbol-scipindex}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L8)
 
@@ -28,53 +28,53 @@ SCIP is a language-agnostic protocol for indexing code and representing code int
 
 Spec: https://github.com/sourcegraph/scip
 
-#### `SCIPMetadata`
+#### `SCIPMetadata` {#symbol-scipmetadata}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L13)
 
-#### `SCIPToolInfo`
+#### `SCIPToolInfo` {#symbol-sciptoolinfo}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L20)
 
-#### `SCIPDocument`
+#### `SCIPDocument` {#symbol-scipdocument}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L26)
 
-#### `SCIPOccurrence`
+#### `SCIPOccurrence` {#symbol-scipoccurrence}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L33)
 
-#### `SCIPSymbolInformation`
+#### `SCIPSymbolInformation` {#symbol-scipsymbolinformation}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L42)
 
-#### `SCIPRelationship`
+#### `SCIPRelationship` {#symbol-sciprelationship}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L51)
 
-#### `SCIPDiagnostic`
+#### `SCIPDiagnostic` {#symbol-scipdiagnostic}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L59)
 
-#### `SCIPSignature`
+#### `SCIPSignature` {#symbol-scipsignature}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L67)
 
-#### `SCIPSymbolRole`
+#### `SCIPSymbolRole` {#symbol-scipsymbolrole}
 - Type: enum
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L76)
 
 ##### `SCIPSymbolRole` — Summary
 SCIP symbol roles (bitflags)
 
-#### `SCIPSymbolKind`
+#### `SCIPSymbolKind` {#symbol-scipsymbolkind}
 - Type: enum
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L90)
 
 ##### `SCIPSymbolKind` — Summary
 SCIP symbol kinds
 
-#### `ParsedSCIPIndex`
+#### `ParsedSCIPIndex` {#symbol-parsedscipindex}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/contracts/scip.ts#L125)
 <!-- LIVE-DOC:END Public Symbols -->

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/markdownShared.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-markdownshared-ts
-- Generated At: 2025-11-16T20:43:32.785Z
+- Generated At: 2025-11-19T15:01:35.651Z
 
 ## Authored
 ### Purpose
@@ -16,26 +16,26 @@ Packages the Markdown parsing primitives (reference extraction, line/column math
 - Relationship rule resolvers leverage the same helpers when translating MDMD links into graph edges, preventing divergent parsing logic in doc-to-code inference ([shared helper extraction](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-26.md#L23-L33)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:32.785Z","inputHash":"9ef3a326d9374485"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.651Z","inputHash":"9ef3a326d9374485"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ReferenceDefinition`
+#### `ReferenceDefinition` {#symbol-referencedefinition}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/markdownShared.ts#L1)
 
-#### `extractReferenceDefinitions`
+#### `extractReferenceDefinitions` {#symbol-extractreferencedefinitions}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/markdownShared.ts#L6)
 
-#### `computeLineStarts`
+#### `computeLineStarts` {#symbol-computelinestarts}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/markdownShared.ts#L28)
 
-#### `toLineAndColumn`
+#### `toLineAndColumn` {#symbol-tolineandcolumn}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/markdownShared.ts#L39)
 
-#### `parseLinkTarget`
+#### `parseLinkTarget` {#symbol-parselinktarget}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/markdownShared.ts#L63)
 <!-- LIVE-DOC:END Public Symbols -->

@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: scripts/fixture-tools/verify-fixtures.ts
 - Live Doc ID: LD-asset-scripts-fixture-tools-verify-fixtures-ts
-- Generated At: 2025-11-17T18:11:42.249Z
+- Generated At: 2025-11-19T15:01:35.837Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Verifies every benchmark fixture declared in `fixtures.manifest.json` by materia
 - Integrated 2025-10-30 into the broader fixture maintenance guide and safe commit workflow, ensuring `verify-fixtures.ts` executes automatically during pre-commit validation ([safe commit wiring](../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-30.md#L5348-L5453)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-17T18:11:42.249Z","inputHash":"10853f0a4605c212"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.837Z","inputHash":"10853f0a4605c212"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -30,11 +30,11 @@ _No public symbols detected_
 - `node:os` - `os`
 - `node:path` - `path`
 - `node:process` - `process`
-- [`benchmark-doc.extractVendorInventory`](./benchmark-doc.ts.mdmd.md#extractvendorinventory)
-- [`benchmark-doc.renderVendorInventory`](./benchmark-doc.ts.mdmd.md#rendervendorinventory)
-- [`benchmark-doc.resolveAstFixtureDocPath`](./benchmark-doc.ts.mdmd.md#resolveastfixturedocpath)
-- [`benchmark-manifest.BenchmarkFixtureDefinition`](./benchmark-manifest.ts.mdmd.md#benchmarkfixturedefinition)
-- [`benchmark-manifest.computeIntegrityDigest`](./benchmark-manifest.ts.mdmd.md#computeintegritydigest)
-- [`benchmark-manifest.loadBenchmarkManifest`](./benchmark-manifest.ts.mdmd.md#loadbenchmarkmanifest)
-- [`fixtureMaterializer.materializeFixture`](./fixtureMaterializer.ts.mdmd.md#materializefixture)
+- [`benchmark-doc.extractVendorInventory`](./benchmark-doc.ts.mdmd.md#symbol-extractvendorinventory)
+- [`benchmark-doc.renderVendorInventory`](./benchmark-doc.ts.mdmd.md#symbol-rendervendorinventory)
+- [`benchmark-doc.resolveAstFixtureDocPath`](./benchmark-doc.ts.mdmd.md#symbol-resolveastfixturedocpath)
+- [`benchmark-manifest.BenchmarkFixtureDefinition`](./benchmark-manifest.ts.mdmd.md#symbol-benchmarkfixturedefinition)
+- [`benchmark-manifest.computeIntegrityDigest`](./benchmark-manifest.ts.mdmd.md#symbol-computeintegritydigest)
+- [`benchmark-manifest.loadBenchmarkManifest`](./benchmark-manifest.ts.mdmd.md#symbol-loadbenchmarkmanifest)
+- [`fixtureMaterializer.materializeFixture`](./fixtureMaterializer.ts.mdmd.md#symbol-materializefixture)
 <!-- LIVE-DOC:END Dependencies -->

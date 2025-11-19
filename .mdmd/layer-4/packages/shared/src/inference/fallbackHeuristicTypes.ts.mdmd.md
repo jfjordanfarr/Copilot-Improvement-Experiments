@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/fallbackHeuristicTypes.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-fallbackheuristictypes-ts
-- Generated At: 2025-11-16T22:34:12.644Z
+- Generated At: 2025-11-19T15:01:34.887Z
 
 ## Authored
 ### Purpose
@@ -15,33 +15,33 @@ Defines the shared `FallbackHeuristic` contract—match contexts, emitters, and 
 Serves as the hub each language module implements post-refactor (see [AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-07.SUMMARIZED.md#turn-12-rebuild-fallback-orchestrator-lines-2381-2740](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-07.SUMMARIZED.md#turn-12-rebuild-fallback-orchestrator-lines-2381-2740)), keeping new heuristics—like the WebForms signals from [2025-11-06](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-06.SUMMARIZED.md#turn-26-benchmarks-fail-on-new-c-fixtures-lines-4121-4520)—consistent.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.644Z","inputHash":"e21b8ef02a502d6d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.887Z","inputHash":"e21b8ef02a502d6d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `MatchContext`
+#### `MatchContext` {#symbol-matchcontext}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackHeuristicTypes.ts#L3)
 
-#### `HeuristicArtifact`
+#### `HeuristicArtifact` {#symbol-heuristicartifact}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackHeuristicTypes.ts#L13)
 
-#### `MatchCandidate`
+#### `MatchCandidate` {#symbol-matchcandidate}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackHeuristicTypes.ts#L21)
 
-#### `MatchEmitter`
+#### `MatchEmitter` {#symbol-matchemitter}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackHeuristicTypes.ts#L28)
 
-#### `FallbackHeuristic`
+#### `FallbackHeuristic` {#symbol-fallbackheuristic}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/inference/fallbackHeuristicTypes.ts#L30)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`artifacts.KnowledgeArtifact`](../domain/artifacts.ts.mdmd.md#knowledgeartifact) (type-only)
+- [`artifacts.KnowledgeArtifact`](../domain/artifacts.ts.mdmd.md#symbol-knowledgeartifact) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

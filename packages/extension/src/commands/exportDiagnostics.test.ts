@@ -1,17 +1,14 @@
-import { describe, it, expect, vi, beforeEach } from "vitest";
-import type * as vscode from "vscode";
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { ListOutstandingDiagnosticsResult } from "@copilot-improvement/shared";
-import { getSharedVscodeMock } from "../testUtils/vscodeMock";
+import { createVscodeMock, type SharedVscodeMock } from "../testUtils/vscodeMock";
 
 const TEST_TIMEOUT_MS = 15000;
-const vscodeMock = getSharedVscodeMock();
-const mockCommands = vscodeMock.commands;
-const mockWindow = vscodeMock.window;
-const mockWorkspace = vscodeMock.workspace;
-const mockUri = vscodeMock.Uri;
-
-vi.mock("vscode", () => vscodeMock.module);
+let vscodeMock: SharedVscodeMock;
+let mockCommands: SharedVscodeMock["commands"];
+let mockWindow: SharedVscodeMock["window"];
+let mockWorkspace: SharedVscodeMock["workspace"];
+let registerExportDiagnosticsCommand: typeof import("./exportDiagnostics").registerExportDiagnosticsCommand;
 
 vi.mock("node:fs/promises", () => ({
   default: {
@@ -21,12 +18,36 @@ vi.mock("node:fs/promises", () => ({
 }));
 
 describe("exportDiagnostics", () => {
+  beforeAll(async () => {
+    vscodeMock = createVscodeMock();
+    vi.doMock("vscode", () => vscodeMock.module);
+    ({ registerExportDiagnosticsCommand } = await import("./exportDiagnostics"));
+    mockCommands = vscodeMock.commands;
+    mockWindow = vscodeMock.window;
+    mockWorkspace = vscodeMock.workspace;
+  }, 30000);
+
+  afterAll(() => {
+    vi.doUnmock("vscode");
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
+    mockCommands.registerCommand.mockReset();
+    mockWindow.showQuickPick.mockReset();
+    mockWindow.showInformationMessage.mockReset();
+    mockWindow.showErrorMessage.mockReset();
+    mockWindow.showSaveDialog.mockReset();
+    mockWorkspace.openTextDocument.mockReset?.();
+
+    mockCommands.registerCommand.mockReturnValue({ dispose: vi.fn() });
+    mockWindow.showQuickPick.mockResolvedValue(undefined);
+    mockWindow.showInformationMessage.mockResolvedValue(undefined);
+    mockWindow.showErrorMessage.mockResolvedValue(undefined);
+    mockWindow.showSaveDialog.mockResolvedValue(undefined);
   });
 
   it("registers the export command", async () => {
-    const { registerExportDiagnosticsCommand } = await import("./exportDiagnostics");
     const mockClient = {
       sendRequest: vi.fn()
     } as unknown;
@@ -63,7 +84,6 @@ describe("exportDiagnostics", () => {
       sendRequest: vi.fn().mockResolvedValue(mockResult)
     };
 
-    const { registerExportDiagnosticsCommand } = await import("./exportDiagnostics");
     registerExportDiagnosticsCommand(mockClient as never);
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -86,7 +106,6 @@ describe("exportDiagnostics", () => {
       sendRequest: vi.fn().mockResolvedValue(mockResult)
     };
 
-    const { registerExportDiagnosticsCommand } = await import("./exportDiagnostics");
     registerExportDiagnosticsCommand(mockClient as never);
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
@@ -105,7 +124,6 @@ describe("exportDiagnostics", () => {
       sendRequest: vi.fn()
     };
 
-    const { registerExportDiagnosticsCommand } = await import("./exportDiagnostics");
     registerExportDiagnosticsCommand(mockClient as never);
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

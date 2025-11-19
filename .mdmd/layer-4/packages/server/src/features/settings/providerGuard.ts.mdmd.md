@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/settings/providerGuard.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-settings-providerguard-ts
-- Generated At: 2025-11-16T22:35:16.159Z
+- Generated At: 2025-11-19T15:01:34.416Z
 
 ## Authored
 ### Purpose
@@ -16,25 +16,25 @@ Captures extension-scoped consent and configuration flags coming from the client
 - Works in tandem with `settingsBridge` to supply sanitized runtime defaults, a pairing reinforced in [2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.159Z","inputHash":"ff2342c8158f3bfa"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.416Z","inputHash":"ff2342c8158f3bfa"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `RippleExtensionSettings`
+#### `RippleExtensionSettings` {#symbol-rippleextensionsettings}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/settings/providerGuard.ts#L5)
 
-#### `ExtensionSettings`
+#### `ExtensionSettings` {#symbol-extensionsettings}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/settings/providerGuard.ts#L13)
 
-#### `ProviderGuard`
+#### `ProviderGuard` {#symbol-providerguard}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/settings/providerGuard.ts#L28)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#linkrelationshipkind) (type-only)
+- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#symbol-linkrelationshipkind) (type-only)
 - `vscode-languageserver` - `Connection`
 <!-- LIVE-DOC:END Dependencies -->
 

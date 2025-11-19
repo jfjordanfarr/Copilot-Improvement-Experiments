@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/includes.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-includes-ts
-- Generated At: 2025-11-16T22:34:12.742Z
+- Generated At: 2025-11-19T15:01:34.964Z
 
 ## Authored
 ### Purpose
@@ -16,22 +16,22 @@ Follows `#include` directives so the C fixtures (libuv, modular, basics) keep em
 - After editing this heuristic, rerun `npm run fixtures:record-fallback -- --lang c` and the AST benchmarks to confirm c-libuv and c-modular stay in sync with their expected include sets <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-05.md#L3098-L3130>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.742Z","inputHash":"9f8720ed45d19bd7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.964Z","inputHash":"9f8720ed45d19bd7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `createIncludeHeuristic`
+#### `createIncludeHeuristic` {#symbol-createincludeheuristic}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/inference/heuristics/includes.ts#L8)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#fallbackheuristic) (type-only)
-- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#heuristicartifact) (type-only)
-- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#isimplementationlayer)
-- [`referenceResolver.resolveIncludeReference`](./referenceResolver.ts.mdmd.md#resolveincludereference)
-- [`shared.computeReferenceStart`](./shared.ts.mdmd.md#computereferencestart)
-- [`shared.isWithinComment`](./shared.ts.mdmd.md#iswithincomment)
+- [`fallbackHeuristicTypes.FallbackHeuristic`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-fallbackheuristic) (type-only)
+- [`fallbackHeuristicTypes.HeuristicArtifact`](../fallbackHeuristicTypes.ts.mdmd.md#symbol-heuristicartifact) (type-only)
+- [`artifactLayerUtils.isImplementationLayer`](./artifactLayerUtils.ts.mdmd.md#symbol-isimplementationlayer)
+- [`referenceResolver.resolveIncludeReference`](./referenceResolver.ts.mdmd.md#symbol-resolveincludereference)
+- [`shared.computeReferenceStart`](./shared.ts.mdmd.md#symbol-computereferencestart)
+- [`shared.isWithinComment`](./shared.ts.mdmd.md#symbol-iswithincomment)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

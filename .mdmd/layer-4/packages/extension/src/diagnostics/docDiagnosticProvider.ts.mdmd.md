@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/diagnostics/docDiagnosticProvider.ts
 - Live Doc ID: LD-implementation-packages-extension-src-diagnostics-docdiagnosticprovider-ts
-- Generated At: 2025-11-16T22:34:10.812Z
+- Generated At: 2025-11-19T15:01:33.488Z
 
 ## Authored
 ### Purpose
@@ -16,37 +16,37 @@ Registers the Problems-view diagnostic source that translates server ripple payl
 - Unit tests (`docDiagnosticProvider.test.ts`) landed with that change set, and the same run verified Problems actions end-to-end via `npm run test:integration`, recorded at [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L1238-L1276](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-21.md#L1238-L1276).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:10.812Z","inputHash":"30d694bdcbdcf16a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.488Z","inputHash":"30d694bdcbdcf16a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `OPEN_LINKED_ARTIFACT_COMMAND`
+#### `OPEN_LINKED_ARTIFACT_COMMAND` {#symbol-open_linked_artifact_command}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts#L9)
 
-#### `VIEW_RIPPLE_DETAILS_COMMAND`
+#### `VIEW_RIPPLE_DETAILS_COMMAND` {#symbol-view_ripple_details_command}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts#L10)
 
-#### `registerDocDiagnosticProvider`
+#### `registerDocDiagnosticProvider` {#symbol-registerdocdiagnosticprovider}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts#L31)
 
-#### `buildOpenActionTitle`
+#### `buildOpenActionTitle` {#symbol-buildopenactiontitle}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts#L264)
 
-#### `buildRippleSummary`
+#### `buildRippleSummary` {#symbol-buildripplesummary}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts#L281)
 
-#### `formatConfidenceLabel`
+#### `formatConfidenceLabel` {#symbol-formatconfidencelabel}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/diagnostics/docDiagnosticProvider.ts#L311)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`acknowledgeDiagnostic.ACKNOWLEDGE_DIAGNOSTIC_COMMAND`](../commands/acknowledgeDiagnostic.ts.mdmd.md#acknowledge_diagnostic_command)
+- [`acknowledgeDiagnostic.ACKNOWLEDGE_DIAGNOSTIC_COMMAND`](../commands/acknowledgeDiagnostic.ts.mdmd.md#symbol-acknowledge_diagnostic_command)
 - `vscode` - `vscode`
 <!-- LIVE-DOC:END Dependencies -->
 

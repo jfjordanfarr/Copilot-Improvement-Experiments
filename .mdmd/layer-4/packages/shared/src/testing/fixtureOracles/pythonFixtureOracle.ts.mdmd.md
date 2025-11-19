@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-pythonfixtureoracle-ts
-- Generated At: 2025-11-16T22:34:13.433Z
+- Generated At: 2025-11-19T15:01:35.533Z
 
 ## Authored
 ### Purpose
@@ -16,58 +16,58 @@ Executes Python fixtures through the CPython interpreter to emit ground-truth de
 - Continues to run under the full unit suite (Nov 16) to guard subprocess handling and override merging <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.433Z","inputHash":"bb82d10e2550a87b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.533Z","inputHash":"bb82d10e2550a87b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `PythonOracleEdgeRelation`
+#### `PythonOracleEdgeRelation` {#symbol-pythonoracleedgerelation}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L5)
 
-#### `PythonOracleProvenance`
+#### `PythonOracleProvenance` {#symbol-pythonoracleprovenance}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L6)
 
-#### `PythonOracleEdge`
+#### `PythonOracleEdge` {#symbol-pythonoracleedge}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L8)
 
-#### `PythonOracleEdgeRecord`
+#### `PythonOracleEdgeRecord` {#symbol-pythonoracleedgerecord}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L15)
 
-#### `PythonFixtureOracleOptions`
+#### `PythonFixtureOracleOptions` {#symbol-pythonfixtureoracleoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L21)
 
-#### `PythonOracleOverrideEntry`
+#### `PythonOracleOverrideEntry` {#symbol-pythonoracleoverrideentry}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L31)
 
-#### `PythonOracleOverrideConfig`
+#### `PythonOracleOverrideConfig` {#symbol-pythonoracleoverrideconfig}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L37)
 
-#### `PythonOracleSegmentPartition`
+#### `PythonOracleSegmentPartition` {#symbol-pythonoraclesegmentpartition}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L41)
 
-#### `PythonOracleMergeResult`
+#### `PythonOracleMergeResult` {#symbol-pythonoraclemergeresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L48)
 
-#### `generatePythonFixtureGraph`
+#### `generatePythonFixtureGraph` {#symbol-generatepythonfixturegraph}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L71)
 
-#### `serializePythonOracleEdges`
+#### `serializePythonOracleEdges` {#symbol-serializepythonoracleedges}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L93)
 
-#### `partitionPythonOracleSegments`
+#### `partitionPythonOracleSegments` {#symbol-partitionpythonoraclesegments}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L98)
 
-#### `mergePythonOracleEdges`
+#### `mergePythonOracleEdges` {#symbol-mergepythonoracleedges}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/pythonFixtureOracle.ts#L134)
 <!-- LIVE-DOC:END Public Symbols -->

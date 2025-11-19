@@ -1,18 +1,15 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import type { LanguageClient } from "vscode-languageclient/node";
 
-import { getSharedVscodeMock } from "../testUtils/vscodeMock";
+import { createVscodeMock, type SharedVscodeMock } from "../testUtils/vscodeMock";
 import type { InvokeChatResult, LlmInvoker } from "../services/llmInvoker";
 import type { LinkDiagnosticsSettings } from "../settings/configService";
 
-const vscodeMock = getSharedVscodeMock();
-const mockCommands = vscodeMock.commands;
-const mockWindow = vscodeMock.window;
-const mockWorkspace = vscodeMock.workspace;
-const mockUri = vscodeMock.Uri;
-const mockProgressLocation = vscodeMock.ProgressLocation;
-
-vi.mock("vscode", () => vscodeMock.module);
+let vscodeMock: SharedVscodeMock;
+let mockCommands: SharedVscodeMock["commands"];
+let mockWindow: SharedVscodeMock["window"];
+let mockWorkspace: SharedVscodeMock["workspace"];
+let registerAnalyzeWithAICommand: typeof import("./analyzeWithAI").registerAnalyzeWithAICommand;
 
 describe("registerAnalyzeWithAICommand", () => {
   const defaultSettings: LinkDiagnosticsSettings = {
@@ -25,16 +22,41 @@ describe("registerAnalyzeWithAICommand", () => {
     }
   };
 
+  beforeAll(async () => {
+    vscodeMock = createVscodeMock();
+    vi.doMock("vscode", () => vscodeMock.module);
+    ({ registerAnalyzeWithAICommand } = await import("./analyzeWithAI"));
+    mockCommands = vscodeMock.commands;
+    mockWindow = vscodeMock.window;
+    mockWorkspace = vscodeMock.workspace;
+  }, 30000);
+
+  afterAll(() => {
+    vi.doUnmock("vscode");
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
+    mockCommands.registerCommand.mockReset();
+    mockWindow.showQuickPick.mockReset();
+    mockWindow.showInformationMessage.mockReset();
+    mockWindow.showErrorMessage.mockReset();
+    mockWindow.withProgress.mockReset();
+    mockWorkspace.openTextDocument.mockReset();
+
+    mockCommands.registerCommand.mockReturnValue({ dispose: vi.fn() });
+    mockWindow.showQuickPick.mockResolvedValue(undefined);
+    mockWindow.showInformationMessage.mockResolvedValue(undefined);
+    mockWindow.showErrorMessage.mockResolvedValue(undefined);
     mockWorkspace.openTextDocument.mockResolvedValue({
       getText: () => "content"
     });
-  mockWindow.withProgress.mockImplementation(async (_options, task) => task({}, { isCancellationRequested: false } as unknown));
+    mockWindow.withProgress.mockImplementation(async (_options, task) =>
+      task({}, { isCancellationRequested: false } as unknown)
+    );
   });
 
   it("registers the command", async () => {
-    const { registerAnalyzeWithAICommand } = await import("./analyzeWithAI");
     const client = { sendRequest: vi.fn() } as unknown as LanguageClient;
     const llmInvoker = { invoke: vi.fn() } as unknown as LlmInvoker;
 
@@ -51,7 +73,6 @@ describe("registerAnalyzeWithAICommand", () => {
   }, 15000);
 
   it("shows information when provider is disabled", async () => {
-    const { registerAnalyzeWithAICommand } = await import("./analyzeWithAI");
     const client = { sendRequest: vi.fn() } as unknown as LanguageClient;
     const llmInvoker = { invoke: vi.fn() } as unknown as LlmInvoker;
 
@@ -71,8 +92,6 @@ describe("registerAnalyzeWithAICommand", () => {
   });
 
   it("handles successful analysis flow", async () => {
-    const { registerAnalyzeWithAICommand } = await import("./analyzeWithAI");
-
     const diagnosticsResponse = {
       generatedAt: "2025-01-01T00:00:00.000Z",
       diagnostics: [

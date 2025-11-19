@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/commands/latencySummary.ts
 - Live Doc ID: LD-implementation-packages-extension-src-commands-latencysummary-ts
-- Generated At: 2025-11-16T22:35:14.433Z
+- Generated At: 2025-11-19T15:01:33.414Z
 
 ## Authored
 ### Purpose
@@ -16,28 +16,28 @@ Surfaces diagnostic latency telemetry inside VS Code by registering `linkDiagnos
 - Follow-up doc cleanup on Oct 28 removed inline-code command IDs after SlopCop flagged them, keeping symbol coverage green per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L2700-L2764](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L2700-L2764).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.433Z","inputHash":"3ea537f153d2c107"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.414Z","inputHash":"3ea537f153d2c107"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `registerLatencyTelemetryCommands`
+#### `registerLatencyTelemetryCommands` {#symbol-registerlatencytelemetrycommands}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/commands/latencySummary.ts#L59)
 
-#### `LATENCY_SUMMARY_COMMAND`
+#### `LATENCY_SUMMARY_COMMAND` {#symbol-latency_summary_command}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/commands/latencySummary.ts#L120)
 
-#### `GET_LATENCY_SUMMARY_INTERNAL_COMMAND`
+#### `GET_LATENCY_SUMMARY_INTERNAL_COMMAND` {#symbol-get_latency_summary_internal_command}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/commands/latencySummary.ts#L121)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`index.LATENCY_SUMMARY_REQUEST`](../../../shared/src/index.ts.mdmd.md#latency_summary_request)
-- [`index.LatencySummary`](../../../shared/src/index.ts.mdmd.md#latencysummary)
-- [`index.LatencySummaryRequest`](../../../shared/src/index.ts.mdmd.md#latencysummaryrequest)
-- [`index.LatencySummaryResponse`](../../../shared/src/index.ts.mdmd.md#latencysummaryresponse)
+- [`index.LATENCY_SUMMARY_REQUEST`](../../../shared/src/index.ts.mdmd.md#symbol-latency_summary_request)
+- [`index.LatencySummary`](../../../shared/src/index.ts.mdmd.md#symbol-latencysummary)
+- [`index.LatencySummaryRequest`](../../../shared/src/index.ts.mdmd.md#symbol-latencysummaryrequest)
+- [`index.LatencySummaryResponse`](../../../shared/src/index.ts.mdmd.md#symbol-latencysummaryresponse)
 - `vscode` - `vscode`
 - `vscode-languageclient/node` - `LanguageClient`
 <!-- LIVE-DOC:END Dependencies -->

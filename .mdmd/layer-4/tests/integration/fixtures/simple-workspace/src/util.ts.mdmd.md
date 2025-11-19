@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/simple-workspace/src/util.ts
 - Live Doc ID: LD-asset-tests-integration-fixtures-simple-workspace-src-util-ts
-- Generated At: 2025-11-16T20:43:33.546Z
+- Generated At: 2025-11-19T15:01:37.065Z
 
 ## Authored
 ### Purpose
@@ -16,30 +16,30 @@ Provides deterministic normalization helpers that underpin the simple-workspace 
 - The fixture continues to pass the `npm run fixtures:verify` sweep that revalidated simple-workspace behavior on Oct 29, so future edits should rerun that manifest before landing <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L5288-L5320>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:33.546Z","inputHash":"dc7ce304b3cf62eb"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:37.065Z","inputHash":"dc7ce304b3cf62eb"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `PrimitiveValue`
+#### `PrimitiveValue` {#symbol-primitivevalue}
 - Type: type
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/util.ts#L1)
 
-#### `NormalizedValue`
+#### `NormalizedValue` {#symbol-normalizedvalue}
 - Type: type
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/util.ts#L2)
 
-#### `NormalizedArray`
+#### `NormalizedArray` {#symbol-normalizedarray}
 - Type: type
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/util.ts#L3)
 
-#### `NormalizedObject`
+#### `NormalizedObject` {#symbol-normalizedobject}
 - Type: interface
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/util.ts#L4)
 
-#### `normalizeValue`
+#### `normalizeValue` {#symbol-normalizevalue}
 - Type: function
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/util.ts#L8)
 
-#### `summarizeShape`
+#### `summarizeShape` {#symbol-summarizeshape}
 - Type: function
 - Source: [source](../../../../../../../tests/integration/fixtures/simple-workspace/src/util.ts#L40)
 <!-- LIVE-DOC:END Public Symbols -->

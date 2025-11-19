@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/reporting/testReport.ts
 - Live Doc ID: LD-implementation-packages-shared-src-reporting-testreport-ts
-- Generated At: 2025-11-16T20:43:32.357Z
+- Generated At: 2025-11-19T15:01:35.399Z
 
 ## Authored
 ### Purpose
@@ -16,42 +16,42 @@ Formats benchmark telemetry (AST accuracy, rebuild stability, future suites) int
 - Expanded on Nov 3 to support per-mode reports when benchmarks began emitting distinct AST and self-similarity outputs.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-09-implement-per-mode-benchmark-reporting-lines-821-1030]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:32.357Z","inputHash":"36a5ca5f9dce4c6d"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.399Z","inputHash":"36a5ca5f9dce4c6d"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `BenchmarkEnvironment`
+#### `BenchmarkEnvironment` {#symbol-benchmarkenvironment}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L1)
 
-#### `BenchmarkRecord`
+#### `BenchmarkRecord` {#symbol-benchmarkrecord}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L11)
 
-#### `TestReportContext`
+#### `TestReportContext` {#symbol-testreportcontext}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L20)
 
-#### `RebuildStabilityData`
+#### `RebuildStabilityData` {#symbol-rebuildstabilitydata}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L27)
 
-#### `AstAccuracyTotals`
+#### `AstAccuracyTotals` {#symbol-astaccuracytotals}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L37)
 
-#### `AstAccuracyFixture`
+#### `AstAccuracyFixture` {#symbol-astaccuracyfixture}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L47)
 
-#### `AstAccuracyData`
+#### `AstAccuracyData` {#symbol-astaccuracydata}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L54)
 
-#### `ReportSection`
+#### `ReportSection` {#symbol-reportsection}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L64)
 
-#### `buildTestReportMarkdown`
+#### `buildTestReportMarkdown` {#symbol-buildtestreportmarkdown}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/reporting/testReport.ts#L69)
 <!-- LIVE-DOC:END Public Symbols -->

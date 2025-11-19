@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/knowledge/knowledgeGraphBridge.ts
 - Live Doc ID: LD-implementation-packages-shared-src-knowledge-knowledgegraphbridge-ts
-- Generated At: 2025-11-16T22:34:12.932Z
+- Generated At: 2025-11-19T15:01:35.097Z
 
 ## Authored
 ### Purpose
@@ -15,46 +15,46 @@ Provides the shared bridge that normalises external knowledge snapshots and stre
 The server wiring on October 20 relies on this bridge to bootstrap feeds from `data/knowledge-feeds/bootstrap.json`, so updates here should stay aligned with that runtime pipeline—see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L2334](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L2334) for the operational walkthrough.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.932Z","inputHash":"9bbbf7ce041106b2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.097Z","inputHash":"9bbbf7ce041106b2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ExternalArtifact`
+#### `ExternalArtifact` {#symbol-externalartifact}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts#L10)
 
-#### `ExternalLink`
+#### `ExternalLink` {#symbol-externallink}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts#L21)
 
-#### `ExternalSnapshot`
+#### `ExternalSnapshot` {#symbol-externalsnapshot}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts#L32)
 
-#### `StreamEventKind`
+#### `StreamEventKind` {#symbol-streameventkind}
 - Type: type
 - Source: [source](../../../../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts#L41)
 
-#### `ExternalStreamEvent`
+#### `ExternalStreamEvent` {#symbol-externalstreamevent}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts#L47)
 
-#### `StreamCheckpoint`
+#### `StreamCheckpoint` {#symbol-streamcheckpoint}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts#L58)
 
-#### `KnowledgeGraphBridge`
+#### `KnowledgeGraphBridge` {#symbol-knowledgegraphbridge}
 - Type: class
 - Source: [source](../../../../../../packages/shared/src/knowledge/knowledgeGraphBridge.ts#L63)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`graphStore.GraphStore`](../db/graphStore.ts.mdmd.md#graphstore)
-- [`artifacts.ArtifactLayer`](../domain/artifacts.ts.mdmd.md#artifactlayer)
-- [`artifacts.KnowledgeArtifact`](../domain/artifacts.ts.mdmd.md#knowledgeartifact)
-- [`artifacts.KnowledgeSnapshot`](../domain/artifacts.ts.mdmd.md#knowledgesnapshot)
-- [`artifacts.LinkRelationship`](../domain/artifacts.ts.mdmd.md#linkrelationship)
-- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#linkrelationshipkind)
+- [`graphStore.GraphStore`](../db/graphStore.ts.mdmd.md#symbol-graphstore)
+- [`artifacts.ArtifactLayer`](../domain/artifacts.ts.mdmd.md#symbol-artifactlayer)
+- [`artifacts.KnowledgeArtifact`](../domain/artifacts.ts.mdmd.md#symbol-knowledgeartifact)
+- [`artifacts.KnowledgeSnapshot`](../domain/artifacts.ts.mdmd.md#symbol-knowledgesnapshot)
+- [`artifacts.LinkRelationship`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationship)
+- [`artifacts.LinkRelationshipKind`](../domain/artifacts.ts.mdmd.md#symbol-linkrelationshipkind)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

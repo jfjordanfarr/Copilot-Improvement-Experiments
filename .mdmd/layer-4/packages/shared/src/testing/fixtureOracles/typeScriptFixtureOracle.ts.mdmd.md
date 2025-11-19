@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts
 - Live Doc ID: LD-implementation-packages-shared-src-testing-fixtureoracles-typescriptfixtureoracle-ts
-- Generated At: 2025-11-16T22:34:13.490Z
+- Generated At: 2025-11-19T15:01:35.576Z
 
 ## Authored
 ### Purpose
@@ -16,58 +16,58 @@ Builds compiler-derived dependency edges for TypeScript benchmark fixtures so re
 - Regularly re-run via `npm run test:unit -- typeScriptFixtureOracle` and the broader unit sweep (latest on Nov 16) to guard the classification logic and serialization contract <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2928-L2960>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.490Z","inputHash":"5d16bccd5ccc06d2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.576Z","inputHash":"5d16bccd5ccc06d2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `OracleEdgeRelation`
+#### `OracleEdgeRelation` {#symbol-oracleedgerelation}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L13)
 
-#### `OracleEdgeProvenance`
+#### `OracleEdgeProvenance` {#symbol-oracleedgeprovenance}
 - Type: type
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L15)
 
-#### `OracleEdge`
+#### `OracleEdge` {#symbol-oracleedge}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L17)
 
-#### `OracleEdgeRecord`
+#### `OracleEdgeRecord` {#symbol-oracleedgerecord}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L24)
 
-#### `TypeScriptFixtureOracleOptions`
+#### `TypeScriptFixtureOracleOptions` {#symbol-typescriptfixtureoracleoptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L30)
 
-#### `OracleOverrideEntry`
+#### `OracleOverrideEntry` {#symbol-oracleoverrideentry}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L36)
 
-#### `OracleOverrideConfig`
+#### `OracleOverrideConfig` {#symbol-oracleoverrideconfig}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L42)
 
-#### `OracleSegmentPartition`
+#### `OracleSegmentPartition` {#symbol-oraclesegmentpartition}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L46)
 
-#### `OracleMergeResult`
+#### `OracleMergeResult` {#symbol-oraclemergeresult}
 - Type: interface
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L53)
 
-#### `generateTypeScriptFixtureGraph`
+#### `generateTypeScriptFixtureGraph` {#symbol-generatetypescriptfixturegraph}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L75)
 
-#### `serializeOracleEdges`
+#### `serializeOracleEdges` {#symbol-serializeoracleedges}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L188)
 
-#### `partitionOracleSegments`
+#### `partitionOracleSegments` {#symbol-partitionoraclesegments}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L193)
 
-#### `mergeOracleEdges`
+#### `mergeOracleEdges` {#symbol-mergeoracleedges}
 - Type: function
 - Source: [source](../../../../../../../packages/shared/src/testing/fixtureOracles/typeScriptFixtureOracle.ts#L229)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -76,11 +76,11 @@ Builds compiler-derived dependency edges for TypeScript benchmark fixtures so re
 ### Dependencies
 - `node:fs` - `fs`
 - `node:path` - `path`
-- [`typeScriptAstUtils.collectIdentifierUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#collectidentifierusage)
-- [`typeScriptAstUtils.extractLocalImportNames`](../../language/typeScriptAstUtils.ts.mdmd.md#extractlocalimportnames)
-- [`typeScriptAstUtils.hasRuntimeUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#hasruntimeusage)
-- [`typeScriptAstUtils.hasTypeUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#hastypeusage)
-- [`typeScriptAstUtils.isLikelyTypeDefinitionSpecifier`](../../language/typeScriptAstUtils.ts.mdmd.md#islikelytypedefinitionspecifier)
+- [`typeScriptAstUtils.collectIdentifierUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-collectidentifierusage)
+- [`typeScriptAstUtils.extractLocalImportNames`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-extractlocalimportnames)
+- [`typeScriptAstUtils.hasRuntimeUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-hasruntimeusage)
+- [`typeScriptAstUtils.hasTypeUsage`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-hastypeusage)
+- [`typeScriptAstUtils.isLikelyTypeDefinitionSpecifier`](../../language/typeScriptAstUtils.ts.mdmd.md#symbol-islikelytypedefinitionspecifier)
 - `typescript` - `ts`
 <!-- LIVE-DOC:END Dependencies -->
 

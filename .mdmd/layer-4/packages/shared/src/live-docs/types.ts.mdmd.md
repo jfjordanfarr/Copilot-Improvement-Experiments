@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/types.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-types-ts
-- Generated At: 2025-11-16T20:43:32.344Z
+- Generated At: 2025-11-19T15:01:35.386Z
 
 ## Authored
 ### Purpose
@@ -16,22 +16,22 @@ Centralizes Stage‑0 Live Doc manifest and symbol structures so the generator, 
 - Survived the Nov 15 Stage‑0 recovery by migrating authored content into the new `.md` Live Docs surface and retargeting all diagnostics to this schema file.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-15.SUMMARIZED.md#turn-19-automate-the-stage-0-migration-lines-2621-2760]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:32.344Z","inputHash":"5f9b131ee7fc34a2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.386Z","inputHash":"5f9b131ee7fc34a2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `Stage0Symbol`
+#### `Stage0Symbol` {#symbol-stage0symbol}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/live-docs/types.ts#L1)
 
-#### `Stage0Doc`
+#### `Stage0Doc` {#symbol-stage0doc}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/live-docs/types.ts#L6)
 
-#### `Stage0DocLogger`
+#### `Stage0DocLogger` {#symbol-stage0doclogger}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/live-docs/types.ts#L16)
 
-#### `TargetManifest`
+#### `TargetManifest` {#symbol-targetmanifest}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/live-docs/types.ts#L20)
 <!-- LIVE-DOC:END Public Symbols -->

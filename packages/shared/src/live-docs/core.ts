@@ -126,6 +126,22 @@ export const MODULE_RESOLUTION_EXTENSIONS = [
   ".json"
 ];
 
+const RESERVED_HEADING_NAMES = new Set(
+  [
+    "Metadata",
+    "Authored",
+    "Purpose",
+    "Notes",
+    "Generated",
+    "Public Symbols",
+    "Dependencies",
+    "Observed Evidence",
+    "Targets",
+    "Supporting Fixtures",
+    "Re-Exported Symbol Anchors"
+  ].map((name) => name.toLowerCase())
+);
+
 const EMPTY_ANALYSIS_RESULT: SourceAnalysisResult = {
   symbols: [],
   dependencies: []
@@ -1165,6 +1181,9 @@ export function computePublicSymbolHeadingInfo(symbols: PublicSymbolEntry[]): Pu
 
     const duplicateNameCount = nameCounts.get(symbol.name) ?? 0;
     const duplicateKindCount = nameKindCounts.get(kindKey) ?? 0;
+    const normalizedName = symbol.name.trim().toLowerCase();
+    const isReservedHeadingName = RESERVED_HEADING_NAMES.has(normalizedName);
+    const baseSlug = createSymbolSlug(symbol.name) ?? "";
 
     let displayName = symbol.name;
     if (duplicateNameCount > 1) {
@@ -1174,9 +1193,19 @@ export function computePublicSymbolHeadingInfo(symbols: PublicSymbolEntry[]): Pu
         const labelBase = symbol.kind ? `${symbol.kind} overload` : "variant";
         displayName = `${symbol.name} (${labelBase} ${occurrence})`;
       }
+    } else if (isReservedHeadingName) {
+      const descriptiveKind = symbol.kind ?? "symbol";
+      displayName = `${symbol.name} (${descriptiveKind})`;
     }
 
-    const slugValue = createSymbolSlug(displayName) ?? createSymbolSlug(symbol.name) ?? "";
+    let slugValue: string;
+    if (duplicateNameCount > 1) {
+      slugValue = createSymbolSlug(displayName) ?? baseSlug;
+    } else if (isReservedHeadingName) {
+      slugValue = baseSlug || createSymbolSlug(displayName) || "";
+    } else {
+      slugValue = createSymbolSlug(displayName) ?? baseSlug;
+    }
     infos.push({
       symbol,
       displayName,
@@ -1199,7 +1228,8 @@ export function renderPublicSymbolLines(args: {
 
   for (const info of args.headings) {
     const symbol = info.symbol;
-    lines.push(`#### \`${info.displayName}\``);
+    const anchorSuffix = info.slug ? ` {#${info.slug}}` : "";
+    lines.push(`#### \`${info.displayName}\`${anchorSuffix}`);
 
     const detailLines: string[] = [];
     const displayKind = symbol.kind ? symbol.kind : "symbol";
@@ -1555,7 +1585,9 @@ export function renderReExportedAnchorLines(args: {
   const lines: string[] = [];
 
   for (const entry of sorted) {
-    lines.push(`#### \`${entry.name}\``);
+    const slugValue = createSymbolSlug(entry.name);
+    const anchorSuffix = slugValue ? ` {#${slugValue}}` : "";
+    lines.push(`#### \`${entry.name}\`${anchorSuffix}`);
 
     const qualifierParts: string[] = [];
     if (entry.isTypeOnly) {
@@ -1569,8 +1601,7 @@ export function renderReExportedAnchorLines(args: {
       );
       const relative = formatRelativePathFromDoc(args.docDir, moduleDocAbsolute);
       const moduleLabel = toModuleLabel(entry.sourceModulePath);
-      const slug = createSymbolSlug(entry.name);
-      const fragment = slug ? `#${slug}` : "";
+      const fragment = slugValue ? `#${slugValue}` : "";
       const qualifierSuffix = qualifierParts.length ? ` (${qualifierParts.join(", ")})` : "";
       lines.push(
         `- Re-exported from [${formatInlineCode(moduleLabel)}](${relative}${fragment})${qualifierSuffix}`
@@ -1605,7 +1636,11 @@ export function formatRelativePathFromDoc(docDir: string, targetAbsolute: string
 
 export function createSymbolSlug(name: string): string | undefined {
   const candidate = slug(`\`${name}\``);
-  return candidate && candidate.length > 0 ? candidate : undefined;
+  if (!candidate || candidate.length === 0) {
+    return undefined;
+  }
+
+  return `symbol-${candidate}`;
 }
 
 export function toModuleLabel(workspaceRelativePath: string): string {

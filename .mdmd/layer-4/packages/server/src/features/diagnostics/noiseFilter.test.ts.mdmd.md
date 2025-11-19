@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/features/diagnostics/noiseFilter.test.ts
 - Live Doc ID: LD-test-packages-server-src-features-diagnostics-noisefilter-test-ts
-- Generated At: 2025-11-18T14:53:38.711Z
+- Generated At: 2025-11-19T15:01:33.853Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Verifies the ripple noise filter trims low-confidence, deep, and over-budget imp
 - Focuses on deterministic counter increments (confidence/depth/change/artifact) so diagnostics publishers inherit precise telemetry when thresholds shift.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.711Z","inputHash":"08454056f7d7b03b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.853Z","inputHash":"08454056f7d7b03b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,11 +23,11 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`noiseFilter.NoiseFilterTotals`](./noiseFilter.ts.mdmd.md#noisefiltertotals)
-- [`noiseFilter.ZERO_NOISE_FILTER_TOTALS`](./noiseFilter.ts.mdmd.md#zero_noise_filter_totals)
-- [`noiseFilter.applyNoiseFilter`](./noiseFilter.ts.mdmd.md#applynoisefilter)
-- [`rippleTypes.RippleImpact`](./rippleTypes.ts.mdmd.md#rippleimpact) (type-only)
-- [`settingsBridge.NoiseFilterRuntimeConfig`](../settings/settingsBridge.ts.mdmd.md#noisefilterruntimeconfig) (type-only)
+- [`noiseFilter.NoiseFilterTotals`](./noiseFilter.ts.mdmd.md#symbol-noisefiltertotals)
+- [`noiseFilter.ZERO_NOISE_FILTER_TOTALS`](./noiseFilter.ts.mdmd.md#symbol-zero_noise_filter_totals)
+- [`noiseFilter.applyNoiseFilter`](./noiseFilter.ts.mdmd.md#symbol-applynoisefilter)
+- [`rippleTypes.RippleImpact`](./rippleTypes.ts.mdmd.md#symbol-rippleimpact) (type-only)
+- [`settingsBridge.NoiseFilterRuntimeConfig`](../settings/settingsBridge.ts.mdmd.md#symbol-noisefilterruntimeconfig) (type-only)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/inference/llmSampling.test.ts
 - Live Doc ID: LD-test-packages-shared-src-inference-llmsampling-test-ts
-- Generated At: 2025-11-16T22:34:12.885Z
+- Generated At: 2025-11-19T15:01:35.057Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates the sampling harness by pinning vote aggregation, thresholding, collec
 Keep these cases in sync with the follow-up wiring into link inference and telemetry sinks noted in [AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L4679](../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-04.md#L4679) once sampling flows graduate from stub to production usage.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.885Z","inputHash":"94bd878fb00b5676"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.057Z","inputHash":"94bd878fb00b5676"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,12 +23,12 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`llmSampling.SamplingRequest`](./llmSampling.ts.mdmd.md#samplingrequest)
-- [`llmSampling.SamplingVote`](./llmSampling.ts.mdmd.md#samplingvote)
-- [`llmSampling.aggregateVotes`](./llmSampling.ts.mdmd.md#aggregatevotes)
-- [`llmSampling.emitSamplingTelemetry`](./llmSampling.ts.mdmd.md#emitsamplingtelemetry)
-- [`llmSampling.runSamplingSession`](./llmSampling.ts.mdmd.md#runsamplingsession)
-- [`llmSampling.scoreSamples`](./llmSampling.ts.mdmd.md#scoresamples)
+- [`llmSampling.SamplingRequest`](./llmSampling.ts.mdmd.md#symbol-samplingrequest)
+- [`llmSampling.SamplingVote`](./llmSampling.ts.mdmd.md#symbol-samplingvote)
+- [`llmSampling.aggregateVotes`](./llmSampling.ts.mdmd.md#symbol-aggregatevotes)
+- [`llmSampling.emitSamplingTelemetry`](./llmSampling.ts.mdmd.md#symbol-emitsamplingtelemetry)
+- [`llmSampling.runSamplingSession`](./llmSampling.ts.mdmd.md#symbol-runsamplingsession)
+- [`llmSampling.scoreSamples`](./llmSampling.ts.mdmd.md#symbol-scoresamples)
 - `vitest` - `describe`, `expect`, `it`, `vi`
 <!-- LIVE-DOC:END Dependencies -->
 

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/settings/settingsBridge.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-settings-settingsbridge-ts
-- Generated At: 2025-11-16T22:35:16.186Z
+- Generated At: 2025-11-19T15:01:34.427Z
 
 ## Authored
 ### Purpose
@@ -16,42 +16,42 @@ Transforms extension configuration into validated runtime settings for the langu
 - Expanded defaults for document-oriented relationship kinds during the Oct 21 diagnostic copy edit pass documented in [2025-10-21 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-21.SUMMARIZED.md).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.186Z","inputHash":"42339b2545aadc82"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.427Z","inputHash":"42339b2545aadc82"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `NoiseSuppressionLevel`
+#### `NoiseSuppressionLevel` {#symbol-noisesuppressionlevel}
 - Type: type
 - Source: [source](../../../../../../../packages/server/src/features/settings/settingsBridge.ts#L5)
 
-#### `NoiseFilterRuntimeConfig`
+#### `NoiseFilterRuntimeConfig` {#symbol-noisefilterruntimeconfig}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/settings/settingsBridge.ts#L7)
 
-#### `NoiseSuppressionRuntime`
+#### `NoiseSuppressionRuntime` {#symbol-noisesuppressionruntime}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/settings/settingsBridge.ts#L14)
 
-#### `RippleRuntimeSettings`
+#### `RippleRuntimeSettings` {#symbol-rippleruntimesettings}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/settings/settingsBridge.ts#L21)
 
-#### `RuntimeSettings`
+#### `RuntimeSettings` {#symbol-runtimesettings}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/settings/settingsBridge.ts#L29)
 
-#### `DEFAULT_RUNTIME_SETTINGS`
+#### `DEFAULT_RUNTIME_SETTINGS` {#symbol-default_runtime_settings}
 - Type: const
 - Source: [source](../../../../../../../packages/server/src/features/settings/settingsBridge.ts#L35)
 
-#### `deriveRuntimeSettings`
+#### `deriveRuntimeSettings` {#symbol-deriveruntimesettings}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/settings/settingsBridge.ts#L148)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`providerGuard.ExtensionSettings`](./providerGuard.ts.mdmd.md#extensionsettings)
-- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#linkrelationshipkind) (type-only)
+- [`providerGuard.ExtensionSettings`](./providerGuard.ts.mdmd.md#symbol-extensionsettings)
+- [`index.LinkRelationshipKind`](../../../../shared/src/index.ts.mdmd.md#symbol-linkrelationshipkind) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

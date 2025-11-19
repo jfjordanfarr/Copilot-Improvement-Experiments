@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/server/src/telemetry/inferenceAccuracy.test.ts
 - Live Doc ID: LD-test-packages-server-src-telemetry-inferenceaccuracy-test-ts
-- Generated At: 2025-11-16T22:34:12.290Z
+- Generated At: 2025-11-19T15:01:34.589Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates the inference-accuracy tracker behaviour laid out in [AI-Agent-Workspa
 The suite covers multi-benchmark aggregation, sample trimming, and reset semantics—constraints that guard the shared tracker migration captured in [AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-29-shared-telemetry-relocation--alias-fallout-lines-3202-3335](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-28.SUMMARIZED.md#turn-29-shared-telemetry-relocation--alias-fallout-lines-3202-3335).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:12.290Z","inputHash":"674b9881f787eeae"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.589Z","inputHash":"674b9881f787eeae"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,7 +23,7 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`inferenceAccuracy.InferenceAccuracyTracker`](./inferenceAccuracy.ts.mdmd.md#inferenceaccuracytracker)
+- [`inferenceAccuracy.InferenceAccuracyTracker`](./inferenceAccuracy.ts.mdmd.md#symbol-inferenceaccuracytracker)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

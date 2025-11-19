@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/analyzeWithAI.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-analyzewithai-test-ts
-- Generated At: 2025-11-18T14:53:38.183Z
+- Generated At: 2025-11-19T15:01:33.283Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Validates the Analyze-with-AI command’s registration, disabled-provider guard,
 - Coverage reports on Oct 28 kept citing this suite when verifying T047 completion, so maintain these tests as the first line of defense before leaning on integration runs; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L1390-L1475](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-28.md#L1390-L1475).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.183Z","inputHash":"05da8c2414bd07c2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.283Z","inputHash":"501af647914b6d9a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,11 +24,12 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`llmInvoker.InvokeChatResult`](../services/llmInvoker.ts.mdmd.md#invokechatresult) (type-only)
-- [`llmInvoker.LlmInvoker`](../services/llmInvoker.ts.mdmd.md#llminvoker) (type-only)
-- [`configService.LinkDiagnosticsSettings`](../settings/configService.ts.mdmd.md#linkdiagnosticssettings) (type-only)
-- [`vscodeMock.getSharedVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#getsharedvscodemock)
-- `vitest` - `beforeEach`, `describe`, `expect`, `it`, `vi`
+- [`llmInvoker.InvokeChatResult`](../services/llmInvoker.ts.mdmd.md#symbol-invokechatresult) (type-only)
+- [`llmInvoker.LlmInvoker`](../services/llmInvoker.ts.mdmd.md#symbol-llminvoker) (type-only)
+- [`configService.LinkDiagnosticsSettings`](../settings/configService.ts.mdmd.md#symbol-linkdiagnosticssettings) (type-only)
+- [`vscodeMock.SharedVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#symbol-sharedvscodemock)
+- [`vscodeMock.createVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#symbol-createvscodemock)
+- `vitest` - `afterAll`, `beforeAll`, `beforeEach`, `describe`, `expect`, `it`, `vi`
 - `vscode-languageclient/node` - `LanguageClient` (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 

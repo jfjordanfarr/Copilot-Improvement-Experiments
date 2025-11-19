@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/benchmarks/fixtures/typescript/basic/src/helpers.ts
 - Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-typescript-basic-src-helpers-ts
-- Generated At: 2025-11-16T20:43:33.373Z
+- Generated At: 2025-11-19T15:01:36.320Z
 
 ## Authored
 ### Purpose
@@ -15,10 +15,10 @@ Acts as the negative-control file for the `ts-basic` benchmark so the analyzer p
 - Remains unreferenced by design; any dependency surfaced here signals fallback heuristics leaking type-only speculation back into runtime accuracy scores.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T20:43:33.373Z","inputHash":"05f77796b235b2cc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.320Z","inputHash":"05f77796b235b2cc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `unusedHelper`
+#### `unusedHelper` {#symbol-unusedhelper}
 - Type: function
 - Source: [source](../../../../../../../../../tests/integration/benchmarks/fixtures/typescript/basic/src/helpers.ts#L1)
 <!-- LIVE-DOC:END Public Symbols -->

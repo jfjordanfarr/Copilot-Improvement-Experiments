@@ -40,6 +40,11 @@ describe("renderPublicSymbolLines", () => {
     };
 
     const headings = computePublicSymbolHeadingInfo(analysis.symbols);
+    const interfaceHeading = headings.find((info) => info.symbol.name === "DependencyGraphEdge");
+    const constantHeading = headings.find(
+      (info) => info.symbol.name === "INSPECT_DEPENDENCIES_REQUEST"
+    );
+
     const lines = __testUtils.renderPublicSymbolLines({
       analysis,
       docDir,
@@ -49,7 +54,11 @@ describe("renderPublicSymbolLines", () => {
       headings
     });
 
-    expect(lines).toContain("#### `DependencyGraphEdge`");
+    expect(interfaceHeading).toBeDefined();
+    expect(constantHeading).toBeDefined();
+
+    const interfaceHeadingLine = `#### \`${interfaceHeading!.displayName}\` {#${interfaceHeading!.slug}}`;
+    expect(lines).toContain(interfaceHeadingLine);
     expect(lines).toContain("- Type: interface");
     expect(lines).toContain(
       "- Source: [source](../../../../../../packages/shared/src/contracts/dependencies.ts#L16)"
@@ -59,7 +68,8 @@ describe("renderPublicSymbolLines", () => {
     expect(summaryHeadingIndex).toBeGreaterThan(0);
     expect(lines[summaryHeadingIndex + 1]).toBe("Represents a dependency edge.");
 
-    const dependencyHeadingIndex = lines.indexOf("#### `INSPECT_DEPENDENCIES_REQUEST`");
+    const constantHeadingLine = `#### \`${constantHeading!.displayName}\` {#${constantHeading!.slug}}`;
+    const dependencyHeadingIndex = lines.indexOf(constantHeadingLine);
     expect(dependencyHeadingIndex).toBeGreaterThan(0);
     expect(lines[dependencyHeadingIndex - 1]).toBe("");
     expect(lines[dependencyHeadingIndex + 1]).toBe("- Type: const");

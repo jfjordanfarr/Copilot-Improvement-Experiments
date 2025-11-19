@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/analysis/coActivation.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-analysis-coactivation-test-ts
-- Generated At: 2025-11-16T22:34:13.116Z
+- Generated At: 2025-11-19T15:01:35.258Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Validates the co-activation analytics report so dependency edges, shared test we
 Updated alongside the November 15 telemetry sweep that aligned Live Docs analytics with the canonical `.mdmd.md` extension handling; the same pass re-ran this suite under Vitest 4 to confirm compatibility. Provenance: `AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md`.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.116Z","inputHash":"06f168bec8e87dff"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.258Z","inputHash":"06f168bec8e87dff"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,10 +23,10 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../../config/liveDocumentationConfig.ts.mdmd.md#live_documentation_file_extension)
-- [`coActivation.buildCoActivationReport`](./coActivation.ts.mdmd.md#buildcoactivationreport)
-- [`types.Stage0Doc`](../types.ts.mdmd.md#stage0doc) (type-only)
-- [`types.TargetManifest`](../types.ts.mdmd.md#targetmanifest) (type-only)
+- [`liveDocumentationConfig.LIVE_DOCUMENTATION_FILE_EXTENSION`](../../config/liveDocumentationConfig.ts.mdmd.md#symbol-live_documentation_file_extension)
+- [`coActivation.buildCoActivationReport`](./coActivation.ts.mdmd.md#symbol-buildcoactivationreport)
+- [`types.Stage0Doc`](../types.ts.mdmd.md#symbol-stage0doc) (type-only)
+- [`types.TargetManifest`](../types.ts.mdmd.md#symbol-targetmanifest) (type-only)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

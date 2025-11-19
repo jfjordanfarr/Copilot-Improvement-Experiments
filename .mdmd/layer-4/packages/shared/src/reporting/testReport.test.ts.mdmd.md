@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/reporting/testReport.test.ts
 - Live Doc ID: LD-test-packages-shared-src-reporting-testreport-test-ts
-- Generated At: 2025-11-16T22:34:13.234Z
+- Generated At: 2025-11-19T15:01:35.391Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Guards the Markdown renderer so benchmark summaries stay stable when reports ing
 - Extended during the dual-mode upgrade to cover AST vs self-similarity markdown permutations.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-03.SUMMARIZED.md#turn-09-implement-per-mode-benchmark-reporting-lines-821-1030]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.234Z","inputHash":"5b0a07647e3816f0"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.391Z","inputHash":"5b0a07647e3816f0"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,11 +24,11 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`testReport.AstAccuracyData`](./testReport.ts.mdmd.md#astaccuracydata)
-- [`testReport.BenchmarkRecord`](./testReport.ts.mdmd.md#benchmarkrecord)
-- [`testReport.RebuildStabilityData`](./testReport.ts.mdmd.md#rebuildstabilitydata)
-- [`testReport.TestReportContext`](./testReport.ts.mdmd.md#testreportcontext)
-- [`testReport.buildTestReportMarkdown`](./testReport.ts.mdmd.md#buildtestreportmarkdown)
+- [`testReport.AstAccuracyData`](./testReport.ts.mdmd.md#symbol-astaccuracydata)
+- [`testReport.BenchmarkRecord`](./testReport.ts.mdmd.md#symbol-benchmarkrecord)
+- [`testReport.RebuildStabilityData`](./testReport.ts.mdmd.md#symbol-rebuildstabilitydata)
+- [`testReport.TestReportContext`](./testReport.ts.mdmd.md#symbol-testreportcontext)
+- [`testReport.buildTestReportMarkdown`](./testReport.ts.mdmd.md#symbol-buildtestreportmarkdown)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

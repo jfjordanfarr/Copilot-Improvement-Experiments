@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/slopcop/check-markdown-links.ts
 - Live Doc ID: LD-implementation-scripts-slopcop-check-markdown-links-ts
-- Generated At: 2025-11-16T22:34:14.118Z
+- Generated At: 2025-11-19T15:01:36.008Z
 
 ## Authored
 ### Purpose
@@ -17,7 +17,7 @@ Scans markdown and MDMD files for broken relative links so Live Docs, specs, and
 - Backed by `packages/shared/src/tooling/markdownLinks.test.ts`, which stress-tests the parser while the CLI surfaces regressions to `safe-to-commit.mjs` and maintainer tasks.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.118Z","inputHash":"98f1e22e5ae24cb6"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.008Z","inputHash":"98f1e22e5ae24cb6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -29,10 +29,10 @@ _No public symbols detected_
 - `node:fs` - `fs`
 - `node:path` - `path`
 - `node:process` - `process`
-- [`markdownLinks.MarkdownLinkIssue`](../../packages/shared/src/tooling/markdownLinks.ts.mdmd.md#markdownlinkissue)
-- [`markdownLinks.findBrokenMarkdownLinks`](../../packages/shared/src/tooling/markdownLinks.ts.mdmd.md#findbrokenmarkdownlinks)
-- [`config.compileIgnorePatterns`](./config.ts.mdmd.md#compileignorepatterns)
-- [`config.loadSlopcopConfig`](./config.ts.mdmd.md#loadslopcopconfig)
-- [`config.resolveIgnoreGlobs`](./config.ts.mdmd.md#resolveignoreglobs)
-- [`config.resolveIncludeGlobs`](./config.ts.mdmd.md#resolveincludeglobs)
+- [`markdownLinks.MarkdownLinkIssue`](../../packages/shared/src/tooling/markdownLinks.ts.mdmd.md#symbol-markdownlinkissue)
+- [`markdownLinks.findBrokenMarkdownLinks`](../../packages/shared/src/tooling/markdownLinks.ts.mdmd.md#symbol-findbrokenmarkdownlinks)
+- [`config.compileIgnorePatterns`](./config.ts.mdmd.md#symbol-compileignorepatterns)
+- [`config.loadSlopcopConfig`](./config.ts.mdmd.md#symbol-loadslopcopconfig)
+- [`config.resolveIgnoreGlobs`](./config.ts.mdmd.md#symbol-resolveignoreglobs)
+- [`config.resolveIncludeGlobs`](./config.ts.mdmd.md#symbol-resolveincludeglobs)
 <!-- LIVE-DOC:END Dependencies -->

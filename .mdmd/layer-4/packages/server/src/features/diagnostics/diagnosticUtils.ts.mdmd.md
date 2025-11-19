@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/diagnostics/diagnosticUtils.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-diagnostics-diagnosticutils-ts
-- Generated At: 2025-11-16T22:34:11.296Z
+- Generated At: 2025-11-19T15:01:33.806Z
 
 ## Authored
 ### Purpose
@@ -15,14 +15,14 @@ Provides shared helpers for diagnostic publishers, including a path normaliser u
 - Keeps URIs human-readable in emitted messages while leaving non-file schemes untouched for remote targets.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:11.296Z","inputHash":"0262fbfa809b693b"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.806Z","inputHash":"0262fbfa809b693b"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `DiagnosticSender`
+#### `DiagnosticSender` {#symbol-diagnosticsender}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/diagnosticUtils.ts#L5)
 
-#### `normaliseDisplayPath`
+#### `normaliseDisplayPath` {#symbol-normalisedisplaypath}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/diagnostics/diagnosticUtils.ts#L9)
 <!-- LIVE-DOC:END Public Symbols -->

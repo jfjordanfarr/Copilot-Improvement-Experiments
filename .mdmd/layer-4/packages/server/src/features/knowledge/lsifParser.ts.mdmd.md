@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/knowledge/lsifParser.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-knowledge-lsifparser-ts
-- Generated At: 2025-11-16T22:35:15.769Z
+- Generated At: 2025-11-19T15:01:34.147Z
 
 ## Authored
 ### Purpose
@@ -15,14 +15,14 @@ Transforms newline-delimited LSIF dumps into external snapshots with artifact en
 - Built during the LSIF/SCIP ingestion effort captured in [2025-10-22 summary](../../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-22.SUMMARIZED.md), landing alongside auto-detection and bridge wiring.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:15.769Z","inputHash":"cf4738cf82b8c2c2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.147Z","inputHash":"cf4738cf82b8c2c2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `LSIFParserOptions`
+#### `LSIFParserOptions` {#symbol-lsifparseroptions}
 - Type: interface
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L13)
 
-#### `LSIFParser`
+#### `LSIFParser` {#symbol-lsifparser}
 - Type: class
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L26)
 
@@ -33,7 +33,7 @@ LSIF is a newline-delimited JSON format where each line is a vertex or edge.
 We extract documents as artifacts and definition/reference relationships as links.
 Reference: LSIF specification (Language Server Index Format).
 
-#### `parseLSIF`
+#### `parseLSIF` {#symbol-parselsif}
 - Type: function
 - Source: [source](../../../../../../../packages/server/src/features/knowledge/lsifParser.ts#L282)
 
@@ -44,13 +44,13 @@ Parse LSIF content into an ExternalSnapshot
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
 - `node:url` - `fileURLToPath`, `pathToFileURL`
-- [`index.ExternalArtifact`](../../../../shared/src/index.ts.mdmd.md#externalartifact) (type-only)
-- [`index.ExternalLink`](../../../../shared/src/index.ts.mdmd.md#externallink) (type-only)
-- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#externalsnapshot) (type-only)
-- [`index.LSIFDocument`](../../../../shared/src/index.ts.mdmd.md#lsifdocument) (type-only)
-- [`index.LSIFEntry`](../../../../shared/src/index.ts.mdmd.md#lsifentry) (type-only)
-- [`index.LSIFRange`](../../../../shared/src/index.ts.mdmd.md#lsifrange) (type-only)
-- [`index.ParsedLSIFIndex`](../../../../shared/src/index.ts.mdmd.md#parsedlsifindex) (type-only)
+- [`index.ExternalArtifact`](../../../../shared/src/index.ts.mdmd.md#symbol-externalartifact) (type-only)
+- [`index.ExternalLink`](../../../../shared/src/index.ts.mdmd.md#symbol-externallink) (type-only)
+- [`index.ExternalSnapshot`](../../../../shared/src/index.ts.mdmd.md#symbol-externalsnapshot) (type-only)
+- [`index.LSIFDocument`](../../../../shared/src/index.ts.mdmd.md#symbol-lsifdocument) (type-only)
+- [`index.LSIFEntry`](../../../../shared/src/index.ts.mdmd.md#symbol-lsifentry) (type-only)
+- [`index.LSIFRange`](../../../../shared/src/index.ts.mdmd.md#symbol-lsifrange) (type-only)
+- [`index.ParsedLSIFIndex`](../../../../shared/src/index.ts.mdmd.md#symbol-parsedlsifindex) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

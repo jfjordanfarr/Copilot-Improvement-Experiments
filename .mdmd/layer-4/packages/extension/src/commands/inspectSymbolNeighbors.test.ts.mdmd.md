@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/inspectSymbolNeighbors.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-inspectsymbolneighbors-test-ts
-- Generated At: 2025-11-18T14:53:38.300Z
+- Generated At: 2025-11-19T15:01:33.372Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the symbol neighbor command through the extension test hooks, stubbing
 - Command automation now runs inside `npm run verify`, which completed cleanly after commit 558781b landed per [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-24.md#L2880-L2944).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.300Z","inputHash":"dd0207d2a16d71d1"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.372Z","inputHash":"28f3f9d426230e80"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,10 +24,11 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`inspectSymbolNeighbors.ParsedInspectSymbolNeighborsResult`](./inspectSymbolNeighbors.ts.mdmd.md#parsedinspectsymbolneighborsresult) (type-only)
-- [`vscodeMock.getSharedVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#getsharedvscodemock)
-- [`index.InspectSymbolNeighborsParams`](../../../shared/src/index.ts.mdmd.md#inspectsymbolneighborsparams) (type-only)
-- `vitest` - `beforeEach`, `describe`, `expect`, `it`, `vi`
+- [`inspectSymbolNeighbors.ParsedInspectSymbolNeighborsResult`](./inspectSymbolNeighbors.ts.mdmd.md#symbol-parsedinspectsymbolneighborsresult) (type-only)
+- [`vscodeMock.SharedVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#symbol-sharedvscodemock)
+- [`vscodeMock.createVscodeMock`](../testUtils/vscodeMock.ts.mdmd.md#symbol-createvscodemock)
+- [`index.InspectSymbolNeighborsParams`](../../../shared/src/index.ts.mdmd.md#symbol-inspectsymbolneighborsparams) (type-only)
+- `vitest` - `afterAll`, `beforeAll`, `beforeEach`, `describe`, `expect`, `it`, `vi`
 - `vscode` - `vscode` (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 

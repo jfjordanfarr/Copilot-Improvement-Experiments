@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/diagnostics/dependencyQuickPick.test.ts
 - Live Doc ID: LD-test-packages-extension-src-diagnostics-dependencyquickpick-test-ts
-- Generated At: 2025-11-18T14:53:38.351Z
+- Generated At: 2025-11-19T15:01:33.446Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Locks down the dependency quick pick helpers—`describeEdgePath`, `ParsedEdge`,
 - Uses a lightweight `vscode` mock to run under Vitest and participates in the lint/unit/build gate that preceded the quick-pick commit; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1400-L1520).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T14:53:38.351Z","inputHash":"38ac2aa21b6e659a"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.446Z","inputHash":"38ac2aa21b6e659a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -23,9 +23,9 @@ _No public symbols detected_
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`dependencyQuickPick.InspectDependenciesResultValidator`](./dependencyQuickPick.ts.mdmd.md#inspectdependenciesresultvalidator)
-- [`dependencyQuickPick.ParsedEdge`](./dependencyQuickPick.ts.mdmd.md#parsededge)
-- [`dependencyQuickPick.describeEdgePath`](./dependencyQuickPick.ts.mdmd.md#describeedgepath)
+- [`dependencyQuickPick.InspectDependenciesResultValidator`](./dependencyQuickPick.ts.mdmd.md#symbol-inspectdependenciesresultvalidator)
+- [`dependencyQuickPick.ParsedEdge`](./dependencyQuickPick.ts.mdmd.md#symbol-parsededge)
+- [`dependencyQuickPick.describeEdgePath`](./dependencyQuickPick.ts.mdmd.md#symbol-describeedgepath)
 - `vitest` - `describe`, `expect`, `it`, `vi`
 <!-- LIVE-DOC:END Dependencies -->
 

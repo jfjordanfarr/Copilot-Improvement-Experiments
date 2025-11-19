@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/tooling/ollamaEndpoint.ts
 - Live Doc ID: LD-implementation-packages-shared-src-tooling-ollamaendpoint-ts
-- Generated At: 2025-11-16T22:25:56.987Z
+- Generated At: 2025-11-19T15:01:35.667Z
 
 ## Authored
 ### Purpose
@@ -16,18 +16,18 @@ Resolves the workspace Ollama endpoint with a shared precedence stack (env vars 
 - Captures the VS Code setting uncovered during design (`github.copilot.chat.byok.ollamaEndpoint`) while preserving a deterministic `http://localhost:11434` default when no overrides exist ([design shard](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-29.md#L693-L704)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:25:56.987Z","inputHash":"bbbd44789badff16"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.667Z","inputHash":"bbbd44789badff16"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `ResolveOllamaEndpointOptions`
+#### `ResolveOllamaEndpointOptions` {#symbol-resolveollamaendpointoptions}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaEndpoint.ts#L3)
 
-#### `WorkspaceConfigurationLike`
+#### `WorkspaceConfigurationLike` {#symbol-workspaceconfigurationlike}
 - Type: interface
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaEndpoint.ts#L9)
 
-#### `resolveOllamaEndpoint`
+#### `resolveOllamaEndpoint` {#symbol-resolveollamaendpoint}
 - Type: function
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaEndpoint.ts#L21)
 
@@ -39,7 +39,7 @@ Priority order:
 3. Callers may supply a custom fallback endpoint.
 4. Default to `http://localhost:11434`.
 
-#### `DEFAULT_OLLAMA_ENDPOINT`
+#### `DEFAULT_OLLAMA_ENDPOINT` {#symbol-default_ollama_endpoint}
 - Type: unknown
 - Source: [source](../../../../../../packages/shared/src/tooling/ollamaEndpoint.ts#L60)
 <!-- LIVE-DOC:END Public Symbols -->

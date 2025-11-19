@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/documentationLinks.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-documentationlinks-test-ts
-- Generated At: 2025-11-16T22:34:13.526Z
+- Generated At: 2025-11-19T15:01:35.599Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Exercises the documentation link engine end-to-end—parsing anchors, resolving 
 - Uses on-disk fixture workspaces so enforcement logic covers backlink detection, rule scoping, and `--fix` behaviour before the CLI wires it into `safe:commit`.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-02.SUMMARIZED.md#turn-15-benchmark-pipeline--cli-test-stabilization]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.526Z","inputHash":"8ed534b0f96295a7"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.599Z","inputHash":"8ed534b0f96295a7"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,12 +26,12 @@ _No public symbols detected_
 - `node:fs` - `fs`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`documentationLinks.DEFAULT_RULES`](./documentationLinks.ts.mdmd.md#default_rules)
-- [`documentationLinks.DocumentationDocumentAnchors`](./documentationLinks.ts.mdmd.md#documentationdocumentanchors)
-- [`documentationLinks.formatDocumentationLinkComment`](./documentationLinks.ts.mdmd.md#formatdocumentationlinkcomment)
-- [`documentationLinks.parseDocumentationAnchors`](./documentationLinks.ts.mdmd.md#parsedocumentationanchors)
-- [`documentationLinks.resolveCodeToDocumentationMap`](./documentationLinks.ts.mdmd.md#resolvecodetodocumentationmap)
-- [`documentationLinks.runDocumentationLinkEnforcement`](./documentationLinks.ts.mdmd.md#rundocumentationlinkenforcement)
+- [`documentationLinks.DEFAULT_RULES`](./documentationLinks.ts.mdmd.md#symbol-default_rules)
+- [`documentationLinks.DocumentationDocumentAnchors`](./documentationLinks.ts.mdmd.md#symbol-documentationdocumentanchors)
+- [`documentationLinks.formatDocumentationLinkComment`](./documentationLinks.ts.mdmd.md#symbol-formatdocumentationlinkcomment)
+- [`documentationLinks.parseDocumentationAnchors`](./documentationLinks.ts.mdmd.md#symbol-parsedocumentationanchors)
+- [`documentationLinks.resolveCodeToDocumentationMap`](./documentationLinks.ts.mdmd.md#symbol-resolvecodetodocumentationmap)
+- [`documentationLinks.runDocumentationLinkEnforcement`](./documentationLinks.ts.mdmd.md#symbol-rundocumentationlinkenforcement)
 - `vitest` - `afterEach`, `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/fixture-tools/benchmark-doc.ts
 - Live Doc ID: LD-implementation-scripts-fixture-tools-benchmark-doc-ts
-- Generated At: 2025-11-16T22:34:13.782Z
+- Generated At: 2025-11-19T15:01:35.762Z
 
 ## Authored
 ### Purpose
@@ -16,38 +16,38 @@ Regenerates the AST benchmark documentation by rendering manifest-sourced vendor
 - Repointed 2025-11-16 to emit into `.live-documentation/source/benchmarks/astAccuracyFixtures.md`, preserving the Stage-0 `.md` mirror while keeping sync-ast-doc.ts and verify-fixtures.ts aligned with the new location ([mirror alignment](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-16.md#L2700-L2820)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.782Z","inputHash":"4e62f9302b198e59"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.762Z","inputHash":"4e62f9302b198e59"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `VENDOR_SECTION_START`
+#### `VENDOR_SECTION_START` {#symbol-vendor_section_start}
 - Type: const
 - Source: [source](../../../../scripts/fixture-tools/benchmark-doc.ts#L13)
 
-#### `VENDOR_SECTION_END`
+#### `VENDOR_SECTION_END` {#symbol-vendor_section_end}
 - Type: const
 - Source: [source](../../../../scripts/fixture-tools/benchmark-doc.ts#L14)
 
-#### `RenderOptions`
+#### `RenderOptions` {#symbol-renderoptions}
 - Type: interface
 - Source: [source](../../../../scripts/fixture-tools/benchmark-doc.ts#L16)
 
-#### `resolveAstFixtureDocPath`
+#### `resolveAstFixtureDocPath` {#symbol-resolveastfixturedocpath}
 - Type: function
 - Source: [source](../../../../scripts/fixture-tools/benchmark-doc.ts#L21)
 
-#### `ensureVendorSection`
+#### `ensureVendorSection` {#symbol-ensurevendorsection}
 - Type: function
 - Source: [source](../../../../scripts/fixture-tools/benchmark-doc.ts#L32)
 
-#### `renderVendorInventory`
+#### `renderVendorInventory` {#symbol-rendervendorinventory}
 - Type: function
 - Source: [source](../../../../scripts/fixture-tools/benchmark-doc.ts#L45)
 
-#### `extractVendorInventory`
+#### `extractVendorInventory` {#symbol-extractvendorinventory}
 - Type: function
 - Source: [source](../../../../scripts/fixture-tools/benchmark-doc.ts#L77)
 
-#### `replaceDelimitedSection`
+#### `replaceDelimitedSection` {#symbol-replacedelimitedsection}
 - Type: function
 - Source: [source](../../../../scripts/fixture-tools/benchmark-doc.ts#L90)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -56,10 +56,10 @@ Regenerates the AST benchmark documentation by rendering manifest-sourced vendor
 ### Dependencies
 - `node:fs` - `promises`
 - `node:path` - `path`
-- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#default_live_documentation_config)
-- [`benchmark-manifest.BenchmarkFixtureDefinition`](./benchmark-manifest.ts.mdmd.md#benchmarkfixturedefinition)
-- [`benchmark-manifest.FixtureFileSetSpec`](./benchmark-manifest.ts.mdmd.md#fixturefilesetspec)
-- [`benchmark-manifest.FixtureIntegritySpec`](./benchmark-manifest.ts.mdmd.md#fixtureintegrityspec)
-- [`benchmark-manifest.FixtureMaterialization`](./benchmark-manifest.ts.mdmd.md#fixturematerialization)
-- [`benchmark-manifest.FixtureProvenance`](./benchmark-manifest.ts.mdmd.md#fixtureprovenance)
+- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-default_live_documentation_config)
+- [`benchmark-manifest.BenchmarkFixtureDefinition`](./benchmark-manifest.ts.mdmd.md#symbol-benchmarkfixturedefinition)
+- [`benchmark-manifest.FixtureFileSetSpec`](./benchmark-manifest.ts.mdmd.md#symbol-fixturefilesetspec)
+- [`benchmark-manifest.FixtureIntegritySpec`](./benchmark-manifest.ts.mdmd.md#symbol-fixtureintegrityspec)
+- [`benchmark-manifest.FixtureMaterialization`](./benchmark-manifest.ts.mdmd.md#symbol-fixturematerialization)
+- [`benchmark-manifest.FixtureProvenance`](./benchmark-manifest.ts.mdmd.md#symbol-fixtureprovenance)
 <!-- LIVE-DOC:END Dependencies -->

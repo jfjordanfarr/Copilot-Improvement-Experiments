@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/extension.ts
 - Live Doc ID: LD-implementation-packages-extension-src-extension-ts
-- Generated At: 2025-11-16T22:35:14.604Z
+- Generated At: 2025-11-19T15:01:33.511Z
 
 ## Authored
 ### Purpose
@@ -17,44 +17,44 @@ Bootstraps the Live Documentation extension by spinning up the language client, 
 - Orchestrates onboarding prompts, file watchers, and diagnostics views that coordinate with the language server, which is why integration suites always touch this module during activation ([integration replay](../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-06.md#L5200-L5280)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:14.604Z","inputHash":"5df48b8aa70605e1"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.511Z","inputHash":"5df48b8aa70605e1"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `activate`
+#### `activate` {#symbol-activate}
 - Type: function
 - Source: [source](../../../../../packages/extension/src/extension.ts#L45)
 
-#### `deactivate`
+#### `deactivate` {#symbol-deactivate}
 - Type: function
 - Source: [source](../../../../../packages/extension/src/extension.ts#L285)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`acknowledgeDiagnostic.registerAcknowledgementWorkflow`](./commands/acknowledgeDiagnostic.ts.mdmd.md#registeracknowledgementworkflow)
-- [`analyzeWithAI.registerAnalyzeWithAICommand`](./commands/analyzeWithAI.ts.mdmd.md#registeranalyzewithaicommand)
-- [`exportDiagnostics.registerExportDiagnosticsCommand`](./commands/exportDiagnostics.ts.mdmd.md#registerexportdiagnosticscommand)
-- [`inspectSymbolNeighbors.registerInspectSymbolNeighborsCommand`](./commands/inspectSymbolNeighbors.ts.mdmd.md#registerinspectsymbolneighborscommand)
-- [`latencySummary.registerLatencyTelemetryCommands`](./commands/latencySummary.ts.mdmd.md#registerlatencytelemetrycommands)
-- [`overrideLink.registerOverrideLinkCommand`](./commands/overrideLink.ts.mdmd.md#registeroverridelinkcommand)
-- [`dependencyQuickPick.registerDependencyQuickPick`](./diagnostics/dependencyQuickPick.ts.mdmd.md#registerdependencyquickpick)
-- [`docDiagnosticProvider.registerDocDiagnosticProvider`](./diagnostics/docDiagnosticProvider.ts.mdmd.md#registerdocdiagnosticprovider)
-- [`providerGate.ensureProviderSelection`](./onboarding/providerGate.ts.mdmd.md#ensureproviderselection)
-- [`rebindPrompt.showRebindPrompt`](./prompts/rebindPrompt.ts.mdmd.md#showrebindprompt)
-- [`llmInvoker.LlmInvocationError`](./services/llmInvoker.ts.mdmd.md#llminvocationerror)
-- [`llmInvoker.LlmInvoker`](./services/llmInvoker.ts.mdmd.md#llminvoker)
-- [`localOllamaBridge.invokeLocalOllamaBridge`](./services/localOllamaBridge.ts.mdmd.md#invokelocalollamabridge)
-- [`symbolBridge.registerSymbolBridge`](./services/symbolBridge.ts.mdmd.md#registersymbolbridge)
-- [`configService.ConfigService`](./settings/configService.ts.mdmd.md#configservice)
-- [`diagnosticsTree.registerDiagnosticsTreeView`](./views/diagnosticsTree.ts.mdmd.md#registerdiagnosticstreeview)
-- [`fileMaintenance.registerFileMaintenanceWatcher`](./watchers/fileMaintenance.ts.mdmd.md#registerfilemaintenancewatcher)
-- [`index.FEEDS_READY_REQUEST`](../../shared/src/index.ts.mdmd.md#feeds_ready_request)
-- [`index.FeedsReadyResult`](../../shared/src/index.ts.mdmd.md#feedsreadyresult)
-- [`index.INVOKE_LLM_REQUEST`](../../shared/src/index.ts.mdmd.md#invoke_llm_request)
-- [`index.InvokeLlmRequest`](../../shared/src/index.ts.mdmd.md#invokellmrequest)
-- [`index.InvokeLlmResult`](../../shared/src/index.ts.mdmd.md#invokellmresult)
-- [`index.RESET_DIAGNOSTIC_STATE_NOTIFICATION`](../../shared/src/index.ts.mdmd.md#reset_diagnostic_state_notification)
-- [`index.RebindRequiredPayload`](../../shared/src/index.ts.mdmd.md#rebindrequiredpayload)
+- [`acknowledgeDiagnostic.registerAcknowledgementWorkflow`](./commands/acknowledgeDiagnostic.ts.mdmd.md#symbol-registeracknowledgementworkflow)
+- [`analyzeWithAI.registerAnalyzeWithAICommand`](./commands/analyzeWithAI.ts.mdmd.md#symbol-registeranalyzewithaicommand)
+- [`exportDiagnostics.registerExportDiagnosticsCommand`](./commands/exportDiagnostics.ts.mdmd.md#symbol-registerexportdiagnosticscommand)
+- [`inspectSymbolNeighbors.registerInspectSymbolNeighborsCommand`](./commands/inspectSymbolNeighbors.ts.mdmd.md#symbol-registerinspectsymbolneighborscommand)
+- [`latencySummary.registerLatencyTelemetryCommands`](./commands/latencySummary.ts.mdmd.md#symbol-registerlatencytelemetrycommands)
+- [`overrideLink.registerOverrideLinkCommand`](./commands/overrideLink.ts.mdmd.md#symbol-registeroverridelinkcommand)
+- [`dependencyQuickPick.registerDependencyQuickPick`](./diagnostics/dependencyQuickPick.ts.mdmd.md#symbol-registerdependencyquickpick)
+- [`docDiagnosticProvider.registerDocDiagnosticProvider`](./diagnostics/docDiagnosticProvider.ts.mdmd.md#symbol-registerdocdiagnosticprovider)
+- [`providerGate.ensureProviderSelection`](./onboarding/providerGate.ts.mdmd.md#symbol-ensureproviderselection)
+- [`rebindPrompt.showRebindPrompt`](./prompts/rebindPrompt.ts.mdmd.md#symbol-showrebindprompt)
+- [`llmInvoker.LlmInvocationError`](./services/llmInvoker.ts.mdmd.md#symbol-llminvocationerror)
+- [`llmInvoker.LlmInvoker`](./services/llmInvoker.ts.mdmd.md#symbol-llminvoker)
+- [`localOllamaBridge.invokeLocalOllamaBridge`](./services/localOllamaBridge.ts.mdmd.md#symbol-invokelocalollamabridge)
+- [`symbolBridge.registerSymbolBridge`](./services/symbolBridge.ts.mdmd.md#symbol-registersymbolbridge)
+- [`configService.ConfigService`](./settings/configService.ts.mdmd.md#symbol-configservice)
+- [`diagnosticsTree.registerDiagnosticsTreeView`](./views/diagnosticsTree.ts.mdmd.md#symbol-registerdiagnosticstreeview)
+- [`fileMaintenance.registerFileMaintenanceWatcher`](./watchers/fileMaintenance.ts.mdmd.md#symbol-registerfilemaintenancewatcher)
+- [`index.FEEDS_READY_REQUEST`](../../shared/src/index.ts.mdmd.md#symbol-feeds_ready_request)
+- [`index.FeedsReadyResult`](../../shared/src/index.ts.mdmd.md#symbol-feedsreadyresult)
+- [`index.INVOKE_LLM_REQUEST`](../../shared/src/index.ts.mdmd.md#symbol-invoke_llm_request)
+- [`index.InvokeLlmRequest`](../../shared/src/index.ts.mdmd.md#symbol-invokellmrequest)
+- [`index.InvokeLlmResult`](../../shared/src/index.ts.mdmd.md#symbol-invokellmresult)
+- [`index.RESET_DIAGNOSTIC_STATE_NOTIFICATION`](../../shared/src/index.ts.mdmd.md#symbol-reset_diagnostic_state_notification)
+- [`index.RebindRequiredPayload`](../../shared/src/index.ts.mdmd.md#symbol-rebindrequiredpayload)
 - `path` - `path`
 - `process` - `process`
 - `vscode` - `vscode`

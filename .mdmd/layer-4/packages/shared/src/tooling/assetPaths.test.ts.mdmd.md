@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/tooling/assetPaths.test.ts
 - Live Doc ID: LD-test-packages-shared-src-tooling-assetpaths-test-ts
-- Generated At: 2025-11-16T22:34:13.498Z
+- Generated At: 2025-11-19T15:01:35.586Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Verifies the asset reference detector against real HTML fixtures so SlopCop flag
 - Uses temporary workspaces to test ignore patterns, alternate root directories, and hashed filenames added during the October 25 asset hardening.[AI-Agent-Workspace/ChatHistory/2025/10/Summarized/2025-10-25.SUMMARIZED.md#turn-29-asset-audit-enhancements--fixtures]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.498Z","inputHash":"0cd355582c99c9c8"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.586Z","inputHash":"0cd355582c99c9c8"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,7 +26,7 @@ _No public symbols detected_
 - `node:fs` - `fs`
 - `node:os` - `os`
 - `node:path` - `path`
-- [`assetPaths.findBrokenAssetReferences`](./assetPaths.ts.mdmd.md#findbrokenassetreferences)
+- [`assetPaths.findBrokenAssetReferences`](./assetPaths.ts.mdmd.md#symbol-findbrokenassetreferences)
 - `vitest` - `describe`, `expect`, `it`
 <!-- LIVE-DOC:END Dependencies -->
 

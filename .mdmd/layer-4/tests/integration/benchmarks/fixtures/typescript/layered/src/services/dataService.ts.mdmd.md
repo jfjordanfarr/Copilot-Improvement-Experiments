@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/benchmarks/fixtures/typescript/layered/src/services/dataService.ts
 - Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-typescript-layered-src-services-dataservice-ts
-- Generated At: 2025-11-16T22:34:14.232Z
+- Generated At: 2025-11-19T15:01:36.359Z
 
 ## Authored
 ### Purpose
@@ -15,16 +15,16 @@ Provides the intermediate service layer for the `ts-layered` benchmark so depend
 - Instantiates `StorageClient` at module scope to highlight runtime evaluation and ensure static analyzers respect constructor side effects.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:14.232Z","inputHash":"a127bc3d986816ad"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.359Z","inputHash":"a127bc3d986816ad"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `loadWidgetMetrics`
+#### `loadWidgetMetrics` {#symbol-loadwidgetmetrics}
 - Type: function
 - Source: [source](../../../../../../../../../../tests/integration/benchmarks/fixtures/typescript/layered/src/services/dataService.ts#L5)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
 ### Dependencies
-- [`storage.MetricRecord`](../repositories/storage.ts.mdmd.md#metricrecord)
-- [`storage.StorageClient`](../repositories/storage.ts.mdmd.md#storageclient)
+- [`storage.MetricRecord`](../repositories/storage.ts.mdmd.md#symbol-metricrecord)
+- [`storage.StorageClient`](../repositories/storage.ts.mdmd.md#symbol-storageclient)
 <!-- LIVE-DOC:END Dependencies -->

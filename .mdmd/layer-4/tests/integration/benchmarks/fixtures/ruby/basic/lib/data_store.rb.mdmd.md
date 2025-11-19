@@ -1,0 +1,49 @@
+# tests/integration/benchmarks/fixtures/ruby/basic/lib/data_store.rb
+
+## Metadata
+- Layer: 4
+- Archetype: asset
+- Code Path: tests/integration/benchmarks/fixtures/ruby/basic/lib/data_store.rb
+- Live Doc ID: LD-asset-tests-integration-benchmarks-fixtures-ruby-basic-lib-data-store-rb
+- Generated At: 2025-11-19T15:01:36.231Z
+
+## Authored
+### Purpose
+_Pending authored purpose_
+
+### Notes
+_Pending notes_
+
+## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.231Z","inputHash":"0827a5cb082e72b8"}]} -->
+<!-- LIVE-DOC:BEGIN Public Symbols -->
+### Public Symbols
+#### `BenchmarkApp` {#symbol-benchmarkapp}
+- Type: module
+- Source: [source](../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/basic/lib/data_store.rb#L3)
+
+#### `DataStore` {#symbol-datastore}
+- Type: module
+- Source: [source](../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/basic/lib/data_store.rb#L5)
+
+##### `DataStore` — Summary
+In-memory dataset registry used by the demo fixtures.
+
+#### `self.fetch` {#symbol-selffetch}
+- Type: method
+- Source: [source](../../../../../../../../../tests/integration/benchmarks/fixtures/ruby/basic/lib/data_store.rb#L15)
+
+##### `self.fetch` — Summary
+Looks up a dataset by key.
+
+##### `self.fetch` — Parameters
+- `key`: Dataset identifier.
+
+##### `self.fetch` — Returns
+[Array<Integer>] Frozen copy of the dataset or `[0]` when missing.
+<!-- LIVE-DOC:END Public Symbols -->
+
+<!-- LIVE-DOC:BEGIN Dependencies -->
+### Dependencies
+_No dependencies documented yet_
+<!-- LIVE-DOC:END Dependencies -->

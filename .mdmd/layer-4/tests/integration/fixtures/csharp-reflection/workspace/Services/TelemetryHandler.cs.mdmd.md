@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/csharp-reflection/workspace/Services/TelemetryHandler.cs
 - Live Doc ID: LD-asset-tests-integration-fixtures-csharp-reflection-workspace-services-telemetryhandler-cs
-- Generated At: 2025-11-18T00:11:28.984Z
+- Generated At: 2025-11-19T15:01:36.794Z
 
 ## Authored
 ### Purpose
@@ -13,16 +13,18 @@ Defines the reflection-only handler that the LD-402 pathfinder must rediscover w
 
 ### Notes
 - Served alongside `ReflectionFactory.cs` to validate that reflection metadata emitted by the generator keeps dependencies precise even without explicit `new` expressions.
+#### TelemetryHandler Class {#symbol-telemetryhandler-class}
+- Outbound links expect this anchor when `ReflectionFactory` resolves types dynamically.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T00:11:28.984Z","inputHash":"d1dc3f73a0bba280"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.794Z","inputHash":"d1dc3f73a0bba280"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `TelemetryHandler`
+#### `TelemetryHandler` {#symbol-telemetryhandler}
 - Type: class
 - Source: [source](../../../../../../../../tests/integration/fixtures/csharp-reflection/workspace/Services/TelemetryHandler.cs#L2)
 
-#### `InstrumentationKey`
+#### `InstrumentationKey` {#symbol-instrumentationkey}
 - Type: property
 - Source: [source](../../../../../../../../tests/integration/fixtures/csharp-reflection/workspace/Services/TelemetryHandler.cs#L5)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -31,7 +33,3 @@ Defines the reflection-only handler that the LD-402 pathfinder must rediscover w
 ### Dependencies
 _No dependencies documented yet_
 <!-- LIVE-DOC:END Dependencies -->
-
-## Appendix
-### LiveDocs.Reflection.TelemetryHandler
-Runtime type identifier resolved via reflection; maintaining a dedicated heading keeps inbound references stable.

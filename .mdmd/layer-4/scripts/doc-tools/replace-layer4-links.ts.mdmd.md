@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/doc-tools/replace-layer4-links.ts
 - Live Doc ID: LD-implementation-scripts-doc-tools-replace-layer4-links-ts
-- Generated At: 2025-11-16T22:34:13.756Z
+- Generated At: 2025-11-19T15:01:35.741Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Rewrite curated Layer-4 slug links in legacy documentation to the Stage-0 paths 
 - Reapplied repeatedly later that evening to restore the Stage-0 slate after an accidental `git checkout` reverted the new mirror, underscoring that these rewrites must stay scripted ([post-regression recovery](../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md#L3980-L4024)).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:34:13.756Z","inputHash":"a2163c29fa74e2e2"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.741Z","inputHash":"a2163c29fa74e2e2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -26,5 +26,5 @@ _No public symbols detected_
 ### Dependencies
 - `node:fs/promises` - `fs`
 - `node:path` - `path`
-- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#default_live_documentation_config)
+- [`liveDocumentationConfig.DEFAULT_LIVE_DOCUMENTATION_CONFIG`](../../packages/shared/src/config/liveDocumentationConfig.ts.mdmd.md#symbol-default_live_documentation_config)
 <!-- LIVE-DOC:END Dependencies -->

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/server/src/features/live-docs/targets/manifest.ts
 - Live Doc ID: LD-implementation-packages-server-src-features-live-docs-targets-manifest-ts
-- Generated At: 2025-11-16T22:35:16.122Z
+- Generated At: 2025-11-19T15:01:34.392Z
 
 ## Authored
 ### Purpose
@@ -15,10 +15,10 @@ Loads the optional `data/live-docs/targets.json` manifest so the System generato
 - Returns `undefined` when the manifest is absent, letting CLI and headless harness runs proceed without bespoke fixtures while still honoring curated views when present.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-16T22:35:16.122Z","inputHash":"8988bee16bcc71b5"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.392Z","inputHash":"8988bee16bcc71b5"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
-#### `loadTargetManifest`
+#### `loadTargetManifest` {#symbol-loadtargetmanifest}
 - Type: function
 - Source: [source](../../../../../../../../packages/server/src/features/live-docs/targets/manifest.ts#L6)
 <!-- LIVE-DOC:END Public Symbols -->
@@ -27,7 +27,7 @@ Loads the optional `data/live-docs/targets.json` manifest so the System generato
 ### Dependencies
 - `node:fs/promises` - `fs`
 - `node:path` - `path`
-- [`types.TargetManifest`](../../../../../shared/src/live-docs/types.ts.mdmd.md#targetmanifest) (type-only)
+- [`types.TargetManifest`](../../../../../shared/src/live-docs/types.ts.mdmd.md#symbol-targetmanifest) (type-only)
 <!-- LIVE-DOC:END Dependencies -->
 
 <!-- LIVE-DOC:BEGIN Observed Evidence -->

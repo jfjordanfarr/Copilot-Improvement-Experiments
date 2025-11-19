@@ -5,16 +5,18 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/razor-appsettings/workspace/appsettings.json
 - Live Doc ID: LD-asset-tests-integration-fixtures-razor-appsettings-workspace-appsettings-json
-- Generated At: 2025-11-18T03:41:09.961Z
+- Generated At: 2025-11-18T20:37:10.067Z
 
 ## Authored
 ### Purpose
 Holds the instrumentation key surfaced by the Razor telemetry page model so the LD-402 scenario can traverse configuration to markup.
 
 ### Notes
-- Shared with the Razor page and JavaScript bridge to keep parity with the Blazor telemetry fixture.
+#### TelemetryInstrumentationKey {#symbol-telemetryinstrumentationkey}
+Shared with the Razor page and JavaScript bridge to keep parity with the Blazor telemetry fixture while feeding the telemetry script.
 
 ## Generated
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:37:10.067Z","inputHash":"c53e5e9825b9cb41"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -24,7 +26,3 @@ _No public symbols detected_
 ### Dependencies
 _No dependencies documented yet_
 <!-- LIVE-DOC:END Dependencies -->
-
-## Appendix
-### Telemetry:InstrumentationKey
-Publishes the Application Insights instrumentation key read by `IndexModel` and forwarded to telemetry scripts.
