@@ -6,6 +6,7 @@ import { createImportHeuristic } from "./imports";
 import { createIncludeHeuristic } from "./includes";
 import { createJavaHeuristic } from "./java";
 import { createMarkdownHeuristic } from "./markdown";
+import { createPowerShellHeuristic } from "./powershell";
 import { createRubyHeuristic } from "./ruby";
 import { createRustHeuristic } from "./rust";
 import { createWebFormsHeuristic } from "./webforms";
@@ -21,6 +22,7 @@ export function createDefaultHeuristics(): FallbackHeuristic[] {
     createJavaHeuristic(),
     createCSharpHeuristic(),
     createRubyHeuristic(),
+    createPowerShellHeuristic(),
     createWebFormsHeuristic(),
   ];
 }

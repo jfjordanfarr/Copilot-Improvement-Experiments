@@ -129,7 +129,8 @@ const DOCUMENT_ARTIFACT_IGNORE_PATTERNS: RegExp[] = [
   /\/tests\/integration\/benchmarks\/fixtures\//,
   /\/tests\/integration\/fixtures\//,
   /\/\.mdmd\/layer-4\/tests\/integration\/.*__fixtures__\//,
-  /\/\.mdmd\/layer-4\/tests\/integration\/.*tsconfig\.json\.mdmd\.md$/
+  /\/\.mdmd\/layer-4\/tests\/integration\/.*tsconfig\.json\.mdmd\.md$/,
+  /\/\.mdmd\/layer-4\/scripts\/powershell\/emit-ast\.ps1\.mdmd\.md$/
 ];
 
 interface SymbolCoverageIgnoreConfig {

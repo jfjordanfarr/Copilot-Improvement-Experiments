@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-import { createServer } from "node:http";
 import { exec } from "node:child_process";
-import * as path from "node:path";
 import * as fs from "node:fs/promises";
+import { createServer } from "node:http";
+import * as path from "node:path";
 import process from "node:process";
+
 import { snapshotWorkspace } from "../graph-tools/snapshot-workspace";
 
 const PORT = 0; // Random free port
@@ -59,9 +60,9 @@ async function main() {
         try {
           const codeContent = await fs.readFile(absoluteCodePath, "utf-8");
           lineCount = codeContent.split("\n").length;
-        } catch (e) {
+        } catch {
           // Code file might not exist or be readable
-          // console.warn(`Could not read source for ${node.uri}: ${e.message}`);
+          // console.warn(`Could not read source for ${node.uri}`);
         }
       }
     } catch (e) {

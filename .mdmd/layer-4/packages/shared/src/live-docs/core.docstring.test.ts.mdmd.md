@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/shared/src/live-docs/core.docstring.test.ts
 - Live Doc ID: LD-test-packages-shared-src-live-docs-core-docstring-test-ts
-- Generated At: 2025-11-19T15:01:35.277Z
+- Generated At: 2025-11-20T21:07:34.038Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Verifies the Live Docs extraction engine emits structured docstrings for TypeScr
 - Works in concert with the polyglot adapter tests landed the same week, ensuring the shared core honors language-specific docstring structures.[AI-Agent-Workspace/ChatHistory/2025/11/Summarized/2025-11-12.SUMMARIZED.md#turn-08-stand-up-co-activation-infrastructure-lines-1101-1220]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.277Z","inputHash":"07a58707d305d488"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T21:07:34.038Z","inputHash":"07a58707d305d488"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -38,8 +38,8 @@ _No public symbols detected_
 #### Vitest Unit Tests
 - packages/shared/src/config: [liveDocumentationConfig.ts](../config/liveDocumentationConfig.ts.mdmd.md)
 - packages/shared/src/live-docs: [core.ts](./core.ts.mdmd.md)
-- packages/shared/src/live-docs/adapters: [adapters/index.ts](./adapters/index.ts.mdmd.md), [aspnet.ts](./adapters/aspnet.ts.mdmd.md), [c.ts](./adapters/c.ts.mdmd.md), [csharp.ts](./adapters/csharp.ts.mdmd.md), [java.ts](./adapters/java.ts.mdmd.md), [python.ts](./adapters/python.ts.mdmd.md)
-  [ruby.ts](./adapters/ruby.ts.mdmd.md), [rust.ts](./adapters/rust.ts.mdmd.md)
+- packages/shared/src/live-docs/adapters: [adapters/index.ts](./adapters/index.ts.mdmd.md), [aspnet.ts](./adapters/aspnet.ts.mdmd.md), [c.ts](./adapters/c.ts.mdmd.md), [csharp.ts](./adapters/csharp.ts.mdmd.md), [java.ts](./adapters/java.ts.mdmd.md), [powershell.ts](./adapters/powershell.ts.mdmd.md)
+  [python.ts](./adapters/python.ts.mdmd.md), [ruby.ts](./adapters/ruby.ts.mdmd.md), [rust.ts](./adapters/rust.ts.mdmd.md)
 - packages/shared/src/live-docs/heuristics: [dom.ts](./heuristics/dom.ts.mdmd.md)
 - packages/shared/src/tooling: [githubSlugger.ts](../tooling/githubSlugger.ts.mdmd.md), [githubSluggerRegex.ts](../tooling/githubSluggerRegex.ts.mdmd.md), [pathUtils.ts](../tooling/pathUtils.ts.mdmd.md)
 <!-- LIVE-DOC:END Targets -->

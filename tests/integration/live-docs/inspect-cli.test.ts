@@ -62,6 +62,14 @@ const fixtures = {
     "fixtures",
     "queue-worker",
     "workspace"
+  ),
+  powershell: path.join(
+    repoRoot,
+    "tests",
+    "integration",
+    "fixtures",
+    "powershell-compendium",
+    "workspace"
   )
 } as const;
 
@@ -353,6 +361,32 @@ suite("Live Docs inspect CLI", () => {
     assert.deepStrictEqual(
       payload.nodes.map(node => node.codePath),
       ["Services/ReflectionFactory.cs", "Services/TelemetryHandler.cs"]
+    );
+  });
+
+  test("connects PowerShell scripts to dot-sourced helpers", () => {
+    const run = runInspectCli(fixtures.powershell, [
+      "--from",
+      "scripts/deploy.ps1",
+      "--to",
+      "scripts/common/logging.ps1",
+      "--json"
+    ]);
+
+    assert.strictEqual(run.exitCode, 0, `inspect exited ${run.exitCode}:\n${run.stderr || run.stdout}`);
+    const payload = JSON.parse(run.stdout) as {
+      kind: string;
+      direction: string;
+      length: number;
+      nodes: Array<{ codePath: string }>;
+    };
+
+    assert.strictEqual(payload.kind, "path");
+    assert.strictEqual(payload.direction, "outbound");
+    assert.strictEqual(payload.length, 1);
+    assert.deepStrictEqual(
+      payload.nodes.map(node => node.codePath),
+      ["scripts/deploy.ps1", "scripts/common/logging.ps1"]
     );
   });
 

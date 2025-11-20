@@ -2,9 +2,9 @@ import { execFile } from "node:child_process";
 import path from "node:path";
 import { promisify } from "node:util";
 
-import type { DependencyEntry, PublicSymbolEntry, SourceAnalysisResult } from "../core";
-import { normalizeWorkspacePath } from "../../tooling/pathUtils";
 import type { LanguageAdapter } from "./index";
+import { normalizeWorkspacePath } from "../../tooling/pathUtils";
+import type { DependencyEntry, PublicSymbolEntry, SourceAnalysisResult } from "../core";
 
 const execFileAsync = promisify(execFile);
 const RUNTIME_CANDIDATES = ["pwsh", "powershell"] as const;

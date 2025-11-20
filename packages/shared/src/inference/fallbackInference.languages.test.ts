@@ -172,8 +172,77 @@ describe("fallback inference language heuristics", () => {
 
     expect(hasLink(result, appId!, builderId!, "depends_on")).toBe(true);
     expect(hasLink(result, appId!, formatterId!, "depends_on")).toBe(true);
-  expect(hasTrace(result, "App.java", "RequestBuilder.java", "use")).toBe(true);
-  expect(hasTrace(result, "App.java", "JsonFormatter.java", "use")).toBe(true);
+    expect(hasTrace(result, "App.java", "RequestBuilder.java", "use")).toBe(true);
+    expect(hasTrace(result, "App.java", "JsonFormatter.java", "use")).toBe(true);
+  });
+
+  it("infers PowerShell dot-source and module relationships", async () => {
+    const result = await inferFallbackGraph({
+      seeds: [
+        {
+          uri: "file:///repo/scripts/deploy.ps1",
+          layer: "code",
+          content: [
+            "Using module Microsoft.PowerShell.Utility",
+            "#requires -Modules Microsoft.PowerShell.Management",
+            ". \"../common/logging.ps1\"",
+            "Import-Module MyCompany.Inventory",
+            "",
+            "function Invoke-Deployment {",
+            "  param(",
+            "    [string]$Environment",
+            "  )",
+            "  Write-DeploymentLog \"Deploying to $Environment\"",
+            "  Get-InventorySnapshot -Region $Environment",
+            "}",
+            "",
+            "Invoke-Deployment -Environment $Region"
+          ].join("\n")
+        },
+        {
+          uri: "file:///repo/common/logging.ps1",
+          layer: "code",
+          content: [
+            "function Write-DeploymentLog {",
+            "  param(",
+            "    [string]$Message",
+            "  )",
+            "  \"[LOG] $Message\"",
+            "}"
+          ].join("\n")
+        },
+        {
+          uri: "file:///repo/modules/Inventory.psm1",
+          layer: "code",
+          content: [
+            "function Get-InventorySnapshot {",
+            "  param(",
+            "    [string]$Region",
+            "  )",
+            "  @{",
+            "    Region = $Region",
+            "    Servers = @(\"srv-01\", \"srv-02\")",
+            "  }",
+            "}",
+            "",
+            "Export-ModuleMember -Function Get-InventorySnapshot"
+          ].join("\n")
+        }
+      ]
+    });
+
+    const deployId = getArtifactId(result, "deploy.ps1");
+    const loggingId = getArtifactId(result, "logging.ps1");
+    const inventoryId = getArtifactId(result, "Inventory.psm1");
+
+    expect(deployId).toBeDefined();
+    expect(loggingId).toBeDefined();
+    expect(inventoryId).toBeDefined();
+
+    expect(hasLink(result, deployId!, loggingId!, "depends_on")).toBe(true);
+    expect(hasLink(result, deployId!, inventoryId!, "depends_on")).toBe(true);
+    expect(hasTrace(result, "deploy.ps1", "logging.ps1", "import")).toBe(true);
+    expect(hasTrace(result, "deploy.ps1", "Inventory.psm1", "import")).toBe(true);
   });
 
   it("resolves Ruby require_relative chains across sibling files", async () => {

@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/live-docs/visualize.ts
 - Live Doc ID: LD-implementation-scripts-live-docs-visualize-ts
-- Generated At: 2025-11-20T15:40:19.629Z
+- Generated At: 2025-11-20T20:35:25.730Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Provide a CLI that snapshots the workspace graph and renders an interactive 3D f
 Launches an ephemeral HTTP server, opens the default browser, and colours/weights nodes by archetype and induced dependency intensity (docs are linked when their underlying code artifacts interact).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T15:40:19.629Z","inputHash":"1315babb537a9ff8"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T20:35:25.730Z","inputHash":"a3629c6974f4f0a2"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_

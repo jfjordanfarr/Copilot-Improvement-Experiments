@@ -12,7 +12,7 @@
 Parse PowerShell source files and emit a compact JSON payload of functions, dot-sources, and module references for the Live Docs adapter.
 
 ### Notes
-The script targets Windows PowerShell 5.1 compatibility, resolves dot-sourced paths without executing the file, and falls back gracefully when modules are missing.
+The script targets Windows PowerShell 5.1 compatibility, resolves dot-sourced paths without executing the file, and falls back gracefully when modules are missing. It is invoked by the [`powershellAdapter`](../../packages/shared/src/live-docs/adapters/powershell.ts.mdmd.md#symbol-powershelladapter) and exercised through [`powershell.test.ts`](../../packages/shared/src/live-docs/adapters/powershell.test.ts.mdmd.md) so Live Docs generation and inference stay aligned.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T18:00:42.359Z","inputHash":"1c620f44d281e014"}]} -->

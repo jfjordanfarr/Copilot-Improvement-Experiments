@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/live-docs/adapters/powershell.ts
 - Live Doc ID: LD-implementation-packages-shared-src-live-docs-adapters-powershell-ts
-- Generated At: 2025-11-20T18:00:41.009Z
+- Generated At: 2025-11-20T21:07:33.924Z
 
 ## Authored
 ### Purpose
@@ -14,9 +14,10 @@ Provide the Stage-0 adapter that translates PowerShell scripts and modules into 
 ### Notes
 The adapter shells out to `scripts/powershell/emit-ast.ps1`, caches per-file payloads, and accepts either `pwsh` or Windows PowerShell.
 Dot-sourced paths are normalized to workspace-relative form so downstream graph tooling can reason about cross-script hops.
+Runtime extraction depends on [`scripts/powershell/emit-ast.ps1`](../../../../../scripts/powershell/emit-ast.ps1.mdmd.md) to describe PowerShell symbols and references.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T18:00:41.009Z","inputHash":"5fe55869a7c8d652"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T21:07:33.924Z","inputHash":"58a8fc8fdf685de3"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `powershellAdapter` {#symbol-powershelladapter}
@@ -35,3 +36,19 @@ Dot-sourced paths are normalized to workspace-relative form so downstream graph 
 - [`core.SourceAnalysisResult`](../core.ts.mdmd.md#symbol-sourceanalysisresult) (type-only)
 - [`pathUtils.normalizeWorkspacePath`](../../tooling/pathUtils.ts.mdmd.md#symbol-normalizeworkspacepath)
 <!-- LIVE-DOC:END Dependencies -->
+
+<!-- LIVE-DOC:BEGIN Observed Evidence -->
+### Observed Evidence
+#### Vitest Unit Tests
+- [generator.test.ts](../../../../server/src/features/live-docs/generator.test.ts.mdmd.md)
+- [renderPublicSymbolLines.test.ts](../../../../server/src/features/live-docs/renderPublicSymbolLines.test.ts.mdmd.md)
+- [generator.test.ts](../../../../server/src/features/live-docs/system/generator.test.ts.mdmd.md)
+- [aspnet.test.ts](./aspnet.test.ts.mdmd.md)
+- [c.docstring.test.ts](./c.docstring.test.ts.mdmd.md)
+- [csharp.hangfire.test.ts](./csharp.hangfire.test.ts.mdmd.md)
+- [powershell.test.ts](./powershell.test.ts.mdmd.md)
+- [python.docstring.test.ts](./python.docstring.test.ts.mdmd.md)
+- [ruby.docstring.test.ts](./ruby.docstring.test.ts.mdmd.md)
+- [rust.docstring.test.ts](./rust.docstring.test.ts.mdmd.md)
+- [core.docstring.test.ts](../core.docstring.test.ts.mdmd.md)
+<!-- LIVE-DOC:END Observed Evidence -->

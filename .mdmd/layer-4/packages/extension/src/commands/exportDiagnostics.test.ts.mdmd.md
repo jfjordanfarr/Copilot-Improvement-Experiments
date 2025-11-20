@@ -5,7 +5,7 @@
 - Archetype: test
 - Code Path: packages/extension/src/commands/exportDiagnostics.test.ts
 - Live Doc ID: LD-test-packages-extension-src-commands-exportdiagnostics-test-ts
-- Generated At: 2025-11-19T15:01:33.336Z
+- Generated At: 2025-11-20T21:07:32.032Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Exercises the export diagnostics command so CSV/JSON generation, cancellation ha
 - Pending work to include acknowledgement metadata in exports should extend this suite once the feature lands, matching the open acceptance criteria referenced later that day in [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-22.md#L2720-L3410).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.336Z","inputHash":"ff9a59b0f0c752fc"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T21:07:32.032Z","inputHash":"ff9a59b0f0c752fc"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -43,8 +43,8 @@ _No public symbols detected_
 - packages/shared/src/domain: [artifacts.ts](../../../shared/src/domain/artifacts.ts.mdmd.md)
 - packages/shared/src/inference: [fallbackHeuristicTypes.ts](../../../shared/src/inference/fallbackHeuristicTypes.ts.mdmd.md), [fallbackInference.ts](../../../shared/src/inference/fallbackInference.ts.mdmd.md), [linkInference.ts](../../../shared/src/inference/linkInference.ts.mdmd.md)
 - packages/shared/src/inference/heuristics: [artifactLayerUtils.ts](../../../shared/src/inference/heuristics/artifactLayerUtils.ts.mdmd.md), [cFunctions.ts](../../../shared/src/inference/heuristics/cFunctions.ts.mdmd.md), [csharp.ts](../../../shared/src/inference/heuristics/csharp.ts.mdmd.md), [directives.ts](../../../shared/src/inference/heuristics/directives.ts.mdmd.md), [heuristics/index.ts](../../../shared/src/inference/heuristics/index.ts.mdmd.md), [imports.ts](../../../shared/src/inference/heuristics/imports.ts.mdmd.md)
-  [includes.ts](../../../shared/src/inference/heuristics/includes.ts.mdmd.md), [java.ts](../../../shared/src/inference/heuristics/java.ts.mdmd.md), [markdown.ts](../../../shared/src/inference/heuristics/markdown.ts.mdmd.md), [referenceResolver.ts](../../../shared/src/inference/heuristics/referenceResolver.ts.mdmd.md), [ruby.ts](../../../shared/src/inference/heuristics/ruby.ts.mdmd.md), [rust.ts](../../../shared/src/inference/heuristics/rust.ts.mdmd.md)
-  [shared.ts](../../../shared/src/inference/heuristics/shared.ts.mdmd.md), [webforms.ts](../../../shared/src/inference/heuristics/webforms.ts.mdmd.md)
+  [includes.ts](../../../shared/src/inference/heuristics/includes.ts.mdmd.md), [java.ts](../../../shared/src/inference/heuristics/java.ts.mdmd.md), [markdown.ts](../../../shared/src/inference/heuristics/markdown.ts.mdmd.md), [powershell.ts](../../../shared/src/inference/heuristics/powershell.ts.mdmd.md), [referenceResolver.ts](../../../shared/src/inference/heuristics/referenceResolver.ts.mdmd.md), [ruby.ts](../../../shared/src/inference/heuristics/ruby.ts.mdmd.md)
+  [rust.ts](../../../shared/src/inference/heuristics/rust.ts.mdmd.md), [shared.ts](../../../shared/src/inference/heuristics/shared.ts.mdmd.md), [webforms.ts](../../../shared/src/inference/heuristics/webforms.ts.mdmd.md)
 - packages/shared/src/inference/llm: [confidenceCalibrator.ts](../../../shared/src/inference/llm/confidenceCalibrator.ts.mdmd.md), [relationshipExtractor.ts](../../../shared/src/inference/llm/relationshipExtractor.ts.mdmd.md)
 - packages/shared/src/knowledge: [knowledgeGraphBridge.ts](../../../shared/src/knowledge/knowledgeGraphBridge.ts.mdmd.md)
 - packages/shared/src/language: [typeScriptAstUtils.ts](../../../shared/src/language/typeScriptAstUtils.ts.mdmd.md)

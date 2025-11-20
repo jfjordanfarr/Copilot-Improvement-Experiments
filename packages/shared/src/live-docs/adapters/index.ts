@@ -5,10 +5,10 @@ import { aspNetMarkupAdapter } from "./aspnet";
 import { cAdapter } from "./c";
 import { csharpAdapter } from "./csharp";
 import { javaAdapter } from "./java";
+import { powershellAdapter } from "./powershell";
 import { pythonAdapter } from "./python";
 import { rubyAdapter } from "./ruby";
 import { rustAdapter } from "./rust";
-import { powershellAdapter } from "./powershell";
 
 export interface LanguageAdapter {
   readonly id: string;
@@ -21,10 +21,10 @@ const ADAPTERS: readonly LanguageAdapter[] = [
   csharpAdapter,
   aspNetMarkupAdapter,
   javaAdapter,
+  powershellAdapter,
   pythonAdapter,
   rubyAdapter,
-  rustAdapter,
-  powershellAdapter
+  rustAdapter
 ];
 
 /**

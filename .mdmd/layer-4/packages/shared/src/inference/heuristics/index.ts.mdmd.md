@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/inference/heuristics/index.ts
 - Live Doc ID: LD-implementation-packages-shared-src-inference-heuristics-index-ts
-- Generated At: 2025-11-19T15:01:34.973Z
+- Generated At: 2025-11-20T18:46:09.955Z
 
 ## Authored
 ### Purpose
@@ -16,12 +16,12 @@ Turns the per-language builders into the default heuristic suite that replaced t
 - When adding a new heuristic module, export it through this registry and update `fallbackInference.languages.test.ts` so the regression suite exercises the new behavior <../../../../../../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-07.md#L600-L676>.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:34.973Z","inputHash":"46d685bbb4fa7ea4"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T18:46:09.955Z","inputHash":"a97fcb2958a7b4b6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `createDefaultHeuristics` {#symbol-createdefaultheuristics}
 - Type: function
-- Source: [source](../../../../../../../packages/shared/src/inference/heuristics/index.ts#L13)
+- Source: [source](../../../../../../../packages/shared/src/inference/heuristics/index.ts#L14)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -34,6 +34,7 @@ Turns the per-language builders into the default heuristic suite that replaced t
 - [`includes.createIncludeHeuristic`](./includes.ts.mdmd.md#symbol-createincludeheuristic)
 - [`java.createJavaHeuristic`](./java.ts.mdmd.md#symbol-createjavaheuristic)
 - [`markdown.createMarkdownHeuristic`](./markdown.ts.mdmd.md#symbol-createmarkdownheuristic)
+- [`powershell.createPowerShellHeuristic`](./powershell.ts.mdmd.md#symbol-createpowershellheuristic)
 - [`ruby.createRubyHeuristic`](./ruby.ts.mdmd.md#symbol-createrubyheuristic)
 - [`rust.createRustHeuristic`](./rust.ts.mdmd.md#symbol-createrustheuristic)
 - [`webforms.createWebFormsHeuristic`](./webforms.ts.mdmd.md#symbol-createwebformsheuristic)
