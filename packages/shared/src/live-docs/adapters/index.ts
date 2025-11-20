@@ -8,6 +8,7 @@ import { javaAdapter } from "./java";
 import { pythonAdapter } from "./python";
 import { rubyAdapter } from "./ruby";
 import { rustAdapter } from "./rust";
+import { powershellAdapter } from "./powershell";
 
 export interface LanguageAdapter {
   readonly id: string;
@@ -22,7 +23,8 @@ const ADAPTERS: readonly LanguageAdapter[] = [
   javaAdapter,
   pythonAdapter,
   rubyAdapter,
-  rustAdapter
+  rustAdapter,
+  powershellAdapter
 ];
 
 /**

@@ -20,6 +20,10 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L3604-L3609` — Do not run blanket `git checkout -- .mdmd`; apply surgical edits to documentation mirrors and respect the Stage‑0 safeguard against mass rollbacks.
 - `L2177-L2765` — Grants high-agency execution of SpecKit tasks T022–T038, stressing continuous checklist audits and documentation alignment.
 
+## 2025-11-19 (Dev Day 28)
+- `2025-11-19.md:L365-L408` — Inspect Gemini’s Antigravity experiment, keep the new `layer4-orphans` enforcement fully configurable (default-off, easy to revert), and reserve Layer-3 system docs for curated human narratives rather than bulk-generated materialized views.
+- `L1535-L1540` — Before staging, reread the refreshed Layer-3 docs and clear all `live-docs:lint` warnings by authoring missing Purpose/Notes so the documentation feels human-edited instead of computer-generated.
+
 ## 2025-10-17 (Dev Day 2)
 - `2025-10-17.md:L1-L140` — Demands rigorous daily summaries (10:1 compression, turn-by-turn, line ranges) to preserve auditability; verifies LSP decision provenance.
 - `L164-L376` — Orders `/speckit.implement` continuation (T026 onward); expects Copilot to own lint/test setup and resolve Node tooling friction.
