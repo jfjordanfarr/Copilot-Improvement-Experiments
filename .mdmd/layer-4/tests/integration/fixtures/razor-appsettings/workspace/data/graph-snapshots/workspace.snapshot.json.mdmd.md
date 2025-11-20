@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Canonical graph snapshot for the Razor appsettings fixture, ensuring configuration-to-component links remain traceable.
 
 ### Notes
-_Pending notes_
+- Captures how Razor pages consume configuration bindings so ripple diagnostics flag outdated settings files correctly.
+- Integration suites use this snapshot to prove analyzer accuracy when C# and JSON config files interact.
+- Refresh alongside fixture updates and document the regeneration command to preserve reproducibility.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.547Z","inputHash":"b5232110ad3ef7c9"}]} -->

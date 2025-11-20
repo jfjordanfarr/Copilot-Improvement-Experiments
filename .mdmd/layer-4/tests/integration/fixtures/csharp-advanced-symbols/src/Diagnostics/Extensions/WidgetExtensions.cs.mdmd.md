@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the `WidgetExtensions` helpers the C# advanced symbols fixture uses to verify extension methods and namespace aliasing are reflected.
 
 ### Notes
-_Pending notes_
+Leave the extension method signature as-is; the benchmark inspects the generated symbol to ensure extension discovery.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.604Z","inputHash":"e1b78a973a1a3020"}]} -->

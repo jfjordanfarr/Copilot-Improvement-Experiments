@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Reference snapshot for the advanced C# symbols fixture, ensuring analyzers capture complex inheritance and reflection patterns.
 
 ### Notes
-_Pending notes_
+- Includes tricky symbol relationships (partial classes, attributes, reflection hooks) that previously exposed analyzer gaps.
+- Integration suites diff against this baseline to confirm symbol extraction and dependency mapping remain accurate.
+- Refresh only when the fixture changes; capture the snapshot command to keep the provenance auditable.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.794Z","inputHash":"56a365254fbfe374"}]} -->

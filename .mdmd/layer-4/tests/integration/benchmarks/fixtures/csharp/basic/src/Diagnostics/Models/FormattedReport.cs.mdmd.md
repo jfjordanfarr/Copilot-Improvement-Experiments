@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Represents the rendered diagnostics payload for the C# basic benchmark, pairing formatted headlines with their source records.
 
 ### Notes
-_Pending notes_
+This record intentionally mirrors the service output; change it only when the service contract evolves.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.090Z","inputHash":"8c855665f24a133a"}]} -->

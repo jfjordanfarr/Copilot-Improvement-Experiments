@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Records the analyzer's observed graph for the Java basic benchmark to verify it stays aligned with the curated expectation.
 
 ### Notes
-_Pending notes_
+Refresh with `npm run fixtures:record-fallback -- --fixture java-basic --write` whenever the analyzer or fixture sources change.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.511Z","inputHash":"36e900bcef329f53"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Entry point for the C basics benchmark, calling into `util` so the analyzer observes header-driven dependencies.
 
 ### Notes
-_Pending notes_
+The body must stay compact; its role is to surface the `build_widget` usage.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.048Z","inputHash":"19b2d93d5a93ff1a"}]} -->

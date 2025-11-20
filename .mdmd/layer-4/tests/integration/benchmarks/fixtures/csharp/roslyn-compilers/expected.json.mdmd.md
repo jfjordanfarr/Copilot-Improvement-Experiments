@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Anchors the expected dependency snapshot for the Roslyn compilers slice so large-scale analyzer coverage remains trustworthy.
 
 ### Notes
-_Pending notes_
+Use `npm run fixtures:regenerate -- --fixture csharp-roslyn-compilers --write` when refreshing the pinned Roslyn commit or analyzer rules.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.415Z","inputHash":"52bbb1935effdc9b"}]} -->

@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Graph snapshot for the SlopCop asset audit fixture, anchoring expected relationships between HTML pages and referenced assets.
 
 ### Notes
-_Pending notes_
+- Used by integration tests to verify the asset lint pipeline reconstructs document→asset edges correctly.
+- Highlights missing asset references so lint failures can be asserted without hitting live projects.
+- Refresh when fixture structure or lint expectations change, and note the snapshot command in fixture docs.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.676Z","inputHash":"50af9a5434abea4f"}]} -->

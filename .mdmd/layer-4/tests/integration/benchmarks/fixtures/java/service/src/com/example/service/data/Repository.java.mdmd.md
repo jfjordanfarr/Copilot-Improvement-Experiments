@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Fetches datasets for the Java service benchmark, logging access and routing through the source registry to expose layered dependencies.
 
 ### Notes
-_Pending notes_
+Keep the logging call and delegation intact; they ensure both util and registry modules appear in the graph.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.159Z","inputHash":"ba69e4bc2bd0474d"}]} -->

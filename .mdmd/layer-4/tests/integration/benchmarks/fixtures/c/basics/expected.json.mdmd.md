@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the expected include graph for the C basics benchmark so translation-unit coverage stays anchored.
 
 ### Notes
-_Pending notes_
+Run `npm run fixtures:regenerate -- --fixture c-basics --write` prior to accepting analyzer-driven changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.260Z","inputHash":"655e3ce48b7a1ba5"}]} -->

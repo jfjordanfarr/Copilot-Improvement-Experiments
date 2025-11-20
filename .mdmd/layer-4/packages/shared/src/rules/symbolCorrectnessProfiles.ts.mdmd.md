@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/shared/src/rules/symbolCorrectnessProfiles.ts
 - Live Doc ID: LD-implementation-packages-shared-src-rules-symbolcorrectnessprofiles-ts
-- Generated At: 2025-11-19T15:01:35.465Z
+- Generated At: 2025-11-19T19:27:14.303Z
 
 ## Authored
 ### Purpose
@@ -16,24 +16,24 @@ Compiles symbol-correctness profiles from relationship-rules config so diagnosti
 - Continuous runs of `npm run graph:audit` after October 30 rely on these compiled profiles to report satisfied vs missing relationships per artifact.[AI-Agent-Workspace/ChatHistory/2025/11/2025-11-10.md]
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:35.465Z","inputHash":"5f08332815ee26b1"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T19:27:14.303Z","inputHash":"5da33e50a5604f11"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `SymbolProfileLoadResult` {#symbol-symbolprofileloadresult}
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L21)
+- Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L23)
 
 #### `CompileSymbolProfilesResult` {#symbol-compilesymbolprofilesresult}
 - Type: interface
-- Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L26)
+- Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L28)
 
 #### `loadSymbolCorrectnessProfiles` {#symbol-loadsymbolcorrectnessprofiles}
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L32)
+- Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L34)
 
 #### `compileSymbolProfiles` {#symbol-compilesymbolprofiles}
 - Type: function
-- Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L53)
+- Source: [source](../../../../../../packages/shared/src/rules/symbolCorrectnessProfiles.ts#L55)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->
@@ -46,7 +46,9 @@ Compiles symbol-correctness profiles from relationship-rules config so diagnosti
 - [`relationshipRuleTypes.RelationshipRuleWarning`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulewarning) (type-only)
 - [`relationshipRuleTypes.RelationshipRulesConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-relationshiprulesconfig) (type-only)
 - [`relationshipRuleTypes.SymbolCorrectnessProfileConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolcorrectnessprofileconfig) (type-only)
+- [`relationshipRuleTypes.SymbolProfileEnforcementMode`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofileenforcementmode) (type-only)
 - [`relationshipRuleTypes.SymbolProfileLookup`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilelookup) (type-only)
+- [`relationshipRuleTypes.SymbolProfileOverrideConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofileoverrideconfig) (type-only)
 - [`relationshipRuleTypes.SymbolProfileRequirementConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilerequirementconfig) (type-only)
 - [`relationshipRuleTypes.SymbolProfileRequirementDirection`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilerequirementdirection) (type-only)
 - [`relationshipRuleTypes.SymbolProfileSourceConfig`](./relationshipRuleTypes.ts.mdmd.md#symbol-symbolprofilesourceconfig) (type-only)

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Pins the expected dependency graph for the vendor-sourced Rust `log` crate so Live Documentation tracks namespace-heavy scenarios.
 
 ### Notes
-_Pending notes_
+Regenerate via `npm run fixtures:regenerate -- --fixture rust-log --write` or through `npm run safe:commit -- --benchmarks` when bumping the upstream snapshot.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.153Z","inputHash":"527f29821e71b695"}]} -->

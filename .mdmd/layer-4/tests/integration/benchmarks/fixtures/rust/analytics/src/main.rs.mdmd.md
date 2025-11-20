@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Acts as the entry point for the Rust analytics benchmark, invoking IO and metrics modules so cross-crate imports are exercised.
 
 ### Notes
-_Pending notes_
+Maintain parity with the supporting modules; this file should stay lightweight to keep the dependency graph focused.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.067Z","inputHash":"1d247861a28b0ef6"}]} -->

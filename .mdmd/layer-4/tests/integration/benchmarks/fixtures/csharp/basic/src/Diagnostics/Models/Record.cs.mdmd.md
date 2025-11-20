@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the immutable `Record` type for the C# basic benchmark so analyzer coverage includes primary constructors.
 
 ### Notes
-_Pending notes_
+Keep the signature minimal; additional members belong in the service layer.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.098Z","inputHash":"62c92cf4bed30e52"}]} -->

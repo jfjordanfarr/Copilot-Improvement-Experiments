@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides console logging for the Java service benchmark so support utilities appear in dependency graphs.
 
 ### Notes
-_Pending notes_
+The logger intentionally stays minimal; expand it only if the fixture requires richer logging edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.176Z","inputHash":"b2244c06e000e8d8"}]} -->

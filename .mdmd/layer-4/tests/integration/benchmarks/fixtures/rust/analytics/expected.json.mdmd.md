@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Stores the golden dependency graph for the Rust analytics benchmark so analyzer regressions surface during AST validation.
 
 ### Notes
-_Pending notes_
+Regenerate via `npm run fixtures:regenerate -- --fixture rust-analytics --write` or include the fixture in `npm run safe:commit -- --benchmarks` before making manual adjustments.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.025Z","inputHash":"cf2032d2d7bf1dca"}]} -->

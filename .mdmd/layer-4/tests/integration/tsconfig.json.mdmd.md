@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Anchor the shared TypeScript compiler options the integration harness expects so downstream suites stay aligned with the runtime bundle requirements documented in [`Integration Testing Architecture`](../../../../.mdmd/layer-3/testing-integration-architecture.mdmd.md).
 
 ### Notes
-_Pending notes_
+- Source file: [`tests/integration/tsconfig.json`](../../../../tests/integration/tsconfig.json)
+- Extends the shared inputs profile while tightening module resolution for VS Code harness execution.
+- Update this Live Doc alongside harness build changes so the Live Documentation generator and headless harness stay synchronized.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.971Z","inputHash":"f48be961b88fefd8"}]} -->

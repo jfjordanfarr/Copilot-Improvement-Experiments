@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the analyzer result for the Java service benchmark to compare against the curated expectation.
 
 ### Notes
-_Pending notes_
+Re-record using `npm run fixtures:record-fallback -- --fixture java-service --write` after adjustments to analyzer behavior or fixture sources.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.623Z","inputHash":"a8cd5fddffecc8b6"}]} -->

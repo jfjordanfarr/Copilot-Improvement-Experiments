@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Anchors the expected dependency graph for the Java service benchmark so layered analytics coverage remains predictable.
 
 ### Notes
-_Pending notes_
+Use `npm run fixtures:regenerate -- --fixture java-service --write` before acknowledging graph updates.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.616Z","inputHash":"106c909d5d0990dc"}]} -->

@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Fixture TypeScript configuration used by the SPA runtime configuration suite to compile test harness utilities and asset adapters.
 
 ### Notes
-_Pending notes_
+- Mirrors the compiler flags our production SPA harness relies on, ensuring integration tests compile helper scripts exactly like the real project.
+- Loaded by the headless harness when replaying SPA scenarios; edits here can change module resolution and must be reflected in test expectations.
+- Update alongside fixture source files and document changes in the fixture README to keep regeneration narratives reproducible.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.771Z","inputHash":"b54ce7711376ba38"}]} -->

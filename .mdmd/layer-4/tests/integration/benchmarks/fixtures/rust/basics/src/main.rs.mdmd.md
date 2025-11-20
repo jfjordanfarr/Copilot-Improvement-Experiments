@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Serves as the entry point for the Rust basics benchmark, wiring `math` and `utils` together so module imports surface in the analyzer.
 
 ### Notes
-_Pending notes_
+Keep the logic intentionally simple; adjust alongside the other `rust/basics` sources to preserve deterministic edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.117Z","inputHash":"187f4c67768ea166"}]} -->

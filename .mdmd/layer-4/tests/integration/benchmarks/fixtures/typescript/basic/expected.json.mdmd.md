@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Locks the curated dependency graph for the TypeScript basic benchmark so module resolution coverage stays reproducible.
 
 ### Notes
-_Pending notes_
+Regenerate with `npm run fixtures:regenerate -- --fixture ts-basic --write` before accepting analyzer or fixture edits.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.163Z","inputHash":"2c1bb66c70fc141c"}]} -->

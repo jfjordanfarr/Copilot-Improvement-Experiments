@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Archives the analyzer-emitted graph for the Ky TypeScript benchmark to compare against the vetted expectation.
 
 ### Notes
-_Pending notes_
+Re-record with `npm run fixtures:record-fallback -- --fixture ts-ky --write` after pulling a new vendor snapshot or changing analyzer behavior.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.227Z","inputHash":"dd92bb34d4847b1d"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Details the `SymbolDriftWidget` implementation that feeds tag-heavy metadata into the C# advanced symbols scenario.
 
 ### Notes
-_Pending notes_
+Maintain the merge semantics and dependency list—they emulate a real drift monitor the analyzer depends on.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.639Z","inputHash":"404b057fb041bec4"}]} -->

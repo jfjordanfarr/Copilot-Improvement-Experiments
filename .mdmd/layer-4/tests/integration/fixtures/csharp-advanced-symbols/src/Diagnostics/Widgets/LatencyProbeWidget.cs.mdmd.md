@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Documents the `LatencyProbeWidget` type used by the C# advanced symbols fixture to check method overrides and dependency enumeration.
 
 ### Notes
-_Pending notes_
+Do not trim the metadata tag or `CollectDependencies` entries; they guarantee the analyzer sees telemetry-specific edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.635Z","inputHash":"4df23a08302f2447"}]} -->

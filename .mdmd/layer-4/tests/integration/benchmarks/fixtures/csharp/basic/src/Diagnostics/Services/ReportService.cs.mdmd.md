@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Creates formatted diagnostics reports for the C# basic benchmark, bridging repository data to formatter output.
 
 ### Notes
-_Pending notes_
+Both `Process` methods intentionally exist to exercise overload analysis; keep their signatures stable.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.102Z","inputHash":"89598895f06f8667"}]} -->

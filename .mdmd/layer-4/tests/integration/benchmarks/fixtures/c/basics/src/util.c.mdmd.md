@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Implements the widget builder for the C basics benchmark, demonstrating how simple structs cross translation units.
 
 ### Notes
-_Pending notes_
+Keep the example comment and return structure; they are intentionally verbose for analyzer coverage.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.053Z","inputHash":"aec5410cd484614e"}]} -->

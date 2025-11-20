@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Recorded dependency graph for the Blazor telemetry fixture, used to validate .NET telemetry routing and Live Doc propagation during integration tests.
 
 ### Notes
-_Pending notes_
+- Captures the expected project structure after analyzers traverse Razor components, telemetry services, and shared utilities.
+- Integration suites compare fresh snapshots to this baseline to catch regressions in Blazor-specific analyzers or adapters.
+- Refresh only when the fixture changes; document the snapshot command so other contributors can reproduce the state.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.775Z","inputHash":"f1e8d29825131907"}]} -->

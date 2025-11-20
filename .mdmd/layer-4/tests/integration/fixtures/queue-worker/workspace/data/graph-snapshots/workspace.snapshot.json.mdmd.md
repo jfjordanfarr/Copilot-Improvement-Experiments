@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Reference graph for the queue-worker fixture, validating background job dependencies and telemetry wiring.
 
 ### Notes
-_Pending notes_
+- Encodes the expected service, queue, and handler relationships so integration tests can assert ripple propagation through async workloads.
+- Helps ensure analyzer updates continue to recognise worker registration patterns and configuration files.
+- Refresh this snapshot only with deliberate fixture changes; capture the snapshot command in the fixture README for reproducibility.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.517Z","inputHash":"269ebda3edfab61a"}]} -->

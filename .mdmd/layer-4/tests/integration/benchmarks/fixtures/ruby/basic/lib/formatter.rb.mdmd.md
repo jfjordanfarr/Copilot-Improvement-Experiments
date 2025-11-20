@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Routes formatting calls for the Ruby basic benchmark, intentionally exposing a long-form comment block to test doc parsing.
 
 ### Notes
-_Pending notes_
+Preserve the embedded documentation and module function style—they help exercise the analyzer's comment handling.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.236Z","inputHash":"9f002883746e3c99"}]} -->

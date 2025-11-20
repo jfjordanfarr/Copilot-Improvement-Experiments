@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the expected dependency fan-out for the Ruby CLI benchmark so layered service coverage stays predictable.
 
 ### Notes
-_Pending notes_
+Use `npm run fixtures:regenerate -- --fixture ruby-cli --write` to refresh this snapshot when the fixture or analyzer changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.955Z","inputHash":"6c4e9bf066c64d6f"}]} -->

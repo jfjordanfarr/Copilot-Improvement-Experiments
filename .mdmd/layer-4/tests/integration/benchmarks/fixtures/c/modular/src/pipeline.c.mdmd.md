@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Coordinates metrics and logging for the C modular benchmark, showcasing static helpers and multi-header includes.
 
 ### Notes
-_Pending notes_
+Preserve the clamp helper and logging branches—they ensure the analyzer sees both internal and external symbol usage.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.071Z","inputHash":"47ab11ecd0f932c0"}]} -->

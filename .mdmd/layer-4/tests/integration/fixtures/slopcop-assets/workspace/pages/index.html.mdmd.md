@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Fixture HTML page that exercises SlopCop asset validation by referencing both valid and intentionally missing resources.
 
 ### Notes
-_Pending notes_
+- Links to `styles/site.css` and a missing stylesheet so asset linting can assert both success and failure paths.
+- Serves as the primary consumer for config-driven asset rules defined in `slopcop.config.json`.
+- Update alongside configured asset expectations to keep lint behaviour deterministic.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.692Z","inputHash":"e88cb5b159b6a31e"}]} -->

@@ -652,6 +652,31 @@ function extractExportedSymbols(filePath: string, content: string): ExportedSymb
       continue;
     }
 
+    if (ts.isExportDeclaration(statement)) {
+      if (statement.exportClause && ts.isNamedExports(statement.exportClause)) {
+        for (const specifier of statement.exportClause.elements) {
+          const name = specifier.name.text;
+          record({
+            name,
+            kind: specifier.isTypeOnly ? "type" : "unknown",
+            isTypeOnly: specifier.isTypeOnly
+          });
+        }
+        continue;
+      }
+
+      if (statement.exportClause && ts.isNamespaceExport(statement.exportClause)) {
+        const name = statement.exportClause.name.text;
+        record({
+          name,
+          kind: "namespace"
+        });
+        continue;
+      }
+
+      continue;
+    }
+
     if (!hasExportModifier(statement)) {
       continue;
     }
@@ -728,21 +753,6 @@ function extractExportedSymbols(filePath: string, content: string): ExportedSymb
       continue;
     }
 
-    if (
-      ts.isExportDeclaration(statement) &&
-      !statement.moduleSpecifier &&
-      statement.exportClause &&
-      ts.isNamedExports(statement.exportClause)
-    ) {
-      for (const specifier of statement.exportClause.elements) {
-        const name = specifier.name.text;
-        record({
-          name,
-          kind: specifier.isTypeOnly ? "type" : "unknown",
-          isTypeOnly: specifier.isTypeOnly
-        });
-      }
-    }
   }
 
   return Array.from(collected.values());
@@ -1331,19 +1341,51 @@ function isPotentialMdmdSymbol(candidate: string): boolean {
 }
 
 function extractSymbolToken(title: string): string {
+  const sanitized = stripSymbolWrappers(stripSymbolAnchor(title));
   const separators = [" – ", " — ", " - ", " —", " –", ":", "—", "–"];
   for (const separator of separators) {
-    const index = title.indexOf(separator);
+    const index = sanitized.indexOf(separator);
     if (index !== -1) {
-      return title.slice(0, index).trim();
+      return stripSymbolWrappers(sanitized.slice(0, index));
     }
   }
-  const trimmed = title.trim();
+  const trimmed = sanitized.trim();
   const whitespaceIndex = trimmed.indexOf(" ");
   if (whitespaceIndex !== -1) {
-    return trimmed.slice(0, whitespaceIndex).trim();
+    return stripSymbolWrappers(trimmed.slice(0, whitespaceIndex));
   }
-  return trimmed;
+  return stripSymbolWrappers(trimmed);
+}
+
+function stripSymbolAnchor(value: string): string {
+  return value.replace(/\s*\{#[^}]+\}\s*$/, "").trim();
+}
+
+function stripSymbolWrappers(value: string): string {
+  let candidate = value.trim();
+  if (!candidate) {
+    return candidate;
+  }
+
+  const wrappers: Array<[string, string]> = [
+    ["`", "`"],
+    ["**", "**"],
+    ["_", "_"],
+    ["*", "*"]
+  ];
+
+  let mutated = true;
+  while (mutated && candidate.length > 0) {
+    mutated = false;
+    for (const [start, end] of wrappers) {
+      if (candidate.startsWith(start) && candidate.endsWith(end) && candidate.length >= start.length + end.length) {
+        candidate = candidate.slice(start.length, candidate.length - end.length).trim();
+        mutated = true;
+      }
+    }
+  }
+
+  return candidate;
 }
 
 function normalizeMetadataKey(key: string): string {

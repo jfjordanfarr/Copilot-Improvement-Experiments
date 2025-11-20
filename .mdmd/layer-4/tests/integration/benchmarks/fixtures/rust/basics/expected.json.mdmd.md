@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the reference dependency graph for the Rust basics benchmark so simple module relationships stay locked in for regression checks.
 
 ### Notes
-_Pending notes_
+Regenerate via `npm run fixtures:regenerate -- --fixture rust-basics --write` before accepting analyzer changes that alter the expected edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.107Z","inputHash":"e9406e24ce792fa8"}]} -->

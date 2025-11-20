@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provide deterministic transform relationships for the simple workspace fixture so ripple diagnostics can verify template→script→asset flows.
 
 ### Notes
-_Pending notes_
+- Encodes expected `documents-with-evidence` edges that model how templated assets propagate changes to generated scripts.
+- Used by integration suites to confirm change processors respect transformation depth when issuing diagnostics.
+- Revise together with fixture templates or scripts and regenerate the feed to prevent stale ripple expectations from masking regressions.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.598Z","inputHash":"2d8f146fe6cf982a"}]} -->

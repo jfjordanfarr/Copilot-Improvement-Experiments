@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Capture the deterministic dry-run payload we expect during US5 so the orchestration described in [`LLM Ingestion Pipeline`](../../../../../../../.mdmd/layer-3/llm-ingestion-pipeline.mdmd.md) always has a reviewed fixture for regression detection.
 
 ### Notes
-_Pending notes_
+- Source file: [`tests/integration/us5/__fixtures__/llm-ingestion/dry-run.sample.json`](../../../../../../../tests/integration/us5/__fixtures__/llm-ingestion/dry-run.sample.json)
+- Mirrors the snapshot produced by `npm run test:integration -- --suite us5` when the orchestrator operates in dry-run mode.
+- Update alongside prompt schema or provenance changes so regression tooling can diff the fixture before persisting edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:27.061Z","inputHash":"30ad4e3378454c9f"}]} -->

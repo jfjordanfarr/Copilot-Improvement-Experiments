@@ -29,6 +29,16 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "TelemetryController",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "Record",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -36,7 +46,10 @@
             "Controllers/TelemetryController.cs"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "TelemetryController",
+            "Record"
+          ]
         }
       }
     },
@@ -46,6 +59,16 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "TelemetryScheduler",
+            "context": "section-heading"
+          },
+          {
+            "symbol": "Configure",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -53,7 +76,10 @@
             "Services/TelemetryScheduler.cs"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "TelemetryScheduler",
+            "Configure"
+          ]
         }
       }
     },
@@ -63,6 +89,16 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "TelemetryWorker",
+            "context": "section-heading"
+          },
+          {
+            "symbol": "Process",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -70,7 +106,10 @@
             "Workers/TelemetryWorker.cs"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "TelemetryWorker",
+            "Process"
+          ]
         }
       }
     }

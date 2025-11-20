@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Code-behind file for the WebForms telemetry sample, demonstrating how runtime configuration keys flow into page lifecycle events during tests.
 
 ### Notes
-_Pending notes_
+- Exposes the instrumentation key consumed by diagnostics that validate configuration propagation.
+- Fixture intentionally mirrors production-style WebForms patterns so heuristics recognise field injections and event handlers.
+- Update alongside the paired `Web.config` Live Doc whenever configuration keys or telemetry wiring changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:37.093Z","inputHash":"9bd8d1932d2db863"}]} -->

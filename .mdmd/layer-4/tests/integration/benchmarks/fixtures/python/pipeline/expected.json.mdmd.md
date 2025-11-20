@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the expected dependency map for the Python pipeline benchmark so validator coverage stays deterministic.
 
 ### Notes
-_Pending notes_
+Use `npm run fixtures:regenerate -- --fixture python-pipeline --write` prior to accepting analyzer or fixture edits.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.751Z","inputHash":"b315891639db0734"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Maintains the in-memory dataset catalog for the Java service benchmark so resolver patterns appear in analyzer output.
 
 ### Notes
-_Pending notes_
+Sample values stay intentionally small; tweak them only if the benchmark needs additional dependency edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.163Z","inputHash":"6660ce3c49745565"}]} -->

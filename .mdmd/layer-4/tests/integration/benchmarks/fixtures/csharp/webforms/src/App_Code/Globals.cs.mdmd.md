@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides configuration helpers for the WebForms benchmark, funneling app settings into the code-behind and scripts.
 
 ### Notes
-_Pending notes_
+Keep the keys synchronized with the Web.config fixture; renaming them breaks the hidden-field wiring the tests rely on.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.110Z","inputHash":"1e902bee64d6f823"}]} -->

@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Fixture JavaScript demonstrating how telemetry scripts consume configuration injected by the WebForms page during integration tests.
 
 ### Notes
-_Pending notes_
+- Used by ripple diagnostics to prove configuration updates flow from server-side fields into the browser runtime.
+- Keeps instrumentation key wiring intentionally simple so tests can focus on configuration change detection rather than telemetry implementation details.
+- Update this file in tandem with `Default.aspx.cs` and `Web.config` to keep dependency mappings accurate.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:37.099Z","inputHash":"edb0146c06f314bd"}]} -->

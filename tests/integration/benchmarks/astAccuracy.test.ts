@@ -126,6 +126,8 @@ const { materializeFixture } = fixtureMaterializerModule;
 
 suite("T061: AST accuracy benchmark", () => {
   test("computes inference accuracy metrics against ground truth", async function () {
+    this.timeout(10 * 60 * 1000); // Cloning vendor fixtures can exceed the default timeout
+    this.slow(2 * 60 * 1000);
     const manifest = await loadBenchmarkManifest(REPO_ROOT);
     const fixtures = selectFixtures(manifest, BENCHMARK_MODE);
 

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Loads synthetic records for the Java basic benchmark, illustrating how data modules feed the reporting pipeline.
 
 ### Notes
-_Pending notes_
+Keep the sample values predictable; analyzer regressions rely on this deterministic dataset.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.138Z","inputHash":"8c204d80fe422fc5"}]} -->

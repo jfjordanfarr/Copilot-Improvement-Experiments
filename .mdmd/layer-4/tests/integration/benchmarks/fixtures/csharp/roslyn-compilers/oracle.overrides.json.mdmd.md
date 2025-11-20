@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the oracle overrides necessary for the Roslyn compilers benchmark where static inference under-reports dependencies.
 
 ### Notes
-_Pending notes_
+Audit these overrides with the Roslyn fixture and rerun the regeneration commands before finalizing changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.421Z","inputHash":"548d43fbb0caa1fb"}]} -->

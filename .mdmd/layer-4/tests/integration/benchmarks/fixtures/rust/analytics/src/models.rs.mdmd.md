@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Declares the data structures consumed across the Rust analytics benchmark so the analyzer validates struct visibility and cloning.
 
 ### Notes
-_Pending notes_
+Struct fields should remain open and descriptive; changing them affects every dependent module in the fixture.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.299Z","inputHash":"b592d3ab677fef56"}]} -->

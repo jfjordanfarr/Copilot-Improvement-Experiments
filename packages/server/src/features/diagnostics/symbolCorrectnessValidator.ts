@@ -5,6 +5,7 @@ import {
   type GraphStore,
   type KnowledgeArtifact,
   type LinkRelationshipKind,
+  type SymbolProfileEnforcementMode,
   toWorkspaceRelativePath
 } from "@copilot-improvement/shared";
 import type { SymbolProfileLookup } from "@copilot-improvement/shared";
@@ -26,12 +27,14 @@ export interface SymbolProfileViolation {
   direction: "outbound" | "incoming";
   expectedMinimum: number;
   observed: number;
+  mode: SymbolProfileEnforcementMode;
   message: string;
 }
 
 export interface SymbolProfileSummary {
   profileId: string;
   profileLabel?: string;
+  mode: SymbolProfileEnforcementMode;
   evaluated: number;
   satisfied: number;
   violations: SymbolProfileViolation[];
@@ -60,6 +63,7 @@ export function generateSymbolCorrectnessDiagnostics(
     summaries.push({
       profileId: profile.id,
       profileLabel: profile.label,
+      mode: profile.mode,
       evaluated: 0,
       satisfied: 0,
       violations: []
@@ -82,6 +86,10 @@ export function generateSymbolCorrectnessDiagnostics(
     }
 
     for (const profile of matchingProfiles) {
+      if (profile.mode === "off") {
+        continue;
+      }
+
       const summary = summariesById.get(profile.id);
       if (!summary) {
         continue;
@@ -117,6 +125,7 @@ export function generateSymbolCorrectnessDiagnostics(
           direction: failure.requirement.direction,
           expectedMinimum: failure.requirement.minimum,
           observed: failure.observed,
+          mode: profile.mode,
           message: buildViolationMessage(profile, failure.requirement, relative, failure.observed)
         };
 

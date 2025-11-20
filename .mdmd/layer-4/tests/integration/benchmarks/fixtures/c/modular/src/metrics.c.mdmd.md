@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides the averaging and clamping routines for the C modular benchmark so analyzer coverage spans shared headers.
 
 ### Notes
-_Pending notes_
+Function signatures mirror `metrics.h`; keep them aligned to avoid breaking downstream includes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.067Z","inputHash":"252b31c3ecf9497e"}]} -->

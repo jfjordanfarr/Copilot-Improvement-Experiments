@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: packages/extension/src/diagnostics/dependencyQuickPick.ts
 - Live Doc ID: LD-implementation-packages-extension-src-diagnostics-dependencyquickpick-ts
-- Generated At: 2025-11-19T15:01:33.462Z
+- Generated At: 2025-11-19T21:21:14.423Z
 
 ## Authored
 ### Purpose
@@ -16,7 +16,7 @@ Implements the T039 dependency inspection quick pick so the extension can call `
 - The same change set validated lint, unit, and integration runs (`npm run lint`, `npm run test:unit`, `npm run test:integration`), ensuring the quick pick stays regression-tested; see [AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1500-L1568](../../../../../../AI-Agent-Workspace/ChatHistory/2025/10/2025-10-20.md#L1500-L1568).
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:33.462Z","inputHash":"5a958ca8e04082c9"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T21:21:14.423Z","inputHash":"8c28e6fee1348f62"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `registerDependencyQuickPick` {#symbol-registerdependencyquickpick}
@@ -27,6 +27,10 @@ Implements the T039 dependency inspection quick pick so the extension can call `
 - Type: class
 - Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L31)
 
+#### `ParsedEdge` {#symbol-parsededge}
+- Type: type
+- Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L157)
+
 #### `describeEdgePath` {#symbol-describeedgepath}
 - Type: function
 - Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L159)
@@ -34,10 +38,6 @@ Implements the T039 dependency inspection quick pick so the extension can call `
 #### `InspectDependenciesResultValidator` {#symbol-inspectdependenciesresultvalidator}
 - Type: const
 - Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L176)
-
-#### `ParsedEdge` {#symbol-parsededge}
-- Type: unknown
-- Source: [source](../../../../../../packages/extension/src/diagnostics/dependencyQuickPick.ts#L178)
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

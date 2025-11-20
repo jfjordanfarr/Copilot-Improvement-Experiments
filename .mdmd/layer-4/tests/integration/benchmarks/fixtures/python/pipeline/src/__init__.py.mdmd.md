@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Marks the package root for the Python pipeline benchmark so import resolution exercises package metadata handling.
 
 ### Notes
-_Pending notes_
+The file intentionally stays empty; touching it may change how the analyzer classifies package boundaries.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.762Z","inputHash":"48232b75e7c28b70"}]} -->

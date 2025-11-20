@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Pins the expected dependency graph for the vendor Requests snapshot so analyzer coverage of real-world packages stays consistent.
 
 ### Notes
-_Pending notes_
+Refresh via `npm run fixtures:regenerate -- --fixture python-requests --write` before acknowledging analyzer drifts.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.827Z","inputHash":"45d07d458bf7e051"}]} -->

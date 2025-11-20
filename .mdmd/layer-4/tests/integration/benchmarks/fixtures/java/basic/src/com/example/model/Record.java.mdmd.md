@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the immutable `Record` used throughout the Java basic benchmark so the analyzer observes Java record constructs.
 
 ### Notes
-_Pending notes_
+Field names should stay aligned with formatter expectations; change them only with corresponding pipeline updates.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.145Z","inputHash":"212a5fe1a9474bfb"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the analyzer's include graph for the C basics benchmark to ensure alignment with the curated expectation.
 
 ### Notes
-_Pending notes_
+Re-record using `npm run fixtures:record-fallback -- --fixture c-basics --write` once analyzer or fixture sources change.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.273Z","inputHash":"c540222c09478782"}]} -->

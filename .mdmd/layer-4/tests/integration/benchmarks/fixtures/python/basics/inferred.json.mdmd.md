@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the analyzer output for the Python basics benchmark so parity with the curated expectation is easy to audit.
 
 ### Notes
-_Pending notes_
+Re-record with `npm run fixtures:record-fallback -- --fixture python-basics --write` after touching the analyzer or fixture modules.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.711Z","inputHash":"917dc4e636c1ea15"}]} -->

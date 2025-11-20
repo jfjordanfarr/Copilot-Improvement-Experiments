@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Remove stale VS Code and server bundles before the integration harness runs so suites always load freshly built artifacts.
 
 ### Notes
-_Pending notes_
+- Deletes `packages/*/dist` folders produced by previous builds, preventing the harness from testing outdated code.
+- Called automatically from `npm run test:integration` and the safe-commit pipeline before the VS Code harness boots.
+- Keep this script aligned with workspace build outputs—add new paths here whenever packages start emitting compiled artifacts.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.342Z","inputHash":"2e51e2160c8388d2"}]} -->

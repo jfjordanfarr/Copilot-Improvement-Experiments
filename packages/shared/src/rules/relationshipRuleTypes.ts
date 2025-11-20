@@ -33,6 +33,7 @@ export interface RelationshipRulesConfig {
   rules?: RelationshipRuleConfig[];
   chains?: RelationshipRuleConfig[];
   profiles?: SymbolCorrectnessProfileConfig[];
+  profileOverrides?: Record<string, SymbolProfileOverrideConfig>;
 }
 
 export interface RelationshipRuleConfigLoadResult {
@@ -122,6 +123,16 @@ export interface SymbolProfileTargetConfig {
   mdmdLayer?: string;
 }
 
+export type SymbolProfileEnforcementMode = "off" | "monitor" | "enforce";
+
+export type SymbolProfileOverrideConfig =
+  | SymbolProfileEnforcementMode
+  | boolean
+  | {
+      mode?: SymbolProfileEnforcementMode;
+      enforce?: boolean;
+    };
+
 export interface SymbolProfileRequirementConfig {
   id: string;
   description?: string;
@@ -139,6 +150,8 @@ export interface SymbolCorrectnessProfileConfig {
   source: SymbolProfileSourceConfig;
   requirements: SymbolProfileRequirementConfig[];
   notes?: string;
+  enabled?: boolean;
+  mode?: SymbolProfileEnforcementMode;
   enforce?: boolean;
 }
 
@@ -172,6 +185,7 @@ export interface CompiledSymbolProfile {
   id: string;
   label?: string;
   notes?: string;
+  mode: SymbolProfileEnforcementMode;
   enforce: boolean;
   source: CompiledSymbolProfileSource;
   requirements: CompiledSymbolProfileRequirement[];

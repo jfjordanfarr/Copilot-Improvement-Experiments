@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Formats summarized metrics for the Ruby basic benchmark so the analyzer observes presentation helpers.
 
 ### Notes
-_Pending notes_
+Keep the string template stable; downstream assertions rely on the current total/count wording.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.249Z","inputHash":"5ca7882acc87663d"}]} -->

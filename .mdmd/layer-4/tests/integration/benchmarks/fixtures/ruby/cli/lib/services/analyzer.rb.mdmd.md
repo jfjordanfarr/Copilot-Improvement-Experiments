@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Runs the analytics pipeline for the Ruby CLI benchmark, demonstrating caching, logging, and guard clauses for the analyzer.
 
 ### Notes
-_Pending notes_
+Retain the logging and cache calls—they provide the cross-service edges this fixture is designed to exercise.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.263Z","inputHash":"2d4c859f6d591372"}]} -->

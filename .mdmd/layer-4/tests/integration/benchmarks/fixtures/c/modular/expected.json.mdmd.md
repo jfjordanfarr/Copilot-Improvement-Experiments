@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Stores the expected dependency network for the C modular benchmark so multi-file pipeline coverage remains deterministic.
 
 ### Notes
-_Pending notes_
+Regenerate with `npm run fixtures:regenerate -- --fixture c-modular --write` before accepting graph changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.310Z","inputHash":"289726ad739d4b5c"}]} -->

@@ -22,6 +22,10 @@ interface LintWarning {
   message: string;
 }
 
+const AUTHORED_CONTENT_IGNORE_PATTERNS: RegExp[] = [
+  /^\.mdmd\/layer-4\/tests\/integration\/dist\//
+];
+
 async function main(): Promise<void> {
   const workspaceRoot = process.cwd();
   const config = normalizeLiveDocumentationConfig({
@@ -116,6 +120,9 @@ function validateStructure(file: string, content: string, issues: LintIssue[]): 
 }
 
 function validateAuthoredSections(file: string, content: string, warnings: LintWarning[]): void {
+  if (shouldIgnoreAuthoredContentWarning(file)) {
+    return;
+  }
   const block = extractAuthoredBlock(content);
   if (!block) {
     return;
@@ -158,6 +165,10 @@ function validateAuthoredSections(file: string, content: string, warnings: LintW
       message: "Authored block still uses placeholder content"
     });
   }
+}
+
+function shouldIgnoreAuthoredContentWarning(file: string): boolean {
+  return AUTHORED_CONTENT_IGNORE_PATTERNS.some(pattern => pattern.test(file));
 }
 
 function validateImplementationEvidence(

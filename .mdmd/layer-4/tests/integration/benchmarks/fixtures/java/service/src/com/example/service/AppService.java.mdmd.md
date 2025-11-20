@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Coordinates repository and analyzer dependencies for the Java service benchmark so layered service wiring remains visible to the analyzer.
 
 ### Notes
-_Pending notes_
+Leave the constructor and `generate` method focused on delegation; additional logic belongs in the collaborators.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.152Z","inputHash":"babb11380d810ff7"}]} -->

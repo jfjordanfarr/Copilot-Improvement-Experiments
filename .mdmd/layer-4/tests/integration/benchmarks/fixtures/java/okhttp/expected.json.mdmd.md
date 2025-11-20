@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Locks the expected dependency graph for the vendor OkHttp snapshot so analyzer coverage of large Java libraries stays stable.
 
 ### Notes
-_Pending notes_
+Regenerate with `npm run fixtures:regenerate -- --fixture java-okhttp --write` when updating the pinned commit or analyzer rules.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.602Z","inputHash":"7e8da57cc26b5706"}]} -->

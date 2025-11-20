@@ -29,6 +29,20 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "IndexModel",
+            "context": "section-heading"
+          },
+          {
+            "symbol": "InstrumentationKey",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "OnGet",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -36,7 +50,11 @@
             "Pages/Index.cshtml.cs"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "IndexModel",
+            "InstrumentationKey",
+            "OnGet"
+          ]
         }
       }
     },
@@ -63,6 +81,12 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "initializeTelemetry",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -70,7 +94,9 @@
             "wwwroot/js/telemetry.js"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "initializeTelemetry"
+          ]
         }
       }
     }

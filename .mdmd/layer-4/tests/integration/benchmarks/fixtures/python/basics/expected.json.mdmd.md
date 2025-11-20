@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Locks the expected import graph for the Python basics benchmark so foundational module resolution remains stable.
 
 ### Notes
-_Pending notes_
+Run `npm run fixtures:regenerate -- --fixture python-basics --write` before accepting analyzer changes that affect this snapshot.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.705Z","inputHash":"b64ac13164cd77be"}]} -->

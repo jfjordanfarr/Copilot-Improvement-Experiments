@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Sets the expected dependency map for the C# basic diagnostics benchmark so analyzer regression tests stay anchored.
 
 ### Notes
-_Pending notes_
+Regenerate via `npm run fixtures:regenerate -- --fixture csharp-basic --write` before accepting graph changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.356Z","inputHash":"da921f554a1670c7"}]} -->

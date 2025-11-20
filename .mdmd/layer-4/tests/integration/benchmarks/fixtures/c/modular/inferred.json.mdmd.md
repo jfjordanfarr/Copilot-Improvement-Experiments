@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Records the analyzer-produced graph for the C modular benchmark to contrast against the expected network.
 
 ### Notes
-_Pending notes_
+Use `npm run fixtures:record-fallback -- --fixture c-modular --write` after modifying analyzer behavior or fixture sources.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.312Z","inputHash":"9e50bba15c6f6c11"}]} -->

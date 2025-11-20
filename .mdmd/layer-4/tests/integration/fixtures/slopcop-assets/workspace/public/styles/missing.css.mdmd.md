@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Intentional missing stylesheet referenced by the SlopCop asset fixture to demonstrate lint failures.
 
 ### Notes
-_Pending notes_
+- File left empty on disk so the asset audit reports a broken link when `index.html` references it.
+- Keeps regression tests focused on lint messaging rather than CSS content; do not populate this file unless updating the negative test case.
+- Coordinate changes with `slopcop.config.json` waivers if we alter how missing assets are reported.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.697Z","inputHash":"dec6f9ea660ab8bd"}]} -->

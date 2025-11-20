@@ -154,7 +154,7 @@ const InspectDependenciesResultSchema = z.object({
 });
 
 type ParsedInspection = z.infer<typeof InspectDependenciesResultSchema>;
-type ParsedEdge = z.infer<typeof DependencyGraphEdgeSchema>;
+export type ParsedEdge = z.infer<typeof DependencyGraphEdgeSchema>;
 
 export function describeEdgePath(edge: ParsedEdge, format: (uri: string) => string): string | undefined {
   if (edge.depth <= 1 || edge.path.length <= 1) {
@@ -175,4 +175,3 @@ export function describeEdgePath(edge: ParsedEdge, format: (uri: string) => stri
 
 export const InspectDependenciesResultValidator = InspectDependenciesResultSchema;
 
-export type { ParsedEdge };

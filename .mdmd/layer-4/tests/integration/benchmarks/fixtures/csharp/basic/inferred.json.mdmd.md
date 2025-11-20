@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the analyzer's observed graph for the C# basic diagnostics benchmark to keep parity with the curated expectation.
 
 ### Notes
-_Pending notes_
+Re-record with `npm run fixtures:record-fallback -- --fixture csharp-basic --write` after modifying the analyzer or fixture code.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.361Z","inputHash":"0740ffe71540845b"}]} -->

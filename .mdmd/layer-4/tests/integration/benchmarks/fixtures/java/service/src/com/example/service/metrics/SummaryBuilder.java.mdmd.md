@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Builds summary objects for the Java service benchmark, converting sample collections into alert-aware aggregates.
 
 ### Notes
-_Pending notes_
+The alert threshold is deliberate; adjust it only when coordinating changes with analyzer expectations.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.166Z","inputHash":"4f4bb43dca117323"}]} -->

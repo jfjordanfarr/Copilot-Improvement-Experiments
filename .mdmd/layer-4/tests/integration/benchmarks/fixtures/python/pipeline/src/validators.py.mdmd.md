@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines validation helpers and the custom exception for the Python pipeline benchmark, ensuring the analyzer sees guard patterns.
 
 ### Notes
-_Pending notes_
+Keep the validators lightweight but explicit; downstream modules rely on these checks to exercise dependency edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.217Z","inputHash":"13671b4cfa106503"}]} -->

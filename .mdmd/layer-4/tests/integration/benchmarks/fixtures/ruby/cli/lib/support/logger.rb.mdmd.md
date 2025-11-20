@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides the lightweight logging backend for the Ruby CLI benchmark so support modules appear in the dependency graph.
 
 ### Notes
-_Pending notes_
+Leave the API minimal; the analyzer relies on these two methods to map support module usage.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.274Z","inputHash":"c227cdecfe41f0e7"}]} -->

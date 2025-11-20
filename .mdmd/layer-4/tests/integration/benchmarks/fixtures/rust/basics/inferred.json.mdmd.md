@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Logs the analyzer's observed graph for the Rust basics benchmark to validate parity with the maintained expectation.
 
 ### Notes
-_Pending notes_
+Re-record with `npm run fixtures:record-fallback -- --fixture rust-basics --write` whenever the graph generator or fixture modules evolve.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.111Z","inputHash":"b9a14995614c1544"}]} -->

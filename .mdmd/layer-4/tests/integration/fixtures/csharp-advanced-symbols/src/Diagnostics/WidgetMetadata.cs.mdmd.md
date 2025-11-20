@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Tracks the `WidgetMetadata` value type leveraged by the C# advanced symbols fixture to confirm nested structs and factory properties are captured.
 
 ### Notes
-_Pending notes_
+Retain the constructor guardrails and `WithTag` helper so dependency analysis keeps seeing enrichment paths.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.612Z","inputHash":"bd5e259104a4cc3a"}]} -->

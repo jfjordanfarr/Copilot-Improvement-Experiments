@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the `WidgetSnapshot` record used by the C# advanced symbols integration fixture so Live Documentation validates record-style symbol extraction and metadata flow.
 
 ### Notes
-_Pending notes_
+Treat this fixture as read-only test data; adjust alongside the other advanced symbol assets if the widget graph scenario shifts.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.627Z","inputHash":"f077ece2885a502f"}]} -->

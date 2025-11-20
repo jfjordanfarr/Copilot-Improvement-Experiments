@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the recorded analyzer output for the Rust analytics benchmark to compare against the curated expectation.
 
 ### Notes
-_Pending notes_
+Refresh with `npm run fixtures:record-fallback -- --fixture rust-analytics --write` after changing the analyzer or the underlying fixture sources.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.040Z","inputHash":"5b237db52b45716e"}]} -->

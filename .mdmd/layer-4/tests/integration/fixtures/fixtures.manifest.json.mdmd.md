@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Authoritative manifest describing every benchmark fixture consumed by integration and verification runs.
 
 ### Notes
-_Pending notes_
+- Lists fixture identifiers, repository provenance, include/exclude globs, and expected analyzer modes; CLI tooling expands this manifest before benchmarks execute.
+- Safe-commit and `npm run verify -- --report` read this file to determine which fixtures to clone and validate, so edits here directly change benchmark coverage.
+- Update manifest entries together with Layer‑3 benchmark documentation and regenerate Stage‑0 Live Docs to capture new languages or repository revisions.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.107Z","inputHash":"cccad59f160b8034"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Explains the `CompositeWidget` base used by the C# advanced symbols fixture to stress composite patterns and overridden dependency propagation.
 
 ### Notes
-_Pending notes_
+Keep the child traversal logic straightforward; the fixture asserts that inherited `CollectDependencies` results are preserved.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.631Z","inputHash":"13acbdbe12e32c94"}]} -->

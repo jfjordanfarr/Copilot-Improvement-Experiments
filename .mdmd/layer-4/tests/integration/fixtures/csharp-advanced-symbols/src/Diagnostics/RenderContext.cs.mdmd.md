@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Describes the `RenderContext` helper consumed by the C# advanced symbols fixture to assert Live Documentation recognizes stateful utility classes.
 
 ### Notes
-_Pending notes_
+Preserve the null-checks and event recording semantics—they intentionally surface analyzer inputs for the benchmark.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.608Z","inputHash":"7f8dc149a921c70c"}]} -->

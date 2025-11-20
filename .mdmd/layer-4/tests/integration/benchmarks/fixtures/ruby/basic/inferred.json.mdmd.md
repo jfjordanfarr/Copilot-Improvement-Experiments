@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the analyzer's observed graph for the Ruby basic benchmark to ensure it mirrors the curated expectation.
 
 ### Notes
-_Pending notes_
+Refresh with `npm run fixtures:record-fallback -- --fixture ruby-basic --write` after editing the fixture sources or analyzer rules.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.872Z","inputHash":"c07b10451897eac3"}]} -->

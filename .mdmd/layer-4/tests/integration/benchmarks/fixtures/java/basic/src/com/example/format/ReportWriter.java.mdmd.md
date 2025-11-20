@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Transforms record collections into summaries for the Java basic benchmark, tying formatting logic to the catalog module.
 
 ### Notes
-_Pending notes_
+Do not reorder the dependency on `Catalog`; it exists to highlight formatter-to-data module edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.142Z","inputHash":"11984193155b950e"}]} -->

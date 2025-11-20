@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Snapshot of the SPA runtime configuration fixture used to validate asset heuristics and configuration-driven ripple detection.
 
 ### Notes
-_Pending notes_
+- Captures the expected dependency graph after analyzers process runtime configuration files, HTML entry points, and generated assets.
+- Integration suites compare current runs against this snapshot to catch regressions in DOM heuristics and config parsing.
+- Refresh the snapshot whenever fixture dependencies or config schemas change, and document the regeneration command in the fixture README.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.734Z","inputHash":"b3ea519e53c83113"}]} -->

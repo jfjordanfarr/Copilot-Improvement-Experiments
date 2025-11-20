@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides dataset loading for the Python pipeline benchmark, including error paths that trigger validator coverage.
 
 ### Notes
-_Pending notes_
+Dataset values are intentionally simple; adjust the structure only when altering expected analyzer edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.212Z","inputHash":"119fada53ac5392b"}]} -->

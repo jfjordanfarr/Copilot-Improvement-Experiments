@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Holds utility helpers for the Rust basics benchmark so the analyzer observes standalone module exports.
 
 ### Notes
-_Pending notes_
+The functions stay intentionally compact; update them only when adding new dependency edges to the fixture.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.311Z","inputHash":"0fc5466dcadc8dde"}]} -->

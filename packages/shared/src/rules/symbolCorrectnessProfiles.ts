@@ -8,7 +8,9 @@ import type {
   RelationshipRuleWarning,
   RelationshipRulesConfig,
   SymbolCorrectnessProfileConfig,
+  SymbolProfileEnforcementMode,
   SymbolProfileLookup,
+  SymbolProfileOverrideConfig,
   SymbolProfileRequirementConfig,
   SymbolProfileRequirementDirection,
   SymbolProfileSourceConfig,
@@ -57,10 +59,15 @@ export function compileSymbolProfiles(
   const loadResult = loadSymbolCorrectnessProfiles(config);
   const compiled: CompiledSymbolProfile[] = [];
   const warnings: RelationshipRuleWarning[] = [...loadResult.warnings];
+  const overrides = normalizeProfileOverrides(config.profileOverrides, warnings);
 
   for (const profile of loadResult.profiles) {
-    const compiledProfile = compileProfile(profile, workspaceRoot, warnings);
+    const overrideMode = overrides.get(profile.id);
+    const compiledProfile = compileProfile(profile, workspaceRoot, warnings, overrideMode);
     if (compiledProfile) {
+      if (compiledProfile.mode === "off") {
+        continue;
+      }
       compiled.push(compiledProfile);
     }
   }
@@ -72,7 +79,8 @@ export function compileSymbolProfiles(
 function compileProfile(
   profile: SymbolCorrectnessProfileConfig,
   workspaceRoot: string,
-  warnings: RelationshipRuleWarning[]
+  warnings: RelationshipRuleWarning[],
+  overrideMode?: SymbolProfileEnforcementMode
 ): CompiledSymbolProfile | undefined {
   if (!profile.id || typeof profile.id !== "string") {
     warnings.push({
@@ -119,11 +127,14 @@ function compileProfile(
     return undefined;
   }
 
+  const mode = overrideMode ?? inferProfileMode(profile);
+
   return {
     id: profile.id,
     label: profile.label,
     notes: profile.notes,
-    enforce: Boolean(profile.enforce),
+    mode,
+    enforce: mode === "enforce",
     source: compiledSource,
     requirements: compiledRequirements
   };
@@ -298,12 +309,91 @@ function createSymbolProfileLookup(
       }
 
       return profiles.filter(profile =>
+        profile.mode !== "off" &&
         profile.source.matchers.some(matcher => matcher(relative)) &&
         matchesLayer(profile.source.layer, artifact.layer) &&
         matchesMdmdLayer(profile.source.mdmdLayer, readMdmdLayer(artifact.metadata))
       );
     }
   };
+}
+
+function normalizeProfileOverrides(
+  overrides: RelationshipRulesConfig["profileOverrides"],
+  warnings: RelationshipRuleWarning[]
+): Map<string, SymbolProfileEnforcementMode> {
+  const map = new Map<string, SymbolProfileEnforcementMode>();
+  if (!overrides || typeof overrides !== "object") {
+    return map;
+  }
+
+  for (const [profileId, raw] of Object.entries(overrides)) {
+    const mode = resolveOverrideMode(raw);
+    if (!mode) {
+      warnings.push({
+        profileId,
+        message: "Ignoring profile override: mode must be 'off', 'monitor', or 'enforce'."
+      });
+      continue;
+    }
+    map.set(profileId, mode);
+  }
+
+  return map;
+}
+
+function resolveOverrideMode(raw: SymbolProfileOverrideConfig | undefined): SymbolProfileEnforcementMode | undefined {
+  if (raw === undefined || raw === null) {
+    return undefined;
+  }
+
+  if (typeof raw === "string") {
+    return isSymbolProfileMode(raw) ? raw : undefined;
+  }
+
+  if (typeof raw === "object") {
+    const candidate = (raw as { mode?: unknown }).mode;
+    if (typeof candidate === "string" && isSymbolProfileMode(candidate)) {
+      return candidate;
+    }
+
+    const enforce = (raw as { enforce?: unknown }).enforce;
+    if (typeof enforce === "boolean") {
+      return enforce ? "enforce" : "monitor";
+    }
+
+    return undefined;
+  }
+
+  if (typeof raw === "boolean") {
+    return raw ? "enforce" : "off";
+  }
+
+  return undefined;
+}
+
+function inferProfileMode(profile: SymbolCorrectnessProfileConfig): SymbolProfileEnforcementMode {
+  if (profile.mode && isSymbolProfileMode(profile.mode)) {
+    return profile.mode;
+  }
+
+  if (profile.enabled === false) {
+    return "off";
+  }
+
+  if (typeof profile.enforce === "boolean") {
+    return profile.enforce ? "enforce" : "monitor";
+  }
+
+  if (profile.enabled === true) {
+    return "monitor";
+  }
+
+  return "monitor";
+}
+
+function isSymbolProfileMode(candidate: string): candidate is SymbolProfileEnforcementMode {
+  return candidate === "off" || candidate === "monitor" || candidate === "enforce";
 }
 
 function matchesLayer(expected: SymbolProfileSourceConfig["layer"], actual: string | undefined): boolean {

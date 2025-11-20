@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Archives the analyzer output for the libuv benchmark to spotlight deviations from the curated expectation.
 
 ### Notes
-_Pending notes_
+Re-record with `npm run fixtures:record-fallback -- --fixture c-libuv --write` after adjusting analyzer rules or refreshing the vendor snapshot.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.307Z","inputHash":"00b311a9bb4af083"}]} -->

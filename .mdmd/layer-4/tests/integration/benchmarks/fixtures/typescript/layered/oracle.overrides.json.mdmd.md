@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Lists manual edge overrides for the TypeScript layered benchmark so generated graphs respect intentional cross-layer shortcuts.
 
 ### Notes
-_Pending notes_
+Audit these overrides alongside the `ts-layered` fixture and rerun the regeneration pipeline whenever the service topology shifts.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.255Z","inputHash":"119aec332eaa45ff"}]} -->

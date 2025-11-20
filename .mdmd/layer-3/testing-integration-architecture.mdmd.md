@@ -47,28 +47,34 @@ Supports FR-LD1 through FR-LD6 plus REQ-F1 to REQ-F6 by executing end-to-end sce
 ## Linked Implementations
 
 ### IMP-401 vscodeIntegrationHarness
-Bootstraps VS Code with compiled artifacts and loads suites. [VS Code Integration Harness](../../.mdmd/layer-4/tests/integration/vscode/runTests.ts.mdmd.md)
+Bootstraps VS Code with compiled artifacts and loads suites. [VS Code Integration Harness](../layer-4/tests/integration/vscode/runTests.ts.mdmd.md)
 
 ### IMP-402 simpleWorkspaceFixture
-Primary workspace assets used across US suites. [Simple Workspace Fixture](../../.mdmd/layer-4/tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts.mdmd.md)
+Primary workspace assets used across US suites. [Simple Workspace Fixture](../layer-4/tests/integration/fixtures/simple-workspace/scripts/applyTemplate.ts.mdmd.md)
 
 ### IMP-403 us1ThroughUs5 Suites
-Scenario implementations verifying ripple, writer, developer, scope collision, and transform flows. [US Integration Suites](../../.mdmd/layer-4/tests/integration/us1/codeImpact.test.ts.mdmd.md)
+Scenario implementations verifying ripple, writer, developer, scope collision, and transform flows. [US Integration Suites](../layer-4/tests/integration/us1/codeImpact.test.ts.mdmd.md)
 
 ### IMP-404 cleanDistUtility
-Removes stale bundles before integration runs. [Clean Dist Utility](../../tests/integration/clean-dist.mjs)
+Removes stale bundles before integration runs. [`tests/integration/clean-dist.mjs`](../../tests/integration/clean-dist.mjs)
 
 ### IMP-405 liveDocsGenerationSuite
-Exercises regeneration CLI, authored preservation, and deterministic output. [Stage‑0 Live Doc](../../.mdmd/layer-4/tests/integration/live-docs/generation.test.ts.mdmd.md)
+Exercises regeneration CLI, authored preservation, and deterministic output. [Stage‑0 Live Doc](../layer-4/tests/integration/live-docs/generation.test.ts.mdmd.md)
 
 ### IMP-406 liveDocsEvidenceSuite
-Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Stage‑0 Live Doc](../../.mdmd/layer-4/tests/integration/live-docs/evidence.test.ts.mdmd.md)
+Validates evidence ingestion, lint warnings, and `_No automated evidence found_` behaviour. [Stage‑0 Live Doc](../layer-4/tests/integration/live-docs/evidence.test.ts.mdmd.md)
 
 ### IMP-407 liveDocsInspectCliSuite
 CLI parity suite remains on the roadmap; capture its responsibility once the corresponding Stage-0 doc materialises.
 
 ### IMP-408 liveDocsDocstringDriftSuite
 Drift remediation suite remains planned; update this entry after initial implementation lands in Stage-0 Live Docs.
+
+### IMP-409 integrationHarnessTsconfig
+Primary TypeScript compiler surface for the integration harness runtime. [Integration Harness `tsconfig.json`](../layer-4/tests/integration/tsconfig.json.mdmd.md)
+
+### IMP-410 vscodeHarnessTsconfig
+Bundles VS Code integration harness sources with matching module/target settings for the test runner bootstrap. [VS Code Harness `tsconfig.json`](../layer-4/tests/integration/vscode/tsconfig.json.mdmd.md)
 
 ## Evidence
 - Integration suites US1–US5 run inside CI and `npm run test:integration`, asserting diagnostics accuracy, acknowledgement flows, and knowledge ingestion behaviour.

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Documents the `WidgetRegistry` class that exercises events, generics, and nullability behavior for the C# advanced symbols integration fixture.
 
 ### Notes
-_Pending notes_
+Keep the XML documentation and event surface intact; modify only when expanding the advanced C# fixture's coverage footprint.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.622Z","inputHash":"2bdfc6e7a818b860"}]} -->

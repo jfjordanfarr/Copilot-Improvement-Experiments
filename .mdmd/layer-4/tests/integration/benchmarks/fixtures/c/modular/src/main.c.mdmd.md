@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Runs the modular C benchmark end-to-end, invoking the pipeline and logger to expose cross-translation-unit dependencies.
 
 ### Notes
-_Pending notes_
+Keep the sample values and logging strings stable; they provide deterministic edges for the analyzer.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.064Z","inputHash":"6c9d4882d57c1b19"}]} -->

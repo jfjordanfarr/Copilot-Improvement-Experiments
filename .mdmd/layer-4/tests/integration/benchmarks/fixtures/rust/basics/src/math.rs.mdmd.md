@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provides the math helpers for the Rust basics benchmark, chaining calls into `utils` to validate cross-module symbol tracking.
 
 ### Notes
-_Pending notes_
+Retain the small API surface so analyzer outputs remain predictable across runs.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.307Z","inputHash":"00062c8f62cd977b"}]} -->

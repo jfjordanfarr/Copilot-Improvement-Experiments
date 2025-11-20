@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Records the analyzer output for the C# WebForms benchmark to highlight drift from the curated expectation.
 
 ### Notes
-_Pending notes_
+Refresh using `npm run fixtures:record-fallback -- --fixture csharp-webforms --write` after WebForms fixture or analyzer changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.435Z","inputHash":"96a7df07e703907a"}]} -->

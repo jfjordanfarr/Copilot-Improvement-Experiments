@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the `BaseWidget` abstraction used throughout the C# advanced symbols fixture to stress inheritance and `protected internal` members.
 
 ### Notes
-_Pending notes_
+Changes to rendering hooks must stay synchronized with the derived widget fixtures to keep the scenario coherent.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:20:40.624Z","inputHash":"13cb121b17d0b64e"}]} -->

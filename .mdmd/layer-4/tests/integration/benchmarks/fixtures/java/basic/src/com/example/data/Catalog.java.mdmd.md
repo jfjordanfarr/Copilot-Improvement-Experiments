@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Supplies dataset captions for the Java basic benchmark so summaries can demonstrate data-to-formatting dependencies.
 
 ### Notes
-_Pending notes_
+Catalog entries stay intentionally small; expand them only when the fixture needs new graph edges.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.134Z","inputHash":"9e745427c9b5f008"}]} -->

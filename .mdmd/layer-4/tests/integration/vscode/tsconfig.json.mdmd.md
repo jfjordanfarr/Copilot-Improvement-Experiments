@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Provide the TypeScript compilation contract for the VS Code harness bootstrap so the UI-driven integration tests stay aligned with the shared runtime documented in [`Integration Testing Architecture`](../../../../../.mdmd/layer-3/testing-integration-architecture.mdmd.md).
 
 ### Notes
-_Pending notes_
+- Source file: [`tests/integration/vscode/tsconfig.json`](../../../../../tests/integration/vscode/tsconfig.json)
+- Extends `tsconfig.base.json` to emit CommonJS output into `tests/integration/vscode/dist` for the harness loader.
+- Shares module resolution targets with [`tests/integration/tsconfig.json`](../tsconfig.json.mdmd.md) while omitting Mocha typing to keep the VS Code runner lean.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:27.150Z","inputHash":"b3a0f440e5f9e796"}]} -->

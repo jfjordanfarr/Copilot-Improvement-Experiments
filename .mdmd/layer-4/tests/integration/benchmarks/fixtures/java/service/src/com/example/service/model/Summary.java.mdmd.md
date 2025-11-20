@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the summary record emitted by the Java service benchmark, capturing label, average, and alert status for analyzer coverage.
 
 ### Notes
-_Pending notes_
+Field ordering should stay aligned with `SummaryBuilder`; modify both together if requirements change.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.173Z","inputHash":"6fd42b19014ba2d4"}]} -->

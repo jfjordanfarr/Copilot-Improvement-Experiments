@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Coordinates the Java basic benchmark by routing datasets through the reader and report writer so package-level edges stay visible.
 
 ### Notes
-_Pending notes_
+Retain the argument guard and documentation—they help exercise exception paths and Javadoc parsing.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.130Z","inputHash":"5122e401b4d5dabc"}]} -->

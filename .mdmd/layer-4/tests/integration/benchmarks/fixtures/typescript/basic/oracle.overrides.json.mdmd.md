@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Records the manual edge overrides required for the TypeScript basic benchmark when the oracle cannot infer relationships automatically.
 
 ### Notes
-_Pending notes_
+Keep these overrides synchronized with the fixture sources and rerun `npm run fixtures:regenerate -- --fixture ts-basic --write` after editing.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.172Z","inputHash":"d38e6c4692db35b2"}]} -->

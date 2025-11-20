@@ -125,8 +125,11 @@ const CODE_ARTIFACT_IGNORE_PATTERNS: RegExp[] = [
 ];
 
 const DOCUMENT_ARTIFACT_IGNORE_PATTERNS: RegExp[] = [
-  /\/\.mdmd\//,
-  /\/\.live-documentation\/system\//
+  /\/\.live-documentation\/system\//,
+  /\/tests\/integration\/benchmarks\/fixtures\//,
+  /\/tests\/integration\/fixtures\//,
+  /\/\.mdmd\/layer-4\/tests\/integration\/.*__fixtures__\//,
+  /\/\.mdmd\/layer-4\/tests\/integration\/.*tsconfig\.json\.mdmd\.md$/
 ];
 
 interface SymbolCoverageIgnoreConfig {
@@ -391,12 +394,32 @@ export function auditCoverage(
 
       docCount += 1;
       const neighbors = getNeighbors(artifact.id);
-      const touchesCode = neighbors.some(neighbor => {
+      const touchesCodeDirectly = neighbors.some(neighbor => {
         if (neighbor.kind !== "documents") {
           return false;
         }
         return neighbor.artifact.layer === "code";
       });
+
+      let touchesCode = touchesCodeDirectly;
+      if (!touchesCodeDirectly) {
+        const implementationNeighbors = neighbors.filter(neighbor => {
+          if (neighbor.kind !== "documents") {
+            return false;
+          }
+          return neighbor.artifact.layer === "implementation";
+        });
+
+        touchesCode = implementationNeighbors.some(implementationNeighbor => {
+          const implementationNeighborsNeighbors = getNeighbors(implementationNeighbor.artifact.id);
+          return implementationNeighborsNeighbors.some(candidate => {
+            if (candidate.kind !== "documents") {
+              return false;
+            }
+            return candidate.artifact.layer === "code";
+          });
+        });
+      }
 
       if (!touchesCode) {
         orphanDocuments.push(toSummary(artifact));
@@ -502,7 +525,9 @@ export function printReport(
   const profileReport = report.symbolProfiles?.report;
   const profileSummaries = profileReport?.summaries ?? [];
   const profileViolations = profileReport?.violations ?? [];
-  const hasProfileViolations = profileViolations.length > 0;
+  const enforceViolations = profileViolations.filter(violation => violation.mode === "enforce");
+  const monitorViolations = profileViolations.filter(violation => violation.mode === "monitor");
+  const hasProfileViolations = enforceViolations.length > 0;
 
   if (json) {
     console.log(JSON.stringify(report, null, 2));
@@ -643,13 +668,27 @@ export function printReport(
       const evaluated = summary.evaluated;
       const satisfied = summary.satisfied;
       const coveragePercentage = evaluated === 0 ? 100 : Math.round((satisfied / evaluated) * 100);
-      console.log(`  ${label}: ${satisfied}/${evaluated} artifacts satisfied (${coveragePercentage}% coverage)`);
+      const modeSuffix = summary.mode === "enforce" ? "" : ` [${summary.mode}]`;
+      console.log(`  ${label}${modeSuffix}: ${satisfied}/${evaluated} artifacts satisfied (${coveragePercentage}% coverage)`);
     }
   }
 
-  if (profileViolations.length > 0) {
+  if (enforceViolations.length > 0) {
     console.log("\nSymbol correctness profile violations:");
-    for (const violation of profileViolations) {
+    for (const violation of enforceViolations) {
+      const label = violation.profileLabel ? `${violation.profileId} (${violation.profileLabel})` : violation.profileId;
+      const readable = resolveReadablePath(violation.artifactUri);
+      console.log(`  ${label} :: ${violation.requirementId}`);
+      console.log(
+        `    - ${readable} :: expected ≥${violation.expectedMinimum} ${violation.linkKind} (${violation.direction}), observed ${violation.observed}`
+      );
+      console.log(`    - ${violation.message}`);
+    }
+  }
+
+  if (monitorViolations.length > 0) {
+    console.log("\nSymbol correctness profile observations (monitoring):");
+    for (const violation of monitorViolations) {
       const label = violation.profileLabel ? `${violation.profileId} (${violation.profileLabel})` : violation.profileId;
       const readable = resolveReadablePath(violation.artifactUri);
       console.log(`  ${label} :: ${violation.requirementId}`);
@@ -1120,6 +1159,8 @@ function normalizeSymbolHeading(raw: string): string {
   if (!candidate) {
     return "";
   }
+
+  candidate = candidate.replace(/\s*\{#.+?\}\s*$/, "").trim();
 
   const wrappers: Array<[string, string]> = [
     ["`", "`"],

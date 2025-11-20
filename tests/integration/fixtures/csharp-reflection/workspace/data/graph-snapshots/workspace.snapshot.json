@@ -12,6 +12,20 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "ReflectionFactory",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CreateHandler",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "CreateTelemetryHandler",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -19,7 +33,11 @@
             "Services/ReflectionFactory.cs"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "ReflectionFactory",
+            "CreateHandler",
+            "CreateTelemetryHandler"
+          ]
         }
       }
     },
@@ -29,6 +47,16 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "TelemetryHandler",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InstrumentationKey",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -36,7 +64,10 @@
             "Services/TelemetryHandler.cs"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "TelemetryHandler",
+            "InstrumentationKey"
+          ]
         }
       }
     }

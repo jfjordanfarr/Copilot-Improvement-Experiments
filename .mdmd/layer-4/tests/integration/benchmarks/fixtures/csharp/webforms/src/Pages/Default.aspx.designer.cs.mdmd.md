@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the generated control declarations for the WebForms benchmark so the analyzer sees designer partial classes.
 
 ### Notes
-_Pending notes_
+Treat this file as generated; manual edits should happen in the code-behind or markup instead.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.117Z","inputHash":"ca6b43a0e53008bd"}]} -->

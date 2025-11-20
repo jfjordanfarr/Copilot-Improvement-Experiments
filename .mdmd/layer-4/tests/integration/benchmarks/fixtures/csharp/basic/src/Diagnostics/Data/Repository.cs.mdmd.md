@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Maintains an in-memory record feed for the C# basic benchmark so the analyzer sees collection initialization and data access.
 
 ### Notes
-_Pending notes_
+Keep the seeded records lightweight; altering them only makes sense when changing the service contract.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.087Z","inputHash":"46ef7ddaa1425c79"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Documents the manual relationships the C# WebForms benchmark needs when legacy ASP.NET patterns confuse the oracle.
 
 ### Notes
-_Pending notes_
+Review these overrides with the rest of `csharp-webforms` and rerun the regeneration pipeline before locking in edits.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.453Z","inputHash":"edfe1bcae0859cb1"}]} -->

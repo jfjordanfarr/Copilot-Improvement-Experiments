@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Runs the analytics workflow for the Java service benchmark, logging progress and invoking the summary builder to highlight service layering.
 
 ### Notes
-_Pending notes_
+Preserve both logging statements; they provide the analyzer with multiple util dependencies in a single method.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.156Z","inputHash":"c2fc85eafc9e7f4c"}]} -->

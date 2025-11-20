@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Wraps the formatter for the Ruby basic benchmark, turning raw numeric samples into console-friendly summaries.
 
 ### Notes
-_Pending notes_
+Retain the delegations to `Formatter` so the fixture continues to exercise cross-module references.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.246Z","inputHash":"09090e0c9ad6456e"}]} -->

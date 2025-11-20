@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Mirrors the client-side bootstrap for the WebForms benchmark, reading hidden fields and exporting widget config to exercise DOM dependencies.
 
 ### Notes
-_Pending notes_
+Keep the element IDs and shape of `widgetConfig` stable; regression tests assert on these values.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.486Z","inputHash":"f1e505310e6323c7"}]} -->

@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Baseline graph snapshot for the simple workspace fixture, used to verify that regeneration and knowledge feeds produce consistent relationships.
 
 ### Notes
-_Pending notes_
+- Captured after running the full snapshot pipeline against the fixture; integration tests compare future runs against this file to detect drift.
+- Contains both code and document artifacts, ensuring ripple diagnostics and Live Doc generators receive the same starting graph.
+- Refresh this snapshot only when fixture contents or analyzer expectations change, and record the regeneration command in the fixture README.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.575Z","inputHash":"b7526452ed28e387"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Reflects the analyzer output captured for the TypeScript layered benchmark to verify it matches the curated expectation.
 
 ### Notes
-_Pending notes_
+Update with `npm run fixtures:record-fallback -- --fixture ts-layered --write` after altering the analyzer or fixture packages.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.247Z","inputHash":"988a997e19cca1b9"}]} -->

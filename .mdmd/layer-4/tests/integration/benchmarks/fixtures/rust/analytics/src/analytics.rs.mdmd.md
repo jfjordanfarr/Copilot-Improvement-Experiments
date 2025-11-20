@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Coordinates the analytics pipeline for the Rust benchmark by combining metrics and models into a final summary with alerting.
 
 ### Notes
-_Pending notes_
+Keep the orchestrator lean; its job is to surface dependency edges across modules rather than add new logic.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.281Z","inputHash":"c712f84262d1d90f"}]} -->

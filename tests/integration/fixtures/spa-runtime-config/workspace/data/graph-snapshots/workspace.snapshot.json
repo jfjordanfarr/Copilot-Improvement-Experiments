@@ -12,6 +12,12 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "hydrateApplication",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -19,7 +25,9 @@
             "src/bootstrap.ts"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "hydrateApplication"
+          ]
         }
       }
     },
@@ -29,6 +37,12 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "getRuntimeConfig",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -36,7 +50,9 @@
             "src/config/runtime.ts"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "getRuntimeConfig"
+          ]
         }
       }
     },

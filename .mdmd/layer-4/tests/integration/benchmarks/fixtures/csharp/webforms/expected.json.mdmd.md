@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the expected dependency graph for the C# WebForms benchmark so analyzer coverage of legacy UI patterns stays deterministic.
 
 ### Notes
-_Pending notes_
+Regenerate with `npm run fixtures:regenerate -- --fixture csharp-webforms --write` when updating the fixture or analyzer.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.426Z","inputHash":"5faefb8bc6aaf7ff"}]} -->

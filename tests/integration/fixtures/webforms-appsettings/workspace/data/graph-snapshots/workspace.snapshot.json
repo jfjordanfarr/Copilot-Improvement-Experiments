@@ -12,6 +12,20 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "WebApp_Default",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "AppInsightsInstrumentationKey",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "Page_Load",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -19,7 +33,11 @@
             "packages/site/Default.aspx.cs"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "WebApp_Default",
+            "AppInsightsInstrumentationKey",
+            "Page_Load"
+          ]
         }
       }
     },
@@ -46,6 +64,12 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "initializeTelemetry",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -53,7 +77,9 @@
             "packages/site/Scripts/app-insights.js"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "initializeTelemetry"
+          ]
         }
       }
     },
@@ -84,7 +110,16 @@
       "id": "orchestrated-artifact-274c4adf",
       "uri": "file:///D:/Projects/Live-Documentation/tests/integration/fixtures/webforms-appsettings/workspace/packages/site/Scripts/app-insights.js",
       "layer": "code",
-      "language": "javascript"
+      "language": "javascript",
+      "metadata": {
+        "exportedSymbols": [
+          {
+            "name": "initializeTelemetry",
+            "kind": "unknown",
+            "isTypeOnly": false
+          }
+        ]
+      }
     }
   ],
   "links": [

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Orchestrates report construction for the Python pipeline benchmark, tying repositories, validators, and metrics together.
 
 ### Notes
-_Pending notes_
+Maintain the dataclass wrapper and sequencing—they model the minimal integration flow the benchmark expects.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.208Z","inputHash":"af5603c39fb88052"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Archives the analyzer-derived graph for the OkHttp benchmark to detect drifts from the curated expectation.
 
 ### Notes
-_Pending notes_
+Re-record via `npm run fixtures:record-fallback -- --fixture java-okhttp --write` after refreshing the vendor sources or changing analyzer logic.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.611Z","inputHash":"4797d4e16a441de7"}]} -->

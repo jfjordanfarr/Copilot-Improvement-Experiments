@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Captures the analyzer's recorded graph for the Requests benchmark to measure parity with the curated expectation.
 
 ### Notes
-_Pending notes_
+Re-run `npm run fixtures:record-fallback -- --fixture python-requests --write` after touching the analyzer or refreshing the vendor snapshot.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.831Z","inputHash":"efea8354898cb158"}]} -->

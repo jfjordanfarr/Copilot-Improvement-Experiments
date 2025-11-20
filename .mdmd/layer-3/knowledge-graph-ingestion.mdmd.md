@@ -39,43 +39,43 @@ Supports FR-LD3, FR-LD5, and REQ-L2 by ingesting external graph feeds, Live Docu
 ## Linked Implementations
 
 ### IMP-112 knowledgeFeedManager
-Orchestrates feed scheduling, validation, and persistence. Inspect `.mdmd/layer-4/packages/server/src/features/knowledge/knowledgeFeedManager.ts.mdmd.mdmd.md` for the generated implementation view.
+Orchestrates feed scheduling, validation, and persistence. Inspect [knowledgeFeedManager.ts Live Doc](../layer-4/packages/server/src/features/knowledge/knowledgeFeedManager.ts.mdmd.md) for the generated implementation view.
 
 ### IMP-205 knowledgeGraphIngestor
-Applies validated payloads to the graph store and checkpoints progress. See `.mdmd/layer-4/packages/server/src/features/knowledge/knowledgeGraphIngestor.ts.mdmd.mdmd.md`.
+Applies validated payloads to the graph store and checkpoints progress. See [knowledgeGraphIngestor.ts Live Doc](../layer-4/packages/server/src/features/knowledge/knowledgeGraphIngestor.ts.mdmd.md).
 
 ### IMP-206 feedFormatDetector
-Detects LSIF/SCIP/native payload formats before parsing. Refer to `.mdmd/layer-4/packages/server/src/features/knowledge/feedFormatDetector.ts.mdmd.mdmd.md`.
+Detects LSIF/SCIP/native payload formats before parsing. Refer to [feedFormatDetector.ts Live Doc](../layer-4/packages/server/src/features/knowledge/feedFormatDetector.ts.mdmd.md).
 
 ### IMP-207 schemaValidator
-Shared schema contract enforcement for ingestion. Implementation details surface in `.mdmd/layer-4/packages/server/src/features/knowledge/schemaValidator.ts.mdmd.mdmd.md`.
+Shared schema contract enforcement for ingestion. Implementation details surface in [schemaValidator.ts Live Doc](../layer-4/packages/server/src/features/knowledge/schemaValidator.ts.mdmd.md).
 
 ### IMP-208 feedCheckpointStore
-Persists stream offsets for replay-safe ingestion. Consult `.mdmd/layer-4/packages/server/src/features/knowledge/feedCheckpointStore.ts.mdmd.mdmd.md` for the Live Doc.
+Persists stream offsets for replay-safe ingestion. Consult [feedCheckpointStore.ts Live Doc](../layer-4/packages/server/src/features/knowledge/feedCheckpointStore.ts.mdmd.md) for the Live Doc.
 
 ### IMP-209 feedDiagnosticsGateway
-Broadcasts feed health to diagnostics consumers. `.mdmd/layer-4/packages/server/src/features/knowledge/feedDiagnosticsGateway.ts.mdmd.mdmd.md` captures the implementation signals.
+Broadcasts feed health to diagnostics consumers. [feedDiagnosticsGateway.ts Live Doc](../layer-4/packages/server/src/features/knowledge/feedDiagnosticsGateway.ts.mdmd.md) captures the implementation signals.
 
 ### IMP-210 staticFeedWorkspaceProvider
-Provides fallback JSON fixtures when external feeds degrade. See `.mdmd/layer-4/packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts.mdmd.mdmd.md`.
+Provides fallback JSON fixtures when external feeds degrade. See [staticFeedWorkspaceProvider.ts Live Doc](../layer-4/packages/server/src/features/knowledge/staticFeedWorkspaceProvider.ts.mdmd.md).
 
 ### IMP-211 knowledgeGraphBridgeService
-Bootstraps feed discovery, wiring, and lifecycle management for the ingestion stack. The generated Stage-0 doc is `.mdmd/layer-4/packages/server/src/features/knowledge/knowledgeGraphBridge.ts.mdmd.mdmd.md`.
+Bootstraps feed discovery, wiring, and lifecycle management for the ingestion stack. The generated Stage-0 doc is [knowledgeGraphBridge.ts Live Doc](../layer-4/packages/server/src/features/knowledge/knowledgeGraphBridge.ts.mdmd.md).
 
 ### IMP-212 workspaceIndexProvider
-Seeds code and documentation artifacts when external feeds are unavailable. Refer to `.mdmd/layer-4/packages/server/src/features/knowledge/workspaceIndexProvider.ts.mdmd.mdmd.md`.
+Seeds code and documentation artifacts when external feeds are unavailable. Refer to [workspaceIndexProvider.ts Live Doc](../layer-4/packages/server/src/features/knowledge/workspaceIndexProvider.ts.mdmd.md).
 
 ### IMP-213 scipParser
-Normalises SCIP indexes into workspace snapshot artifacts and links. `.mdmd/layer-4/packages/server/src/features/knowledge/scipParser.ts.mdmd.mdmd.md` documents the ingestion logic.
+Normalises SCIP indexes into workspace snapshot artifacts and links. [scipParser.ts Live Doc](../layer-4/packages/server/src/features/knowledge/scipParser.ts.mdmd.md) documents the ingestion logic.
 
 ### IMP-214 lsifParser
-Normalises LSIF dumps into workspace snapshot artifacts and links. Inspect `.mdmd/layer-4/packages/server/src/features/knowledge/lsifParser.ts.mdmd.mdmd.md` for the materialised view.
+Normalises LSIF dumps into workspace snapshot artifacts and links. Inspect [lsifParser.ts Live Doc](../layer-4/packages/server/src/features/knowledge/lsifParser.ts.mdmd.md) for the materialised view.
 
 ### IMP-215 symbolBridgeProvider
-Requests workspace symbol contributions from the extension to enrich ingestion seeds. Implementation details are surfaced in `.mdmd/layer-4/packages/server/src/features/knowledge/symbolBridgeProvider.ts.mdmd.mdmd.md`.
+Requests workspace symbol contributions from the extension to enrich ingestion seeds. Implementation details are surfaced in [symbolBridgeProvider.ts Live Doc](../layer-4/packages/server/src/features/knowledge/symbolBridgeProvider.ts.mdmd.md).
 
 ### IMP-303 liveDocGraphProjector
-Projects staged Live Doc markdown into canonical graph edges. The Stage-0 mirror lives at `.mdmd/layer-4/packages/server/src/features/live-docs/graphProjector.ts.mdmd.mdmd.md`.
+Projects staged Live Doc markdown into canonical graph edges. Stage-0 documentation remains pending while the projector stabilises; check the implementation at `packages/server/src/features/live-docs/graphProjector.ts` until the mirror lands.
 
 ## Evidence
 - Unit suites: `knowledgeFeedManager.test.ts`, `knowledgeGraphIngestor.test.ts`, `schemaValidator.test.ts`, `feedCheckpointStore.test.ts` cover validation and persistence.

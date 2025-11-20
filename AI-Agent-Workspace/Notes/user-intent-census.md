@@ -10,6 +10,14 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `L693-L716` — Executes `/speckit.clarify`; chooses option **C** (block diagnostics until user explicitly selects an LLM provider) for responsible AI consent.
 - `L1005-L1146` — Redirects link discovery toward VS Code’s workspace indexing model; insists on inference-first graph rebuilds, no manual front matter.
 - `L1707-L1816` — Clarifies AST benchmark use for development-time verification; reaffirms MDMD layering per implementation artifacts.
+## 2025-11-18 (Dev Day 27)
+- `2025-11-18.md:L206-L223` — Expand LD-402 coverage into ambiguous signal stacks (Blazor polyglot pages, queued worker pipelines, reflection-heavy ecosystems) so the pathfinder proves fearless-change analysis across messy cross-language workflows.
+- `L222-L229` — Continue operating with high agency and minimal status noise; let diffs narrate progress and only break stride for fork-in-the-road decisions or autosummarisation recovery.
+- `L369-L378` — When introducing new fixtures, author Purpose/Notes for their Layer‑4 Live Docs and land representative tests in the same commit so each day’s narrative remains test-backed.
+- `L1259-L1266` — Never hand-edit generated Live Doc sections; resolve slug/anchor collisions by improving the generator so it emits unique headings automatically.
+- `L2924-L2998` — Treat repeated “preserving authored content” warnings as a signal to broaden the Live Docs glob configuration; keep the default config in sync with fixture asset types so regeneration owns those docs.
+- `L3305-L3318` — Restore a green `npm run safe:commit` by fixing the suites rather than discarding work; avoid destructive resets while chasing passing gates.
+- `L3604-L3609` — Do not run blanket `git checkout -- .mdmd`; apply surgical edits to documentation mirrors and respect the Stage‑0 safeguard against mass rollbacks.
 - `L2177-L2765` — Grants high-agency execution of SpecKit tasks T022–T038, stressing continuous checklist audits and documentation alignment.
 
 ## 2025-10-17 (Dev Day 2)

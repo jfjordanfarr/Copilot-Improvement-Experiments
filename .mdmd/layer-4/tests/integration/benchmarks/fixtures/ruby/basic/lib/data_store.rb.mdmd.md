@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Maintains the static datasets for the Ruby basic benchmark so dependency analysis captures constant maps and module accessors.
 
 ### Notes
-_Pending notes_
+Dataset keys and values are intentionally small; change them only when expanding fixture coverage.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.231Z","inputHash":"0827a5cb082e72b8"}]} -->

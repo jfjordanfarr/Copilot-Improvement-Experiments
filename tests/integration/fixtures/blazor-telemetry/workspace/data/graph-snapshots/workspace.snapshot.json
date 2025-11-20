@@ -29,6 +29,20 @@
       "layer": "implementation",
       "language": "markdown",
       "metadata": {
+        "symbolReferences": [
+          {
+            "symbol": "HostModel",
+            "context": "section-heading"
+          },
+          {
+            "symbol": "TelemetryEndpoint",
+            "context": "inline-code"
+          },
+          {
+            "symbol": "InstrumentationKey",
+            "context": "inline-code"
+          }
+        ],
         "mdmd": {
           "layer": "4",
           "identifiers": [],
@@ -36,7 +50,11 @@
             "Pages/_Host.cshtml.cs"
           ],
           "exports": [],
-          "sectionSymbols": []
+          "sectionSymbols": [
+            "HostModel",
+            "TelemetryEndpoint",
+            "InstrumentationKey"
+          ]
         }
       }
     },

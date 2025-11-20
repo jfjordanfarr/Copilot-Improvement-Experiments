@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Implements the memoization layer for the Ruby CLI benchmark so the analyzer encounters simple shared state patterns.
 
 ### Notes
-_Pending notes_
+The store intentionally uses `object_id` keys; adjust cautiously to avoid breaking deterministic cache behavior in tests.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.267Z","inputHash":"071058bcf10dd6ee"}]} -->

@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Defines the entry point for the Ruby CLI benchmark, dispatching to subcommands so the analyzer captures namespaced routing.
 
 ### Notes
-_Pending notes_
+Keep the command switch intentionally small; new behavior should live in the services or command modules to preserve this file's role.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.255Z","inputHash":"013ac21ff010d906"}]} -->

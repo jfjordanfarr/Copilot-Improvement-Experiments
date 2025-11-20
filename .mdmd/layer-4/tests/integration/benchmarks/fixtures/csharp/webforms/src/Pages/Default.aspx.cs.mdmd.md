@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Implements the WebForms code-behind for the benchmark page, populating hidden fields that the client script reads.
 
 ### Notes
-_Pending notes_
+Preserve the `Page_Load` behavior; client tests depend on the hidden values being assigned during initial render.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.114Z","inputHash":"7bce40739bce1434"}]} -->

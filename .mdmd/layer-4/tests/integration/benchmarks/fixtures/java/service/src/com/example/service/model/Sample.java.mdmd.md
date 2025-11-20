@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Represents individual measurements for the Java service benchmark so the analyzer observes record usage in metrics pipelines.
 
 ### Notes
-_Pending notes_
+Adjust the fields only alongside the repository and summary builder to keep the fixture coherent.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.170Z","inputHash":"435ed013c35d737f"}]} -->

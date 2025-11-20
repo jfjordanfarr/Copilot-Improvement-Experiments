@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Anchors the expected graph for the vendor Ky TypeScript snapshot so the benchmark can detect regressions in third-party module traversal.
 
 ### Notes
-_Pending notes_
+Refresh by running `npm run fixtures:regenerate -- --fixture ts-ky --write` when updating the pinned upstream commit or analyzer rules.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.222Z","inputHash":"1b227fa8541a0aa1"}]} -->

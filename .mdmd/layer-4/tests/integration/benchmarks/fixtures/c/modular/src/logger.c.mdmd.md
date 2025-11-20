@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Implements the lightweight logger used across the C modular benchmark, ensuring support utilities appear in the dependency graph.
 
 ### Notes
-_Pending notes_
+Leave the null guard and `stdio` include intact; they intentionally exercise standard-library dependencies.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.060Z","inputHash":"dc7a5d0e41fda7ac"}]} -->

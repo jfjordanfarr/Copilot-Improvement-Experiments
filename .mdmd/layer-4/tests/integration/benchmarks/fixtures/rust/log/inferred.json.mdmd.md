@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Records the analyzer-produced graph for the Rust `log` crate benchmark to highlight drifts against the curated expectation.
 
 ### Notes
-_Pending notes_
+Re-run `npm run fixtures:record-fallback -- --fixture rust-log --write` after updating analyzer logic or refreshing the vendor snapshot.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.158Z","inputHash":"37aa6f81e7866cb2"}]} -->

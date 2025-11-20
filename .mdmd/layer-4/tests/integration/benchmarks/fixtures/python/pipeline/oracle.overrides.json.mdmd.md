@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Describes the oracle overrides the Python pipeline benchmark needs when implicit relationships are not auto-discovered.
 
 ### Notes
-_Pending notes_
+Review alongside the rest of `python-pipeline` and regenerate expectations once the overrides change.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.757Z","inputHash":"11d2faf91fb5c9c4"}]} -->

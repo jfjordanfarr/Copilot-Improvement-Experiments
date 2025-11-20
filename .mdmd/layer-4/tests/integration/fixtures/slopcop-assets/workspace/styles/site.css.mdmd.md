@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+CSS asset used by the SlopCop asset audit fixture to model a valid stylesheet reference.
 
 ### Notes
-_Pending notes_
+- Paired with `pages/index.html` to prove SlopCop catches both present and missing asset references.
+- Keep selectors stable so lint diffs can focus on asset presence rather than stylesheet content.
+- Update alongside fixture HTML and configuration when testing new asset scenarios.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.713Z","inputHash":"77a17c89e3a84644"}]} -->

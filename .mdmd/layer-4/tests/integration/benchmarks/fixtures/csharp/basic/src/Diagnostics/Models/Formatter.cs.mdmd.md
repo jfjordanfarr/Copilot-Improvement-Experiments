@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Formats diagnostics records for the C# basic benchmark, demonstrating culture-aware string handling and record updates.
 
 ### Notes
-_Pending notes_
+Retain the `Render` method's copy semantics and comment—they ensure the analyzer observes immutable record patterns.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-19T15:01:36.094Z","inputHash":"826a46cc8a39e49a"}]} -->

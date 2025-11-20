@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Records the analyzer snapshot for the Ruby CLI benchmark so we can detect divergences from the curated expectation.
 
 ### Notes
-_Pending notes_
+Re-run `npm run fixtures:record-fallback -- --fixture ruby-cli --write` when the command-layer fixture or analyzer logic evolves.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.960Z","inputHash":"747ca4f8552e47b1"}]} -->

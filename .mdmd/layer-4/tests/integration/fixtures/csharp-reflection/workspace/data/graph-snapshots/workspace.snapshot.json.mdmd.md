@@ -9,10 +9,12 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Snapshot that anchors the C# reflection fixture’s dependency graph, proving our analyzers resolve reflection-heavy code accurately.
 
 ### Notes
-_Pending notes_
+- Represents the expected outputs after Roslyn analyzers process reflection helpers and runtime type loading paths.
+- Integration tests diff against this snapshot to catch regressions when we tweak symbol resolution or metadata binding.
+- Regenerate only after intentional fixture updates; include the regeneration command in the fixture documentation for traceability.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:26.103Z","inputHash":"8bc3414531ebeef8"}]} -->

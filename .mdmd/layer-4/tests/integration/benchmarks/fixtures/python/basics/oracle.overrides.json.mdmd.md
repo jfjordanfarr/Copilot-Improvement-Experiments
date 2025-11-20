@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Notes the manual oracle overrides for the Python basics benchmark when static analysis cannot infer particular edges.
 
 ### Notes
-_Pending notes_
+Audit these overrides with the rest of the `python-basics` fixture and regenerate expectations once adjustments land.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:24.722Z","inputHash":"50aced81b4fe84f0"}]} -->

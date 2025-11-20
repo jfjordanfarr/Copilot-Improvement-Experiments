@@ -9,10 +9,10 @@
 
 ## Authored
 ### Purpose
-_Pending authored purpose_
+Mirrors the analyzer's observed graph for the TypeScript basic benchmark to catch regressions against the maintained expectation.
 
 ### Notes
-_Pending notes_
+Refresh by running `npm run fixtures:record-fallback -- --fixture ts-basic --write` whenever the generator or fixture code changes.
 
 ## Generated
 <!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-18T20:51:25.167Z","inputHash":"a84ced95d752c2ae"}]} -->
