@@ -131,8 +131,28 @@ async function main() {
     allEdges.forEach(e => uniqueEdgesMap.set(`${e.source}|${e.target}`, e));
     const finalEdges = Array.from(uniqueEdgesMap.values());
 
+    interface GraphNode {
+        id: string;
+        name: string;
+        path: string;
+        archetype: string;
+    }
+
+    interface GraphLink {
+        source: string | GraphNode;
+        target: string | GraphNode;
+        kind?: string;
+    }
+
+    interface GraphData {
+        nodes: GraphNode[];
+        links: GraphLink[];
+    }
+
+    // ... (Data Prep) ...
+
     // Prepare Data Payload
-    const graphData = {
+    const graphData: GraphData = {
         nodes: filteredArtifacts.map(n => ({
             id: n.id,
             name: path.basename(n.uri).replace(".mdmd.md", ""),
@@ -313,8 +333,10 @@ async function main() {
   <div id="main">
     <!-- Circuit View -->
     <div id="view-circuit" class="view-container active">
-        <div id="circuit-container" class="dom-layer"></div>
-        <svg id="circuit-connections" class="connections-layer"></svg>
+        <div id="circuit-viewport" style="width:100%;height:100%;overflow:hidden;cursor:grab;">
+            <div id="circuit-container" class="dom-layer"></div>
+            <svg id="circuit-connections" class="connections-layer"></svg>
+        </div>
     </div>
 
     <!-- Local Map View -->
@@ -354,8 +376,54 @@ async function main() {
     let currentState = { view: 'circuit', selectedNode: null };
     
     // View State
+    // View State
     let circuitTransform = { x: 0, y: 0, k: 1 };
-    let mapTransform = { x: 0, y: 0, k: 1 };
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    
+    // Pan/Zoom Handlers
+    const viewport = document.getElementById('circuit-viewport');
+    
+    viewport.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.node-card')) return; // Don't drag if clicking a node
+        isDragging = true;
+        startX = e.clientX - circuitTransform.x;
+        startY = e.clientY - circuitTransform.y;
+        viewport.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        circuitTransform.x = e.clientX - startX;
+        circuitTransform.y = e.clientY - startY;
+        updateCircuitTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        viewport.style.cursor = 'grab';
+    });
+
+    viewport.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const scaleAmount = -e.deltaY * 0.001;
+        circuitTransform.k = Math.min(Math.max(0.1, circuitTransform.k * (1 + scaleAmount)), 5);
+        updateCircuitTransform();
+    });
+
+    function updateCircuitTransform() {
+        const container = document.getElementById('circuit-container');
+        const connections = document.getElementById('circuit-connections');
+        const transform = \`translate(\${circuitTransform.x}px, \${circuitTransform.y}px) scale(\${circuitTransform.k})\`;
+        
+        container.style.transform = transform;
+        // SVG needs special handling or just same transform if it's in the same container context
+        // In our structure, SVG is sibling to container, so we apply same transform
+        connections.style.transform = transform;
+        connections.style.transformOrigin = '0 0';
+    }
 
     // --- HIERARCHY BUILDER ---
     function buildHierarchy(nodes) {
@@ -402,7 +470,7 @@ async function main() {
     function renderCircuit() {
         const container = document.getElementById('circuit-container');
         container.innerHTML = ''; // Clear
-        container.style.transform = \`translate(\${circuitTransform.x}px, \${circuitTransform.y}px) scale(\${circuitTransform.k})\`;
+        updateCircuitTransform(); // Apply current transform
 
         const hierarchy = buildHierarchy(graphData.nodes);
         
@@ -598,8 +666,8 @@ async function main() {
             .graphData(graphData)
             .nodeLabel('name')
             .nodeLabel('name')
+            .nodeLabel('name')
             .nodeColor(node => {
-                if (currentState.selectedNode && node.id === currentState.selectedNode.id) return '#ff0000';
                 switch (node.archetype) {
                     case 'implementation': return '#007acc'; // Blue
                     case 'test': return '#28a745'; // Green
@@ -608,6 +676,18 @@ async function main() {
                     case 'script': return '#17a2b8'; // Cyan
                     default: return '#666';
                 }
+            })
+            .nodeThreeObjectExtend(true)
+            .nodeThreeObject(node => {
+                if (currentState.selectedNode && node.id === currentState.selectedNode.id) {
+                    // Add a glow/highlight for selected node
+                    const sphere = new THREE.Mesh(
+                        new THREE.SphereGeometry(7),
+                        new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 })
+                    );
+                    return sphere;
+                }
+                return null;
             })
             .onNodeClick(node => {
                 const originalNode = graphData.nodes.find(n => n.id === node.id);
@@ -691,7 +771,7 @@ async function main() {
         if (url.pathname === '/open') {
             const filePath = url.searchParams.get('path');
             if (filePath) {
-                const realPath = filePath.replace("file:///", "").replace("file://", "");
+                let realPath = filePath.replace("file:///", "").replace("file://", "");
                 realPath = realPath.replace(/\.mdmd\.md$/, "");
                 realPath = realPath.replace(".mdmd/layer-4/", "");
                 console.log(`Opening file: ${realPath}`);
