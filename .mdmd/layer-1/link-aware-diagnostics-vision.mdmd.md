@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 1
-- Capability IDs: CAP-001, CAP-002, CAP-003, CAP-004, CAP-005, CAP-006, CAP-007
+- Capability IDs: CAP-001, CAP-002, CAP-003, CAP-004, CAP-005, CAP-006, CAP-007, CAP-008
 
 ## Capabilities
 
@@ -28,6 +28,9 @@ Deliver a two-way authoring loop where Live Docs act as the editable AST for cod
 ### CAP-007 – Hosted Showcase & Trials
 Deliver a stateless, Cloudflare-hosted showcase that clones public GitHub repositories, runs the existing Live Docs generator headlessly, and returns a downloadable bundle (markdown mirror, provenance metadata, replay instructions) so prospects can evaluate the system without installing the extension. The hosted surface is marketing-only: it never replaces the offline-first workflow, always links back to the local VS Code extension, and must highlight compatibility with VS Code forks like Windsurf and Cursor to reinforce multi-IDE reach. Instrument the flow with telemetry that proves workspaces are deleted immediately while preserving enough audit trails to troubleshoot demo failures ([AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md](../../AI-Agent-Workspace/ChatHistory/2025/11/2025-11-15.md)).
 
+### CAP-008 – Live Visualization Command Center
+Deliver a unified `npm run live-docs:visualize` surface that merges the “circuit board” workspace view, the local symbol explorer, and the force-directed graph into a single command center grounded in Layer‑4 Live Docs. Maintainers should pan across file-level clusters, hover or click to expand a file into its public symbols, and optionally hide unrelated nodes to focus on inbound/outbound relationships. The detail panel must surface the relevant Live Doc metadata, provide “open in editor” affordances, and set the stage for future text editing so authors can scaffold code or docstrings bidirectionally. This primary view is expected to meet WCAG AA accessibility (keyboard navigation, high-contrast palettes, screen-reader announcements), while the force-directed explorer may prioritise spatial discovery over full accessibility. Requirements are captured across the 2025-11-20 Antigravity UX sessions ([AI-Agent-Workspace/ChatHistory/2025/11/Antigravity/11-20/83f976da-d7f4-4c75-a16d-561dfbea1a4b/Refining UI Interactions.md](../../AI-Agent-Workspace/ChatHistory/2025/11/Antigravity/11-20/83f976da-d7f4-4c75-a16d-561dfbea1a4b/Refining%20UI%20Interactions.md)).
+
 ## Desired Outcomes
 - Layer‑4 Live Docs regenerate deterministically; authored content stays small, intentional, and easy to review.
 - Implementation Live Docs list their public surface, structured docstring fields, dependencies, and observed evidence so ripple impact and test coverage are auditable in markdown alone.
@@ -37,6 +40,7 @@ Deliver a stateless, Cloudflare-hosted showcase that clones public GitHub reposi
 - Hosted showcase runs reuse the exact generator stack, emit reproducible bundles, and always point participants back to local regeneration so offline workflows remain the authoritative path.
 - Layer‑2 requirement docs cross-link to Spec-Kit tasks or issue trackers while remaining the authoritative summaries for automation.
 - Diagnostics, exports, and LLM prompts rely on the same markdown-as-AST graph, shrinking the gap between human review workflows and autonomous copilots.
+- The Live Docs visualization command center unifies global file exploration with local symbol drilldowns, supports focus-mode filtering, and provides an accessible path toward inline editing and docstring scaffolding.
 - Markdown links stay relative (slug dialect configurable) so Live Docs double as wiki-friendly artefacts consumers can publish directly.
 - Tooling, instructions, and licensing remain MIT-friendly so adopters can regenerate Layer‑4 docs locally and opt into System analytics when needed.
 - Structured docstring subsections provide anchored headers per field so diagnostics, prompts, and writers can target summaries, parameters, remarks, or examples without scraping prose.
@@ -60,6 +64,9 @@ Deliver a stateless, Cloudflare-hosted showcase that clones public GitHub reposi
 ### REQ-501 – Layer Distribution Surfaces
 [Product roadmap – layer distribution surfaces](../layer-2/product-roadmap.mdmd.md) captures the GitHub Pages scaffold, Spec-Kit integration, and on-demand System CLI expectations backing CAP-005.
 
+### REQ-V1 – Live Visualization Command Center
+[Product roadmap – visualization command center](../layer-2/product-roadmap.mdmd.md#req-v1-live-visualization-command-center) details the merged circuit-board/local explorer requirements, accessibility milestones, and CLI alignment needed to satisfy CAP-008.
+
 ### REQ-H1 – Hosted Showcase Pipeline
 [Product roadmap – hosted showcase pipeline](../layer-2/product-roadmap.mdmd.md#reqh1-hosted-showcase-pipeline) details the Cloudflare marketing surface, CI/CD guardrails, telemetry, and deletion guarantees required to satisfy CAP-007 without compromising the offline-first promise.
 
@@ -70,6 +77,7 @@ Deliver a stateless, Cloudflare-hosted showcase that clones public GitHub reposi
 - External adopters can enable the Live Documentation extension, regenerate Layer‑4 docs, and run System analytics locally thanks to MIT licensing and deterministic pipelines (SC-LD-004).
 - Structured docstring bridges surface multi-tag payloads (summary, remarks, parameters, returns, exceptions) in ≥95% of regenerated Live Docs for supported languages, with unmapped tags logged for follow-up (SC-LD-005).
 - Bidirectional docstring sync ships behind a feature flag, records round-trip success for ≥90% of supported language fixtures, and never mutates authored sections without human opt-in (SC-LD-006).
+- The visualization command center meets WCAG AA contrast and keyboard-navigation checks, resolves focus-mode filtering within two interactions, and launches local-symbol detail panels in ≤500 ms for repos under 5k files (SC-LD-007).
 
 ## Evidence
 - US1–US5 integration suites validate ripple diagnostics for code, documentation, acknowledgement, scope collision, and transforms ([tests/integration](/tests/integration)).
@@ -92,6 +100,7 @@ Deliver a stateless, Cloudflare-hosted showcase that clones public GitHub reposi
 6. **System Views are Materialized** – architecture/topology views are regenerated when needed and never treated as permanent docs, freeing analytics to evolve without churn.
 7. **Continuous Falsifiability** – benchmarks, integration suites, and SlopCop rules back every guarantee with repeatable tests.
 8. **Authoring Loops Stay Human-First** – bidirectional sync and generative scaffolds require explicit human confirmation and publish audit trails so Live Docs never silently rewrite code or docstrings.
+9. **Accessibility Guides Trust** – visualization surfaces prioritise keyboard access, focus management, and contrast so Live Docs remain inclusive even as discovery-focused views (force graph) experiment with richer spatial affordances.
 
 ## Scope and Non Goals
 - **In scope**: Live Documentation VS Code extension, language server pipelines, markdown graph builder, docstring bridges, diagnostics and CLI exports, MIT license preparation.

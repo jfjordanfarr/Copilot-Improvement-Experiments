@@ -155,6 +155,23 @@ Prospective adopters visit a Cloudflare-backed site, enter a public GitHub repos
 2. **Given** a downloaded bundle, **When** the user follows the README instructions, **Then** they can rehydrate the SQLite cache locally, inspect Live Docs in the workspace, and replay the same prompts in their LLM of choice.
 3. **Given** the hosted runner completes, **When** telemetry is inspected, **Then** it shows that all temporary clones and caches were deleted within the configured TTL and that no private repositories were accepted.
 
+### User Story 9 – Visualize Live Docs in a Command Center (Priority: P1)
+
+**Status**: In progress — Antigravity prototypes exist, but the unified explorer needs refactoring, accessibility polish, and integration with upcoming authoring workflows.
+
+Maintainers run `npm run live-docs:visualize` (or launch the Antigravity panel) to explore the repository: the primary view presents a circuit-board layout of Live Docs, clicking or hovering a file expands its public symbols, and focus mode hides unrelated nodes so inbound/outbound relationships stand out. The detail panel reveals the Live Doc metadata, links back to the source, and previews authored sections that will eventually become editable. A complementary force-directed graph remains available for discovery but may relax accessibility compared to the primary surface.
+
+**Why this priority**: The command center turns Live Docs into an everyday cockpit—bridging global topology, local symbol context, and future authoring without bouncing between disparate prototypes. Without it, teams struggle to reason about change impact or prepare docstring scaffolds directly from the documentation graph.
+
+**Independent Test**: Launch the explorer against the repository, select `packages/server/src/runtime/changeProcessor.ts`, confirm the board collapses to show only related neighbors, inspect the detail panel for Live Doc metadata, open the file in VS Code, and run an accessibility audit (axe-core) to ensure WCAG AA obligations pass.
+
+**Acceptance Scenarios**:
+
+1. **Given** a Live Doc node on the circuit-board view, **When** the maintainer activates focus mode, **Then** the explorer hides unrelated nodes, highlights inbound/outbound edges, and the detail panel lists public symbols with “open in editor” affordances.
+2. **Given** the maintainer switches between circuit-board and force-directed views, **When** a node is currently selected, **Then** its selection state, highlighted neighbors, and detail panel content persist across both views.
+3. **Given** the maintainer navigates solely with a keyboard or screen reader, **When** they tab through the explorer, **Then** focus order is logical, every interactive element announces its role/name/state, and contrast checks satisfy WCAG AA (≥4.5:1).
+4. **Given** the detail panel surfaces authored Live Doc context, **When** the maintainer attempts to edit, **Then** the UI clarifies the read-only state today and exposes the upcoming docstring-bridge workflow (preview/apply) once feature flags enable authoring.
+
 ---
 
 ### Edge Cases
@@ -204,6 +221,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **FR-LD13**: Layer distribution tooling MUST publish Layer 1 capabilities via a scripted static site, reconcile Layer 2 requirement status with Spec-Kit/issue trackers, and keep System analytics as CLI materialized views that leave no tracked artefacts unless explicitly promoted.
 - **FR-LD14**: Round-trip authoring tools MUST expose preview/apply flows protected by feature flags, record audit telemetry for every docstring mutation, and emit generative scaffolds into scratch locations without modifying tracked files until humans promote them.
 - **FR-LD15**: The hosted showcase pipeline MUST reuse the standard generator to process public GitHub repositories headlessly, emit provenance metadata, produce a downloadable bundle (Live Docs, SQLite cache, README, prompt guide), and delete cloned data immediately after the bundle is created.
+- **FR-LD16**: The visualization command center MUST merge circuit-board and local symbol exploration into a single UI backed by Live Docs, maintain state across force-directed and 2D views, expose “open in editor” affordances, provide focus-mode filtering, and satisfy WCAG AA keyboard/contrast/screen-reader expectations while preparing the detail panel for future inline editing.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -242,6 +260,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **SC-LD10**: Structured docstring bridges populate canonical subsections for ≥95% of documented public symbols in supported languages; unmapped tags surface in telemetry within one regeneration cycle.
 - **SC-LD11**: Bidirectional docstring sync succeeds (preview + apply) for ≥90% of supported language fixtures, emits telemetry for 100% of write-backs, and never mutates tracked files without explicit human confirmation logged in safe-commit output.
 - **SC-LD12**: Hosted showcase runs finish within ≤3 minutes for repos under 5k files, emit bundles whose hashes match local regeneration, and delete temporary clones/caches within 60 seconds of completion.
+- **SC-LD13**: Visualization command center focus-mode interactions resolve within two steps, keyboard/screen-reader audits pass WCAG AA checks (2.1, 1.4.3, 4.1.2), and detail panels render within ≤500 ms for repos under 5k files while logging telemetry for view toggles and accessibility overrides.
 
 
 ## Clarifications
@@ -259,6 +278,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - **WI-LD201** – Deliver docstring bridge adapters for TypeScript, Python, and C#, plus integration tests that validate canonical schema mapping and drift diagnostics across multi-tag docstrings.
 - **WI-LD202** – Extend Live Doc generation to repository-hosted polyglot fixtures (Python, C#, Java, Ruby, Rust, C), snapshotting regeneration output and wiring per-language benchmarks into safe-commit before piloting external repositories.
 - **WI-LD301** – Pivot diagnostics/CLI/export commands to consume Live Docs exclusively and retire legacy graph consumers.
+- **WI-LD304** – Consolidate the visualization command center by refactoring `npm run live-docs:visualize` into shared data/interaction layers, integrating focus-mode filtering, and wiring accessibility/telemetry hooks ahead of docstring authoring.
 - **WI-LD401** – Package sample workspace and MIT-licensed release notes for public adoption.
 - **WI-LD501** – Build System analytics CLI (clusters, workflows, coverage) that defaults to streaming output and includes cleanup guarantees.
 - **WI-LD601** – Stand up the layer distribution surfaces (static site pipeline, Spec-Kit/issue tracker reconciliation, and the guardrailed `live-docs:system` CLI).
@@ -269,6 +289,7 @@ Live Docs live alongside the repository (versionable or ignored per configuratio
 - [`packages/server/src/main.ts`](../../packages/server/src/main.ts) and [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) orchestrate analyzer pipelines that feed Live Doc generation.
 - [`packages/server/src/features/diagnostics/publishCodeDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishCodeDiagnostics.ts) and [`publishDocDiagnostics.ts`](../../packages/server/src/features/diagnostics/publishDocDiagnostics.ts) will emit Live Doc-backed diagnostics.
 - [`packages/extension/src/commands/exportDiagnostics.ts`](../../packages/extension/src/commands/exportDiagnostics.ts) and forthcoming Live Doc CLI utilities render consumption narratives.
+- [`scripts/live-docs/visualize-explorer.ts`](../../scripts/live-docs/visualize-explorer.ts) hosts the unified visualization command center that merges circuit-board, local, and force-directed views while the extension variant incubates inside Antigravity.
 - [`packages/shared/src/testing/fixtureOracles`](../../packages/shared/src/testing/fixtureOracles) house polyglot analyzers underpinning generated sections.
 - Integration suites under `tests/integration/live-docs` (to be expanded) validate regeneration, evidence mapping, and docstring drift.
 

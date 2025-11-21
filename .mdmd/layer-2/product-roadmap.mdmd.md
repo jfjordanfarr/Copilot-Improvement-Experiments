@@ -2,7 +2,7 @@
 
 ## Metadata
 - Layer: 2
-- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-G1, REQ-E1, REQ-D1, REQ-H1
+- Requirement IDs: REQ-L1, REQ-L2, REQ-L3, REQ-V1, REQ-G1, REQ-E1, REQ-D1, REQ-H1
 
 ## Requirements
 
@@ -72,6 +72,29 @@ Supports CAP-003 by making Live Documentation the backbone of diagnostics, CLI t
 - Integrate Live Doc validation with safe-commit, CI, and SlopCop so missing generated sections, stale timestamps, or absent evidence block merges.
 - Emit JSON reports for dashboards and future IDE integrations (JetBrains, Vim) without duplicating business logic.
 - Support staged adoption (Observe → Sustain) with profile configurations that control enforcement scope.
+
+### REQ-V1 Live Visualization Command Center
+Supports CAP-008 by unifying the circuit-board workspace map, symbol-level local explorer, and force-directed discovery view into a single `npm run live-docs:visualize` experience that remains grounded in Layer‑4 Live Docs and ready for future bidirectional authoring.
+
+#### Stream LV1-A – Unified Explorer *(in progress)*
+- Refactor `visualize-explorer.ts` so the circuit-board and local views share a data model sourced from Live Docs, letting users pan globally, expand a file into its symbols, and toggle focus-mode filters that hide unrelated nodes.
+- Ensure hover/click events update the detail panel, highlight inbound/outbound edges, and keep the force-directed graph in sync when switching modes.
+- Provide explicit affordances (toolbar button, keyboard shortcut) to open the selected Live Doc or source file in the editor, matching the Antigravity prototype walkthroughs.
+
+#### Stream LV1-B – Accessibility & Interaction *(planned)*
+- Audit the merged view for WCAG AA compliance: keyboard navigation, focus outlines, ARIA labelling, contrast palette, and motion reduction options for the force view.
+- Implement scalable zoom/pan controls that respect keyboard-only workflows and screen-reader announcements when context changes.
+- Capture automated accessibility regression checks (e.g., axe-core) inside a headless test harness so future visual tweaks retain compliance.
+
+#### Stream LV1-C – Authoring Bridge Prep *(planned)*
+- Introduce a text-editing stub within the detail panel that loads authored Live Doc sections read-only today, paving the way for docstring scaffolding once bidirectional authoring (REQ-G1) is feature-flagged.
+- Surface provenance (Live Doc path, generated timestamp) and upcoming editing controls so UX copy remains clear about read-only versus editable states.
+- Coordinate with docstring bridge work to reuse diff/preview components when the editing toggle goes live.
+
+#### Stream LV1-D – Telemetry & QA *(planned)*
+- Instrument the visualization command center (selection counts, focus-mode usage, accessibility overrides) so UX regressions and adoption signals appear in telemetry dashboards.
+- Add smoke tests that launch the explorer in CI (headless browser or Playwright) to validate data binding, focus management, and “open in editor” deep links.
+- Document manual QA scripts for Antigravity/Windsurf to ensure non-VS Code forks keep parity.
 
 ### REQ-G1 Generative Authoring Bridge
 Supports CAP-006 by enabling two-way sync between Live Docs and inline docstrings while incubating generative authoring workflows that treat Layer‑4 markdown as the canonical AST for code scaffolding.
@@ -163,6 +186,13 @@ Supports CAP-007 by delivering a stateless Cloudflare (or equivalent) runner tha
 - CLI exports and diagnostics respond within target latency (≤2 s for repos under 10k files).
 - Every UI interaction (diagnostics, diff previews, tree views) exposes an equivalent CLI or LLM-accessible command so automation matches human capabilities.
 
+### REQ-V1 Acceptance Criteria
+- The combined circuit-board/local explorer loads a Live Doc file, expands its symbols, and highlights inbound/outbound edges while dimming unrelated nodes within two interactions.
+- Hover/click updates the detail panel and “open in editor” link without desynchronising the force-directed graph; switching views preserves the active selection.
+- Keyboard navigation, focus outlines, and screen-reader labels meet WCAG AA success criteria (2.1 Keyboard, 1.4.3 Contrast, 4.1.2 Name/Role/Value) across supported browsers/host IDEs.
+- The detail panel presents authored Live Doc sections read-only today, with clear messaging about pending text editing, and loads within ≤500 ms for repos under 5k files.
+- Telemetry captures view changes, focus-mode toggles, and accessibility overrides so UX audits can trace adoption and regressions.
+
 ### REQ-E1 Acceptance Criteria
 - MIT license, README, and marketing materials describe Live Documentation capabilities and configuration knobs.
 - Sample workspaces regenerate Live Docs using out-of-the-box tooling with zero manual steps.
@@ -229,6 +259,9 @@ Supports REQ-D1. [Live Documentation Pipeline](../layer-3/live-documentation-pip
 
 ### COMP-021 Generative Authoring Bridge
 Supports REQ-G1. [Live Documentation Pipeline](../layer-3/live-documentation-pipeline.mdmd.md#comp203-live-doc-authoring-bridge)
+
+### COMP-030 Visualization Explorer *(planned)*
+Supports REQ-V1. Component doc will capture the merged circuit-board/local explorer architecture once the Antigravity prototype hardens into a reusable view.
 
 ## Linked Implementations
 
@@ -301,6 +334,9 @@ Supports REQ-201 and REQ-301. [LLM Sampling Harness](../../.mdmd/layer-4/package
 ### IMP-610 liveDocsSystemCli *(planned)*
 Supports REQ-D1. (CLI will be documented alongside the System analytics implementation.)
 
+### IMP-650 liveDocsVisualizeExplorer *(planned)*
+Supports REQ-V1. (Explorer implementation lives in `scripts/live-docs/visualize-explorer.ts` with future shared components promoted into `packages/extension/src/views/` once the command center stabilises.)
+
 ### IMP-950 hostedShowcaseWorker *(planned)*
 Supports REQ-H1. (Implementation will live under `scripts/live-docs/showcaseWorker.ts` with infrastructure configuration documented alongside the hosted pipeline.)
 
@@ -336,6 +372,11 @@ Supports REQ-G1. (VS Code commands under `packages/extension/src/commands/liveDo
 - Layer distribution strategy logged in `AI-Agent-Workspace/Notes/live-documentation-doc-refactor-plan.md`, including tasks for site scaffolding, requirement handoff, and CLI materialized views.
 - Stage 8 backlog items (`LD-800`–`LD-802`) in `specs/001-link-aware-diagnostics/tasks.md` track execution of the public site, requirement integration, and onboarding updates.
 - System analytics CLI fixtures (to be added) will validate that architectural debt surfaces without persisting docs.
+
+### REQ-V1 Evidence
+- Antigravity walkthrough captures (2025-11-20) demonstrate the circuit-board/local explorer prototype, highlight UX gaps, and serve as the baseline for accessibility polish.
+- `npm run live-docs:visualize` command invocations within Antigravity confirm the current server boots, detail panels open files in VS Code, and force-graph sync remains functional pending refactor.
+- Upcoming Playwright smoke tests (planned under LV1-D) will record GIF/screenshot artefacts proving keyboard navigation, focus trapping, and screen-reader announcements operate as expected.
 
 ### REQ-G1 Evidence
 - Java fixture with HTML-rich docstrings (`tests/integration/benchmarks/fixtures/java/basic`) demonstrates sanitisation improvements and structured Live Doc output captured during 2025-11-13 development.

@@ -7,7 +7,7 @@
 
 ## Summary
 
-Deliver a reproducible Live Documentation system where every tracked workspace asset has a paired markdown file containing an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata). The VS Code extension watches file saves, runs analyzers to refresh generated sections into a mirror tree under `/.live-documentation/<baseLayer>/` (default `source/`, user configurable), and enforces structure via lint gates embedded in `npm run safe:commit`. Generated blocks are owned by tooling while humans curate small authored notes, keeping the corpus reviewable and diff-friendly. Deterministic benchmarks, coverage feeds, and docstring bridges back the generated data so diagnostics, CLI exports, and LLM consumers rely on the same markdown-as-AST graph. The plan stages the migration from existing Layer‑4 MDMD docs to generated Live Documentation, maintains polyglot analyzer fidelity, graduates into feature-flagged authoring loops where markdown edits safely round-trip into docstrings and optional scaffolds, and culminates in a Cloudflare-hosted showcase that runs the same generator headlessly to hand prospects a downloadable Live Doc bundle.
+Deliver a reproducible Live Documentation system where every tracked workspace asset has a paired markdown file containing an authored preamble and generated sections (`Public Symbols`, `Dependencies`, archetype metadata). The VS Code extension watches file saves, runs analyzers to refresh generated sections into a mirror tree under `/.live-documentation/<baseLayer>/` (default `source/`, user configurable), and enforces structure via lint gates embedded in `npm run safe:commit`. Generated blocks are owned by tooling while humans curate small authored notes, keeping the corpus reviewable and diff-friendly. Deterministic benchmarks, coverage feeds, and docstring bridges back the generated data so diagnostics, CLI exports, visualization dashboards, and LLM consumers rely on the same markdown-as-AST graph. The plan stages the migration from existing Layer‑4 MDMD docs to generated Live Documentation, maintains polyglot analyzer fidelity, consolidates the Live Docs visualization command center into an accessible, focus-aware experience, graduates into feature-flagged authoring loops where markdown edits safely round-trip into docstrings and optional scaffolds, and culminates in a Cloudflare-hosted showcase that runs the same generator headlessly to hand prospects a downloadable Live Doc bundle.
 
 ## Adoption Strategy
 - **Stage 0 – Observe**: Generate Live Documentation into `/.live-documentation/<baseLayer>/` (default `source/`) without replacing MDMD; provide read-only viewers and diff tooling so contributors assess fidelity.
@@ -96,6 +96,7 @@ TBD — populate if future scope deviates from Constitution constraints.
 - Pivot diagnostics, tree views, and quick pick commands to read from staged Live Docs.
 - Ship CLI counterparts (`live-docs inspect`, `live-docs evidence`, etc.) where `live-docs inspect` traces the dependency path between `--from` and `--to` artifacts (or locates terminal roots when only one endpoint is provided) and emits hop-by-hop markdown/JSON for LLM automation.
 - Provide diff and dry-run modes to review regeneration impacts before applying.
+- Consolidate the visualization command center so `npm run live-docs:visualize` (and Antigravity) present a merged circuit-board/local explorer with focus-mode filtering, synchronized force graph, and WCAG AA accessibility groundwork.
 
 ### Phase 5 – Docstring Bridges & Bidirectional Authoring
 - Emit docstring bridge configuration from Live Documentation, implement server-side reconciliation, and surface drift diagnostics with actionable remediation hints.
@@ -130,6 +131,7 @@ TBD — populate if future scope deviates from Constitution constraints.
 - [`packages/server/src/runtime/changeProcessor.ts`](../../packages/server/src/runtime/changeProcessor.ts) orchestrates analyzer execution feeding Live Doc regeneration.
 - [`packages/shared/src/tooling/documentationLinks.ts`](../../packages/shared/src/tooling/documentationLinks.ts) and upcoming `liveDocumentationGenerator` module emit staged markdown.
 - [`packages/extension/src/commands/exportDiagnostics.ts`](../../packages/extension/src/commands/exportDiagnostics.ts) and planned `live-docs` CLI provide human/LLM consumption surfaces.
+- [`scripts/live-docs/visualize-explorer.ts`](../../scripts/live-docs/visualize-explorer.ts) and its future extension host the command center that unifies circuit-board, local, and force-directed exploration with accessibility hooks.
 - Integration suites under `tests/integration/live-docs` validate regeneration, evidence mapping, and docstring drift; benchmark harnesses in `reports/benchmarks` ensure analyzer accuracy remains above target.
 
 

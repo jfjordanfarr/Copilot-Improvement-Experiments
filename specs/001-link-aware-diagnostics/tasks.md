@@ -84,6 +84,9 @@ description: "Task list for Live Documentation"
 **Purpose**: Ensure diagnostics, CLI tooling, and Copilot prompts read from staged Live Docs while retaining legacy fallback during migration.
 
 [x] LD-402 Ship CLI `scripts/live-docs/inspect.ts` that resolves outbound or inbound dependency chains between `--from`/`--to` artefacts, surfaces terminal roots (fan-out) when only a starting point is supplied, and captures both success and not-found payloads via `tests/integration/live-docs/inspect-cli.test.ts`
+- [ ] LD-406 Consolidate `npm run live-docs:visualize` into a single explorer view that shares data models across circuit-board, local, and force-directed modes while preserving Antigravity deep links.
+- [ ] LD-407 Implement focus-mode filtering, persisted selection, and Live Doc detail panels (metadata, open-in-editor) so global and local exploration stay in sync.
+- [ ] LD-408 Add accessibility + telemetry harnesses (axe-core audit, keyboard navigation tests, selection event logging) and stage Playwright smoke tests that exercise Antigravity and VS Code entry points.
 - [ ] LD-404 Implement regeneration watcher so safe-commit or file save triggers targeted updates without full repo sweep
 - [ ] LD-405 Document legacy-parity strategy in `specs/001-link-aware-diagnostics/quickstart.md` and Layer‑3 docs, including rollback toggles
 
@@ -187,8 +190,8 @@ Tasks tagged `[P]` can run concurrently when dependencies agree (e.g., LD-202/20
 
 ## Summary Metrics
 **Summary Metrics**
-- **Total Tasks**: 72 (13 closed, 59 open)
-- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (6 open), Phase5 (10 open), Phase6 (5 open), Phase7 (20 open), Stage8 (3 open), Stage9 (3 open)
+- **Total Tasks**: 75 (13 closed, 62 open)
+- **By Phase**: Stage0 (0 open), Phase1 (0 open), Phase2 (7 open), Phase3 (0 open), Phase4 (9 open), Phase5 (10 open), Phase6 (5 open), Phase7 (20 open), Stage8 (3 open), Stage9 (3 open)
 - **Independent Tests**: `generation.test.ts`, `evidence.test.ts`, `inspect-cli.test.ts`, `docstring-drift.test.ts`
 - **Primary Workstreams**: Generator foundations (WI-LD101), Evidence bridges (WI-LD102), Docstring drift (WI-LD201), Consumption parity (WI-LD301), System Layer migration (WI-LD401)
 
