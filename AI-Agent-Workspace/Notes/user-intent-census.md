@@ -24,6 +24,13 @@ Tracking the explicit guidance provided by `jfjordanfarr` across Dev Days 1–11
 - `2025-11-19.md:L365-L408` — Inspect Gemini’s Antigravity experiment, keep the new `layer4-orphans` enforcement fully configurable (default-off, easy to revert), and reserve Layer-3 system docs for curated human narratives rather than bulk-generated materialized views.
 - `L1535-L1540` — Before staging, reread the refreshed Layer-3 docs and clear all `live-docs:lint` warnings by authoring missing Purpose/Notes so the documentation feels human-edited instead of computer-generated.
 
+## 2025-11-20 (Dev Day 29)
+- `2025-11-20.md:L400-L456` — Land PowerShell support in three chunky commits (baseline adapter, graph/tooling integration, docstring bridge) and finish the day with comment-based help mapped into Live Docs; expand fixtures/tests so the adapter, inspect heuristics, and regeneration pipeline all stay green.
+- `AI-Agent-Workspace/ChatHistory/2025/11/Antigravity/11-20/83f976da-d7f4-4c75-a16d-561dfbea1a4b/Refining UI Interactions.md:L32-L124` — Build “circuit board” and “sonar/local” visual modes that read Layer-4 Live Docs, show symbol/file wiring with distinguishable inheritance/coupling cues, and ground UX polish in the doc corpus before iterating.
+- `AI-Agent-Workspace/ChatHistory/2025/11/Antigravity/11-20/83f976da-d7f4-4c75-a16d-561dfbea1a4b/Refining UI Interactions.md:L248-L328` — Consolidate the explorers into one in-IDE visualization platform with view toggles instead of bespoke scripts; revisit plans/tasks to reflect that holistic scope and diagnose why inheritance relationships aren’t yet surfaced from existing Live Docs.
+- `AI-Agent-Workspace/ChatHistory/2025/11/Antigravity/11-20/83f976da-d7f4-4c75-a16d-561dfbea1a4b/Refining UI Interactions.md:L334-L420` — Before rerunning visualization scripts, read the full 11/20 log, run `npm run lint .`, articulate how each view becomes a command center for Live Docs exploration, and capture a plan that maps graph-wide context to local drilldowns.
+- `AI-Agent-Workspace/ChatHistory/2025/11/Antigravity/11-20/83f976da-d7f4-4c75-a16d-561dfbea1a4b/Refining UI Interactions.md:L422-L476` — Dogfood every visualization interactively (click, drag, scroll) in Antigravity, collect evidence of working interactions/screens, and keep refining the circuit board/local panels until selection flow and UI polish make the active context unmistakable.
+
 ## 2025-10-17 (Dev Day 2)
 - `2025-10-17.md:L1-L140` — Demands rigorous daily summaries (10:1 compression, turn-by-turn, line ranges) to preserve auditability; verifies LSP decision provenance.
 - `L164-L376` — Orders `/speckit.implement` continuation (T026 onward); expects Copilot to own lint/test setup and resolve Node tooling friction.
