@@ -20,7 +20,16 @@ _Pending notes_
 ### Public Symbols
 #### `Invoke-Deployment` {#symbol-invokedeployment}
 - Type: function
-- Source: [source](../../../scripts/deploy.ps1#L7)
+- Source: [source](../../../scripts/deploy.ps1#L17)
+
+##### `Invoke-Deployment` — Summary
+Deploys compiled artifacts to the requested region.
+
+##### `Invoke-Deployment` — Remarks
+Wraps shared logging and inventory refresh helpers so deployments stay observable.
+
+##### `Invoke-Deployment` — Parameters
+- `Region`: The geographic region to target during deployment operations.
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

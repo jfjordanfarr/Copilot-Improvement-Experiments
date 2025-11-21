@@ -5,7 +5,7 @@
 - Archetype: asset
 - Code Path: tests/integration/fixtures/powershell-compendium/workspace/scripts/deploy.ps1
 - Live Doc ID: LD-asset-tests-integration-fixtures-powershell-compendium-workspace-scripts-deploy-ps1
-- Generated At: 2025-11-20T18:46:15.989Z
+- Generated At: 2025-11-21T04:05:06.295Z
 
 ## Authored
 ### Purpose
@@ -16,12 +16,21 @@ Fixture entry point that simulates an ops deployment script for inspect CLI regr
 - Lives under the `powershell-compendium` fixture workspace and mirrors the patterns covered by the unit-level adapter tests.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T18:46:15.989Z","inputHash":"bcebee8d7a4b344f"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-21T04:05:06.295Z","inputHash":"1428b13717baa0d6"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 #### `Invoke-Deployment` {#symbol-invokedeployment}
 - Type: function
-- Source: [source](../../../../../../../../tests/integration/fixtures/powershell-compendium/workspace/scripts/deploy.ps1#L7)
+- Source: [source](../../../../../../../../tests/integration/fixtures/powershell-compendium/workspace/scripts/deploy.ps1#L17)
+
+##### `Invoke-Deployment` — Summary
+Deploys compiled artifacts to the requested region.
+
+##### `Invoke-Deployment` — Remarks
+Wraps shared logging and inventory refresh helpers so deployments stay observable.
+
+##### `Invoke-Deployment` — Parameters
+- `REGION`: The geographic region to target during deployment operations.
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

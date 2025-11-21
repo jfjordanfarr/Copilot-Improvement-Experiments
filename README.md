@@ -116,7 +116,7 @@ We provide a suite of tools to generate, inspect, and enforce documentation inte
 ## Roadmap
 
 *   **Codebase-Mirrored Live Documentation**: **Complete**. (Supports TS, C#, Python, Ruby, Rust, Java, C).
-*   **Docstring Bridges**: **In Progress**. (Adapters exist, bidirectional sync coming soon).
+*   **Docstring Bridges**: **In Progress**. (Adapters now harvest TypeScript/JSDoc, Python/Ruby docstrings, and PowerShell comment-based help; bidirectional sync coming soon).
 *   **System Views**: **In Progress**. (Basic graphs working, advanced filtering next).
 *   **Hosted Showcase**: **Planned**. (A read-only web viewer for public repos).
 

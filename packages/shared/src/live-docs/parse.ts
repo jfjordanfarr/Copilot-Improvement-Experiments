@@ -10,6 +10,13 @@ export interface ParsedLiveDoc {
   publicSymbols: string[];
   dependencies: string[];
   docPath: string;
+  symbolDocumentation: Record<string, ParsedSymbolDocumentationEntry>;
+}
+
+export interface ParsedSymbolDocumentationEntry {
+  summary?: string;
+  remarks?: string;
+  parameters?: Array<{ name: string; description?: string }>;
 }
 
 const DEFAULT_ARCHETYPE = "implementation";
@@ -35,6 +42,7 @@ export function parseLiveDocMarkdown(
 
   const publicSymbolsSection = extractSection(content, "Public Symbols");
   const dependenciesSection = extractSection(content, "Dependencies");
+  const symbolDocumentation = parseSymbolDocumentation(publicSymbolsSection);
 
   const docDir = path.dirname(docAbsolutePath);
 
@@ -48,7 +56,8 @@ export function parseLiveDocMarkdown(
     archetype,
     publicSymbols,
     dependencies,
-    docPath: normalizeWorkspacePath(path.relative(workspaceRoot, docAbsolutePath))
+    docPath: normalizeWorkspacePath(path.relative(workspaceRoot, docAbsolutePath)),
+    symbolDocumentation
   };
 }
 
@@ -138,6 +147,142 @@ function parseDependencySection(
   }
 
   return dependencies;
+}
+
+function parseSymbolDocumentation(section: string): Record<string, ParsedSymbolDocumentationEntry> {
+  const documentation: Record<string, ParsedSymbolDocumentationEntry> = {};
+  if (!section) {
+    return documentation;
+  }
+
+  const lines = section.split(/\r?\n/);
+  let currentSymbol: string | undefined;
+  let currentSection: "summary" | "remarks" | "parameters" | null = null;
+  let buffer: string[] = [];
+  let pendingParameter: { name: string; description: string } | null = null;
+
+  const ensureEntry = (symbol: string): ParsedSymbolDocumentationEntry => {
+    if (!documentation[symbol]) {
+      documentation[symbol] = {};
+    }
+    return documentation[symbol];
+  };
+
+  const flushBuffer = (): void => {
+    if (!currentSymbol || !currentSection) {
+      buffer = [];
+      return;
+    }
+
+    const text = buffer.join("\n").trim();
+    if (!text) {
+      buffer = [];
+      return;
+    }
+
+    const entry = ensureEntry(currentSymbol);
+    if (currentSection === "summary") {
+      entry.summary = entry.summary ? `${entry.summary}\n${text}` : text;
+    } else if (currentSection === "remarks") {
+      entry.remarks = entry.remarks ? `${entry.remarks}\n${text}` : text;
+    }
+
+    buffer = [];
+  };
+
+  const flushParameter = (): void => {
+    if (!currentSymbol || !pendingParameter) {
+      pendingParameter = null;
+      return;
+    }
+
+    const name = pendingParameter.name.trim();
+    if (!name) {
+      pendingParameter = null;
+      return;
+    }
+
+    const description = pendingParameter.description.trim();
+    const entry = ensureEntry(currentSymbol);
+    if (!entry.parameters) {
+      entry.parameters = [];
+    }
+    entry.parameters.push({
+      name,
+      description: description ? description : undefined
+    });
+
+    pendingParameter = null;
+  };
+
+  for (const rawLine of lines) {
+    const line = rawLine;
+
+    const symbolMatch = line.match(/^####\s+`([^`]+)`/);
+    if (symbolMatch) {
+      flushParameter();
+      flushBuffer();
+      currentSymbol = symbolMatch[1];
+      currentSection = null;
+      buffer = [];
+      continue;
+    }
+
+    const sectionMatch = line.match(/^#####\s+`([^`]+)`\s+—\s+(Summary|Remarks|Parameters)/);
+    if (sectionMatch) {
+      flushParameter();
+      flushBuffer();
+      currentSymbol = sectionMatch[1];
+      const sectionName = sectionMatch[2];
+      currentSection = sectionName === "Summary"
+        ? "summary"
+        : sectionName === "Remarks"
+          ? "remarks"
+          : "parameters";
+      buffer = [];
+      continue;
+    }
+
+    if (line.startsWith("#####")) {
+      // Unhandled sub-section (for example, Links, Returns); flush any accumulators.
+      flushParameter();
+      flushBuffer();
+      currentSection = null;
+      buffer = [];
+      continue;
+    }
+
+    if (!currentSection || !currentSymbol) {
+      continue;
+    }
+
+    if (currentSection === "parameters") {
+      const bulletMatch = line.match(/^\s*-\s+`([^`]+)`:\s*(.*)$/);
+      if (bulletMatch) {
+        flushParameter();
+        pendingParameter = {
+          name: bulletMatch[1],
+          description: bulletMatch[2] ?? ""
+        };
+        continue;
+      }
+
+      if (pendingParameter) {
+        const continuation = line.trim();
+        if (continuation) {
+          pendingParameter.description += `\n${continuation}`;
+        }
+      }
+      continue;
+    }
+
+    buffer.push(line);
+  }
+
+  flushParameter();
+  flushBuffer();
+
+  return documentation;
 }
 
 function resolveDependencyTarget(

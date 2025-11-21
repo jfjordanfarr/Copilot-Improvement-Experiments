@@ -20,7 +20,13 @@ _Pending notes_
 ### Public Symbols
 #### `Get-InventorySnapshot` {#symbol-getinventorysnapshot}
 - Type: function
-- Source: [source](../../../../scripts/modules/Inventory.psm1#L1)
+- Source: [source](../../../../scripts/modules/Inventory.psm1#L8)
+
+##### `Get-InventorySnapshot` — Summary
+Retrieves the latest deployment inventory snapshot for a region.
+
+##### `Get-InventorySnapshot` — Parameters
+- `Region`: The region identifier used to scope the inventory query.
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

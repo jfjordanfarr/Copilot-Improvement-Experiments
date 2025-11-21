@@ -9,6 +9,17 @@ interface InspectRunResult {
   stderr: string;
 }
 
+interface InspectNodeDescriptor {
+  codePath: string;
+  docPath?: string;
+  symbols?: Array<{
+    name: string;
+    summary?: string;
+    remarks?: string;
+    parameters?: Array<{ name: string; description?: string }>;
+  }>;
+}
+
 const repoRoot = findRepoRoot(__dirname);
 const tsxCli = path.join(repoRoot, "node_modules", "tsx", "dist", "cli.mjs");
 const tsconfigPath = path.join(repoRoot, "tsconfig.base.json");
@@ -137,7 +148,7 @@ suite("Live Docs inspect CLI", () => {
       kind: string;
       direction: string;
       length: number;
-      nodes: Array<{ codePath: string }>;
+      nodes: InspectNodeDescriptor[];
       hops: unknown[];
     };
 
@@ -169,7 +180,7 @@ suite("Live Docs inspect CLI", () => {
     const payload = JSON.parse(run.stdout) as {
       kind: string;
       direction: string;
-      terminalPaths: Array<{ nodes: Array<{ codePath: string }> }>;
+      terminalPaths: Array<{ nodes: InspectNodeDescriptor[] }>;
     };
 
     assert.strictEqual(payload.kind, "fanout");
@@ -206,7 +217,7 @@ suite("Live Docs inspect CLI", () => {
       kind: string;
       direction: string;
       length: number;
-      nodes: Array<{ codePath: string }>;
+      nodes: InspectNodeDescriptor[];
     };
 
     assert.strictEqual(payload.kind, "path");
@@ -237,7 +248,7 @@ suite("Live Docs inspect CLI", () => {
       kind: string;
       direction: string;
       length: number;
-      nodes: Array<{ codePath: string }>;
+      nodes: InspectNodeDescriptor[];
     };
 
     assert.strictEqual(payload.kind, "path");
@@ -268,7 +279,7 @@ suite("Live Docs inspect CLI", () => {
       kind: string;
       direction: string;
       length: number;
-      nodes: Array<{ codePath: string }>;
+      nodes: InspectNodeDescriptor[];
     };
 
     assert.strictEqual(payload.kind, "path");
@@ -300,7 +311,7 @@ suite("Live Docs inspect CLI", () => {
       kind: string;
       direction: string;
       length: number;
-      nodes: Array<{ codePath: string }>;
+      nodes: InspectNodeDescriptor[];
     };
 
     assert.strictEqual(payload.kind, "path");
@@ -329,7 +340,7 @@ suite("Live Docs inspect CLI", () => {
     const payload = JSON.parse(run.stdout) as {
       kind: string;
       length: number;
-      nodes: Array<{ codePath: string }>;
+      nodes: InspectNodeDescriptor[];
     };
 
     assert.strictEqual(payload.kind, "path");
@@ -353,7 +364,7 @@ suite("Live Docs inspect CLI", () => {
     const payload = JSON.parse(run.stdout) as {
       kind: string;
       length: number;
-      nodes: Array<{ codePath: string }>;
+      nodes: InspectNodeDescriptor[];
     };
 
     assert.strictEqual(payload.kind, "path");
@@ -378,7 +389,7 @@ suite("Live Docs inspect CLI", () => {
       kind: string;
       direction: string;
       length: number;
-      nodes: Array<{ codePath: string }>;
+      nodes: InspectNodeDescriptor[];
     };
 
     assert.strictEqual(payload.kind, "path");
@@ -388,6 +399,40 @@ suite("Live Docs inspect CLI", () => {
       payload.nodes.map(node => node.codePath),
       ["scripts/deploy.ps1", "scripts/common/logging.ps1"]
     );
+
+    const deployNode = payload.nodes.find(node => node.codePath === "scripts/deploy.ps1");
+    assert.ok(deployNode?.symbols?.length, "expected Invoke-Deployment metadata");
+    const invokeDeploymentDoc = deployNode!.symbols!.find(symbol => symbol.name === "Invoke-Deployment");
+    assert.ok(invokeDeploymentDoc, "expected Invoke-Deployment symbol documentation");
+    assert.strictEqual(
+      invokeDeploymentDoc?.summary,
+      "Deploys compiled artifacts to the requested region."
+    );
+    assert.strictEqual(
+      invokeDeploymentDoc?.remarks,
+      "Wraps shared logging and inventory refresh helpers so deployments stay observable."
+    );
+    assert.deepStrictEqual(invokeDeploymentDoc?.parameters, [
+      {
+        name: "Region",
+        description: "The geographic region to target during deployment operations."
+      }
+    ]);
+
+    const loggingNode = payload.nodes.find(node => node.codePath === "scripts/common/logging.ps1");
+    assert.ok(loggingNode?.symbols?.length, "expected Write-DeploymentLog metadata");
+    const loggingDoc = loggingNode!.symbols!.find(symbol => symbol.name === "Write-DeploymentLog");
+    assert.ok(loggingDoc, "expected Write-DeploymentLog documentation");
+    assert.strictEqual(
+      loggingDoc?.summary,
+      "Writes a deployment log entry to standard output."
+    );
+    assert.deepStrictEqual(loggingDoc?.parameters, [
+      {
+        name: "Message",
+        description: "The content to emit in the log entry."
+      }
+    ]);
   });
 
   test("reports when no path connects disconnected artefacts", () => {

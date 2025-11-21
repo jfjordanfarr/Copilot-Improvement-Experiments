@@ -20,7 +20,13 @@ _Pending notes_
 ### Public Symbols
 #### `Write-DeploymentLog` {#symbol-writedeploymentlog}
 - Type: function
-- Source: [source](../../../../scripts/common/logging.ps1#L1)
+- Source: [source](../../../../scripts/common/logging.ps1#L8)
+
+##### `Write-DeploymentLog` — Summary
+Writes a deployment log entry to standard output.
+
+##### `Write-DeploymentLog` — Parameters
+- `Message`: The content to emit in the log entry.
 <!-- LIVE-DOC:END Public Symbols -->
 
 <!-- LIVE-DOC:BEGIN Dependencies -->

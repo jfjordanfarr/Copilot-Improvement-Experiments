@@ -26,7 +26,11 @@ function Resolve-CandidatePath {
 
         if (Test-Path -LiteralPath $resolvedCandidate) {
             $item = Get-Item -LiteralPath $resolvedCandidate -ErrorAction SilentlyContinue
-            return $item?.FullName
+            if ($item) {
+                return $item.FullName
+            }
+
+            return $null
         }
 
         return $resolvedCandidate
@@ -70,6 +74,71 @@ function Extract-StringLiterals {
     return ,$results.ToArray()
 }
 
+function Normalize-HelpString {
+    param(
+        [AllowNull()][string]$Value
+    )
+
+    if ([string]::IsNullOrWhiteSpace($Value)) {
+        return $null
+    }
+
+    $normalized = $Value -replace "\r?\n", "`n"
+    $trimmed = $normalized.Trim()
+    if ([string]::IsNullOrWhiteSpace($trimmed)) {
+        return $null
+    }
+
+    return $trimmed
+}
+
+function Convert-CommentHelpInfo {
+    param(
+        [Parameter(Mandatory = $false)]$Help,
+        [Parameter(Mandatory = $false)][hashtable]$ParameterNameMap
+    )
+
+    if (-not $Help) {
+        return $null
+    }
+
+    $synopsis = Normalize-HelpString($Help.Synopsis)
+    $description = Normalize-HelpString($Help.Description)
+
+    $parameters = @()
+    if ($Help.Parameters) {
+        foreach ($key in $Help.Parameters.Keys) {
+            $name = ($key | Out-String).Trim()
+            if (-not $name) {
+                continue
+            }
+
+            $lookupKey = $name.ToUpperInvariant()
+            if ($ParameterNameMap -and $ParameterNameMap.ContainsKey($lookupKey)) {
+                $name = $ParameterNameMap[$lookupKey]
+            }
+
+            $rawDescription = [string]$Help.Parameters[$key]
+            $normalizedDescription = Normalize-HelpString($rawDescription)
+
+            $parameters += [pscustomobject]@{
+                Name = $name
+                Description = $normalizedDescription
+            }
+        }
+    }
+
+    if (-not $synopsis -and -not $description -and $parameters.Count -eq 0) {
+        return $null
+    }
+
+    return [pscustomobject]@{
+        Synopsis = $synopsis
+        Description = $description
+        Parameters = $parameters
+    }
+}
+
 $resolvedPathInfo = Resolve-Path -LiteralPath $Path -ErrorAction Stop
 $resolvedPath = $resolvedPathInfo.ProviderPath
 $scriptDirectory = Split-Path -Parent $resolvedPath
@@ -81,10 +150,35 @@ $ast = [System.Management.Automation.Language.Parser]::ParseFile($resolvedPath, 
 $functions = @()
 $functionNodes = $ast.FindAll({ param($node) $node -is [System.Management.Automation.Language.FunctionDefinitionAst] }, $true)
 foreach ($fn in $functionNodes) {
+    $parameterNameMap = @{}
+    if ($fn -and $fn.Parameters) {
+        foreach ($parameter in $fn.Parameters) {
+            $parameterName = $null
+            if ($parameter -and $parameter.Name -and $parameter.Name.VariablePath -and $parameter.Name.VariablePath.UserPath) {
+                $parameterName = $parameter.Name.VariablePath.UserPath
+            }
+
+            if ($parameterName) {
+                $parameterNameMap[$parameterName.ToUpperInvariant()] = $parameterName
+            }
+        }
+    }
+
+    $helpInfo = $null
+    if ($fn -and ($fn.PSObject.Methods.Name -contains "GetHelpContent")) {
+        try {
+            $helpInfo = Convert-CommentHelpInfo -Help $fn.GetHelpContent() -ParameterNameMap $parameterNameMap
+        }
+        catch {
+            $helpInfo = $null
+        }
+    }
+
     $functions += [pscustomobject]@{
         Name = $fn.Name
         Line = $fn.Extent.StartLineNumber
         Column = $fn.Extent.StartColumnNumber
+        Help = $helpInfo
     }
 }
 

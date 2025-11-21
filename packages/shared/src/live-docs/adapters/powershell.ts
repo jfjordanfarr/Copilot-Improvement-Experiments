@@ -4,7 +4,12 @@ import { promisify } from "node:util";
 
 import type { LanguageAdapter } from "./index";
 import { normalizeWorkspacePath } from "../../tooling/pathUtils";
-import type { DependencyEntry, PublicSymbolEntry, SourceAnalysisResult } from "../core";
+import type {
+  DependencyEntry,
+  PublicSymbolEntry,
+  SourceAnalysisResult,
+  SymbolDocumentationParameter
+} from "../core";
 
 const execFileAsync = promisify(execFile);
 const RUNTIME_CANDIDATES = ["pwsh", "powershell"] as const;
@@ -13,11 +18,23 @@ interface PowerShellFunctionInfo {
   Name: string;
   Line?: number;
   Column?: number;
+  Help?: PowerShellFunctionHelp;
 }
 
 interface PowerShellDotSourceInfo {
   Raw?: string;
   Resolved?: string;
+}
+
+interface PowerShellFunctionHelp {
+  Synopsis?: string;
+  Description?: string;
+  Parameters?: PowerShellParameterHelp[];
+}
+
+interface PowerShellParameterHelp {
+  Name?: string;
+  Description?: string;
 }
 
 interface PowerShellExtractionPayload {
@@ -78,7 +95,8 @@ export const powershellAdapter: LanguageAdapter = {
         kind: "function",
         location: fn.Line && fn.Column
           ? { line: fn.Line, character: fn.Column }
-          : undefined
+          : undefined,
+        documentation: toSymbolDocumentation(fn.Help)
       }));
 
     const dependencyMap = new Map<string, DependencyEntry>();
@@ -145,6 +163,72 @@ function addDependency(
     symbols: [],
     kind
   });
+}
+
+function toSymbolDocumentation(help?: PowerShellFunctionHelp): PublicSymbolEntry["documentation"] {
+  if (!help) {
+    return undefined;
+  }
+
+  const summary = normalizeHelpText(help.Synopsis);
+  const remarks = normalizeHelpText(help.Description);
+  const parameters = Array.isArray(help.Parameters)
+    ? help.Parameters
+        .map((parameter) => toDocumentationParameter(parameter))
+        .filter((parameter): parameter is SymbolDocumentationParameter => parameter !== undefined)
+    : undefined;
+
+  const hasParameters = parameters && parameters.length > 0;
+
+  if (!summary && !remarks && !hasParameters) {
+    return undefined;
+  }
+
+  return {
+    source: "comment-help",
+    summary: summary ?? undefined,
+    remarks: remarks ?? undefined,
+    parameters: hasParameters ? parameters : undefined
+  };
+}
+
+function toDocumentationParameter(parameter?: PowerShellParameterHelp): SymbolDocumentationParameter | undefined {
+  if (!parameter) {
+    return undefined;
+  }
+
+  const name = normalizeHelpName(parameter.Name);
+  const description = normalizeHelpText(parameter.Description);
+
+  if (!name) {
+    return undefined;
+  }
+
+  if (!description) {
+    return { name };
+  }
+
+  return {
+    name,
+    description
+  };
+}
+
+function normalizeHelpText(value?: string | null): string | undefined {
+  if (!value) {
+    return undefined;
+  }
+
+  const normalized = value.replace(/\r?\n/g, "\n").trim();
+  return normalized.length > 0 ? normalized : undefined;
+}
+
+function normalizeHelpName(value?: string | null): string | undefined {
+  if (!value) {
+    return undefined;
+  }
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : undefined;
 }
 
 function deriveDotSourceSpecifier(

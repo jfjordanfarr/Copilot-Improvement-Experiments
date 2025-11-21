@@ -33,6 +33,8 @@ interface ParsedDocEntry {
   codePath: string;
   docPath: string;
   dependencies: string[];
+  publicSymbols: string[];
+  symbolDocumentation: Record<string, ParsedSymbolDocumentationEntry>;
 }
 
 interface GraphNode {
@@ -40,6 +42,8 @@ interface GraphNode {
   docPath: string;
   dependencies: Set<string>;
   rawDependencies: string[];
+  publicSymbols: string[];
+  symbolDocumentation: Record<string, ParsedSymbolDocumentationEntry>;
 }
 
 interface LiveDocGraph {
@@ -64,11 +68,30 @@ interface PathSearchResult {
 interface NodeDescriptor {
   codePath: string;
   docPath?: string;
+  symbols?: SymbolDescriptor[];
 }
 
 interface HopDescriptor {
   from: NodeDescriptor;
   to: NodeDescriptor;
+}
+
+interface SymbolDescriptor {
+  name: string;
+  summary?: string;
+  remarks?: string;
+  parameters?: SymbolParameterDescriptor[];
+}
+
+interface SymbolParameterDescriptor {
+  name: string;
+  description?: string;
+}
+
+interface ParsedSymbolDocumentationEntry {
+  summary?: string;
+  remarks?: string;
+  parameters?: Array<{ name: string; description?: string }>;
 }
 
 interface FanoutPath {
@@ -271,7 +294,9 @@ async function buildGraph(
     entries.set(parsed.sourcePath, {
       codePath: parsed.sourcePath,
       docPath: parsed.docPath,
-      dependencies: parsed.dependencies
+      dependencies: parsed.dependencies,
+      publicSymbols: parsed.publicSymbols,
+      symbolDocumentation: parsed.symbolDocumentation
     });
   }
 
@@ -295,7 +320,9 @@ async function buildGraph(
       codePath: entry.codePath,
       docPath: entry.docPath,
       dependencies: adjacency,
-      rawDependencies: entry.dependencies
+      rawDependencies: entry.dependencies,
+      publicSymbols: entry.publicSymbols,
+      symbolDocumentation: entry.symbolDocumentation
     });
 
     for (const dependency of adjacency) {
@@ -636,10 +663,52 @@ function describeNode(graph: LiveDocGraph, codePath: string): NodeDescriptor {
   if (!node) {
     return { codePath };
   }
+  const symbols = buildSymbolDescriptors(node);
   return {
     codePath: node.codePath,
-    docPath: node.docPath
+    docPath: node.docPath,
+    symbols: symbols.length > 0 ? symbols : undefined
   };
+}
+
+function buildSymbolDescriptors(node: GraphNode): SymbolDescriptor[] {
+  if (node.publicSymbols.length === 0) {
+    return [];
+  }
+
+  const seen = new Set<string>();
+  const descriptors: SymbolDescriptor[] = [];
+
+  for (const symbol of node.publicSymbols) {
+    if (seen.has(symbol)) {
+      continue;
+    }
+    seen.add(symbol);
+
+    const documentation = node.symbolDocumentation[symbol];
+    const descriptor: SymbolDescriptor = {
+      name: symbol
+    };
+
+    if (documentation) {
+      if (documentation.summary) {
+        descriptor.summary = documentation.summary;
+      }
+      if (documentation.remarks) {
+        descriptor.remarks = documentation.remarks;
+      }
+      if (documentation.parameters && documentation.parameters.length > 0) {
+        descriptor.parameters = documentation.parameters.map((parameter): SymbolParameterDescriptor => ({
+          name: parameter.name,
+          description: parameter.description
+        }));
+      }
+    }
+
+    descriptors.push(descriptor);
+  }
+
+  return descriptors;
 }
 
 function usage(): string {
