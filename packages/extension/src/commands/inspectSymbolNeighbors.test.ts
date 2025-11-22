@@ -1,7 +1,7 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import type * as vscode from "vscode";
 
-import type { InspectSymbolNeighborsParams } from "@copilot-improvement/shared";
+import type { InspectSymbolNeighborsParams } from "@live-documentation/shared";
 import { createVscodeMock, type SharedVscodeMock } from "../testUtils/vscodeMock";
 import type { ParsedInspectSymbolNeighborsResult } from "./inspectSymbolNeighbors";
 

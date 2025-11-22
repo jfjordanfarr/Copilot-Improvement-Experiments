@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 
-import type { ListOutstandingDiagnosticsResult } from "@copilot-improvement/shared";
+import type { ListOutstandingDiagnosticsResult } from "@live-documentation/shared";
 import { createVscodeMock, type SharedVscodeMock } from "../testUtils/vscodeMock";
 
 const TEST_TIMEOUT_MS = 15000;

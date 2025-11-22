@@ -13,7 +13,7 @@ import {
   type ExternalSnapshot,
   type KnowledgeFeed,
   type LinkRelationshipKind
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { FileFeedCheckpointStore } from "./feedCheckpointStore";
 import {

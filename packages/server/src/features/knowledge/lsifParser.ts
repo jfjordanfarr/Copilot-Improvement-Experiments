@@ -8,7 +8,7 @@ import type {
   LSIFEntry,
   LSIFRange,
   ParsedLSIFIndex
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 export interface LSIFParserOptions {
   projectRoot: string;

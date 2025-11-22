@@ -6,7 +6,7 @@ import type {
   ExternalSnapshot,
   SCIPIndex,
   SCIPOccurrence
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 export interface SCIPParserOptions {
   projectRoot: string;

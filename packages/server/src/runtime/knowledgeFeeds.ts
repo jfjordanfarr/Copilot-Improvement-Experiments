@@ -1,7 +1,7 @@
 // Live Documentation: .mdmd/layer-4/language-server-runtime/languageServerRuntime.mdmd.md#source-breadcrumbs
 import type { Connection } from "vscode-languageserver/node";
 
-import type { GraphStore, KnowledgeFeed } from "@copilot-improvement/shared";
+import type { GraphStore, KnowledgeFeed } from "@live-documentation/shared";
 
 import { describeError } from "./environment";
 import {

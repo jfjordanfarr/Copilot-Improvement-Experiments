@@ -4,7 +4,7 @@ import {
   type LinkRelationshipKind,
   type LinkedArtifactSummary,
   type RelationshipHint
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { normalizeFileUri } from "../utils/uri";
 

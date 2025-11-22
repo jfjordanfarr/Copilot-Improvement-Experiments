@@ -1,6 +1,6 @@
 import {
 	InferenceAccuracyTracker as SharedInferenceAccuracyTracker
-} from "@copilot-improvement/shared/telemetry/inferenceAccuracy";
+} from "@live-documentation/shared/telemetry/inferenceAccuracy";
 import type {
 	AccuracySample as SharedAccuracySample,
 	AccuracyTotals as SharedAccuracyTotals,
@@ -9,7 +9,7 @@ import type {
 	InferenceAccuracyTrackerOptions as SharedInferenceAccuracyTrackerOptions,
 	InferenceOutcome as SharedInferenceOutcome,
 	RecordOutcomeOptions as SharedRecordOutcomeOptions
-} from "@copilot-improvement/shared/telemetry/inferenceAccuracy";
+} from "@live-documentation/shared/telemetry/inferenceAccuracy";
 
 export type AccuracySample = SharedAccuracySample;
 export type AccuracyTotals = SharedAccuracyTotals;

@@ -8,7 +8,7 @@ import {
   type LinkEvidence,
   type RelationshipHint,
   type WorkspaceLinkContribution
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 const SUPPORTED_LANGUAGES = new Set([
   "typescript",

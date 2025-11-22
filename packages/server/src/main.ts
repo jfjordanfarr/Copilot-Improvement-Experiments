@@ -46,7 +46,7 @@ import {
   INSPECT_SYMBOL_NEIGHBORS_REQUEST,
   type InspectSymbolNeighborsParams,
   type InspectSymbolNeighborsResult
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { ChangeQueue, QueuedChange } from "./features/changeEvents/changeQueue";
 import { inspectDependencies } from "./features/dependencies/inspectDependencies";

@@ -8,7 +8,7 @@ import {
   KnowledgeGraphBridge,
   type ExternalSnapshot,
   type ExternalStreamEvent
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { FileFeedCheckpointStore } from "./feedCheckpointStore";
 import { FeedDiagnosticsGateway, type FeedStatusSummary } from "./feedDiagnosticsGateway";

@@ -5,7 +5,7 @@ import {
   GraphStore,
   type KnowledgeArtifact,
   type LinkRelationship
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { inspectDependencies } from "./inspectDependencies";
 

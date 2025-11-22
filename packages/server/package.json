@@ -14,7 +14,7 @@
     "test:contracts": "echo \"No contract tests yet\""
   },
   "dependencies": {
-    "@copilot-improvement/shared": "file:../shared",
+    "@live-documentation/shared": "file:../shared",
     "better-sqlite3": "^12.4.1",
     "typescript": "^5.4.0",
     "vscode-languageserver": "^9.0.1",

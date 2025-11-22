@@ -6,8 +6,8 @@
     "rootDir": "./",
     "rootDirs": ["./", "../.."],
     "paths": {
-      "@copilot-improvement/shared": ["packages/shared/dist/index"],
-      "@copilot-improvement/shared/*": ["packages/shared/dist/*"]
+      "@live-documentation/shared": ["packages/shared/dist/index"],
+      "@live-documentation/shared/*": ["packages/shared/dist/*"]
     },
     "outDir": "./dist",
     "sourceMap": false,

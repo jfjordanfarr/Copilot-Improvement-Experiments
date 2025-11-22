@@ -8,7 +8,7 @@ import {
   OverrideLinkArtifactInput,
   OverrideLinkRequest,
   OverrideLinkResponse
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 interface EnsureArtifactParams {
   store: GraphStore;

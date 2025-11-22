@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-import type { RelationshipHint } from "@copilot-improvement/shared";
+import type { RelationshipHint } from "@live-documentation/shared";
 
 import { normalizeFileUri } from "../utils/uri";
 

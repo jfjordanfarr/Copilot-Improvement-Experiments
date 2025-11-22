@@ -3,7 +3,7 @@ import {
   DiagnosticSeverity
 } from "vscode-languageserver/node";
 
-import type { KnowledgeArtifact } from "@copilot-improvement/shared";
+import type { KnowledgeArtifact } from "@live-documentation/shared";
 
 import type { AcknowledgementService } from "./acknowledgementService";
 import { normaliseDisplayPath, type DiagnosticSender } from "./diagnosticUtils";

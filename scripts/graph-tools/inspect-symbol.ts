@@ -9,7 +9,7 @@ import {
   type KnowledgeArtifact,
   type LinkRelationshipKind,
   type SymbolNeighborGroup
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { inspectSymbolNeighbors } from "../../packages/server/src/features/dependencies/symbolNeighbors";
 

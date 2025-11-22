@@ -5,7 +5,7 @@ import type {
   DiagnosticRecord,
   GraphStore,
   DiagnosticSeverity
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import type { HysteresisController } from "./hysteresisController";
 import type { RuntimeSettings } from "../settings/settingsBridge";

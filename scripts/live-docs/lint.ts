@@ -9,8 +9,8 @@ import {
   LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig,
   type LiveDocumentationEvidenceStrictMode
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { hasMeaningfulAuthoredContent } from "@copilot-improvement/shared/live-docs/core";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
+import { hasMeaningfulAuthoredContent } from "@live-documentation/shared/live-docs/core";
 
 interface LintIssue {
   file: string;

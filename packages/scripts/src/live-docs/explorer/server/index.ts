@@ -1,0 +1,255 @@
+import { exec } from "child_process";
+import * as fs from "fs/promises";
+import { createServer, type Server, type ServerResponse } from "http";
+import * as path from "path";
+import { URL } from "url";
+
+import type { ExplorerDetailPayload, ExplorerGraphPayload, ExplorerNodePayload } from "../shared/types";
+import { buildExplorerAssets } from "./buildAssets";
+import { buildExplorerGraph, normalizeDocPath } from "./graph";
+
+export interface ExplorerServerOptions {
+    workspaceRoot: string;
+    port?: number;
+    openBrowser?: boolean;
+    logger?: Pick<Console, "log" | "error">;
+}
+
+export interface ExplorerServerInstance {
+    port: number;
+    stop: () => Promise<void>;
+    reloadGraph: () => Promise<ExplorerGraphPayload>;
+    getGraph: () => ExplorerGraphPayload;
+}
+
+interface InternalContext {
+    graph: ExplorerGraphPayload;
+    nodesByDocPath: Map<string, ExplorerNodePayload>;
+}
+
+export async function startExplorerServer(options: ExplorerServerOptions): Promise<ExplorerServerInstance> {
+    const { workspaceRoot } = options;
+    const port = options.port ?? 3000;
+    const logger = options.logger ?? console;
+
+    const assets = await buildExplorerAssets({ workspaceRoot });
+    const context: InternalContext = {
+        graph: await buildExplorerGraph(workspaceRoot),
+        nodesByDocPath: new Map()
+    };
+    refreshNodeLookup(context, workspaceRoot);
+
+    logger.log(
+        `Explorer graph ready: ${context.graph.stats.nodes} nodes, ${context.graph.stats.links} links, ${context.graph.stats.missingDependencies} missing dependencies.`
+    );
+    logger.log(`Explorer assets emitted to ${assets.outDir}`);
+
+    const server = createServer(async (req, res) => {
+        try {
+            const requestUrl = new URL(req.url ?? "/", `http://localhost:${port}`);
+
+            if (requestUrl.pathname === "/graph") {
+                if (requestUrl.searchParams.get("refresh") === "1") {
+                    await reloadGraph();
+                }
+                res.writeHead(200, {
+                    "Content-Type": "application/json",
+                    "Cache-Control": "no-store"
+                });
+                res.end(JSON.stringify(context.graph));
+                return;
+            }
+
+            if (requestUrl.pathname.startsWith("/static/")) {
+                await serveStaticAsset(requestUrl.pathname.slice("/static/".length), assets.outDir, res);
+                return;
+            }
+
+            if (requestUrl.pathname === "/open") {
+                await handleOpen(requestUrl, workspaceRoot, res, logger);
+                return;
+            }
+
+            if (requestUrl.pathname === "/details") {
+                await handleDetails(requestUrl, workspaceRoot, context, res);
+                return;
+            }
+
+            res.writeHead(200, {
+                "Content-Type": "text/html; charset=utf-8",
+                "Cache-Control": "no-store"
+            });
+            res.end(assets.htmlTemplate);
+        } catch (error) {
+            logger.error("Explorer request handling failed", error);
+            res.writeHead(500, { "Content-Type": "text/plain" });
+            res.end("Internal server error");
+        }
+    });
+
+    await new Promise<void>((resolve, reject) => {
+        server.once("error", reject);
+        server.listen(port, resolve);
+    });
+
+    logger.log(`Explorer running at http://localhost:${port}`);
+
+    if (options.openBrowser !== false) {
+        const startCommand = process.platform === "win32" ? "start" : "open";
+        exec(`${startCommand} http://localhost:${port}`);
+    }
+
+    const stop = async () =>
+        new Promise<void>((resolve, reject) => {
+            server.close(error => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve();
+                }
+            });
+        });
+
+    const reloadGraph = async () => {
+        context.graph = await buildExplorerGraph(workspaceRoot);
+        refreshNodeLookup(context, workspaceRoot);
+        logger.log(
+            `Explorer graph refreshed: ${context.graph.stats.nodes} nodes, ${context.graph.stats.links} links, ${context.graph.stats.missingDependencies} missing dependencies.`
+        );
+        return context.graph;
+    };
+
+    return {
+        port,
+        stop,
+        reloadGraph,
+        getGraph: () => context.graph
+    };
+}
+
+async function serveStaticAsset(relativePath: string, outputDir: string, res: ServerResponse): Promise<void> {
+    const cleanRelative = relativePath.replace(/\\/g, "/");
+    const resolved = path.resolve(outputDir, cleanRelative);
+    if (!resolved.startsWith(outputDir)) {
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end("Invalid asset path");
+        return;
+    }
+
+    try {
+        const content = await fs.readFile(resolved);
+        res.writeHead(200, {
+            "Content-Type": getMimeType(resolved),
+            "Cache-Control": "no-store"
+        });
+        res.end(content);
+    } catch {
+        res.writeHead(404, { "Content-Type": "text/plain" });
+        res.end("Not found");
+    }
+}
+
+async function handleOpen(url: URL, workspaceRoot: string, res: ServerResponse, logger: Pick<Console, "log">): Promise<void> {
+    const codePathParam = url.searchParams.get("codePath");
+    if (!codePathParam) {
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end("Missing codePath");
+        return;
+    }
+
+    const absoluteCodePath = path.resolve(codePathParam);
+    if (!isPathInsideWorkspace(workspaceRoot, absoluteCodePath)) {
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end("Invalid codePath");
+        return;
+    }
+
+    logger.log(`Opening file: ${absoluteCodePath}`);
+    const quoted = `"${absoluteCodePath.replace(/"/g, '\\"')}"`;
+    const command = process.platform === "win32" ? `code ${quoted}` : `code ${quoted}`;
+    exec(command);
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end("OK");
+}
+
+async function handleDetails(
+    url: URL,
+    workspaceRoot: string,
+    context: InternalContext,
+    res: ServerResponse
+): Promise<void> {
+    const docPathParam = url.searchParams.get("docPath");
+    if (!docPathParam) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Missing docPath" }));
+        return;
+    }
+
+    const absoluteDocPath = path.resolve(workspaceRoot, docPathParam);
+    if (!isPathInsideWorkspace(workspaceRoot, absoluteDocPath)) {
+        res.writeHead(400, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Invalid docPath" }));
+        return;
+    }
+
+    const lookupKey = normalizeDocPath(workspaceRoot, absoluteDocPath);
+    const node = context.nodesByDocPath.get(lookupKey);
+    if (!node) {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Node not found" }));
+        return;
+    }
+
+    try {
+        const content = await fs.readFile(absoluteDocPath, "utf8");
+        const payload: ExplorerDetailPayload = {
+            archetype: node.archetype,
+            purpose: extractPurposeSection(content),
+            publicSymbols: node.publicSymbols,
+            dependencies: node.dependencies,
+            dependents: node.dependents,
+            missingDependencies: node.missingDependencies,
+            docRelativePath: node.docRelativePath,
+            codeRelativePath: node.codeRelativePath,
+            symbolDocumentation: node.symbolDocumentation
+        };
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(payload));
+    } catch {
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ error: "Failed to read doc" }));
+    }
+}
+
+function extractPurposeSection(content: string): string {
+    const purposeMatch = content.match(/##\s+Purpose\s+([\s\S]*?)(?=##|$)/);
+    return purposeMatch ? purposeMatch[1].trim() : "No purpose defined.";
+}
+
+function refreshNodeLookup(context: InternalContext, workspaceRoot: string): void {
+    context.nodesByDocPath.clear();
+    for (const node of context.graph.nodes) {
+        context.nodesByDocPath.set(normalizeDocPath(workspaceRoot, node.docPath), node);
+    }
+}
+
+function getMimeType(filePath: string): string {
+    if (filePath.endsWith(".js")) {
+        return "application/javascript";
+    }
+    if (filePath.endsWith(".css")) {
+        return "text/css";
+    }
+    if (filePath.endsWith(".map")) {
+        return "application/json";
+    }
+    return "application/octet-stream";
+}
+
+function isPathInsideWorkspace(workspaceRoot: string, candidate: string): boolean {
+    const resolvedRoot = path.resolve(workspaceRoot);
+    const resolvedCandidate = path.resolve(candidate);
+    const relative = path.relative(resolvedRoot, resolvedCandidate);
+    return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
+}

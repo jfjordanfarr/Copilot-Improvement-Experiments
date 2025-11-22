@@ -6,7 +6,7 @@ import type {
   DriftHistorySummary,
   GraphStore,
   ListDriftHistoryOptions
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 export interface DriftHistoryStoreOptions {
   graphStore: GraphStore;

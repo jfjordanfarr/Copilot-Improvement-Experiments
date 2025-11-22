@@ -11,7 +11,7 @@ import {
   RebindImpactedArtifact,
   RebindReason,
   RebindRequiredArtifact
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 interface OverrideCommandPayload {
   removed?: RebindRequiredArtifact;

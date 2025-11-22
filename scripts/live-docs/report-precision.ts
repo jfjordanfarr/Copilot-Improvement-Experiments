@@ -9,8 +9,8 @@ import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
   LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { parseLiveDocMarkdown } from "@copilot-improvement/shared/live-docs/parse";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
+import { parseLiveDocMarkdown } from "@live-documentation/shared/live-docs/parse";
 
 import { __testUtils } from "../../packages/server/src/features/live-docs/generator";
 

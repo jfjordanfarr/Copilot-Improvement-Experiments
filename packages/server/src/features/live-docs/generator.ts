@@ -8,7 +8,7 @@ import {
   type LiveDocumentationArchetype,
   type LiveDocumentationConfig,
   normalizeLiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
 import {
   analyzeSourceFile,
   cleanupEmptyParents,
@@ -25,23 +25,23 @@ import {
   renderPublicSymbolLines,
   resolveArchetype,
   type SourceAnalysisResult
-} from "@copilot-improvement/shared/live-docs/core";
+} from "@live-documentation/shared/live-docs/core";
 import {
   composeLiveDocId,
   extractAuthoredBlock,
   renderLiveDocMarkdown,
   type LiveDocRenderSection
-} from "@copilot-improvement/shared/live-docs/markdown";
+} from "@live-documentation/shared/live-docs/markdown";
 import type {
   LiveDocGeneratorProvenance,
   LiveDocMetadata,
   LiveDocProvenance
-} from "@copilot-improvement/shared/live-docs/schema";
+} from "@live-documentation/shared/live-docs/schema";
 import {
   normalizeWorkspacePath,
   toWorkspaceFileUri,
   toWorkspaceRelativePath
-} from "@copilot-improvement/shared/tooling/pathUtils";
+} from "@live-documentation/shared/tooling/pathUtils";
 
 import {
   loadEvidenceSnapshot,

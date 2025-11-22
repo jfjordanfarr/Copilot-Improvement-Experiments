@@ -15,7 +15,7 @@ import {
   type KnowledgeFeed,
   type RelationshipHint,
   type WorkspaceLinkProvider
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { buildFileReferenceHints } from "./pathReferenceDetector";
 import type { QueuedChange } from "../changeEvents/changeQueue";

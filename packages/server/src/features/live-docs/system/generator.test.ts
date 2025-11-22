@@ -8,7 +8,7 @@ import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
   LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
 
 import { generateSystemLiveDocs } from "./generator";
 

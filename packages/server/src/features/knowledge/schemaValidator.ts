@@ -6,7 +6,7 @@ import {
   ExternalStreamEvent,
   LinkRelationshipKind,
   StreamEventKind
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 export interface SchemaViolation {
   path: string;

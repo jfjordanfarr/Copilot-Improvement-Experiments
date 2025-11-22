@@ -6,7 +6,7 @@ import {
   type ModelInvoker,
   RelationshipExtractor,
   INVOKE_LLM_REQUEST
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { LlmIngestionOrchestrator, type LlmIngestionResult } from "../features/knowledge/llmIngestionOrchestrator";
 import type { ProviderGuard } from "../features/settings/providerGuard";

@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
-import { GraphStore, type DiagnosticRecord } from "@copilot-improvement/shared";
+import { GraphStore, type DiagnosticRecord } from "@live-documentation/shared";
 
 import { buildOutstandingDiagnosticsResult } from "./listOutstandingDiagnostics";
 

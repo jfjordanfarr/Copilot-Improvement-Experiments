@@ -8,7 +8,7 @@ import {
   type LiveDocumentationConfig,
   type LiveDocumentationConfigInput,
   normalizeLiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
 
 import { generateLiveDocs } from "../../packages/server/src/features/live-docs/generator";
 import { generateSystemLiveDocs } from "../../packages/server/src/features/live-docs/system/generator";

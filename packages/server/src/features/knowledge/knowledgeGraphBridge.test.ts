@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { describe, expect, it, beforeEach, afterEach } from "vitest";
 
-import { GraphStore } from "@copilot-improvement/shared";
+import { GraphStore } from "@live-documentation/shared";
 
 import {
   KnowledgeGraphBridgeService,

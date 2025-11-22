@@ -7,7 +7,7 @@ import {
   type LinkedArtifactSummary,
   type SymbolNeighborGroup,
   type SymbolNeighborNode
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { normalizeFileUri } from "../utils/uri";
 

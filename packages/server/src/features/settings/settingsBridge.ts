@@ -1,4 +1,4 @@
-import type { LinkRelationshipKind } from "@copilot-improvement/shared";
+import type { LinkRelationshipKind } from "@live-documentation/shared";
 
 import { ExtensionSettings } from "./providerGuard";
 

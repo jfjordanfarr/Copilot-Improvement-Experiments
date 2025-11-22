@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import type { SCIPIndex } from "@copilot-improvement/shared";
+import type { SCIPIndex } from "@live-documentation/shared";
 
 import { parseSCIP } from "./scipParser";
 

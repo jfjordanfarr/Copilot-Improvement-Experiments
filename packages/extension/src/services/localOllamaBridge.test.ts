@@ -20,9 +20,9 @@ vi.mock("vscode", () => ({
 
 const invokeOllamaChatMock = vi.fn();
 
-vi.mock("@copilot-improvement/shared", async () => {
-  const actual = await vi.importActual<typeof import("@copilot-improvement/shared")>(
-    "@copilot-improvement/shared"
+vi.mock("@live-documentation/shared", async () => {
+  const actual = await vi.importActual<typeof import("@live-documentation/shared")>(
+    "@live-documentation/shared"
   );
   return {
     ...actual,
@@ -96,7 +96,7 @@ describe("invokeLocalOllamaBridge", () => {
 
   it("falls back to mock when Ollama invocation fails", async () => {
     process.env.LINK_AWARE_OLLAMA_MODEL = "llama3";
-    const { OllamaInvocationError } = await import("@copilot-improvement/shared");
+    const { OllamaInvocationError } = await import("@live-documentation/shared");
     invokeOllamaChatMock.mockRejectedValue(
       new OllamaInvocationError("Ollama /api/chat returned 404: {\"error\":\"model 'llama3' not found\"}")
     );

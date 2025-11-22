@@ -7,9 +7,9 @@ import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
   type LiveDocumentationConfigInput,
   normalizeLiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { buildCoActivationReport, serializeCoActivationReport } from "@copilot-improvement/shared/live-docs/analysis/coActivation";
-import type { Stage0DocLogger } from "@copilot-improvement/shared/live-docs/types";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
+import { buildCoActivationReport, serializeCoActivationReport } from "@live-documentation/shared/live-docs/analysis/coActivation";
+import type { Stage0DocLogger } from "@live-documentation/shared/live-docs/types";
 
 import { loadStage0Docs } from "../../packages/server/src/features/live-docs/stage0/docLoader";
 import { loadTargetManifest } from "../../packages/server/src/features/live-docs/targets/manifest";

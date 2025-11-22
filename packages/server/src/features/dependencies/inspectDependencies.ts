@@ -5,7 +5,7 @@ import {
   type InspectDependenciesSummary,
   type KnowledgeArtifact,
   type LinkRelationshipKind
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { buildCodeImpactGraph, type CodeImpactEdge } from "./buildCodeGraph";
 import { normalizeFileUri } from "../utils/uri";

@@ -1,4 +1,4 @@
-import type { KnowledgeArtifact, RelationshipHint } from "@copilot-improvement/shared";
+import type { KnowledgeArtifact, RelationshipHint } from "@live-documentation/shared";
 
 export type RippleHint = RelationshipHint & {
   depth?: number;

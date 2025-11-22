@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import type { Diagnostic } from "vscode-languageserver/node";
 
-import type { DiagnosticRecord, KnowledgeArtifact } from "@copilot-improvement/shared";
+import type { DiagnosticRecord, KnowledgeArtifact } from "@live-documentation/shared";
 
 import type { AcknowledgementService } from "./acknowledgementService";
 import { HysteresisController } from "./hysteresisController";

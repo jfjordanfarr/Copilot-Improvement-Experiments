@@ -1,4 +1,4 @@
-import { KnowledgeFeedSummary } from "@copilot-improvement/shared";
+import { KnowledgeFeedSummary } from "@live-documentation/shared";
 
 export type FeedHealthStatus = "healthy" | "degraded" | "blocked";
 

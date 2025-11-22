@@ -146,7 +146,7 @@ async function main() {
             // console.log(`Found import for ${parentName}: ${modulePath}`);
 
             // Normalize module path for matching
-            // e.g. @copilot-improvement/shared/telemetry/inferenceAccuracy -> shared/telemetry/inferenceAccuracy
+            // e.g. @live-documentation/shared/telemetry/inferenceAccuracy -> shared/telemetry/inferenceAccuracy
             const cleanModulePath = modulePath.replace("@copilot-improvement/", "packages/");
 
             // Try to find a node that ends with this path

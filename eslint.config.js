@@ -46,13 +46,14 @@ module.exports = tseslint.config(
           project: [
             "./packages/shared/tsconfig.json",
             "./packages/server/tsconfig.json",
-            "./packages/extension/tsconfig.json"
+            "./packages/extension/tsconfig.json",
+            "./packages/scripts/tsconfig.json"
           ],
           alwaysTryTypes: true
         }
       },
       "import/core-modules": ["vscode"],
-      "import/internal-regex": "^@copilot-improvement/"
+      "import/internal-regex": "^@(copilot-improvement|live-documentation)/"
     },
     rules: {
       "import/order": [

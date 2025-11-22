@@ -5,7 +5,7 @@ import {
   COLLECT_WORKSPACE_SYMBOLS_REQUEST,
   CollectWorkspaceSymbolsParams,
   type WorkspaceLinkProvider
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 interface SymbolBridgeProviderOptions {
   connection: Connection;

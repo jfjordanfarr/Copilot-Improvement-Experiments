@@ -8,12 +8,12 @@ export default defineConfig({
         find: /^@copilot-improvement\/shared$/,
         replacement: path.resolve(__dirname, "packages/shared/src/index.ts")
       },
-      {
-        find: /^@copilot-improvement\/shared\/(.*)$/,
+          find: /^@live-documentation\/shared$/,
+          replacement: path.resolve(__dirname, "packages/shared/src/index.ts")
         replacement: path.resolve(__dirname, "packages/shared/src/$1")
       }
-    ]
-  },
+          find: /^@live-documentation\/shared\/(.*)$/,
+          replacement: (subpath: string) =>
   test: {
     globals: true,
     environment: "node",

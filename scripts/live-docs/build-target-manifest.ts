@@ -8,8 +8,8 @@ import ts from "typescript";
 import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
   normalizeLiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
+import { normalizeWorkspacePath } from "@live-documentation/shared/tooling/pathUtils";
 
 const SUPPORTED_SCRIPT_EXTENSIONS = new Set([
   ".ts",

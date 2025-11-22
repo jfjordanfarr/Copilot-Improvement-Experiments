@@ -8,7 +8,7 @@ import {
   buildTestReportMarkdown,
   type BenchmarkRecord,
   type BenchmarkEnvironment
-} from "@copilot-improvement/shared/reporting/testReport";
+} from "@live-documentation/shared/reporting/testReport";
 
 interface CliOptions {
   outputPath?: string;

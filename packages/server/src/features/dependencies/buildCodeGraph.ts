@@ -1,5 +1,5 @@
-import { GraphStore } from "@copilot-improvement/shared";
-import { KnowledgeArtifact, LinkRelationshipKind } from "@copilot-improvement/shared";
+import { GraphStore } from "@live-documentation/shared";
+import { KnowledgeArtifact, LinkRelationshipKind } from "@live-documentation/shared";
 
 export interface CodeImpactEdge {
   trigger: KnowledgeArtifact;

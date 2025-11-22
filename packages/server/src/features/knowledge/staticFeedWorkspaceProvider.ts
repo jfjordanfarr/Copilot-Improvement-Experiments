@@ -9,7 +9,7 @@ import type {
   WorkspaceLinkContribution,
   WorkspaceLinkProvider,
   WorkspaceLinkProviderContext
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 interface Logger {
   info(message: string): void;

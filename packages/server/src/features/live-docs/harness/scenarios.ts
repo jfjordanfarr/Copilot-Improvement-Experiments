@@ -1,4 +1,4 @@
-import type { LiveDocumentationConfigInput } from "@copilot-improvement/shared/config/liveDocumentationConfig";
+import type { LiveDocumentationConfigInput } from "@live-documentation/shared/config/liveDocumentationConfig";
 
 export interface HeadlessHarnessScenario {
   name: string;

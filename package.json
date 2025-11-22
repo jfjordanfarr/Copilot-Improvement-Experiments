@@ -8,10 +8,11 @@
   "workspaces": [
     "packages/extension",
     "packages/server",
-    "packages/shared"
+    "packages/shared",
+    "packages/scripts"
   ],
   "scripts": {
-    "build": "npm run build -w packages/shared && npm run build -w packages/server && npm run compile -w packages/extension",
+    "build": "npm run build -w packages/shared && npm run build -w packages/scripts && npm run build -w packages/server && npm run compile -w packages/extension",
     "lint": "eslint .",
     "format": "prettier --check .",
     "rebuild:better-sqlite3:node": "node ./scripts/rebuild-better-sqlite3.mjs",
@@ -54,6 +55,7 @@
     "@typescript-eslint/parser": "^8.11.0",
     "@vitest/coverage-v8": "^4.0.9",
     "@vscode/test-electron": "^2.3.7",
+    "esbuild": "^0.24.0",
     "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",

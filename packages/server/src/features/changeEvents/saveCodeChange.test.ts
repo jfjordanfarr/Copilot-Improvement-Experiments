@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 
-import type { ChangeEvent, GraphStore, KnowledgeArtifact } from "@copilot-improvement/shared";
+import type { ChangeEvent, GraphStore, KnowledgeArtifact } from "@live-documentation/shared";
 
 import { saveCodeChange } from "./saveCodeChange";
 import type { CodeTrackedArtifactChange } from "../watchers/artifactWatcher";

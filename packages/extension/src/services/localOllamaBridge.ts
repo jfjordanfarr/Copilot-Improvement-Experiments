@@ -6,7 +6,7 @@ import {
   OllamaInvocationError,
   createMockOllamaResponse,
   type InvokeLlmResult
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 interface LocalInvocationOptions {
   prompt: string;

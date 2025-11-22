@@ -7,7 +7,7 @@ import {
   type AcknowledgeDiagnosticParams,
   type AcknowledgeDiagnosticResult,
   type DiagnosticAcknowledgedPayload
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 export const ACKNOWLEDGE_DIAGNOSTIC_COMMAND = "linkDiagnostics.acknowledgeDiagnostic";
 

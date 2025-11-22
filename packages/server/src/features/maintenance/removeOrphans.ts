@@ -6,7 +6,7 @@ import {
   RebindRequiredPayload,
   RebindImpactedArtifact,
   RebindReason
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { normaliseDisplayPath, type DiagnosticSender } from "../diagnostics/diagnosticUtils";
 import { normalizeFileUri } from "../utils/uri";

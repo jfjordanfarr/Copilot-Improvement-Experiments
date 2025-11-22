@@ -5,7 +5,7 @@ import {
   type KnowledgeArtifact,
   type LinkRelationship,
   type SymbolNeighborGroup
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { inspectSymbolNeighbors } from "./symbolNeighbors";
 

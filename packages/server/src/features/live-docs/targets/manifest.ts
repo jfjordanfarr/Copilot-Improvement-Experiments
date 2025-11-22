@@ -1,7 +1,7 @@
 import * as fs from "node:fs/promises";
 import path from "node:path";
 
-import type { TargetManifest } from "@copilot-improvement/shared/live-docs/types";
+import type { TargetManifest } from "@live-documentation/shared/live-docs/types";
 
 export async function loadTargetManifest(workspaceRoot: string): Promise<TargetManifest | undefined> {
   const manifestPath = path.resolve(workspaceRoot, "data", "live-docs", "targets.json");

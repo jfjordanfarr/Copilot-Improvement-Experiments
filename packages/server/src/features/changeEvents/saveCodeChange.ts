@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 
-import { GraphStore, KnowledgeArtifact } from "@copilot-improvement/shared";
+import { GraphStore, KnowledgeArtifact } from "@live-documentation/shared";
 
 import { normalizeFileUri } from "../utils/uri";
 import type { CodeTrackedArtifactChange } from "../watchers/artifactWatcher";

@@ -1,4 +1,4 @@
-import { LatencyChangeKind, LatencySample, LatencySummary } from "@copilot-improvement/shared";
+import { LatencyChangeKind, LatencySample, LatencySummary } from "@live-documentation/shared";
 
 import { normalizeFileUri } from "../features/utils/uri";
 

@@ -2,18 +2,18 @@ import { glob } from "glob";
 import * as fs from "node:fs/promises";
 import path from "node:path";
 
-import { type LiveDocumentationConfig } from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { directoryExists } from "@copilot-improvement/shared/live-docs/core";
+import { type LiveDocumentationConfig } from "@live-documentation/shared/config/liveDocumentationConfig";
+import { directoryExists } from "@live-documentation/shared/live-docs/core";
 import {
   renderBeginMarker,
   renderEndMarker
-} from "@copilot-improvement/shared/live-docs/markdown";
+} from "@live-documentation/shared/live-docs/markdown";
 import type {
   Stage0Doc,
   Stage0DocLogger,
   Stage0Symbol
-} from "@copilot-improvement/shared/live-docs/types";
-import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
+} from "@live-documentation/shared/live-docs/types";
+import { normalizeWorkspacePath } from "@live-documentation/shared/tooling/pathUtils";
 
 interface LoadStage0DocsArgs {
   workspaceRoot: string;

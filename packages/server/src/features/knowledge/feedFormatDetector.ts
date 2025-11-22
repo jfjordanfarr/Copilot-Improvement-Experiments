@@ -1,6 +1,6 @@
 import { promises as fsp } from "node:fs";
 
-import type { ExternalSnapshot, LSIFEntry, SCIPIndex } from "@copilot-improvement/shared";
+import type { ExternalSnapshot, LSIFEntry, SCIPIndex } from "@live-documentation/shared";
 
 import { parseLSIF, type LSIFParserOptions } from "./lsifParser";
 import { parseSCIP, type SCIPParserOptions } from "./scipParser";

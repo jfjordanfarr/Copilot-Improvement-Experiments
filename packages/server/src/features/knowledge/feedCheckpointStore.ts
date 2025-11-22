@@ -1,7 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-import { StreamCheckpoint } from "@copilot-improvement/shared";
+import { StreamCheckpoint } from "@live-documentation/shared";
 
 export interface FeedCheckpointStore {
   read(feedId: string): Promise<StreamCheckpoint | null>;

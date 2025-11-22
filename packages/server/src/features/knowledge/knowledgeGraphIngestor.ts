@@ -9,7 +9,7 @@ import {
   KnowledgeGraphBridge,
   KnowledgeSnapshot,
   StreamCheckpoint
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { FeedCheckpointStore } from "./feedCheckpointStore";
 import {

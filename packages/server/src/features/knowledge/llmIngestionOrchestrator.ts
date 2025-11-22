@@ -15,7 +15,7 @@ import {
   RelationshipExtractor,
   type RelationshipExtractionBatch,
   type LinkRelationshipKind
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import {
   RELATIONSHIP_RESPONSE_SCHEMA,

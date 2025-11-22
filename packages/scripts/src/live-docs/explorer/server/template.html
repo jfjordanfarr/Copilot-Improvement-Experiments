@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Docs Explorer</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <script src="//unpkg.com/3d-force-graph"></script>
+</head>
+<body>
+  <div id="sidebar">
+    <div class="sidebar-header">Live Docs Explorer</div>
+    <div class="nav-item active" data-view="circuit" onclick="switchView(event, 'circuit')"><span>Circuit Board</span></div>
+    <div class="nav-item" data-view="map" onclick="switchView(event, 'map')"><span>Local Map</span></div>
+    <div class="nav-item" data-view="graph" onclick="switchView(event, 'graph')"><span>Force Graph</span></div>
+    <div id="context-bar">
+      <div id="stats-line">Loading...</div>
+      <div>Context: <span id="context-name">None</span></div>
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="view-circuit" class="view-container active">
+      <div id="circuit-toolbar" class="view-toolbar" role="group" aria-label="Circuit Filters">
+        <span class="toolbar-label">Show</span>
+        <label class="filter-toggle"><input id="filter-toggle-tests" type="checkbox" aria-label="Toggle test archetype" /><span>Tests</span></label>
+        <label class="filter-toggle"><input id="filter-toggle-assets" type="checkbox" aria-label="Toggle asset archetype" /><span>Assets</span></label>
+      </div>
+      <div id="circuit-viewport">
+        <div id="circuit-container" class="dom-layer"></div>
+        <div id="circuit-connections" class="connections-layer"></div>
+      </div>
+    </div>
+
+    <div id="view-map" class="view-container">
+      <div id="map-container" class="dom-layer"></div>
+      <div id="map-connections" class="connections-layer"></div>
+    </div>
+
+    <div id="view-graph" class="view-container">
+      <div id="graph-svg"></div>
+    </div>
+
+    <div id="controls">
+      <button class="control-btn" onclick="zoomIn()" aria-label="Zoom In">+</button>
+      <button class="control-btn" onclick="zoomOut()" aria-label="Zoom Out">-</button>
+      <button class="control-btn" onclick="resetZoom()" aria-label="Reset Zoom">⟲</button>
+    </div>
+
+    <div id="detail-panel">
+      <div class="detail-header">
+        <h2 id="detail-title">Select a Node</h2>
+      </div>
+      <div id="detail-body" class="detail-scroll">
+        <p class="detail-placeholder">Click on any node to view details.</p>
+      </div>
+      <div class="detail-footer">
+        <button class="action-btn ghost" onclick="openInLocalView()">Open in Local View</button>
+        <button class="action-btn ghost" onclick="openInGraphView()">Open in Graph View</button>
+        <button class="action-btn" onclick="openInEditor()">Open in Editor</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/static/index.js"></script>
+</body>
+</html>

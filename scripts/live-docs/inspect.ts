@@ -6,13 +6,13 @@ import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
   normalizeLiveDocumentationConfig,
   type LiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
+import { normalizeWorkspacePath } from "@live-documentation/shared/tooling/pathUtils";
 import {
   buildLiveDocGraph,
   type LiveDocGraph,
   type LiveDocGraphNode
-} from "./lib/liveDocGraph";
+} from "@live-documentation/scripts/live-docs/graph/liveDocGraph";
 
 interface ParsedArgs {
   help: boolean;

@@ -7,7 +7,7 @@ import {
   normalizeLiveDocumentationConfig,
   type LiveDocumentationConfig,
   type LiveDocumentationConfigInput
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
 
 import type { HeadlessHarnessScenario } from "./scenarios";
 import type { LiveDocGeneratorResult } from "../generator";

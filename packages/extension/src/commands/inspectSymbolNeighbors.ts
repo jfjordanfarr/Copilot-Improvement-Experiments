@@ -5,7 +5,7 @@ import { z } from "zod";
 import {
   INSPECT_SYMBOL_NEIGHBORS_REQUEST,
   type InspectSymbolNeighborsParams
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { KnowledgeArtifactSchema, LinkRelationshipKindSchema } from "../shared/artifactSchemas";
 import { resolveWindowApis } from "../testing/testHooks";

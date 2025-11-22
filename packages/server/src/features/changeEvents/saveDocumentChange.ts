@@ -4,7 +4,7 @@ import {
   GraphStore,
   KnowledgeArtifact,
   LinkInferenceRunResult
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { normalizeFileUri } from "../utils/uri";
 import type { DocumentTrackedArtifactChange } from "../watchers/artifactWatcher";

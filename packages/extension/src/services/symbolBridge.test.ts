@@ -10,7 +10,7 @@ import {
   workspace
 } from "vscode";
 
-import type { ArtifactSeed } from "@copilot-improvement/shared";
+import type { ArtifactSeed } from "@live-documentation/shared";
 
 import { SymbolBridgeAnalyzer } from "./symbolBridge";
 

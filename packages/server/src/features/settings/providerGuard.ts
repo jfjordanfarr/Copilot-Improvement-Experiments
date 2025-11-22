@@ -1,6 +1,6 @@
 import { Connection } from "vscode-languageserver";
 
-import type { LinkRelationshipKind } from "@copilot-improvement/shared";
+import type { LinkRelationshipKind } from "@live-documentation/shared";
 
 export interface RippleExtensionSettings {
   maxDepth?: number;

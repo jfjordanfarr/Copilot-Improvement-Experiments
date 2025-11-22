@@ -5,30 +5,30 @@ import path from "node:path";
 import {
   normalizeLiveDocumentationConfig,
   type LiveDocumentationConfig
-} from "@copilot-improvement/shared/config/liveDocumentationConfig";
+} from "@live-documentation/shared/config/liveDocumentationConfig";
 import type {
   CoActivationEdge,
   CoActivationReport
-} from "@copilot-improvement/shared/live-docs/analysis/coActivation";
+} from "@live-documentation/shared/live-docs/analysis/coActivation";
 import {
   cleanupEmptyParents,
   directoryExists,
   formatRelativePathFromDoc,
   hasMeaningfulAuthoredContent
-} from "@copilot-improvement/shared/live-docs/core";
+} from "@live-documentation/shared/live-docs/core";
 import {
   extractAuthoredBlock,
   renderLiveDocMarkdown,
   type LiveDocRenderSection
-} from "@copilot-improvement/shared/live-docs/markdown";
+} from "@live-documentation/shared/live-docs/markdown";
 import {
   normalizeLiveDocMetadata,
   type LiveDocMetadata,
   type LiveDocProvenance
-} from "@copilot-improvement/shared/live-docs/schema";
-import type { Stage0Doc, Stage0Symbol, TargetManifest } from "@copilot-improvement/shared/live-docs/types";
-import { slug as githubSlug } from "@copilot-improvement/shared/tooling/githubSlugger";
-import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
+} from "@live-documentation/shared/live-docs/schema";
+import type { Stage0Doc, Stage0Symbol, TargetManifest } from "@live-documentation/shared/live-docs/types";
+import { slug as githubSlug } from "@live-documentation/shared/tooling/githubSlugger";
+import { normalizeWorkspacePath } from "@live-documentation/shared/tooling/pathUtils";
 
 import { loadStage0Docs } from "../stage0/docLoader";
 import { loadTargetManifest } from "../targets/manifest";

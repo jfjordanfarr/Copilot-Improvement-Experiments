@@ -2,7 +2,7 @@ import { glob } from "glob";
 import * as fs from "node:fs/promises";
 import path from "node:path";
 
-import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
+import { normalizeWorkspacePath } from "@live-documentation/shared/tooling/pathUtils";
 
 export type EvidenceKind = "unit" | "integration" | "benchmark" | "manual";
 

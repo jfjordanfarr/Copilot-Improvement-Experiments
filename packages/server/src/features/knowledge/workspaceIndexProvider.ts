@@ -15,7 +15,7 @@ import {
   RelationshipHint,
   WorkspaceLinkContribution,
   WorkspaceLinkProvider
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 interface WorkspaceIndexProviderOptions {
   rootPath: string;

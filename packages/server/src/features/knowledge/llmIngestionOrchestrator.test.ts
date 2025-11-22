@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { GraphStore } from "@copilot-improvement/shared";
+import { GraphStore } from "@live-documentation/shared";
 import { afterEach, describe, expect, it } from "vitest";
 import type { Connection } from "vscode-languageserver";
 

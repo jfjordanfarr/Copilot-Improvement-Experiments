@@ -3,8 +3,8 @@ import { pathToFileURL } from "node:url";
 import { describe, expect, it, vi } from "vitest";
 import { TextDocument } from "vscode-languageserver-textdocument";
 
-import { LinkInferenceOrchestrator } from "@copilot-improvement/shared";
-import type { GraphStore } from "@copilot-improvement/shared";
+import { LinkInferenceOrchestrator } from "@live-documentation/shared";
+import type { GraphStore } from "@live-documentation/shared";
 
 import { ArtifactWatcher } from "./artifactWatcher";
 import type { QueuedChange } from "../changeEvents/changeQueue";

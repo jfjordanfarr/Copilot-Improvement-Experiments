@@ -4,7 +4,7 @@ import {
   type ListOutstandingDiagnosticsResult,
   type OutstandingDiagnosticSummary,
   type KnowledgeArtifact
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 export function buildOutstandingDiagnosticsResult(
   records: DiagnosticRecord[],

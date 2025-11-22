@@ -1,0 +1,27 @@
+import type { ViewName } from "./types";
+
+export function requireElement<T extends HTMLElement>(id: string): T {
+  const element = document.getElementById(id);
+  if (!element) {
+    throw new Error(`Expected element #${id}`);
+  }
+  return element as T;
+}
+
+export function setActiveView(view: ViewName): void {
+  document.querySelectorAll<HTMLElement>(".nav-item").forEach(element => {
+    if (element.dataset.view === view) {
+      element.classList.add("active");
+    } else {
+      element.classList.remove("active");
+    }
+  });
+
+  document.querySelectorAll<HTMLElement>(".view-container").forEach(container => {
+    if (container.id === `view-${view}`) {
+      container.classList.add("active");
+    } else {
+      container.classList.remove("active");
+    }
+  });
+}

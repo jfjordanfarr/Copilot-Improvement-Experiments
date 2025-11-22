@@ -16,7 +16,7 @@ import {
   type FeedsReadyResult,
   type InvokeLlmRequest,
   type InvokeLlmResult
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { registerAcknowledgementWorkflow } from "./commands/acknowledgeDiagnostic";
 import { registerAnalyzeWithAICommand } from "./commands/analyzeWithAI";

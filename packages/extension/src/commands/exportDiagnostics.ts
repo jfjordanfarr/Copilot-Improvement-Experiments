@@ -6,7 +6,7 @@ import { LanguageClient } from "vscode-languageclient/node";
 import {
   LIST_OUTSTANDING_DIAGNOSTICS_REQUEST,
   type ListOutstandingDiagnosticsResult
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 export const EXPORT_DIAGNOSTICS_COMMAND = "linkDiagnostics.exportDiagnostics";
 

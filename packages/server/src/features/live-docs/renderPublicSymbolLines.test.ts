@@ -1,8 +1,8 @@
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 
-import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { computePublicSymbolHeadingInfo } from "@copilot-improvement/shared/live-docs/core";
+import { LIVE_DOCUMENTATION_FILE_EXTENSION } from "@live-documentation/shared/config/liveDocumentationConfig";
+import { computePublicSymbolHeadingInfo } from "@live-documentation/shared/live-docs/core";
 
 import { __testUtils } from "./generator";
 

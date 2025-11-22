@@ -7,8 +7,8 @@ import {
   type LinkRelationshipKind,
   type SymbolProfileEnforcementMode,
   toWorkspaceRelativePath
-} from "@copilot-improvement/shared";
-import type { SymbolProfileLookup } from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
+import type { SymbolProfileLookup } from "@live-documentation/shared";
 
 export interface SymbolCorrectnessDiagnosticOptions {
   workspaceRoot: string;

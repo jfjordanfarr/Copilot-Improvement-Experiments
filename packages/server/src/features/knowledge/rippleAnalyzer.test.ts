@@ -4,7 +4,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
-import { GraphStore, type KnowledgeArtifact } from "@copilot-improvement/shared";
+import { GraphStore, type KnowledgeArtifact } from "@live-documentation/shared";
 
 import { RippleAnalyzer } from "./rippleAnalyzer";
 

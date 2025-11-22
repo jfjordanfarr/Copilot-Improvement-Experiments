@@ -5,7 +5,7 @@ import { z } from "zod";
 import {
   INSPECT_DEPENDENCIES_REQUEST,
   type InspectDependenciesParams
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { KnowledgeArtifactSchema, LinkRelationshipKindSchema } from "../shared/artifactSchemas";
 

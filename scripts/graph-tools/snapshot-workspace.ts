@@ -15,7 +15,7 @@ import {
   type ExternalArtifact,
   type ExternalLink,
   type ExternalSnapshot
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { createWorkspaceIndexProvider } from "../../packages/server/src/features/knowledge/workspaceIndexProvider";
 

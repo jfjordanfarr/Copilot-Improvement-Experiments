@@ -16,7 +16,7 @@ import {
   type LinkedArtifactSummary,
   type RelationshipCoverageDiagnostic,
   type RelationshipRuleWarning
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { snapshotWorkspace, DEFAULT_DB, DEFAULT_OUTPUT } from "./snapshot-workspace";
 import {

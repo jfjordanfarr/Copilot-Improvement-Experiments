@@ -5,7 +5,7 @@ import {
   ExternalStreamEvent,
   KnowledgeFeed,
   KnowledgeFeedSnapshotSource
-} from "@copilot-improvement/shared";
+} from "@live-documentation/shared";
 
 import { FeedDiagnosticsGateway, type FeedStatusSummary } from "./feedDiagnosticsGateway";
 import {
