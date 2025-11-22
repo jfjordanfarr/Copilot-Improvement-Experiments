@@ -306,25 +306,26 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
   <script src="//unpkg.com/3d-force-graph"></script>
   <style>
     :root {
-      --bg: #1e1e1e;
-      --sidebar-bg: #252526;
-      --border: #333;
-      --accent: #007acc;
-      --text: #ccc;
-      --text-active: #fff;
-      --glass: rgba(37, 37, 38, 0.95);
-      --cluster-bg: rgba(255, 255, 255, 0.03);
-      --cluster-border: #444;
-      --node-bg: #2d2d30;
-      --node-border: #555;
-      --node-hover: #3e3e42;
+    --bg: #18181a;
+    --sidebar-bg: #1f1f22;
+    --border: #2f2f34;
+    --accent: #0091ff;
+    --text: #e4e4e4;
+    --text-active: #ffffff;
+    --glass: rgba(34, 34, 37, 0.95);
+    --cluster-bg: rgba(0, 145, 255, 0.06);
+    --cluster-border: rgba(0, 145, 255, 0.12);
+    --node-bg: #232326;
+    --node-border: #3f3f46;
+    --node-hover: #2f2f33;
+    --connection-stroke: rgba(0, 189, 255, 0.45);
     }
     body { margin: 0; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; display: flex; height: 100vh; }
     #sidebar { width: 260px; background: var(--sidebar-bg); border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 100; box-shadow: 2px 0 5px rgba(0,0,0,0.2); }
     .sidebar-header { padding: 20px; font-weight: bold; font-size: 18px; color: var(--text-active); border-bottom: 1px solid var(--border); background: #111; }
-    .nav-item { padding: 12px 20px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; border-left: 3px solid transparent; }
-    .nav-item:hover { background: rgba(255,255,255,0.05); }
-    .nav-item.active { background: rgba(0,122,204,0.1); color: var(--accent); border-left: 3px solid var(--accent); }
+    .nav-item { padding: 12px 20px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; border-left: 3px solid transparent; font-size: 14px; color: var(--text); }
+    .nav-item:hover { background: rgba(0,145,255,0.12); color: var(--text-active); }
+    .nav-item.active { background: rgba(0,145,255,0.18); color: var(--accent); border-left: 3px solid var(--accent); }
     #context-bar { padding: 10px 20px; font-size: 12px; color: #888; border-top: 1px solid var(--border); margin-top: auto; background: #111; display: flex; flex-direction: column; gap: 6px; }
     #context-bar span { color: var(--accent); font-weight: bold; }
     #stats-line { font-size: 11px; color: #777; }
@@ -346,18 +347,28 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
             box-sizing: border-box;
         }
 
-        .cluster { border: 1px solid var(--cluster-border); background: var(--cluster-bg); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+        .view-toolbar { position: absolute; top: 20px; right: 20px; display: flex; gap: 14px; align-items: center; z-index: 160; padding: 12px 16px; background: var(--glass); border: 1px solid var(--border); border-radius: 999px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); backdrop-filter: blur(14px); }
+        .filter-toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text); cursor: pointer; user-select: none; padding: 6px 10px; border-radius: 999px; transition: background 0.2s ease, color 0.2s ease; }
+        .filter-toggle input { appearance: none; width: 16px; height: 16px; border-radius: 4px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); position: relative; }
+        .filter-toggle input:checked { background: var(--accent); border-color: var(--accent); }
+        .filter-toggle input:checked::after { content: ""; position: absolute; inset: 4px; background: white; border-radius: 2px; }
+        .filter-toggle:hover { background: rgba(0,145,255,0.12); color: var(--text-active); }
+
+        .cluster { border: 1px solid var(--cluster-border); background: var(--cluster-bg); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease; position: relative; cursor: zoom-in; }
         .cluster-label { font-size: 12px; font-weight: bold; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
         .cluster-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; align-items: start; }
         .cluster-content > .cluster { grid-column: 1 / -1; }
 
-    .node-card { width: 200px; background: var(--node-bg); border: 1px solid var(--node-border); border-radius: 6px; padding: 12px; position: relative; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); flex-shrink: 0; }
+        .cluster:hover { border-color: rgba(0,145,255,0.6); box-shadow: 0 12px 30px rgba(0,145,255,0.18); background: rgba(0, 145, 255, 0.1); }
+        .cluster:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+    .node-card { width: 200px; background: var(--node-bg); border: 1px solid var(--node-border); border-radius: 6px; padding: 12px; position: relative; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.28); flex-shrink: 0; }
     .node-card:hover { background: var(--node-hover); border-color: #777; }
     .node-card.selected { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,122,204,0.3); }
     .node-title { font-weight: bold; font-size: 13px; color: #eee; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .node-path { font-size: 10px; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .node-meta { margin-top: 8px; font-size: 10px; color: #999; display: flex; gap: 6px; flex-wrap: wrap; }
-    .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); }
+    .node-path { font-size: 10px; color: #a8a8b2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .node-meta { margin-top: 8px; font-size: 10px; color: #c0c0c8; display: flex; gap: 6px; flex-wrap: wrap; }
+    .badge { display: inline-block; padding: 2px 6px; border-radius: 4px; background: rgba(0,145,255,0.15); border: 1px solid rgba(0,145,255,0.45); color: #f0f8ff; }
 
     .pin { position: absolute; width: 8px; height: 8px; background: #555; border-radius: 50%; }
     .pin.top { top: -4px; left: 50%; transform: translateX(-50%); }
@@ -380,9 +391,18 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
     .control-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--sidebar-bg); border: 1px solid var(--border); color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 2px 5px rgba(0,0,0,0.3); transition: all 0.2s; }
     .control-btn:hover { background: #333; color: white; transform: translateY(-2px); }
 
-    button.action-btn { width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-    button.action-btn:hover { background: #0062a3; }
-    svg.connections-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+    button.action-btn { width: 100%; padding: 10px; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background 0.2s ease, transform 0.2s ease; }
+    button.action-btn:hover { background: #0070d4; transform: translateY(-1px); }
+    button.action-btn.ghost { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+    button.action-btn.ghost:hover { background: rgba(0,145,255,0.18); }
+    .connections-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+    .connection-line { position: absolute; height: 2px; background: var(--connection-stroke); border-radius: 999px; transform-origin: 0 50%; opacity: 0.85; box-shadow: 0 0 8px rgba(0, 189, 255, 0.25); }
+    .connection-line[data-kind="extends"] { background: rgba(255, 104, 144, 0.75); box-shadow: 0 0 10px rgba(255, 104, 144, 0.45); }
+    .connection-line[data-kind="implements"] { background: rgba(255, 188, 87, 0.75); box-shadow: 0 0 10px rgba(255, 188, 87, 0.35); }
+    .nav-item:focus-visible,
+    .control-btn:focus-visible,
+    .node-card:focus-visible,
+    button.action-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   </style>
 </head>
 <body>
@@ -399,15 +419,20 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
 
   <div id="main">
     <div id="view-circuit" class="view-container active">
+        <div id="circuit-toolbar" class="view-toolbar" role="group" aria-label="Circuit Filters">
+            <span style="font-size:12px;color:#9ba3b1;letter-spacing:0.04em;text-transform:uppercase;">Show</span>
+            <label class="filter-toggle"><input id="filter-toggle-tests" type="checkbox" aria-label="Toggle test archetype"><span>Tests</span></label>
+            <label class="filter-toggle"><input id="filter-toggle-assets" type="checkbox" aria-label="Toggle asset archetype"><span>Assets</span></label>
+        </div>
         <div id="circuit-viewport" style="width:100%;height:100%;overflow:hidden;cursor:grab;">
             <div id="circuit-container" class="dom-layer"></div>
-            <svg id="circuit-connections" class="connections-layer"></svg>
+            <div id="circuit-connections" class="connections-layer"></div>
         </div>
     </div>
 
     <div id="view-map" class="view-container">
         <div id="map-container" class="dom-layer" style="width: 100%; height: 100%;"></div>
-        <svg id="map-connections" class="connections-layer"></svg>
+        <div id="map-connections" class="connections-layer"></div>
     </div>
 
     <div id="view-graph" class="view-container">
@@ -427,7 +452,9 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
         <div id="detail-body" class="detail-scroll">
             <p style="color: #888;">Click on any node to view details.</p>
         </div>
-        <div class="detail-footer">
+        <div class="detail-footer" style="display:flex;flex-direction:column;gap:10px;">
+            <button class="action-btn ghost" onclick="openInLocalView()">Open in Local View</button>
+            <button class="action-btn ghost" onclick="openInGraphView()">Open in Graph View</button>
             <button class="action-btn" onclick="openInEditor()">Open in Editor</button>
         </div>
     </div>
@@ -483,41 +510,85 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
         const graphData = ${serializedGraph};
         console.log("Graph Data Loaded:", graphData);
 
-        const state = { view: "circuit", selectedNode: null };
+        const state = {
+            view: "circuit",
+            selectedNode: null,
+            filters: {
+                showTests: false,
+                showAssets: false
+            }
+        };
         const nodesById = new Map(graphData.nodes.map(function (node) { return [node.id, node]; }));
         let circuitTransform = { x: 0, y: 0, k: 1 };
         let isDragging = false;
-        let dragStartX = 0;
-        let dragStartY = 0;
+        let lastDragPosition = null;
+        let dragVelocity = { x: 0, y: 0 };
         let forceGraphInstance = null;
         let circuitHasInitialFit = false;
+        let circuitUserAdjusted = false;
+        let circuitInertiaFrame = 0;
+        let circuitAnimationFrame = 0;
 
         const viewport = document.getElementById("circuit-viewport");
         const circuitContainer = document.getElementById("circuit-container");
         const circuitConnections = document.getElementById("circuit-connections");
+        const filterToggleTests = document.getElementById("filter-toggle-tests");
+        const filterToggleAssets = document.getElementById("filter-toggle-assets");
         const statsLine = document.getElementById("stats-line");
         if (statsLine) {
           statsLine.textContent = graphData.stats.nodes + " nodes, " + graphData.stats.links + " links, " + graphData.stats.missingDependencies + " missing dependencies";
         }
+
+        syncFilterControls();
+
+        if (filterToggleTests) {
+            filterToggleTests.addEventListener("change", function (event) {
+                state.filters.showTests = event.target.checked;
+                if (state.view === "circuit") {
+                    renderCircuit();
+                }
+            });
+        }
+        if (filterToggleAssets) {
+            filterToggleAssets.addEventListener("change", function (event) {
+                state.filters.showAssets = event.target.checked;
+                if (state.view === "circuit") {
+                    renderCircuit();
+                }
+            });
+        }
+
+        viewport.style.cursor = "grab";
 
         viewport.addEventListener("mousedown", function (event) {
             if (event.target.closest(".node-card")) {
                 return;
             }
             isDragging = true;
-            dragStartX = event.clientX - circuitTransform.x;
-            dragStartY = event.clientY - circuitTransform.y;
+            circuitUserAdjusted = true;
+            cancelInertia();
+            lastDragPosition = { x: event.clientX, y: event.clientY, time: performance.now() };
+            dragVelocity = { x: 0, y: 0 };
             viewport.style.cursor = "grabbing";
         });
 
         window.addEventListener("mousemove", function (event) {
-            if (!isDragging) {
+            if (!isDragging || !lastDragPosition) {
                 return;
             }
             event.preventDefault();
-            circuitTransform.x = event.clientX - dragStartX;
-            circuitTransform.y = event.clientY - dragStartY;
+            const now = performance.now();
+            const deltaX = event.clientX - lastDragPosition.x;
+            const deltaY = event.clientY - lastDragPosition.y;
+            circuitTransform.x += deltaX;
+            circuitTransform.y += deltaY;
             updateCircuitTransform();
+            const elapsed = Math.max(1, now - lastDragPosition.time);
+            dragVelocity = {
+                x: deltaX / elapsed,
+                y: deltaY / elapsed
+            };
+            lastDragPosition = { x: event.clientX, y: event.clientY, time: now };
         });
 
         window.addEventListener("mouseup", function () {
@@ -526,21 +597,174 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
             }
             isDragging = false;
             viewport.style.cursor = "grab";
+            if (!lastDragPosition) {
+                return;
+            }
+            const vx = dragVelocity.x * 16;
+            const vy = dragVelocity.y * 16;
+            if (Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5) {
+                startInertia(vx, vy);
+            }
         });
 
-        viewport.addEventListener("wheel", function (event) {
+        viewport.addEventListener("wheel", handleWheel, { passive: false });
+
+        function handleWheel(event) {
+            if (state.view !== "circuit") {
+                return;
+            }
+            if (event.ctrlKey || event.metaKey) {
+                event.preventDefault();
+                circuitUserAdjusted = true;
+                cancelInertia();
+                const viewportRect = viewport.getBoundingClientRect();
+                zoomAtPoint(event.clientX - viewportRect.left, event.clientY - viewportRect.top, -event.deltaY * 0.0015);
+                return;
+            }
+
             event.preventDefault();
-            const scaleAmount = -event.deltaY * 0.001;
-            const next = circuitTransform.k * (1 + scaleAmount);
-            circuitTransform.k = Math.min(Math.max(0.1, next), 5);
+            circuitUserAdjusted = true;
+            cancelInertia();
+            circuitTransform.x -= event.deltaX;
+            circuitTransform.y -= event.deltaY;
             updateCircuitTransform();
-        });
+        }
+
+        function zoomAtPoint(offsetX, offsetY, delta) {
+            const scaleFactor = Math.exp(delta);
+            const nextScale = clamp(circuitTransform.k * scaleFactor, 0.1, 5);
+            const localX = (offsetX - circuitTransform.x) / circuitTransform.k;
+            const localY = (offsetY - circuitTransform.y) / circuitTransform.k;
+            circuitTransform.k = nextScale;
+            circuitTransform.x = offsetX - localX * circuitTransform.k;
+            circuitTransform.y = offsetY - localY * circuitTransform.k;
+            updateCircuitTransform();
+            circuitUserAdjusted = true;
+        }
 
         function updateCircuitTransform() {
-            const transform = "translate(" + circuitTransform.x + "px, " + circuitTransform.y + "px) scale(" + circuitTransform.k + ")";
-            circuitContainer.style.transform = transform;
-            circuitConnections.style.transform = transform;
+            const matrix = "matrix(" + circuitTransform.k + ",0,0," + circuitTransform.k + "," + circuitTransform.x + "," + circuitTransform.y + ")";
+            circuitContainer.style.transformOrigin = "0 0";
             circuitConnections.style.transformOrigin = "0 0";
+            circuitContainer.style.transform = matrix;
+            circuitConnections.style.transform = matrix;
+        }
+
+        function startInertia(initialVx, initialVy) {
+            cancelInertia();
+            cancelAnimationFrame(circuitAnimationFrame);
+            circuitUserAdjusted = true;
+            let vx = initialVx;
+            let vy = initialVy;
+            const friction = 0.9;
+            function step() {
+                circuitTransform.x += vx;
+                circuitTransform.y += vy;
+                updateCircuitTransform();
+                vx *= friction;
+                vy *= friction;
+                if (Math.abs(vx) < 0.3 && Math.abs(vy) < 0.3) {
+                    cancelInertia();
+                    return;
+                }
+                circuitInertiaFrame = requestAnimationFrame(step);
+            }
+            circuitInertiaFrame = requestAnimationFrame(step);
+        }
+
+        function cancelInertia() {
+            if (circuitInertiaFrame) {
+                cancelAnimationFrame(circuitInertiaFrame);
+                circuitInertiaFrame = 0;
+            }
+        }
+
+        function animateCircuitTransform(target, options) {
+            cancelAnimationFrame(circuitAnimationFrame);
+            const duration = Math.max(1, (options && options.duration) || 400);
+            const to = {
+                x: target.x,
+                y: target.y,
+                k: clamp(target.k == null ? circuitTransform.k : target.k, 0.1, 5)
+            };
+            const from = { x: circuitTransform.x, y: circuitTransform.y, k: circuitTransform.k };
+            const suppressUserState = options && options.suppressUserState;
+            if (!suppressUserState) {
+                circuitUserAdjusted = true;
+            }
+
+            const start = performance.now();
+            function step(now) {
+                const progress = clamp((now - start) / duration, 0, 1);
+                const eased = easeOutCubic(progress);
+                circuitTransform.x = from.x + (to.x - from.x) * eased;
+                circuitTransform.y = from.y + (to.y - from.y) * eased;
+                circuitTransform.k = from.k + (to.k - from.k) * eased;
+                updateCircuitTransform();
+                if (progress < 1) {
+                    circuitAnimationFrame = requestAnimationFrame(step);
+                }
+            }
+            circuitAnimationFrame = requestAnimationFrame(step);
+        }
+
+        function focusClusterElement(element, options) {
+            if (!element || !element.isConnected) {
+                return;
+            }
+            cancelInertia();
+            const opts = options || {};
+            if (!opts.suppressUserState) {
+                circuitUserAdjusted = true;
+            }
+
+            const currentContainerTransform = circuitContainer.style.transform;
+            const currentOverlayTransform = circuitConnections.style.transform;
+            circuitContainer.style.transform = "none";
+            circuitConnections.style.transform = "none";
+
+            const elementRect = element.getBoundingClientRect();
+            const containerRect = circuitContainer.getBoundingClientRect();
+            const viewportRect = viewport.getBoundingClientRect();
+
+            const padding = opts.padding == null ? 160 : opts.padding;
+            const width = Math.max(elementRect.width, 1);
+            const height = Math.max(elementRect.height, 1);
+            const scaleX = (viewportRect.width - padding) / width;
+            const scaleY = (viewportRect.height - padding) / height;
+            const targetScale = clamp(Math.min(scaleX, scaleY), 0.2, 3.2);
+
+            const centerX = elementRect.left - containerRect.left + width / 2;
+            const centerY = elementRect.top - containerRect.top + height / 2;
+
+            circuitContainer.style.transform = currentContainerTransform;
+            circuitConnections.style.transform = currentOverlayTransform;
+
+            const targetX = viewportRect.width / 2 - centerX * targetScale;
+            const targetY = viewportRect.height / 2 - centerY * targetScale;
+
+            animateCircuitTransform({ x: targetX, y: targetY, k: targetScale }, {
+                duration: opts.duration || 450,
+                suppressUserState: opts.suppressUserState
+            });
+        }
+
+        function easeOutCubic(t) {
+            const p = t - 1;
+            return p * p * p + 1;
+        }
+
+        function clamp(value, minimum, maximum) {
+            return Math.min(Math.max(value, minimum), maximum);
+        }
+
+        function syncFilterControls() {
+            if (filterToggleTests) {
+                filterToggleTests.checked = !!state.filters.showTests;
+            }
+            if (filterToggleAssets) {
+                filterToggleAssets.checked = !!state.filters.showAssets;
+            }
         }
 
         window.switchView = function (event, viewName) {
@@ -566,8 +790,19 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
             }
         }
 
+        function shouldRenderNodeInCircuit(node) {
+            const archetype = (node.archetype || "").toLowerCase();
+            if (archetype === "test" && !state.filters.showTests) {
+                return !!(state.selectedNode && state.selectedNode.id === node.id);
+            }
+            if (archetype === "asset" && !state.filters.showAssets) {
+                return !!(state.selectedNode && state.selectedNode.id === node.id);
+            }
+            return true;
+        }
+
         function buildHierarchy(nodes) {
-            const root = { children: new Map(), nodes: [] };
+            const root = { name: "", path: "__root__", children: new Map(), nodes: [] };
             nodes.forEach(function (node) {
                 const parts = node.docRelativePath.split("/").filter(Boolean);
                 if (parts.length === 0) {
@@ -578,7 +813,15 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
                 let current = root;
                 dirParts.forEach(function (part) {
                     if (!current.children.has(part)) {
-                        current.children.set(part, { children: new Map(), nodes: [] });
+                        const segmentPath = current.path === "__root__"
+                            ? part
+                            : current.path + "/" + part;
+                        current.children.set(part, {
+                            name: part,
+                            path: segmentPath,
+                            children: new Map(),
+                            nodes: []
+                        });
                     }
                     current = current.children.get(part);
                 });
@@ -588,23 +831,48 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
         }
 
         function renderCircuit() {
-            const hierarchy = buildHierarchy(graphData.nodes);
+            syncFilterControls();
+            const nodesForCircuit = graphData.nodes.filter(shouldRenderNodeInCircuit);
+            const hierarchy = buildHierarchy(nodesForCircuit);
             const clusterElements = [];
+            const pathToElement = new Map();
+            const dominantCluster = findDominantCluster(nodesForCircuit);
 
-            function renderDir(label, dir) {
+            function renderDir(dir) {
+                const pathKey = dir.path || "__root__";
                 const element = document.createElement("div");
                 element.className = "cluster";
+                element.dataset.clusterPath = pathKey;
+                element.tabIndex = 0;
+                element.setAttribute("role", "button");
+                element.setAttribute("aria-label", "Cluster " + (dir.path === "__root__" ? "root" : dir.path));
+                pathToElement.set(pathKey, element);
+
+                element.addEventListener("click", function (event) {
+                    if (event.target.closest(".node-card")) {
+                        return;
+                    }
+                    event.stopPropagation();
+                    focusClusterElement(element, { padding: 220, duration: 420 });
+                });
+
+                element.addEventListener("keydown", function (event) {
+                    if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        focusClusterElement(element, { padding: 220, duration: 420 });
+                    }
+                });
 
                 const heading = document.createElement("div");
                 heading.className = "cluster-label";
-                heading.textContent = label;
+                heading.textContent = dir.path === "__root__" ? "(root)" : dir.name;
                 element.appendChild(heading);
 
                 const content = document.createElement("div");
                 content.className = "cluster-content";
 
-                dir.children.forEach(function (child, childLabel) {
-                    content.appendChild(renderDir(childLabel, child));
+                dir.children.forEach(function (child) {
+                    content.appendChild(renderDir(child));
                 });
 
                 dir.nodes
@@ -633,16 +901,21 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
                 return element;
             }
 
-            hierarchy.children.forEach(function (child, label) {
-                clusterElements.push(renderDir(label, child));
+            hierarchy.children.forEach(function (child) {
+                clusterElements.push(renderDir(child));
             });
 
             if (hierarchy.nodes.length > 0) {
-                clusterElements.push(renderDir("(root)", { children: new Map(), nodes: hierarchy.nodes }));
+                clusterElements.push(renderDir({
+                    name: "(root)",
+                    path: "__root__",
+                    children: new Map(),
+                    nodes: hierarchy.nodes
+                }));
             }
 
             if (clusterElements.length === 0) {
-                circuitContainer.innerHTML = '<div style="color:#888;">No documentation nodes detected.</div>';
+                circuitContainer.innerHTML = '<div style="color:#888;">No documentation nodes matched the current filters.</div>';
                 circuitContainer.style.setProperty("--circuit-max-width", "800px");
                 updateCircuitTransform();
                 requestAnimationFrame(drawConnections);
@@ -673,14 +946,81 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
             }
 
             updateCircuitTransform();
-            requestAnimationFrame(drawConnections);
+            requestAnimationFrame(function () {
+                drawConnections();
+                if (!circuitUserAdjusted && dominantCluster) {
+                    var primaryElement = null;
+                    if (pathToElement.has(dominantCluster.path)) {
+                        primaryElement = pathToElement.get(dominantCluster.path);
+                    } else {
+                        var fallbackPath = "__root__";
+                        if (state.selectedNode) {
+                            fallbackPath = getDirectoryKey(state.selectedNode);
+                        }
+                        primaryElement = pathToElement.get(fallbackPath) || pathToElement.get("__root__");
+                    }
+                    if (primaryElement) {
+                        focusClusterElement(primaryElement, {
+                        padding: 240,
+                        duration: 520,
+                        suppressUserState: true
+                        });
+                    }
+                }
+            });
+        }
+
+        function findDominantCluster(nodes) {
+            if (!nodes || nodes.length === 0) {
+                return null;
+            }
+            const included = new Set(nodes.map(function (node) { return node.id; }));
+            const degreeMap = new Map();
+            graphData.links.forEach(function (link) {
+                const sourceId = typeof link.source === "object" ? link.source.id : link.source;
+                const targetId = typeof link.target === "object" ? link.target.id : link.target;
+                if (included.has(sourceId)) {
+                    degreeMap.set(sourceId, (degreeMap.get(sourceId) || 0) + 1);
+                }
+                if (included.has(targetId)) {
+                    degreeMap.set(targetId, (degreeMap.get(targetId) || 0) + 1);
+                }
+            });
+
+            const directoryScores = new Map();
+            nodes.forEach(function (node) {
+                const key = getDirectoryKey(node);
+                if (!directoryScores.has(key)) {
+                    directoryScores.set(key, { score: 0, count: 0 });
+                }
+                const entry = directoryScores.get(key);
+                entry.score += degreeMap.get(node.id) || 0;
+                entry.count += 1;
+            });
+
+            let best = null;
+            directoryScores.forEach(function (value, key) {
+                if (!best || value.score > best.score || (value.score === best.score && value.count > best.count)) {
+                    best = { path: key, score: value.score, count: value.count };
+                }
+            });
+
+            return best;
+        }
+
+        function getDirectoryKey(node) {
+            const parts = (node.docRelativePath || "").split("/").filter(Boolean);
+            if (parts.length <= 1) {
+                return "__root__";
+            }
+            return parts.slice(0, -1).join("/");
         }
 
         function renderMap() {
             const container = document.getElementById("map-container");
             container.innerHTML = "";
-            const svg = document.getElementById("map-connections");
-            svg.innerHTML = "";
+            const overlay = document.getElementById("map-connections");
+            overlay.innerHTML = "";
 
             if (!state.selectedNode) {
                 container.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100%;color:#888;">Select a node to view map</div>';
@@ -705,9 +1045,9 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
 
             const nodesToRender = [centerNode].concat(graphData.nodes.filter(function (node) { return neighbors.has(node.id); }));
 
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            const radius = Math.min(width, height) * 0.25;
+            const width = container.clientWidth || window.innerWidth;
+            const height = container.clientHeight || window.innerHeight;
+            const radius = Math.min(width, height) * 0.3;
 
             nodesToRender.forEach(function (node, index) {
                 const card = document.createElement("div");
@@ -742,16 +1082,7 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
                 if (!sourceEl || !targetEl) {
                     return;
                 }
-                const sourceRect = sourceEl.getBoundingClientRect();
-                const targetRect = targetEl.getBoundingClientRect();
-                const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                line.setAttribute("x1", String(sourceRect.left + sourceRect.width / 2));
-                line.setAttribute("y1", String(sourceRect.top + sourceRect.height / 2));
-                line.setAttribute("x2", String(targetRect.left + targetRect.width / 2));
-                line.setAttribute("y2", String(targetRect.top + targetRect.height / 2));
-                line.setAttribute("stroke", "#555");
-                line.setAttribute("stroke-width", "1");
-                svg.appendChild(line);
+                appendConnectionLine(overlay, sourceEl, targetEl, container, edge.kind || "dependency");
             });
         }
 
@@ -759,8 +1090,8 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
             if (state.view !== "circuit") {
                 return;
             }
-            const svg = document.getElementById("circuit-connections");
-            svg.innerHTML = "";
+            const overlay = document.getElementById("circuit-connections");
+            overlay.innerHTML = "";
 
             const nodeMap = new Map();
             document.querySelectorAll("#circuit-container .node-card").forEach(function (element) {
@@ -780,21 +1111,39 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
                     return;
                 }
 
-                const sourceRect = sourceEl.getBoundingClientRect();
-                const targetRect = targetEl.getBoundingClientRect();
-                const x1 = sourceRect.left + sourceRect.width / 2;
-                const y1 = sourceRect.top + sourceRect.height / 2;
-                const x2 = targetRect.left + targetRect.width / 2;
-                const y2 = targetRect.top + targetRect.height / 2;
-                const midX = (x1 + x2) / 2;
-
-                const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                pathElement.setAttribute("d", "M " + x1 + " " + y1 + " L " + midX + " " + y1 + " L " + midX + " " + y2 + " L " + x2 + " " + y2);
-                pathElement.setAttribute("stroke", "#555");
-                pathElement.setAttribute("stroke-width", "2");
-                pathElement.setAttribute("fill", "none");
-                svg.appendChild(pathElement);
+                appendConnectionLine(overlay, sourceEl, targetEl, circuitContainer, edge.kind || "dependency");
             });
+        }
+
+        function appendConnectionLine(overlay, sourceElement, targetElement, root, kind) {
+            const source = getRelativeCenter(sourceElement, root);
+            const target = getRelativeCenter(targetElement, root);
+
+            const dx = target.x - source.x;
+            const dy = target.y - source.y;
+            const length = Math.sqrt(dx * dx + dy * dy);
+            if (!isFinite(length) || length < 1) {
+                return;
+            }
+
+            const angle = Math.atan2(dy, dx);
+            const line = document.createElement("div");
+            line.className = "connection-line";
+            line.dataset.kind = kind;
+            line.style.width = length + "px";
+            line.style.left = source.x + "px";
+            line.style.top = (source.y - 1) + "px";
+            line.style.transform = "rotate(" + angle + "rad)";
+            overlay.appendChild(line);
+        }
+
+        function getRelativeCenter(element, root) {
+            const elementRect = element.getBoundingClientRect();
+            const rootRect = root.getBoundingClientRect();
+            const scale = root === circuitContainer ? circuitTransform.k || 1 : 1;
+            const relativeX = (elementRect.left - rootRect.left + elementRect.width / 2) / scale;
+            const relativeY = (elementRect.top - rootRect.top + elementRect.height / 2) / scale;
+            return { x: relativeX, y: relativeY };
         }
 
         function renderGraph() {
@@ -951,6 +1300,38 @@ function renderExplorerHtml(graphData: ExplorerGraphPayload): string {
                 return;
             }
             fetch("/open?codePath=" + encodeURIComponent(state.selectedNode.codePath));
+        };
+
+        window.openInLocalView = function () {
+            if (!state.selectedNode) {
+                return;
+            }
+            state.view = "map";
+            circuitUserAdjusted = true;
+            document.querySelectorAll(".nav-item").forEach(function (el) { el.classList.remove("active"); });
+            const mapNav = document.querySelector('.nav-item[data-view="map"]');
+            if (mapNav) {
+                mapNav.classList.add("active");
+            }
+            document.querySelectorAll(".view-container").forEach(function (el) { el.classList.remove("active"); });
+            document.getElementById("view-map").classList.add("active");
+            renderCurrentView();
+        };
+
+        window.openInGraphView = function () {
+            if (!state.selectedNode) {
+                return;
+            }
+            state.view = "graph";
+            circuitUserAdjusted = true;
+            document.querySelectorAll(".nav-item").forEach(function (el) { el.classList.remove("active"); });
+            const graphNav = document.querySelector('.nav-item[data-view="graph"]');
+            if (graphNav) {
+                graphNav.classList.add("active");
+            }
+            document.querySelectorAll(".view-container").forEach(function (el) { el.classList.remove("active"); });
+            document.getElementById("view-graph").classList.add("active");
+            renderCurrentView();
         };
 
         window.zoomIn = function () {
