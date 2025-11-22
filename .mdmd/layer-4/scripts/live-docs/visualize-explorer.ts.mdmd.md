@@ -5,7 +5,7 @@
 - Archetype: implementation
 - Code Path: scripts/live-docs/visualize-explorer.ts
 - Live Doc ID: LD-implementation-scripts-live-docs-visualize-explorer-ts
-- Generated At: 2025-11-20T20:35:25.711Z
+- Generated At: 2025-11-21T19:32:20.770Z
 
 ## Authored
 ### Purpose
@@ -15,7 +15,7 @@ Serve as a sandbox CLI that snapshots the workspace graph and spins up a lightwe
 - Generates induced/inheritance link data on the fly, writes it to `data/graph-snapshots/explorer-temp.json`, and renders multiple SVG views (circuit, map, force) inside a browser shell.
 
 ## Generated
-<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-20T20:35:25.711Z","inputHash":"d12f85d8a2a82404"}]} -->
+<!-- LIVE-DOC:PROVENANCE {"generators":[{"tool":"live-docs-generator","version":"0.1.0","generatedAt":"2025-11-21T19:32:20.770Z","inputHash":"785d26f117756a7a"}]} -->
 <!-- LIVE-DOC:BEGIN Public Symbols -->
 ### Public Symbols
 _No public symbols detected_
@@ -27,5 +27,6 @@ _No public symbols detected_
 - `fs/promises` - `fs`
 - `http` - `createServer`
 - `path` - `path`
-- [`snapshot-workspace.snapshotWorkspace`](../graph-tools/snapshot-workspace.ts.mdmd.md#symbol-snapshotworkspace)
+- [`liveDocGraph.LiveDocGraphNode`](./lib/liveDocGraph.ts.mdmd.md#symbol-livedocgraphnode)
+- [`liveDocGraph.buildLiveDocGraph`](./lib/liveDocGraph.ts.mdmd.md#symbol-buildlivedocgraph)
 <!-- LIVE-DOC:END Dependencies -->

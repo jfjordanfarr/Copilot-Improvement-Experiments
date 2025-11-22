@@ -1,17 +1,18 @@
 #!/usr/bin/env node
-import { glob } from "glob";
-import * as fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
 import {
   DEFAULT_LIVE_DOCUMENTATION_CONFIG,
-  LIVE_DOCUMENTATION_FILE_EXTENSION,
   normalizeLiveDocumentationConfig,
   type LiveDocumentationConfig
 } from "@copilot-improvement/shared/config/liveDocumentationConfig";
-import { parseLiveDocMarkdown } from "@copilot-improvement/shared/live-docs/parse";
 import { normalizeWorkspacePath } from "@copilot-improvement/shared/tooling/pathUtils";
+import {
+  buildLiveDocGraph,
+  type LiveDocGraph,
+  type LiveDocGraphNode
+} from "./lib/liveDocGraph";
 
 interface ParsedArgs {
   help: boolean;
@@ -28,29 +29,6 @@ interface ParsedArgs {
 }
 
 type Direction = "outbound" | "inbound";
-
-interface ParsedDocEntry {
-  codePath: string;
-  docPath: string;
-  dependencies: string[];
-  publicSymbols: string[];
-  symbolDocumentation: Record<string, ParsedSymbolDocumentationEntry>;
-}
-
-interface GraphNode {
-  codePath: string;
-  docPath: string;
-  dependencies: Set<string>;
-  rawDependencies: string[];
-  publicSymbols: string[];
-  symbolDocumentation: Record<string, ParsedSymbolDocumentationEntry>;
-}
-
-interface LiveDocGraph {
-  nodes: Map<string, GraphNode>;
-  inbound: Map<string, Set<string>>;
-  docToCode: Map<string, string>;
-}
 
 interface FrontierEntry {
   node: string;
@@ -86,12 +64,6 @@ interface SymbolDescriptor {
 interface SymbolParameterDescriptor {
   name: string;
   description?: string;
-}
-
-interface ParsedSymbolDocumentationEntry {
-  summary?: string;
-  remarks?: string;
-  parameters?: Array<{ name: string; description?: string }>;
 }
 
 interface FanoutPath {
@@ -130,7 +102,7 @@ async function main(): Promise<void> {
     extension: args.extension ?? DEFAULT_LIVE_DOCUMENTATION_CONFIG.extension
   });
 
-  const graph = await buildGraph(workspaceRoot, configInput);
+  const graph = await buildLiveDocGraph({ workspaceRoot, config: configInput });
   if (graph.nodes.size === 0) {
     console.error("No Live Docs found. Generate Live Documentation before running inspect.");
     process.exit(1);
@@ -262,82 +234,6 @@ function expectValue(argv: string[], index: number, flag: string): string {
     throw new Error(`Expected value after ${flag}.`);
   }
   return argv[index];
-}
-
-async function buildGraph(
-  workspaceRoot: string,
-  config: LiveDocumentationConfig
-): Promise<LiveDocGraph> {
-  const docGlob = path.join(
-    config.root,
-    config.baseLayer,
-    "**",
-    `*${config.extension ?? LIVE_DOCUMENTATION_FILE_EXTENSION}`
-  );
-
-  const docPaths = await glob(docGlob, {
-    cwd: workspaceRoot,
-    absolute: true,
-    nodir: true,
-    windowsPathsNoEscape: true
-  });
-
-  const entries = new Map<string, ParsedDocEntry>();
-
-  for (const absoluteDocPath of docPaths) {
-    const content = await fs.readFile(absoluteDocPath, "utf8");
-    const parsed = parseLiveDocMarkdown(content, absoluteDocPath, workspaceRoot, config);
-    if (!parsed) {
-      continue;
-    }
-
-    entries.set(parsed.sourcePath, {
-      codePath: parsed.sourcePath,
-      docPath: parsed.docPath,
-      dependencies: parsed.dependencies,
-      publicSymbols: parsed.publicSymbols,
-      symbolDocumentation: parsed.symbolDocumentation
-    });
-  }
-
-  const nodes = new Map<string, GraphNode>();
-  const inbound = new Map<string, Set<string>>();
-  const docToCode = new Map<string, string>();
-
-  for (const entry of entries.values()) {
-    docToCode.set(entry.docPath, entry.codePath);
-  }
-
-  for (const entry of entries.values()) {
-    const adjacency = new Set<string>();
-    for (const candidate of entry.dependencies) {
-      if (entries.has(candidate)) {
-        adjacency.add(candidate);
-      }
-    }
-
-    nodes.set(entry.codePath, {
-      codePath: entry.codePath,
-      docPath: entry.docPath,
-      dependencies: adjacency,
-      rawDependencies: entry.dependencies,
-      publicSymbols: entry.publicSymbols,
-      symbolDocumentation: entry.symbolDocumentation
-    });
-
-    for (const dependency of adjacency) {
-      if (!inbound.has(dependency)) {
-        inbound.set(dependency, new Set());
-      }
-      inbound.get(dependency)!.add(entry.codePath);
-    }
-
-    if (!inbound.has(entry.codePath)) {
-      inbound.set(entry.codePath, new Set());
-    }
-  }
-
-  return { nodes, inbound, docToCode };
 }
 
 function resolveArtifactIdentifier(
@@ -671,7 +567,7 @@ function describeNode(graph: LiveDocGraph, codePath: string): NodeDescriptor {
   };
 }
 
-function buildSymbolDescriptors(node: GraphNode): SymbolDescriptor[] {
+function buildSymbolDescriptors(node: LiveDocGraphNode): SymbolDescriptor[] {
   if (node.publicSymbols.length === 0) {
     return [];
   }
